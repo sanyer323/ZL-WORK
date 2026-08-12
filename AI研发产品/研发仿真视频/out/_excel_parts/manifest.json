@@ -1,0 +1,370 @@
+[
+  {
+    "i": 0,
+    "row": 2,
+    "col": 2,
+    "label": "定位器前端显示端盖",
+    "file": "00_r2_定位器前端显示端盖.png",
+    "part_no": 1
+  },
+  {
+    "i": 1,
+    "row": 3,
+    "col": 2,
+    "label": "O型圈",
+    "file": "01_r3_O型圈.png",
+    "part_no": 2
+  },
+  {
+    "i": 2,
+    "row": 4,
+    "col": 2,
+    "label": "显示屏固定螺栓",
+    "file": "02_r4_显示屏固定螺栓.png",
+    "part_no": 3
+  },
+  {
+    "i": 3,
+    "row": 6,
+    "col": 2,
+    "label": "线路板",
+    "file": "03_r6_线路板.png",
+    "part_no": 5
+  },
+  {
+    "i": 4,
+    "row": 7,
+    "col": 2,
+    "label": "线路板锁紧螺栓",
+    "file": "04_r7_线路板锁紧螺栓.png",
+    "part_no": 6
+  },
+  {
+    "i": 5,
+    "row": 8,
+    "col": 2,
+    "label": "表头锁定螺栓",
+    "file": "05_r8_表头锁定螺栓.png",
+    "part_no": 7
+  },
+  {
+    "i": 6,
+    "row": 9,
+    "col": 2,
+    "label": "表头外壳",
+    "file": "06_r9_表头外壳.png",
+    "part_no": 8
+  },
+  {
+    "i": 7,
+    "row": 10,
+    "col": 2,
+    "label": "标识盖固定螺栓",
+    "file": "07_r10_标识盖固定螺栓.png",
+    "part_no": 9
+  },
+  {
+    "i": 8,
+    "row": 11,
+    "col": 2,
+    "label": "调节保护罩",
+    "file": "08_r11_调节保护罩.png",
+    "part_no": 10
+  },
+  {
+    "i": 9,
+    "row": 12,
+    "col": 2,
+    "label": "接线段子外壳",
+    "file": "09_r12_接线段子外壳.png",
+    "part_no": 11
+  },
+  {
+    "i": 10,
+    "row": 13,
+    "col": 2,
+    "label": "接线段子外壳固定螺栓",
+    "file": "10_r13_接线段子外壳固定螺栓.png",
+    "part_no": 12
+  },
+  {
+    "i": 11,
+    "row": 14,
+    "col": 2,
+    "label": "后端盖",
+    "file": "11_r14_后端盖.png",
+    "part_no": 13
+  },
+  {
+    "i": 12,
+    "row": 15,
+    "col": 2,
+    "label": "接地螺栓",
+    "file": "12_r15_接地螺栓.png",
+    "part_no": 14
+  },
+  {
+    "i": 13,
+    "row": 16,
+    "col": 2,
+    "label": "长固定螺栓",
+    "file": "13_r16_长固定螺栓.png",
+    "part_no": 15
+  },
+  {
+    "i": 14,
+    "row": 17,
+    "col": 2,
+    "label": "O型圈",
+    "file": "14_r17_O型圈.png",
+    "part_no": 16
+  },
+  {
+    "i": 15,
+    "row": 18,
+    "col": 2,
+    "label": "排线外壳",
+    "file": "15_r18_排线外壳.png",
+    "part_no": 17
+  },
+  {
+    "i": 16,
+    "row": 19,
+    "col": 2,
+    "label": "压力传感器线路板",
+    "file": "16_r19_压力传感器线路板.png",
+    "part_no": 18
+  },
+  {
+    "i": 17,
+    "row": 20,
+    "col": 2,
+    "label": "O型圈",
+    "file": "17_r20_O型圈.png",
+    "part_no": 19
+  },
+  {
+    "i": 18,
+    "row": 21,
+    "col": 2,
+    "label": "限位螺栓",
+    "file": "18_r21_限位螺栓.png",
+    "part_no": 20
+  },
+  {
+    "i": 19,
+    "row": 24,
+    "col": 2,
+    "label": "衬里螺栓",
+    "file": "19_r24_衬里螺栓.png",
+    "part_no": 23
+  },
+  {
+    "i": 20,
+    "row": 25,
+    "col": 2,
+    "label": "底座外壳",
+    "file": "20_r25_底座外壳.png",
+    "part_no": 24
+  },
+  {
+    "i": 21,
+    "row": 26,
+    "col": 2,
+    "label": "压力传感器固定卡箍",
+    "file": "21_r26_压力传感器固定卡箍.png",
+    "part_no": null
+  },
+  {
+    "i": 22,
+    "row": 27,
+    "col": 2,
+    "label": "金属垫片",
+    "file": "22_r27_金属垫片.png",
+    "part_no": null
+  },
+  {
+    "i": 23,
+    "row": 28,
+    "col": 2,
+    "label": "压力传感器上盖",
+    "file": "23_r28_压力传感器上盖.png",
+    "part_no": null
+  },
+  {
+    "i": 24,
+    "row": 29,
+    "col": 2,
+    "label": "传感器内置弹簧",
+    "file": "24_r29_传感器内置弹簧.png",
+    "part_no": null
+  },
+  {
+    "i": 25,
+    "row": 30,
+    "col": 2,
+    "label": "传感器内上盖",
+    "file": "25_r30_传感器内上盖.png",
+    "part_no": null
+  },
+  {
+    "i": 26,
+    "row": 31,
+    "col": 2,
+    "label": "内部支撑件",
+    "file": "26_r31_内部支撑件.png",
+    "part_no": null
+  },
+  {
+    "i": 27,
+    "row": 32,
+    "col": 2,
+    "label": "传感器内下托",
+    "file": "27_r32_传感器内下托.png",
+    "part_no": null
+  },
+  {
+    "i": 28,
+    "row": 33,
+    "col": 2,
+    "label": "传感器膜片",
+    "file": "28_r33_传感器膜片.png",
+    "part_no": null
+  },
+  {
+    "i": 29,
+    "row": 34,
+    "col": 2,
+    "label": "压力传感器外下托",
+    "file": "29_r34_压力传感器外下托.png",
+    "part_no": null
+  },
+  {
+    "i": 30,
+    "row": 35,
+    "col": 2,
+    "label": "金属垫片",
+    "file": "30_r35_金属垫片.png",
+    "part_no": null
+  },
+  {
+    "i": 31,
+    "row": 36,
+    "col": 2,
+    "label": "底部o型圈",
+    "file": "31_r36_底部o型圈.png",
+    "part_no": null
+  },
+  {
+    "i": 32,
+    "row": 37,
+    "col": 2,
+    "label": "异性垫圈",
+    "file": "32_r37_异性垫圈.png",
+    "part_no": null
+  },
+  {
+    "i": 33,
+    "row": 40,
+    "col": 2,
+    "label": "膜片",
+    "file": "33_r40_膜片.png",
+    "part_no": 27
+  },
+  {
+    "i": 34,
+    "row": 41,
+    "col": 2,
+    "label": "膜片连接管",
+    "file": "34_r41_膜片连接管.png",
+    "part_no": null
+  },
+  {
+    "i": 35,
+    "row": 42,
+    "col": 2,
+    "label": "过滤元件",
+    "file": "35_r42_过滤元件.png",
+    "part_no": 28
+  },
+  {
+    "i": 36,
+    "row": 43,
+    "col": 2,
+    "label": "滑阀",
+    "file": "36_r43_滑阀.png",
+    "part_no": 29
+  },
+  {
+    "i": 37,
+    "row": 44,
+    "col": 2,
+    "label": "滑阀套筒",
+    "file": "37_r44_滑阀套筒.png",
+    "part_no": null
+  },
+  {
+    "i": 38,
+    "row": 45,
+    "col": 2,
+    "label": "滑阀阀座",
+    "file": "38_r45_滑阀阀座.png",
+    "part_no": null
+  },
+  {
+    "i": 39,
+    "row": 46,
+    "col": 2,
+    "label": "过滤元件",
+    "file": "39_r46_过滤元件.png",
+    "part_no": 30
+  },
+  {
+    "i": 40,
+    "row": 47,
+    "col": 2,
+    "label": "气动组件外壳",
+    "file": "40_r47_气动组件外壳.png",
+    "part_no": 31
+  },
+  {
+    "i": 41,
+    "row": 48,
+    "col": 2,
+    "label": "通气螺栓",
+    "file": "41_r48_通气螺栓.png",
+    "part_no": 32
+  },
+  {
+    "i": 42,
+    "row": 49,
+    "col": 2,
+    "label": "传感器外壳",
+    "file": "42_r49_传感器外壳.png",
+    "part_no": 33
+  },
+  {
+    "i": 43,
+    "row": 50,
+    "col": 2,
+    "label": "传感器螺栓",
+    "file": "43_r50_传感器螺栓.png",
+    "part_no": 34
+  },
+  {
+    "i": 44,
+    "row": 51,
+    "col": 2,
+    "label": "霍尔传感器",
+    "file": "44_r51_霍尔传感器.png",
+    "part_no": 35
+  },
+  {
+    "i": 45,
+    "row": 56,
+    "col": 2,
+    "label": "滑阀弹簧",
+    "file": "45_r56_滑阀弹簧.png",
+    "part_no": 40
+  }
+]

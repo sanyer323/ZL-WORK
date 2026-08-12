@@ -1,0 +1,752 @@
+A gente está com pouco tempo, vocês estão
+quanto tempo vocês tem que a gente manter
+pelo menos um moinho?Tem?
+Então tá, gente, eu vou tentar ser mais
+breve, vocês já
+trabalham com o FY, pelo que eu estou
+vendo você tem o FY 301 e o
+400 aqui na linha, é isso aí, néMais de
+20, ele tem 30,
+bastante, bastante. Então, como
+o Eduardo falou,Meu nome é Walter
+Borghetti, mas já incluí o Bahia no
+meu nome, isso desde os seis, sete anos
+de idade, peguei esse apelido e continuo
+com ele até hoje. Eu trabalho na Smar
+faz 29 anos
+e eu sempre trabalhei na área há 29 anos
+na Smar, agora é um outro caminho por
+fora. E na Smar trabalhei no terminal de
+desenvolvimento e um dos produtos que
+trabalhei no desenvolvimento foi o
+posicionador, um deles hojeEu também
+estou na área de gerência de produto
+e a gente faz alguns treinamentos, eu
+também continuo trabalhando no
+desenvolvimento, você perguntou para mim
+do F-1500, também trabalhei no
+desenvolvimento dele, mas
+hoje o Duarte pediu para mim vir falar um
+pouquinho sobre manutenção. Então como é
+aqui na sala da ELESC de vocês
+documentação, a gente não tem nada para
+poder fazer uma demonstração, eu trouxe,
+normalmente a gente traz o
+papel, isso aqui eu vou
+deixar aqui com vocês,Depois Eduardo, se
+você não tiver em mídia, eu te passo, aí
+você passa para o pessoal.
+Só para dar um
+pontapé, a gente pode falar sobre o
+princípio de funcionamento do FY na linha
+30x e na linha 400, que a gente trabalha
+com um vip palheta com um piezo.
+O piezo o que é?É essa lâmina
+aqui, alguns posicionadores tem bobina, o
+nosso Ekerson 500 hoje ele tem bobina e a
+linha 300 com uma parte de piezo.
+Ele praticamente é o coração do
+equipamento. Ele tem uma
+deflexão aqui em torno de 40
+micros, 40 micros é o suficiente para
+fazer com que as câmeras 1 e 2 se
+alternem. Então é esse
+essa peça aqui mecânica, que é esse
+aqui eu vi, deixa eu só montar o palheta
+dentro, está nessas pecinhas, a
+parte aqui, se vocês quiserem dar uma
+molhadinha. Então como que
+funciona?Toda vez
+que esse peso está sem tensão,
+ele trabalha de 0 a 100 volts, apesar de
+no FY a gente ver uma
+entrada4 ou 20 miliamperes na
+parte do arquivo são 300 e 400,
+ele tem uma conversão entre a placa
+principal e a placa analógica e essa
+placa analógica é ela que faz a
+geração de tensão no piezo, então ela
+gera de 0 a 100. Então quando eu estou
+com menos tensão, eu estou mais próximo
+ao bico, então eu estou empurrando o
+carretel para baixo, ele faz uma força no
+diafragma e o ar vai de saída 2.
+Quando eu estou com tensão no piezo,
+Aí ele deflete, eu
+escapo o ar, a mola que tem embaixo
+do carretel é mais forte do que a pressão
+piloto e faz com que o ar saia na saída
+onda. Então é assim que
+funciona. Eu já
+pulei toda essa parte aqui, que eu ia
+demonstrar para vocês a parte do
+diafragma.
+O carretel que tem a mola embaixo, como
+vocês já conhecem. E aqui é o que
+eu estava acabando de falar para você,
+que é esse corte aqui é onde tem, eu
+tenho uma mola na parte de baixo, assim,
+essa peça ainda é aqui, ela
+estaria aqui assim, ela estaria aqui
+assim, e o carretel seria esse cara
+aqui, ela estaria aqui. A gente vai
+mostrar pra segura mais pra frente, vai
+conseguir, ele na parte
+elétrica. Aí não tem bobina, néEsse cara
+aqui, esse cara aqui que éEntão é
+ele que faz essa reflexão pura. Ele
+fica afastando e aproximando desse
+bico. Conforme ele aproxima, tem um ar de
+alimentação, ele entra, ele fica preso
+aqui no carretel, mas ele sobe e fica
+confinado aqui. Então se eu fico
+aproximando aqui, esse ar faz uma força
+para baixo. Então essa força é maior que
+a mola. Se eu alivio
+aqui, seu
+peso, começa a escapar a ar aqui, o ar
+vai embora por umauma saída que tem na
+nossa real e aí essa mola
+fica mais forte do que a força que vem
+do ar, então ela empurra o carretel para
+cima. Basicamente
+seria isso daqui, o princípio de
+funcionamento que vocês, o ar
+de instrumentação está aqui e ele está
+parado aqui no carretel. Esse ar
+depende do seu atuador, é ele
+que manda. mas o funcionador ele aceita
+de 20 até 100 PSI.
+Aí, por exemplo, um atuador desse daqui,
+desse aqui, deve trabalhar em torno de um
+ciclo bar, válvula,
+retorno mola é 40, 50
+PSI, uma coisa assim, pistão,
+chega até 100, aí depende do, não, mas a
+atuação dele é a variação do
+ar, e não do
+sistema em cimaa variação para
+ele posicionar corretamente a variação da
+pressão do ar que
+o ar ele vai entrar na sua volta, certo?
+Ele vai pular. A hora que você mandou ele
+para, você está em 25%, você quer chegar
+em 50%, o que vai ter que fazer?O
+seu 7 pontos mudou a PV para mandar um
+sinal elétrico nesse piso aqui. Para ele
+abrir ou para ele fechar. O piezo que vai
+aliviar a pressão, não o ar imprimido que
+vai ser maior, não. Ele
+alivia, por exemplo, ele aperta aqui, eu
+abro e começo a deixar o ar e passar para
+a câmara dois. O maligno é piezo,
+não a variação de ar na entrada.
+A entrada de ar é sempre a mesma, está
+sempre a mesma. Você dizendo que eu
+comando disso é através do piso. Você
+vê, vamos olhando a atenção aqui, eu vou,
+quando a pressão não vai, é nunca uma
+cama, uma outra. Espera mais ar ou menos
+ar, do lado. Então,
+toda vez que a, a gente
+está em, por exemplo, posição de
+equilíbrio, é toda vez que a válvula
+está em controle, seu set point e sua PV
+está tão em voz, e está nessa posição
+aqui.
+Quando eu altero o
+setpoint, no caso aqui
+eu tirei tensão de peso, aí não importa
+porque você está trabalhando lá, você
+está trabalhando com 4 miliamperes que é
+direto ou 4 miliamperes que é
+reto, ele internamente ele faz esses
+cálculos aqui, mas o que importa é a
+tensão. Tensão baixa,
+eu ganhei o ar para atleta
+2. Como eu falei, estava em 50%, porque
+ali para 75% ele faz isso daqui. Quando
+chega em 75% de iguala, ele volta
+para isso. As forças entre a bola
+e a força do peso se
+reequilibram. Sempre é assim, qualquer
+posição seja entre 1% e
+99%, como está em 0,
+como está em 100,Aí ele mantém a posição
+assim, o livro agora está matando, agora
+o Arthur falou que vai garantir que a
+bola está totalmente aberta, totalmente
+fechada. Pelo contrário,
+beleza?E aqui
+a gente fala que é a produção de
+segurança, caso tenha
+uma falta de energia, um
+posicionador que está funcionando
+perfeitamente, ele vai fazer com que o
+mesmo encostes do vidro,
+ele não vai ter
+E aí acontece isso aí.
+Então você tem que sempre colocar numa
+válvula rotativa, duplação, a
+sua posição de segurança sempre pluga a
+saída 2. Numa válvula de
+simplesação, a saída 2 já vai plugada,
+ela já vai tapada para você
+obrigatoriamente ligar a saída 1
+do lado do ar, e do outro lado já vai ter
+a válvula. Beleza?
+Fui bem rapidão aqui. Mais, alguma
+dúvida?
+Até então?Eu não estou na alimentação
+dele. Você coloca 4 milhas perto.
+E em 4
+miliamperas, a pessoa ali variando com
+assim, ele perde a intenção dos
+players. Você tem que jogar ali na
+5 milhas perto, jogar
+no 7 milhas perto. quatro meio
+aberto e ele está apagando display, é
+porque está tendo consumo em algum lugar.
+Você está tendo alguma baixa desolação,
+pode ser na horneira, pode ser na placa,
+pode ser no piezo, pode ser em algum
+lugar. Em algumas situações,
+aí você precisa
+medir, você precisa verificar, você pode
+pegar sua fonte e
+ligar aqui nesses dois terminais de teste
+aqui, aí você vai verificar o que está
+chegando aqui, se está chegando ou não.
+Quanto que está chegando?A gente tem uma
+empresa lá em Rio Claro,
+não esqueci o nome dela. Acho
+que a Usina Rio Claro. Eu estive lá com
+eles e eles tinham esse problema, só que
+o problema deles é que o gerador deles
+não conseguia chegar abaixo de cinco.
+Eles só chegavam cinco. E aí eles
+montaram e o que a gente fez?Eu fui lá
+naquela condição de trabalhar em Split
+RangeEu falei para ele, de vez que você
+trabalha de 4 a 20, coloca de 5 a 20,
+aí ele passou a trabalhar normal, mas
+até ele conseguir arrumar um gerador,
+mas eles estavam em recuperação judicial,
+nem sei se eles conseguiram fazer isso
+daí. Ele jogou para 5 a 20, e
+aí conseguiu trabalhar,
+mas aí você precisa verificar e ver o que
+está acontecendo aí. A parte de
+manutenção lá da Esmaia, você
+também apura alguém,
+Às vezes, quando me pedem, quando, por
+exemplo, um luar, por exemplo, vai mandar
+alguma coisa para vocês, e eu vou levar,
+ele fala, tá chegando lá, o
+equipamento assim, você não quer dar uma
+atenção para ver o que é que realmente
+está acontecendo com ele?Acho que um pai
+nosso, talvez você não saiba ali para
+saber os nossos que vão para lá, mas se
+eu não poder
+diagnóstica lá pra gente ver o que que a
+gente pode melhorar em termos de
+manutenção nossa. O pessoal tem, só tem
+um laudo, néÉ, nossa proposta é
+um laudo. Proposta é subjetivo ou
+não. Primeiro fica um laudo, deixou
+outro, néDeu
+um diagnóstico, e aí o que é que tu vai
+fazer?Aí dentro, então, o senhor proposta
+é um laudo. Então aí é outro retorno. Não
+lembra aí do mialc e os laudo que a gente
+recebe, o que que tem lá?É a
+construção das câmeras, aonde que é
+aquilo que você mostrou?Qual que é o,
+aonde que vem aqui, dá problema nesse
+cara aqui, início aqui?Nas
+câmeras, geralmente você, o pifaria que
+aqui também, a gente começou a recuperar
+muito, e antes a gente mandava,
+não dava modulação, aí a
+gente tinha que arrancava e mandava,
+começou a fazer a limpeza do pifaria
+aqui, recorreu bastante. Às vezes a gente
+tem um, ainda tem um problema, não tem, a
+gente foi no ar ainda, no ar ele vai com,
+não é nem umidade, se é óleo, é umidade
+ele ainda absorve. A umidade é que
+eu ia mostrar para vocês aos pouquinhos,
+mas nós vamos, vamos passando
+aí. É. Esse aqui é o evento de
+peso. Se você pegar ele
+solto aqui, ele é uma cerâmica, ele
+vai arrebentar em 300 pedaços. ele está
+arrebentado, se ele quiser passar, você
+vai ver que não se sobe, ele tem uma
+camada de proteção aí que a gente chama
+de palinênio. Essa proteção aí é para
+isolar ele eletricamente, para que a água
+não interfira no funcionamento
+dele, mas o óleo ele não vai
+matar o equipamento, mas ele vai dar
+manutenção para um. Isso
+aqui é o correto, ver se os dois são
+corretos. Isso aqui pode ser que
+você tenhahá uns 10 anos
+atrás, você tem minha querida cinza, tá?
+E esse agora é o que a gente trabalhou
+hoje em dia, por que?Inicialmente é desse
+cara cinza, a camada dele é
+mini e essa aqui é prata. Só que
+a gente não conseguiu mais comprar esse
+cinza devido a óculos. Não tem nada.
+Ele quebradinho assim, tá com problema ou
+não?Não, ele quebradinho tá quebrado de
+propósito. Ah, é assim mesmo?É assim
+mesmo, tá quebrado de propósito, ele é
+assim. É assim, né
+Ah, tá. Esse quebradinho de propósito,
+vai vir assim pra você ver. Pra
+você ver o que é o problema. Deve ver o
+material, tá, mas ele não é quebrado,
+não, não é quebrado.
+Você mostrou dois aqui mesmo. É bom,
+esse é ruim?Não. Não
+Olha, isso daqui, gente, é umas
+instruções de manutenção, não sei se
+vocês tem jeito pra alguém aqui. Bem, eu
+também não vou entrar nele de meio dele
+não, porque senão a gente vai ficar muito
+tempo lá. Mas isso que o Otoniel falou,
+da questão do olho no ar, vai interferir
+aonde aqui. Interessante,
+tudo, eu vou até prefiro, ou olha vai
+empreendendo algum posicionador, nenhum
+posicionador pode trabalhar com outro,
+quem trabalha sempre com ar livre, mas
+isso aí é uma outra corrigida, isso aí é
+uma utopia, é muito raro, quem tem
+uma argumentação por aqui, existe, mas o
+pessoal que trabalha, por exemplo, na
+erlite, não trabalha com nitrogênio,
+então eles tem posicionador lá e não dá
+pau muito, porqueTem o que
+apertar aqui, néSó se tem algum problema
+na eletrônica dele, metaricamente, mas
+não vai ficar sempre trabalhando. Mas o
+óleo é complicado, ele vai impregnando
+tudo dentro do posicionador. Então ele
+começa a impregnar,
+aqui está sem bolas. Essas aqui são as
+partes do posicionador, o bloco que a
+gente dividiu, a base de peso, o
+diafragma. e a tampa de ligação, que a
+gente chama a parte ali embaixo, a parte
+de cura mecânica dele. Então se isso
+daí começa a ser arrastado um novo pelo
+ar, ele vai entrando no meio daquele
+carretel que faz o movimento, que é esse
+carretel que estava aqui, esse
+carretelzinho aqui, ele tem a mão ali
+embaixo, ele começa a encher de óleo, ele
+pode travar ele, travar no moldura. O
+piezo, ele tem uma, lembra que eu
+falei, tem até 40 milímetros,Então ele
+tem uma distância ali entre onde sopra o
+ar e que é o bico e a mesa
+de 40 micros mais. Quando começa
+o óleo, se ele ficar ali, ele ficar mais
+pastoso, ele não fecha mais. Se segurar,
+não fecha mais. Então tem que sair, o
+óleo realmente ele, ainda mais quando
+fica muito tempo parado, você
+está constantemente funcionando, vai
+indo, aí você, ou a válvula fica muito
+tempo numa posição, aí você só vai atuar
+ela às vezes,Aí é onde pode
+complicar.
+Bom, mas voltando aqui
+no nosso conceito de
+treinamento e manutenção, como eu falei
+para vocês, a gente tem essas partes.
+Bloco, diafragma,
+piezo, tampa ligação e uma
+placa analógica. Você se depara com o
+produto que tem no campo funcionando e de
+repente ele não modula mais.
+O que você pode fazer no campo?
+Só limpar aquele parafusinho de restrição
+que você mostrou agora pouco aí, que é
+esse parafusinho que tem aqui na lateral.
+Ele é um parafusinho que tem um furinho
+de três décimos, se ele entope
+não deixa passar ar, não tem
+comando, então você pode tirar o
+arlimpar esse parafusinho e coloca
+novamente. Se for ele, você já resolveu o
+problema. Se não for ele, você tem que
+tirar o produto e trazer para sua
+linha de manutenção.
+Primeira coisa, você coloca ele numa
+barbulinha para fazer um setup e
+verificar onde que está, onde o setup
+está parando. Na linha do FY
+301 ele vai de 10 em 10. No
+400 ele já vai modulando de uma forma
+diferente. 5, em 5,
+mas falando da parte do 301 para
+que seja um pouco mais didático,
+ele tem alguns lugares que ele pode
+travar o setup, ele vai de 0 a 100% e
+vai de 10 em 10, 10 em 10. Cada 10
+é uma coisa. Em 10%, se ele
+estivesse travando em 10%, pode ser,
+no campo pode ser excesso de vibração, se
+ele tiver uma vibração muito alta,A gente
+tem aqui embaixo, você sabe que o
+elemento é al?
+Ele é um sensor que ele faz o quê?Ele
+verifica.
+o movimento do
+posicionador aqui da válvula é através de
+um imã, então ele faz essa leitura
+da posição. Se estiver com uma vibração
+muito alta, ele não consegue parar, não
+consegue se equalizar, então ele dá esse
+erro de 10%. Aqui na bancada pode ser que
+o HAL esteja com defeito, 10%.
+20 e 30 ele vai passar, em
+40% é o defeito que mais
+acontece, mais comum,
+50 ele vai passar, 60%,
+70%, não é DV, é só sintonia,
+no 400 você não tem isso que ele tem a
+sintonia automática, mas no 300 você
+tem que definir os ganhos, às vezes você
+coloca numa válvula no campo muito
+grande, coloca um capp, um ganho muito
+baixo, ele fica parado nessa posição,
+você vai lá, aumenta esse ganho e vai
+embora. e ao contrário, se ele estiver
+com um ganho muito alto, ele fica
+oscilando. Aí você tem que diminuir e aí
+ele vai passar a rema agora. Pessoal,
+aqui nessa rotativa é um
+valor de 8,82, se eu não me engano, o
+tempo, veio o arquivo lá e Ele sai mais
+ou menos de fábrica, néMas deve ser por
+causa do tamanho das aulas de vocês, deve
+ser mais ou menos o mesmo tamanho, então
+vocês já se habituaram com um
+KP, néMas existe válvulas que a gente tem
+que levar o capim lá para 45, aqui no
+mais eu não faço 40 por 80, eu faço.
+Falando 40 e 80, 80 é porque você não
+está com um imã bem alinhado, às vezes
+você precisa dar uma ajustadinha. Isso,
+aí você dá uma ajustadinha, quer dizer,
+não é defeito, é só questão de ajuste.
+Agora o defeito mesmo 40, então a gente
+pode entrar nesse defeito e falar sobre
+40. Você teve um defeito em
+40%, aí é um mundo de coisas que podem
+acontecer com o defeito em 40%. A gente
+começa com esse cara aqui, pode ser o que?
+O carretel travado. O
+carretel pode ter travado com o devido
+excesso de óleo, você mostrou aí os
+filtros, está bem sujo, inclusive no
+retorno. O diafragma pode ter
+furado. O diafragma furou, passa a arma
+de uma câmera para a outra, ele não
+consegue ter força para movimentar
+Essa peça aqui pode ser o que?O
+piezo pode estar com baixa isolação ou
+ele pode estar também só sujo.
+Baixa isolação o que é?É que essa
+proteção de panelene talvez possa ter
+sido rompida e aí entra água, aí ele dá
+baixa isolação. Quando não, ele pode
+estar só descalibrado, que o que você
+precisa fazer é uma boa limpeza
+dele. E a tampa de
+ligação também, ela pode dar problema
+nessa placa analógica aqui. Por que?No
+momento eu falei que é ela que gera
+tensão e piezo. Se ela tiver com defeito,
+ela não gera tensão, então não
+deflete. Aí você vai começar o passo a
+passo. Desmonta todo o
+produto e começa a fazer uma limpeza nele
+para chegar onde que é o defeito dele.
+Vocês não tem esse produto aqui, néNão
+tem néEsse aqui a
+gente tem o nome de FYSON
+KAL, ele é um calibrador de base,
+ele gera uma tensão de 0 a 100 volts e
+também gera uma corrente de 4
+a 20 miliamperes. Então
+para o FY a gente usa esses dois
+botõezinhos aqui e deixa essa base
+calibrada.
+A gente vai começar eliminando Essa
+parte o isso não se compra, né
+Isso é só da equipamento da Smart. Não,
+pode comprar, pode comprar isso aí?Pode
+comprar. O produto tá vindo. Ele é um
+equipamento, não vende isso. É da
+Smart. Sim, entendeu. A
+gente começa por esse cara aqui. Então o
+que é necessário fazer?Verificar se está
+travado ou não carretel, já que você
+tirou e está cheio de óleo,você pode
+desmontar, jogar isso aqui dentro de um
+tanque cheio de água e
+sabão e lavar ele bem lavado, o carretel
+lavado direitinho, só tem peça mecânica,
+você lava, seca e
+verifica. Movimentou com o dedo aqui o
+carretelzinho, essa peça já está pronta
+para você continuar o seu processo.
+Se sensor, a gente tentar
+até ver se eu tenho
+Perdeu até essa molinha, hein?
+Mas eu tinha. Agora
+Não, a gente pega uma imagem. Oi?Eu pego
+uma imagem. É, aqui deve ter uma imagem
+dele nessa nesse carninha que você tem aí
+procurar, você deve ver a imagem
+dele. Até aqui, beleza?Fazer essa parte
+de limpeza aqui. Fez a limpeza desse
+cara, a gente vai para esse aqui, para a
+segunda etapa, que é verificar o
+diafragma. O diafragma você vai poder
+limpar ele. Limpou e faz uma
+inspeção visual. Cara, tá
+bom?Você olha, eu imagino que ele não tem
+nenhum furto. Pode ser que ele tenha,
+mas visualmente você não achou nenhum
+defeito. Limpou ele.
+E separou. Agora estamos com duas
+partes resolvidas. Agora nós vamos para a
+terceira parte que é o piso. E aí a
+primeira coisa que você precisa fazer é
+verificar se esse cara não está com baixa
+insolação, para você poder dar a
+manutenção nele. Certo?E
+como a gente faz isso aqui?Se você tiver
+esse dispositivo aqui, você usa o próprio
+FYC. Se você não
+tiver, aí você pode fazer com mergonga.
+Só que o seu megômetro precisa ser uma
+escala de 100 volts. Não pode ser mais
+que isso, e é muito difícil. Só porque
+o visa trabalhar 100 volts.
+Normalmente não tem, normalmente é maior.
+Se você jogar 500 volts você vai Então,
+no megômetro
+você tem que colocar 100 volts e fazer
+com que ele seja negado
+e a isolação dele esteja acima de 50
+mega. Então acima de 50 mega você pode,
+que olha para foraA
+maioria olha
+e vem lá, mas eram mais antigos?
+É, mas aqueles nossos aí é tudo mais 10
+anos. Bom,
+eu vou fazer com esse cara que eu tenho
+aqui, vou tentar.
+Pode?Não, isso aí é 500 mil.
+Olha, o
+que que a gente faz aqui?Eu não preciso
+estar com ele montado aqui em cima, eu só
+montei ele aqui em cima para poder ir
+ganhando tempo, ele vai estar aqui assim,
+na tua mão desse jeito. Você
+pega esse FYK aqui,
+você coloca ele na posição de gerartensão,
+e aplica 100 volts.
+Você aplica 100 volts aqui.
+E fecha o curto.
+Você está vendo que ele cai, né
+E ele tem que cair. Se não cair nada é
+porque está errado. Ele tem que cair, mas
+o que ele tem que cair?Ele tem que cair
+no máximo 2 volts. Eu joguei 100
+volts aí, 100 volts é o máximo de
+tensão. E ele cai
+1.7 aqui. Se tivesse com 100, tinha cído
+para 99.3. É aceitável, é o que é
+o normal de ele caindo até 98.
+O seu pesco está bom. Então você
+segue o processo de
+fazer a limpeza. Eu
+tenho três aqui que eu trouxe. Só para
+mostrar para vocês a diferença que
+tem entre um e o outro aí. Aí
+eu preciso renovar o meu estoque. Aonde
+que ele dá contato?
+Quando você monta esse cara aqui, ele é
+totalmente isolado. Tudo é isolado. A
+única coisa que não é isolado é essa
+parte aqui, que é o que dá contato.
+Então aquilo que eu fiz nada mais é do
+que eu jogar
+Isso é em volts?É em serral ou Cecê?
+Não, é corrente contínua. E é um
+micro ampere, é bem baixo.
+Todo lugar que eu encostar aqui, ele
+não pode mexer, ele tem que continuar com
+o que está. Oi?Aí
+significa que a resolução está ok. Está
+ok. Aqui também é a mesma coisa,
+ele tem que ficar com o que está marcando
+porque eu tenho palhé energia, o palhé
+não pode deixar passar nada. Certo?
+A hora que eu encostar aqui, ele tem que
+cair. Ele não caiu, néNão,
+nãoEntão, ele vai falar assim, ele tá
+bom?Não, ele tá péssimo. Por que?Aqui tá
+bem nítido, tá vendo?Tá estourado
+o fio que faz a solda dele com
+a gaiolinha aqui. Então ele não vai cair.
+Então a pessoa fala, não caiu, tá
+ótimo. Não, não tá ótimo, ele tinha que
+ter caído, ele não caiu. detalhado,
+não está com problema.
+Deixa eu pegar esse outro aqui,
+aventura aqui, vou pegar.
+Esse outro aqui, vamos ver como é que ele
+está.
+Esse outro aqui, está tudo soltinho,
+mas ele não cai,
+aqui no meio também ele não cai e aqui na
+borda dele, você viu que ele começou
+Ele caiu. Ponto 7. Então,
+teoricamente, ele está bom.
+É o cara que você daqui pra frente
+continua na sequência. Essa
+parte aqui ele cai. Aqui não tem que
+cair. Nada, nadaImagina que se você
+pegar esse cara aqui e encostar
+nele,e ele cai, cai .7 e está sem
+isolação.
+Porque a gente no mercado a gente tem
+um pessoal aí que vende paralelo,
+e aí eu não sei como é que eles fazem, às
+vezes não tem proteção, quando tiver
+nenhum conjunto desse sem proteção você
+coloca lá na planta, dois dias ele
+cai. Não sei como é que é para cá,
+então ele não pode cair aqui. Tá
+só naquela parte. Tá tendo um terceiro
+aí, não tem?TemDeixa eu ver como é que tá
+esse daqui.
+Isso aqui é a mesma coisa, vamos ver, não
+está caindo, não está
+caindo, e quando eu coloco aqui,
+teoricamente esse cara
+estaria bom. Eu peguei um errado, eu
+tinha um lá comigo que ele caia lá para
+80, subia para 90, ficava voando para
+80, se vocês pegarem uma condição dessa,
+esse é o que está com migração. de água
+dentro dele. Se ele
+ficar mudando a isolação, ele fica, sobe,
+desce, sobe, o ariando, você fala, esse
+cara está com uma migração, não está
+ok. Esse daqui, deixa eu
+colocar aqui. Ah, é esse cara mesmo.
+Tá bom.
+Tudo é isolado, está vendo?Eu coloquei
+aqui no fiozinho para vocês verificarem,
+eu coloco no fiozinho, está vendo?
+O fiozinho está isolado. Só quando eu
+encosto na E o fiozinho
+também tem parilene.
+Então, acontecendo isso,
+vocês dão sequência na manutenção. E o
+que é dar a sequência na manutenção?Aí
+você dizendo para ele daqui de dentro.
+Essa parte aqui, a gente pode
+tirar ele dali, pode lavar. Tira o
+bico, solta.
+Você pode lavar ele com água e
+sabão, pode tirar todas as peças aqui e
+lavar. E essa peça aqui,
+se você encontrar ela toda cheia de óleo,
+muito provavelmente essa face aqui, ela
+vai estar toda suja, toda quando usada de
+óleo. Você pega uma
+massinha assim com álcool, vocês tem
+álcool cotovilho aqui ouum
+álcool que terra maior de pureza e
+deixa ele nessa posição,
+mergulhado dentro do álcool,
+esse óleo na sua posição ali, ele
+vai ser todo espulgado. O álcool vai
+arrancar todo esse óleo dele, se deixar
+de um dia para o outro e no outro dia ele
+vai estar limpinho e já vai secar rápido.
+E aí você pega um paninho, limpa, deixa
+essa face perfeitae aí ele está pronto
+para que?Para voltar para a montagem
+na tua base. Aí você vem, pega
+essa peça, monta tudo direitinho,
+conforme aquela sequência que tem ali
+naquele manualzinho, monta ele e
+aí vamos calibrar a base.
+Então, a gente deixou esses dois caras
+prontos e estamos deixando o terceiro. A
+primeira fase que nós passamos foi
+verificar que ele não tinha baixa violação
+fizer uma limpeza, agora nós vamos
+calibrar.
+Para quem tem o FYC
+é muito bom para você
+isolar esse cara, fazer uma calibração
+da base para depois ir para o conjunto.
+Para quem não tem, pode vir direto nessa
+situação aqui. Mas pra
+quem tem, eu sempre recomendo fazer aqui
+em cima. Como eu estou com o dispositivo
+aqui, eu vou demonstrar o funcionamento
+deles.
+Você consegue. Você encontra.
+Tem sempre um jeito.
+Aqui, esse ar aqui, é só É só
+abrir ali a válvula monopolia. Cuidado
+que está conectado a mangueira.
+Seis baras aqui. Beleza.
+O que a gente faz para fazer a calibração
+da base no FY?
+Aqui não precisa montar quatro parafusos,
+se você não tiver o parafuso, o parafuso
+que vai aqui é o mesmo parafuso que vão
+aqui embaixo na tampa do Hall. Então eu
+venho com o meu
+FYCAL e coloco 20 psi.
+Você vai falar, mas por que eu tenho que
+ter 100 psi aqui se você vai só usar 20?
+Porque essa base aqui, ela é utilizada em
+dois equipamentos da Smart, é utilizada
+no FY e ela é utilizada em um outro
+produto chamado FP. O FP é só um
+conversor de pressão, ele não
+existe em hardware, só existe em Fieldbus
+e Profus, e ele é
+utilizado como se fosse um antigo
+IPAP. É um produto
+limitado com as vendas para clientes
+específicos aqui no Brasil e lá nos
+Estados Unidos. e para calibrar a base
+daquele cara eu preciso
+ser de 20, 40, 60, 80 e 100 eu
+faço uns 5 pontos quando eu vou utilizar
+num FT quando eu vou utilizar no FY
+basta eu colocar 20 psi
+de entrada
+eu vou tirar esse cara aqui de qualquer
+posição que tiver aqui colocar ele para
+cá mais ou menos calibrar ele

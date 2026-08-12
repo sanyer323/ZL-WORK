@@ -1,0 +1,3007 @@
+1
+00:00:00,440 --> 00:00:01,1000
+A gente está com pouco tempo, vocês estão
+
+2
+00:00:01,1000 --> 00:00:03,800
+quanto tempo vocês tem que a gente manter
+
+3
+00:00:03,800 --> 00:00:06,479
+pelo menos um moinho?Tem?
+
+4
+00:00:07,319 --> 00:00:09,999
+Então tá, gente, eu vou tentar ser mais
+
+5
+00:00:09,999 --> 00:00:11,919
+breve, vocês já
+
+6
+00:00:12,519 --> 00:00:14,639
+trabalham com o FY, pelo que eu estou
+
+7
+00:00:14,639 --> 00:00:17,199
+vendo você tem o FY 301 e o
+
+8
+00:00:17,199 --> 00:00:19,558
+400 aqui na linha, é isso aí, néMais de
+
+9
+00:00:19,558 --> 00:00:20,718
+20, ele tem 30,
+
+10
+00:00:22,158 --> 00:00:24,638
+bastante, bastante. Então, como
+
+11
+00:00:26,078 --> 00:00:28,958
+o Eduardo falou,Meu nome é Walter
+
+12
+00:00:29,078 --> 00:00:32,077
+Borghetti, mas já incluí o Bahia no
+
+13
+00:00:32,077 --> 00:00:34,757
+meu nome, isso desde os seis, sete anos
+
+14
+00:00:34,757 --> 00:00:37,357
+de idade, peguei esse apelido e continuo
+
+15
+00:00:37,357 --> 00:00:40,317
+com ele até hoje. Eu trabalho na Smar
+
+16
+00:00:40,317 --> 00:00:42,077
+faz 29 anos
+
+17
+00:00:43,277 --> 00:00:45,516
+e eu sempre trabalhei na área há 29 anos
+
+18
+00:00:45,516 --> 00:00:48,316
+na Smar, agora é um outro caminho por
+
+19
+00:00:48,316 --> 00:00:50,676
+fora. E na Smar trabalhei no terminal de
+
+20
+00:00:50,676 --> 00:00:52,956
+desenvolvimento e um dos produtos que
+
+21
+00:00:52,956 --> 00:00:54,636
+trabalhei no desenvolvimento foi o
+
+22
+00:00:54,996 --> 00:00:57,995
+posicionador, um deles hojeEu também
+
+23
+00:00:57,995 --> 00:00:59,835
+estou na área de gerência de produto
+
+24
+00:01:00,635 --> 00:01:02,395
+e a gente faz alguns treinamentos, eu
+
+25
+00:01:02,395 --> 00:01:03,555
+também continuo trabalhando no
+
+26
+00:01:03,555 --> 00:01:04,835
+desenvolvimento, você perguntou para mim
+
+27
+00:01:04,835 --> 00:01:07,635
+do F-1500, também trabalhei no
+
+28
+00:01:07,635 --> 00:01:10,314
+desenvolvimento dele, mas
+
+29
+00:01:10,314 --> 00:01:11,914
+hoje o Duarte pediu para mim vir falar um
+
+30
+00:01:11,914 --> 00:01:14,794
+pouquinho sobre manutenção. Então como é
+
+31
+00:01:14,794 --> 00:01:16,754
+aqui na sala da ELESC de vocês
+
+32
+00:01:16,754 --> 00:01:19,114
+documentação, a gente não tem nada para
+
+33
+00:01:19,114 --> 00:01:21,194
+poder fazer uma demonstração, eu trouxe,
+
+34
+00:01:21,194 --> 00:01:22,633
+normalmente a gente traz o
+
+35
+00:01:22,633 --> 00:01:25,393
+papel, isso aqui eu vou
+
+36
+00:01:25,393 --> 00:01:28,073
+deixar aqui com vocês,Depois Eduardo, se
+
+37
+00:01:28,393 --> 00:01:31,113
+você não tiver em mídia, eu te passo, aí
+
+38
+00:01:31,113 --> 00:01:33,193
+você passa para o pessoal.
+
+39
+00:01:34,553 --> 00:01:35,752
+Só para dar um
+
+40
+00:01:36,792 --> 00:01:39,672
+pontapé, a gente pode falar sobre o
+
+41
+00:01:39,672 --> 00:01:42,312
+princípio de funcionamento do FY na linha
+
+42
+00:01:42,312 --> 00:01:44,952
+30x e na linha 400, que a gente trabalha
+
+43
+00:01:44,952 --> 00:01:47,112
+com um vip palheta com um piezo.
+
+44
+00:01:47,992 --> 00:01:50,591
+O piezo o que é?É essa lâmina
+
+45
+00:01:50,591 --> 00:01:53,271
+aqui, alguns posicionadores tem bobina, o
+
+46
+00:01:53,271 --> 00:01:56,151
+nosso Ekerson 500 hoje ele tem bobina e a
+
+47
+00:01:56,431 --> 00:01:59,391
+linha 300 com uma parte de piezo.
+
+48
+00:02:00,631 --> 00:02:02,310
+Ele praticamente é o coração do
+
+49
+00:02:02,870 --> 00:02:05,150
+equipamento. Ele tem uma
+
+50
+00:02:05,150 --> 00:02:07,790
+deflexão aqui em torno de 40
+
+51
+00:02:07,790 --> 00:02:09,910
+micros, 40 micros é o suficiente para
+
+52
+00:02:09,910 --> 00:02:12,790
+fazer com que as câmeras 1 e 2 se
+
+53
+00:02:12,790 --> 00:02:15,429
+alternem. Então é esse
+
+54
+00:02:19,029 --> 00:02:21,949
+essa peça aqui mecânica, que é esse
+
+55
+00:02:21,949 --> 00:02:23,549
+aqui eu vi, deixa eu só montar o palheta
+
+56
+00:02:23,549 --> 00:02:26,468
+dentro, está nessas pecinhas, a
+
+57
+00:02:26,468 --> 00:02:28,228
+parte aqui, se vocês quiserem dar uma
+
+58
+00:02:28,228 --> 00:02:30,748
+molhadinha. Então como que
+
+59
+00:02:30,748 --> 00:02:32,468
+funciona?Toda vez
+
+60
+00:02:34,148 --> 00:02:35,988
+que esse peso está sem tensão,
+
+61
+00:02:37,188 --> 00:02:39,987
+ele trabalha de 0 a 100 volts, apesar de
+
+62
+00:02:39,987 --> 00:02:42,507
+no FY a gente ver uma
+
+63
+00:02:42,507 --> 00:02:45,107
+entrada4 ou 20 miliamperes na
+
+64
+00:02:45,107 --> 00:02:47,907
+parte do arquivo são 300 e 400,
+
+65
+00:02:48,787 --> 00:02:51,027
+ele tem uma conversão entre a placa
+
+66
+00:02:51,067 --> 00:02:52,946
+principal e a placa analógica e essa
+
+67
+00:02:52,946 --> 00:02:55,666
+placa analógica é ela que faz a
+
+68
+00:02:55,666 --> 00:02:57,466
+geração de tensão no piezo, então ela
+
+69
+00:02:57,466 --> 00:02:59,626
+gera de 0 a 100. Então quando eu estou
+
+70
+00:02:59,626 --> 00:03:02,186
+com menos tensão, eu estou mais próximo
+
+71
+00:03:02,186 --> 00:03:04,465
+ao bico, então eu estou empurrando o
+
+72
+00:03:04,465 --> 00:03:07,105
+carretel para baixo, ele faz uma força no
+
+73
+00:03:07,105 --> 00:03:09,385
+diafragma e o ar vai de saída 2.
+
+74
+00:03:10,225 --> 00:03:12,785
+Quando eu estou com tensão no piezo,
+
+75
+00:03:13,345 --> 00:03:16,065
+Aí ele deflete, eu
+
+76
+00:03:16,065 --> 00:03:18,704
+escapo o ar, a mola que tem embaixo
+
+77
+00:03:19,984 --> 00:03:22,544
+do carretel é mais forte do que a pressão
+
+78
+00:03:22,544 --> 00:03:25,224
+piloto e faz com que o ar saia na saída
+
+79
+00:03:25,224 --> 00:03:27,824
+onda. Então é assim que
+
+80
+00:03:27,824 --> 00:03:30,303
+funciona. Eu já
+
+81
+00:03:30,303 --> 00:03:32,303
+pulei toda essa parte aqui, que eu ia
+
+82
+00:03:32,943 --> 00:03:34,623
+demonstrar para vocês a parte do
+
+83
+00:03:34,623 --> 00:03:35,663
+diafragma.
+
+84
+00:03:37,823 --> 00:03:39,983
+O carretel que tem a mola embaixo, como
+
+85
+00:03:39,983 --> 00:03:42,942
+vocês já conhecem. E aqui é o que
+
+86
+00:03:42,942 --> 00:03:44,782
+eu estava acabando de falar para você,
+
+87
+00:03:44,902 --> 00:03:47,542
+que é esse corte aqui é onde tem, eu
+
+88
+00:03:47,542 --> 00:03:49,702
+tenho uma mola na parte de baixo, assim,
+
+89
+00:03:49,942 --> 00:03:52,902
+essa peça ainda é aqui, ela
+
+90
+00:03:52,902 --> 00:03:55,901
+estaria aqui assim, ela estaria aqui
+
+91
+00:03:55,901 --> 00:03:58,661
+assim, e o carretel seria esse cara
+
+92
+00:03:58,661 --> 00:04:01,621
+aqui, ela estaria aqui. A gente vai
+
+93
+00:04:01,621 --> 00:04:03,061
+mostrar pra segura mais pra frente, vai
+
+94
+00:04:03,061 --> 00:04:04,541
+conseguir, ele na parte
+
+95
+00:04:05,901 --> 00:04:08,220
+elétrica. Aí não tem bobina, néEsse cara
+
+96
+00:04:08,340 --> 00:04:11,260
+aqui, esse cara aqui que éEntão é
+
+97
+00:04:11,260 --> 00:04:14,140
+ele que faz essa reflexão pura. Ele
+
+98
+00:04:14,140 --> 00:04:16,460
+fica afastando e aproximando desse
+
+99
+00:04:17,100 --> 00:04:19,060
+bico. Conforme ele aproxima, tem um ar de
+
+100
+00:04:19,060 --> 00:04:21,579
+alimentação, ele entra, ele fica preso
+
+101
+00:04:21,579 --> 00:04:23,859
+aqui no carretel, mas ele sobe e fica
+
+102
+00:04:23,859 --> 00:04:25,939
+confinado aqui. Então se eu fico
+
+103
+00:04:25,939 --> 00:04:28,339
+aproximando aqui, esse ar faz uma força
+
+104
+00:04:28,339 --> 00:04:30,699
+para baixo. Então essa força é maior que
+
+105
+00:04:30,699 --> 00:04:33,538
+a mola. Se eu alivio
+
+106
+00:04:33,538 --> 00:04:35,178
+aqui, seu
+
+107
+00:04:36,298 --> 00:04:39,098
+peso, começa a escapar a ar aqui, o ar
+
+108
+00:04:39,098 --> 00:04:41,978
+vai embora por umauma saída que tem na
+
+109
+00:04:42,178 --> 00:04:45,018
+nossa real e aí essa mola
+
+110
+00:04:45,018 --> 00:04:47,017
+fica mais forte do que a força que vem
+
+111
+00:04:48,257 --> 00:04:50,057
+do ar, então ela empurra o carretel para
+
+112
+00:04:50,057 --> 00:04:52,977
+cima. Basicamente
+
+113
+00:04:52,977 --> 00:04:54,977
+seria isso daqui, o princípio de
+
+114
+00:04:54,977 --> 00:04:57,977
+funcionamento que vocês, o ar
+
+115
+00:04:57,977 --> 00:05:00,216
+de instrumentação está aqui e ele está
+
+116
+00:05:00,216 --> 00:05:03,096
+parado aqui no carretel. Esse ar
+
+117
+00:05:04,336 --> 00:05:07,256
+depende do seu atuador, é ele
+
+118
+00:05:07,256 --> 00:05:09,736
+que manda. mas o funcionador ele aceita
+
+119
+00:05:09,736 --> 00:05:11,655
+de 20 até 100 PSI.
+
+120
+00:05:12,695 --> 00:05:14,855
+Aí, por exemplo, um atuador desse daqui,
+
+121
+00:05:15,655 --> 00:05:18,655
+desse aqui, deve trabalhar em torno de um
+
+122
+00:05:18,655 --> 00:05:20,615
+ciclo bar, válvula,
+
+123
+00:05:21,735 --> 00:05:24,294
+retorno mola é 40, 50
+
+124
+00:05:24,294 --> 00:05:26,774
+PSI, uma coisa assim, pistão,
+
+125
+00:05:27,294 --> 00:05:30,174
+chega até 100, aí depende do, não, mas a
+
+126
+00:05:30,254 --> 00:05:33,014
+atuação dele é a variação do
+
+127
+00:05:33,094 --> 00:05:35,174
+ar, e não do
+
+128
+00:05:37,173 --> 00:05:40,093
+sistema em cimaa variação para
+
+129
+00:05:40,093 --> 00:05:43,053
+ele posicionar corretamente a variação da
+
+130
+00:05:43,053 --> 00:05:45,733
+pressão do ar que
+
+131
+00:05:46,133 --> 00:05:48,773
+o ar ele vai entrar na sua volta, certo?
+
+132
+00:05:49,173 --> 00:05:52,012
+Ele vai pular. A hora que você mandou ele
+
+133
+00:05:52,012 --> 00:05:53,972
+para, você está em 25%, você quer chegar
+
+134
+00:05:53,972 --> 00:05:56,532
+em 50%, o que vai ter que fazer?O
+
+135
+00:05:56,532 --> 00:05:59,532
+seu 7 pontos mudou a PV para mandar um
+
+136
+00:05:59,532 --> 00:06:02,132
+sinal elétrico nesse piso aqui. Para ele
+
+137
+00:06:02,132 --> 00:06:04,811
+abrir ou para ele fechar. O piezo que vai
+
+138
+00:06:04,811 --> 00:06:07,011
+aliviar a pressão, não o ar imprimido que
+
+139
+00:06:07,011 --> 00:06:09,531
+vai ser maior, não. Ele
+
+140
+00:06:09,531 --> 00:06:12,371
+alivia, por exemplo, ele aperta aqui, eu
+
+141
+00:06:12,371 --> 00:06:14,571
+abro e começo a deixar o ar e passar para
+
+142
+00:06:14,571 --> 00:06:17,330
+a câmara dois. O maligno é piezo,
+
+143
+00:06:17,330 --> 00:06:19,490
+não a variação de ar na entrada.
+
+144
+00:06:21,170 --> 00:06:23,890
+A entrada de ar é sempre a mesma, está
+
+145
+00:06:23,890 --> 00:06:25,410
+sempre a mesma. Você dizendo que eu
+
+146
+00:06:25,650 --> 00:06:27,849
+comando disso é através do piso. Você
+
+147
+00:06:28,249 --> 00:06:30,369
+vê, vamos olhando a atenção aqui, eu vou,
+
+148
+00:06:31,129 --> 00:06:33,409
+quando a pressão não vai, é nunca uma
+
+149
+00:06:33,409 --> 00:06:35,649
+cama, uma outra. Espera mais ar ou menos
+
+150
+00:06:35,649 --> 00:06:36,889
+ar, do lado. Então,
+
+151
+00:06:39,649 --> 00:06:42,648
+toda vez que a, a gente
+
+152
+00:06:42,648 --> 00:06:44,328
+está em, por exemplo, posição de
+
+153
+00:06:44,328 --> 00:06:47,248
+equilíbrio, é toda vez que a válvula
+
+154
+00:06:47,248 --> 00:06:50,128
+está em controle, seu set point e sua PV
+
+155
+00:06:50,488 --> 00:06:53,287
+está tão em voz, e está nessa posição
+
+156
+00:06:53,567 --> 00:06:53,687
+aqui.
+
+157
+00:06:56,207 --> 00:06:58,527
+Quando eu altero o
+
+158
+00:06:59,327 --> 00:07:02,127
+setpoint, no caso aqui
+
+159
+00:07:02,567 --> 00:07:04,927
+eu tirei tensão de peso, aí não importa
+
+160
+00:07:04,927 --> 00:07:06,326
+porque você está trabalhando lá, você
+
+161
+00:07:06,326 --> 00:07:09,166
+está trabalhando com 4 miliamperes que é
+
+162
+00:07:09,646 --> 00:07:12,566
+direto ou 4 miliamperes que é
+
+163
+00:07:12,846 --> 00:07:14,686
+reto, ele internamente ele faz esses
+
+164
+00:07:14,686 --> 00:07:16,206
+cálculos aqui, mas o que importa é a
+
+165
+00:07:16,206 --> 00:07:17,606
+tensão. Tensão baixa,
+
+166
+00:07:19,405 --> 00:07:20,685
+eu ganhei o ar para atleta
+
+167
+00:07:22,845 --> 00:07:24,445
+2. Como eu falei, estava em 50%, porque
+
+168
+00:07:24,445 --> 00:07:27,325
+ali para 75% ele faz isso daqui. Quando
+
+169
+00:07:27,325 --> 00:07:30,205
+chega em 75% de iguala, ele volta
+
+170
+00:07:30,205 --> 00:07:33,084
+para isso. As forças entre a bola
+
+171
+00:07:33,564 --> 00:07:35,924
+e a força do peso se
+
+172
+00:07:35,924 --> 00:07:38,924
+reequilibram. Sempre é assim, qualquer
+
+173
+00:07:38,924 --> 00:07:41,564
+posição seja entre 1% e
+
+174
+00:07:41,564 --> 00:07:44,243
+99%, como está em 0,
+
+175
+00:07:44,763 --> 00:07:47,723
+como está em 100,Aí ele mantém a posição
+
+176
+00:07:47,723 --> 00:07:49,963
+assim, o livro agora está matando, agora
+
+177
+00:07:49,963 --> 00:07:52,163
+o Arthur falou que vai garantir que a
+
+178
+00:07:52,163 --> 00:07:53,923
+bola está totalmente aberta, totalmente
+
+179
+00:07:53,923 --> 00:07:55,963
+fechada. Pelo contrário,
+
+180
+00:07:57,042 --> 00:07:59,642
+beleza?E aqui
+
+181
+00:08:00,122 --> 00:08:01,442
+a gente fala que é a produção de
+
+182
+00:08:01,442 --> 00:08:04,362
+segurança, caso tenha
+
+183
+00:08:04,362 --> 00:08:06,922
+uma falta de energia, um
+
+184
+00:08:07,082 --> 00:08:08,522
+posicionador que está funcionando
+
+185
+00:08:08,522 --> 00:08:10,961
+perfeitamente, ele vai fazer com que o
+
+186
+00:08:10,961 --> 00:08:13,841
+mesmo encostes do vidro,
+
+187
+00:08:14,041 --> 00:08:14,761
+ele não vai ter
+
+188
+00:08:17,641 --> 00:08:18,841
+E aí acontece isso aí.
+
+189
+00:08:23,630 --> 00:08:25,670
+Então você tem que sempre colocar numa
+
+190
+00:08:25,670 --> 00:08:28,550
+válvula rotativa, duplação, a
+
+191
+00:08:28,630 --> 00:08:31,030
+sua posição de segurança sempre pluga a
+
+192
+00:08:31,030 --> 00:08:33,190
+saída 2. Numa válvula de
+
+193
+00:08:33,190 --> 00:08:36,189
+simplesação, a saída 2 já vai plugada,
+
+194
+00:08:36,189 --> 00:08:38,309
+ela já vai tapada para você
+
+195
+00:08:38,309 --> 00:08:41,109
+obrigatoriamente ligar a saída 1
+
+196
+00:08:41,669 --> 00:08:44,149
+do lado do ar, e do outro lado já vai ter
+
+197
+00:08:44,149 --> 00:08:47,109
+a válvula. Beleza?
+
+198
+00:08:47,748 --> 00:08:50,438
+Fui bem rapidão aqui. Mais, alguma
+
+199
+00:08:50,438 --> 00:08:50,838
+dúvida?
+
+200
+00:08:54,038 --> 00:08:56,958
+Até então?Eu não estou na alimentação
+
+201
+00:08:56,998 --> 00:08:59,798
+dele. Você coloca 4 milhas perto.
+
+202
+00:09:00,277 --> 00:09:01,037
+E em 4
+
+203
+00:09:03,317 --> 00:09:05,917
+miliamperas, a pessoa ali variando com
+
+204
+00:09:05,917 --> 00:09:08,877
+assim, ele perde a intenção dos
+
+205
+00:09:08,997 --> 00:09:11,317
+players. Você tem que jogar ali na
+
+206
+00:09:12,197 --> 00:09:14,916
+5 milhas perto, jogar
+
+207
+00:09:15,196 --> 00:09:18,036
+no 7 milhas perto. quatro meio
+
+208
+00:09:18,036 --> 00:09:20,236
+aberto e ele está apagando display, é
+
+209
+00:09:20,236 --> 00:09:21,796
+porque está tendo consumo em algum lugar.
+
+210
+00:09:21,796 --> 00:09:24,356
+Você está tendo alguma baixa desolação,
+
+211
+00:09:24,356 --> 00:09:25,955
+pode ser na horneira, pode ser na placa,
+
+212
+00:09:25,955 --> 00:09:27,795
+pode ser no piezo, pode ser em algum
+
+213
+00:09:27,795 --> 00:09:29,315
+lugar. Em algumas situações,
+
+214
+00:09:31,635 --> 00:09:34,355
+aí você precisa
+
+215
+00:09:34,355 --> 00:09:36,755
+medir, você precisa verificar, você pode
+
+216
+00:09:36,755 --> 00:09:37,795
+pegar sua fonte e
+
+217
+00:09:39,874 --> 00:09:41,914
+ligar aqui nesses dois terminais de teste
+
+218
+00:09:41,914 --> 00:09:44,514
+aqui, aí você vai verificar o que está
+
+219
+00:09:44,514 --> 00:09:46,834
+chegando aqui, se está chegando ou não.
+
+220
+00:09:47,954 --> 00:09:50,114
+Quanto que está chegando?A gente tem uma
+
+221
+00:09:51,953 --> 00:09:54,513
+empresa lá em Rio Claro,
+
+222
+00:09:55,033 --> 00:09:56,953
+não esqueci o nome dela. Acho
+
+223
+00:09:58,593 --> 00:10:00,833
+que a Usina Rio Claro. Eu estive lá com
+
+224
+00:10:00,833 --> 00:10:02,233
+eles e eles tinham esse problema, só que
+
+225
+00:10:02,233 --> 00:10:03,952
+o problema deles é que o gerador deles
+
+226
+00:10:03,952 --> 00:10:05,552
+não conseguia chegar abaixo de cinco.
+
+227
+00:10:06,752 --> 00:10:09,072
+Eles só chegavam cinco. E aí eles
+
+228
+00:10:09,072 --> 00:10:11,472
+montaram e o que a gente fez?Eu fui lá
+
+229
+00:10:11,472 --> 00:10:13,792
+naquela condição de trabalhar em Split
+
+230
+00:10:13,792 --> 00:10:16,232
+RangeEu falei para ele, de vez que você
+
+231
+00:10:16,232 --> 00:10:18,911
+trabalha de 4 a 20, coloca de 5 a 20,
+
+232
+00:10:18,911 --> 00:10:21,591
+aí ele passou a trabalhar normal, mas
+
+233
+00:10:21,591 --> 00:10:24,351
+até ele conseguir arrumar um gerador,
+
+234
+00:10:25,031 --> 00:10:26,751
+mas eles estavam em recuperação judicial,
+
+235
+00:10:26,751 --> 00:10:28,151
+nem sei se eles conseguiram fazer isso
+
+236
+00:10:28,151 --> 00:10:30,670
+daí. Ele jogou para 5 a 20, e
+
+237
+00:10:31,550 --> 00:10:33,630
+aí conseguiu trabalhar,
+
+238
+00:10:34,670 --> 00:10:37,030
+mas aí você precisa verificar e ver o que
+
+239
+00:10:37,030 --> 00:10:39,390
+está acontecendo aí. A parte de
+
+240
+00:10:39,470 --> 00:10:42,469
+manutenção lá da Esmaia, você
+
+241
+00:10:42,549 --> 00:10:43,509
+também apura alguém,
+
+242
+00:10:46,909 --> 00:10:49,109
+Às vezes, quando me pedem, quando, por
+
+243
+00:10:49,109 --> 00:10:51,589
+exemplo, um luar, por exemplo, vai mandar
+
+244
+00:10:51,589 --> 00:10:53,869
+alguma coisa para vocês, e eu vou levar,
+
+245
+00:10:53,869 --> 00:10:56,228
+ele fala, tá chegando lá, o
+
+246
+00:10:57,068 --> 00:10:58,348
+equipamento assim, você não quer dar uma
+
+247
+00:10:58,348 --> 00:10:59,948
+atenção para ver o que é que realmente
+
+248
+00:11:00,588 --> 00:11:03,468
+está acontecendo com ele?Acho que um pai
+
+249
+00:11:03,548 --> 00:11:06,428
+nosso, talvez você não saiba ali para
+
+250
+00:11:06,628 --> 00:11:08,907
+saber os nossos que vão para lá, mas se
+
+251
+00:11:08,907 --> 00:11:09,867
+eu não poder
+
+252
+00:11:11,547 --> 00:11:13,547
+diagnóstica lá pra gente ver o que que a
+
+253
+00:11:13,587 --> 00:11:14,707
+gente pode melhorar em termos de
+
+254
+00:11:14,707 --> 00:11:17,387
+manutenção nossa. O pessoal tem, só tem
+
+255
+00:11:17,627 --> 00:11:20,386
+um laudo, néÉ, nossa proposta é
+
+256
+00:11:20,906 --> 00:11:23,786
+um laudo. Proposta é subjetivo ou
+
+257
+00:11:23,786 --> 00:11:25,706
+não. Primeiro fica um laudo, deixou
+
+258
+00:11:25,706 --> 00:11:28,466
+outro, néDeu
+
+259
+00:11:29,666 --> 00:11:31,786
+um diagnóstico, e aí o que é que tu vai
+
+260
+00:11:31,786 --> 00:11:34,465
+fazer?Aí dentro, então, o senhor proposta
+
+261
+00:11:34,465 --> 00:11:36,505
+é um laudo. Então aí é outro retorno. Não
+
+262
+00:11:36,505 --> 00:11:38,545
+lembra aí do mialc e os laudo que a gente
+
+263
+00:11:38,545 --> 00:11:41,305
+recebe, o que que tem lá?É a
+
+264
+00:11:41,585 --> 00:11:44,305
+construção das câmeras, aonde que é
+
+265
+00:11:44,305 --> 00:11:46,904
+aquilo que você mostrou?Qual que é o,
+
+266
+00:11:48,184 --> 00:11:50,224
+aonde que vem aqui, dá problema nesse
+
+267
+00:11:50,224 --> 00:11:52,984
+cara aqui, início aqui?Nas
+
+268
+00:11:52,984 --> 00:11:55,504
+câmeras, geralmente você, o pifaria que
+
+269
+00:11:55,544 --> 00:11:57,544
+aqui também, a gente começou a recuperar
+
+270
+00:11:57,544 --> 00:11:58,983
+muito, e antes a gente mandava,
+
+271
+00:12:00,103 --> 00:12:02,983
+não dava modulação, aí a
+
+272
+00:12:02,983 --> 00:12:04,183
+gente tinha que arrancava e mandava,
+
+273
+00:12:04,383 --> 00:12:05,983
+começou a fazer a limpeza do pifaria
+
+274
+00:12:06,983 --> 00:12:08,743
+aqui, recorreu bastante. Às vezes a gente
+
+275
+00:12:08,743 --> 00:12:11,142
+tem um, ainda tem um problema, não tem, a
+
+276
+00:12:11,782 --> 00:12:14,062
+gente foi no ar ainda, no ar ele vai com,
+
+277
+00:12:14,102 --> 00:12:16,582
+não é nem umidade, se é óleo, é umidade
+
+278
+00:12:16,582 --> 00:12:19,302
+ele ainda absorve. A umidade é que
+
+279
+00:12:19,302 --> 00:12:21,942
+eu ia mostrar para vocês aos pouquinhos,
+
+280
+00:12:21,942 --> 00:12:24,661
+mas nós vamos, vamos passando
+
+281
+00:12:24,741 --> 00:12:27,621
+aí. É. Esse aqui é o evento de
+
+282
+00:12:27,621 --> 00:12:30,341
+peso. Se você pegar ele
+
+283
+00:12:30,341 --> 00:12:33,341
+solto aqui, ele é uma cerâmica, ele
+
+284
+00:12:33,341 --> 00:12:35,901
+vai arrebentar em 300 pedaços. ele está
+
+285
+00:12:35,901 --> 00:12:38,180
+arrebentado, se ele quiser passar, você
+
+286
+00:12:38,580 --> 00:12:40,100
+vai ver que não se sobe, ele tem uma
+
+287
+00:12:40,100 --> 00:12:42,060
+camada de proteção aí que a gente chama
+
+288
+00:12:42,060 --> 00:12:44,780
+de palinênio. Essa proteção aí é para
+
+289
+00:12:44,780 --> 00:12:47,620
+isolar ele eletricamente, para que a água
+
+290
+00:12:47,620 --> 00:12:50,459
+não interfira no funcionamento
+
+291
+00:12:50,459 --> 00:12:53,299
+dele, mas o óleo ele não vai
+
+292
+00:12:53,299 --> 00:12:55,619
+matar o equipamento, mas ele vai dar
+
+293
+00:12:55,619 --> 00:12:58,459
+manutenção para um. Isso
+
+294
+00:12:58,459 --> 00:13:00,979
+aqui é o correto, ver se os dois são
+
+295
+00:13:01,019 --> 00:13:03,778
+corretos. Isso aqui pode ser que
+
+296
+00:13:03,778 --> 00:13:06,458
+você tenhahá uns 10 anos
+
+297
+00:13:06,498 --> 00:13:08,978
+atrás, você tem minha querida cinza, tá?
+
+298
+00:13:09,538 --> 00:13:11,258
+E esse agora é o que a gente trabalhou
+
+299
+00:13:11,258 --> 00:13:13,538
+hoje em dia, por que?Inicialmente é desse
+
+300
+00:13:13,538 --> 00:13:16,497
+cara cinza, a camada dele é
+
+301
+00:13:16,577 --> 00:13:19,457
+mini e essa aqui é prata. Só que
+
+302
+00:13:19,457 --> 00:13:21,457
+a gente não conseguiu mais comprar esse
+
+303
+00:13:21,457 --> 00:13:24,017
+cinza devido a óculos. Não tem nada.
+
+304
+00:13:24,657 --> 00:13:27,376
+Ele quebradinho assim, tá com problema ou
+
+305
+00:13:27,496 --> 00:13:29,296
+não?Não, ele quebradinho tá quebrado de
+
+306
+00:13:29,296 --> 00:13:31,056
+propósito. Ah, é assim mesmo?É assim
+
+307
+00:13:31,056 --> 00:13:32,536
+mesmo, tá quebrado de propósito, ele é
+
+308
+00:13:32,536 --> 00:13:35,296
+assim. É assim, né
+
+309
+00:13:36,736 --> 00:13:39,216
+Ah, tá. Esse quebradinho de propósito,
+
+310
+00:13:39,536 --> 00:13:42,415
+vai vir assim pra você ver. Pra
+
+311
+00:13:42,415 --> 00:13:43,935
+você ver o que é o problema. Deve ver o
+
+312
+00:13:43,935 --> 00:13:45,775
+material, tá, mas ele não é quebrado,
+
+313
+00:13:46,015 --> 00:13:47,055
+não, não é quebrado.
+
+314
+00:13:49,415 --> 00:13:51,615
+Você mostrou dois aqui mesmo. É bom,
+
+315
+00:13:52,654 --> 00:13:54,334
+esse é ruim?Não. Não
+
+316
+00:13:59,974 --> 00:14:01,734
+Olha, isso daqui, gente, é umas
+
+317
+00:14:01,734 --> 00:14:03,374
+instruções de manutenção, não sei se
+
+318
+00:14:03,374 --> 00:14:05,813
+vocês tem jeito pra alguém aqui. Bem, eu
+
+319
+00:14:05,813 --> 00:14:07,253
+também não vou entrar nele de meio dele
+
+320
+00:14:07,253 --> 00:14:09,053
+não, porque senão a gente vai ficar muito
+
+321
+00:14:09,053 --> 00:14:11,053
+tempo lá. Mas isso que o Otoniel falou,
+
+322
+00:14:11,053 --> 00:14:13,853
+da questão do olho no ar, vai interferir
+
+323
+00:14:13,853 --> 00:14:16,253
+aonde aqui. Interessante,
+
+324
+00:14:16,493 --> 00:14:19,412
+tudo, eu vou até prefiro, ou olha vai
+
+325
+00:14:19,412 --> 00:14:21,292
+empreendendo algum posicionador, nenhum
+
+326
+00:14:21,332 --> 00:14:23,532
+posicionador pode trabalhar com outro,
+
+327
+00:14:23,932 --> 00:14:25,932
+quem trabalha sempre com ar livre, mas
+
+328
+00:14:25,932 --> 00:14:28,252
+isso aí é uma outra corrigida, isso aí é
+
+329
+00:14:28,252 --> 00:14:31,211
+uma utopia, é muito raro, quem tem
+
+330
+00:14:31,211 --> 00:14:33,891
+uma argumentação por aqui, existe, mas o
+
+331
+00:14:33,891 --> 00:14:36,011
+pessoal que trabalha, por exemplo, na
+
+332
+00:14:36,091 --> 00:14:38,051
+erlite, não trabalha com nitrogênio,
+
+333
+00:14:38,091 --> 00:14:40,011
+então eles tem posicionador lá e não dá
+
+334
+00:14:40,011 --> 00:14:42,971
+pau muito, porqueTem o que
+
+335
+00:14:42,971 --> 00:14:44,930
+apertar aqui, néSó se tem algum problema
+
+336
+00:14:44,930 --> 00:14:47,010
+na eletrônica dele, metaricamente, mas
+
+337
+00:14:47,210 --> 00:14:49,530
+não vai ficar sempre trabalhando. Mas o
+
+338
+00:14:49,530 --> 00:14:51,450
+óleo é complicado, ele vai impregnando
+
+339
+00:14:51,450 --> 00:14:54,090
+tudo dentro do posicionador. Então ele
+
+340
+00:14:54,090 --> 00:14:55,610
+começa a impregnar,
+
+341
+00:14:57,489 --> 00:14:59,689
+aqui está sem bolas. Essas aqui são as
+
+342
+00:14:59,689 --> 00:15:01,529
+partes do posicionador, o bloco que a
+
+343
+00:15:01,649 --> 00:15:03,849
+gente dividiu, a base de peso, o
+
+344
+00:15:03,849 --> 00:15:06,569
+diafragma. e a tampa de ligação, que a
+
+345
+00:15:06,569 --> 00:15:08,089
+gente chama a parte ali embaixo, a parte
+
+346
+00:15:08,089 --> 00:15:10,928
+de cura mecânica dele. Então se isso
+
+347
+00:15:10,928 --> 00:15:13,448
+daí começa a ser arrastado um novo pelo
+
+348
+00:15:13,448 --> 00:15:15,368
+ar, ele vai entrando no meio daquele
+
+349
+00:15:15,368 --> 00:15:18,208
+carretel que faz o movimento, que é esse
+
+350
+00:15:18,208 --> 00:15:20,808
+carretel que estava aqui, esse
+
+351
+00:15:20,808 --> 00:15:22,847
+carretelzinho aqui, ele tem a mão ali
+
+352
+00:15:22,847 --> 00:15:25,207
+embaixo, ele começa a encher de óleo, ele
+
+353
+00:15:25,207 --> 00:15:27,287
+pode travar ele, travar no moldura. O
+
+354
+00:15:28,327 --> 00:15:30,927
+piezo, ele tem uma, lembra que eu
+
+355
+00:15:30,927 --> 00:15:33,207
+falei, tem até 40 milímetros,Então ele
+
+356
+00:15:33,207 --> 00:15:35,286
+tem uma distância ali entre onde sopra o
+
+357
+00:15:35,286 --> 00:15:37,606
+ar e que é o bico e a mesa
+
+358
+00:15:38,886 --> 00:15:41,366
+de 40 micros mais. Quando começa
+
+359
+00:15:42,406 --> 00:15:44,246
+o óleo, se ele ficar ali, ele ficar mais
+
+360
+00:15:44,246 --> 00:15:47,205
+pastoso, ele não fecha mais. Se segurar,
+
+361
+00:15:47,325 --> 00:15:49,685
+não fecha mais. Então tem que sair, o
+
+362
+00:15:49,685 --> 00:15:51,645
+óleo realmente ele, ainda mais quando
+
+363
+00:15:51,645 --> 00:15:54,645
+fica muito tempo parado, você
+
+364
+00:15:54,645 --> 00:15:56,325
+está constantemente funcionando, vai
+
+365
+00:15:56,325 --> 00:15:58,405
+indo, aí você, ou a válvula fica muito
+
+366
+00:15:58,405 --> 00:16:01,044
+tempo numa posição, aí você só vai atuar
+
+367
+00:16:01,044 --> 00:16:03,844
+ela às vezes,Aí é onde pode
+
+368
+00:16:04,084 --> 00:16:04,804
+complicar.
+
+369
+00:16:07,684 --> 00:16:10,324
+Bom, mas voltando aqui
+
+370
+00:16:11,364 --> 00:16:13,843
+no nosso conceito de
+
+371
+00:16:14,323 --> 00:16:16,483
+treinamento e manutenção, como eu falei
+
+372
+00:16:16,483 --> 00:16:18,163
+para vocês, a gente tem essas partes.
+
+373
+00:16:22,243 --> 00:16:24,083
+Bloco, diafragma,
+
+374
+00:16:26,362 --> 00:16:28,562
+piezo, tampa ligação e uma
+
+375
+00:16:29,202 --> 00:16:32,122
+placa analógica. Você se depara com o
+
+376
+00:16:32,122 --> 00:16:34,842
+produto que tem no campo funcionando e de
+
+377
+00:16:34,842 --> 00:16:36,882
+repente ele não modula mais.
+
+378
+00:16:38,081 --> 00:16:39,361
+O que você pode fazer no campo?
+
+379
+00:16:40,721 --> 00:16:43,721
+Só limpar aquele parafusinho de restrição
+
+380
+00:16:44,601 --> 00:16:46,961
+que você mostrou agora pouco aí, que é
+
+381
+00:16:46,961 --> 00:16:48,721
+esse parafusinho que tem aqui na lateral.
+
+382
+00:16:49,681 --> 00:16:51,240
+Ele é um parafusinho que tem um furinho
+
+383
+00:16:51,240 --> 00:16:54,080
+de três décimos, se ele entope
+
+384
+00:16:54,800 --> 00:16:56,720
+não deixa passar ar, não tem
+
+385
+00:16:57,520 --> 00:17:00,400
+comando, então você pode tirar o
+
+386
+00:17:00,400 --> 00:17:02,640
+arlimpar esse parafusinho e coloca
+
+387
+00:17:02,640 --> 00:17:05,479
+novamente. Se for ele, você já resolveu o
+
+388
+00:17:05,479 --> 00:17:08,359
+problema. Se não for ele, você tem que
+
+389
+00:17:08,359 --> 00:17:10,879
+tirar o produto e trazer para sua
+
+390
+00:17:11,799 --> 00:17:13,519
+linha de manutenção.
+
+391
+00:17:14,919 --> 00:17:17,118
+Primeira coisa, você coloca ele numa
+
+392
+00:17:17,118 --> 00:17:18,958
+barbulinha para fazer um setup e
+
+393
+00:17:18,958 --> 00:17:21,678
+verificar onde que está, onde o setup
+
+394
+00:17:21,678 --> 00:17:24,158
+está parando. Na linha do FY
+
+395
+00:17:24,558 --> 00:17:27,558
+301 ele vai de 10 em 10. No
+
+396
+00:17:27,558 --> 00:17:29,797
+400 ele já vai modulando de uma forma
+
+397
+00:17:29,797 --> 00:17:32,317
+diferente. 5, em 5,
+
+398
+00:17:33,997 --> 00:17:36,957
+mas falando da parte do 301 para
+
+399
+00:17:36,957 --> 00:17:38,597
+que seja um pouco mais didático,
+
+400
+00:17:40,397 --> 00:17:42,316
+ele tem alguns lugares que ele pode
+
+401
+00:17:42,316 --> 00:17:45,276
+travar o setup, ele vai de 0 a 100% e
+
+402
+00:17:45,276 --> 00:17:48,236
+vai de 10 em 10, 10 em 10. Cada 10
+
+403
+00:17:48,236 --> 00:17:51,116
+é uma coisa. Em 10%, se ele
+
+404
+00:17:51,116 --> 00:17:53,915
+estivesse travando em 10%, pode ser,
+
+405
+00:17:54,155 --> 00:17:56,475
+no campo pode ser excesso de vibração, se
+
+406
+00:17:56,995 --> 00:17:59,755
+ele tiver uma vibração muito alta,A gente
+
+407
+00:17:59,755 --> 00:18:01,195
+tem aqui embaixo, você sabe que o
+
+408
+00:18:01,195 --> 00:18:03,355
+elemento é al?
+
+409
+00:18:03,995 --> 00:18:06,315
+Ele é um sensor que ele faz o quê?Ele
+
+410
+00:18:06,315 --> 00:18:07,274
+verifica.
+
+411
+00:18:09,494 --> 00:18:12,054
+o movimento do
+
+412
+00:18:13,254 --> 00:18:15,774
+posicionador aqui da válvula é através de
+
+413
+00:18:15,774 --> 00:18:18,454
+um imã, então ele faz essa leitura
+
+414
+00:18:18,934 --> 00:18:21,173
+da posição. Se estiver com uma vibração
+
+415
+00:18:21,173 --> 00:18:23,373
+muito alta, ele não consegue parar, não
+
+416
+00:18:23,373 --> 00:18:25,813
+consegue se equalizar, então ele dá esse
+
+417
+00:18:25,813 --> 00:18:28,373
+erro de 10%. Aqui na bancada pode ser que
+
+418
+00:18:28,373 --> 00:18:30,493
+o HAL esteja com defeito, 10%.
+
+419
+00:18:31,453 --> 00:18:33,492
+20 e 30 ele vai passar, em
+
+420
+00:18:33,492 --> 00:18:35,652
+40% é o defeito que mais
+
+421
+00:18:35,652 --> 00:18:37,412
+acontece, mais comum,
+
+422
+00:18:38,372 --> 00:18:41,092
+50 ele vai passar, 60%,
+
+423
+00:18:41,092 --> 00:18:44,052
+70%, não é DV, é só sintonia,
+
+424
+00:18:44,132 --> 00:18:46,971
+no 400 você não tem isso que ele tem a
+
+425
+00:18:46,971 --> 00:18:49,971
+sintonia automática, mas no 300 você
+
+426
+00:18:49,971 --> 00:18:51,891
+tem que definir os ganhos, às vezes você
+
+427
+00:18:51,891 --> 00:18:54,331
+coloca numa válvula no campo muito
+
+428
+00:18:54,331 --> 00:18:56,611
+grande, coloca um capp, um ganho muito
+
+429
+00:18:56,651 --> 00:18:58,770
+baixo, ele fica parado nessa posição,
+
+430
+00:18:59,010 --> 00:19:00,610
+você vai lá, aumenta esse ganho e vai
+
+431
+00:19:00,610 --> 00:19:03,330
+embora. e ao contrário, se ele estiver
+
+432
+00:19:03,330 --> 00:19:04,730
+com um ganho muito alto, ele fica
+
+433
+00:19:04,730 --> 00:19:07,690
+oscilando. Aí você tem que diminuir e aí
+
+434
+00:19:07,690 --> 00:19:10,129
+ele vai passar a rema agora. Pessoal,
+
+435
+00:19:10,129 --> 00:19:12,049
+aqui nessa rotativa é um
+
+436
+00:19:13,009 --> 00:19:15,689
+valor de 8,82, se eu não me engano, o
+
+437
+00:19:15,689 --> 00:19:18,489
+tempo, veio o arquivo lá e Ele sai mais
+
+438
+00:19:18,489 --> 00:19:20,529
+ou menos de fábrica, néMas deve ser por
+
+439
+00:19:20,529 --> 00:19:22,209
+causa do tamanho das aulas de vocês, deve
+
+440
+00:19:22,209 --> 00:19:23,688
+ser mais ou menos o mesmo tamanho, então
+
+441
+00:19:23,888 --> 00:19:26,608
+vocês já se habituaram com um
+
+442
+00:19:26,608 --> 00:19:29,208
+KP, néMas existe válvulas que a gente tem
+
+443
+00:19:29,208 --> 00:19:31,808
+que levar o capim lá para 45, aqui no
+
+444
+00:19:31,808 --> 00:19:34,368
+mais eu não faço 40 por 80, eu faço.
+
+445
+00:19:35,048 --> 00:19:37,807
+Falando 40 e 80, 80 é porque você não
+
+446
+00:19:37,807 --> 00:19:40,727
+está com um imã bem alinhado, às vezes
+
+447
+00:19:40,727 --> 00:19:43,447
+você precisa dar uma ajustadinha. Isso,
+
+448
+00:19:43,447 --> 00:19:44,927
+aí você dá uma ajustadinha, quer dizer,
+
+449
+00:19:44,927 --> 00:19:47,887
+não é defeito, é só questão de ajuste.
+
+450
+00:19:48,046 --> 00:19:50,246
+Agora o defeito mesmo 40, então a gente
+
+451
+00:19:50,246 --> 00:19:52,246
+pode entrar nesse defeito e falar sobre
+
+452
+00:19:52,246 --> 00:19:54,686
+40. Você teve um defeito em
+
+453
+00:19:54,686 --> 00:19:57,566
+40%, aí é um mundo de coisas que podem
+
+454
+00:19:57,566 --> 00:20:00,046
+acontecer com o defeito em 40%. A gente
+
+455
+00:20:00,046 --> 00:20:02,005
+começa com esse cara aqui, pode ser o que?
+
+456
+00:20:02,005 --> 00:20:03,125
+O carretel travado. O
+
+457
+00:20:04,685 --> 00:20:06,485
+carretel pode ter travado com o devido
+
+458
+00:20:06,485 --> 00:20:08,445
+excesso de óleo, você mostrou aí os
+
+459
+00:20:08,445 --> 00:20:10,885
+filtros, está bem sujo, inclusive no
+
+460
+00:20:10,885 --> 00:20:13,724
+retorno. O diafragma pode ter
+
+461
+00:20:13,724 --> 00:20:16,284
+furado. O diafragma furou, passa a arma
+
+462
+00:20:16,284 --> 00:20:17,524
+de uma câmera para a outra, ele não
+
+463
+00:20:17,524 --> 00:20:19,884
+consegue ter força para movimentar
+
+464
+00:20:22,604 --> 00:20:25,324
+Essa peça aqui pode ser o que?O
+
+465
+00:20:25,324 --> 00:20:28,083
+piezo pode estar com baixa isolação ou
+
+466
+00:20:28,083 --> 00:20:30,763
+ele pode estar também só sujo.
+
+467
+00:20:31,883 --> 00:20:33,803
+Baixa isolação o que é?É que essa
+
+468
+00:20:33,803 --> 00:20:36,243
+proteção de panelene talvez possa ter
+
+469
+00:20:36,243 --> 00:20:39,162
+sido rompida e aí entra água, aí ele dá
+
+470
+00:20:39,202 --> 00:20:41,682
+baixa isolação. Quando não, ele pode
+
+471
+00:20:41,682 --> 00:20:44,282
+estar só descalibrado, que o que você
+
+472
+00:20:44,282 --> 00:20:47,082
+precisa fazer é uma boa limpeza
+
+473
+00:20:47,082 --> 00:20:49,922
+dele. E a tampa de
+
+474
+00:20:49,922 --> 00:20:52,441
+ligação também, ela pode dar problema
+
+475
+00:20:52,841 --> 00:20:55,761
+nessa placa analógica aqui. Por que?No
+
+476
+00:20:55,761 --> 00:20:57,401
+momento eu falei que é ela que gera
+
+477
+00:20:57,401 --> 00:21:00,241
+tensão e piezo. Se ela tiver com defeito,
+
+478
+00:21:00,241 --> 00:21:02,361
+ela não gera tensão, então não
+
+479
+00:21:04,520 --> 00:21:07,320
+deflete. Aí você vai começar o passo a
+
+480
+00:21:07,320 --> 00:21:10,000
+passo. Desmonta todo o
+
+481
+00:21:10,000 --> 00:21:12,480
+produto e começa a fazer uma limpeza nele
+
+482
+00:21:12,480 --> 00:21:15,080
+para chegar onde que é o defeito dele.
+
+483
+00:21:15,800 --> 00:21:18,599
+Vocês não tem esse produto aqui, néNão
+
+484
+00:21:18,599 --> 00:21:21,519
+tem néEsse aqui a
+
+485
+00:21:21,519 --> 00:21:23,279
+gente tem o nome de FYSON
+
+486
+00:21:24,679 --> 00:21:27,559
+KAL, ele é um calibrador de base,
+
+487
+00:21:30,358 --> 00:21:33,318
+ele gera uma tensão de 0 a 100 volts e
+
+488
+00:21:33,318 --> 00:21:36,278
+também gera uma corrente de 4
+
+489
+00:21:36,918 --> 00:21:39,478
+a 20 miliamperes. Então
+
+490
+00:21:39,478 --> 00:21:42,437
+para o FY a gente usa esses dois
+
+491
+00:21:42,437 --> 00:21:44,517
+botõezinhos aqui e deixa essa base
+
+492
+00:21:44,517 --> 00:21:44,997
+calibrada.
+
+493
+00:21:47,957 --> 00:21:50,597
+A gente vai começar eliminando Essa
+
+494
+00:21:50,597 --> 00:21:53,517
+parte o isso não se compra, né
+
+495
+00:21:54,077 --> 00:21:56,596
+Isso é só da equipamento da Smart. Não,
+
+496
+00:21:56,596 --> 00:21:58,596
+pode comprar, pode comprar isso aí?Pode
+
+497
+00:21:58,596 --> 00:22:00,836
+comprar. O produto tá vindo. Ele é um
+
+498
+00:22:00,836 --> 00:22:03,636
+equipamento, não vende isso. É da
+
+499
+00:22:03,636 --> 00:22:04,836
+Smart. Sim, entendeu. A
+
+500
+00:22:08,115 --> 00:22:10,155
+gente começa por esse cara aqui. Então o
+
+501
+00:22:10,155 --> 00:22:12,835
+que é necessário fazer?Verificar se está
+
+502
+00:22:12,835 --> 00:22:14,835
+travado ou não carretel, já que você
+
+503
+00:22:14,835 --> 00:22:17,475
+tirou e está cheio de óleo,você pode
+
+504
+00:22:17,475 --> 00:22:20,275
+desmontar, jogar isso aqui dentro de um
+
+505
+00:22:20,754 --> 00:22:22,514
+tanque cheio de água e
+
+506
+00:22:23,154 --> 00:22:25,954
+sabão e lavar ele bem lavado, o carretel
+
+507
+00:22:25,954 --> 00:22:28,754
+lavado direitinho, só tem peça mecânica,
+
+508
+00:22:29,154 --> 00:22:31,834
+você lava, seca e
+
+509
+00:22:31,834 --> 00:22:34,513
+verifica. Movimentou com o dedo aqui o
+
+510
+00:22:35,913 --> 00:22:38,513
+carretelzinho, essa peça já está pronta
+
+511
+00:22:38,513 --> 00:22:41,153
+para você continuar o seu processo.
+
+512
+00:22:41,513 --> 00:22:44,353
+Se sensor, a gente tentar
+
+513
+00:22:44,353 --> 00:22:45,153
+até ver se eu tenho
+
+514
+00:23:21,470 --> 00:23:23,910
+Perdeu até essa molinha, hein?
+
+515
+00:23:26,029 --> 00:23:27,389
+Mas eu tinha. Agora
+
+516
+00:23:30,989 --> 00:23:33,949
+Não, a gente pega uma imagem. Oi?Eu pego
+
+517
+00:23:33,949 --> 00:23:36,868
+uma imagem. É, aqui deve ter uma imagem
+
+518
+00:23:36,868 --> 00:23:39,628
+dele nessa nesse carninha que você tem aí
+
+519
+00:23:39,628 --> 00:23:41,228
+procurar, você deve ver a imagem
+
+520
+00:23:42,908 --> 00:23:45,548
+dele. Até aqui, beleza?Fazer essa parte
+
+521
+00:23:45,548 --> 00:23:47,868
+de limpeza aqui. Fez a limpeza desse
+
+522
+00:23:47,868 --> 00:23:50,107
+cara, a gente vai para esse aqui, para a
+
+523
+00:23:50,107 --> 00:23:52,427
+segunda etapa, que é verificar o
+
+524
+00:23:52,587 --> 00:23:54,867
+diafragma. O diafragma você vai poder
+
+525
+00:23:54,867 --> 00:23:57,507
+limpar ele. Limpou e faz uma
+
+526
+00:23:57,507 --> 00:24:00,347
+inspeção visual. Cara, tá
+
+527
+00:24:00,347 --> 00:24:03,106
+bom?Você olha, eu imagino que ele não tem
+
+528
+00:24:03,106 --> 00:24:05,866
+nenhum furto. Pode ser que ele tenha,
+
+529
+00:24:06,666 --> 00:24:09,626
+mas visualmente você não achou nenhum
+
+530
+00:24:09,626 --> 00:24:11,386
+defeito. Limpou ele.
+
+531
+00:24:13,306 --> 00:24:16,185
+E separou. Agora estamos com duas
+
+532
+00:24:16,185 --> 00:24:18,585
+partes resolvidas. Agora nós vamos para a
+
+533
+00:24:18,585 --> 00:24:21,345
+terceira parte que é o piso. E aí a
+
+534
+00:24:21,345 --> 00:24:24,025
+primeira coisa que você precisa fazer é
+
+535
+00:24:24,025 --> 00:24:25,785
+verificar se esse cara não está com baixa
+
+536
+00:24:25,785 --> 00:24:27,784
+insolação, para você poder dar a
+
+537
+00:24:27,784 --> 00:24:30,744
+manutenção nele. Certo?E
+
+538
+00:24:30,744 --> 00:24:33,384
+como a gente faz isso aqui?Se você tiver
+
+539
+00:24:33,384 --> 00:24:36,184
+esse dispositivo aqui, você usa o próprio
+
+540
+00:24:36,184 --> 00:24:38,664
+FYC. Se você não
+
+541
+00:24:38,664 --> 00:24:41,143
+tiver, aí você pode fazer com mergonga.
+
+542
+00:24:41,703 --> 00:24:43,223
+Só que o seu megômetro precisa ser uma
+
+543
+00:24:43,223 --> 00:24:45,463
+escala de 100 volts. Não pode ser mais
+
+544
+00:24:45,463 --> 00:24:48,423
+que isso, e é muito difícil. Só porque
+
+545
+00:24:48,423 --> 00:24:49,943
+o visa trabalhar 100 volts.
+
+546
+00:24:50,823 --> 00:24:53,142
+Normalmente não tem, normalmente é maior.
+
+547
+00:24:53,142 --> 00:24:55,142
+Se você jogar 500 volts você vai Então,
+
+548
+00:24:55,862 --> 00:24:57,502
+no megômetro
+
+549
+00:24:59,462 --> 00:25:01,822
+você tem que colocar 100 volts e fazer
+
+550
+00:25:01,822 --> 00:25:04,822
+com que ele seja negado
+
+551
+00:25:04,822 --> 00:25:07,341
+e a isolação dele esteja acima de 50
+
+552
+00:25:07,341 --> 00:25:09,941
+mega. Então acima de 50 mega você pode,
+
+553
+00:25:10,181 --> 00:25:12,821
+que olha para foraA
+
+554
+00:25:19,540 --> 00:25:20,500
+maioria olha
+
+555
+00:25:22,260 --> 00:25:25,060
+e vem lá, mas eram mais antigos?
+
+556
+00:25:25,620 --> 00:25:28,180
+É, mas aqueles nossos aí é tudo mais 10
+
+557
+00:25:29,980 --> 00:25:32,339
+anos. Bom,
+
+558
+00:25:33,059 --> 00:25:34,739
+eu vou fazer com esse cara que eu tenho
+
+559
+00:25:34,739 --> 00:25:37,339
+aqui, vou tentar.
+
+560
+00:25:40,699 --> 00:25:43,619
+Pode?Não, isso aí é 500 mil.
+
+561
+00:25:43,699 --> 00:25:45,778
+Olha, o
+
+562
+00:25:47,778 --> 00:25:49,578
+que que a gente faz aqui?Eu não preciso
+
+563
+00:25:49,578 --> 00:25:51,338
+estar com ele montado aqui em cima, eu só
+
+564
+00:25:51,338 --> 00:25:53,458
+montei ele aqui em cima para poder ir
+
+565
+00:25:53,458 --> 00:25:54,938
+ganhando tempo, ele vai estar aqui assim,
+
+566
+00:25:54,938 --> 00:25:57,857
+na tua mão desse jeito. Você
+
+567
+00:25:57,857 --> 00:26:00,497
+pega esse FYK aqui,
+
+568
+00:26:03,937 --> 00:26:06,617
+você coloca ele na posição de gerartensão,
+
+569
+00:26:12,416 --> 00:26:14,976
+e aplica 100 volts.
+
+570
+00:26:23,335 --> 00:26:24,775
+Você aplica 100 volts aqui.
+
+571
+00:26:30,135 --> 00:26:32,695
+E fecha o curto.
+
+572
+00:26:33,615 --> 00:26:35,574
+Você está vendo que ele cai, né
+
+573
+00:26:37,494 --> 00:26:40,214
+E ele tem que cair. Se não cair nada é
+
+574
+00:26:40,214 --> 00:26:42,814
+porque está errado. Ele tem que cair, mas
+
+575
+00:26:42,814 --> 00:26:44,814
+o que ele tem que cair?Ele tem que cair
+
+576
+00:26:44,854 --> 00:26:47,773
+no máximo 2 volts. Eu joguei 100
+
+577
+00:26:47,773 --> 00:26:50,733
+volts aí, 100 volts é o máximo de
+
+578
+00:26:50,733 --> 00:26:53,533
+tensão. E ele cai
+
+579
+00:26:54,733 --> 00:26:57,213
+1.7 aqui. Se tivesse com 100, tinha cído
+
+580
+00:26:57,453 --> 00:27:00,332
+para 99.3. É aceitável, é o que é
+
+581
+00:27:00,332 --> 00:27:03,212
+o normal de ele caindo até 98.
+
+582
+00:27:03,612 --> 00:27:06,572
+O seu pesco está bom. Então você
+
+583
+00:27:06,732 --> 00:27:09,292
+segue o processo de
+
+584
+00:27:09,892 --> 00:27:12,811
+fazer a limpeza. Eu
+
+585
+00:27:12,811 --> 00:27:15,691
+tenho três aqui que eu trouxe. Só para
+
+586
+00:27:15,691 --> 00:27:18,651
+mostrar para vocês a diferença que
+
+587
+00:27:18,651 --> 00:27:21,651
+tem entre um e o outro aí. Aí
+
+588
+00:27:21,651 --> 00:27:24,331
+eu preciso renovar o meu estoque. Aonde
+
+589
+00:27:24,331 --> 00:27:25,451
+que ele dá contato?
+
+590
+00:27:27,330 --> 00:27:28,810
+Quando você monta esse cara aqui, ele é
+
+591
+00:27:28,810 --> 00:27:30,890
+totalmente isolado. Tudo é isolado. A
+
+592
+00:27:30,890 --> 00:27:33,530
+única coisa que não é isolado é essa
+
+593
+00:27:33,530 --> 00:27:35,450
+parte aqui, que é o que dá contato.
+
+594
+00:27:37,650 --> 00:27:39,529
+Então aquilo que eu fiz nada mais é do
+
+595
+00:27:40,129 --> 00:27:41,289
+que eu jogar
+
+596
+00:27:49,049 --> 00:27:51,968
+Isso é em volts?É em serral ou Cecê?
+
+597
+00:27:52,728 --> 00:27:55,568
+Não, é corrente contínua. E é um
+
+598
+00:27:55,568 --> 00:27:57,248
+micro ampere, é bem baixo.
+
+599
+00:27:58,568 --> 00:28:01,408
+Todo lugar que eu encostar aqui, ele
+
+600
+00:28:01,408 --> 00:28:04,127
+não pode mexer, ele tem que continuar com
+
+601
+00:28:04,127 --> 00:28:06,807
+o que está. Oi?Aí
+
+602
+00:28:06,807 --> 00:28:08,967
+significa que a resolução está ok. Está
+
+603
+00:28:08,967 --> 00:28:11,287
+ok. Aqui também é a mesma coisa,
+
+604
+00:28:12,007 --> 00:28:14,087
+ele tem que ficar com o que está marcando
+
+605
+00:28:14,087 --> 00:28:16,406
+porque eu tenho palhé energia, o palhé
+
+606
+00:28:16,406 --> 00:28:18,406
+não pode deixar passar nada. Certo?
+
+607
+00:28:20,086 --> 00:28:22,326
+A hora que eu encostar aqui, ele tem que
+
+608
+00:28:22,326 --> 00:28:25,326
+cair. Ele não caiu, néNão,
+
+609
+00:28:25,366 --> 00:28:28,046
+nãoEntão, ele vai falar assim, ele tá
+
+610
+00:28:28,046 --> 00:28:30,965
+bom?Não, ele tá péssimo. Por que?Aqui tá
+
+611
+00:28:30,965 --> 00:28:33,045
+bem nítido, tá vendo?Tá estourado
+
+612
+00:28:34,245 --> 00:28:36,165
+o fio que faz a solda dele com
+
+613
+00:28:37,205 --> 00:28:40,125
+a gaiolinha aqui. Então ele não vai cair.
+
+614
+00:28:40,685 --> 00:28:43,444
+Então a pessoa fala, não caiu, tá
+
+615
+00:28:43,444 --> 00:28:45,004
+ótimo. Não, não tá ótimo, ele tinha que
+
+616
+00:28:45,004 --> 00:28:47,964
+ter caído, ele não caiu. detalhado,
+
+617
+00:28:47,964 --> 00:28:48,924
+não está com problema.
+
+618
+00:28:52,124 --> 00:28:53,524
+Deixa eu pegar esse outro aqui,
+
+619
+00:28:55,203 --> 00:28:57,483
+aventura aqui, vou pegar.
+
+620
+00:29:00,403 --> 00:29:02,083
+Esse outro aqui, vamos ver como é que ele
+
+621
+00:29:02,083 --> 00:29:02,483
+está.
+
+622
+00:29:14,192 --> 00:29:16,872
+Esse outro aqui, está tudo soltinho,
+
+623
+00:29:16,872 --> 00:29:18,672
+mas ele não cai,
+
+624
+00:29:20,031 --> 00:29:22,991
+aqui no meio também ele não cai e aqui na
+
+625
+00:29:22,991 --> 00:29:25,671
+borda dele, você viu que ele começou
+
+626
+00:29:31,951 --> 00:29:34,510
+Ele caiu. Ponto 7. Então,
+
+627
+00:29:35,790 --> 00:29:38,350
+teoricamente, ele está bom.
+
+628
+00:29:39,390 --> 00:29:41,550
+É o cara que você daqui pra frente
+
+629
+00:29:41,550 --> 00:29:42,790
+continua na sequência. Essa
+
+630
+00:29:46,709 --> 00:29:49,069
+parte aqui ele cai. Aqui não tem que
+
+631
+00:29:51,069 --> 00:29:53,869
+cair. Nada, nadaImagina que se você
+
+632
+00:29:53,869 --> 00:29:56,829
+pegar esse cara aqui e encostar
+
+633
+00:29:56,829 --> 00:29:59,718
+nele,e ele cai, cai .7 e está sem
+
+634
+00:29:59,718 --> 00:30:01,318
+isolação.
+
+635
+00:30:02,638 --> 00:30:05,278
+Porque a gente no mercado a gente tem
+
+636
+00:30:05,278 --> 00:30:07,838
+um pessoal aí que vende paralelo,
+
+637
+00:30:08,878 --> 00:30:11,077
+e aí eu não sei como é que eles fazem, às
+
+638
+00:30:11,077 --> 00:30:12,637
+vezes não tem proteção, quando tiver
+
+639
+00:30:12,637 --> 00:30:15,117
+nenhum conjunto desse sem proteção você
+
+640
+00:30:15,117 --> 00:30:17,837
+coloca lá na planta, dois dias ele
+
+641
+00:30:17,837 --> 00:30:20,717
+cai. Não sei como é que é para cá,
+
+642
+00:30:20,917 --> 00:30:23,836
+então ele não pode cair aqui. Tá
+
+643
+00:30:23,836 --> 00:30:25,916
+só naquela parte. Tá tendo um terceiro
+
+644
+00:30:25,916 --> 00:30:28,236
+aí, não tem?TemDeixa eu ver como é que tá
+
+645
+00:30:28,236 --> 00:30:28,796
+esse daqui.
+
+646
+00:30:53,834 --> 00:30:56,034
+Isso aqui é a mesma coisa, vamos ver, não
+
+647
+00:30:56,034 --> 00:30:58,474
+está caindo, não está
+
+648
+00:30:58,474 --> 00:31:01,194
+caindo, e quando eu coloco aqui,
+
+649
+00:31:04,713 --> 00:31:06,793
+teoricamente esse cara
+
+650
+00:31:08,873 --> 00:31:11,873
+estaria bom. Eu peguei um errado, eu
+
+651
+00:31:11,873 --> 00:31:14,073
+tinha um lá comigo que ele caia lá para
+
+652
+00:31:14,073 --> 00:31:16,952
+80, subia para 90, ficava voando para
+
+653
+00:31:16,952 --> 00:31:19,672
+80, se vocês pegarem uma condição dessa,
+
+654
+00:31:19,672 --> 00:31:22,232
+esse é o que está com migração. de água
+
+655
+00:31:22,232 --> 00:31:24,792
+dentro dele. Se ele
+
+656
+00:31:25,072 --> 00:31:27,751
+ficar mudando a isolação, ele fica, sobe,
+
+657
+00:31:27,751 --> 00:31:29,871
+desce, sobe, o ariando, você fala, esse
+
+658
+00:31:29,871 --> 00:31:32,631
+cara está com uma migração, não está
+
+659
+00:31:32,631 --> 00:31:35,391
+ok. Esse daqui, deixa eu
+
+660
+00:31:35,391 --> 00:31:37,991
+colocar aqui. Ah, é esse cara mesmo.
+
+661
+00:31:44,310 --> 00:31:44,550
+Tá bom.
+
+662
+00:31:47,710 --> 00:31:49,670
+Tudo é isolado, está vendo?Eu coloquei
+
+663
+00:31:49,670 --> 00:31:51,790
+aqui no fiozinho para vocês verificarem,
+
+664
+00:31:51,790 --> 00:31:54,589
+eu coloco no fiozinho, está vendo?
+
+665
+00:31:55,309 --> 00:31:57,549
+O fiozinho está isolado. Só quando eu
+
+666
+00:31:57,549 --> 00:32:00,509
+encosto na E o fiozinho
+
+667
+00:32:00,509 --> 00:32:01,509
+também tem parilene.
+
+668
+00:32:05,148 --> 00:32:07,188
+Então, acontecendo isso,
+
+669
+00:32:07,948 --> 00:32:09,748
+vocês dão sequência na manutenção. E o
+
+670
+00:32:09,748 --> 00:32:12,668
+que é dar a sequência na manutenção?Aí
+
+671
+00:32:12,668 --> 00:32:14,788
+você dizendo para ele daqui de dentro.
+
+672
+00:32:17,827 --> 00:32:20,387
+Essa parte aqui, a gente pode
+
+673
+00:32:20,947 --> 00:32:23,427
+tirar ele dali, pode lavar. Tira o
+
+674
+00:32:23,427 --> 00:32:24,707
+bico, solta.
+
+675
+00:32:27,587 --> 00:32:30,347
+Você pode lavar ele com água e
+
+676
+00:32:30,347 --> 00:32:32,866
+sabão, pode tirar todas as peças aqui e
+
+677
+00:32:32,866 --> 00:32:35,346
+lavar. E essa peça aqui,
+
+678
+00:32:36,386 --> 00:32:39,266
+se você encontrar ela toda cheia de óleo,
+
+679
+00:32:39,266 --> 00:32:41,826
+muito provavelmente essa face aqui, ela
+
+680
+00:32:41,826 --> 00:32:44,145
+vai estar toda suja, toda quando usada de
+
+681
+00:32:44,145 --> 00:32:46,785
+óleo. Você pega uma
+
+682
+00:32:46,785 --> 00:32:49,265
+massinha assim com álcool, vocês tem
+
+683
+00:32:49,265 --> 00:32:51,825
+álcool cotovilho aqui ouum
+
+684
+00:32:53,465 --> 00:32:56,224
+álcool que terra maior de pureza e
+
+685
+00:32:57,104 --> 00:32:59,504
+deixa ele nessa posição,
+
+686
+00:32:59,504 --> 00:33:01,344
+mergulhado dentro do álcool,
+
+687
+00:33:01,984 --> 00:33:04,984
+esse óleo na sua posição ali, ele
+
+688
+00:33:04,984 --> 00:33:07,984
+vai ser todo espulgado. O álcool vai
+
+689
+00:33:07,984 --> 00:33:10,583
+arrancar todo esse óleo dele, se deixar
+
+690
+00:33:10,583 --> 00:33:12,623
+de um dia para o outro e no outro dia ele
+
+691
+00:33:12,623 --> 00:33:14,863
+vai estar limpinho e já vai secar rápido.
+
+692
+00:33:15,583 --> 00:33:18,503
+E aí você pega um paninho, limpa, deixa
+
+693
+00:33:18,503 --> 00:33:21,462
+essa face perfeitae aí ele está pronto
+
+694
+00:33:21,462 --> 00:33:24,222
+para que?Para voltar para a montagem
+
+695
+00:33:24,862 --> 00:33:27,782
+na tua base. Aí você vem, pega
+
+696
+00:33:27,782 --> 00:33:29,582
+essa peça, monta tudo direitinho,
+
+697
+00:33:30,062 --> 00:33:31,982
+conforme aquela sequência que tem ali
+
+698
+00:33:32,942 --> 00:33:35,821
+naquele manualzinho, monta ele e
+
+699
+00:33:35,821 --> 00:33:38,261
+aí vamos calibrar a base.
+
+700
+00:33:39,341 --> 00:33:41,781
+Então, a gente deixou esses dois caras
+
+701
+00:33:41,781 --> 00:33:44,181
+prontos e estamos deixando o terceiro. A
+
+702
+00:33:44,181 --> 00:33:46,101
+primeira fase que nós passamos foi
+
+703
+00:33:46,101 --> 00:33:48,060
+verificar que ele não tinha baixa violação
+
+704
+00:33:48,500 --> 00:33:50,460
+fizer uma limpeza, agora nós vamos
+
+705
+00:33:50,460 --> 00:33:51,020
+calibrar.
+
+706
+00:33:53,420 --> 00:33:54,900
+Para quem tem o FYC
+
+707
+00:33:56,380 --> 00:33:58,540
+é muito bom para você
+
+708
+00:34:00,219 --> 00:34:02,459
+isolar esse cara, fazer uma calibração
+
+709
+00:34:03,099 --> 00:34:06,059
+da base para depois ir para o conjunto.
+
+710
+00:34:06,579 --> 00:34:09,579
+Para quem não tem, pode vir direto nessa
+
+711
+00:34:09,579 --> 00:34:12,298
+situação aqui. Mas pra
+
+712
+00:34:12,298 --> 00:34:14,658
+quem tem, eu sempre recomendo fazer aqui
+
+713
+00:34:14,658 --> 00:34:16,138
+em cima. Como eu estou com o dispositivo
+
+714
+00:34:16,138 --> 00:34:18,098
+aqui, eu vou demonstrar o funcionamento
+
+715
+00:34:18,098 --> 00:34:19,258
+deles.
+
+716
+00:34:21,178 --> 00:34:23,098
+Você consegue. Você encontra.
+
+717
+00:34:23,698 --> 00:34:25,857
+Tem sempre um jeito.
+
+718
+00:34:27,657 --> 00:34:30,537
+Aqui, esse ar aqui, é só É só
+
+719
+00:34:30,537 --> 00:34:32,697
+abrir ali a válvula monopolia. Cuidado
+
+720
+00:34:32,737 --> 00:34:34,857
+que está conectado a mangueira.
+
+721
+00:34:38,296 --> 00:34:39,816
+Seis baras aqui. Beleza.
+
+722
+00:34:41,576 --> 00:34:43,976
+O que a gente faz para fazer a calibração
+
+723
+00:34:43,976 --> 00:34:45,256
+da base no FY?
+
+724
+00:34:47,416 --> 00:34:50,016
+Aqui não precisa montar quatro parafusos,
+
+725
+00:34:50,016 --> 00:34:52,415
+se você não tiver o parafuso, o parafuso
+
+726
+00:34:52,415 --> 00:34:54,415
+que vai aqui é o mesmo parafuso que vão
+
+727
+00:34:54,415 --> 00:34:57,015
+aqui embaixo na tampa do Hall. Então eu
+
+728
+00:34:57,015 --> 00:34:59,895
+venho com o meu
+
+729
+00:34:59,895 --> 00:35:02,615
+FYCAL e coloco 20 psi.
+
+730
+00:35:03,174 --> 00:35:04,454
+Você vai falar, mas por que eu tenho que
+
+731
+00:35:04,454 --> 00:35:07,054
+ter 100 psi aqui se você vai só usar 20?
+
+732
+00:35:07,894 --> 00:35:10,134
+Porque essa base aqui, ela é utilizada em
+
+733
+00:35:10,134 --> 00:35:12,254
+dois equipamentos da Smart, é utilizada
+
+734
+00:35:12,254 --> 00:35:15,254
+no FY e ela é utilizada em um outro
+
+735
+00:35:15,294 --> 00:35:18,213
+produto chamado FP. O FP é só um
+
+736
+00:35:18,653 --> 00:35:21,093
+conversor de pressão, ele não
+
+737
+00:35:21,093 --> 00:35:23,893
+existe em hardware, só existe em Fieldbus
+
+738
+00:35:24,133 --> 00:35:25,973
+e Profus, e ele é
+
+739
+00:35:25,973 --> 00:35:28,492
+utilizado como se fosse um antigo
+
+740
+00:35:28,492 --> 00:35:31,012
+IPAP. É um produto
+
+741
+00:35:31,012 --> 00:35:33,452
+limitado com as vendas para clientes
+
+742
+00:35:33,452 --> 00:35:35,532
+específicos aqui no Brasil e lá nos
+
+743
+00:35:35,532 --> 00:35:38,092
+Estados Unidos. e para calibrar a base
+
+744
+00:35:38,092 --> 00:35:40,292
+daquele cara eu preciso
+
+745
+00:35:41,051 --> 00:35:43,971
+ser de 20, 40, 60, 80 e 100 eu
+
+746
+00:35:43,971 --> 00:35:46,451
+faço uns 5 pontos quando eu vou utilizar
+
+747
+00:35:46,451 --> 00:35:48,851
+num FT quando eu vou utilizar no FY
+
+748
+00:35:49,251 --> 00:35:52,131
+basta eu colocar 20 psi
+
+749
+00:35:52,131 --> 00:35:52,851
+de entrada
+
+750
+00:35:55,490 --> 00:35:57,330
+eu vou tirar esse cara aqui de qualquer
+
+751
+00:35:57,330 --> 00:35:59,810
+posição que tiver aqui colocar ele para
+
+752
+00:35:59,810 --> 00:36:01,490
+cá mais ou menos calibrar ele

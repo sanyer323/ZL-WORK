@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FY301 研发仿真 · 压电–先导–滑阀 可调参</title>
+<style>
+  :root {
+    --bg: #0b1220;
+    --panel: #111827;
+    --fg: #e8eef7;
+    --muted: #94a3b8;
+    --accent: #4fc3f7;
+    --piezo: #ce93d8;
+    --air: #ffb74d;
+    --ok: #81c784;
+    --warn: #ff8a65;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+    background: radial-gradient(1200px 600px at 20% 0%, #152238, var(--bg));
+    color: var(--fg); min-height: 100vh;
+  }
+  header {
+    padding: 20px 28px 8px; border-bottom: 1px solid #1f2937;
+  }
+  header h1 { margin: 0 0 6px; font-size: 22px; font-weight: 700; }
+  header p { margin: 0; color: var(--muted); font-size: 13px; max-width: 900px; line-height: 1.5; }
+  .layout {
+    display: grid; grid-template-columns: 320px 1fr; gap: 16px;
+    padding: 16px 20px 28px; max-width: 1400px; margin: 0 auto;
+  }
+  .panel {
+    background: color-mix(in srgb, var(--panel) 92%, black);
+    border: 1px solid #243044; border-radius: 14px; padding: 16px;
+  }
+  .panel h2 { margin: 0 0 12px; font-size: 14px; color: var(--accent); letter-spacing: .04em; }
+  label { display: block; font-size: 12px; color: var(--muted); margin: 12px 0 4px; }
+  input[type=range] { width: 100%; }
+  .val { font-variant-numeric: tabular-nums; color: var(--fg); font-weight: 600; }
+  .readout {
+    margin-top: 16px; font-family: ui-monospace, Consolas, monospace;
+    font-size: 12px; line-height: 1.55; background: #0a101a; border-radius: 10px;
+    padding: 12px; border: 1px solid #243044; white-space: pre-wrap;
+  }
+  .stage { position: relative; min-height: 560px; }
+  canvas { width: 100%; height: auto; display: block; border-radius: 12px; background: #0a101a; }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 10px; font-size: 12px; color: var(--muted); }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+  .btns { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  button {
+    background: #1e293b; color: var(--fg); border: 1px solid #334155; border-radius: 8px;
+    padding: 8px 12px; cursor: pointer; font-size: 12px;
+  }
+  button:hover { border-color: var(--accent); color: var(--accent); }
+  button.active { background: #164e63; border-color: var(--accent); }
+  @media (max-width: 980px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>FY301 研发仿真工作台 · 压电陶瓷 → 先导 → 滑阀</h1>
+  <p>
+    依据 FY301ME：逆压电弯曲调制喷嘴间隙，建立先导压力；经大小膜片力平衡放大后驱动滑阀，分配 OUT1/OUT2。
+    右侧为实时剖面仿真，左侧可调研发参数。FYCAL 参考点（供气 20 psi）：0 V ≤2 psi，50 V ≈6 psi，100 V ≈12–13 psi。
+  </p>
+</header>
+<div class="layout">
+  <aside class="panel">
+    <h2>可调参数</h2>
+    <label>压电驱动电压 V_piezo（V） <span class="val" id="vVal">50</span></label>
+    <input id="vPiezo" type="range" min="0" max="100" step="0.5" value="50" />
+
+    <label>供气压力 P_supply（psi） <span class="val" id="psVal">20</span></label>
+    <input id="pSupply" type="range" min="20" max="100" step="1" value="20" />
+
+    <label>节流孔相对开度 R <span class="val" id="rVal">1.00</span></label>
+    <input id="restrict" type="range" min="0.4" max="1.6" step="0.01" value="1" />
+
+    <label>膜片面积比 A_large/A_small <span class="val" id="arVal">6.0</span></label>
+    <input id="areaRatio" type="range" min="2" max="12" step="0.1" value="6" />
+
+    <label>滑阀死区（%） <span class="val" id="dzVal">2</span></label>
+    <input id="deadband" type="range" min="0" max="10" step="0.5" value="2" />
+
+    <label>设定阀位 SP（%） <span class="val" id="spVal">50</span></label>
+    <input id="sp" type="range" min="0" max="100" step="1" value="50" />
+
+    <div class="btns">
+      <button type="button" id="btnSweep">电压扫描 0→100→0</button>
+      <button type="button" id="btnFail">模拟失电</button>
+      <button type="button" id="btnFycals">跳到 FYCAL 点</button>
+    </div>
+    <div class="readout" id="readout"></div>
+  </aside>
+  <main class="panel stage">
+    <h2>剖面实时仿真</h2>
+    <canvas id="cv" width="1000" height="560"></canvas>
+    <div class="legend">
+      <span><i style="background:var(--piezo)"></i>压电盘</span>
+      <span><i style="background:var(--air)"></i>气流 / 先导</span>
+      <span><i style="background:var(--ok)"></i>OUT1</span>
+      <span><i style="background:var(--warn)"></i>OUT2</span>
+      <span><i style="background:var(--accent)"></i>电信号</span>
+    </div>
+  </main>
+</div>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const cv = $("cv");
+  const ctx = cv.getContext("2d");
+
+  const state = {
+    V: 50, Ps: 20, R: 1, Ar: 6, dz: 2, SP: 50,
+    PV: 50, fail: false, sweep: false, sweepT: 0, fycals: [0, 50, 100], fyi: 0,
+  };
+
+  function pilotPsi(V, Ps, R) {
+    // FY301ME § FYCAL @ 20 psi: 0→≤2, 50→5.8–6.2, 100→12–13; scale with supply & restriction
+    let base;
+    if (V < 50) base = 2 + (V / 50) * (6.0 - 2);
+    else base = 6.0 + ((V - 50) / 50) * (12.5 - 6.0);
+    const scale = (Ps / 20) * (0.55 + 0.45 * R);
+    return Math.max(0.2, base * scale);
+  }
+
+  function model() {
+    const V = state.fail ? 0 : state.V;
+    const Pp = pilotPsi(V, state.Ps, state.R);
+    // force balance → spool position -1..1
+    const xRaw = (Pp / (state.Ps * 0.65) - 0.5) * 2 * (state.Ar / 6);
+    let x = Math.max(-1, Math.min(1, xRaw));
+    if (Math.abs(x) < state.dz / 100) x = 0;
+    if (state.fail) x = -1;
+    let P1 = state.Ps * (0.5 + 0.5 * x);
+    let P2 = state.Ps * (0.5 - 0.5 * x);
+    if (state.fail) { P1 = 0; P2 = state.Ps; }
+    // simple plant toward SP via pressure differential
+    const drive = (P1 - P2) / Math.max(1, state.Ps);
+    state.PV += (drive * 55 + (state.SP - state.PV) * 0.02) * 0.16;
+    state.PV = Math.max(0, Math.min(100, state.PV));
+    const gapRel = 1 - V / 100; // relative nozzle gap
+    return { V, Pp, x, P1, P2, gapRel };
+  }
+
+  function draw(m) {
+    const w = cv.width, h = cv.height;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = "#0a101a";
+    ctx.fillRect(0, 0, w, h);
+
+    // title strip
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "13px Microsoft YaHei, sans-serif";
+    ctx.fillText("IN → 节流孔 → 先导室/喷嘴/压电挡板 → 膜片放大 → 滑阀 → OUT1/OUT2", 24, 28);
+
+    // pneumatic block outline
+    roundRect(40, 60, 520, 420, 16, "#122033", "#334155");
+
+    // supply
+    roundRect(60, 200, 70, 90, 8, "#1e293b", "#ffb74d");
+    label(95, 185, "IN", "#ffb74d");
+
+    // restriction
+    roundRect(150, 230, 70, 30, 4, "#334155", "#e8eef7");
+    label(185, 215, "节流孔", "#e8eef7");
+
+    // pilot chamber
+    const ph = 40 + 160 * (m.Pp / (state.Ps * 0.7 + 1e-6));
+    roundRect(250, 120, 200, 220, 10, "#0f2744", "#4fc3f7");
+    ctx.fillStyle = `rgba(79,195,247,${0.15 + 0.45 * Math.min(1, m.Pp / 15)})`;
+    ctx.fillRect(255, 335 - ph, 190, ph);
+    label(350, 105, "先导室", "#4fc3f7");
+    ctx.fillStyle = "#e8eef7";
+    ctx.font = "bold 16px Consolas, monospace";
+    ctx.fillText(`P=${m.Pp.toFixed(1)} psi`, 290, 240);
+
+    // nozzle
+    ctx.beginPath();
+    ctx.moveTo(330, 340); ctx.lineTo(370, 340); ctx.lineTo(360, 390); ctx.lineTo(340, 390);
+    ctx.closePath();
+    ctx.fillStyle = "#475569"; ctx.fill();
+    ctx.strokeStyle = "#ffb74d"; ctx.stroke();
+    label(350, 410, "喷嘴", "#ffb74d");
+
+    // piezo disk (bend)
+    const bend = 28 * (m.V / 100);
+    ctx.beginPath();
+    ctx.moveTo(280, 430);
+    for (let i = 0; i <= 40; i++) {
+      const t = i / 40;
+      const x = 280 + t * 140;
+      const y = 430 - bend * Math.sin(Math.PI * t) * (0.35 + 0.65 * (m.V / 100));
+      ctx.lineTo(x, y - bend * 0.15);
+    }
+    ctx.strokeStyle = "#ce93d8";
+    ctx.lineWidth = 5;
+    ctx.stroke();
+    ctx.lineWidth = 1;
+    label(430, 455, `压电盘  V=${m.V.toFixed(1)}V`, "#ce93d8");
+    label(430, 475, `间隙相对 ${(m.gapRel * 100).toFixed(0)}%`, "#94a3b8");
+
+    // particles
+    const t = performance.now() / 1000;
+    for (let i = 0; i < 22; i++) {
+      const u = (t * (0.7 + 0.9 * m.gapRel) + i / 22) % 1;
+      let x, y;
+      if (u < 0.25) { x = 70 + u / 0.25 * 90; y = 245; }
+      else if (u < 0.45) { x = 160 + (u - 0.25) / 0.2 * 90; y = 245; }
+      else if (u < 0.7) { x = 260 + (u - 0.45) / 0.25 * 160; y = 200 + 20 * Math.sin(u * 20 + i); }
+      else if (m.gapRel > 0.35) { x = 350; y = 340 + (u - 0.7) / 0.3 * 80; }
+      else { x = 270 + ((u - 0.7) / 0.3) * 160; y = 180 + 30 * Math.sin(u * 12 + i); }
+      ctx.beginPath();
+      ctx.arc(x, y, 3, 0, Math.PI * 2);
+      ctx.fillStyle = m.gapRel > 0.35 ? "#ffb74d" : "#f87171";
+      ctx.fill();
+    }
+
+    // diaphragms + spool on right
+    roundRect(600, 80, 360, 400, 16, "#122033", "#334155");
+    // large / small diaphragms
+    const yShift = m.x * 18;
+    ellipse(780, 160 + yShift, 120, 18, "#1e3a5f", "#4fc3f7");
+    label(780, 125 + yShift, "大膜片", "#4fc3f7");
+    ellipse(780, 260 + yShift, 48, 14, "#3e2723", "#ff8a65");
+    label(780, 235 + yShift, "小膜片", "#ff8a65");
+    ctx.strokeStyle = "#e8eef7";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(780, 178 + yShift); ctx.lineTo(780, 246 + yShift);
+    ctx.stroke();
+    ctx.lineWidth = 1;
+
+    // spool
+    roundRect(730, 300, 100, 140, 8, "#1e293b", "#94a3b8");
+    roundRect(745, 340 + m.x * 28, 70, 50, 6, "#78909c", "#e8eef7");
+    label(780, 460, "滑阀", "#e8eef7");
+
+    // OUT bars
+    bar(620, 320, 40, 120, m.P1 / state.Ps, "#81c784", "OUT1");
+    bar(900, 320, 40, 120, m.P2 / state.Ps, "#ff8a65", "OUT2");
+
+    // valve stem indicator
+    roundRect(620, 90, 320, 28, 8, "#0b1220", "#243044");
+    ctx.fillStyle = "#81c784";
+    ctx.fillRect(624, 94, 312 * (state.PV / 100), 20);
+    label(780, 75, `阀位 PV ${state.PV.toFixed(1)}%  |  SP ${state.SP}%`, "#e8eef7");
+
+    if (state.fail) {
+      ctx.fillStyle = "rgba(248,113,113,.12)";
+      ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = "#f87171";
+      ctx.font = "bold 20px Microsoft YaHei, sans-serif";
+      ctx.fillText("失电故障安全：OUT1→0，OUT2→供气压力", 240, 540);
+    }
+  }
+
+  function roundRect(x, y, w, h, r, fill, stroke) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+    ctx.fillStyle = fill; ctx.fill();
+    ctx.strokeStyle = stroke; ctx.stroke();
+  }
+  function ellipse(x, y, rx, ry, fill, stroke) {
+    ctx.beginPath();
+    ctx.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2);
+    ctx.fillStyle = fill; ctx.fill();
+    ctx.strokeStyle = stroke; ctx.stroke();
+  }
+  function label(x, y, text, color) {
+    ctx.fillStyle = color; ctx.font = "12px Microsoft YaHei, sans-serif";
+    ctx.textAlign = "center"; ctx.fillText(text, x, y); ctx.textAlign = "left";
+  }
+  function bar(x, y, w, h, frac, color, name) {
+    roundRect(x, y, w, h, 6, "#0b1220", "#334155");
+    const hh = Math.max(2, h * Math.max(0, Math.min(1, frac)));
+    ctx.fillStyle = color;
+    ctx.fillRect(x + 2, y + h - hh, w - 4, hh);
+    label(x + w / 2, y + h + 16, name, color);
+  }
+
+  function syncUI() {
+    $("vVal").textContent = state.V.toFixed(1);
+    $("psVal").textContent = state.Ps.toFixed(0);
+    $("rVal").textContent = state.R.toFixed(2);
+    $("arVal").textContent = state.Ar.toFixed(1);
+    $("dzVal").textContent = state.dz.toFixed(1);
+    $("spVal").textContent = state.SP.toFixed(0);
+  }
+
+  function updateReadout(m) {
+    $("readout").textContent =
+`V_piezo     = ${m.V.toFixed(1)} V
+P_supply    = ${state.Ps.toFixed(0)} psi
+P_pilot     = ${m.Pp.toFixed(2)} psi
+面积比 Ar   = ${state.Ar.toFixed(1)}
+滑阀 x      = ${m.x.toFixed(3)}
+OUT1 / OUT2 = ${m.P1.toFixed(1)} / ${m.P2.toFixed(1)} psi
+PV / SP     = ${state.PV.toFixed(1)}% / ${state.SP}%
+误差 e      = ${(state.SP - state.PV).toFixed(1)}%
+
+物理链：
+逆压电弯曲 → 间隙↓ → 先导压↑
+→ F=P·A 放大 → 滑阀位移
+→ OUT 差动 → 阀位
+
+手册要点：
+监控电压常在 30–70 V（理想≈50 V）
+FYCAL@20psi：0V≤2 / 50V≈6 / 100V≈12–13
+<20 或 >80 V → 需 FYCAL 标定
+压电≈电容，稳态近零功耗
+盔帽调高度 h 改变工作点`;
+  }
+
+  // bindings
+  $("vPiezo").oninput = (e) => { state.V = +e.target.value; state.fail = false; };
+  $("pSupply").oninput = (e) => { state.Ps = +e.target.value; };
+  $("restrict").oninput = (e) => { state.R = +e.target.value; };
+  $("areaRatio").oninput = (e) => { state.Ar = +e.target.value; };
+  $("deadband").oninput = (e) => { state.dz = +e.target.value; };
+  $("sp").oninput = (e) => { state.SP = +e.target.value; };
+
+  $("btnFail").onclick = () => { state.fail = !state.fail; $("btnFail").classList.toggle("active", state.fail); };
+  $("btnSweep").onclick = () => { state.sweep = !state.sweep; state.sweepT = 0; $("btnSweep").classList.toggle("active", state.sweep); };
+  $("btnFycals").onclick = () => {
+    state.fail = false; state.sweep = false;
+    state.fyi = (state.fyi + 1) % 3;
+    state.V = state.fycals[state.fyi];
+    $("vPiezo").value = state.V;
+  };
+
+  function loop() {
+    if (state.sweep) {
+      state.sweepT += 0.012;
+      state.V = 50 + 50 * Math.sin(state.sweepT);
+      $("vPiezo").value = state.V;
+    }
+    const m = model();
+    syncUI();
+    updateReadout(m);
+    draw(m);
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+</script>
+</body>
+</html>

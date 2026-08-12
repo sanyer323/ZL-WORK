@@ -1,0 +1,6 @@
+file 'C:/Users/sanye/Desktop/SMAR/AI研发产品/研发仿真视频/out/product_parts/P01_气动块_透明气流.mp4'
+file 'C:/Users/sanye/Desktop/SMAR/AI研发产品/研发仿真视频/out/product_parts/P02_挡板_透明弯曲动作.mp4'
+file 'C:/Users/sanye/Desktop/SMAR/AI研发产品/研发仿真视频/out/product_parts/P03_膜片_透明起伏动作.mp4'
+file 'C:/Users/sanye/Desktop/SMAR/AI研发产品/研发仿真视频/out/product_parts/P04_线路板_透明信号流.mp4'
+file 'C:/Users/sanye/Desktop/SMAR/AI研发产品/研发仿真视频/out/product_parts/P05_整机拆解_透明联锁.mp4'
+file 'C:/Users/sanye/Desktop/SMAR/AI研发产品/研发仿真视频/out/product_parts/P06_测试台_透明气路.mp4'

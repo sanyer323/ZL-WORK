@@ -1,0 +1,5636 @@
+
+
+===== PAGE 1 =====
+ 
+OPERATION, MAINTENANCE
+AND INSTRUCTION MANUAL
+Smart Valve Positioner
+F
+Y
+3
+0
+1
+M E
+FY301
+VERSION 3
+JUN / 16
+
+
+===== PAGE 2 =====
+web: www.smar.com/contactus.asp 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.smar.com 
+ 
+Specifications and information are subject to change without notice. 
+ 
+Up-to-date address information is available on our website. 
+ 
+ 
+ 
+ 
+smar
+ 
+
+
+===== PAGE 3 =====
+Kpvtqfwevkqp"
+"
+KKK"
+INTRODUCTION 
+ 
+The FY301 is a smart valve positioner for Single (spring return) or Double acting Linear motion type 
+control valves e.g. Globe, Gate, Diaphragm, Pinch or Clamp and Rotary motion type control valves e.g. 
+Ball, Butterfly or Plug with pneumatic type actuators e.g. Diaphragm, Piston, Vane, or Bellows. It is 
+based on a field-proven piezo flapper and non-contacting Hall-effect position sensor that provides 
+reliable operation and high performance. The digital technology used in the FY301 enabled the choice of 
+several types of flow characterizations, an easy interface between the field and the control room, not to 
+mention several interesting features that considerably reduce the installation, operation and 
+maintenance costs. 
+The FY301, besides the normal functions offered by other smart positioners, offers the following 
+functions: 
+ 
+* Table - on top of the regular valve characterization curves like linear, equal percentage and quick 
+opening (hyperbolic), the valve set point signal may be custom linearized according to a 16 point table, 
+making it possible to achieve flow characterization being a combination of linear and equal percentage 
+etc. 
+ 
+* Local Adjustment - not only for travel adjustment, but also flow characterization, tuning, operation 
+mode, indication, set point and PID parameters... as well. 
+ 
+* Password - three levels for different functions. 
+ 
+* Operation Counter - shows the number of changes in each function. 
+ 
+* Auto Setup - automatic calibration of valve travel. 
+ 
+* Diagnostic – permanently valve monitoring condition for preventive maintenance. 
+ 
+Get the best results of the FY301 by carefully reading the instructions of this manual. 
+ 
+ 
+WARNING 
+Throughout the operation of the positioner, including auto setup, do not touch the moving parts of the 
+valve/actuator/positioner `set as they may unexpectedly move automatically. Make sure to disconnect 
+air supply before touching any moving parts. 
+ 
+
+
+===== PAGE 4 =====
+H[523"/"Qrgtcvkqp."Ockpvgpcpeg"cpf"Kpuvtwevkqpu"Ocpwcn"
+ 
+KX"
+ 
+NOTE 
+This manual is compatible with version 3.XX, where 3 indicates software version and XX software 
+release. The indication 3.XX means that this manual is compatible with any release of software 
+version 3. 
+ 
+Waiver of responsibility 
+ 
+The contents of this manual abides by the hardware and software used on the current equipment
+version. Eventually there may occur divergencies between this manual and the equipment. The
+information from this document are periodically reviewed and the necessary or identified corrections 
+will be included in the following editions. Suggestions for their improvement are welcome.  
+ 
+Warning 
+ 
+For more objectivity and clarity, this manual does not contain all the detailed information on the 
+product and, in addition, it does not cover every possible mounting, operation or maintenance
+cases. 
+ 
+Before installing and utilizing the equipment, check if the model of the acquired equipment complies
+with the technical requirements for the application. This checking is the user’s responsibility. 
+ 
+If the user needs more information, or on the event of specific problems not specified or treated in
+this manual, the information should be sought from Smar. Furthermore, the user recognizes that the
+contents of this manual by no means modify past or present agreements, confirmation or judicial
+relationship, in whole or in part. 
+ 
+All of Smar’s obligation result from the purchasing agreement signed between the parties, which
+includes the complete and sole valid warranty term. Contractual clauses related to the warranty are
+not limited nor extended by virtue of the technical information contained in this manual. 
+ 
+Only qualified personnel are allowed to participate in the activities of mounting, electrical connection, 
+startup and maintenance of the equipment. Qualified personnel are understood to be the persons
+familiar with the mounting, electrical connection, startup and operation  of the equipment or other
+similar apparatus  that are technically fit for their work. Smar provides specific training to instruct and 
+qualify such professionals. However, each country must comply with the local safety procedures,
+legal provisions and regulations for the mounting and operation of electrical installations, as well as
+with the laws and regulations on classified areas, such as intrinsic safety, explosion proof, increased
+safety and instrumented safety systems, among others. 
+ 
+The user is responsible for the incorrect or inadequate handling of equipments run with pneumatic
+or hydraulic pressure or, still, subject to corrosive, aggressive or combustible products, since their
+utilization may cause severe bodily harm and/or material damages. 
+ 
+The field equipment referred to in this manual, when acquired for classified or hazardous areas, has 
+its certification void when having its parts replaced or interchanged without functional and approval
+tests by Smar or any of Smar authorized dealers, which are the competent companies for certifying
+that the equipment in its entirety meets the applicable standards and regulations. The same is true 
+when converting the equipment of a communication protocol to another. In this case, it is necessary
+sending the equipment to Smar or any of its authorized dealer. Moreover, the certificates are
+different and the user is responsible for their correct use. 
+ 
+Always respect the instructions provided in the Manual. Smar is not responsible for any losses
+and/or damages resulting from the inadequate use of its equipments. It is the user’s responsibility to 
+know and apply the safety practices in his country. 
+ 
+ 
+ 
+
+
+===== PAGE 5 =====
+Vcdng"qh"Eqpvgpvu"
+"
+X"
+TABLE OF CONTENTS 
+ 
+UGEVKQP"3"/"KPUVCNNCVKQP"000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"303 
+GENERAL ..................................................................................................................................................................... 1.1 
+MOUNTING .................................................................................................................................................................. 1.1 
+PNEUMATIC CONNECTIONS ..................................................................................................................................... 1.4 
+DIMENSIONAL DRAWING........................................................................................................................................... 1.6 
+ELECTRONIC HOUSING ROTATING ......................................................................................................................... 1.7 
+ELECTRIC WIRING ...................................................................................................................................................... 1.8 
+AIR SUPPLY REQUIREMENTS ................................................................................................................................ 1.11 
+RECOMMENDATIONS FOR INSTRUMENT AIR SUPPLY SYSTEM ....................................................................... 1.11 
+RECOMMENDATIONS FOR MOUNTING APPROVED EQUIPMENTS WITH THE IP 66 W CERTIFICATIONS (USE 
+IN SALINE ATMOSPHERES) .................................................................................................................................... 1.12 
+ROTARY AND LINEAR MAGNET .............................................................................................................................. 1.12 
+MAGNET CENTRALIZER DEVICE ............................................................................................................................ 1.13 
+REMOTE HALL SENSOR .......................................................................................................................................... 1.13 
+INSTALLATION IN HAZARDOUS AREAS ................................................................................................................. 1.14 
+EXPLOSION/FLAME PROOF .................................................................................................................................................. 1.15 
+INTRINSICALLY SAFE ............................................................................................................................................................. 1.15 
+ 
+UGEVKQP"4"/"QRGTCVKQP"00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"403"
+TRANSDUCER FUNCTIONAL DESCRIPTION ........................................................................................................... 2.1 
+ELECTRONICS FUNCTIONAL DESCRIPTION .......................................................................................................... 2.2 
+THE LOCAL INDICATOR ............................................................................................................................................. 2.4 
+ 
+UGEVKQP"5"/"EQPHKIWTCVKQP"00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"503"
+CONFIGURATION RESOURCES ................................................................................................................................ 3.3 
+IDENTIFICATION AND MANUFACTURING DATA ..................................................................................................... 3.3 
+MONITORING .............................................................................................................................................................. 3.3 
+DEVICE CONFIGURATION ......................................................................................................................................... 3.4 
+ADVANCED CONFIGURATION .................................................................................................................................. 3.5 
+DEVICE MAINTENANCE ............................................................................................................................................. 3.5 
+TRIM ............................................................................................................................................................................. 3.5 
+SETUP .......................................................................................................................................................................... 3.5 
+MULTIDROP CONFIGURATION ................................................................................................................................. 3.5 
+DIAGNOSTIC ............................................................................................................................................................... 3.6 
+BACKUP ....................................................................................................................................................................... 3.6 
+PRESSURE SENSOR .................................................................................................................................................. 3.6 
+FACTORY ..................................................................................................................................................................... 3.6 
+ 
+UGEVKQP"6"/"RTQITCOOKPI"WUKPI"NQECN"CFLWUVOGPV"0000000000000000000000000000000000000000000000000000000000000000"603"
+W1 AND W2 JUMPERS CONNECTION ...................................................................................................................... 4.1 
+LOCAL PROGRAMMING TREE .................................................................................................................................. 4.2 
+ADJUSTABLE PARAMETERS ..................................................................................................................................... 4.3 
+PROCEDURE FOR VALVE CALIBRATION ................................................................................................................ 4.4 
+ 
+UGEVKQP"7"/"OCKPVGPCPEG"RTQEGFWTGU"0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"703 
+GENERAL INFORMATION .......................................................................................................................................... 5.1 
+RECOMMENDATIONS FOR MOUNTING APPROVED EQUIPMENTS WITH THE IP66 W CERTIFICATIONS (USE IN 
+SALINE ATMOSPHERES) ........................................................................................................................................... 5.1 
+CORRECTIVE MAINTENANCE FOR THE POSITIONER ........................................................................................... 5.1 
+DIAGNOSTICS WITHOUT CONFIGURATOR ............................................................................................................. 5.1 
+DIAGNOSTIC WITH CONFIGURATOR ....................................................................................................................... 5.2 
+DISASSEMBLY PROCEDURE FOR MAINTENANCE ................................................................................................ 5.3 
+MAINTENANCE – MECHANICAL PARTS ................................................................................................................................. 5.3 
+MAINTENANCE – ELECTRONIC PARTS .................................................................................................................................. 5.3 
+PREVENTIVE MAINTENANCE FOR THE POSITIONER ............................................................................................ 5.4 
+ 
+
+
+===== PAGE 6 =====
+H[523"/"Qrgtcvkqp."Ockpvgpcpeg"cpf"Kpuvtwevkqpu"Ocpwcn"
+"
+XK"
+DISASSEMBLY PROCEDURE .................................................................................................................................... 5.4 
+RESTRICTION CLEANING PROCEDURE .................................................................................................................. 5.6 
+CHANGE OF THE FILTER ELEMENTS ...................................................................................................................... 5.7 
+EXHAUSTS PORTS ..................................................................................................................................................... 5.7 
+ELECTRONIC CIRCUIT ............................................................................................................................................... 5.8 
+PACKAGE CONTENT .................................................................................................................................................. 5.8 
+EXPLODED VIEW ........................................................................................................................................................ 5.9 
+ACCESSORIES .......................................................................................................................................................... 5.10 
+SPARE PARTS LIST .................................................................................................................................................. 5.10 
+DETAILED CODE WHEN ORDERING OF SPARE PARTS ...................................................................................... 5.12 
+ 
+UGEVKQP"8"/"VGEJPKECN"EJCTCEVGTKUVKEU"000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"803"
+FUNCTIONAL SPECIFICATIONS ................................................................................................................................ 6.1 
+PERFORMANCE SPECIFICATIONS ........................................................................................................................... 6.2 
+PHYSICAL SPECIFICATIONS ..................................................................................................................................... 6.2 
+ORDERING CODE ....................................................................................................................................................... 6.3 
+ 
+CRRGPFKZ"C"/"EGTVKHKECVKQPU"KPHQTOCVKQP"000000000000000000000000000000000000000000000000000000000000000000000000000000000000"C03"
+EUROPEAN DIRECTIVE INFORMATION .................................................................................................................. A.1 
+HAZARDOUS LOCATIONS GENERAL INFORMATION ........................................................................................................... A.1 
+HAZARDOUS LOCATIONS APPROVALS ................................................................................................................. A.2 
+CSA (CANADIAN STANDARDS ASSOCIATION) ...................................................................................................................... A.2 
+FM APPROVALS (FACTORY MUTUAL) .................................................................................................................................... A.2 
+NEMKO (NORGES ELEKTRISKE MATERIELKONTROLL) ...................................................................................................... A.3 
+EXAM (BBG PRÜF - UND ZERTIFIZIER GMBH) ...................................................................................................................... A.3 
+CEPEL (CENTRO DE PESQUISA DE ENERGIA ELÉTRICA) ................................................................................................... A.3 
+IDENTIFICATION PLATE ............................................................................................................................................ A.5 
+CONTROL DRAWING ................................................................................................................................................. A.7 
+ 
+CRRGPFKZ"D"⁄"UTH"⁄"UGTXKEG"TGSWGUV"HQTO"00000000000000000000000000000000000000000000000000000000000000000000000000000000000"D03"
+RETURNING MATERIALS .......................................................................................................................................... B.2 
+ 
+CRRGPFKZ"E"⁄"UOCT"YCTTCPV["EGTVKHKECVG"0000000000000000000000000000000000000000000000000000000000000000000000000000000000"E03"
+ 
+CRRGPFKZ"/"DH["0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"03"
+ 
+ 
+ 
+
+
+===== PAGE 7 =====
+Kpuvcnncvkqp"Hnqyejctv"
+"
+XKK"
+Kpuvcnncvkqp"Hnqyejctv"
+ 
+Proceed with field installation. (Section 1)
+Install the valve and the actuator. (Section 1)
+Install the positioner bracket. (Section 1)
+Check area classification and
+respective practices.
+Verify the most suitable
+position for local indicator. (Section 5)
+Start
+Define action type. (direct / reverse)
+(Section 3)
+Define valve type.
+(air to open / air to close)
+(Section 3)
+Install the magnet bracket. (Section 1)
+Is the 
+positioner in 
+?
+urnkv"tcpig
+(Section 1)
+YES
+OK
+Install the positioner. (Section 1)
+Check if the cover is correctly
+closed. (Section 1)
+Is the 
+positioner
+pre-configured?
+Is the
+valve working
+correctly?
+NO
+Define the
+current
+range.
+YES
+YES
+NO
+NO
+Verify, before installation, the 
+package content. (Section 5)
+Check valve conditions: apply pressure
+in the actuator and verify if the valve
+stem travels from 0 to 100%.
+Assemble the positioner and 
+the magnet in the valve. (Section 1)
+Place the valve 
+. Make sure that
+the arrow engraved on the magnet coincides
+with the arrow engraved on the positioner .
+in mid travel
+ the distance 
+2 mm to 4 mm) 
+Check
+between the magnet
+external face and the positioner face.
+(Recommended: 
+(Section 1)
+Be sure there is no additional 
+between magnet and Hall sensor
+or possibility of movement stop.(Section 1)
+friction
+Check if there is no leakages
+at connections or actuator.
+Power up the positioner.
+Purge air supply lines before 
+connecting the pressure 
+.
+tubings
+Use sealant on threads. Make sure 
+that the bracket is not obstructing
+the positioner exhausted ports.
+Connect the positioner pneumatic
+parts to the actuator. (Section 5)
+Apply pressure in the positioner.
+(Between 1.4 bar (20 psi) and 7 bar (100 psi))
+(Section 5)
+Do not touch the moving parts of the
+valve/actuator/positioner assembly as they
+may unexpectedly move automatically.
+ATTENTION
+ 
+ 
+
+
+===== PAGE 8 =====
+H[523"/"Qrgtcvkqp."Ockpvgpcpeg"cpf"Kpuvtwevkqpu"Ocpwcn"
+"
+XKKK"
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+===== PAGE 9 =====
+Section 1 
+ 
+1.1 
+INSTALLATION 
+ 
+General 
+NOTE 
+The installation carried out in hazardous areas should follow the recommendations of the IEC60079-14 standard. 
+ 
+The overall accuracy of measuring and control depends on several factors. In spite of the excellent 
+performance, the positioner must be adequately installed so that it may work well. 
+ 
+Among all factors that may affect the positioner accuracy, environmental conditions are the most 
+difficult to control. But there are ways to reduce the effects of temperature, humidity and vibration. 
+ 
+Installing the positioner in areas protected from extreme environmental changes can minimize 
+temperature fluctuation effects. In warm environments, the positioner should be installed to avoid, as 
+much as possible, direct exposure to the sun. Installation close to lines and vessels subjected to 
+high temperatures should also be av oided. If not possible to avoid it, consider using the remote 
+position sensor version. 
+ 
+Use thermal isolation to protect the positioner from external heart sources, if necessary. 
+ 
+Humidity is fatal to electronic circuits. In areas subjected to high relative humidity, the O-rings for the 
+electronic housing covers must be correctly placed and the covers must be completely closed by 
+tighten them by hand until you feel the O-rings being compressed. Do not use tools to tight the 
+covers. Removal of the electronics cover in the field should be reduced to the minimum necessary, 
+since each time it is removed; the circuits are exposed to the humidity.  
+ 
+The electronic circuit is protected by a humidity proof coating, but frequent exposures to humidity 
+may affect the protection provided. It is also important to keep the covers tightened in place. Every 
+time they are removed, the threads are exposed to corrosion, since painting cannot protect these 
+parts. Sealing methods should be employed on conduit entering of the positioner.  
+ 
+IMPORTANT 
+Avoid to use thread sealant tapes on the air input and outputs connections, since small pieces of this type of 
+sealant may block the air flow inside the positioner, affecting the overall equipment performance. 
+ 
+Although the positioner is practically vibration resistant, it is not recommended to install it near 
+pumps, turbines or other equipment producing too much vibration. If not possible to avoid it, 
+consider using of remote position sensor version. 
+ 
+Mounting 
+ 
+The FY301 mounting depends on the type of actuator, its actions, single (with spring return) or 
+double, and the movement characteristic (linear or rotary). It requires two mounting brackets: one for 
+the magnet and another for the positioner. Smar supplies both according to the specified ordering 
+code (see Page 6.4 for mounting bracket ordering code) 
+ 
+Additionally, a great variety of customized mounting brackets is available, covering several control 
+valves models from different manufacturers. 
+ 
+Check the availability and select the most adequate mounting bracket to your need, by visiting our 
+web page on the Internet: http://www.smar.com. Select "Valve Positioner" option to access the 
+product specific page. After enter your login and password, click on the Bracket for FY link and 
+choose the most appropriate mounting bracket to your application. 
+ 
+See below an example showing the Positioner with rotary and linear magnets. 
+ 
+IMPORTANT 
+Smar web site (www.smar.com) has options of mounting brackets available for several actuators of several 
+manufacturers and models and the related dimensional drawings. 
+ 
+
+
+===== PAGE 10 =====
+FY301 – Operation, Maintenance and Instructions Manual 
+ 
+1.2 
+Rotary Movement 
+Install the magnet on the valve stem using the its proper bracket, according to the Figure 1.1. 
+ 
+LOCK
+ROTATY  
+MAGNET
+POSITIONER
+VALVE  STEM
+ROTATY
+MAGNETY
+BRACKET
+POSITIONER  
+BRACKET
+M6x1  SCREWS
+(4  PLACES)
+ 
+Figure 1.1 – Positioner with Rotary Actuator  
+ 
+ 
+NOTE 
+Included in the package content the centralizer device of rotary magnet. See figure 1.17. 
+ 
+ 
+OUT 1
+IN
+OUT 2
+REMOTE  
+EXTENSION
+REMOTE  EXTENSION
+BRACKT  
+“L”  BRACKT  WITH  “U”  CLAMP 
+ FOR  REMOTE  POSITION
+M6x1  SCREWS
+(2  PLACES)
+REMOTE  POSITION
+ 
+ 
+Figure 1.2 – Positioner on Rotary Actuator with Remote Position 
+ 
+ 
+Then, install the positioner bracket on the actuator. Usually, the actuator is designed according to 
+the VDI/VDE 3845 standard, and, in this case, tighten the four screws with their lock washers on the 
+proper bracket. 
+ 
+ 
+
+
+===== PAGE 11 =====
+Installation 
+ 
+1.3 
+NOTE 
+Make sure that the arrow engraved on the magnet coincides with the arrow engraved on the positioner when 
+the valve is in mid travel.  
+When mounting the magnet, be sure that: 
+1. 
+There is no attrict between the internal magnet face and the position sensor salience during the 
+travel (rotary or linear), through the magnet. 
+2. 
+The magnet and the salience of position sensor must not be distant. 
+A minimum distance of 2 mm and a maximum distance of 4mm are recommended between the magnet 
+external face and t he positioner face. For that, a centralizer device (linear or rotary) must be u sed. The 
+centralizer device is in the positioner packing. 
+ 
+Case the positioner installation or magnet change or if any other modification is done, the positioner 
+will require a re-calibration. See Section 3 (Setup - for Auto Setup procedure). 
+ 
+See item “Pneumatic Connections” as recommended practice to install the positioner to the valve 
+type. 
+ 
+Linear Movement 
+Install the magnet on the valve stem using its proper bracket, according to Figure 1.3. 
+ 
+Install the positioner bracket on the actuator. The fastening of the actuator bracket may follow the 
+NAMUR/IEC 60534-6-1 standard or be in accordance with the user specified boring. Mount the 
+positioner on the bracket by fastening the four screws in the holes of the pressure gauges opposite 
+face. Use lock washers to avoid loosening the screws. 
+ 
+The linear magnet movement must be or thogonal in relation to the main axis of the position 
+positioner. For example, if the linear magnet movement is vertical, the positioner main axis must be 
+horizontal, as show in Figure 1.3. 
+OUT 2
+OUT 1
+IN
+POSITIONER
+M6x1  SCREWS
+(4  PLACES)
+LINEAR  MAGNET
+VALVE  YOKE
+ VALVE  STEM 
+CENTRALIZER  DEVICE
+LINEAR  MAGNET
+ BRACKET
+POSITIONER
+ BRACKET
+ 
+ 
+Figure 1.3 - Positioner on the Linear Actuator 
+ 
+NOTE 
+Included in the package content the centralizer device of linear magnet. See figure 1.16. 
+ 
+ 
+
+
+===== PAGE 12 =====
+FY301 – Operation, Maintenance and Instructions Manual 
+ 
+1.4 
+OUT 2
+IN
+OUT 1
+REMOTO  EXTENSION
+LINEAR  MAGENT
+VALVE  YOKE
+ VALVE  
+STEM 
+CENTRALIZER  
+DEVICE
+REMOTE  
+POSITION
+“L”  BRACKT  WITH  “U”  CLAMP 
+ FOR  REMOTE  POSITION
+M6x1  SCREWS
+(2  PLACES)
+LINEAR  MAGNET 
+ BRACKET
+POSITIONER  
+BRACKET
+M6x1  SCREWS
+(2  PLACES)
+ 
+ 
+Figure 1.4 – Positioner on Linear Actuator with Remote Position 
+ 
+Make sure the bracket does not obstruct the exhaust outputs. 
+ 
+NOTE 
+Make sure that the arrow engraved on the magnet coincides with the arrow engraved on the positioner when 
+the valve is in mid travel.  
+When mounting the magnet, be sure that: 
+1. 
+There is no attrict between the internal magnet face and the position sensor salience during the 
+travel (rotary or linear), through the magnet. 
+2. 
+The magnet and the salience of position sensor must not be distant. 
+A minimum distance of 2 m m and a m aximum distance of 4mm are recommended between the magnet 
+external face and t he positioner face. For that, a c entralizer device (linear or rotary) must be us ed. The 
+centralizer device is in the positioner packing. 
+ 
+Case the positioner installation or magnet change or if any other modification is done, the positioner 
+will require a re-calibration. See Section 3 (Setup - for Auto Setup procedure). 
+ 
+Pneumatic Connections 
+ 
+ The FY301 requires instrument air quality, following the best practices for pneumatic installations. 
+Consult the American National Standard "Quality Standard for Instrument Air" (ANSI/ISA S7.0.01 - 
+1996) for detailed information. 
+  
+The FY301 comes with input and output stainless steel air filters, but these filters do not exclude the 
+preliminary instrument air treatment. Periodical filter cleaning is recommended at every 6 months or 
+less, if the air quality is not good. Please, check the maintenance section for clean the filters. 
+  
+The FY301 supply air pressure varies from 1.4 bar (20 psi) minimum, to 7.0 bar (100 psi) maximum. 
+The actuator working pressure must follow these limits. Consider the use of boosters, if required. 
+Pressure below this range shall affect the positioner performance. Pressure above this range may 
+damage the positioner. 
+ 
+The two pneumatic outputs, marked as “OUT1” and “OUT2”, work in opposite directions to open or 
+close the valve. 
+ 
+IMPORTANT 
+If a failure occurs on the FY301, such as power loss (4-20 mA input signal), the output marked OUT1 goes to 
+zero pressure and the output marked OUT2 goes to the air supply pressure value. 
+ 
+
+
+===== PAGE 13 =====
+Installation 
+ 
+1.5 
+The positioner can have pressure gages (see the ordering code table) attached to the supply air 
+input and in each output. The indications on gages are references only and does not have the same 
+overall positioner accuracy. 
+ 
+The pneumatic connections are marked with IN for the air supply and OUT1 and OUT2 for Output1 
+and Output2, respectively. Use 1/4 NPT connections with sealing material for the NPT screw 
+threads. Connect the air supply on t he connection marked IN. Be sure the air supply does not 
+exceed the maximum allowed pressure of the positioner or the actuator. 
+ 
+IMPORTANT 
+When using tape sealant type on the thread connections, be sure not spread small residues inside, since they 
+may clog the air flow inside the positioner and even impair the equipment efficiency. 
+ 
+The FY301 has five protected exhaust orifices with filters. Do not block any of these exhaust, as the 
+air must circulate freely through them. If painting the positioner block, remove the filters before, to 
+prevent them from being obstructed by paint. The orifices must be inspected on a r egular basis to 
+ensure they not blocked, granting the air to flow smoothly. 
+ 
+Double Action – Air to open (Close on failure) 
+Connect the positioner OUT1 output on the actuator connection marked with “OPEN” and connect 
+the positioner OUT2 output on the actuator connection marked with “CLOSE”. 
+ 
+Double Action – Air to close (Open on failure) 
+Connect the positioner OUT2 output on the actuator connection marked with “OPEN” and connect 
+the positioner OUT1 output on the actuator connection marked with “CLOSE”. 
+ 
+Single Action 
+Connect the positioner OUT1 output on the actuator input. Use a plug to block OUT2. Pay attention 
+to the safe logic on the actuator for the specific process. If necessary, invert the connections. Take 
+into consideration that in case of power failure the output marked OUT1 goes to zero pressure and 
+the output marked OUT2 goes to the air supply pressure value. 
+
+
+===== PAGE 14 =====
+FY301 – Operation, Maintenance and Instructions Manual 
+ 
+1.6 
+Dimensional Drawing 
+ 
+ 
+ 
+69
+21
+24
+50
+(1.97)
+(0.954)
+(0.83)
+(2.72)
+6,5
+MOUNTING HOLES FOR M6x1
+SCREWS (2 PLACES)
+(0.25)
+22
+13
+39
+(1.54)
+(0.87) (0.51)
+ROTARY MAGNET
+VALVE POSITIONER
+All dimensions are in mm (in)
+THREADS FOR SCREWS 
+M6x1 (4 PLACES)
+INPUT 
+PRESSURE
+1/8-27 NPT
+OUTPUT
+PRESSURE 2
+1/8-27 NPT
+OUTPUT
+PRESSURE 1
+1/8-27 NPT
+TERMINAL
+WIRING
+OUTPUT 2
+1/4-18 NPT
+Leave, at least, a 150mm (5.8 in) space,
+for zero and span adjustments with the
+magnetic tool.
+INPUT
+1/4-18 NPT
+OUTPUT 1
+1/4-18 NPT
+EXHAUST
+ORIFICES
+ELECTRICAL
+CONNECTION
+SOCKET SET
+PLUG
+(3.27)
+(10.24)
+(1.77)
+(1.77)
+(1.77)
+(1.53)
+(2.17)
+(1.83)
+(2.42)
+(0.94)
+(2.10)
+(0.94)
+(0.94)
+(4.45)
+(1.95)
+(2.17)
+(0.35)
+LINEAR MAGNET
+TRAVEL
+DIMENSION A
+Note: Dimensions in mm (in)
+*ONLY FOR 50 AND 100 mm TRAVELS.
+UP TO 100 mm (3.94)
+UP TO 50 mm (1.97)
+UP TO 15 mm (0.59)
+UP TO 30 mm (1.18)
+43 mm (1.7)
+105 mm (4.13)
+181 mm (7.12)
+67 mm (2.64)
+64.5
+(2.54)
+(0.71)
+18
+(0.89)
+22.5
+(1.30)
+33
+(0.59)
+15
+A
+(2 PLACES)
+15 *
+(0.59)
+HOLE 6.3 (0.25)
+Ø
+ 
+ 
+
+
+===== PAGE 15 =====
+Installation 
+ 
+1.7 
+REMOTE HALL SENSOR 
+ 
+Figure 1.5 – FY301 Dimensional Drawing 
+ 
+Electronic Housing Rotating 
+ 
+The electronic housing can be rotated in order to offer a better to position the digital display and/or 
+better access to the field connections. To rotate it, release the housing rotation set screw. See figure 
+1.6. The local indicator itself can also be rotated. See section 5, figure 5.2. 
+ 
+ 
+ 
+Figure 1.6 - Housing Rotation Set Bolt 
+ 
+
+
+===== PAGE 16 =====
+FY301 – Operation, Maintenance and Instructions Manual 
+ 
+1.8 
+Reach the wiring block by removing the electrical connection cover. This cover can be locked closed 
+by the cover locking screw. To release the cover, rotate the locking screw clockwise. See figure 1.7. 
+ 
+ 
+ 
+Figure 1.7 - Cover Locking Bolt 
+ 
+Electric Wiring 
+The access to the signal cables to the terminal wiring can be done through of one of the electronic 
+housing orifices and can be connected to a conduit. The wiring block has screws on which fork or 
+ring-type terminals can be fastened. See figure 1.8. Use a plug to block the electrical connection not 
+used. Tight it well and use thread sealing tape. 
+ 
+If the user choose protection against noise induced by atmospheric discharges, overloads, weld 
+machines and machines in general, it will be necessary to install a transient protector (Protector 
+acquired separately). 
+ 
+Test and communication terminals allow, respectively, to measure the current in the 4 - 20 mA loop, 
+without opening it, and to communicate with the transmitter. To measure it, connect a multimeter in 
+the mA scale in the "" and "" terminals, and to communicate, use a Hart® configurator in the 
+"COMM" and " " terminals. For convenience, there are three ground terminals: one inside the 
+cover and two externals, located close to the conduit entries. 
+ 
+Attention to prevent the accidental feeding of the test terminals. This occurrence will cause damages 
+in the equipment. 
+ 
+ 
+ 
+Figure 1.8 - Wiring Block 
+ 
+HAZARDOUS AREAS 
+In hazardous areas with explosion proof requirements, the covers must be tightened with at least 8 turns. In 
+order to avoid the penetration of humidity or corrosive gases, tighten the o-ring until feeling the o-ring 
+touching the housing. Then, tighten more 1/3 turn (120°) to guarantee the sealing. Lock the covers using 
+the locking bolts.  
+Conduit threads should be sealed by means of code-approved sealing methods.  
+Explosion proof, non-incendive and intrinsic safety certification are standards for FY301.  
+For a complete list of available certificates, please consult http://www.smar.com. 
+ 
+
+
+===== PAGE 17 =====
+Installation 
+ 
+1.9 
+The figure 1.9 - Conduit installation diagram shows the correct installation of the conduit, in order to 
+avoid penetration of water or other substance, which may cause malfunctioning of the equipment. 
+ 
+CORRECT
+WIRES
+INCORRECT
+ 
+ 
+Figure 1.9 - Conduit Installation Diagram 
+ 
+Use of twisted pair (22 AWG or greater than) cables is recommended. 
+ 
+Avoid routing signal wiring close to power cables or switching equipment. 
+ 
+The FY301 is protected against reverse polarity, and can withstand up to 50 mA and power supply 
+of ± 60 Vdc without damage. 
+ 
+The FY301 connection could be done according to the figures 1.10, 1.11 and 1.12. 
+ 
+ 
+It is also recommended to ground the shield of shielded cables at one end only. The non-grounded 
+end must be carefully isolated. 
+ 
+ 
+The configurator can be connected to the communication terminals of the positioner or at any point 
+of the signal line by using the interface HPI311-M5P with “alligator” clips. 
+ 
+CD600
+GROUND THE  SIGNAL LOOP AT ONE 
+END OR LEAVE IT 
+UNGROUNDED
+CONFIGURATOR
+ 
+ 
+Figure 1.10 - FY301 Wiring Diagram 
+ 
+
+
+===== PAGE 18 =====
+FY301 – Operation, Maintenance and Instructions Manual 
+ 
+1.10 
+CURRENT SUPPLY 
+OUTPUT
+CONFIGURATOR
+GROUND THE  SIGNAL LOOP AT ONE 
+END OR LEAVE IT 
+UNGROUNDED
+ 
+ 
+Figure 1.11 - FY301 Wiring Diagram - Connected in the Smar Transmitter 
+ 
+The FY301 has an equivalent impedance of 550 Ohms. Make sure that the current supply or analog 
+output of DCS, CLP or single loop controller powering the positioner is capable to handle a voltage 
+drop of 11 V for each positioner (550 x 0.02 = 11 Volts). 
+ 
+NOTE 
+If you are using two positioners in series as e. g., working in split range, the resulting impedance will be 
+1.100 Ohms. Therefore, the analog output should be capable to handle a voltage drop of 22 Volts. 
+ 
+Connection of the FY301 in multidrop configuration should be done as in figure 1.12. Note that a 
+maximum of two positioners can be connected on the same line and that they should be connected 
+in series. 
+ 
+ 
+CONFIGURATOR
+CD600
+ 
+ 
+Figure 1.12 - FY301 Wiring Diagram in Multidrop Configuration (Split Ranges) 
+
+
+===== PAGE 19 =====
+Installation 
+ 
+1.11 
+Air Supply Requirements 
+ 
+Before the air supply is connected to the positioner, we recommend the hose is opened freely for 2 
+to 3 minutes to allow any contamination to be blown out. Direct the air jet into a large paper towel to 
+trap any water, oil, or other foreign materials. If this indicates that the air system is contaminated, it 
+should be properly cleaned. 
+ 
+As soon as the positioner is connected and powered, internal air leakage will provide protection 
+against corrosion and prevent moisture inside. For this reason, it is strongly recommended to keep 
+the positioner pressurized as much as possible. 
+ 
+Recommendations for Instrument Air Supply System 
+ 
+Instrument air quality shall be superior to that of industrial compressed air. Humidity, suspended 
+particles and oil may impair the instrument operation, either temporarily or permanently in case of 
+internal parts wearing. 
+ 
+As per standard ANSI/ISA S7.0.01 - 1996 - Quality Standard for Instrument Air, instrument air shall 
+have the following characteristics: 
+ 
+Dew point 
+10°C below minimum instrument temperature 
+Size of particles (airborne) 
+40 µm (maximum) 
+Oil content 
+1 ppm w/w (maximum) 
+Contaminants 
+free from corrosive flammable gases 
+ 
+This standard recommends that the compressor intake be located in an area free from process spills 
+and fitted with and adequate filter. It also recommends the use of non-lubricated type compressors, 
+in order to prevent air contamination by lubricating oil. Where lubricated type compressors are 
+adopted, there shall be used means to make the air oil free. 
+ 
+Figure 1.13 and 1.14 shows a typical system for air supply and air quality conditioning.  
+ 
+COMPRESSOR
+INTAKE
+COMPRESSOR
+AFTERCOOLER
+CONDENSATE
+SEPARATOR
+WITH DRAIN
+AIR RECEIVER
+WITH DRAIN
+ 
+ 
+Figure 1.13 - Air Supply System 
+ 
+OIL AND WATER
+MIST PREFILTER
+WITH DRAIN
+AIR
+DRYER
+DRY AIR
+AFTERFILTER
+ 
+Figure 1.14 - Air Quality Conditioning System 
+ 
+
+
+===== PAGE 20 =====
+FY301 – Operation, Maintenance and Instructions Manual 
+ 
+1.12 
+Recommendations for mounting Approved Equipments with the IP 66 W 
+certifications (use in saline atmospheres) 
+ 
+NOTE 
+This certification is valid for stainless steel positioners manufactured, approved with the 
+certification IP 66 W.  All positioner external material, such as gauge, plugs, connections etc., 
+should be made in stainless steel. 
+The electrical connection with 1/2” – 14NPT thread must use waterproofing sealant. A non-
+hardening silicone sealant is recommended. 
+The instrument modification or replacement parts supplied by other than authorized 
+representative of Smar is prohibited and will void the certification. 
+ 
+Rotary and Linear Magnet 
+ 
+Magnet models are linear and rotary, for utilization on linear and rotary actuators. 
+ 
+ 
+ 
+Figure 1.15 – Linear and Rotary Magnet Models 
+ 
+
+
+===== PAGE 21 =====
+Installation 
+ 
+1.13 
+Magnet Centralizer Device 
+ 
+ 
+ 
+NOTE 
+Centralizer device of linear magnet is used for all type of 
+linear bracket. 
+ 
+ 
+ 
+ 
+ 
+ 
+NOTE 
+Centralizer device of linear magnet is used only for 
+universal rotary bracket. 
+ 
+Figure 1.16 – Centralizer device of linear magnet  
+Figure 1.17 - Centralizer device of rotary magnet  
+ 
+ 
+Remote Hall Sensor  
+ 
+The remote Hall magnetic sensor is an accessory recommended for high temperature and extreme 
+vibration applications. It prevents excessive wear of the equipment and, consequently, the reduction 
+of its useful time.  
+ 
+ 
+ 
+Figure 1.18 - Remote Hall Sensor  
+ 
+
+
+===== PAGE 22 =====
+FY301 – Operation, Maintenance and Instructions Manual 
+ 
+1.14 
+The electric signals on the remote sensor’s connection to equipment are of low intensity. Therefore, 
+when installing the cable inside the conduit (maximum limit 20 m eters length) keep it away from 
+possible sources of induction and/or magnetic interference. The cable supplied by Smar is shielded 
+for excellent protection against electromagnetic interference, but despite this protection avoid the 
+cable sharing the same conduit with other cables. 
+ 
+The connector for remote Hall sensor is easy handling and simple installation.  
+ 
+See the installation procedure: 
+ 
+ 
+Figure 1.19 – Connecting the Cable to the 
+Remote Hall Sensor 
+Figure 1.20 – Connecting the Cable to the 
+Positioner 
+ 
+Installation in Hazardous Areas 
+ 
+WARNING 
+Explosions could result in death or serious injury, besides financial damage. Installation of this 
+instrument in an explosive environment must be in accordance with the national standards and 
+according to the local environmental protection method. Before proceeding with the installation 
+check the certificate parameters according to the environmental classification. 
+ 
+The instrument modification or replaced parts supplied by any other supplier than the authorized 
+representative of Smar Equipamentos Industriais Ltda is prohibited and will void the Certification. 
+ 
+The positioners are marked with options of the protection type. The certification is valid only when 
+the protection type is indicated by the user. Once a particular type of protection is selected, any 
+other type of protection can not be used. 
+ 
+The electronic housing installed in hazardous areas must have a m inimum of 6 f ully engaged 
+threads. Lock the housing using the locking screw (Figure 1.6). 
+ 
+Tighten the cover with at least 8 turns to avoid the penetration of humidity or corrosive gases. 
+ 
+Tighten the cover until it touches the housing. Then, tighten more 1/3 turn (120°) to guarantee the 
+sealing. Lock the covers using the locking screw (Figure 1.6). 
+ 
+Consult the Appendix A for further information about certification. 
+ 
+
+
+===== PAGE 23 =====
+Installation 
+ 
+1.15 
+Explosion/Flame Proof 
+ 
+WARNING 
+The electric connection’s entries must be connected or closed using the appropriate Ex-d metal 
+cable gland and/or metal blanking plug with certified IP66 rating. 
+ 
+The standard plugs provided by Smar do not have an Ex-d/XP certification. For Explosion proof 
+applications a certified plug must be used. Consult Smar for certified plugs. 
+ 
+The electrical connection with NPT thread must use waterproofing sealant. A non-hardening 
+silicone sealant is recommended. 
+ 
+Do not remove the positioner covers when power is ON. 
+ 
+Intrinsically Safe 
+ 
+WARNING 
+In hazardous zones with intrinsically safe or non-incendive requirements, the circuit entity 
+parameters and applicable installation procedures must be observed. 
+ 
+To protect the application, the positioner must be connected to a barrier. Match the parameters 
+between barrier and the equipment (Consider the cable parameters). Associated apparatus 
+ground bus shall be insulated from panels and mounting enclosures. Shield is optional. If used, 
+be sure to insulate the end not grounded. Cable capacitance and inductance plus Ci and Li must 
+be smaller than Co and Lo of the associated Apparatus (see appendix “A” for Ci and Li values). 
+ 
+For free access to the Hart bus in the explosive environment, ensure the instruments in the loop 
+are installed in accordance with intrinsically safe or non-incendive field wiring practices. Use only 
+Ex Hart communicator approved according to the type of protection Ex-i (IS) or Ex-n (NI). 
+ 
+It is not recommended to remove the positioner cover when the power is ON. 
+ 
+ 
+ 
+
+
+===== PAGE 24 =====
+FY301 – Operation, Maintenance and Instructions Manual 
+ 
+1.16 
+ 
+ 
+ 
+ 
+ 
+
+
+===== PAGE 25 =====
+Section 2 
+ 
+2.1 
+OPERATION 
+ 
+Transducer Functional Description   
+ 
+The main parts of the output module are the pilot, servo, Hall effect position sensor and the output 
+control circuit. 
+ 
+The control circuit receives a digital setpoint signal from the CPU and a feedback signal from the 
+position sensor.  
+ 
+The pneumatic circuit is based on a well-known and widely adopted technology, which is described on 
+item baffle and nozzle and Spool Valve. 
+ 
+PILOT
+RESTRICTION
+PILOT
+DIAPHRAGM
+SPOOL
+DIAPHRAGM
+AIR SUPPLY
+NOZZLE
+PIEZO VANE
+SPOOL
+PILOT CHAMBER
+VENT 2
+OUTPUT 2
+OUTPUT 1
+VENT 1
+SPRING
+ 
+ 
+Figure 2.1 - Schematic Pneumatic Transducer 
+ 
+A piezoelectric disk is the flapper in the pilot stage. The flapper is deflected when the control circuit 
+applies a voltage. A small stream of air flowing through the nozzle is obstructed causing an increase in 
+pressure in the pilot chamber; this is called the pilot pressure. 
+ 
+The pilot pressure is too low, with a small flowing capacity, and for this reason, it must be amplified in 
+the servo section. The servo section includes a diaphragm in the pilot chamber and a smaller one in the 
+spool chamber. The pilot pressure applies a force at the pilot chamber’s diaphragm, which, in the 
+equilibrium state, will be equal to the force applied by the spool valve at the smaller diaphragm, which 
+is in the spool chamber. 
+ 
+Upon every position change caused by the positioner, the pilot pressure increases or decreases, as 
+explained in the pilot stage section. Such change in pilot pressure causes an upward or downward 
+valve travel, which alters the pressure at Output 1 and Output 2, until a new balance is reached (new 
+valve position). 
+
+
+===== PAGE 26 =====
+FY301 - Operation, Maintenance and Instructions Manual 
+ 
+2.2 
+Electronics Functional Description 
+ 
+Refer to the block diagram (Figure 2.2). The function of each block is described below. 
+ 
+A/D 
+Receives the 4 - 20 mA signal and converts it in the digital format for the CPU. 
+ 
+D/A 
+Receives the signal from the CPU and converts it to an analog voltage proportional to the desired 
+position, used by the control. 
+ 
+Control 
+Controls the valve position according to data received from the CPU and the Hall effect sensor 
+feedback. 
+ 
+Position Sensor 
+Measures the actual position and feedback to the control and CPU. 
+ 
+Temperature Sensor 
+Measures the temperature of the Transducer Circuit. 
+ 
+Isolation 
+Isolates the 4 - 20 mA signal from the piezoelectric signal. 
+ 
+EEPROM 
+A non-volatile memory that stores configuration data as a backup if the FY301 main board be replaced. 
+ 
+Central Processing Unit (CPU), RAM, PROM and EEPROM 
+The CPU is the intelligent portion of the positioner, being responsible for the management and 
+operation of block execution, self-diagnostics and communication. The program is stored in PROM. For 
+temporary storage of data there is a RAM. The data in the RAM is lost if the power is switched off, 
+however the device also has a nonvolatile EEPROM where data that must be retained is stored. 
+Examples of such data are calibration and valve configuration. 
+ 
+HART Modem 
+The function of this system is to make possible the information exchange between Smar programmer 
+and the positioner, over digital communication using Hart® protocol. Modulates and demodulates digital 
+information transmitted by Smar programmer on the current line. A “1” is represented by 1200 Hz and 
+“0” by 2200 Hz. The frequency signal is symmetrical and does not affect the DC-level of the 4 - 20 mA 
+signal. 
+ 
+Power Supply 
+The positioner circuit receives supply from a 4 - 20 mA power supply or takes power of Loop Line to 
+power the positioner circuit that is limited to 3.8 mA to work properly. 
+ 
+Display Controller 
+Receives data from the CPU and controls the (LCD) Liquid Crystal Display. 
+ 
+Local Adjustment 
+Local adjustment is provided by means of two magnetically actuated switches with no external electric 
+or mechanical contact, by using a magnetic screwdriver. 
+ 
+Piezo Flapper Nozzle 
+The unit flapper nozzle converts the movement of piezoelectric into a pneumatic signal to control 
+pressure in the pilot chamber. 
+ 
+Restriction 
+The restriction and the nozzle form a pressure-divided circuit. Air is supplied to the nozzle through a 
+restriction. 
+ 
+Spool 
+The spool ensures a quick valve positioning by providing a greater airflow than one provided by the 
+restriction. 
+
+
+===== PAGE 27 =====
+Operation 
+ 
+2.3 
+Pressure Sensors 
+Measure the pressures of air pressure supply, pressure at Output 1 and Output 2. Available for Hart® 
+reading. 
+ 
+NOTE 
+The pressure sensor’s circuit board is optional. (See request code, session 6, K1 option). 
+ 
+Pressure Sensor Selector  
+Selects the sensor to be read from. 
+Sensor IN:  
+Measures air supply pressure. 
+Sensor OUT1:  
+Changes the pressure in output 1. 
+Sensor OUT2:  
+Changes the pressure in output 2. 
+ 
+ 
+Figure 2.2 - FY301 Block Diagram 
+ 
+
+
+===== PAGE 28 =====
+FY301 - Operation, Maintenance and Instructions Manual 
+ 
+2.4 
+The Local Indicator 
+ 
+The LCD-Local Indicator is required for signaling and for operation in local adjustment. 
+ 
+Normal Indicator 
+ 
+During normal operation, the FY301 remains in the monitoring mode and the display indicates the valve 
+position, either as a per centage or as a c urrent readout. The magnetic tool activates the local 
+programming mode, by inserting it in orifice “Z” on the housing.  
+ 
+The possible configuration and monitoring operation are shown on figure 2.3. 
+ 
+Upon receiving power, the FY301 initializes the position indication on the display, by showing model 
+FY301 and its software version (X.XX). 
+ 
+ 
+ 
+Figure 2.3 - Local Indicator 
+ 
+Monitoring 
+During normal operation, FY301 remains in the monitoring mode. Figure 2.4 shows the positioning in 
+percentage. 
+ 
+The display simultaneously shows readout and some other information. 
+ 
+Normal displaying is interrupted when the magnetic tool is placed in orifice “Z” (Local Adjustment), 
+entering the programming mode local adjustment. 
+ 
+The above mentioned figure shows the result of tool insertion in orifices Z and S, which inform, 
+respectively, movement and actuation of the selected options. 
+ 
+ 
+ 
+Figure 2.4 - Typical Indicator 
+
+
+===== PAGE 29 =====
+Section 3 
+ 
+3.1 
+CONFIGURATION 
+ 
+The FY301 Smart Valve Positioner is a digital instrument with the most up-to-date features a controlling 
+device can possibly have. The Hart® digital communication protocol enables the instrument to be 
+connected to a computer, in order to be configured in a very simple and complete way. Such computers 
+connected to the positioners, are called host computers. They can be either primary or secondary 
+masters. Even though Hart® is a master-slave type of protocol, it is possible to work with up to two 
+masters in a bus.  Usually, the primary host, plays the supervisory role and the secondary host plays 
+the configurator role.  
+ 
+The positioners may be connected in a point-to-point or multidrop type network. In a point-to-point 
+connection, the equipment’s address must be "0". In a  multidrop network, if the devices are recognized 
+by their addresses, the positioners  should be configured with a network address between "1" and "15”. 
+In this case, the positioners’ output current is kept constant, at 4 mA each if the acknowledgement is 
+via Tag, the positioners addresses may be "0", and even in a multidrop configuration.   
+ 
+NOTE 
+In case of a multidrop network configuration for classified areas, the entity parameters allowed for the area shall be 
+strictly observed. Therefore, the following shall be checked:  
+ 
+Ca ≥ Σ Cij + Cc   
+La ≥ Σ Lij + Lc 
+ 
+Voc ≤ min [Vmaxj] 
+Isc ≤ min [Imaxj] 
+Where: 
+Ca, La = Allowed capacitance and inductance on the bus 
+ 
+Cij, Lij  = Non protected internal capacitance/Inductance of positioner j (j = up to 15) 
+ 
+Cc, Lc = Cable capacitance and inductance 
+ 
+Voc      = 
+Barrier open circuit voltage 
+ 
+Isc        = Barrier short circuit current  
+ 
+Vmaxj = 
+Maximum allowable voltage to be applied to the instrument j 
+Imaxj  =  Maximum allowable current to be applied to the instrument j 
+ 
+The FY301 Smart Valve Positioner includes a very encompassing set of Hart® command functions that 
+make it possible to access the functionality of what has been implemented. Such commands according 
+to the Hart® protocol specifications, and ar e grouped as universal commands, common practice 
+controls commands and specific commands. A detailed description of such commands may be found in 
+the manual entitled Hart® command specification - FY301 Smart Valve Positioner. 
+ 
+Smar developed two types of configurators for its Hart® devices: CONF401 configurator and HPC401 
+configurator. CONF401 supports Windows platform (95, 98, 2000, XP and  NT) and UNIX. It provides a 
+simple configuration, field device monitoring, and abi lity to analyze data and m odify field device 
+performance. The HPC401, is the most up-to-date technology in Palm platform Handheld portable 
+computers.  
+ 
+The operation and use characteristics of each one of the configurators are in their specific manual. 
+ 
+The figures below show the front of the Palm based configurator and CONF401 screen with active 
+advanced configuration. 
+ 
+
+
+===== PAGE 30 =====
+FY301 - Operation, Maintenance and Instructions Manual 
+ 
+3.2 
+ 
+a 
+b 
+c 
+1 
+2 
+3 
+HPC 
+301 
+CONTRAST 
+ON/OFF 
+APPLICATIONS 
+BUTTON 
+HOME 
+MENU ACTIVE 
+ALFANUMERICAL 
+KEYBOARD 
+CALCULATOR 
+SEARCH 
+NUMERICAL 
+KEYBOARD 
+NOTEBOOK 
+ADDRESS 
+LIST 
+ TEXT 
+EDITOR 
+TASKS 
+LIST 
+ROLLING 
+BAR 
+GRAY 
+KEYBOARD 
+ALLIGATOR CLAMPS
+TO CONNECT TO THE
+TRANSMITTER
+ 
+ 
+Figure 3.1 - Smar Configurator 
+ 
+ 
+ 
+Figure 3.2 - CONF 401 Screen - Active Advanced Configuration 
+ 
+ 
+
+
+===== PAGE 31 =====
+Configuration 
+ 
+3.3 
+The TSO stands for "Tight Shut Off", which assure the valve is totally closed, avoiding leakage on the 
+valve seat. If the TSO value is 5% the valve will only start moving from the close position (for instance) 
+on 5% of the controller signal. The TSO D stands for "Tight Shut Off Deadband". When the value is 1%, 
+the valve will start to move from the close position on 6%. On 4% the valve shall close totally. 
+ 
+Configuration Resources 
+ 
+By means of the Hart® Configurator, the FY301 firmware allows the following configuration features to 
+be accessed:  
+ Positioner’s Identification and Manufacturing Data; 
+ Remote movement; 
+ Special characterization function according to a 16-point configurable curve; 
+ Flow characterization (Linear, equal percentage and quick opening); 
+ Monitoring of all device variables: input, setpoint, deviation and modulated output temperature; 
+ Diagnostic (Preventive maintenance); 
+ Positioner diagnostic and fail determination; 
+ PID Controller Configuration; 
+ Device Configuration; 
+ Device Maintenance. 
+The operations between the configurator and the positioner, do not interrupt the valve positioning, and 
+do not disturb the positioner operation. The configurator can be connected to the same pair of wires as 
+the 4-20 mA signal, up to 2 kilometers away from the positioner. 
+ 
+Identification and Manufacturing Data 
+ 
+The following information about the FY301 manufacturing and identification data is available: 
+ 
+ TAG - 8-character alphanumeric field for identification of the positioner.  
+ 
+ DESCRIPTION - 16-character alphanumeric field for additional identification of the positioner. May 
+be used to identify service or location. 
+ 
+ MESSAGE - 32-character alphanumeric field for any other information, such as the name of the 
+person who made the last calibration, some special care to be taken, or if a ladder is needed for 
+physical access to the positioner. 
+ 
+ DATE - The date may be used to identify a relevant date, such as the last calibration, the next 
+ 
+calibration or the installation. The date is presented in the American standard e.g. (Example: Oct 
+ 
+30, 2003) is automatically assumed after the choice of these items.  
+ UNIQUE ID - Used to identify the device and in construction of Hart® long address. 
+ DEVICE INFORMATION - This button allows to read device identification and data recorded in the 
+ 
+factory. 
+NOTE  
+These information items cannot be modified. They are read directly from the circuit memory. 
+ 
+Monitoring  
+ 
+This function allows remote monitoring up to 4 different of positioner variables at the same time. The 
+time to start the reading is around  5 seconds. The values are always updated. Altogether, 20 items 
+could be monitored. These items are: valve actual position in percentage, input in percentage of 
+adjusted current range (before the limits and flow linearization), input current in mA or %, device 
+temperature in Celsius and in Fahrenheit degrees, etc..  
+ 
+
+
+===== PAGE 32 =====
+FY301 - Operation, Maintenance and Instructions Manual 
+ 
+3.4 
+Device Configuration  
+ 
+Besides the configuration services for equipment operation, the FY301 allows self-configuration. 
+Services from this group are related to: write protection, security position, flow characterization function, 
+local indication and table configuration. 
+ 
+ WRITE PROTECTION: The configurator only shows that the writing is authorized if the W2 jumper 
+from main board is connected to the pins under the word DOWN. 
+ 
+ CHARACTERIZATION FUNCTION – It changes the valve flow characteristics. For example, if 
+equal percentage flow characterization is applied to a valve with linear flow characteristics, it will 
+work as an equal percentage valve. Manufacturer documentation contains the valve inherent 
+characteristic. The options for applied flow characterization are: 
+ 
+ 
+LINEAR 
+UNALTERED 
+Equal percentage 
+1:25 
+Equal percentage 
+1:33 
+Equal percentage 
+1:50 
+Quick opening 
+1:25 (Hyperbolic) 
+Quick opening 
+1:33 (Hyperbolic) 
+Quick opening 
+1:50 (Hyperbolic) 
+Table 
+16 pairs (X, Y) 
+ 
+ LOCAL INDICATIONS - The FY301 local indicator has three well-defined fields: information field 
+with icons informing the active status of the configuration, 4 ½ numerical digit field to value 
+indication and alphanumeric field with 5-digit for status information and units.  
+The FY301 accepts up to two local indicator configurations, showed with a 2 second pause  between 
+each one. The parameters that can be selected to visualization are showed below: 
+ 
+PARAMETERS 
+DESCRIPTION 
+PV % 
+Process variable in percentage. 
+PV (mm) 
+Process variable in mm. 
+SP % 
+ 
+Setpoint in percentage. 
+SP(mm) 
+Setpoint in mm. 
+ 
+TABLE CONFIGURATION - Through the Table button, a flow characterization curve with up to 16 
+points can be configured. This allows the construction of a special flow characterization curve, like 
+linear combinations and equal percentage or other characterizations. 
+ 
+7
+6
+5
+Linear
+Equal Percentage  1:25
+  1:33
+  1:50
+Equal Percentage
+Equal Percentage
+Quick opening 1:25
+ 1:33
+ 1:50
+Quick opening
+Quick opening
+2
+1
+3
+4
+OPENING
+100
+80
+60
+40
+20
+0
+SP
+10
+0
+20
+30
+40
+50
+60
+70
+80
+90
+100
+7
+6
+5
+1
+2
+3
+4
+ 
+ 
+Table 3.1 - Valve Characteristic Curve 
+ 
+ 
+
+
+===== PAGE 33 =====
+Configuration 
+ 
+3.5 
+Advanced Configuration  
+ 
+This function affects valve advanced configurations. With advanced configuration is possible to 
+configure the valve type, if it is air-to-open or air-to-close, valve action, setpoint limits and split-range. 
+ 
+Device Maintenance  
+ 
+This group includes maintenance services, related to obtainment of necessary information to the device 
+maintenance and performance test. Some of the available services are: position adjustment and valve 
+performance test, general information about the actuator and the valve, operations count, password 
+level, code number model and performance.    
+ 
+Trim  
+ 
+There are two trim operations: Current trim and Temperature trim. Current trim allows to calibrate the 
+positioner input current reading and Temperature trim is the temperature reference to the positioner 
+temperature sensor.    
+There are two current trims available: 
+• 
+4 mA TRIM: is used to adjust the input current reading correspondent to 0%. 
+• 
+20 mA TRIM: is used to adjust the input current reading correspondent to 100%. 
+ 
+Setup  
+ 
+This function allows to calibrate the value travel automatically (Auto Setup), the points of the totally 
+opened or totally closed travel with higher precision (lower and higher position), to adjust the opening 
+and closing times and the proportional and integral actions of PI control, the state of air supply, the 
+magnet, the sensor Hall, setup and the piezo voltage conditions.  
+ 
+During the setup process, the local display, if installed, will show the setup progress, in which the 
+positioner takes the following steps: 
+ 
+10% - It opens or closes the valve, depending on the initial value of the piezo voltage; 
+ 
+20% - The positioner checks if the flat cable is connected, or if the position sensor is working properly. 
+In case of error, the message “HALL” will appear at local indicator; 
+ 
+30% - The positioner checks whether the magnet is used linear or rotary valve; 
+ 
+40% - At this point, the positioner opens or closes the valve, depending on the initial position. Case the 
+spool is obstructed or if the positioner has no air supply, the message “FAIL MOVE” will appear in the 
+local indicator.  
+ 
+50% - At this moment, the positioner checks if the magnet is connected to the valve. If not, the 
+message “MGNT” will appear in the local indicator; 
+ 
+60% - The positioner places the valve to 50%. The setup process could remain at this step if the Kp 
+value is low; 
+ 
+70% - At this moment, the valve is close to 50%. The setup process could remain at this step, if the Kp 
+value is high; 
+ 
+80% - The positioner adjusts its internal references to place the valve in 50%. The setup process could 
+remain at this step, if the Kp value is high; 
+ 
+90% - The positioner checks if the magnet is correctly mounted (arrow in arrow). If not, the message 
+“MGNT” will appear in the local indicator; 
+ 
+100% - End of setup; 
+ 
+Multidrop Configuration  
+ 
+ADDRESSING - FY301 contains a variable that define the device address in a Hart® network. Hart® 
+addresses assume values from "0" to "15", the addresses "1" to "15" are specific addresses to 
+multidrop connection. When FY301  is configured to multidrop , it means that the local indicator is 
+showing “MD” and the address is an value from "1" to "15". 
+ 
+FY301 is factory configured with address "0". 
+ 
+
+
+===== PAGE 34 =====
+FY301 - Operation, Maintenance and Instructions Manual 
+ 
+3.6 
+Diagnostic  
+ 
+This function allows engineering unit configuration, the parameters for diagnostic purposes and shows 
+positioner general conditions. See parameters: 
+ 
+Dead zone (0 to 100%) 
+ 
+Odometer Curse (mm/rad) 
+ 
+Odometer Value Maximun (mm/rad) 
+ 
+Engineering Unit (mm/rad or %) 
+ 
+Dead zone Reversal (%) 
+ 
+Reversal Limit (uni) 
+ 
+Backup  
+ 
+Data transference from transducer to main board must be done immediately after the assembly when  
+there is a transducer or main board substitution.  
+ 
+This process is automatically done when the positioner is powered. If necessary, the user could force 
+transference using the option Read from Sensor. 
+  
+The option Write on Sensor could be used to record changes previously made, for example, in Kp, Tr, 
+etc., in transducer memory. The previous values for Kp, Tr, etc. will be lost. 
+ 
+Pressure Sensor  
+ 
+This function allows pressure trim adjustment, to view applied pressure status and to configure 
+positioner input pressure in order to activate the alarm via Hart® communication, in case the  applied 
+input pressures are not in accordance with configured values.   
+ 
+Factory  
+ 
+This option is used only in the factory, and the user cannot access it. 
+ 
+ 
+
+
+===== PAGE 35 =====
+Section 4 
+ 
+4.1 
+PROGRAMMING USING LOCAL 
+ADJUSTMENT 
+ 
+Move Jumper “W1" to position “ON” to enable the local adjustment. This jumper is located on top of the 
+main electronic circuit board. 
+ 
+There are two orifices on the positioner, under the nameplate, identified by “S” and “Z” respectively, 
+which provide access to two magnetic switches actuated by means of a magnetic tool (Refer to Figure 
+4.1). 
+ 
+NOTE 
+In this section the “Magnetic Tool” will be referred to as “TOOL”, and the orifices identified by “S” and “Z” will be 
+“ORIFICE S” and “ORIFICE Z”, respectively. 
+ 
+ 
+ 
+Figure 4.1 - Local Adjustment Orifices 
+ 
+Table indicates the results for the actions on orifices “Z” and “S” in FY301. 
+ 
+ORIFICE 
+ACTION 
+Z 
+Function browsing. 
+S 
+Selects the displayed function. 
+ 
+The digital display is required in order to show the programming performed via local adjustment. 
+ 
+W1 and W2 Jumpers Connection 
+ 
+W1 Jumper connected in ON 
+If W1 Jumper is connected in ON, adjustment local enabled, the parameters of the programming tree 
+can be modified. 
+ 
+W2 Jumper connected in DOWN 
+With W2 Jumper connected in this mode, write protected, the positioner protects the configuration 
+against improper modifications. 
+ 
+NOTE 
+Writing must be enabled during the configuration and after configuration must be disabled again. 
+ 
+
+
+===== PAGE 36 =====
+FY301 - Operation, Maintenance and Instructions Manual 
+ 
+4.2 
+ 
+Figure 4.2 - Jumpers W1 and W2 
+ 
+Local Programming Tree 
+ 
+The programming tree is a tree shaped structure with a menu of all available software functions, as 
+shown on figure 4.3. 
+ 
+While in local adjustment, it is possible to browse through all configuration options by keeping the 
+magnetic tool in orifice “Z”. Upon choosing the option as described, place the tool in orifice “S” in order 
+to actuate. 
+ 
+By keeping the tool in orifice “S” it is possible to continuously actuate the selected parameter, since this 
+is a numeric value. Actions by increment are performed by repeatedly placing and removing the 
+magnetic tool until reaching the desired valve. 
+ 
+S
+Op
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+DISPLAY
+AIR_T
+TYPE
+CHAR
+MODE
+SETUP
+TR
+SP%
+TR
+S
+Lin
+EP50
+HY50
+Tab
+S
+Lind
+Linr
+Rotd
+Rotr
+Auto 
+Man
+S
+Z
+Z
+Z
+Z
+Z
+S
+ACTION
+ROTATION
+Z
+Z
+Z
+Z
+Z
+Z
+LOPOS
+LOPOS
+SP%
+KP
+KP
+TIME
+TIME
+UPPOS
+UPPOS
+ 
+ 
+Figure 4.3 - Local Programming Tree 
+ 
+NOTE 
+The user shall perform every parameter actuation judiciously, since actuation writes configuration parameters 
+on a permanent basis and does not require confirmation. Once an actuation is performed it is assumed to be 
+the desired configuration. 
+ 
+
+
+===== PAGE 37 =====
+Programming using Local Adjustment 
+ 
+4.3 
+Adjustable Parameters 
+ 
+TYPE - Valve Type 
+This parameter enables the user to configure valve type as well as the type of action associate to the 
+valve. These are the options: 
+Lind: Linear and Direct; 
+Linr: Linear and Reverse; 
+Rotd: Rotary and Direct; 
+Rotr: Rotary and Reverse. 
+ 
+CHAR - Valve Characterization Curve  
+This parameter allows the user to configure the type of valve characterization curve. Options are as 
+follows:  
+Lin: Linear; 
+EP50: Equal Percentage 50%; 
+HY: Hyperbolic. 
+Tab: 16 points - table (Configurable). 
+ 
+MODE - Operation Mode 
+This parameter allows the user to choose operation mode. Upon turning the positioner on, it will always 
+be in automatic mode, but it is possible to choose the operation mode. During operation there are the 
+following options: 
+Auto - Automatic Mode 
+During automatic mode the positions is set in accordance with the input 4 to 20 mA current signal. 
+While in automatic mode, local actuation in the SP% parameter is not allowed. 
+Man - Manual Mode 
+During manual mode the position is set in accordance with the SP% parameter value, 
+independently from the input current. This is the only mode in which the SP% parameter can be 
+actuated. 
+ 
+SP % - Set Point 
+This parameter represents the desired position value. While in "Manual" mode, it is possible to actuate 
+this parameter remotely, independently from the input current. While in automatic, it is calculated from 
+the input current level. 
+ 
+LOPOS - Lower Position 
+This parameter allows the lower position calibration as per the input current, usually 4 mA unless it is in 
+split range operation. During calibration, notice if the control becomes saturated, that is, if the valve no 
+longer moves in the desired direction. Should such a situation occur, the user shall actuate in the 
+opposite direction to the valves movement. Calibration is performed in terms of percentage. 
+ 
+UPPOS - Upper Position  
+This parameter allows the upper position calibration as per the input current, usually 20 mA unless it is 
+in split range operation. During calibration, notice if the control becomes saturated, that is, if the valve 
+no longer moves in the desired direction. Should such a situation occur, the user shall actuate in the 
+opposite direction to the valves movement. Calibration is performed in terms of percentage. 
+ 
+TIME - Setpoint Variation Time  
+This allows the configuration of the setpoint variation rate. The unit is expressed in seconds. It is 
+adjustable in the following range: 1 to 60. 
+TIME close to 60 causes the setpoint variation to be slower. 
+TIME close to 1 causes the setpoint variation to be faster. 
+ 
+KP - Proportional Gain  
+This parameter makes it possible to adjust the servo control proportional gain. It is adjustable within the 
+following range: 0.5 to 45. 
+For linear valves, typical KP values are between 35 and 45. 
+For rotary valves, typical KP values are around 8. 
+ 
+TR - Integral Time  
+This parameter makes possible to adjust the servo control integral time. It is adjustable within the 
+following range: 0 to 999 minutes/repetition. 
+For linear valves, typical TR values are around 2 minutes/repetition. 
+For rotary valves, typical TR values are around 8 minutes/repetition. 
+ 
+ 
+
+
+===== PAGE 38 =====
+FY301 - Operation, Maintenance and Instructions Manual 
+ 
+4.4 
+Setup - Auto Positioning 
+After configuring the valve type by means of parameter TYPE, the AUTO SETUP parameter shall be 
+actuated. During the adjustment procedure the positioner will be in a state of auto positioning and the 
+message "SETUP” will be flashing on the display. During this process the control parameters are 
+determined and the 0% and 100% trim is performed. This operation lasts approximately 4 minutes. 
+While configuring the valve type as described above, the user shall browse up to parameter SETUP 
+(tool in orifice Z) and place the tool in orifice S in order to initiate the previous auto positioning of the 
+valve. 
+ 
+Air to Close / Air to Open (AIR_T) 
+This option configures the air pressure effect on the positioner.  
+If the positioner operates in “direct action”:   
+• 
+It should be configured for AIR_OPEN, if the air is to open the valve 
+• 
+It should be configured for AIR_CLOSED, if the air is to close the valve 
+In case the positioner is operating in “reverse action”:    
+• 
+It should be configured for AIR_OPEN, if the air is to close the valve 
+• 
+It should be configured for AIR_CLOSED, if the air is to open the valve 
+ 
+Procedure for Valve Calibration 
+ 
+STEP 1 
+Select valve type by means of the menu TYPE, browsing at least once through the options (Lind, Linr, 
+Rotd, and Rotr). 
+ 
+STEP 2 
+Setup 
+In order to start self-calibration, browse up to the parameter SETUP and insert the tool in S. 
+ 
+NOTE 
+In most cases, steps 1 and 2 are sufficient to provide a good calibration. 
+ 
+STEP 3 
+Set the KP so as to lower the value overshoot (the overshoot will require adjustment after the TIME as 
+adjusted). The lower the KP is, the lower the overshoot will be, but valve positioning will be slower. Set 
+TR in a value where the position does not oscillate and control is capable of quickly reaching the final 
+position. 
+ 
+STEP 4 
+Time Adjustment (TIME) 
+Perform TIME adjustment for quick valves in order to increase the time and decrease the overshoot. 
+ 
+STEP 5 
+Zero Adjustment by means of LOPOS (Lower Position) 
+At this moment, current shall be in the position which corresponds to 0% as, for example, 4 mA. A more 
+practical way of performing this adjustment is to place the tool in orifice S, thus allowing the parameter 
+to be continually actuated (increased or decreased). Upon noticing the valve action around the desired 
+point, remove the tool from orifice S and slowly change its value on an increment by increment basis, 
+that is, by repeatedly placing and removing the tool in orifice S until reaching the desired point. At a 
+certain point, it is more convenient to perform the adjustment on an increment by increment basis so as 
+to avoid the risk of exceeding beyond the desired value. 
+ 
+STEP 6 
+Span Adjustment by means of UPPOS (Upper Position) 
+At this moment, current shall be in the position which corresponds to 100% as, for example, 20 mA. 
+The procedure is similar to the one described for zero adjustment. 
+ 
+STEP 7 
+Air to Close / Air to Open (AIR_T) 
+This option configures the air pressure effect on the positioner.  
+If the positioner operates in “direct action”:   
+• 
+It should be configured for AIR_OPEN, if the air is to open the valve. 
+• 
+It should be configured for AIR_CLOSED, if the air is to close the valve. 
+In case the positioner is operating in “reverse action”:    
+• 
+It should be configured for AIR_OPEN, if the air is to close the valve. 
+• 
+It should be configured for AIR_CLOSED, if the air is to open the valve. 
+
+
+===== PAGE 39 =====
+Section 5 
+ 
+5.1 
+MAINTENANCE PROCEDURES 
+ 
+General Information 
+ 
+NOTE 
+Equipment installed in hazardous atmospheres must be inspected in compliance with the IEC60079-17 standard. 
+ 
+FY301 Valve Positioners are extensively tested and i nspected before delivered to the end us er. 
+Nevertheless, during their design and development, consideration was given to the possibility of repairs 
+by the end user, if necessary. 
+ 
+In general, it is recommended that the end user do not try to repair printed circuit boards. Instead, he 
+should have spare circuit boards, which may be ordered from Smar whenever necessary. 
+ 
+The maintenance procedure is a set of techniques with the purpose to keep the positioners with higher 
+time of use (useful life), to operate in safe conditions and to promote costs reduction. The different 
+maintenance types are described during this section. 
+ 
+Recommendations for mounting Approved Equipments with the IP66 W 
+certifications (use in saline atmospheres) 
+ 
+NOTE 
+ 
+This certification is valid for stainless steel positioners manufactured, approved with the certification 
+IP66 W.  All positioner external material, such as gauge, plugs, connections etc., should be made in 
+stainless steel.    
+The electrical connection with 1/2” – 14NPT thread must use a sealant. A non-hardening silicone 
+sealant is recommended. 
+The instrument modification or replacement parts supplied by other than authorized representative 
+of Smar is prohibited and will void the certification. 
+ 
+ 
+Corrective Maintenance for the Positioner 
+ 
+Maintenance not planned, with the purpose to locate and to repair problems in the positioners operating 
+in continuous work, or either, specifically to suppress defects already presented by the equipment. 
+ 
+The diagnostic are a set of methods to detect, to locate and eventually to correct errors and problems 
+or even verify fail effects in the positioner. 
+ 
+Diagnostics without Configurator 
+ 
+In order to carry out the diagnostics, refer to table 5.1. 
+ 
+DIAGNOSTICS 
+SYMPTOM 
+PROBABLE ERROR SOURCE 
+POSITION 
+SHOWN ON DISPLAY 
+Positioner Connections 
+Check wiring polarity and continuity. 
+ 
+Power Supply must be a current source 
+Check signal input current. Minimum current for positioner operation is 3.8 mA. 
+ 
+Electronics Failure 
+Check circuit boards for bad connections and replace them for spare boards. 
+NO RESPONSE 
+TO INPUT SIGNAL 
+Pressure Output Connections 
+Check up on air leaks. 
+ 
+Air Supply Pressure 
+Check the air supply pressure. The input pressure to positioner shall be between 20 psi and 100 psi. 
+ 
+Calibration 
+Check the positioner calibration points. 
+
+
+===== PAGE 40 =====
+FY301 – Operation, Maintenance and Instructions Manual 
+ 
+5.2 
+DIAGNOSTICS 
+ 
+Obstructed Restriction and/or Blocked Output 
+Observe the following procedures described in this Manual: Output Connections and Restriction Cleaning. 
+OSCILLATING 
+ACTUATOR 
+Calibration 
+Adjust parameter Kp. 
+Adjust parameter Tr. 
+SLOW  ACTUATOR 
+RESPONSE 
+Adjustment Parameters are Too Low 
+Adjust parameter Kp or Time to Open or Time to Close. 
+TOO FAST ACTUATOR 
+RESPONSE 
+Adjustment Parameters are Too High 
+Adjust parameter Kp or Time to Open or Time to Close. 
+ 
+Table 5.1 - FY301 Diagnostics without the Configurator 
+ 
+Diagnostic with Configurator 
+ 
+If the positioner is on and w ith the communication circuit and t he processing unit working, the 
+configurator can be used for diagnostic, in case of problems with the positioner. The configurator 
+should be connected to the positioner according to the wiring diagrams show on Section 1. 
+ 
+Error Messages 
+The error messages inform the diagnostic through the self diagnostic of errors and malfunctioning. 
+When the configurator is communicating with the positioner, the user is informed on any problem 
+found, through the self diagnostic. At the FY301 positioner, the error messages always alternate with 
+the information on the top line of the configurator’s display. Table 5.2 lists the error messages and more 
+details on corrective action. 
+ 
+ERROR MESSAGES 
+POTENTIAL SOURCE OF PROBLEM 
+PARITY ERROR 
+- The line resistance is not according to the technical characteristics. 
+- Excessive noise or ripple. 
+- Low level signal. 
+- Interface damaged. 
+- Power supply or battery voltage of the configurator lower than 9 V. 
+OVERRUN ERROR 
+CHECK SUM ERROR 
+FRAMING ERROR 
+NO RESPONSE 
+- Positioner line resistance is not according to technical characteristics. 
+- Positioner not powered. 
+- Positioner not connected or damaged. 
+- Positioner configured in multidrop mode being accessed by ON LINE SINGLE UNIT. 
+- Positioner reversibly powered (polarity is reversed). 
+- Interface damaged. 
+- Power supply or battery voltage of the configurator lower than 9 V. 
+LINE BUSY 
+- Other device using the line. 
+CMD NOT IMPLEMENTED 
+- Software version not compatible between configurator and positioner. 
+DEVICE BUSY 
+- Positioner carrying out an important task, e.g., local adjustment. 
+POSITIONER MALFUNCTION 
+- Voltage to pressure transducer disconnected. 
+- Voltage to pressure transducer failure. 
+COLD START 
+- Start-up or reset due to power supply failure. 
+OUTPUT FIXED 
+- Operating in local mode with fix position. 
+- Connected in burnout. 
+OUTPUT SATURATED 
+- Position out of calibrated span or in fail-safe (Output current in 3.9 or 21 mA). 
+2  OUT OF LIMITS 
+- Temperature out of operating limits. 
+- Temperature sensor damaged. 
+1  OUT OF LIMITS 
+- Position out of operation valve range. 
+- Voltage to pressure transducer damaged or not connected. 
+- Positioner with error configuration. 
+LOWER RANGE VALUE TOO HIGH 
+- The lower range value > (Upper limit of minimum span range). 
+LOWER RANGE VALUE TOO LOW 
+- The lower range value < (Upper limit of range). 
+UPPER RANGE VALUE TOO HIGH 
+- The upper range value > 110 % x (Upper limit of range). 
+UPPER RANGE VALUE TOO LOW 
+- The upper range value < - 10 % (Lower limit of range). 
+
+
+===== PAGE 41 =====
+Maintenance Procedures 
+ 
+5.3 
+ERROR MESSAGES 
+POTENTIAL SOURCE OF PROBLEM 
+UPPER AND LOWER RANGE VALUES 
+OUT OF LIMITS 
+- Both the upper and lower points are outside the positioner range limit. 
+SPAN TOO SMALL 
+- The difference, between the upper and lower points, is less than the allowed by the 
+positioner. 
+ACTUAL POSITION 
+- The actual valve position was above of the upper range limit. 
+ACTUAL POSITION 
+- The actual valve position was below of the lower range limit. 
+PASSED PARAMETER TOO LARGE 
+- Parameter above operating limits. 
+PASSED PARAMETER TOO SMALL 
+- Parameter below operating limits.  
+CONTROL LOOP SHOULD BE IN 
+MANUAL 
+- Indicates that the operation could affect the output. 
+CONTROL LOOP MAY BE RETURNED TO 
+AUTO 
+- After the operation is complete, you are reminded to return the loop to automatic 
+control. 
+ 
+Table 5.2 – FY301 Diagnostics with the Configurator 
+ 
+ 
+Disassembly Procedure for Maintenance 
+ 
+1. 
+Apply air pressure in the positioner input, without applying power supply. Verify if there is any 
+air leakage in output 1 (OUT1). In case of air leakage in output 1, it is necessary to check the 
+mechanical parts.  
+ 
+2. 
+Remove the restriction. Verify if the restriction is not obstructed. (See restriction cleaning 
+procedure).  
+ 
+3. 
+Disassemble the equipment as shown: 
+ 
+Figure 5.1 – FY301 Disassembled 
+ 
+Maintenance – Mechanical Parts 
+ 
+1. 
+Verify if the spool valve is moving freely.  
+ 
+2. 
+Verify if the spool valve is not obstructed with dirty.  
+ 
+3. 
+Verify if there is any obstruction inside the FY pneumatic block and at the exhausts. 
+ 
+4. 
+Verify if the diaphragm integrity.  
+ 
+5. 
+Verify if the nozzle is dirty. 
+ 
+Maintenance – Electronic Parts 
+ 
+Electronic Circuit 
+ 
+NOTE 
+The numbers indicated between parentheses refer to Figure 5.4 – Exploded View. 
+ 
+To remove the plate of the circuit (5) and the indicator (4), first release the cover locking bolt (6) 
+from the side not marked "Field Terminals", and after that release the cover (1). 
+ 
+
+
+===== PAGE 42 =====
+FY301 – Operation, Maintenance and Instructions Manual 
+ 
+5.4 
+ATTENTION 
+The circuit boards have CMOS components that can be damaged by electrostatic discharges. Verify the correct 
+procedures to manipulate CMOS components. Also it is recommended to store the circuit boards in packs with 
+electrostatic load proof. 
+ 
+Release the two screws (3) that fix the main board circuit and the indicator. Pull out the indicator, then 
+the main board (5). 
+Verify the firmware version; must be version 2.12, 2.13 or higher. Mount the equipment; apply pressure 
+supply of 30 PSI and power on the equipment. If the equipment does not initialize and the display does 
+not light on, proceed to the following steps: 
+ 
+1. 
+Disconnect the analog board from the digital board (17); 
+ 
+2. 
+Case the equipment initializes, replace the analog circuit board (18 - part number 400-0060) 
+or the analog circuit board for pressure sensors, if this replacement does not solve the 
+problem, it is necessary to replace the main circuit board (5 - part number 209-0320). 
+ 
+Perform the auto-setup. After the setup, verify if the positioner is working properly. For that, apply 12mA 
+input and be sure that the valve goes to the position correspondent to the 50% travel. If it does not 
+occur, do the following: 
+ 
+1. Connect the Smar configurator to the input electric wires; select "Monitoring" option on the menu   
+screen; 
+ 
+2. Apply 4 mA and verify through the configurator if SP% is equal to 0%; 
+ 
+3. Apply 20 mA and verify through the configurator if SP% is equal to 100%; 
+ 
+4. If the values above were different, execute the 4 mA and 20 mA current trim; 
+ 
+5. Verify the Hall position sensor reading through the configurator. Apply pressure directly to the valve 
+actuator and verify if there is change in the Hall position sensor reading (18 - part number 400-
+0840), (65000 means that the position sensor is not being read) and the defect can be at the analog 
+circuit board or analog circuit board for pressure sensors (18 - part number 400-0060) or the 
+position sensor set (35 - part number 400-0090); replace the boards and perform the step 2 through 
+step 4 again; 
+ 
+6. Verify the piezo voltage at the configurator; 
+ 
+7. The piezo voltage value must be between 30 and 70 Volts. 
+ 
+To verify the Hall position sensor value and the piezo voltage, do the following: 
+ 
+1. Set the valve in 50% travel; 
+ 
+2. With the configurator, go to the “monitoring” mode and choose two parameters: Hall value and 
+piezo voltage; 
+ 
+3. The piezo voltage values must be the most closed possible to 26000 to 38000; 
+ 
+4. The piezo voltage values must be between 30 and 70 Volts. If the voltage is not between these 
+values, proceed with the piezo calibration by using the FYCAL calibration device (check at 
+www.smar.com for more details on the FYCAL). 
+ 
+Preventive Maintenance for the Positioner 
+ 
+Planned Maintenance, consists in the set of procedures and anticipated actions to keep the device 
+functioning, is effectuate with the special objective to prevent the occurrence of fail. Through 
+adjustments, proves and measures according to the specified values, made before the appearing of 
+defects. The preventive maintenance is recommended in the maximum period of one year, or when the 
+process stops.  
+ 
+Disassembly Procedure 
+ 
+Voltage to Pressure Transducer 
+ 
+To remove the transducer from the electronic housing, the electrical connections (in the field terminal 
+side) and the main board connector must be disconnected. 
+ 
+Loosen the hex screw (6) and carefully unscrew the electronic housing from the transducer, observing 
+that the flat cable is not excessively twisted. 
+ 
+ 
+
+
+===== PAGE 43 =====
+Maintenance Procedures 
+ 
+5.5 
+CAUTION 
+Do not rotate the electronic housing more than 270° without disconnecting the electronic circuit from the power supply. 
+ 
+ 
+ 
+Figure 5.2 – Transducer Rotation 
+ 
+NOTE 
+The numbers indicated between parentheses refer to Figure 5.4 – Exploded View. 
+ 
+1. Remove the flat cable cover (17) by releasing the Allen screws (15). When removing this cover 
+(17), take care to do not damage the internal board: disassembly it with care. (This part can not be 
+washed); 
+ 
+2. Remove the analog board (18); 
+ 
+3. Remove the electric piezo base (24) (This part can not be washed); 
+ 
+4. Remove the restriction (20) for cleaning; 
+ 
+5. Remove the intermediate set (27) and check the diaphragms integrity; if necessary, clean the 
+diaphragms with water and neut ral detergent; after that, wash them with alcohol, dry before 
+mounting; 
+ 
+6. Remove the spool valve (29); the cleaning is made with water and neutral detergent; after that, 
+wash it with alcohol, dry before mounting. Do not use lubricant of any kind in this part; 
+ 
+7. The pneumatic block (31) can be completely washed with water and neutral detergent, after that, 
+wash it with alcohol and verify if it is completely clean, without dust or any kind of impurity. For that, 
+apply dry compressed air in all block orifices; 
+ 
+8. Verify if the position sensor cover (33) does not have indication of water or humidity. (This part can 
+not be washed); 
+ 
+9. Verify if the position sensor flat cable is damaged, twisted, cut or oxidate. 
+ 
+Piezo Electric Calibration - FYCAL  
+ 
+To mount the positioner: 
+ 
+1. 
+Mount the piezoelectric base (24) on the jig; 
+ 
+2. 
+Apply 20 psi at the air pressure input; 
+ 
+3. 
+Apply 0 Volts, then 100 Volts DC and after 0 Volts again (to avoid hysteresys error); 
+ 
+4. 
+Apply 50 Volts DC to the piezoelectric base; 
+ 
+ 
+
+
+===== PAGE 44 =====
+FY301 – Operation, Maintenance and Instructions Manual 
+ 
+5.6 
+5. 
+Verify the pilot chamber pressure measured in the correspondent FYCAL gauge. The pressure 
+must be between 5.8 and 6.2 psi. In case it is different, made the adjustment rotating the superior 
+disc of piezoelectric base set; 
+ 
+6. 
+Once reached the previous adjustment, apply 0 Volts again and verify that the pressure in the 
+pilot chamber must be between 2 psi. After that, apply 100 Volts and verify that the pressure must 
+be between 12 and 13 psi; 
+ 
+7. 
+Apply 50 Volts AC to the piezoelectric base. Verify the pilot chamber pressure measured in 
+manometer, it must be between 5.8 and 6.2 psi. In case it is different, made the adjustment again 
+and rotating the superior disc of piezoelectric base set and repeating the procedure, to reach the 
+specified values. 
+ 
+8. 
+When these values are reached, the piezoelectric base calibrated; 
+ 
+9. 
+After the piezoelectric base calibration, proceed with the positioner final checking; 
+ 
+10. Re-assembly all positioner set with the calibrated piezoelectric base; 
+ 
+11. Execute the auto-setup for the positioner; 
+ 
+12. If the piezoelectric base voltage is not at indicated range, it means that the piezoelectric base 
+needs a new calibration or it needs to be replaced. 
+ 
+Restriction Cleaning Procedure 
+ 
+The air flows to the nozzle through a restriction. Verify the restriction cleaning from time to time to 
+assure a positioner good performance. 
+ 
+1. 
+Be sure that the air supply is not pressurizing the equipment. 
+ 
+ 
+ 
+2. 
+With an appropriate tool, remove the transducer serial number plate. (New models have the 
+plate placed on the opposite side of the transducer).  
+ 
+ 
+ 
+3. 
+Remove the restriction screw using an adequate tool;  
+ 
+
+
+===== PAGE 45 =====
+Maintenance Procedures 
+ 
+5.7 
+ 
+ 
+4. 
+Remove the o-ring’s with an appropriate tool;  
+ 
+5. 
+Dive the part in petroleum base solvent and dry it with dry compressed air (apply the 
+compressed air directly in the smaller orifice for the air to get out through the bigger orifice).  
+ 
+6. 
+Introduce the appropriate tool (PN 400-0726) into the restriction orifice to prevent any possible 
+obstruction;  
+ 
+ 
+ 
+ 
+7. 
+Mount the o-rings again and screw the restriction in the positioner.  
+ 
+8. 
+Apply instrument air into the equipment and it shall work normally.  
+ 
+Change of the Filter Elements 
+ 
+Replace the positioner filter elements (28 - part number 400-0655) with a minimum stated period of 1 
+(one) year. 
+ 
+The instrument air supply must be clean, dry and non-corrosive, following standards indicated for the 
+American National Standard “Quality Standard for Instrument Air" - (ANSI/ISA S7.0.01 - 1996). 
+ 
+If the instrument air does not comply with the above mentioned standards, the user has to consider 
+replacing the positioner filter elements more frequently. 
+ 
+Exhausts Ports 
+ 
+Air is vented to the atmosphere through the two exhausts ports located behind the transducer 
+nameplate and 4 output of the opposite side from gage. Any strange object interfering or blocking the 
+exhaust port may degrade the positioner performance. Clean the exhausts periodically by spraying it 
+with a solvent. 
+ 
+ATTENTION 
+Never use oil or grease in the spool valve; lubricants may degrade the positioner performance. 
+ 
+
+
+===== PAGE 46 =====
+FY301 – Operation, Maintenance and Instructions Manual 
+ 
+5.8 
+Electronic Circuit 
+ 
+Plug transducer connector and power supply connector to main board (5). Attach the display to the 
+main board. Observe the four possible mounting positions (Figure 5.2). The  mark on the display 
+indicates up position. 
+ 
+ 
+ 
+Figure 5.3 – Four Possible Positions for Local Indicator 
+ 
+Anchor the main board and indicator with their screws (3). After tightening the protective cover (1), 
+mounting procedure is complete. The positioner is ready for powering and testing.. 
+ 
+Electrical Connections 
+ 
+The plug must obligatorily be installed in the electric connection not used, preventing the humidity 
+entrance.   
+ 
+Package Content 
+ 
+When receiving the equipment, verify the package content.  The number for items marked with (*) must 
+be in accordance with the number of positioners delivered.  
+ 
+Positioner 
+Adequate mounting brackets 
+ 
+- For the positioner  
+ 
+- For the magnet 
+Magnetic tool for local adjustment (*) 
+Centralizer transmitter device (*) 
+Cleaning device for the restriction (*) 
+Operation, maintenance and instructions manual (*) 
+ 
+ 
+
+
+===== PAGE 47 =====
+Ockpvgpcpeg"Rtqegfwtgu"
+"
+70;"
+Gzrnqfgf"Xkgy""
+"
+40
+38
+36
+37
+34
+33
+35
+19
+32
+23
+31
+29
+28
+30
+27
+24
+23
+22
+21
+20
+19
+18
+17
+16
+15
+14
+3
+2
+1
+4
+5
+6
+7
+8
+9
+10
+6
+11
+12
+13
+39
+"
+"
+Hkiwtg"706"⁄"Gzrnqfgf"Xkgy"
+"
+
+
+===== PAGE 48 =====
+H[523"⁄"Qrgtcvkqp."Ockpvgpcpeg"cpf"Kpuvtwevkqpu"Ocpwcn"
+ 
+7032"
+Ceeguuqtkgu"
+"
+ACCESSORIES 
+ORDERING CODE 
+DESCRIPTION 
+SD-1 
+Magnetic tool for local adjustment. 
+HPC401* 
+Hart® HPI311-M5P for the PalmOS platform, including the configuration package for the Smar and generic 
+transmitters. 
+HPI311-M5P* 
+Just the Hart® interface. 
+400-0726 
+Needle cleaning device for the restriction. 
+ 
+* For equipment updates and HPC401 software, just check: http://www.smarresearch.com . 
+ 
+Urctg"Rctvu"Nkuv"
+ 
+SPARE PARTS  LIST 
+PARTS DESCRIPTION 
+POSITION 
+CÓDE 
+CATEGORY 
+(NOTE 4) 
+HOUSING (NOTE 1) 
+ 
+COVER (INCLUDES O-RING) 
+ 
+Cover Locking Bolt 
+Sensor Locking Bolt (M6 Without Head Screw) 
+External Ground Bolt 
+Identification Plate Fixing Bolt 
+Orings Cover (NOTE 2) 
+Local Adjustment Protection Cover 
+8 
+ 
+1 and 13 
+ 
+6 
+7 
+14 
+9 
+2 
+10 
+400-1314-3 (NOTE 6) 
+ 
+400-1307 (NOTE 6) 
+ 
+204-0120 
+400-1121 
+204-0124 
+204-0116 
+204-0122 
+204-0114 
+- 
+ 
+- 
+ 
+- 
+- 
+- 
+- 
+B 
+- 
+DIGITAL INDICATOR GLL1438 (for old electronic main board GLL1011) 
+DIGITAL INDICATOR (for new main boards GLL1443 e 1451) 
+4 
+400-1305 
+400-1310 
+A 
+TERMINAL INSULATOR 
+ 
+TERMINAL INSULATOR FOR 4-20mA POSITION FEEDBACK (packaged 
+with 6 units) (NOTE 7) 
+11 
+400-0058 
+ 
+ 
+400-1329 
+A 
+ MAIN ELECTRONIC CIRCUIT BOARD (include digital indicator and 
+mounting kit) 
+5 
+400-1334 
+A 
+ TERMINAL HOLDING BOLT HOUSING  
+          
+ MOUNTING KIT FOR MAIN ELECTRONIC BOARD (new boards GLL1443 
+and 1451), (2 bolts with spacers and retention washers) 
+12 
+ 
+3 
+ 
+204-0119 
+ 
+400-0560 
+B 
+ 
+B 
+ 
+CONNECTION COVER 
+ 
+    . Connection Cover Bolt  
+    . Buna-N Neck O-ring (NOTE 2) 
+15,16 and 17  
+ 
+15 
+16 
+400-1320 (NOTE 6) 
+ 
+400-0073 
+204-0113 
+A 
+ 
+- 
+B 
+ ANALOG BOARD without Pressure Sensor GLL1012 (version K0) 
+ ANALOG BOARD for Pressure Sensor GLL1204 (version K1) 
+ ANALOG BOARD for Position Feedback GLL1456 (version K2) 
+18 
+18 
+18 
+400-0060 
+400-0840 
+400-1341 
+- 
+- 
+- 
+PIEZO BASE SET 
+ 
+    . Base and Block O-ring (NOTE 2) 
+    . Restriction 
+    . Restriction External O-ring (NOTE 2) 
+    . Restriction Internal O-ring (NOTE 2) 
+    . Syntherized Bushing 
+    . Analog indicator (Gage - Stainless Steel and Brass) (NOTE 5) 
+19,20,21,22, 23,24 and 25 
+ 
+19 
+20 
+21 
+22 
+23 
+25 
+400-1318 (NOTE 6) 
+ 
+400-0085 
+344-0165 
+344-0155 
+344-0150 
+400-0033 
+400-1120 
+A 
+ 
+B 
+B 
+B 
+B 
+B 
+B 
+ASSEMBLED DIAPHRAGM (include hall tube, mechanical part and  
+O-rings) 
+27 
+400-1321 (NOTE 6) 
+B 
+
+
+===== PAGE 49 =====
+Ockpvgpcpeg"Rtqegfwtgu"
+"
+7033"
+SPARE PARTS  LIST 
+PARTS DESCRIPTION 
+POSITION 
+CÓDE 
+CATEGORY 
+(NOTE 4) 
+PNEUMATIC BLOCK SET 
+ 
+ 
+    . Base & Block O-ring (NOTE 2) 
+    . Syntherized Bushing 
+    . Analog indicator (Gage - Stainless Steel and Brass) (NOTE 5) 
+    . Filtering Element 
+    . Spool valve 
+    . Spool valve Spring 
+    . Stainless steel Filter- 1/4" NPT - includes filtering element 
+    . Vent Plug - Stainless Steel 
+19,23,25,28,29,30,31 and 
+32 
+ 
+19 
+23 
+25 
+28 
+29 
+40 
+30 
+32 
+400-1317 (NOTE 6) 
+ 
+ 
+400-0085 
+400-0033 
+400-1120 
+400-0655 
+400-0653 
+400-0787 
+400-1383 
+400-0654 
+A 
+ 
+ 
+- 
+- 
+- 
+- 
+A 
+- 
+- 
+- 
+HALL COVER SET 
+ 
+   . Hall Cover Bolt 
+   . Hall Support + Hall Sensor + Flat cable 
+ 
+REMOTE EXTENSION SET 
+ 
+CABLE SET + CONNECTOR 
+33 (or 36), 34 and 35 
+ 
+34 
+35 
+ 
+38 
+ 
+37 
+400-1319 (NOTE 6) 
+ 
+400-0092 
+400-0090 
+ 
+400-1322 (NOTE 6) 
+ 
+400-1325 (NOTE 6) 
+- 
+ 
+- 
+- 
+ 
+- 
+ 
+- 
+1/2" NPT (Ex d) INTERNAL SOCKET SET PLUG IN BICHROMATIZED 
+CARBON STEEL 
+1/2" NPT (Ex d)  INTERNAL SOCKET SET PLUG IN 304 SST 
+ 
+1/2" NPT INTERNAL SOCKET SET PLUG IN BICHROMATIZED CARBON 
+STEEL 
+1/2" NPT INTERNAL SOCKET SET PLUG IN 304 SST 
+ 
+M20 X 1.5 (Ex d)  EXTERNAL SOCKET SET PLUG IN 316 SST 
+PG13.5 (Ex d) EXTERNAL SOCKET SET PLUG IN 316 SST 
+ 
+3/4" NPT (Ex d) ADAPTER IN 316 SST 
+39 
+ 
+39 
+ 
+39 
+ 
+39 
+ 
+39 
+39 
+ 
+39 
+400-0808 
+ 
+400-0809 
+ 
+400-0583-11 
+ 
+400-0583-12 
+ 
+400-0810 
+400-0811 
+ 
+400-0812 
+- 
+ 
+- 
+ 
+- 
+ 
+- 
+ 
+- 
+- 
+ 
+- 
+TRANSDUCER SET 
+NOTE 3 
+400-1316 (NOTE 6) 
+A 
+MAGNETS  
+    . Linear magnet 30mm 
+    . Linear magnet 50mm 
+    . Linear magnet 100mm 
+    . Rotary magnet 
+ 
+- 
+- 
+- 
+- 
+ 
+400-0748 
+400-0035 
+400-0036 
+400-0037 
+ 
+- 
+- 
+- 
+- 
+MOUNTING BRACKET SCREW FOR POSITIONER ASSEMBLY (packaged 
+with 12 units) 
+- 
+400-1190 
+- 
+ 
+ 
+Note 
+1) Includes terminal isolator, bolts (cover locking, ground and terminal isolator) and identification plate without certification. 
+2) O-rings are packaged with 12 units. 
+3) Includes all transducer’s spare parts. 
+4) For category A it is recommended to keep in stock 25 parts installed for each set and 50 for category B. 
+5) The pressure gauges for supply pressure, output 1 or output 2, will be supplied with the wet parts in brass. 
+6) For code detailed, use the tables below. 
+7) Use only with K2 Positioner version. 
+ 
+ 
+ 
+
+
+===== PAGE 50 =====
+H[523"⁄"Qrgtcvkqp."Ockpvgpcpeg"cpf"Kpuvtwevkqpu"Ocpwcn"
+ 
+7034"
+Fgvckngf"Eqfg"Yjgp"Qtfgtkpi"qh"Urctg"Rctvu"
+ 
+DETAILED CODE WHEN ORDERING OF SPARE PARTS 
+CÓDE 
+DESCRIPTION 
+400-1314-3 
+HOUSING; FY301 
+ 
+ 
+Option 
+Communication Protocol 
+ 
+ 
+H 
+Hart & 4-20 mA 
+ 
+ 
+R 
+Hart & 4-20 mA + Position Feedback 
+ 
+ 
+ 
+ 
+Option 
+Electrical Connection 
+ 
+ 
+ 
+ 
+0 
+½ NPT 
+ 
+ 
+ 
+ 
+A 
+M20 X 1,5 
+ 
+ 
+ 
+ 
+B 
+PG13,5 
+ 
+ 
+ 
+ 
+ 
+ 
+Option 
+Material 
+ 
+ 
+ 
+ 
+ 
+ 
+H0 
+Aluminum (IP/Type) 
+ 
+ 
+ 
+ 
+ 
+ 
+H1 
+Stainless Steel (IP/Type) 
+ 
+ 
+ 
+ 
+ 
+ 
+H2 
+Aluminum - for saline atmospheres (IPW/Type X) 
+ 
+ 
+ 
+ 
+ 
+ 
+H4 
+Aluminum Copper Free (IPW/Type X) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Option 
+Painting 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+P0 
+Gray Munsell N 6,5 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+P8 
+Without Painting 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+P9 
+Safety Blue Epoxy - Electrostatic Painting 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+400-1314-3 
+* 
+* 
+* 
+* 
+   TYPICAL ORDERING CODE 
+ 
+* Choose the desired option 
+ 
+ 
+ 
+DETAILED CODE WHEN ORDERING OF SPARE PARTS 
+CÓDE 
+DESCRIPTION 
+400-1307 Cover 
+ 
+ 
+Option Type 
+ 
+ 
+0 
+Without window for display 
+ 
+ 
+1 
+With window for display 
+ 
+ 
+ 
+Option Material 
+ 
+ 
+ 
+H0 
+Aluminum (IP/TYPE) 
+ 
+ 
+ 
+H1 
+Stainless Steel (IP/TYPE) 
+ 
+ 
+ 
+ 
+Option Painting 
+ 
+ 
+ 
+ 
+P0 
+Gray Munsell N 6,5 
+ 
+ 
+ 
+ 
+P8 
+Without Painting 
+ 
+ 
+ 
+ 
+P9 
+Safety Blue Epoxy - Electrostatic Painting 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+400-1307 
+* 
+* 
+* 
+    TYPICAL ORDERING CODE 
+ 
+* Choose the desired option. 
+
+
+===== PAGE 51 =====
+Ockpvgpcpeg"Rtqegfwtgu"
+"
+7035"
+ 
+DETAILED CODE WHEN ORDERING OF SPARE PARTS 
+CÓDE 
+DESCRIPTION 
+400-1316 Transducer Set; FY30X 
+ 
+ 
+Option Indication Gage 
+ 
+ 
+0 
+Without Gage 
+ 
+ 
+     6 
+01 Gage - Input 
+ 
+ 
+     7 
+01 Gage – Output 1    
+ 
+ 
+     8 
+02 Gage – Input and Output 1 
+ 
+ 
+     9 
+02 Gage – Output 1 and 2 
+ 
+ 
+     A 
+03 Gage 
+ 
+ 
+ 
+Option Action of Positioner 
+ 
+ 
+ 
+C 
+Single Action 
+ 
+ 
+ 
+D 
+Double Action 
+ 
+ 
+ 
+ 
+Option Material 
+ 
+ 
+ 
+ 
+H0 
+Aluminum (IP/TYPE) 
+ 
+ 
+ 
+ 
+H1 
+Stainless Steel (IP/TYPE) 
+ 
+ 
+ 
+ 
+ 
+Option Painting 
+ 
+ 
+ 
+ 
+ 
+P0 
+Gray Munsell N 6,5 
+ 
+ 
+ 
+ 
+ 
+P8 
+Without Painting 
+ 
+ 
+ 
+ 
+ 
+P9 
+Safety Blue Epoxy - Electrostatic Painting 
+ 
+ 
+ 
+ 
+ 
+ 
+Option Standard of Manufacture 
+ 
+ 
+ 
+ 
+ 
+ 
+S0 
+Smar 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Option 
+Hall Remote Sensor 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+R0 
+Standard Mounting (Without Hall Remote Sensor) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+R9 
+Remote Mounting (adapted for Remote Sensor) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Option 
+Special Sensor 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+K0 
+Without Special Sensor (compatible w/ main board until version 4) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+K1 
+With Pressure Sensors for Diagnostic (compatible w/ main board 
+until version 3) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+K2 
+With 4-20mA Position Feedback (compatible w/ main board version 5)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+400-1316 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+        TYPICAL ORDERING CODE 
+ 
+* Choose the desired option. 
+ 
+ 
+DETAILED CODE WHEN ORDERING OF SPARE PARTS 
+CÓDE 
+DESCRIPTION 
+400-1317 Pneumatic Block Set; FY30X 
+ 
+ 
+Option 
+Indication Gage 
+ 
+ 
+0 
+Without Gage 
+ 
+ 
+7 
+01 Gage – Output 1 
+ 
+ 
+9 
+02 Gage – Output 1 and 2 
+ 
+ 
+ 
+Option Action of Positioner 
+ 
+ 
+ 
+C 
+Single Action 
+ 
+ 
+ 
+D 
+Double Action 
+ 
+ 
+ 
+ 
+Option Material 
+ 
+ 
+ 
+ 
+H0 
+Aluminum (IP/TYPE) 
+ 
+ 
+ 
+ 
+H1 
+Stainless Steel (IP/TYPE) 
+ 
+ 
+ 
+ 
+ 
+Option Painting 
+ 
+ 
+ 
+ 
+ 
+    P0      Gray Munsell N 6,5 
+ 
+ 
+ 
+ 
+ 
+P8 
+Without Painting 
+ 
+ 
+ 
+ 
+ 
+P9 
+Safety Blue Epoxy - Electrostatic Painting 
+ 
+ 
+ 
+ 
+ 
+ 
+Option
+Standard of Manufacture 
+ 
+ 
+ 
+ 
+ 
+ 
+S0 
+Smar 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Option
+Special Sensor 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+K0 
+Without Special Sensor 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+K1 
+With Pressure Sensor for Diagnostic (compatible w/ main board  version 3,
+besides analog board GLL1204) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+400-1317 
+* 
+* 
+* 
+* 
+* 
+* 
+      TYPICAL ORDERING CODE 
+ 
+* Choose the desired option. 
+ 
+ 
+
+
+===== PAGE 52 =====
+H[523"⁄"Qrgtcvkqp."Ockpvgpcpeg"cpf"Kpuvtwevkqpu"Ocpwcn"
+ 
+7036"
+ 
+DETAILED CODE WHEN ORDERING OF SPARE PARTS 
+CÓDE 
+DESCRIPTION 
+400-1318 Piezo Base Set; FY30X 
+ 
+ 
+Option Indication Gage 
+ 
+ 
+0 
+Without Gage 
+ 
+ 
+6 
+01 Gage – Input 
+ 
+ 
+ 
+Option Material 
+ 
+ 
+ 
+H0 
+Aluminum (IP/TYPE) 
+ 
+ 
+ 
+H1 
+Stainless Steel (IP/TYPE) 
+ 
+ 
+ 
+ 
+Option Painting 
+ 
+ 
+ 
+ 
+    P0 
+Gray Munsell N 6,5 
+ 
+ 
+ 
+ 
+P8 
+Without Painting 
+ 
+ 
+ 
+ 
+P9 
+Safety Blue Epoxy - Electrostatic Painting 
+ 
+ 
+ 
+ 
+ 
+Option Standard of Manufacture 
+ 
+ 
+ 
+ 
+ 
+S0 
+Smar 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+400-1318 
+* 
+* 
+* 
+* 
+      TYPICAL ORDERING CODE 
+ 
+* Choose the desired option. 
+ 
+ 
+DETAILED CODE WHEN ORDERING OF SPARE PARTS 
+CÓDE 
+DESCRIPTION 
+400-1319 Hall  Cover Set; FY30X 
+ 
+ 
+Option Material 
+ 
+ 
+H0 
+Aluminum (IP/TYPE) 
+ 
+ 
+H1 
+Stainless Steel (IP/TYPE) 
+ 
+ 
+ 
+Option Painting 
+ 
+ 
+ 
+P0 
+Gray Munsell N 6,5 
+ 
+ 
+ 
+P8 
+Without Painting 
+ 
+ 
+ 
+P9 
+Safety Blue Epoxy - Electrostatic Painting 
+ 
+ 
+ 
+ 
+Option Standard of Manufacture 
+ 
+ 
+ 
+ 
+S0 
+Smar 
+ 
+ 
+ 
+ 
+ 
+Option Hall Remote Sensor 
+ 
+ 
+ 
+ 
+ 
+R0 
+Standard Mounting (Without Hall Remote Sensor) 
+ 
+ 
+ 
+ 
+ 
+R9 
+Remote Mounting (adapted for Remote Sensor) 
+ 
+ 
+ 
+Option
+Special Sensor 
+ 
+ 
+ 
+ 
+ 
+ 
+KA 
+For Pneumatic Block without Pressure Sensors 
+ 
+ 
+ 
+ 
+ 
+ 
+KB 
+For Pneumatic Block with Pressure Sensors 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+400-1319 
+* 
+* 
+* 
+* 
+* 
+     TYPICAL ORDERING CODE 
+ 
+* Choose the desired option. 
+  
+ 
+DETAILED CODE WHEN ORDERING OF SPARE PARTS 
+CÓDE 
+DESCRIPTION 
+400-1320 
+Connection Cover; FY30X 
+ 
+ 
+Option Material 
+ 
+ 
+H0 
+Aluminum (IP/TYPE) 
+ 
+ 
+H1 
+Stainless Steel (IP/TYPE) 
+ 
+ 
+ 
+Option Painting 
+ 
+ 
+ 
+P0 
+Gray Munsell N 6,5 
+ 
+ 
+ 
+P8 
+Without Painting 
+ 
+ 
+ 
+P9 
+Safety Blue Epoxy - Electrostatic Painting 
+ 
+ 
+       
+ 
+Option Standard of Manufacture 
+ 
+ 
+ 
+ 
+S0 
+Smar 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+400-1320 
+* 
+* 
+* 
+      TYPICAL ORDERING CODE 
+ 
+* Choose the desired option. 
+ 
+ 
+ 
+ 
+
+
+===== PAGE 53 =====
+Ockpvgpcpeg"Rtqegfwtgu"
+"
+7037"
+ 
+DETAILED CODE WHEN ORDERING OF SPARE PARTS 
+CÓDE 
+DESCRIPTION 
+400-1321 Assembled Diaphragm; FY30X 
+ 
+ 
+Option Material 
+ 
+ 
+H0 
+Aluminum (IP/TYPE) 
+ 
+ 
+H1 
+Stainless Steel (IP/TYPE) 
+ 
+ 
+ 
+Option Painting 
+ 
+ 
+ 
+P0 
+Gray Munsell N 6,5 
+ 
+ 
+ 
+P8 
+Without Painting 
+ 
+ 
+ 
+P9 
+Safety Blue Epoxy - Electrostatic Painting 
+ 
+ 
+ 
+ 
+Option Standard of Manufacture  
+ 
+ 
+ 
+ 
+S0 
+Smar 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+400-1321 
+* 
+* 
+* 
+       TYPICAL ORDERING CODE 
+ 
+* Choose the desired option. 
+ 
+ 
+DETAILED CODE WHEN ORDERING OF SPARE PARTS 
+CÓDE 
+DESCRIPTION 
+400-1322 Remote Extension Set; FY30X 
+ 
+ 
+Option 
+Material 
+ 
+ 
+H0 
+Aluminum (IP/TYPE) 
+ 
+ 
+H1 
+Stainless Steel (IP/TYPE) 
+ 
+ 
+ 
+Option Painting 
+ 
+ 
+ 
+P0 
+Gray Munsell N 6,5 
+ 
+ 
+ 
+P8 
+Without Painting 
+ 
+ 
+ 
+P9 
+Safety Blue Epoxy - Electrostatic Painting 
+ 
+ 
+ 
+ 
+Option Standard of Manufacture 
+ 
+ 
+ 
+ 
+S0 
+Smar 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+400-1322 
+* 
+* 
+* 
+     TYPICAL ORDERING CODE 
+ 
+* Choose the desired option. 
+ 
+ 
+DETAILED CODE WHEN ORDERING OF SPARE PARTS 
+CÓDE 
+DESCRIPTION 
+400-1325 
+Cable Set and Connectors for Hall Remote Sensor; FY30X 
+ 
+ 
+Option Cable Length 
+ 
+ 
+1 
+5 m 
+ 
+ 
+2 
+10 m 
+ 
+ 
+3 
+15 m 
+ 
+ 
+4 
+20 m 
+ 
+ 
+Z 
+Special 
+ 
+ 
+ 
+ 
+ 
+400-1325 
+* 
+     TYPICAL ORDERING CODE 
+ 
+* Choose the desired option. 
+ 
+
+
+===== PAGE 54 =====
+H[523"⁄"Qrgtcvkqp."Ockpvgpcpeg"cpf"Kpuvtwevkqpu"Ocpwcn"
+ 
+7038"
+ 
+
+
+===== PAGE 55 =====
+Section 6 
+ 
+6.1 
+TECHNICAL CHARACTERISTICS 
+ 
+Functional Specifications 
+ 
+Travel 
+Linear Motion: 3 - 100 mm 
+Rotary Motion: 30° - 120° 
+ 
+Input Signal 
+4 - 20 mA, 2 wires. 
+ 
+Power 
+Supplied by the 4-20 mA current loop. No external supply required. 
+ 
+Input Impedance 
+550 Ω. 
+ 
+Minimum Current 
+3.8 mA. 
+ 
+Communication Protocol 
+Hart® Communication Protocol (is superimposed on the current signal). 
+ 
+Protection against Reverse Polarity 
+No damage occurs from reversal of normal supply current (4 - 20 mA) or from misapplication of up 
+to 50 mA. 
+ 
+Output 
+Output to actuator 0 -100% supply air pressure. Single or double-action. 
+ 
+Pressure Supply 
+1.4 - 7 bar (20-100 psi). Free of oil, dust and water. 
+ 
+Indication 
+4 ½ numerical digits and 5 alphanumerical digits (Liquid Cristal Display). 
+ 
+Hazardous Area Certifications 
+See appendix “A”. 
+ 
+European Directive Information 
+See appendix “A”. 
+ 
+Temperature Limits 
+Operation: 
+ 
+-40 
+to 
+85°C 
+(-40 
+to 
+185°F). 
+Storage: 
+ 
+-40 
+to           90°C 
+(-40 
+to 
+194°F). 
+Display: 
+ 
+-10 
+to 
+75°C 
+( 14 
+to 
+167°F) operation. 
+ 
+ 
+ 
+-40 
+to 
+85°C 
+(-40 
+to 
+185°F) without damage. 
+Remote Sensor:  
+-40 
+to         105º C 
+(-40 
+to 
+221ºF) operation. 
+ 
+Humidity Limits 
+0 to 100% RH. 
+ 
+Flow Characterization 
+Linear, Equal Percentage, Quick Opening, 16 freely selectable points. 
+ 
+Gain 
+Through software. Locally adjustable. 
+ 
+Travel Time 
+Through software. Locally adjustable. 
+ 
+Actual Position Sensing 
+Magnet (Non-contact), via Hall Effect. 
+ 
+ 
+
+
+===== PAGE 56 =====
+FY301 – Operation, Maintenance and Instructions Manual 
+ 
+6.2 
+Performance Specifications 
+ 
+Resolution 
+≤ 0.1% F.S. 
+ 
+Repeatability 
+≤ 0.1% F.S. 
+ 
+Hysteresis 
+≤ 0.1% F.S. 
+ 
+Consumption 
+0.35 Nm3 /h (0.20 SCFM) at 1.4 bar (20 psi) supply. 
+1.10 Nm3 /h (1.65 SCFM) at 5.6 bar (80 psi) supply. 
+ 
+Output Capacity 
+13.6 Nm3 /h (8 SCFM) at 5.6 bar (80 psi) supply. 
+ 
+Ambient Temperature Effect 
+0.8%/20°C of span 
+ 
+Supply Pressure Effect 
+Negligible 
+ 
+Vibration Effect 
+±0.3%/g of span during the following conditions: 
+• 
+5 - 15 Hz at 4 mm constant displacement. 
+• 
+15 - 150 Hz at 2g. 
+• 
+150 - 2000 HZ at 1g. 
+Reference SAMA PMC 31.1 - 1980, Sec. 5.3, Condition 3, Steady State. 
+ 
+Electro-Magnetic Interference Effect 
+Designed to comply with IEC 801 and European Standards EN50081 and EN50082. 
+ 
+Physical Specifications 
+ 
+Electrical Connection 
+½  - 14 NPT, Pg 13.5 or M20 x 1.5. 
+ 
+Pneumatic Connections 
+Supply and output: ¼  - 18 NPT 
+Gage: 1/8 - 27 NPT 
+ 
+Material of Construction 
+Injected low copper aluminum with polyester painting or 316 Stainless Steel housing, with Buna-N 
+O-rings on covers (NEMA 4X, IP66). 
+ 
+Weight 
+Without display and mounting bracket: 2.7 kg. (Aluminum) 
+                                                              5.8 kg. (Stainless Steel) 
+Add for digital display: 0.1 kg.  
+              
+Remote Sensor: 550 g. 
+Cable: 100 g. (For connectors plus 45 g/m) 
+ 
+
+
+===== PAGE 57 =====
+Vgejpkecn"Ejctcevgtkuvkeu"
+"
+805"
+Qtfgtkpi"Eqfg"
+ 
+MODEL  SMART VALVE POSITIONER 
+FY301 
+HART® & 4 to 20 mA 
+ 
+COD. Local Indicator 
+ 
+0 
+1 
+Without Indicator 
+With Digital Indicator 
+ 
+ 
+ 
+COD. Mounting Bracket 
+ 
+ 
+0 
+1 
+Without Bracket  
+With Bracket  
+ 
+ 
+ 
+ 
+ 
+COD. Electrical Connections 
+ 
+ 
+ 
+0 
+1 
+2 
+1/2" - 14 NPT (4) 
+1/2" - 14 NPT X 3/4 NPT (316 SS) - with adapter (5)  
+1/2" - 14 NPT X 3/4 BSP (316 SS) - with adapter (3) 
+3 
+A 
+B 
+1/2" - 14 NPT X 1/2 BSP (316 SS) - with adapter  (3) 
+M20 X 1.5  (6) 
+PG 13.5 DIN (7) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+COD. Type of Actuator 
+ 
+ 
+ 
+ 
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+Rotary - Single Action   
+Rotary - Double Action 
+Linear Stroke Up to 15 mm. - Single Action   
+Linear Stroke Up to 15 mm. - Double Action   
+Linear Stroke Up to 50 mm. - Single Action   
+Linear Stroke Up to 50 mm. - Double Action   
+Linear Stroke Up to 100 mm. - Single Action  
+8 
+A 
+B 
+C 
+D 
+Z 
+Linear Stroke Up to 100 mm. - Double Action   
+Linear Stroke Up to   30 mm. - Single Action 
+Linear Stroke Up to   30 mm. - Double Action   
+Without magnet (for linear actuator ) - Single Action 
+Without magnet (for linear actuator) - Double Action   
+Others Specify  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+COD. Indication Gage 
+ 
+ 
+ 
+ 
+ 
+0 
+6 
+7 
+ 
+8 
+Without Gage 
+With 1 Gage (Acrylic, Stainless steel and wetted parts in brass) -  Input 
+With 1 Gage (Acrylic, Stainless steel and wetted parts in brass) - 
+Output 1    
+With 2 Gage (Acrylic, Stainless steel and wetted parts in brass) - Input 
+and Output 1  
+9 
+ 
+A 
+Z 
+Whit 2 Gage (Acrylic, Stainless steel and wetted parts in brass) 
+- Output 1 and 2  
+With 3 Gage (Acrylic, Stainless steel and wetted parts in brass) 
+Others Specify  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+SPECIAL OPTIONS (Leave it blank for no optional items) 
+  
+ 
+ 
+ 
+ 
+ 
+COD. Housing 
+ 
+ 
+ 
+ 
+ 
+ 
+H0 
+H1 
+H2 
+Aluminum (IP/Type) 
+316 Stainless Steel (IP/Type) 
+Aluminum  for  saline atmosphere (IPW/Type X) (2)   
+H3 
+H4 
+316  Stainless Steel for saline atmosphere (IPW/Type X) (2)
+Copper Free Aluminum (IPW/Type X) (2)   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+COD. Identification Plate 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+I1 
+I3 
+I4 
+I5 
+FM: XP, IS, NI, DI 
+CSA: XP, IS, NI, DI  
+EXAM (DMT): EX-IA, NEMKO: EX-D 
+CEPEL: EX-D, EX-IA 
+I6
+IO
+Without certification 
+CEPEL: Ex-tb (explosive dust - Zone 21) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+COD. Painting 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+P0 
+P8 
+P9 
+PD 
+Gray Munsell N 6.5 Polyester 
+Without Painting 
+Blue Safety Epoxy – Electrostatic Painting 
+Blue smooth diamond RAL5010 - Epoxy 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+COD. TAG Plate 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+J0 With TAG  
+J1 
+ Blank 
+J2  According to user’s notes 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+COD. Sensor Mounting (1) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+R0 
+R1 
+R2 
+R3 
+R4 
+R9 
+RZ 
+Full Mounting 
+Remote sensor - 5 m cable 
+Remote sensor - 10 m cable 
+Remote sensor - 15 m cable 
+Remote sensor - 20 m cable 
+Remote Mounting (adapted for Remote Sensor, without cable and remote extension set) 
+Specify (*) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+COD. Special Sensor 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+K0 
+K1 
+K2 
+Without special sensor 
+With pressure sensors for diagnostic  
+With 4-20 mA Position Feedback (open collector) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+COD. Special 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ZZ 
+Leave it blank for no optional items 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FY301 
+1 
+0 
+0 
+1 
+0 
+* 
+* 
+* 
+* 
+*
+*
+*
+                                       TYPICAL MODEL NUMBER 
+ 
+    
+ 
+NOTES 
+(1) Consult Smar for applications in classified areas. 
+(2) IPW/TYPEX tested for 200 hours according to NBR 8094 / ASTM B 117 standard. 
+(3) Options not certified for Hazardous Locations. 
+(4) Certificate for use in Hazardous Locations (CEPEL, NEMKO, EXAM, FM, CSA). 
+(5) Certificate for use in Hazardous Locations (CEPEL, FM, CSA).  
+(6) Certificate for use in Hazardous Locations (CEPEL,  NEMKO, EXAM, FM).  
+(7) Certificate for use in Hazardous Locations (CEPEL, NEMKO, EXAM). 
+ 
+ 
+
+
+===== PAGE 58 =====
+H[523"⁄"Qrgtcvkqp."Ockpvgpcpeg"cpf"Kpuvtwevkqpu"Ocpwcn"
+"
+806"
+ 
+BFY 
+BRACKET (1) 
+ 
+ 
+CODE 
+Positioner Mounting Bracket (2) 
+ 
+ 
+0 
+1 
+2 
+3 
+4 
+Z 
+Without Bracket 
+Universal Rotary 
+Universal Linear - Yoke and Pillar Type 
+Linear - Yoke Type 
+Linear - Pillar Type 
+Others - Specify 
+ 
+ 
+ 
+ 
+CODE 
+Magnet Mounting Bracket 
+ 
+ 
+ 
+ 
+0 
+1 
+2 
+3 
+4 
+Z  
+Without Bracket 
+Rotary 
+Linear up to   15 mm / 30 mm 
+Linear up to   50 mm 
+Linear up to 100 mm 
+Others - Specify 
+ 
+ 
+ 
+ 
+ 
+ 
+COD. 
+Positioner Mounting Bracket Material 
+ 
+ 
+ 
+ 
+ 
+ 
+7 
+C 
+I 
+N 
+Z 
+Carbon Steel Bracket and Accessories in SST 
+Carbon Steel Bracket 
+Stainless Steel Bracket 
+Not applicable 
+Others - Specify 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+COD. 
+Magnet Bracket Material 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+C 
+I 
+N 
+Z 
+Carbon Steel Bracket 
+Stainless Steel Bracket 
+Not applicable 
+Others - Specify 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+COD. 
+Optional Items 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ZZ 
+Leave it blank for no optional items 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+BFY 
+- 
+1 
+1 
+7 
+I 
+. 
+* 
+ 
+TYPICAL MODEL NUMBER 
+ 
+(1) When choosing the remote sensor version, an additional “L” shape bracket is included, for 2” tube mounting. 
+(2) For customized mounting bracket, for different brands and models, please, consult www.smar.com. 
+ 
+ 
+ 
+ 
+
+
+===== PAGE 59 =====
+Crrgpfkz"C"
+ 
+C03"
+CERTIFICATIONS INFORMATION 
+ 
+Gwtqrgcp"Fktgevkxg"Kphqtocvkqp"
+ 
+Consult www.smar.com for the EC declarations of conformity for all applicable European directives 
+and certificates. 
+ 
+ATEX Directive (94/9/EC) – “Electrical equipment and protective system intended for use in 
+potential explosive atmospheres” 
+The EC-Type Examination Certificate had been released by Nemko AS (CE0470) and/or DEKRA 
+EXAM GmbH (CE0158), according to European Standards. 
+The certification body for Production Quality Assurance Notification (QAN) and IECEx Quality 
+Assessment Report (QAR) is Nemko AS (CE0470). 
+ 
+Jc|ctfqwu"Nqecvkqpu"Igpgtcn"Kphqtocvkqp"
+ 
+Ex Standards: 
+IEC 60079-0 General Requirements 
+IEC 60079-1 Flameproof Enclosures “d” 
+IEC 60079-11 Intrinsic Safety “i” 
+IEC 60079-26 Equipment with equipment protection level (EPL) Ga 
+IEC 60529 Classification of degrees of protection provided by enclosures (IP Code) 
+ 
+Customer responsibility: 
+IEC 60079-10 Classification of Hazardous Areas 
+IEC 60079-14 Electrical installation design, selection and erection 
+IEC 60079-17 Electrical Installations, Inspections and Maintenance 
+ 
+Warning: 
+Explosions could result in death or serious injury, besides financial damage. 
+Installation of this instrument in an explosive environment must be in accordance with the national 
+standards and according to the local environmental protection method. Before proceeding with the 
+installation match the certificate parameters according to the environmental classification. 
+ 
+General Notes: 
+Maintenance and Repair 
+The instrument modification or replaced parts supplied by any other supplier than authorized 
+representative of Smar Equipamentos Industriais Ltda is prohibited and will void the Certification. 
+ 
+Marking Label 
+Once a device labeled with multiple approval types is installed, do not reinstall it using any other 
+approval types. Scratch off or mark unused approval types on the approval label. 
+ 
+For Ex-i protection application 
+- Connect the instrument to a proper intrinsically safe barrier. 
+- Check the intrinsically safe parameters involving the barrier, equipment including the cable and 
+connections. 
+- Associated apparatus ground bus shall be insulated from panels and mounting enclosures. 
+- When using shielded cable, isolate the not grounded cable end. 
+- Cable capacitance and inductance plus Ci and Li must be smaller than Co and Lo of the Associated 
+Apparatus. 
+ 
+For Ex-d protection application 
+- Only use Explosion Proof/Flameproof certified Plugs, Adapters and Cable glands. 
+- In an Explosion-Proof/Flame-Proof installation, do not remove the instrument housing covers when 
+powered on. 
+- Electrical Connection 
+In Explosion-Proof installations the cable entries must be connected through conduit with sealed 
+unit or closed using metal cable gland or closed using metal blanking plug, all with at least IP66 
+and Ex-d certification. For enclosure with saline environment protection (W) and ingress protection 
+(IP) applications, all NPT thread parts must apply a proper water-proof sealant (a non-hardening 
+silicone group sealant is recommended). 
+
+
+===== PAGE 60 =====
+H[523"⁄"Qrgtcvkqp."Ockpvgpcpeg"cpf"Kpuvtwevkqpu"Ocpwcn"
+ 
+C04"
+For Ex-d and Ex-i protection application 
+- The transmitter has a double protection. In this case the transmitter shall be fitted with appropriate 
+certified cable entries Ex-d and the electric circuit supplied by a certified diode safety barrier as 
+specified for the protection Ex-ia. 
+ 
+Environmental Protection 
+- Enclosure Types (Type X): Supplementary letter X meaning special condition defined as default by 
+Smar the following: Saline Environment approved - salt spray exposed for 200 hours at 35ºC. (Ref: 
+NEMA 250). 
+- Ingress protection (IP W): Supplementary letter W meaning special condition defined as default by 
+Smar the following: Saline Environment approved - salt spray exposed for 200 hours at 35ºC. (Ref: 
+IEC60529). 
+- Ingress protection (IP x8): Second numeral meaning continuous immersion in water under special 
+condition defined as default by Smar the following: 1 Bar pressure during 24hours. (Ref: IEC60529). 
+ 
+Jc|ctfqwu"Nqecvkqpu"Crrtqxcnu"
+ 
+CSA (Canadian Standards Association)
+ 
+Class 2258 02 – Process Control Equipment – For Hazardous Locations (CSA1078546) 
+Class I, Division 1, Groups B, C and D 
+Class II, Division 1, Groups E, F and G  
+Class III, Division 1 
+Class I, Division 2, Groups A, B, C and D 
+ 
+Class 2258 04 – Process Control Equipment – Intrinsically Safe Entity – For Hazardous Locations (CSA 1078546) 
+Class I, Division 1, Groups A, B, C and D 
+Class II, Division 1, Groups E, F and G 
+Class III, Division 1 
+ 
+Model FY301 Valve Positioners; input supply 12-42 V dc, 4-20mA; Enclosure Type 4/4X; intrinsically safe with entity parameters: 
+Vmax = 28 V, Imax = 110 mA, Ci = 5 nF, Li = 12uH, 
+when connected through CSA Certified Safety Barriers as per Smar Installation Drawing 102A0833; T Code T3C @ Max 
+Ambient 40 Deg C; MWP 100 psi. 
+Note: Only models with stainless steel external fittings are Certified as Type 4X. 
+ 
+Special conditions for safe use: 
+Temperature Class T3C 
+Maximum Ambient Temperature: 40ºC (-20 to 40 ºC) 
+Maximum Working Pressure: 100 psi 
+ 
+FM Approvals (Factory Mutual)
+ 
+Intrinsic Safety (FM 3009955) 
+IS Class I, Division 1, Groups A, B, C and D 
+IS Class II, Division 1, Groups E, F and G  
+IS Class III, Division 1 
+ 
+Explosion Proof (FM 3007267) 
+XP Class I, Division 1, Groups A, B, C and D 
+ 
+Dust Ignition Proof (FM 3009955) 
+DIP Class II, Division 1, Groups E, F  and G  
+DIP Class III, Division 1 
+ 
+Non Incendive (FM 3009955) 
+NI Class I, Division 2, Groups A, B, C and D 
+ 
+Environmental Protection (FM 3009955) 
+Option: Type 4X or Type 4 
+ 
+Special conditions for safe use: 
+Entity Parameters: 
+
+
+===== PAGE 61 =====
+Egtvkhkecvkqpu"Kphqtocvkqp"
+ 
+C05"
+Vmax = 30 Vdc, Imax = 110 mA, Ci = 8 nF, Li = 12 uH 
+Temperature Class T4 
+Maximum Ambient Temperature: 60ºC (-20 to 60 ºC) 
+ 
+NEMKO (Norges Elektriske MaterielKontroll)
+ 
+Explosion Proof (NEMKO 00ATEX305X) 
+Group II, Category 2 G, Ex d, Group IIC, Temperature Class T6, EPL Gb 
+ 
+Ambient Temperature: -20ºC ≤ Ta ≤ +60ºC 
+Working Pressure: 20-100 psi 
+ 
+Environmental Protection (NEMKO 00ATEX305X) 
+Options: IP66W or IP66 
+ 
+Special conditions for safe use: 
+Repairs of the flameproof joints must be made in compliance with the structural specifications provided by the manufacturer. 
+Repairs must not be made on the basis of values specified in tables 1 and 2 of EN/IEC 60079-1. 
+ 
+The Essential Health and Safety Requirements are assured by compliance with: 
+EN 60079-0:2012 General Requirements 
+EN 60079-1:2007 Flameproof Enclosures “d” 
+ 
+EXAM (BBG Prüf - und Zertifizier GmbH)
+ 
+Intrinsic Safety (DMT 01 ATEX E 012) 
+Group II, Category 2 G, Ex d [ia], Group IIC, Temperature Class T6, EPL Gb 
+ 
+Supply and signal circuit for the connection to an intrinsically safe 4-20mA current loop 
+Ui = 28 Vdc, Ii = 93 mA, Pi = 700 mW, Ci ≤ 5 nF  Li = Neg 
+ 
+Ambient Temperature: -20ºC ≤ Ta ≤ +60ºC 
+ 
+The Essential Health and Safety Requirements are assured by compliance with: 
+EN 60079-0:2012 +A11:2013 General Requirements 
+EN 60079-1:2007 Flameproof Enclosures “d” 
+EN 60079-11:2012 Intrinsic Safety “i” 
+ 
+CEPEL (Centro de Pesquisa de Energia Elétrica)
+ 
+Intrinsic Safety (CEPEL 00.0017) 
+Ex d ia, Group IIC, Temperature Class T5/T6, EPL Gb 
+ 
+Entity Parameters: 
+Pi = 0.7 W, Ui = 30 V, Ii = 100 mA, Ci = 6.4 nF, Li = Neg 
+ 
+Ambient Temperature: 
+-20 to 65 ºC for T5 
+-20 to 40 ºC for T6 
+ 
+Protection by enclosure (CEPEL 00.0017) 
+Ex tb, Group IIIC, Temperature Class T100ºC/T85ºC, EPL Db 
+ 
+Ambient Temperature: 
+-20 to 65 ºC for T100ºC 
+-20 to 40 ºC for T85ºC 
+ 
+Explosion Proof (CEPEL 98.0008) 
+Ex d, Group IIC, Temperature Class T6, EPL Gb 
+ 
+Maximum Ambient Temperature: 40ºC (-20 to 40 ºC) 
+ 
+ 
+Protection by enclosure (CEPEL 98.0008) 
+Ex tb, Group IIIC, Temperature Class T85ºC, EPL Db 
+
+
+===== PAGE 62 =====
+H[523"⁄"Qrgtcvkqp."Ockpvgpcpeg"cpf"Kpuvtwevkqpu"Ocpwcn"
+ 
+C06"
+ 
+Maximum Ambient Temperature: 40ºC (-20 to 40 ºC) 
+ 
+Environmental Protection (CEPEL 00.0017 AND CEPEL 98.0008) 
+Options: IP66W or IP66 
+ 
+The Essential Health and Safety Requirements are assured by compliance with: 
+ABNT NBR IEC 60079-0:2008 General Requirements 
+ABNT NBR IEC 60079-1:2009 Flameproof Enclosures “d” 
+ABNT NBR IEC 60079-11:2009 Intrinsic Safety “i” 
+ABNT NBR IEC 60529:2009 Classification of degrees of protection provided by enclosures (IP Code) 
+ABNT NBR IEC 60079-31:2011 Explosive atmospheres - Part 31: Equipment dust ignition protection by enclosure "t" 
+ 
+
+
+===== PAGE 63 =====
+Egtvkhkecvkqpu"Kphqtocvkqp"
+ 
+C07"
+Kfgpvkhkecvkqp"Rncvg""
+ 
+CSA (Canadian Standards Association) 
+ 
+      
+ 
+ 
+FM Approvals (Factory Mutual) 
+ 
+      
+ 
+ 
+      
+ 
+ 
+NEMKO (Norges Elektriske MaterielKontroll) / EXAM (BBG Prüf - und Zertifizier GmbH) 
+ 
+      
+ 
+ 
+
+
+===== PAGE 64 =====
+H[523"⁄"Qrgtcvkqp."Ockpvgpcpeg"cpf"Kpuvtwevkqpu"Ocpwcn"
+ 
+C08"
+CEPEL (Centro de Pesquisa de Energia Elétrica) 
+ 
+      
+ 
+ 
+
+
+===== PAGE 65 =====
+Egtvkhkecvkqpu"Kphqtocvkqp"
+ 
+C09"
+Eqpvtqn"Ftcykpi"
+ 
+FM Approvals (Factory Mutual) 
+ 
+
+
+===== PAGE 66 =====
+H[523"⁄"Qrgtcvkqp."Ockpvgpcpeg"cpf"Kpuvtwevkqpu"Ocpwcn"
+ 
+C0:"
+CSA (Canadian Standards Association) 
+ 
+
+
+===== PAGE 67 =====
+Appendix B 
+ 
+B.1 
+ 
+ 
+SRF – Service Request Form 
+FY Positioner  
+GENERAL DATA 
+Model: 
+FY290 (   ) 
+Firmware Version: ______________________ FY301 (   ) Firmware Version: ______________________ 
+ 
+FY302 (  ) 
+Firmware Version: ______________________ FY303 (   ) Firmware Version: ______________________ 
+ 
+FY400 (   ) 
+Firmware Version: ______________________  
+ 
+Serial Number:  _______________________________________ Sensor Number:  ________________________________________ 
+TAG:  
+ _______________________________________________________________________________________________ 
+Remote 
+Position 
+Sensor? 
+Yes (   ) 
+No (   ) 
+ 
+ 
+ 
+ 
+Pressure 
+Sensor? 
+Yes (   ) 
+No (   ) 
+ 
+ 
+ 
+ 
+Action: 
+Rotary (   ) 
+Linear (   ) 
+ 
+ 
+ 
+ 
+Travel:  
+15 mm (   ) 
+30 mm (   ) 
+50 mm (   ) 
+100 mm (   ) 
+Other: ________ mm  
+Configuration: 
+Magnetic Tool (   ) 
+Palm (   ) 
+Psion (   ) 
+PC (   )  
+Software: _________ 
+Version: __________ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FINAL CONTROL ELEMENT DATA 
+Type: 
+Valve + Actuator (   ) 
+Pneumatic Cylinder (ACP)  (   ) 
+Other:________________________ 
+Size: 
+_______________________________________________________________________________________________ 
+Travel: 
+_______________________________________________________________________________________________ 
+Manufacturer: 
+_______________________________________________________________________________________________ 
+Model: 
+_______________________________________________________________________________________________ 
+ 
+ 
+AIR SUPPLY 
+Conditions: 
+Dry and Clean (   ) 
+Oil (   ) 
+Water (   ) 
+Other: ____________________________________    
+Work Pressure: 20 PSI (   ) 
+60 PSI (   ) 
+100 PSI (   ) 
+Other: ________ PSI 
+PROCESS DATA 
+Hazardous Area 
+Calssification 
+Non-Classified (   ) 
+Chemical (   ) 
+Explosive (   ) 
+Other:  ________________________________ 
+ 
+ 
+ 
+ 
+ 
+Interference 
+Types  
+Vibration (   ) 
+Temperature (   ) 
+Eletromagnetic (   ) 
+Others:  _______________________________ 
+ 
+ 
+ 
+ 
+ 
+SITUATION DESCRIPTION 
+______________________________________________________________________________________________________________ 
+______________________________________________________________________________________________________________ 
+______________________________________________________________________________________________________________ 
+______________________________________________________________________________________________________________ 
+ 
+SERVICE SUGGESTION 
+Adjustment (   ) 
+Cleaning (   ) 
+Preventive Maintenance (   ) 
+Update / Up-grade (   ) 
+Other: _________________________________________________________________________________________________________ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+USER INFORMATION 
+Company: _____________________________________________________________________________________________________ 
+Contact:  ______________________________________________________________________________________________________ 
+Title:  _________________________________________________________________________________________________________ 
+Section:   ______________________________________________________________________________________________________ 
+Phone: __________ _________________________    __________ _________________________   Extension:____________________ 
+E-mail: _________________________________________________________________________  Date: ______/ ______/ __________ 
+For warranty or non-warranty repair, please contact your representative. 
+Further information about address and contacts can be found on www.smar.com/contactus.asp. 
+ 
+
+
+===== PAGE 68 =====
+FY301 – Operation, Maintenance and Instructions Manual 
+ 
+B.2 
+Returning Materials 
+ 
+Should it become necessary to return the positioner and/or configurator to SMAR, simply contact 
+our office, informing the defective instrument serial number, and return it to our factory. 
+ 
+In order to speed up analysis and solution of the problem, the defective item should be returned with 
+a description of the failure observed, with as much details as possible. Other information concerning 
+the instrument operation, such as service and process conditions, is also helpful.  
+ 
+Instruments returned or to be revised outside the guarantee term should be ac companied by a 
+purchase order or a quote request. 
+ 
+ 
+ 
+ 
+ 
+
+
+===== PAGE 69 =====
+Appendix C 
+ 
+C.1 
+SMAR WARRANTY CERTIFICATE 
+ 
+1. 
+ SMAR guarantees its products for a period of 24 (twenty four) months, starting on the day of 
+issuance of the invoice. The guarantee is valid regardless of the day that the product was 
+installed.  
+ 
+2. 
+SMAR products are guaranteed against any defect originating from manufacturing, mounting, 
+whether of a material or manpower nature, provided that the technical analysis reveals the 
+existence of a quality failure liable to be classified under the meaning of the word, duly verified 
+by the technical team within the warranty terms.    
+ 
+3. 
+Exceptions are proven cases of inappropriate use, wrong handling or lack of basic maintenance 
+compliant to the equipment manual provisions. SMAR does not guarantee any defect or 
+damage caused by an uncontrolled  situation, including but not limited to negligence, user 
+imprudence or negligence, natural forces, wars or civil unrest, accidents, inadequate 
+transportation or packaging due to the user’s responsibility, defects caused by fire, theft or stray 
+shipment, improper electric voltage or power source connection, electric surges, violations, 
+modifications not described on the instructions manual, and/or if the serial number was altered 
+or removed, substitution of parts, adjustments or repairs carried out by non-authorized 
+personnel; inappropriate product use and/or application that cause corrosion, risks or 
+deformation on the product, damages on parts or components, inadequate cleaning with 
+incompatible chemical products, solvent and abrasive products incompatible with construction 
+materials, chemical or electrolytic influences, parts and components susceptible to decay from 
+regular use, use of equipment beyond operational limits (temperature, humidity, etc.) according 
+to the instructions manual. In addition, this Warranty Certificate excludes expenses with 
+transportation, freight, insurance, all of which are the customer’s responsibility.  
+ 
+4. 
+For warranty or non-warranty repair, please contact your representative.  
+ 
+Further information about address and contacts can be found on www.smar.com/contactus.asp 
+ 
+5. 
+ In cases needing technical assistance at the customer’s facilities during the warranty period, 
+the hours effectively worked will not be billed, although SMAR shall be reimbursed from the 
+service technician’s transportation, meals and lodging expenses, as well dismounting/mounting 
+costs, if any. 
+ 
+6. 
+ The repair and/or substitution of defective parts do not extend, under any circumstance, the 
+original warranty term, unless this extension is granted and communicated in writing by SMAR. 
+ 
+7. 
+ No Collaborator, Representative or any third party has the right, on SMAR’s behalf, to grant 
+warranty or assume some responsibility for SMAR products. If any warranty would be granted 
+or assumed without SMAR’s written consent, it will be declared void beforehand. 
+ 
+8. 
+ Cases of Extended Warranty acquisition must be negotiated with and documented by SMAR. 
+ 
+9. 
+ If necessary to return the equipment or product for repair or analysis, contact us.  
+See item 4. 
+ 
+10.  In cases of repair or analysis, the customer must fill out the Revision Requisition Form (FSR) 
+included in the instructions manual, which contains details on the failure observed on the field, 
+the circumstances it occurred, in addition to information on the installation site and process 
+conditions. Equipments and products excluded from the warranty clauses must be approved by 
+the client prior to the service execution. 
+ 
+11.  In cases of repairs, the client shall be responsible for the proper product packaging and SMAR 
+will not cover any damage occurred in shipment. 
+
+
+===== PAGE 70 =====
+FY301 – Operation, Maintenance and Instructions Manual 
+ 
+C.2 
+12.  In cases of repairs under warranty, recall or outside warranty, the client is responsible for the 
+correct packaging and packing and SMAR shall not cover any damage caused during 
+transportation. Service expenses or any costs related to installing and uninstalling the product 
+are the client´s sole responsibility and SMAR does not assume any accountability before the 
+buyer.  
+ 
+13.  It is the customer’s responsibility to clean and decontaminate products and accessories prior to 
+shipping them for repair, and SMAR and its dealer reserve themselves the right to refuse the 
+service in cases not compliant to those conditions. It is the customer’s responsibility to tell 
+SMAR and its dealer when the product was utilized in applications that contaminate the 
+equipment with harmful products during its handling and repair. Any other damages, 
+consequences, indemnity claims, expenses and other costs caused by the lack of 
+decontamination will be attributed to the client. Kindly, fill out the Declaration of 
+Decontamination prior to shipping products to SMAR or its dealers, which can be accessed at  
+www.smar.com/doc/declarationofcontamination.pdf and include in the packaging. 
+ 
+14.  This warranty certificate is valid only when accompanying the purchase invoice. 
+ 
+ 
+ 
+ 
+
+
+===== PAGE 71 =====
+APPENDIX 
+ 
+MOUNTING BRACKET FOR POSITIONER – LINEAR STROKE VALVE 
+MOUNTING INSTRUCTIONS 
+1 –Attach the magnet to the magnet bracket 
+support before connect them to the valve 
+stem. 
+ 
+ 
+ 
+2 - The stem nuts should be used to fasten 
+the magnet bracket. 
+ 
+3 – Mount the magnet assembly using the 
+nuts of the valve stem. The mounting 
+bracket has two parts that should be 
+mounted to the stem.  
+ 
+ 
+ 
+
+
+===== PAGE 72 =====
+2                                                                                                                                                                         Mounting Instructions 
+ 
+ 
+4 – Tighten the hex screw that join the two 
+parts of the magnet bracket. It will avoid 
+sliding of the two parts of the bracket during 
+the fastening of the stem nuts. 
+ 
+ 
+5 – Tighten the stem nuts. 
+ 
+6 – Attach the “clamps” to the positioner 
+bracket. 
+If your actuator is pillar type, go to step 15 
+to see the instructions. 
+ 
+ 
+CLAMPS 
+
+
+===== PAGE 73 =====
+BFY – MOUNTING BRACKET FOR POSITIONER FY                                                                                                                         3 
+ 
+7 – Adjust the clamps according to the 
+width of the yoke and tighten the bolts 
+finger tight. 
+ 
+8 – Mount the positioner back plate. Tighten 
+the nuts finger tight. 
+ 
+9 – Use the plate as a guidance to adjust 
+the position of the positioner so that the 
+back plate is about 1 mm apart from the 
+magnet. 
+BACK  PLATE
+ADJUST
+ 
+ 
+
+
+===== PAGE 74 =====
+4                                                                                                                                                                         Mounting Instructions 
+ 
+10 – Fasten the nuts to fix the positioner 
+bracket to the yoke. 
+If the actuator is pillar type, fasten the U-
+clamp nuts. 
+ 
+ 
+11 – Mount the positioner to the plate and 
+tighten the hex screws. You can take the 
+back plate apart to facilitate the assembling.  
+ 
+ 
+ 
+12 – Move the positioner as to adjust the 
+Hall sensor tip in the center of the magnet. 
+Tighten the nuts after the adjustment. 
+ 
+2mm
+ to 
+4mm
+ 
+ 
+ATTENTION: 
+A minimum distance of 2mm and a maximum 
+distance of 4mm is recommended between the 
+magnet external face and the positioner face. 
+For that, a centralizer device (linear or rotary) 
+must be used. The centralizer device is in the 
+positioner packing. 
+ 
+ 
+
+
+===== PAGE 75 =====
+BFY – MOUNTING BRACKET FOR POSITIONER FY                                                                                                                         5 
+ 
+ 
+13 – Put the pressure equivalent to the half 
+of the stem travel and adjust the height of 
+the bracket assembly to have the arrows 
+matching.  
+ 
+ 
+ 
+14 - Tighten the bolts to fasten the clamps 
+to the yoke. 
+ 
+If the actuator is pillar type, fasten the U-
+clamp nuts. 
+ 
+ 
+ 
+ 
+
+
+===== PAGE 76 =====
+6                                                                                                                                                                         Mounting Instructions 
+ 
+ 
+MOUNTING DETAILS FOR THE PILLAR TYPE ACTUATOR  
+ 
+15 - This is the mounting bracket using U-
+clamps to be mounted on pillar type 
+actuators. 
+ 
+ 
+16 – After assembling the U-clamps, follow 
+the steps 8 to 13. 
+ 
+ 
+ 
+ 
+
+
+===== PAGE 77 =====
+ROTARY VALVE POSITIONER BRACKET 
+ 
+MOUNTING INSTRUCTIONS 
+ 
+Rotary Valve Positioner Bracket Parts. 
+ 
+1- Attach the clamps to the threaded 
+orifices existent on the actuator. 
+Do not tight them completely. 
+ 
+The bolts are not supplied with the 
+mounting bracket and they must be in 
+accordance with size and thread of the 
+actuator holes. 
+ 
+2- Attach the magnet bracket to the 
+Actuator extremity (NAMUR).  
+ 
+The end the valve shaft must comply with 
+Namur Standard. 
+ 
+ 
+ 
+
+
+===== PAGE 78 =====
+2                                                                                                                                                                         Mounting Instructions 
+ 
+ 
+3 – Fasten the hex screw. 
+ 
+ 
+4 – Attach the magnet to the NAMUR 
+adapter. 
+Do not fasten the bolts completely, allowing 
+the magnet rotation. 
+ 
+5 – Mounting the positioner bracket  
+through the threaded rods. 
+ 
+ 
+
+
+===== PAGE 79 =====
+BFY – MOUNTING BRACKET FOR POSITIONER FY                                                                                                                         3 
+ 
+ 
+6 – Use the centralizer gadget to get the 
+bracket centralized with the magnet. 
+ 
+ 
+7 – Adjust the positioner bracket using the 
+centralizer gadget and the nuts to get the 
+height. 
+ 
+8 – Place the nut and washers. 
+Do not fasten the nuts completely. 
+ 
+ 
+
+
+===== PAGE 80 =====
+4                                                                                                                                                                         Mounting Instructions 
+ 
+ 
+9 – Tighten the clamp bolts to fasten them 
+to the actuator. 
+ 
+ 
+10 – Fasten the positioner bracket bolts to 
+the clamps fastening.  
+ 
+ 
+11 – Remove the centralizer gadget and 
+fasten the positioner to the positioner 
+bracket. 
+ 
+ 
+ 
+
+
+===== PAGE 81 =====
+BFY – MOUNTING BRACKET FOR POSITIONER FY                                                                                                                         5 
+ 
+ 
+12 – Put the pressure equivalent to the half 
+of the stem and adjust the magnet position 
+to have the arrows matching.  
+ 
+ 
+ 
+13 – Tighten the bolts to fasten the magnet 
+to the magnet bracket. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+===== PAGE 82 =====
+6                                                                                                                                                                         Mounting Instructions 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

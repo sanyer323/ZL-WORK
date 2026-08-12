@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FY301 产品部件 · 半透明原理动作台</title>
+<style>
+  :root { --bg:#0b1220; --fg:#e8eef7; --muted:#94a3b8; --accent:#4fc3f7; --air:#ffb74d; --piezo:#ce93d8; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Microsoft YaHei","Segoe UI",sans-serif; background:radial-gradient(900px 500px at 10% 0%,#152238,var(--bg)); color:var(--fg); }
+  header { padding:16px 22px 8px; border-bottom:1px solid #1f2937; }
+  header h1 { margin:0 0 6px; font-size:20px; }
+  header p { margin:0; color:var(--muted); font-size:13px; max-width:980px; line-height:1.5; }
+  .wrap { display:grid; grid-template-columns:280px 1fr; gap:14px; padding:14px; max-width:1400px; margin:0 auto; }
+  .panel { background:#111827cc; border:1px solid #243044; border-radius:12px; padding:14px; }
+  .panel h2 { margin:0 0 10px; font-size:13px; color:var(--accent); }
+  .tabs { display:flex; flex-direction:column; gap:6px; }
+  .tabs button { text-align:left; background:#1e293b; border:1px solid #334155; color:var(--fg); border-radius:8px; padding:10px 12px; cursor:pointer; font-size:13px; }
+  .tabs button.active, .tabs button:hover { border-color:var(--accent); color:var(--accent); }
+  label { display:block; font-size:12px; color:var(--muted); margin:12px 0 4px; }
+  input[type=range] { width:100%; }
+  canvas { width:100%; height:auto; background:#0a101a; border-radius:10px; display:block; }
+  .note { margin-top:10px; font-size:12px; color:var(--muted); line-height:1.5; }
+  @media (max-width:960px){ .wrap{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<header>
+  <h1>FY301 产品部件 · 半透明原理动作台</h1>
+  <p>每个部件用实物照片做底板，半透明透视，叠加可见动作（气流 / 弯曲 / 膜片起伏 / 信号流）。素材来自 <code>SMAR SKD</code> 与拆解图。</p>
+</header>
+<div class="wrap">
+  <aside class="panel">
+    <h2>部件</h2>
+    <div class="tabs" id="tabs"></div>
+    <label>透明度 <span id="aVal">0.55</span></label>
+    <input id="alpha" type="range" min="0.2" max="0.9" step="0.01" value="0.55" />
+    <label>动作幅度 / 电压（归一） <span id="mVal">0.50</span></label>
+    <input id="motion" type="range" min="0" max="1" step="0.01" value="0.5" />
+    <label><input id="auto" type="checkbox" checked /> 自动往复动作</label>
+    <div class="note" id="desc"></div>
+  </aside>
+  <main class="panel">
+    <h2>透视动作预览</h2>
+    <canvas id="cv" width="1000" height="620"></canvas>
+  </main>
+</div>
+<script>
+const ASSET = "out/product_parts/_assets/";
+const PARTS = [
+  { id:"pneumatic", title:"气动块 IN/OUT", img:"pneumatic_block.png", ghost:"pneumatic_block_ghost.png",
+    desc:"半透明气动块上可见滑阀位移与 IN→OUT1/OUT2 气流粒子。" },
+  { id:"flapper", title:"挡板（弯曲）", img:"flapper.png", ghost:"flapper_ghost.png",
+    desc:"实物挡板半透明；弯曲靠近喷嘴时排气受阻，先导压升高。" },
+  { id:"diaphragm", title:"膜片（起伏）", img:"diaphragm.png", ghost:"diaphragm_ghost.png",
+    desc:"膜片随先导压起伏，连杆推动滑阀，体现力放大。" },
+  { id:"pcb", title:"线路板（信号）", img:"pcb_front.png", ghost:"pcb_front_ghost.png",
+    desc:"4–20mA → CPU → 压电驱动电压在实物板上流动。" },
+  { id:"skd", title:"整机拆解联锁", img:"skd_full.png", ghost:"skd_full_ghost.png",
+    desc:"拆解图半透明分层，电气与气路动作同时高亮。" },
+  { id:"test", title:"测试台气路", img:"test_platform.png", ghost:"test_platform_ghost.png",
+    desc:"测试台实物半透明，气管中流动作示意。" },
+];
+
+const cv = document.getElementById("cv");
+const ctx = cv.getContext("2d");
+const cache = {};
+let cur = PARTS[0];
+let motion = 0.5, alpha = 0.55, auto = true, t = 0;
+
+function loadImg(src) {
+  if (cache[src]) return cache[src];
+  const p = new Promise((res, rej) => {
+    const im = new Image();
+    im.onload = () => res(im);
+    im.onerror = rej;
+    im.src = ASSET + src;
+  });
+  cache[src] = p;
+  return p;
+}
+
+const tabs = document.getElementById("tabs");
+PARTS.forEach((p,i) => {
+  const b = document.createElement("button");
+  b.textContent = p.title;
+  if (i===0) b.classList.add("active");
+  b.onclick = () => {
+    [...tabs.children].forEach(x => x.classList.remove("active"));
+    b.classList.add("active");
+    cur = p;
+    document.getElementById("desc").textContent = p.desc;
+  };
+  tabs.appendChild(b);
+});
+document.getElementById("desc").textContent = cur.desc;
+document.getElementById("alpha").oninput = e => { alpha = +e.target.value; document.getElementById("aVal").textContent = alpha.toFixed(2); };
+document.getElementById("motion").oninput = e => { motion = +e.target.value; document.getElementById("mVal").textContent = motion.toFixed(2); auto = false; document.getElementById("auto").checked = false; };
+document.getElementById("auto").onchange = e => { auto = e.target.checked; };
+
+function drawFitted(im, a, scale=1, dy=0) {
+  const maxW = cv.width * 0.78, maxH = cv.height * 0.78;
+  let w = im.width, h = im.height;
+  const s = Math.min(maxW/w, maxH/h) * scale;
+  w*=s; h*=s;
+  const x = (cv.width-w)/2, y = (cv.height-h)/2 + dy;
+  ctx.globalAlpha = a;
+  ctx.drawImage(im, x, y, w, h);
+  ctx.globalAlpha = 1;
+  return {x,y,w,h};
+}
+
+async function frame() {
+  if (auto) {
+    t += 0.02;
+    motion = 0.5 + 0.5 * Math.sin(t);
+    document.getElementById("motion").value = motion;
+    document.getElementById("mVal").textContent = motion.toFixed(2);
+  }
+  ctx.clearRect(0,0,cv.width,cv.height);
+  ctx.fillStyle = "#0a101a"; ctx.fillRect(0,0,cv.width,cv.height);
+  try {
+    const ghost = await loadImg(cur.ghost || cur.img);
+    const solid = await loadImg(cur.img);
+    const box = drawFitted(ghost, alpha * 0.85, 1 + (cur.id==="diaphragm"? motion*0.08:0), cur.id==="diaphragm"? -motion*12:0);
+    drawFitted(solid, alpha * 0.35, 1 + (cur.id==="diaphragm"? motion*0.08:0), cur.id==="diaphragm"? -motion*12:0);
+
+    // motion overlays by part
+    if (cur.id === "pneumatic") {
+      // spool
+      const sy = box.y + box.h*(0.42 - (motion-0.5)*0.12);
+      ctx.fillStyle = "rgba(120,144,156,.55)";
+      roundRect(box.x+box.w*0.38, sy, box.w*0.18, box.h*0.1, 6);
+      for (let i=0;i<18;i++){
+        const u=(i/18+t*0.4)%1;
+        ctx.beginPath();
+        ctx.fillStyle = motion>0.55? "#81c784":"#ff8a65";
+        ctx.arc(box.x+box.w*(0.15+u*0.7), box.y+box.h*(motion>0.55?0.58:0.34)+Math.sin(u*12)*6, 3, 0, Math.PI*2);
+        ctx.fill();
+      }
+      caption(motion>0.55? "滑阀上移 → OUT1↑":"滑阀下移 → OUT2↑");
+    } else if (cur.id === "flapper") {
+      const ny = box.y + box.h*0.92 - motion*20;
+      ctx.fillStyle = "rgba(255,183,77,.35)";
+      ctx.fillRect(cv.width/2-24, ny, 48, 50);
+      ctx.strokeStyle = "#ce93d8"; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.moveTo(cv.width/2+70, ny); ctx.lineTo(cv.width/2+70, ny- (50-motion*36)); ctx.stroke();
+      caption(motion>0.55? "挡板靠近喷嘴 → 先导压↑":"挡板远离 → 先导压↓");
+    } else if (cur.id === "diaphragm") {
+      ctx.strokeStyle="#4fc3f7"; ctx.lineWidth=3;
+      ctx.beginPath(); ctx.moveTo(cv.width/2, box.y+box.h); ctx.lineTo(cv.width/2, box.y+box.h+70+motion*35); ctx.stroke();
+      ctx.fillStyle="rgba(255,138,101,.45)";
+      roundRect(cv.width/2-45, box.y+box.h+70+motion*35, 90, 28, 6);
+      caption("膜片起伏 → 连杆推动滑阀");
+    } else if (cur.id === "pcb") {
+      const path=[[box.x, box.y+box.h*0.8],[box.x+box.w*0.5, box.y+box.h*0.5],[box.x+box.w, box.y+box.h*0.3]];
+      ctx.strokeStyle="rgba(79,195,247,.35)"; ctx.beginPath();
+      path.forEach((p,i)=> i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])); ctx.stroke();
+      for(let i=0;i<8;i++){
+        const u=(t*0.5+i/8)%1; const seg=Math.min(Math.floor(u*(path.length-1)), path.length-2);
+        const l=u*(path.length-1)-seg;
+        const x=path[seg][0]+(path[seg+1][0]-path[seg][0])*l;
+        const y=path[seg][1]+(path[seg+1][1]-path[seg][1])*l;
+        ctx.fillStyle="#ce93d8"; ctx.beginPath(); ctx.arc(x,y,4,0,Math.PI*2); ctx.fill();
+      }
+      caption(`压电驱动示意 ≈ ${(30+40*motion).toFixed(0)} V`);
+    } else {
+      for(let i=0;i<16;i++){
+        const u=(i/16+t*0.35)%1;
+        ctx.fillStyle="#ffb74d"; ctx.beginPath();
+        ctx.arc(box.x+box.w*(0.1+u*0.8), box.y+box.h*(0.3+0.2*Math.sin(u*10+i)), 3,0,Math.PI*2); ctx.fill();
+      }
+      caption("实物半透明 + 气/电动作粒子");
+    }
+  } catch (e) {
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "16px Microsoft YaHei";
+    ctx.fillText("素材未生成：请先运行 render_product_parts.py", 40, 80);
+    ctx.fillText(String(e.message||e), 40, 110);
+  }
+  requestAnimationFrame(frame);
+}
+function roundRect(x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); ctx.fill(); }
+function caption(s){ ctx.fillStyle="#e8eef7"; ctx.font="15px Microsoft YaHei"; ctx.textAlign="center"; ctx.fillText(s, cv.width/2, cv.height-24); ctx.textAlign="left"; }
+frame();
+</script>
+</body>
+</html>
