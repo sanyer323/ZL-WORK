@@ -1,7 +1,7 @@
 # 电动执行机构研发
 
 对标 Rotork IQ3 Pro / AUMA SA。  
-**当前：Step 0–5 完成。下一步 Step 6 控制电子。**
+**当前：Step 0–6 完成。下一步 Step 7 固件最小集。**
 
 | 步骤 | 文件 | 状态 |
 |------|------|------|
@@ -11,15 +11,11 @@
 | 3 | [03_总成方案.md](03_总成方案.md) · [DXF/EA10_总成半剖.dxf](DXF/EA10_总成半剖.dxf) | 完成 |
 | 4 | [04_传动详细设计.md](04_传动详细设计.md) · [sim/drive.py](sim/drive.py) · [DXF/EA10_传动剖视.dxf](DXF/EA10_传动剖视.dxf) | 完成 |
 | 5 | [05_传感方案.md](05_传感方案.md) · [sim/sense.py](sim/sense.py) · [DXF/EA10_传感布置.dxf](DXF/EA10_传感布置.dxf) | 完成 |
-| 6–9 | 电子 / 固件 / 机加详图 / 样机 | 未做 |
+| 6 | [06_控制电子.md](06_控制电子.md) · [EA10_控制电子框图.html](EA10_控制电子框图.html) | 完成 |
+| 7–9 | 固件 / 机加详图 / 样机 | 未做 |
 | — | [罗托克_奥玛_技术差异对比.md](罗托克_奥玛_技术差异对比.md) | 完成 |
 | — | [99_本阶段完成与缺项.md](99_本阶段完成与缺项.md) | 总清单 |
 
 ```bash
-python3 sim/sizing.py
-python3 sim/drive.py
-python3 sim/sense.py
-python3 draw_EA10_assembly.py
-python3 draw_EA10_drive.py
-python3 draw_EA10_sense.py
+python3 sim/sizing.py && python3 sim/drive.py && python3 sim/sense.py
 ```
