@@ -1,5 +1,5 @@
 const app = getApp()
-const { callCloud, showError, confirm, showBalanceHint } = require('../../utils/api')
+const { callCloud, showError, confirm, showBalanceHint, waitForAppReady } = require('../../utils/api')
 const { formatMoney, formatDate } = require('../../utils/format')
 
 Page({

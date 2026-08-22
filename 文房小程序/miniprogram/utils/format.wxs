@@ -1,0 +1,35 @@
+/** 金额两位小数 */
+function money(n) {
+  var v = parseFloat(n)
+  if (isNaN(v)) return '0.00'
+  return v.toFixed(2)
+}
+
+/** 日期时间 YYYY-MM-DD HH:mm */
+function dateTime(d) {
+  if (!d) return ''
+  var date = getDate(d)
+  if (!date) return ''
+  var y = date.getFullYear()
+  var m = date.getMonth() + 1
+  var day = date.getDate()
+  var h = date.getHours()
+  var min = date.getMinutes()
+  return y + '-' + pad(m) + '-' + pad(day) + ' ' + pad(h) + ':' + pad(min)
+}
+
+function pad(n) {
+  n = parseInt(n, 10)
+  return n < 10 ? '0' + n : '' + n
+}
+
+function txnType(type) {
+  var map = { recharge: '充值', deduct: '扣费', adjust: '调整', refund: '退款' }
+  return map[type] || type || ''
+}
+
+module.exports = {
+  money: money,
+  dateTime: dateTime,
+  txnType: txnType
+}

@@ -1,9 +1,28 @@
-const { formatMoney } = require('./format')
 const { PREVIEW_MODE } = require('../config')
 const { mockCall } = require('./preview')
 
-function callCloud(name, data = {}) {
-  if (PREVIEW_MODE) {
+/** 等待 App 启动完成，避免首页 onShow 时 session 尚未就绪 */
+function waitForAppReady(app, timeoutMs = 5000) {
+  if (app.globalData.sessionReady) {
+    return Promise.resolve()
+  }
+  return new Promise(resolve => {
+    const start = Date.now()
+    const tick = () => {
+      if (app.globalData.sessionReady || Date.now() - start > timeoutMs) {
+        resolve()
+        return
+      }
+      setTimeout(tick, 50)
+    }
+    tick()
+  })
+}
+
+async function callCloud(name, data = {}) {
+  const app = getApp()
+
+  if (PREVIEW_MODE || app.globalData.previewMode) {
     return mockCall(name, data).then(result => {
       if (result.ok === false) {
         const err = new Error(result.message || '操作失败')
@@ -11,10 +30,13 @@ function callCloud(name, data = {}) {
         throw err
       }
       return result
-    }).catch(err => {
-      if (err && err.message) throw err
-      throw new Error(err.message || '操作失败')
     })
+  }
+
+  await waitForAppReady(app)
+
+  if (!wx.cloud) {
+    throw new Error('当前环境不支持云开发，请开启预览模式或升级基础库')
   }
 
   return wx.cloud.callFunction({ name, data }).then(res => {
@@ -47,6 +69,7 @@ function confirm(content) {
 }
 
 function showBalanceHint(balance, classPrice) {
+  const { formatMoney } = require('./format')
   const lessons = classPrice > 0 ? Math.floor(balance / classPrice) : 0
   return `余额 ¥${formatMoney(balance)}，约可上 ${lessons} 次课（¥${formatMoney(classPrice)}/次）`
 }
@@ -55,5 +78,6 @@ module.exports = {
   callCloud,
   showError,
   confirm,
-  showBalanceHint
+  showBalanceHint,
+  waitForAppReady
 }

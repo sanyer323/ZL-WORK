@@ -1,10 +1,13 @@
+<wxs module="fmt" src="../../utils/format.wxs" />
+
 <view class="container checkin-page">
   <view wx:if="{{loading}}" class="empty">加载中…</view>
 
   <block wx:elif="{{!student}}">
     <view class="card empty-card">
       <view>尚未绑定学员信息</view>
-      <view class="text-muted">请联系书法老师，提供姓名和手机号完成绑定。</view>
+      <view class="text-muted">预览模式下应自动显示学员；正式环境请到「我的」绑定。</view>
+      <button class="btn-primary" style="margin-top:24rpx" bindtap="goProfile">去我的</button>
     </view>
   </block>
 
@@ -15,14 +18,14 @@
       <view class="circle-inner">
         <text wx:if="{{checkedInToday}}">已签到</text>
         <text wx:else>点击签到</text>
-        <text class="circle-sub">扣 ¥{{formatMoney(classPrice)}}</text>
+        <text class="circle-sub">扣 ¥{{fmt.money(classPrice)}}</text>
       </view>
     </view>
 
     <view class="card stats">
       <view class="stat-item">
         <view class="text-muted">当前余额</view>
-        <view class="money money-sm">¥{{formatMoney(student.balance)}}</view>
+        <view class="money money-sm">¥{{fmt.money(student.balance)}}</view>
       </view>
       <view class="stat-item">
         <view class="text-muted">累计上课</view>

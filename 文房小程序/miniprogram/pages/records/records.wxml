@@ -1,12 +1,14 @@
+<wxs module="fmt" src="../../utils/format.wxs" />
+
 <view class="container">
   <view class="card summary-row">
     <view>
       <view class="text-muted">累计充值</view>
-      <view class="money money-sm plus">+{{formatMoney(summary.recharge)}}</view>
+      <view class="money money-sm plus">+{{fmt.money(summary.recharge)}}</view>
     </view>
     <view>
       <view class="text-muted">累计扣费</view>
-      <view class="money money-sm minus">-{{formatMoney(summary.deduct)}}</view>
+      <view class="money money-sm minus">-{{fmt.money(summary.deduct)}}</view>
     </view>
   </view>
 
@@ -17,10 +19,10 @@
     <view class="record-item" wx:for="{{records}}" wx:key="_id">
       <view class="record-main">
         <view class="record-title">{{item.title}}</view>
-        <view class="text-muted">{{formatDateTime(item.createdAt)}} · {{txnTypeLabel(item.type)}}</view>
+        <view class="text-muted">{{fmt.dateTime(item.createdAt)}} · {{fmt.txnType(item.type)}}</view>
       </view>
       <view class="money {{item.amount > 0 ? 'plus' : 'minus'}}">
-        {{item.amount > 0 ? '+' : ''}}{{formatMoney(item.amount)}}
+        {{item.amount > 0 ? '+' : ''}}{{fmt.money(item.amount)}}
       </view>
     </view>
   </view>
