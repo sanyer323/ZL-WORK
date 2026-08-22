@@ -1,6 +1,22 @@
 const { formatMoney } = require('./format')
+const { PREVIEW_MODE } = require('../config')
+const { mockCall } = require('./preview')
 
 function callCloud(name, data = {}) {
+  if (PREVIEW_MODE) {
+    return mockCall(name, data).then(result => {
+      if (result.ok === false) {
+        const err = new Error(result.message || '操作失败')
+        err.code = result.code
+        throw err
+      }
+      return result
+    }).catch(err => {
+      if (err && err.message) throw err
+      throw new Error(err.message || '操作失败')
+    })
+  }
+
   return wx.cloud.callFunction({ name, data }).then(res => {
     const result = res.result || {}
     if (result.ok === false) {

@@ -1,4 +1,5 @@
 <view class="container">
+  <view class="preview-banner" wx:if="{{previewMode}}">本地预览模式 · 数据保存在本机，配置云开发后切换为正式版</view>
   <view wx:if="{{loading}}" class="empty">加载中…</view>
 
   <block wx:elif="{{!student}}">

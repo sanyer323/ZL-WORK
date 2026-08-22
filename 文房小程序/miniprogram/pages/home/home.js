@@ -5,6 +5,7 @@ const { formatMoney, formatDateTime } = require('../../utils/format')
 Page({
   data: {
     loading: true,
+    previewMode: false,
     student: null,
     isAdmin: false,
     classPrice: 150,
@@ -13,6 +14,7 @@ Page({
   },
 
   onShow() {
+    this.setData({ previewMode: getApp().globalData.previewMode })
     this.loadData()
   },
 

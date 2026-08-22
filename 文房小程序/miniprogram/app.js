@@ -1,14 +1,22 @@
-const { CLOUD_ENV_ID } = require('./config')
+const { CLOUD_ENV_ID, PREVIEW_MODE } = require('./config')
 
 App({
   globalData: {
     userInfo: null,
     student: null,
     isAdmin: false,
-    cloudReady: false
+    cloudReady: false,
+    previewMode: PREVIEW_MODE
   },
 
   onLaunch() {
+    if (PREVIEW_MODE) {
+      console.info('[文房] 本地预览模式：未配置云环境，使用模拟数据')
+      this.globalData.cloudReady = true
+      this.bootstrapSession()
+      return
+    }
+
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上基础库以使用云能力')
       return
@@ -25,8 +33,10 @@ App({
 
   async bootstrapSession() {
     try {
-      const res = await wx.cloud.callFunction({ name: 'login' })
-      const data = res.result || {}
+      const res = PREVIEW_MODE
+        ? await require('./utils/preview').mockCall('login')
+        : (await wx.cloud.callFunction({ name: 'login' })).result
+      const data = res || {}
       this.globalData.userInfo = data.userInfo || null
       this.globalData.student = data.student || null
       this.globalData.isAdmin = !!data.isAdmin
@@ -36,8 +46,10 @@ App({
   },
 
   async refreshProfile() {
-    const res = await wx.cloud.callFunction({ name: 'getProfile' })
-    const data = res.result || {}
+    const res = PREVIEW_MODE
+      ? await require('./utils/preview').mockCall('getProfile')
+      : (await wx.cloud.callFunction({ name: 'getProfile' })).result
+    const data = res || {}
     this.globalData.student = data.student || null
     this.globalData.isAdmin = !!data.isAdmin
     return data

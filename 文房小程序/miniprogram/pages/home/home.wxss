@@ -1,4 +1,12 @@
-.hero-title {
+.preview-banner {
+  background: #fff3e0;
+  color: #e65100;
+  font-size: 22rpx;
+  text-align: center;
+  padding: 12rpx 24rpx;
+  margin: -32rpx -32rpx 24rpx;
+}
+
   font-size: 40rpx;
   font-weight: 700;
   margin-bottom: 16rpx;
