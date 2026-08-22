@@ -1,0 +1,27 @@
+<view class="container">
+  <view class="card summary-row">
+    <view>
+      <view class="text-muted">累计充值</view>
+      <view class="money money-sm plus">+{{formatMoney(summary.recharge)}}</view>
+    </view>
+    <view>
+      <view class="text-muted">累计扣费</view>
+      <view class="money money-sm minus">-{{formatMoney(summary.deduct)}}</view>
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="empty">加载中…</view>
+  <view wx:elif="{{!records.length}}" class="empty">暂无明细</view>
+
+  <view class="card" wx:else>
+    <view class="record-item" wx:for="{{records}}" wx:key="_id">
+      <view class="record-main">
+        <view class="record-title">{{item.title}}</view>
+        <view class="text-muted">{{formatDateTime(item.createdAt)}} · {{txnTypeLabel(item.type)}}</view>
+      </view>
+      <view class="money {{item.amount > 0 ? 'plus' : 'minus'}}">
+        {{item.amount > 0 ? '+' : ''}}{{formatMoney(item.amount)}}
+      </view>
+    </view>
+  </view>
+</view>

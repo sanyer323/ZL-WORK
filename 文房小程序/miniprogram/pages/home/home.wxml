@@ -1,0 +1,53 @@
+<view class="container">
+  <view wx:if="{{loading}}" class="empty">加载中…</view>
+
+  <block wx:elif="{{!student}}">
+    <view class="card hero">
+      <view class="hero-title">欢迎来到文房书法</view>
+      <view class="text-muted">首次使用请联系老师绑定学员信息，绑定后即可自助充值、上课签到扣费。</view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="card balance-card">
+      <view class="text-muted">账户余额（元）</view>
+      <view class="money money-lg">¥{{formatMoney(student.balance)}}</view>
+      <view class="text-muted sub">单次课费 ¥{{formatMoney(classPrice)}} · 约 {{student.estimatedLessons || 0}} 次课</view>
+      <view class="actions">
+        <button class="btn-primary" bindtap="goRecharge">充值</button>
+        <button class="btn-outline" bindtap="goCheckin">{{checkedInToday ? '今日已签到' : '去签到'}}</button>
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{checkedInToday}}">
+      <view class="tag tag-success">今日已签到扣费</view>
+      <view class="text-muted" style="margin-top:12rpx">无需重复签到，祝练字愉快。</view>
+    </view>
+
+    <view class="card" wx:if="{{student.balance < classPrice}}">
+      <view class="tag tag-warn">余额不足</view>
+      <view class="text-muted" style="margin-top:12rpx">余额低于单次课费，请先充值后再签到。</view>
+    </view>
+
+    <view class="card">
+      <view class="card-title">最近明细</view>
+      <block wx:if="{{recentRecords.length}}">
+        <view class="record-row" wx:for="{{recentRecords}}" wx:key="_id">
+          <view>
+            <view>{{item.title}}</view>
+            <view class="text-muted">{{formatDateTime(item.createdAt)}}</view>
+          </view>
+          <view class="money {{item.amount > 0 ? 'plus' : 'minus'}}">
+            {{item.amount > 0 ? '+' : ''}}{{formatMoney(item.amount)}}
+          </view>
+        </view>
+      </block>
+      <view wx:else class="text-muted">暂无记录</view>
+      <view class="link" bindtap="goRecords">查看全部 →</view>
+    </view>
+  </block>
+
+  <view class="admin-entry" wx:if="{{isAdmin}}" bindtap="goAdmin">
+    老板后台 →
+  </view>
+</view>

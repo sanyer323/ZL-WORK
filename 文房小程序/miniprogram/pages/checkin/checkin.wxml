@@ -1,0 +1,45 @@
+<view class="container checkin-page">
+  <view wx:if="{{loading}}" class="empty">加载中…</view>
+
+  <block wx:elif="{{!student}}">
+    <view class="card empty-card">
+      <view>尚未绑定学员信息</view>
+      <view class="text-muted">请联系书法老师，提供姓名和手机号完成绑定。</view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="date-badge">{{today}}</view>
+
+    <view class="checkin-circle {{checkedInToday ? 'done' : ''}}" bindtap="onCheckin">
+      <view class="circle-inner">
+        <text wx:if="{{checkedInToday}}">已签到</text>
+        <text wx:else>点击签到</text>
+        <text class="circle-sub">扣 ¥{{formatMoney(classPrice)}}</text>
+      </view>
+    </view>
+
+    <view class="card stats">
+      <view class="stat-item">
+        <view class="text-muted">当前余额</view>
+        <view class="money money-sm">¥{{formatMoney(student.balance)}}</view>
+      </view>
+      <view class="stat-item">
+        <view class="text-muted">累计上课</view>
+        <view class="money money-sm">{{student.totalClasses || 0}} 次</view>
+      </view>
+    </view>
+
+    <view class="text-muted tip">每次到课点击一次，系统自动扣费并记录，老板无需手工统计。</view>
+  </block>
+
+  <button
+    wx:if="{{student && !checkedInToday}}"
+    class="btn-primary check-btn"
+    loading="{{checking}}"
+    disabled="{{checking}}"
+    bindtap="onCheckin"
+  >
+    确认今日到课并扣费
+  </button>
+</view>

@@ -1,0 +1,24 @@
+<view class="container">
+  <picker mode="date" fields="month" value="{{month}}" bindchange="onMonthChange">
+    <view class="month-picker">{{month}} ▼</view>
+  </picker>
+
+  <view wx:if="{{loading}}" class="empty">加载中…</view>
+  <block wx:elif="{{stats}}">
+    <view class="card">
+      <view class="card-title">本月汇总</view>
+      <view class="stat-line"><text>签到人次</text><text>{{stats.checkinCount}}</text></view>
+      <view class="stat-line"><text>扣费合计</text><text class="money">¥{{formatMoney(stats.deductTotal)}}</text></view>
+      <view class="stat-line"><text>充值合计</text><text class="money plus">¥{{formatMoney(stats.rechargeTotal)}}</text></view>
+    </view>
+
+    <view class="card">
+      <view class="card-title">学员上课排行</view>
+      <view wx:if="{{!stats.byStudent.length}}" class="text-muted">暂无数据</view>
+      <view class="rank-row" wx:for="{{stats.byStudent}}" wx:key="name">
+        <text>{{index + 1}}. {{item.name}}</text>
+        <text>{{item.count}} 次 · ¥{{formatMoney(item.amount)}}</text>
+      </view>
+    </view>
+  </block>
+</view>
