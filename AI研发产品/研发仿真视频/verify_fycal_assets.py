@@ -14,9 +14,7 @@ FYCAL_MANIFEST_PATH = FYCAL_FIGS / "manifest.json"
 BUILD_SCRIPT = ROOT / "build_principle_edition.py"
 
 
-def parse_segments_fycal_and_parts(src: str) -> list[dict]:
-    """Lightweight parse of SEGMENTS image refs without importing build deps."""
-    # Extract fycal_imgs tuples and parts lists from SEGMENTS block.
+def parse_segments(src: str) -> list[dict]:
     block_m = re.search(r"SEGMENTS\s*=\s*\[(.*?)\n\]\n", src, re.S)
     if not block_m:
         raise RuntimeError("SEGMENTS not found in build_principle_edition.py")
@@ -25,20 +23,23 @@ def parse_segments_fycal_and_parts(src: str) -> list[dict]:
     for seg_m in re.finditer(r"\{\s*\"id\":\s*\"(.*?)\"(.*?)(?=\n\s*\{\s*\"id\":|\Z)", block, re.S):
         sid = seg_m.group(1)
         body = seg_m.group(2)
-        parts = re.findall(r"\"parts\":\s*\[(.*?)\]", body, re.S)
-        part_labels = []
-        if parts:
-            part_labels = re.findall(r"\"([^\"]+)\"", parts[0])
+        parts_m = re.findall(r"\"parts\":\s*\[(.*?)\]", body, re.S)
+        part_labels = re.findall(r"\"([^\"]+)\"", parts_m[0]) if parts_m else []
         fycal = re.findall(r"\(\s*\"([^\"]+\.png)\"\s*,\s*\"[^\"]*\"\s*\)", body)
-        segs.append({"id": sid, "parts": part_labels, "fycal": fycal})
+        hud_m = re.search(r"\"hud\":\s*\[(.*?)\]", body, re.S)
+        hud = re.findall(r"\"([^\"]+)\"", hud_m.group(1)) if hud_m else []
+        segs.append({"id": sid, "parts": part_labels, "fycal": fycal, "hud": hud})
     return segs
 
 
 def main() -> int:
     errors: list[str] = []
     src = BUILD_SCRIPT.read_text(encoding="utf-8")
-    segs = parse_segments_fycal_and_parts(src)
+    for token in ("side_images", "burn_hud", "make_hud_overlay_png", "compose_sim_with_photos"):
+        if token not in src:
+            errors.append(f"missing implementation: {token}")
 
+    segs = parse_segments(src)
     parts_man = []
     if PARTS.joinpath("manifest.json").exists():
         parts_man = json.loads((PARTS / "manifest.json").read_text(encoding="utf-8"))
@@ -66,6 +67,7 @@ def main() -> int:
         errors.append("disk missing fig14_piezo_base_labeled.png")
 
     for seg in segs:
+        side_count = 0
         for lab in seg["parts"]:
             m = by_label.get(lab)
             if not m:
@@ -74,12 +76,22 @@ def main() -> int:
             p = PARTS / m["file"]
             if not p.exists():
                 errors.append(f"segment {seg['id']} missing part image: {p.name}")
+            else:
+                side_count += 1
         for fname in seg["fycal"]:
             p = FYCAL_FIGS / Path(fname).name
             if not p.exists():
                 errors.append(f"segment {seg['id']} missing FYCAL image: {p.name}")
             elif p.name not in fycal_man:
                 errors.append(f"segment {seg['id']} FYCAL image not in manifest: {p.name}")
+            else:
+                side_count += 1 if not seg["fycal"] else 0
+        # FYCAL segments count fycal images as side panel; part-only count parts.
+        panel_n = len(seg["fycal"]) if seg["fycal"] else len(seg["parts"])
+        if panel_n < 2:
+            errors.append(f"segment {seg['id']} needs >=2 side-panel images, got {panel_n}")
+        if len(seg["hud"]) < 2:
+            errors.append(f"segment {seg['id']} needs >=2 hud badges, got {len(seg['hud'])}")
 
     if errors:
         print("FAIL")
@@ -89,7 +101,8 @@ def main() -> int:
 
     print(
         "OK: FY301 principle assets consistent "
-        f"({len(segs)} segments, {len(fycal_man)} FYCAL manifest entries, relative paths)"
+        f"({len(segs)} segments, side panels + hud badges, "
+        f"{len(fycal_man)} FYCAL manifest entries, relative paths)"
     )
     return 0
 
