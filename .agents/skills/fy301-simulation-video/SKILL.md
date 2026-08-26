@@ -67,7 +67,7 @@ description: >-
 3. **画面三件套**：原理动作 + 爆炸图或零件指认 + 手册关键数。
 4. **旁白说完再切**：信息完整优先于节奏炫技。
 5. **关键数据上镜或上旁白**：不可省略（见下节）。
-6. **增量修改**：已有 `SEGMENTS` / 渲染函数时，只改缺陷清单，禁止无故全盘重写。
+6. **增量修改**：已有 `storyboard.json` / 渲染函数时，只改缺陷清单，禁止无故全盘重写。
 
 ## 必须上镜或上旁白的关键数据
 
@@ -116,23 +116,27 @@ description: >-
 ## 推荐制作流程
 
 ```text
-1. 写清总因果链
-2. 齐手册数、爆炸图、零件名
-3. 写分镜（每段：讲什么 / 图 / 仿真 / 旁白 / 要点）
-4. render_sims.py 出 01–05
-5. build_principle_edition.py 合成原理讲解版
-6. 需要完整版时 build_master.py；需要配音时 add_sapi_voice.py
-7. 人工审片（见验收标准）
+1. 编辑 storyboard.json（旁白 / hud / 侧栏图 / 节拍）
+2. python verify_fycal_assets.py
+3. python run_principle_pipeline.py
+   （缺 01–05 时自动 render_sims，再 build_principle_edition）
+4. 需要完整版时再跑 build_master.py；需要配音时 add_sapi_voice.py
+5. 人工审片（见验收标准）
 ```
 
 常用命令（在 `AI研发产品/研发仿真视频` 下）：
 
 ```powershell
+python verify_fycal_assets.py
+python run_principle_pipeline.py
+python run_principle_pipeline.py --force-sims
 python render_sims.py
 python build_principle_edition.py
 python build_master.py
 python add_sapi_voice.py
 ```
+
+改分镜时优先改 `storyboard.json`，保持旁白、照片节拍、HUD、takeaway 同步。
 
 ## 版本分工
 
@@ -152,7 +156,7 @@ python add_sapi_voice.py
 - 资源路径尽量相对仓库，避免写死本机绝对路径。
 - 图片文件名必须与 `out/_fycal_figs/_named/manifest.json`、代码引用一致。
 - 中文字体在 Windows 常用雅黑/黑体；换环境先确认 CJK 字体，避免方框字。
-- 改分镜时优先改 `build_principle_edition.py` 的 `SEGMENTS`（或抽离后的分镜 JSON），保持旁白、照片节拍、takeaway 同步。
+- 改分镜时优先改 `storyboard.json`（由 `build_principle_edition.load_segments()` 加载），保持旁白、照片节拍、takeaway、hud 同步。
 
 ## 接入 Blender / 高保真三维时
 

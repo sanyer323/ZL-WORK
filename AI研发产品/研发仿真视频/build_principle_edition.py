@@ -117,118 +117,39 @@ def preflight_assets() -> None:
             + ", ".join(weak_side)
         )
 
-SEGMENTS = [
-    {
-        "id": "01",
-        "sim": "01_压电陶瓷原理.mp4",
-        "title": "压电陶瓷挡板：电 → 微小位移",
-        "parts": [],
-        "fycal_imgs": [
-            ("fig16_cleaning_piezo.png", "Fig.16 清洁中的压电陶瓷片"),
-            ("fig18_exploded_piezo.png", "Fig.18 压电底座爆炸图"),
-            ("fig14_piezo_base_labeled.png", "Fig.14 压电底座在 FYCAL 上"),
-        ],
-        # 旁白节拍：陶瓷片 → 爆炸叠装 → FYCAL 底座（相对时间 0~1）
-        "photo_beats": [0.0, 0.30, 0.58],
-        "panel_title": "FYCAL / 压电实物",
-        "hud": ["0–100 V", "目标 ~50 V", "正常 30–70 V"],
-        "part_note": "fycalme 实物图 + FY301ME §2.1：Piezo Vane = 喷嘴挡板",
-        "narration": (
-            "按 FY301 手册：先导级的挡板，就是这块压电陶瓷圆片。"
-            "控制电路加上电压，圆片弯曲，挡住喷嘴前方那一股小气流。"
-            "中间爆炸图是盔帽、垫圈、弹簧的叠装；旋转盔帽改变高度 h，用来标定工作点。"
-            "右图把底座接到 FYCAL，可离线加零到一百伏，单独看陶瓷动作。"
-            "电气上它像电容，稳态几乎不耗环路电流；工作电压希望靠近五十伏，正常约三十到七十伏。"
-            "这一步只做一件事：把电，变成挡板的微小机械位移。"
-        ),
-        "takeaway": "本段要点：压电片=喷嘴挡板（Piezo Vane）；调 h 定工作点；驱动约 0–100 V。",
-    },
-    {
-        "id": "02",
-        "sim": "02_喷嘴挡板先导级.mp4",
-        "title": "节流孔 + 喷嘴：先导室压力",
-        "parts": [],
-        "fycal_imgs": [
-            ("fig12_cal_on_block.png", "Fig.12 压电底座接 FYCAL 供电与气路"),
-            ("fig16_cleaning_piezo.png", "Fig.16 压电片、底座腔、O圈、垫圈"),
-            ("fig10_supply_piezo.png", "Fig.10 供气与压电底座"),
-        ],
-        "photo_beats": [0.0, 0.40, 0.72],
-        "panel_title": "FYCAL 标定实物",
-        "hud": ["FYCAL @20 psi", "0 V ≤ 2", "50 V ≈ 5.8–6.2", "100 V ≈ 12–13"],
-        "part_note": "FY301ME：restriction+nozzle 分压；FYCAL @20 psi → ≤2 / 5.8–6.2 / 12–13 psi",
-        "narration": (
-            "气先经过节流孔，再到喷嘴。节流孔和喷嘴组成分压回路，先导室压力就在这里形成。"
-            "挡板靠近喷嘴，先导压升高；挡板离开，先导压降低。电压升高，通常对应先导压升高。"
-            "手册用 FYCAL 单独标定底座：供气二十磅。"
-            "先零伏、一百伏、再回零伏，减小迟滞；再固定五十伏，把先导压调到五点八到六点二磅。"
-            "核对：零伏不高于两磅；一百伏约十二到十三磅。"
-            "先导压很准，但流量很小，所以必须交给下一级伺服放大。"
-        ),
-        "takeaway": "本段要点：节流孔+喷嘴+挡板 → 先导压；FYCAL 判据按 FY301ME。",
-    },
-    {
-        "id": "03",
-        "sim": "03_膜片放大与滑阀.mp4",
-        "title": "伺服级：膜片力平衡 → 滑阀",
-        "parts": ["膜片", "滑阀", "滑阀套筒"],
-        "fycal_imgs": [],
-        "photo_beats": [0.0, 0.34, 0.68],
-        "panel_title": "零件实物：膜片 / 滑阀",
-        "hud": ["力平衡放大", "OUT1 / OUT2", "失电 → 安全位"],
-        "part_note": "FY301ME §2.1：大膜片先导室 / 小膜片滑阀室力平衡；滑阀提供更大气流",
-        "narration": (
-            "先导室有一块较大的膜片，滑阀室有一块较小的膜片。"
-            "稳态时：先导气压推大膜片的力，等于滑阀侧推小膜片的力，两力平衡。"
-            "先导压一变，平衡被打破，滑阀在套筒里上下移动，直到到达新的平衡位置。"
-            "滑阀一动，就打开大通道：把供气送到 OUT1 或 OUT2，或从排气口放掉。"
-            "直观表现是：驱动电压升高，往往一侧气室出气；电压降低，另一侧气室出气。"
-            "滑阀的作用，是把节流孔那点小流量，放大成能推动执行器的大气流。"
-            "失电安全逻辑通常是：OUT1 到零，OUT2 到供气压力，执行器回预定安全位。"
-        ),
-        "takeaway": "本段要点：先导压变化 → 膜片力再平衡 → 滑阀移位 → OUT1/OUT2。",
-    },
-    {
-        "id": "04",
-        "sim": "04_霍尔反馈与闭环.mp4",
-        "title": "霍尔反馈：实际阀位回控制回路",
-        "parts": ["霍尔传感器", "传感器外壳", "表头外壳"],
-        "fycal_imgs": [],
-        "photo_beats": [0.0, 0.38, 0.70],
-        "panel_title": "零件实物：Hall 反馈",
-        "hud": ["Hall 间隙 2–4 mm", "设定 vs 实际", "回改正电压"],
-        "part_note": "FY301ME §2.2：Control 同时吃 CPU 设定与 Hall 反馈",
-        "narration": (
-            "阀门一动，磁铁跟着动。霍尔传感器装在外壳里，不接触磁铁，只读磁场，得到实际开度。"
-            "安装间隙大约二到四毫米，读数才稳。"
-            "控制电路一边接收来自 CPU 的设定开度，一边接收霍尔反馈的实际开度。"
-            "两者一比较，就去增减压电电压，阀门继续被修正，直到落到目标位置。"
-            "这就是位置闭环：不是开环给一个电压就算完。"
-        ),
-        "takeaway": "本段要点：Hall 反馈实际开度；与设定比较后回改压电电压。",
-    },
-    {
-        "id": "05",
-        "sim": "05_全系统闭环信号流.mp4",
-        "title": "全链路：电 → 气 → 机 → 再回电",
-        "parts": ["线路板", "气动组件外壳", "霍尔传感器"],
-        "fycal_imgs": [],
-        "photo_beats": [0.0, 0.36, 0.70],
-        "panel_title": "零件实物：全链路",
-        "hud": ["环路 ~3.8 mA", "压电 0–100 V", "电 → 气 → 机 → 电"],
-        "part_note": "FY301ME 图2.2：A/D→CPU→Control/压电隔离；环路约 3.8 mA 供电定位器电路",
-        "narration": (
-            "整机按手册方框图这样走："
-            "四到二十毫安经模数转换进 CPU，CPU 给出目标开度；"
-            "控制电路结合霍尔反馈，经隔离后驱动压电挡板。"
-            "定位器电路从环路取电，正常工作约三点八毫安量级，所以稳态压电几乎不额外耗电。"
-            "气路上：节流孔喷嘴形成先导压，膜片滑阀放大到 OUT1 OUT2，推动执行器。"
-            "阀位再经霍尔回到控制电路。整条链是：电，到陶瓷位移，到先导压，到大气流，到阀位，再回电。"
-            "这就是 FY301 的工作原理。"
-        ),
-        "takeaway": "本段要点：4–20 mA→CPU→压电→先导→滑阀→阀位Hall→再校正。",
-    },
-]
+STORYBOARD_PATH = ROOT / "storyboard.json"
+
+
+def normalize_segment(seg: dict) -> dict:
+    """JSON storyboard → runtime segment (fycal_imgs as list[tuple])."""
+    out = dict(seg)
+    imgs = []
+    for item in out.get("fycal_imgs") or []:
+        if isinstance(item, dict):
+            imgs.append((item["file"], item.get("caption") or item["file"]))
+        elif isinstance(item, (list, tuple)) and len(item) >= 2:
+            imgs.append((str(item[0]), str(item[1])))
+        else:
+            raise ValueError(f"bad fycal_imgs item in segment {out.get('id')}: {item!r}")
+    out["fycal_imgs"] = imgs
+    out["parts"] = list(out.get("parts") or [])
+    out["hud"] = list(out.get("hud") or [])
+    out["photo_beats"] = list(out.get("photo_beats") or [])
+    return out
+
+
+def load_segments(path: Path | None = None) -> list[dict]:
+    p = path or STORYBOARD_PATH
+    if not p.exists():
+        raise FileNotFoundError(f"storyboard missing: {p}")
+    data = json.loads(p.read_text(encoding="utf-8"))
+    segs = data["segments"] if isinstance(data, dict) else data
+    if not isinstance(segs, list) or not segs:
+        raise ValueError(f"storyboard has no segments: {p}")
+    return [normalize_segment(s) for s in segs]
+
+
+SEGMENTS = load_segments()
 
 
 def font(size: int):

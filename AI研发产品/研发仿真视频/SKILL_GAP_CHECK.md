@@ -65,19 +65,19 @@
 ### P2 — 影响产线效率
 
 7. **分镜锁在 Python 里，没有独立分镜表**  
-   - `SEGMENTS` 同时含旁白、照片节拍、takeaway  
-   - 改文案要改代码；建议抽 `storyboard.json`（或 YAML）供非程序员改旁白。
+   - 状态：✅ 已修 → [`storyboard.json`](./storyboard.json)  
+   - `build_principle_edition.py` 经 `load_segments()` 读取
 
 8. **无一键流水线入口**  
-   - 需依次跑 `render_sims` → `build_principle_edition` →（可选）`build_master` / `add_sapi_voice`  
-   - 建议：`run_principle_pipeline.py` 或 Makefile/ps1，带「是否重渲仿真」开关。
+   - 状态：✅ 已修 → `run_principle_pipeline.py` / `run_principle_pipeline.ps1`  
+   - 默认：verify →（缺则）render_sims → build_principle_edition
 
 9. **无自动验收脚本**  
-   - Skill 有验收标准，仓库无 checklist 自动化  
-   - 建议：检查五段文件存在、关键数字是否出现在旁白/字幕、引用图片是否都在磁盘上。
+   - 状态：✅ 基础版已有 → `verify_fycal_assets.py`（storyboard + 侧栏 + HUD + 相对路径）  
+   - 仍可增强：成片时长/字幕关键字抽检
 
 10. **CJK 字体依赖 Windows 字体名**  
-    - 换 Linux/云端易方框字；需字体回退或捆绑开源中文字体。
+    - 状态：部分缓解（build 已加 Linux Noto/文泉驿回退）；云端仍建议捆绑字体
 
 ### P3 — 影响「国外片那种观感」
 
@@ -112,7 +112,7 @@
 
 1. ~~立刻：统一 Fig.14 文件名；manifest 改相对路径。~~ ✅  
 2. ~~短期：03–05 补零件/照片分屏；关键数画面角标。~~ ✅  
-3. **短期**：抽出 `storyboard.json` + 一键 pipeline + 资源存在性检查。  
+3. ~~短期：抽出 `storyboard.json` + 一键 pipeline + 资源存在性检查。~~ ✅  
 4. **中期**：选定 1–2 个运动部件进 Blender，导出后仍走同一五段合成。  
 5. **持续**：按 skill 审片模板迭代，禁止无缺陷清单的全盘重写。
 

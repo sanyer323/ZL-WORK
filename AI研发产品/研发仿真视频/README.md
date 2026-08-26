@@ -12,6 +12,19 @@ python verify_fycal_assets.py
 python rebuild_fycal_manifest.py   # 如需按磁盘 PNG 重建相对路径 manifest
 ```
 
+一键流水线（校验 → 缺仿真则渲染 → 合成原理讲解版）：
+
+```powershell
+python run_principle_pipeline.py
+# 或
+.\run_principle_pipeline.ps1
+
+python run_principle_pipeline.py --verify-only
+python run_principle_pipeline.py --force-sims
+```
+
+分镜文案/旁白/角标请改：[`storyboard.json`](./storyboard.json)（不要再把长旁白写死在 Python 里）。
+
 ## 输出内容
 
 ### 原理讲解版（推荐：讲清楚怎么工作）

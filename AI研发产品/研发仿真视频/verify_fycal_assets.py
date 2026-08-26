@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Verify FY301 principle-edition assets without rendering/TTS."""
+"""Verify FY301 principle-edition assets / storyboard without rendering/TTS."""
 from __future__ import annotations
 
 import json
@@ -11,35 +11,65 @@ OUT = ROOT / "out"
 PARTS = OUT / "_excel_parts"
 FYCAL_FIGS = OUT / "_fycal_figs" / "_named"
 FYCAL_MANIFEST_PATH = FYCAL_FIGS / "manifest.json"
+STORYBOARD_PATH = ROOT / "storyboard.json"
 BUILD_SCRIPT = ROOT / "build_principle_edition.py"
 
 
-def parse_segments(src: str) -> list[dict]:
-    block_m = re.search(r"SEGMENTS\s*=\s*\[(.*?)\n\]\n", src, re.S)
-    if not block_m:
-        raise RuntimeError("SEGMENTS not found in build_principle_edition.py")
-    block = block_m.group(1)
-    segs = []
-    for seg_m in re.finditer(r"\{\s*\"id\":\s*\"(.*?)\"(.*?)(?=\n\s*\{\s*\"id\":|\Z)", block, re.S):
-        sid = seg_m.group(1)
-        body = seg_m.group(2)
-        parts_m = re.findall(r"\"parts\":\s*\[(.*?)\]", body, re.S)
-        part_labels = re.findall(r"\"([^\"]+)\"", parts_m[0]) if parts_m else []
-        fycal = re.findall(r"\(\s*\"([^\"]+\.png)\"\s*,\s*\"[^\"]*\"\s*\)", body)
-        hud_m = re.search(r"\"hud\":\s*\[(.*?)\]", body, re.S)
-        hud = re.findall(r"\"([^\"]+)\"", hud_m.group(1)) if hud_m else []
-        segs.append({"id": sid, "parts": part_labels, "fycal": fycal, "hud": hud})
-    return segs
+def load_segments() -> list[dict]:
+    if not STORYBOARD_PATH.exists():
+        raise FileNotFoundError(f"missing {STORYBOARD_PATH}")
+    data = json.loads(STORYBOARD_PATH.read_text(encoding="utf-8"))
+    segs = data["segments"] if isinstance(data, dict) else data
+    out = []
+    for seg in segs:
+        fycal = []
+        for item in seg.get("fycal_imgs") or []:
+            if isinstance(item, dict):
+                fycal.append(item["file"])
+            else:
+                fycal.append(item[0])
+        out.append(
+            {
+                "id": seg["id"],
+                "sim": seg.get("sim", ""),
+                "parts": list(seg.get("parts") or []),
+                "fycal": fycal,
+                "hud": list(seg.get("hud") or []),
+                "narration": seg.get("narration") or "",
+                "takeaway": seg.get("takeaway") or "",
+            }
+        )
+    return out
 
 
 def main() -> int:
     errors: list[str] = []
-    src = BUILD_SCRIPT.read_text(encoding="utf-8")
-    for token in ("side_images", "burn_hud", "make_hud_overlay_png", "compose_sim_with_photos"):
-        if token not in src:
-            errors.append(f"missing implementation: {token}")
 
-    segs = parse_segments(src)
+    if not BUILD_SCRIPT.exists():
+        errors.append(f"missing {BUILD_SCRIPT}")
+    else:
+        src = BUILD_SCRIPT.read_text(encoding="utf-8")
+        for token in (
+            "load_segments",
+            "STORYBOARD_PATH",
+            "side_images",
+            "burn_hud",
+            "make_hud_overlay_png",
+            "compose_sim_with_photos",
+        ):
+            if token not in src:
+                errors.append(f"missing implementation in build script: {token}")
+
+    try:
+        segs = load_segments()
+    except Exception as e:  # noqa: BLE001
+        print("FAIL")
+        print(" -", e)
+        return 1
+
+    if len(segs) < 5:
+        errors.append(f"storyboard expected >=5 segments, got {len(segs)}")
+
     parts_man = []
     if PARTS.joinpath("manifest.json").exists():
         parts_man = json.loads((PARTS / "manifest.json").read_text(encoding="utf-8"))
@@ -67,7 +97,16 @@ def main() -> int:
         errors.append("disk missing fig14_piezo_base_labeled.png")
 
     for seg in segs:
-        side_count = 0
+        if not seg.get("narration"):
+            errors.append(f"segment {seg['id']} missing narration")
+        if not seg.get("takeaway"):
+            errors.append(f"segment {seg['id']} missing takeaway")
+        if seg.get("sim"):
+            # presence is optional at verify-only time; warn only
+            sim_path = OUT / seg["sim"]
+            if not sim_path.exists():
+                print(f"warn: simulation not built yet: {seg['sim']}", flush=True)
+
         for lab in seg["parts"]:
             m = by_label.get(lab)
             if not m:
@@ -76,17 +115,13 @@ def main() -> int:
             p = PARTS / m["file"]
             if not p.exists():
                 errors.append(f"segment {seg['id']} missing part image: {p.name}")
-            else:
-                side_count += 1
         for fname in seg["fycal"]:
             p = FYCAL_FIGS / Path(fname).name
             if not p.exists():
                 errors.append(f"segment {seg['id']} missing FYCAL image: {p.name}")
             elif p.name not in fycal_man:
                 errors.append(f"segment {seg['id']} FYCAL image not in manifest: {p.name}")
-            else:
-                side_count += 1 if not seg["fycal"] else 0
-        # FYCAL segments count fycal images as side panel; part-only count parts.
+
         panel_n = len(seg["fycal"]) if seg["fycal"] else len(seg["parts"])
         if panel_n < 2:
             errors.append(f"segment {seg['id']} needs >=2 side-panel images, got {panel_n}")
@@ -101,7 +136,7 @@ def main() -> int:
 
     print(
         "OK: FY301 principle assets consistent "
-        f"({len(segs)} segments, side panels + hud badges, "
+        f"({len(segs)} segments from storyboard.json, side panels + hud, "
         f"{len(fycal_man)} FYCAL manifest entries, relative paths)"
     )
     return 0
