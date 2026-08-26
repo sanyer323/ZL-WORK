@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""FY301 Blender clip 03: spool stroke + real diaphragm/spool part photos."""
+"""FY301 Blender clip 03: spool stroke with mesh import + part photos."""
 from __future__ import annotations
 
 import math
@@ -15,6 +15,7 @@ from fy301_blend_utils import (  # noqa: E402
     add_hud_image_plane,
     add_image_plane,
     add_root_to_syspath,
+    import_mesh,
     make_material,
     parse_common_argv,
     reset_dark_scene,
@@ -34,27 +35,49 @@ def main() -> None:
     mat_spool = make_material("Spool", (0.85, 0.75, 0.35), metallic=0.7, roughness=0.25)
     mat_diaph = make_material("Diaphragm", (0.75, 0.35, 0.28), metallic=0.05, roughness=0.55)
 
-    bpy.ops.mesh.primitive_cylinder_add(radius=0.28, depth=1.4, location=(0.0, 0.0, 0.0))
-    sleeve = bpy.context.active_object
-    sleeve.name = "Sleeve"
-    sleeve.data.materials.append(mat_sleeve)
+    sleeve = import_mesh(root, "sleeve", name="Sleeve", material=mat_sleeve)
+    if sleeve is None:
+        bpy.ops.mesh.primitive_cylinder_add(radius=0.28, depth=1.4, location=(0.0, 0.0, 0.0))
+        sleeve = bpy.context.active_object
+        sleeve.name = "Sleeve"
+        sleeve.data.materials.append(mat_sleeve)
 
-    bpy.ops.mesh.primitive_cylinder_add(radius=0.18, depth=0.95, location=(0.0, 0.0, -0.18))
-    spool = bpy.context.active_object
-    spool.name = "Spool"
-    spool.data.materials.append(mat_spool)
+    spool = import_mesh(root, "spool", name="Spool", location=(0.0, 0.0, -0.18), material=mat_spool)
+    if spool is None:
+        bpy.ops.mesh.primitive_cylinder_add(radius=0.18, depth=0.95, location=(0.0, 0.0, -0.18))
+        spool = bpy.context.active_object
+        spool.name = "Spool"
+        spool.data.materials.append(mat_spool)
 
-    bpy.ops.mesh.primitive_cylinder_add(radius=0.62, depth=0.04, location=(-0.95, 0.0, 0.35))
-    d_large = bpy.context.active_object
-    d_large.name = "DiaphragmLarge"
-    d_large.rotation_euler[1] = math.radians(90)
-    d_large.data.materials.append(mat_diaph)
+    d_large = import_mesh(
+        root,
+        "diaphragm_large",
+        name="DiaphragmLarge",
+        location=(-0.95, 0.0, 0.35),
+        rotation_euler=(0.0, math.radians(90), 0.0),
+        material=mat_diaph,
+    )
+    if d_large is None:
+        bpy.ops.mesh.primitive_cylinder_add(radius=0.62, depth=0.04, location=(-0.95, 0.0, 0.35))
+        d_large = bpy.context.active_object
+        d_large.name = "DiaphragmLarge"
+        d_large.rotation_euler[1] = math.radians(90)
+        d_large.data.materials.append(mat_diaph)
 
-    bpy.ops.mesh.primitive_cylinder_add(radius=0.38, depth=0.04, location=(-0.95, 0.0, -0.25))
-    d_small = bpy.context.active_object
-    d_small.name = "DiaphragmSmall"
-    d_small.rotation_euler[1] = math.radians(90)
-    d_small.data.materials.append(mat_diaph)
+    d_small = import_mesh(
+        root,
+        "diaphragm_small",
+        name="DiaphragmSmall",
+        location=(-0.95, 0.0, -0.25),
+        rotation_euler=(0.0, math.radians(90), 0.0),
+        material=mat_diaph,
+    )
+    if d_small is None:
+        bpy.ops.mesh.primitive_cylinder_add(radius=0.38, depth=0.04, location=(-0.95, 0.0, -0.25))
+        d_small = bpy.context.active_object
+        d_small.name = "DiaphragmSmall"
+        d_small.rotation_euler[1] = math.radians(90)
+        d_small.data.materials.append(mat_diaph)
 
     spool.location.z = -0.18
     spool.keyframe_insert("location", frame=1)

@@ -174,8 +174,10 @@ python add_sapi_voice.py
 - `blender/render_piezo_bend.py` → `out/blender/01_压电陶瓷原理.mp4`
 - `blender/render_nozzle_flapper.py` → `out/blender/02_喷嘴挡板先导级.mp4`
 - `blender/render_spool_valve.py` → `out/blender/03_膜片放大与滑阀.mp4`
+- `blender/render_hall_feedback.py` → `out/blender/04_霍尔反馈与闭环.mp4`
+- 网格包：`python blender/build_placeholder_meshes.py` → `blender/meshes/*.obj`（可同名替换真实 CAD）
 - 入口：`python render_blender_clips.py` 或 `python run_principle_pipeline.py --with-blender`
-- 每段自动带：真实照片参考板 + HUD 关键数卡
+- 默认交付门禁：`python check_default_deliverable.py`
 - 合成优先使用 `out/blender/<sim>`，否则回退 matplotlib `out/<sim>`
 
 ## 验收标准

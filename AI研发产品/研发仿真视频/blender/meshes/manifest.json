@@ -1,0 +1,45 @@
+{
+  "note": "Replace any file with a real CAD export using the same stem; Blender clips auto-import when present.",
+  "meshes": [
+    {
+      "file": "piezo_disk.obj",
+      "replace_with": "Export real CAD mesh to this same filename (OBJ/STL/FBX supported by importer)."
+    },
+    {
+      "file": "nozzle_body.obj",
+      "replace_with": "Export real CAD mesh to this same filename (OBJ/STL/FBX supported by importer)."
+    },
+    {
+      "file": "restriction_tube.obj",
+      "replace_with": "Export real CAD mesh to this same filename (OBJ/STL/FBX supported by importer)."
+    },
+    {
+      "file": "flapper_disk.obj",
+      "replace_with": "Export real CAD mesh to this same filename (OBJ/STL/FBX supported by importer)."
+    },
+    {
+      "file": "sleeve.obj",
+      "replace_with": "Export real CAD mesh to this same filename (OBJ/STL/FBX supported by importer)."
+    },
+    {
+      "file": "spool.obj",
+      "replace_with": "Export real CAD mesh to this same filename (OBJ/STL/FBX supported by importer)."
+    },
+    {
+      "file": "diaphragm_large.obj",
+      "replace_with": "Export real CAD mesh to this same filename (OBJ/STL/FBX supported by importer)."
+    },
+    {
+      "file": "diaphragm_small.obj",
+      "replace_with": "Export real CAD mesh to this same filename (OBJ/STL/FBX supported by importer)."
+    },
+    {
+      "file": "hall_housing.obj",
+      "replace_with": "Export real CAD mesh to this same filename (OBJ/STL/FBX supported by importer)."
+    },
+    {
+      "file": "magnet_block.obj",
+      "replace_with": "Export real CAD mesh to this same filename (OBJ/STL/FBX supported by importer)."
+    }
+  ]
+}

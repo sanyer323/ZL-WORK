@@ -22,11 +22,13 @@ python run_principle_pipeline.py
 python run_principle_pipeline.py --verify-only
 python run_principle_pipeline.py --force-sims
 python run_principle_pipeline.py --with-blender
+python check_default_deliverable.py
 ```
 
-Blender 增强层（可选，P3：01 压电弯曲 / 03 滑阀）：
+Blender 增强层（可选，P3：01–04；可替换 `blender/meshes/`）：
 
 ```powershell
+python blender\build_placeholder_meshes.py
 python render_blender_clips.py --dry-run
 python render_blender_clips.py
 ```
@@ -34,6 +36,8 @@ python render_blender_clips.py
 说明见 [`blender/README.md`](./blender/README.md)。有 `out/blender/` 对应片段时，合成会优先用三维片段。
 
 分镜文案/旁白/角标请改：[`storyboard.json`](./storyboard.json)（不要再把长旁白写死在 Python 里）。
+
+**默认交付：** 只把 `out/FY301_原理讲解版.mp4` 当主交付；工程师培训/排故障版仅作对照，不作为默认成片。
 
 ## 输出内容
 

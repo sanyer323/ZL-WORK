@@ -138,6 +138,87 @@ def add_hud_image_plane(hud_png: Path, location=(0.0, -1.55, 1.05), width: float
     )
 
 
+def meshes_dir(root: Path) -> Path:
+    return root / "blender" / "meshes"
+
+
+def import_mesh(
+    root: Path,
+    stem: str,
+    *,
+    name: str,
+    location=(0.0, 0.0, 0.0),
+    rotation_euler=(0.0, 0.0, 0.0),
+    scale=(1.0, 1.0, 1.0),
+    material=None,
+):
+    """
+    Import mesh from blender/meshes/<stem>.{obj,stl,fbx,glb,gltf,ply}.
+    Returns the active object, or None if no mesh file exists.
+    """
+    import bpy
+
+    base = meshes_dir(root)
+    candidates = []
+    for ext in (".obj", ".stl", ".fbx", ".glb", ".gltf", ".ply"):
+        candidates.append(base / f"{stem}{ext}")
+    path = next((p for p in candidates if p.exists()), None)
+    if path is None:
+        return None
+
+    before = set(bpy.data.objects.keys())
+    ext = path.suffix.lower()
+    if ext == ".obj":
+        if hasattr(bpy.ops.wm, "obj_import"):
+            bpy.ops.wm.obj_import(filepath=str(path))
+        else:
+            bpy.ops.import_scene.obj(filepath=str(path))
+    elif ext == ".stl":
+        if hasattr(bpy.ops.wm, "stl_import"):
+            bpy.ops.wm.stl_import(filepath=str(path))
+        else:
+            bpy.ops.import_mesh.stl(filepath=str(path))
+    elif ext == ".fbx":
+        bpy.ops.import_scene.fbx(filepath=str(path))
+    elif ext in {".glb", ".gltf"}:
+        bpy.ops.import_scene.gltf(filepath=str(path))
+    elif ext == ".ply":
+        bpy.ops.wm.ply_import(filepath=str(path)) if hasattr(bpy.ops.wm, "ply_import") else bpy.ops.import_mesh.ply(filepath=str(path))
+    else:
+        return None
+
+    after = [bpy.data.objects[k] for k in bpy.data.objects.keys() if k not in before]
+    if not after:
+        return None
+    obj = after[0]
+    if len(after) > 1:
+        bpy.ops.object.select_all(action="DESELECT")
+        for o in after:
+            o.select_set(True)
+        bpy.context.view_layer.objects.active = after[0]
+        bpy.ops.object.join()
+        obj = bpy.context.active_object
+    obj.name = name
+    obj.location = location
+    obj.rotation_euler = rotation_euler
+    obj.scale = scale
+    if material is not None:
+        if obj.data.materials:
+            obj.data.materials[0] = material
+        else:
+            obj.data.materials.append(material)
+    print(f"imported mesh: {path.name} -> {name}", flush=True)
+    return obj
+
+
+def mesh_or_primitive(root: Path, stem: str, primitive_fn, **kwargs):
+    """Try import_mesh(stem); if missing, call primitive_fn() which must return an object."""
+    obj = import_mesh(root, stem, name=kwargs.get("name", stem), **{k: v for k, v in kwargs.items() if k != "name"})
+    if obj is not None:
+        return obj
+    return primitive_fn()
+
+
 def parse_common_argv(argv: list[str]):
     import argparse
     import sys

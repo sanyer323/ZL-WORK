@@ -80,10 +80,16 @@ def main() -> int:
         raise SystemExit(f"missing storyboard: {STORYBOARD}")
 
     run_step("verify assets + storyboard", [PY, str(ROOT / "verify_fycal_assets.py")])
+    run_step("check default deliverable + mesh pack", [PY, str(ROOT / "check_default_deliverable.py")])
 
     if args.verify_only:
         print("\nDONE (verify-only)")
         return 0
+
+    mesh_dir = ROOT / "blender" / "meshes"
+    if not (mesh_dir / "piezo_disk.obj").exists():
+        run_step("build placeholder meshes", [PY, str(ROOT / "blender" / "build_placeholder_meshes.py")])
+        run_step("re-check mesh pack", [PY, str(ROOT / "check_default_deliverable.py")])
 
     if args.rebuild_manifest:
         run_step("rebuild FYCAL manifest", [PY, str(ROOT / "rebuild_fycal_manifest.py")])

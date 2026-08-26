@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""FY301 Blender clip 01: piezo disk bend + real FYCAL reference photos."""
+"""FY301 Blender clip 01: piezo disk bend + mesh import + FYCAL photos."""
 from __future__ import annotations
 
 import math
@@ -15,6 +15,7 @@ from fy301_blend_utils import (  # noqa: E402
     add_hud_image_plane,
     add_image_plane,
     add_root_to_syspath,
+    import_mesh,
     make_material,
     parse_common_argv,
     reset_dark_scene,
@@ -31,23 +32,35 @@ def main() -> None:
     out.parent.mkdir(parents=True, exist_ok=True)
     reset_dark_scene(args.res_x, args.res_y, args.fps, args.frames, out)
 
-    bpy.ops.mesh.primitive_cylinder_add(radius=0.11, depth=0.5, location=(0.0, 0.0, 0.02))
-    nozzle = bpy.context.active_object
-    nozzle.name = "Nozzle"
-    nozzle.data.materials.append(make_material("Metal", (0.55, 0.62, 0.70), metallic=0.85, roughness=0.32))
+    mat_metal = make_material("Metal", (0.55, 0.62, 0.70), metallic=0.85, roughness=0.32)
+    mat_piezo = make_material("Piezo", (0.78, 0.55, 0.90), roughness=0.45)
 
-    bpy.ops.mesh.primitive_cylinder_add(radius=0.55, depth=0.04, location=(0.0, 0.0, 0.40))
-    disk = bpy.context.active_object
-    disk.name = "PiezoDisk"
+    nozzle = import_mesh(root, "nozzle_body", name="Nozzle", location=(0.0, 0.0, 0.02), material=mat_metal)
+    if nozzle is None:
+        bpy.ops.mesh.primitive_cylinder_add(radius=0.11, depth=0.5, location=(0.0, 0.0, 0.02))
+        nozzle = bpy.context.active_object
+        nozzle.name = "Nozzle"
+        nozzle.data.materials.append(mat_metal)
+
+    disk = import_mesh(root, "piezo_disk", name="PiezoDisk", location=(0.0, 0.0, 0.40), material=mat_piezo)
+    if disk is None:
+        bpy.ops.mesh.primitive_cylinder_add(radius=0.55, depth=0.04, location=(0.0, 0.0, 0.40))
+        disk = bpy.context.active_object
+        disk.name = "PiezoDisk"
+        disk.data.materials.append(mat_piezo)
     bpy.ops.object.shade_smooth()
-    disk.data.materials.append(make_material("Piezo", (0.78, 0.55, 0.90), roughness=0.45))
 
+    # Bend shape key on whatever mesh we have
     sk_basis = disk.shape_key_add(name="Basis", from_mix=False)
     sk_bend = disk.shape_key_add(name="Bend", from_mix=False)
+    # Estimate radius from bounds
+    xs = [v.co.x for v in disk.data.vertices]
+    ys = [v.co.y for v in disk.data.vertices]
+    radius = max(0.05, max(max(abs(min(xs)), abs(max(xs))), max(abs(min(ys)), abs(max(ys)))))
     for i, _v in enumerate(disk.data.vertices):
         co = sk_basis.data[i].co
         r = math.hypot(co.x, co.y)
-        w = max(0.0, 1.0 - (r / 0.55) ** 2)
+        w = max(0.0, 1.0 - (r / radius) ** 2)
         sk_bend.data[i].co = co + Vector((0.0, 0.0, -0.17 * w))
     sk_bend.value = 0.0
     sk_bend.keyframe_insert("value", frame=1)

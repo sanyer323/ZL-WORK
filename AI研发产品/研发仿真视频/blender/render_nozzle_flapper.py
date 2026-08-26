@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""FY301 Blender clip 02: nozzle-flapper pilot stage + FYCAL calibration photos."""
+"""FY301 Blender clip 02: nozzle-flapper with mesh import + FYCAL photos."""
 from __future__ import annotations
 
 import math
@@ -15,6 +15,7 @@ from fy301_blend_utils import (  # noqa: E402
     add_hud_image_plane,
     add_image_plane,
     add_root_to_syspath,
+    import_mesh,
     make_material,
     parse_common_argv,
     reset_dark_scene,
@@ -34,23 +35,51 @@ def main() -> None:
     mat_air = make_material("AirHint", (1.0, 0.72, 0.30), metallic=0.0, roughness=0.55)
     mat_flapper = make_material("Flapper", (0.78, 0.55, 0.90), roughness=0.4)
 
-    bpy.ops.mesh.primitive_cylinder_add(radius=0.09, depth=0.7, location=(-0.55, 0.0, 0.0))
-    restriction = bpy.context.active_object
-    restriction.name = "Restriction"
-    restriction.rotation_euler[1] = math.radians(90)
-    restriction.data.materials.append(mat_metal)
+    restriction = import_mesh(
+        root,
+        "restriction_tube",
+        name="Restriction",
+        location=(-0.55, 0.0, 0.0),
+        rotation_euler=(0.0, math.radians(90), 0.0),
+        material=mat_metal,
+    )
+    if restriction is None:
+        bpy.ops.mesh.primitive_cylinder_add(radius=0.09, depth=0.7, location=(-0.55, 0.0, 0.0))
+        restriction = bpy.context.active_object
+        restriction.name = "Restriction"
+        restriction.rotation_euler[1] = math.radians(90)
+        restriction.data.materials.append(mat_metal)
 
-    bpy.ops.mesh.primitive_cone_add(radius1=0.16, radius2=0.045, depth=0.35, location=(0.0, 0.0, 0.0))
-    nozzle = bpy.context.active_object
-    nozzle.name = "Nozzle"
-    nozzle.rotation_euler[1] = math.radians(90)
-    nozzle.data.materials.append(mat_metal)
+    nozzle = import_mesh(
+        root,
+        "nozzle_body",
+        name="Nozzle",
+        location=(0.0, 0.0, 0.0),
+        rotation_euler=(0.0, math.radians(90), 0.0),
+        material=mat_metal,
+    )
+    if nozzle is None:
+        bpy.ops.mesh.primitive_cone_add(radius1=0.16, radius2=0.045, depth=0.35, location=(0.0, 0.0, 0.0))
+        nozzle = bpy.context.active_object
+        nozzle.name = "Nozzle"
+        nozzle.rotation_euler[1] = math.radians(90)
+        nozzle.data.materials.append(mat_metal)
 
-    bpy.ops.mesh.primitive_cylinder_add(radius=0.28, depth=0.03, location=(0.42, 0.0, 0.0))
-    flapper = bpy.context.active_object
-    flapper.name = "PiezoFlapper"
-    flapper.rotation_euler[1] = math.radians(90)
-    flapper.data.materials.append(mat_flapper)
+    flapper = import_mesh(
+        root,
+        "flapper_disk",
+        name="PiezoFlapper",
+        location=(0.55, 0.0, 0.0),
+        rotation_euler=(0.0, math.radians(90), 0.0),
+        material=mat_flapper,
+    )
+    if flapper is None:
+        bpy.ops.mesh.primitive_cylinder_add(radius=0.28, depth=0.03, location=(0.55, 0.0, 0.0))
+        flapper = bpy.context.active_object
+        flapper.name = "PiezoFlapper"
+        flapper.rotation_euler[1] = math.radians(90)
+        flapper.data.materials.append(mat_flapper)
+
     flapper.location.x = 0.55
     flapper.keyframe_insert("location", frame=1)
     flapper.location.x = 0.28

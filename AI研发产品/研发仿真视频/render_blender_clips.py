@@ -36,6 +36,15 @@ SCRIPTS = {
         ],
         "hud_fallback": ["0-100 V", "target ~50 V", "normal 30-70 V"],
     },
+    "02": {
+        "script": ROOT / "blender" / "render_nozzle_flapper.py",
+        "out": OUT_BLEND / "02_喷嘴挡板先导级.mp4",
+        "photos": [
+            ROOT / "out/_fycal_figs/_named/fig12_cal_on_block.png",
+            ROOT / "out/_fycal_figs/_named/fig10_supply_piezo.png",
+        ],
+        "hud_fallback": ["FYCAL @20 psi", "0V <= 2", "50V ~ 6", "100V ~ 12-13"],
+    },
     "03": {
         "script": ROOT / "blender" / "render_spool_valve.py",
         "out": OUT_BLEND / "03_膜片放大与滑阀.mp4",
@@ -45,14 +54,14 @@ SCRIPTS = {
         ],
         "hud_fallback": ["force balance", "OUT1 / OUT2", "fail-safe"],
     },
-    "02": {
-        "script": ROOT / "blender" / "render_nozzle_flapper.py",
-        "out": OUT_BLEND / "02_喷嘴挡板先导级.mp4",
+    "04": {
+        "script": ROOT / "blender" / "render_hall_feedback.py",
+        "out": OUT_BLEND / "04_霍尔反馈与闭环.mp4",
         "photos": [
-            ROOT / "out/_fycal_figs/_named/fig12_cal_on_block.png",
-            ROOT / "out/_fycal_figs/_named/fig10_supply_piezo.png",
+            ROOT / "out/_excel_parts/44_r51_霍尔传感器.png",
+            ROOT / "out/_excel_parts/42_r49_传感器外壳.png",
         ],
-        "hud_fallback": ["FYCAL @20 psi", "0V <= 2", "50V ~ 6", "100V ~ 12-13"],
+        "hud_fallback": ["Hall gap 2-4 mm", "SP vs PV", "correct Vpiezo"],
     },
 }
 
