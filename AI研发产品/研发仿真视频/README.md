@@ -21,7 +21,17 @@ python run_principle_pipeline.py
 
 python run_principle_pipeline.py --verify-only
 python run_principle_pipeline.py --force-sims
+python run_principle_pipeline.py --with-blender
 ```
+
+Blender 增强层（可选，P3：01 压电弯曲 / 03 滑阀）：
+
+```powershell
+python render_blender_clips.py --dry-run
+python render_blender_clips.py
+```
+
+说明见 [`blender/README.md`](./blender/README.md)。有 `out/blender/` 对应片段时，合成会优先用三维片段。
 
 分镜文案/旁白/角标请改：[`storyboard.json`](./storyboard.json)（不要再把长旁白写死在 Python 里）。
 

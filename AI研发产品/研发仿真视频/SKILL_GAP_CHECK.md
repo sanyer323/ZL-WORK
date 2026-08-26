@@ -9,7 +9,7 @@
 **主链路已经打通，skill 里大部分「正确做法」你们已经在用。**  
 缺口主要在：流程尚未写成 skill、资源可移植性、后段实物绑定、高保真三维未产品化、缺少一键验收。
 
-成熟度粗评：**原理讲解可交付约 80%；可复用产线约 60%；Blender 级观感约 30%。**
+成熟度粗评：**原理讲解可交付约 85%；可复用产线约 75%；Blender 级观感约 45%（01/03 可渲，仍为占位几何）。**
 
 ---
 
@@ -82,8 +82,11 @@
 ### P3 — 影响「国外片那种观感」
 
 11. **主视觉仍是 matplotlib 2D，不是 Blender 产线**  
-    - 脚本原文已提到 Blender/Three.js/COMSOL，但未接入当前默认合成  
-    - 与 skill 一致：三维是增强层；要追观感需单独立项「运动部件 Blender 素材 → 仍按五段合成」。
+   - 状态：✅ 首切片已接入（可选增强层）  
+   - `blender/render_piezo_bend.py`（01）+ `blender/render_spool_valve.py`（03）  
+   - `render_blender_clips.py` / `run_principle_pipeline.py --with-blender`  
+   - 合成优先 `out/blender/<sim>`，否则回退 matplotlib  
+   - 当前为 procedural 占位几何；后续可替换真实拆解网格
 
 12. **产品部件透明动作台未并入主片**  
     - 有 `FY301_产品部件透明动作台.html`、`render_product_parts.py`  
@@ -113,8 +116,8 @@
 1. ~~立刻：统一 Fig.14 文件名；manifest 改相对路径。~~ ✅  
 2. ~~短期：03–05 补零件/照片分屏；关键数画面角标。~~ ✅  
 3. ~~短期：抽出 `storyboard.json` + 一键 pipeline + 资源存在性检查。~~ ✅  
-4. **中期**：选定 1–2 个运动部件进 Blender，导出后仍走同一五段合成。  
-5. **持续**：按 skill 审片模板迭代，禁止无缺陷清单的全盘重写。
+4. ~~中期：选定 1–2 个运动部件进 Blender，导出后仍走同一五段合成。~~ ✅（01/03 可选增强）  
+5. **持续**：按 skill 审片模板迭代；Blender 段可替换为真实零件网格；禁止无缺陷清单的全盘重写。
 
 ---
 

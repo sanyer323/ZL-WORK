@@ -67,6 +67,36 @@ def main() -> int:
         print(" -", e)
         return 1
 
+    # Optional Blender enhancement layer (P3)
+    try:
+        sb = json.loads(STORYBOARD_PATH.read_text(encoding="utf-8"))
+        clips = ((sb.get("blender_enhancements") or {}).get("clips")) or []
+        for clip in clips:
+            script = ROOT / clip.get("script", "")
+            if not script.exists():
+                errors.append(f"blender script missing: {clip.get('script')}")
+            else:
+                # syntax-only check (bpy unavailable outside Blender)
+                import ast
+
+                ast.parse(script.read_text(encoding="utf-8"))
+            out_rel = clip.get("out") or ""
+            if out_rel:
+                out_p = ROOT / out_rel
+                if out_p.exists() and out_p.stat().st_size >= 1000:
+                    print(f"blender clip present: {out_rel}", flush=True)
+                else:
+                    print(f"warn: blender clip not built yet: {out_rel}", flush=True)
+        runner = ROOT / "render_blender_clips.py"
+        if not runner.exists():
+            errors.append("missing render_blender_clips.py")
+        else:
+            import ast
+
+            ast.parse(runner.read_text(encoding="utf-8"))
+    except Exception as e:  # noqa: BLE001
+        errors.append(f"blender enhancement check failed: {e}")
+
     if len(segs) < 5:
         errors.append(f"storyboard expected >=5 segments, got {len(segs)}")
 

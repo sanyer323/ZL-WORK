@@ -7,6 +7,24 @@
     "principle_srt": "out/FY301_原理讲解版.srt",
     "narration_txt": "旁白文案_原理讲解版.txt"
   },
+  "blender_enhancements": {
+    "enabled_by_default": false,
+    "clips": [
+      {
+        "segment_id": "01",
+        "script": "blender/render_piezo_bend.py",
+        "out": "out/blender/01_压电陶瓷原理.mp4",
+        "motion": "压电盘弯曲（V↑ → 挡板位移）"
+      },
+      {
+        "segment_id": "03",
+        "script": "blender/render_spool_valve.py",
+        "out": "out/blender/03_膜片放大与滑阀.mp4",
+        "motion": "膜片力变化驱动滑阀行程"
+      }
+    ],
+    "note": "存在 out/blender/<sim> 时合成优先使用；否则回退 out/<sim> matplotlib 仿真"
+  },
   "segments": [
     {
       "id": "01",

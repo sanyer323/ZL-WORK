@@ -43,9 +43,12 @@ def load_sim_names() -> list[str]:
 def missing_sims() -> list[Path]:
     missing = []
     for name in load_sim_names():
-        p = OUT / name
-        if not p.exists() or p.stat().st_size < 1000:
-            missing.append(p)
+        plain = OUT / name
+        blend = OUT / "blender" / name
+        ok_plain = plain.exists() and plain.stat().st_size >= 1000
+        ok_blend = blend.exists() and blend.stat().st_size >= 1000
+        if not (ok_plain or ok_blend):
+            missing.append(plain)
     return missing
 
 
@@ -60,6 +63,17 @@ def main() -> int:
         action="store_true",
         help="合成前按磁盘 PNG 重建 FYCAL 相对路径 manifest",
     )
+    ap.add_argument(
+        "--with-blender",
+        action="store_true",
+        help="合成前尝试渲染 Blender 增强段（01 压电 / 03 滑阀）；失败则回退 matplotlib",
+    )
+    ap.add_argument(
+        "--require-blender",
+        action="store_true",
+        help="与 --with-blender 联用：Blender 失败则中止（不回退）",
+    )
+    ap.add_argument("--blender", default=None, help="Blender 可执行文件路径（可选）")
     args = ap.parse_args()
 
     if not STORYBOARD.exists():
@@ -85,6 +99,22 @@ def main() -> int:
         run_step(f"render sims ({reason})", [PY, str(ROOT / "render_sims.py")])
     else:
         print("\n=== render sims ===\nskip (01–05 already present; use --force-sims to rebuild)", flush=True)
+
+    if args.with_blender or args.require_blender:
+        bcmd = [PY, str(ROOT / "render_blender_clips.py")]
+        if args.blender:
+            bcmd += ["--blender", args.blender]
+        print("\n=== blender enhancement clips ===", flush=True)
+        print("+", " ".join(bcmd), flush=True)
+        br = subprocess.run(bcmd, cwd=str(ROOT))
+        if br.returncode != 0:
+            if args.require_blender:
+                raise SystemExit(f"STEP FAILED: blender clips (exit {br.returncode})")
+            print(
+                f"warn: blender clips failed (exit {br.returncode}); "
+                "principle compose will fall back to matplotlib sims",
+                flush=True,
+            )
 
     if args.skip_compose:
         print("\nDONE (skip-compose)")

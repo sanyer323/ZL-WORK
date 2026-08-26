@@ -9,7 +9,10 @@ param(
     [switch]$ForceSims,
     [switch]$SkipSims,
     [switch]$SkipCompose,
-    [switch]$RebuildManifest
+    [switch]$RebuildManifest,
+    [switch]$WithBlender,
+    [switch]$RequireBlender,
+    [string]$BlenderPath = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -21,6 +24,9 @@ if ($ForceSims) { $argsList += "--force-sims" }
 if ($SkipSims) { $argsList += "--skip-sims" }
 if ($SkipCompose) { $argsList += "--skip-compose" }
 if ($RebuildManifest) { $argsList += "--rebuild-manifest" }
+if ($WithBlender) { $argsList += "--with-blender" }
+if ($RequireBlender) { $argsList += "--require-blender" }
+if ($BlenderPath) { $argsList += @("--blender", $BlenderPath) }
 
 python run_principle_pipeline.py @argsList
 if ($LASTEXITCODE -ne 0) {

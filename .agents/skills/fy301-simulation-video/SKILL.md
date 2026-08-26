@@ -53,6 +53,8 @@ description: >-
 仓库内常用落点：
 
 - 笔记与摘录：`AI研发产品/研发仿真视频/压电陶瓷研发笔记.md`、`FYCAL_压电资料摘录.md`
+- 分镜：`storyboard.json`
+- 一键流水线：`run_principle_pipeline.py`
 - 渲染：`render_sims.py`
 - 原理合成：`build_principle_edition.py`
 - 完整拼接：`build_master.py`
@@ -167,6 +169,13 @@ python add_sapi_voice.py
 3. 导出素材后仍回到同一合成流程（或等价分镜表），保证要点卡与手册数不丢。
 4. 禁止为了画面好看改写与手册冲突的机理。
 
+首切片（已落地）：
+
+- `blender/render_piezo_bend.py` → `out/blender/01_压电陶瓷原理.mp4`
+- `blender/render_spool_valve.py` → `out/blender/03_膜片放大与滑阀.mp4`
+- 入口：`python render_blender_clips.py` 或 `python run_principle_pipeline.py --with-blender`
+- 合成优先使用 `out/blender/<sim>`，否则回退 matplotlib `out/<sim>`
+
 ## 验收标准
 
 成品至少满足：
@@ -193,7 +202,7 @@ python add_sapi_voice.py
 
 ## 代理执行时的默认策略
 
-1. 先读 `README.md` 与现有 `SEGMENTS` / 旁白，再改。
+1. 先读 `README.md` 与 `storyboard.json`，再改。
 2. 改机理或数据前，核对 `压电陶瓷研发笔记.md` / `FYCAL_压电资料摘录.md`。
 3. 优先增量修补脚本与资源，不重开无关宣传片风格。
-4. 交付时说明：改了哪几段、是否需重跑 `render_sims` / 合成脚本、审片还剩什么。
+4. 交付时说明：改了哪几段、是否需重跑 `run_principle_pipeline.py`、审片还剩什么。

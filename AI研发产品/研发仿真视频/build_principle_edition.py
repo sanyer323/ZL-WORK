@@ -216,11 +216,20 @@ def probe_duration(path: Path) -> float:
     return int(m.group(1)) * 3600 + int(m.group(2)) * 60 + float(m.group(3))
 
 
-def find_sim(name: str) -> Path:
-    p = OUT / name
-    if p.exists():
-        return p
-    cands = list(OUT.glob(name[:2] + "*.mp4"))
+def find_sim(name: str, prefer_blender: bool = True) -> Path:
+    """Resolve simulation clip; prefer optional Blender enhancement when present."""
+    blender_p = OUT / "blender" / name
+    plain_p = OUT / name
+    if prefer_blender and blender_p.exists() and blender_p.stat().st_size > 1000:
+        print(f"sim prefer blender: {blender_p.name}", flush=True)
+        return blender_p
+    if plain_p.exists() and plain_p.stat().st_size > 1000:
+        return plain_p
+    cands = [p for p in OUT.glob(name[:2] + "*.mp4") if p.is_file()]
+    blend_cands = [p for p in (OUT / "blender").glob(name[:2] + "*.mp4") if p.is_file()] if (OUT / "blender").exists() else []
+    if prefer_blender and blend_cands:
+        print(f"sim prefer blender: {blend_cands[0].name}", flush=True)
+        return blend_cands[0]
     if not cands:
         raise FileNotFoundError(name)
     return cands[0]
