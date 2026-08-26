@@ -2,6 +2,9 @@
 
 基于 `FY301ME` 手册与 `SMAR_FY301_3D动画视频脚本.docx`，面向研发的**可计算仿真**（非营销三维宣传片）。
 
+**Agent skill（正确做法说明书）：** [`.agents/skills/fy301-simulation-video/SKILL.md`](../../.agents/skills/fy301-simulation-video/SKILL.md)  
+**对照缺口检查：** [`SKILL_GAP_CHECK.md`](./SKILL_GAP_CHECK.md)
+
 ## 输出内容
 
 ### 原理讲解版（推荐：讲清楚怎么工作）
