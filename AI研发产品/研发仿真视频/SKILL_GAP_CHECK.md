@@ -34,17 +34,17 @@
 ### P0 — 影响正确性 / 可复现
 
 1. **正式 skill 原先缺失**  
-   - 状态：本次已补 `.agents/skills/fy301-simulation-video/SKILL.md`  
-   - 作用：把「喂养出来的正确做法」固化，避免每次从零教。
+   - 状态：✅ 已补 `.agents/skills/fy301-simulation-video/SKILL.md`
 
 2. **图片引用名与 manifest 不一致**  
-   - 代码：`build_principle_edition.py` 引用 `fig14_piezo_base_labeled.png`  
-   - 资源：`out/_fycal_figs/_named/manifest.json` 实际为 `fig14_piezo_on_fycal` 等  
-   - 风险：换机重跑或清缓存后 01 段右栏缺图/报错。
+   - 状态：✅ 已修  
+   - `fig14_piezo_base_labeled.png` 已在磁盘且已写入 `out/_fycal_figs/_named/manifest.json`  
+   - `build_principle_edition.py` 启动前校验 SEGMENTS 引用均在 manifest 中
 
 3. **FYCAL 图路径写死本机绝对路径**  
-   - `manifest.json` 内含 `C:\\Users\\sanye\\Desktop\\SMAR\\...`  
-   - 风险：云端/其他电脑无法直接合成；应改为相对 `out/_fycal_figs/_named/`。
+   - 状态：✅ 已修  
+   - manifest 改为相对文件名；可用 `python rebuild_fycal_manifest.py` 重建  
+   - 校验：`python verify_fycal_assets.py`
 
 ### P1 — 影响「原理 + 爆炸图」完整度
 
@@ -109,7 +109,7 @@
 
 ## 建议落地顺序（不改叙事，只补产线）
 
-1. **立刻**：统一 Fig.14 文件名；manifest 改相对路径。  
+1. ~~立刻：统一 Fig.14 文件名；manifest 改相对路径。~~ ✅ 已完成（见 `verify_fycal_assets.py`）  
 2. **短期**：03–05 补零件/照片分屏；关键数画面角标。  
 3. **短期**：抽出 `storyboard.json` + 一键 pipeline + 资源存在性检查。  
 4. **中期**：选定 1–2 个运动部件进 Blender，导出后仍走同一五段合成。  

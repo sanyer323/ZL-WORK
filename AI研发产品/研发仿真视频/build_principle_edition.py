@@ -30,6 +30,71 @@ TAIL = 0.5
 STRIP_W = 420  # 右侧照片栏宽度
 MANIFEST = json.loads((PARTS / "manifest.json").read_text(encoding="utf-8"))
 BY_LABEL = {m["label"]: m for m in MANIFEST}
+FYCAL_MANIFEST_PATH = FYCAL_FIGS / "manifest.json"
+
+
+def fycal_path(fname: str) -> Path:
+    """Resolve FYCAL handbook images by relative filename only (no absolute host paths)."""
+    name = Path(fname).name
+    return FYCAL_FIGS / name
+
+
+def load_fycal_manifest() -> dict[str, dict]:
+    if not FYCAL_MANIFEST_PATH.exists():
+        return {}
+    rows = json.loads(FYCAL_MANIFEST_PATH.read_text(encoding="utf-8"))
+    out = {}
+    for row in rows:
+        rel = Path(str(row.get("file", ""))).name
+        if not rel:
+            continue
+        out[rel] = {**row, "file": rel}
+    return out
+
+
+def preflight_assets() -> None:
+    """Fail early if segment images or FYCAL manifest entries are missing/inconsistent."""
+    fycal_man = load_fycal_manifest()
+    missing_files: list[str] = []
+    missing_manifest: list[str] = []
+    abs_in_manifest: list[str] = []
+
+    if FYCAL_MANIFEST_PATH.exists():
+        raw = json.loads(FYCAL_MANIFEST_PATH.read_text(encoding="utf-8"))
+        for row in raw:
+            f = str(row.get("file", ""))
+            if Path(f).is_absolute() or ":\\" in f or f.startswith("\\\\"):
+                abs_in_manifest.append(f)
+
+    for seg in SEGMENTS:
+        for lab in seg.get("parts") or []:
+            p = part(lab)
+            if not p.exists():
+                missing_files.append(str(p))
+            else:
+                print("part ok:", lab, "->", p.name, flush=True)
+        for fname, _ in seg.get("fycal_imgs") or []:
+            p = fycal_path(fname)
+            if not p.exists():
+                missing_files.append(str(p))
+            else:
+                print("fycal ok:", p.name, flush=True)
+            if p.name not in fycal_man:
+                missing_manifest.append(p.name)
+
+    if abs_in_manifest:
+        raise SystemExit(
+            "FYCAL manifest still contains absolute paths; "
+            "rebuild with relative filenames only:\n  "
+            + "\n  ".join(abs_in_manifest[:5])
+        )
+    if missing_files:
+        raise SystemExit("Missing asset files:\n  " + "\n  ".join(missing_files))
+    if missing_manifest:
+        raise SystemExit(
+            "FYCAL images used by SEGMENTS but missing from manifest.json:\n  "
+            + "\n  ".join(missing_manifest)
+        )
 
 SEGMENTS = [
     {
@@ -184,7 +249,7 @@ def make_callout_png(seg: dict, path: Path) -> None:
     # Prefer FYCAL handbook photos when provided
     items = []
     for fname, cap in seg.get("fycal_imgs") or []:
-        p = FYCAL_FIGS / fname
+        p = fycal_path(fname)
         if not p.exists():
             raise FileNotFoundError(p)
         items.append((p, cap))
@@ -290,7 +355,7 @@ def make_animated_photo_panel(
     imgs = []
     caps = []
     for fname, cap in fycal_imgs:
-        im = Image.open(FYCAL_FIGS / fname).convert("RGB")
+        im = Image.open(fycal_path(fname)).convert("RGB")
         imgs.append(im)
         caps.append(cap)
     n = len(imgs)
@@ -448,13 +513,7 @@ def split_cues(text: str, t0: float, t1: float):
 
 
 def main():
-    for seg in SEGMENTS:
-        for lab in seg.get("parts") or []:
-            print("part ok:", lab, "->", part(lab).name, flush=True)
-        for fname, _ in seg.get("fycal_imgs") or []:
-            p = FYCAL_FIGS / fname
-            assert p.exists(), p
-            print("fycal ok:", fname, flush=True)
+    preflight_assets()
 
     video_parts, audio_parts, timeline, narr_blocks = [], [], [], []
     t_cursor = 0.0

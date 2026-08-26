@@ -5,6 +5,13 @@
 **Agent skill（正确做法说明书）：** [`.agents/skills/fy301-simulation-video/SKILL.md`](../../.agents/skills/fy301-simulation-video/SKILL.md)  
 **对照缺口检查：** [`SKILL_GAP_CHECK.md`](./SKILL_GAP_CHECK.md)
 
+资源校验（不渲染、不配音）：
+
+```powershell
+python verify_fycal_assets.py
+python rebuild_fycal_manifest.py   # 如需按磁盘 PNG 重建相对路径 manifest
+```
+
 ## 输出内容
 
 ### 原理讲解版（推荐：讲清楚怎么工作）
