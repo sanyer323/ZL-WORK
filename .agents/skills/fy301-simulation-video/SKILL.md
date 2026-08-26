@@ -169,11 +169,13 @@ python add_sapi_voice.py
 3. 导出素材后仍回到同一合成流程（或等价分镜表），保证要点卡与手册数不丢。
 4. 禁止为了画面好看改写与手册冲突的机理。
 
-首切片（已落地）：
+首切片（已落地并深化）：
 
 - `blender/render_piezo_bend.py` → `out/blender/01_压电陶瓷原理.mp4`
+- `blender/render_nozzle_flapper.py` → `out/blender/02_喷嘴挡板先导级.mp4`
 - `blender/render_spool_valve.py` → `out/blender/03_膜片放大与滑阀.mp4`
 - 入口：`python render_blender_clips.py` 或 `python run_principle_pipeline.py --with-blender`
+- 每段自动带：真实照片参考板 + HUD 关键数卡
 - 合成优先使用 `out/blender/<sim>`，否则回退 matplotlib `out/<sim>`
 
 ## 验收标准

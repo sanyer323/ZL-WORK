@@ -14,16 +14,25 @@
         "segment_id": "01",
         "script": "blender/render_piezo_bend.py",
         "out": "out/blender/01_压电陶瓷原理.mp4",
-        "motion": "压电盘弯曲（V↑ → 挡板位移）"
+        "motion": "压电盘弯曲（V↑ → 挡板位移）",
+        "refs": ["out/_fycal_figs/_named/fig16_cleaning_piezo.png", "out/_fycal_figs/_named/fig18_exploded_piezo.png"]
+      },
+      {
+        "segment_id": "02",
+        "script": "blender/render_nozzle_flapper.py",
+        "out": "out/blender/02_喷嘴挡板先导级.mp4",
+        "motion": "喷嘴挡板间隙变化 → 先导压变化",
+        "refs": ["out/_fycal_figs/_named/fig12_cal_on_block.png", "out/_fycal_figs/_named/fig10_supply_piezo.png"]
       },
       {
         "segment_id": "03",
         "script": "blender/render_spool_valve.py",
         "out": "out/blender/03_膜片放大与滑阀.mp4",
-        "motion": "膜片力变化驱动滑阀行程"
+        "motion": "膜片力变化驱动滑阀行程",
+        "refs": ["out/_excel_parts/33_r40_膜片.png", "out/_excel_parts/36_r43_滑阀.png"]
       }
     ],
-    "note": "存在 out/blender/<sim> 时合成优先使用；否则回退 out/<sim> matplotlib 仿真"
+    "note": "存在 out/blender/<sim> 时合成优先使用；否则回退 out/<sim> matplotlib 仿真。Blender 段会贴真实 FYCAL/零件照片 + HUD 角标卡。"
   },
   "segments": [
     {

@@ -9,7 +9,7 @@
 **主链路已经打通，skill 里大部分「正确做法」你们已经在用。**  
 缺口主要在：流程尚未写成 skill、资源可移植性、后段实物绑定、高保真三维未产品化、缺少一键验收。
 
-成熟度粗评：**原理讲解可交付约 85%；可复用产线约 75%；Blender 级观感约 45%（01/03 可渲，仍为占位几何）。**
+成熟度粗评：**原理讲解可交付约 85%；可复用产线约 75%；Blender 级观感约 55%（01/02/03 可渲，含真实照片对照，几何仍为占位）。**
 
 ---
 
@@ -82,11 +82,11 @@
 ### P3 — 影响「国外片那种观感」
 
 11. **主视觉仍是 matplotlib 2D，不是 Blender 产线**  
-   - 状态：✅ 首切片已接入（可选增强层）  
-   - `blender/render_piezo_bend.py`（01）+ `blender/render_spool_valve.py`（03）  
-   - `render_blender_clips.py` / `run_principle_pipeline.py --with-blender`  
+   - 状态：✅ P3 深化中（01/02/03 可选增强）  
+   - 动作几何 + **真实 FYCAL/零件照片板** + **HUD 角标卡**  
+   - `render_blender_clips.py` 自动烘焙 HUD，并传入 `--photo-a/b`  
    - 合成优先 `out/blender/<sim>`，否则回退 matplotlib  
-   - 当前为 procedural 占位几何；后续可替换真实拆解网格
+   - 仍非真实 CAD 网格；下一步可替换拆解模型
 
 12. **产品部件透明动作台未并入主片**  
     - 有 `FY301_产品部件透明动作台.html`、`render_product_parts.py`  
