@@ -66,7 +66,7 @@ def main() -> int:
     ap.add_argument(
         "--with-blender",
         action="store_true",
-        help="合成前尝试渲染 Blender 增强段（01 压电 / 03 滑阀）；失败则回退 matplotlib",
+        help="合成前尝试渲染 Blender 增强段（01–05）；失败则回退 matplotlib",
     )
     ap.add_argument(
         "--require-blender",
@@ -81,6 +81,7 @@ def main() -> int:
 
     run_step("verify assets + storyboard", [PY, str(ROOT / "verify_fycal_assets.py")])
     run_step("check default deliverable + mesh pack", [PY, str(ROOT / "check_default_deliverable.py")])
+    run_step("review gate (handbook data + checklist)", [PY, str(ROOT / "check_review_gate.py")])
 
     if args.verify_only:
         print("\nDONE (verify-only)")

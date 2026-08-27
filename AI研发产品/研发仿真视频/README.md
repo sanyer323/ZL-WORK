@@ -23,17 +23,21 @@ python run_principle_pipeline.py --verify-only
 python run_principle_pipeline.py --force-sims
 python run_principle_pipeline.py --with-blender
 python check_default_deliverable.py
+python check_review_gate.py
 ```
 
-Blender 增强层（可选，P3：01–04；可替换 `blender/meshes/`）：
+Blender 增强层（可选，P3+P4：01–05；可替换 `blender/meshes/`）：
 
 ```powershell
 python blender\build_placeholder_meshes.py
 python render_blender_clips.py --dry-run
 python render_blender_clips.py
+python render_blender_clips.py --only 05
 ```
 
 说明见 [`blender/README.md`](./blender/README.md)。有 `out/blender/` 对应片段时，合成会优先用三维片段。
+
+审片：先跑 `check_review_gate.py`，再按 [`REVIEW_CHECKLIST.md`](./REVIEW_CHECKLIST.md) 人工勾选缺陷项增量修补。
 
 分镜文案/旁白/角标请改：[`storyboard.json`](./storyboard.json)（不要再把长旁白写死在 Python 里）。
 

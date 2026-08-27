@@ -100,6 +100,10 @@ def main() -> None:
         "diaphragm_small.obj": cylinder(0.38, 0.04, 48),
         "hall_housing.obj": box(0.55, 0.35, 0.25),
         "magnet_block.obj": box(0.18, 0.12, 0.12),
+        # segment 05 signal-flow nodes (replace with real CAD exports)
+        "pcb_board.obj": box(1.1, 0.08, 0.7),
+        "pneumatic_block.obj": box(0.9, 0.55, 0.45),
+        "actuator_hint.obj": cylinder(0.22, 0.9, 32),
     }
     manifest = []
     for name, (verts, faces) in catalog.items():

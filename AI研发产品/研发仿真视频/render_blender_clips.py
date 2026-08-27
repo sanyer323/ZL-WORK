@@ -2,14 +2,16 @@
 """
 Render optional Blender enhancement clips for FY301 principle edition.
 
-P3 clips:
+P3/P4 clips:
   01 piezo bend
   02 nozzle-flapper pilot
   03 spool valve
+  04 hall feedback
+  05 full-loop signal flow
 
 Usage:
   python render_blender_clips.py
-  python render_blender_clips.py --only 02
+  python render_blender_clips.py --only 05
   python render_blender_clips.py --blender "C:\\Program Files\\Blender Foundation\\Blender 4.2\\blender.exe"
 """
 from __future__ import annotations
@@ -62,6 +64,15 @@ SCRIPTS = {
             ROOT / "out/_excel_parts/42_r49_传感器外壳.png",
         ],
         "hud_fallback": ["Hall gap 2-4 mm", "SP vs PV", "correct Vpiezo"],
+    },
+    "05": {
+        "script": ROOT / "blender" / "render_signal_flow.py",
+        "out": OUT_BLEND / "05_全系统闭环信号流.mp4",
+        "photos": [
+            ROOT / "out/_excel_parts/03_r6_线路板.png",
+            ROOT / "out/_excel_parts/40_r47_气动组件外壳.png",
+        ],
+        "hud_fallback": ["loop ~3.8 mA", "0-100 V", "E -> P -> M -> E"],
     },
 }
 

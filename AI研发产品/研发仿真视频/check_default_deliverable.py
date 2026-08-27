@@ -30,7 +30,15 @@ def main() -> int:
 
     # Blender mesh pack presence (placeholders or real CAD replacements)
     mesh_dir = ROOT / "blender" / "meshes"
-    required = ["piezo_disk.obj", "spool.obj", "hall_housing.obj", "manifest.json"]
+    required = [
+        "piezo_disk.obj",
+        "spool.obj",
+        "hall_housing.obj",
+        "pcb_board.obj",
+        "pneumatic_block.obj",
+        "actuator_hint.obj",
+        "manifest.json",
+    ]
     for name in required:
         if not (mesh_dir / name).exists():
             errors.append(f"missing mesh pack file: blender/meshes/{name} (run build_placeholder_meshes.py)")

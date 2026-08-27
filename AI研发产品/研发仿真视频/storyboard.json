@@ -41,9 +41,17 @@
         "motion": "磁铁接近 Hall，间隙约 2–4 mm",
         "mesh": "blender/meshes/hall_housing.obj",
         "refs": ["out/_excel_parts/44_r51_霍尔传感器.png", "out/_excel_parts/42_r49_传感器外壳.png"]
+      },
+      {
+        "segment_id": "05",
+        "script": "blender/render_signal_flow.py",
+        "out": "out/blender/05_全系统闭环信号流.mp4",
+        "motion": "信号脉冲沿电→气→机→电闭环行进",
+        "mesh": "blender/meshes/pcb_board.obj",
+        "refs": ["out/_excel_parts/03_r6_线路板.png", "out/_excel_parts/40_r47_气动组件外壳.png"]
       }
     ],
-    "note": "存在 out/blender/<sim> 时合成优先使用；否则回退 matplotlib。可用同名 OBJ/STL/FBX 替换 blender/meshes/ 占位网格。"
+    "note": "存在 out/blender/<sim> 时合成优先使用；否则回退 matplotlib。可用同名 OBJ/STL/FBX 替换 blender/meshes/ 占位网格。P4 已含 05 全链路。"
   },
   "segments": [
     {

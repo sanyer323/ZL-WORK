@@ -40,6 +40,18 @@
     {
       "file": "magnet_block.obj",
       "replace_with": "Export real CAD mesh to this same filename (OBJ/STL/FBX supported by importer)."
+    },
+    {
+      "file": "pcb_board.obj",
+      "replace_with": "Export real CAD mesh to this same filename (OBJ/STL/FBX supported by importer)."
+    },
+    {
+      "file": "pneumatic_block.obj",
+      "replace_with": "Export real CAD mesh to this same filename (OBJ/STL/FBX supported by importer)."
+    },
+    {
+      "file": "actuator_hint.obj",
+      "replace_with": "Export real CAD mesh to this same filename (OBJ/STL/FBX supported by importer)."
     }
   ]
 }

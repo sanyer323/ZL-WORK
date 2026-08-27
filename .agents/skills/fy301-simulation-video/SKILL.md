@@ -130,8 +130,10 @@ description: >-
 
 ```powershell
 python verify_fycal_assets.py
+python check_review_gate.py
 python run_principle_pipeline.py
 python run_principle_pipeline.py --force-sims
+python run_principle_pipeline.py --with-blender
 python render_sims.py
 python build_principle_edition.py
 python build_master.py
@@ -139,6 +141,7 @@ python add_sapi_voice.py
 ```
 
 改分镜时优先改 `storyboard.json`，保持旁白、照片节拍、HUD、takeaway 同步。
+人工审片勾选 `AI研发产品/研发仿真视频/REVIEW_CHECKLIST.md`；自动覆盖的关键数据检查走 `check_review_gate.py`。
 
 ## 版本分工
 
@@ -169,15 +172,17 @@ python add_sapi_voice.py
 3. 导出素材后仍回到同一合成流程（或等价分镜表），保证要点卡与手册数不丢。
 4. 禁止为了画面好看改写与手册冲突的机理。
 
-首切片（已落地并深化）：
+首切片（已落地并深化，P3+P4）：
 
 - `blender/render_piezo_bend.py` → `out/blender/01_压电陶瓷原理.mp4`
 - `blender/render_nozzle_flapper.py` → `out/blender/02_喷嘴挡板先导级.mp4`
 - `blender/render_spool_valve.py` → `out/blender/03_膜片放大与滑阀.mp4`
 - `blender/render_hall_feedback.py` → `out/blender/04_霍尔反馈与闭环.mp4`
+- `blender/render_signal_flow.py` → `out/blender/05_全系统闭环信号流.mp4`
 - 网格包：`python blender/build_placeholder_meshes.py` → `blender/meshes/*.obj`（可同名替换真实 CAD）
 - 入口：`python render_blender_clips.py` 或 `python run_principle_pipeline.py --with-blender`
 - 默认交付门禁：`python check_default_deliverable.py`
+- 审片门禁：`python check_review_gate.py` + `AI研发产品/研发仿真视频/REVIEW_CHECKLIST.md`
 - 合成优先使用 `out/blender/<sim>`，否则回退 matplotlib `out/<sim>`
 
 ## 验收标准
