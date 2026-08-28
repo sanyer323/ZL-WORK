@@ -12,6 +12,9 @@ param(
     [switch]$RebuildManifest,
     [switch]$WithBlender,
     [switch]$RequireBlender,
+    [switch]$WithProductParts,
+    [switch]$BuildMaster,
+    [switch]$StrictDeliverable,
     [string]$BlenderPath = ""
 )
 

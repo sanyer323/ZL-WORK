@@ -53,6 +53,28 @@
     ],
     "note": "存在 out/blender/<sim> 时合成优先使用；否则回退 matplotlib。可用同名 OBJ/STL/FBX 替换 blender/meshes/ 占位网格。P4 已含 05 全链路。"
   },
+  "master_edition": {
+    "prefer_blender_sims": true,
+    "broll_seconds": 4.0,
+    "product_parts_broll": {
+      "01": "out/product_parts/P02_挡板_透明弯曲动作.mp4",
+      "02": "out/product_parts/P02_挡板_透明弯曲动作.mp4",
+      "03": "out/product_parts/P01_气动块_透明气流.mp4",
+      "04": "out/product_parts/P05_整机拆解_透明联锁.mp4",
+      "05": "out/product_parts/P04_线路板_透明信号流.mp4"
+    },
+    "output": {
+      "master_mp4": "out/FY301_研发原理讲解_完整版.mp4",
+      "master_srt": "out/FY301_研发原理讲解.srt"
+    }
+  },
+  "product_parts": {
+    "script": "render_product_parts.py",
+    "output_dir": "out/product_parts",
+    "master_concat": "out/product_parts/FY301_产品部件透明原理_完整版.mp4",
+    "requires": "../SMAR SKD",
+    "note": "透明实物 B-roll；完整版 master 可在各段前插入（见 master_edition.product_parts_broll）。"
+  },
   "segments": [
     {
       "id": "01",

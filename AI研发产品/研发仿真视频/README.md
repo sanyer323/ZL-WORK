@@ -22,8 +22,11 @@ python run_principle_pipeline.py
 python run_principle_pipeline.py --verify-only
 python run_principle_pipeline.py --force-sims
 python run_principle_pipeline.py --with-blender
+python run_principle_pipeline.py --with-product-parts --build-master
 python check_default_deliverable.py
 python check_review_gate.py
+python check_principle_deliverable.py
+python rebuild_parts_index.py          # 有 SMAR SKD 照片时
 ```
 
 Blender 增强层（可选，P3+P4：01–05；可替换 `blender/meshes/`）：
@@ -38,6 +41,8 @@ python render_blender_clips.py --only 05
 说明见 [`blender/README.md`](./blender/README.md)。有 `out/blender/` 对应片段时，合成会优先用三维片段。
 
 审片：先跑 `check_review_gate.py`，再按 [`REVIEW_CHECKLIST.md`](./REVIEW_CHECKLIST.md) 人工勾选缺陷项增量修补。
+
+**完整版 master（非默认交付）** 可在各段前插入 `out/product_parts/` 透明实物 B-roll（见 `storyboard.json` → `master_edition`），并优先使用 Blender 仿真片段。
 
 分镜文案/旁白/角标请改：[`storyboard.json`](./storyboard.json)（不要再把长旁白写死在 Python 里）。
 

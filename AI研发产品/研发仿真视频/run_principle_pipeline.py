@@ -74,6 +74,21 @@ def main() -> int:
         help="与 --with-blender 联用：Blender 失败则中止（不回退）",
     )
     ap.add_argument("--blender", default=None, help="Blender 可执行文件路径（可选）")
+    ap.add_argument(
+        "--with-product-parts",
+        action="store_true",
+        help="尝试渲染产品部件透明 B-roll（需 AI研发产品/SMAR SKD 照片）",
+    )
+    ap.add_argument(
+        "--build-master",
+        action="store_true",
+        help="原理片合成后再构建研发完整版 master（含可选 product_parts B-roll）",
+    )
+    ap.add_argument(
+        "--strict-deliverable",
+        action="store_true",
+        help="合成后运行成片验收；缺 mp4/srt 时失败",
+    )
     args = ap.parse_args()
 
     if not STORYBOARD.exists():
@@ -123,12 +138,31 @@ def main() -> int:
                 flush=True,
             )
 
+    if args.with_product_parts:
+        print("\n=== product parts transparent B-roll ===", flush=True)
+        pr = subprocess.run([PY, str(ROOT / "render_product_parts.py")], cwd=str(ROOT))
+        if pr.returncode != 0:
+            print(
+                f"warn: product_parts render failed (exit {pr.returncode}); "
+                "master B-roll will be skipped where clips are missing",
+                flush=True,
+            )
+
     if args.skip_compose:
         print("\nDONE (skip-compose)")
         return 0
 
     run_step("compose principle edition", [PY, str(ROOT / "build_principle_edition.py")])
+    run_step("check principle deliverable (soft)", [PY, str(ROOT / "check_principle_deliverable.py")])
+
+    if args.build_master:
+        run_step("build master edition", [PY, str(ROOT / "build_master.py")])
+
     final = OUT / "FY301_原理讲解版.mp4"
+    if args.strict_deliverable:
+        r = subprocess.run([PY, str(ROOT / "check_principle_deliverable.py")], cwd=str(ROOT))
+        if r.returncode != 0:
+            raise SystemExit("strict deliverable check failed")
     print(f"\nDONE -> {final}")
     return 0
 

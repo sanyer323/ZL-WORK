@@ -86,7 +86,7 @@ def main() -> int:
     else:
         warns.append("principle SRT not built yet (ok at verify-only)")
 
-    # Blender 05 should be registered once P4 lands
+    # Blender 01–05 registered
     clips = ((data.get("blender_enhancements") or {}).get("clips")) or []
     ids = {c.get("segment_id") for c in clips}
     if "05" not in ids:
@@ -95,6 +95,10 @@ def main() -> int:
         script = ROOT / next(c["script"] for c in clips if c.get("segment_id") == "05")
         if not script.exists():
             errors.append(f"missing blender script for 05: {script}")
+
+    master = data.get("master_edition") or {}
+    if not master.get("product_parts_broll"):
+        errors.append("master_edition.product_parts_broll missing")
 
     for w in warns:
         print("warn:", w, flush=True)

@@ -16,6 +16,8 @@ from pathlib import Path
 
 import imageio_ffmpeg
 
+from fy301_common import ffmpeg_fontfile_esc, find_sim, load_storyboard, subtitle_force_style
+
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "out"
 OUT.mkdir(exist_ok=True)
@@ -89,7 +91,7 @@ def run(cmd: list[str]) -> None:
 def make_title_card(path: Path, title: str, seconds: float = 2.5) -> None:
     # drawtext with YaHei; escape for ffmpeg
     # Use lavfi color + drawtext
-    font = r"C\:/Windows/Fonts/msyh.ttc"
+    font = ffmpeg_fontfile_esc()
     # wrap title
     lines = textwrap.wrap(title, width=22) or [title]
     # build stacked drawtext
@@ -125,6 +127,50 @@ def make_title_card(path: Path, title: str, seconds: float = 2.5) -> None:
             "-t",
             str(seconds),
             str(path),
+        ]
+    )
+
+
+def trim_clip(src: Path, dst: Path, seconds: float) -> None:
+    run(
+        [
+            FF,
+            "-y",
+            "-i",
+            str(src),
+            "-t",
+            str(seconds),
+            "-vf",
+            "scale=1280:720,fps=20",
+            "-an",
+            "-c:v",
+            "libx264",
+            "-pix_fmt",
+            "yuv420p",
+            str(dst),
+        ]
+    )
+
+
+def concat_videos(paths: list[Path], dst: Path, list_file: Path) -> None:
+    concat_list(paths, list_file)
+    run(
+        [
+            FF,
+            "-y",
+            "-f",
+            "concat",
+            "-safe",
+            "0",
+            "-i",
+            str(list_file),
+            "-c:v",
+            "libx264",
+            "-pix_fmt",
+            "yuv420p",
+            "-r",
+            "20",
+            str(dst),
         ]
     )
 
@@ -222,6 +268,12 @@ def concat_list(paths: list[Path], list_file: Path) -> None:
 
 
 def main() -> None:
+    story = load_storyboard()
+    master_cfg = story.get("master_edition") or {}
+    prefer_blender = bool(master_cfg.get("prefer_blender_sims", True))
+    broll_map = master_cfg.get("product_parts_broll") or {}
+    broll_seconds = float(master_cfg.get("broll_seconds", 4.0))
+
     # 1) write narration doc
     narr_doc = ROOT / "旁白文案_完整版.txt"
     blocks = []
@@ -233,31 +285,44 @@ def main() -> None:
     work.mkdir(exist_ok=True)
 
     for i, seg in enumerate(SEGMENTS):
-        src = OUT / seg["src"]
-        if not src.exists():
-            # try find by prefix
-            cands = list(OUT.glob(f"{seg['src'][:2]}*.mp4"))
-            if not cands:
-                raise FileNotFoundError(src)
-            src = cands[0]
+        seg_id = f"{i + 1:02d}"
+        src = find_sim(seg["src"], prefer_blender=prefer_blender)
 
         card = work / f"card_{i:02d}.mp4"
         stretched = work / f"seg_{i:02d}.mp4"
         make_title_card(card, seg["title"], title_dur)
         stretch_video(src, stretched, seg["dur"])
 
+        seg_body = stretched
+        extra_broll = 0.0
+        broll_rel = broll_map.get(seg_id)
+        if broll_rel:
+            broll_src = ROOT / str(broll_rel)
+            if broll_src.exists() and broll_src.stat().st_size > 1000:
+                broll = work / f"broll_{i:02d}.mp4"
+                trim_clip(broll_src, broll, broll_seconds)
+                combined = work / f"seg_body_{i:02d}.mp4"
+                concat_videos([broll, stretched], combined, work / f"pair_{i:02d}.txt")
+                seg_body = combined
+                extra_broll = broll_seconds
+                print(f"broll[{seg_id}]: {broll_src.name} (+{broll_seconds}s)", flush=True)
+            else:
+                print(f"warn: broll missing for segment {seg_id}: {broll_rel}", flush=True)
+
+        seg_dur = seg["dur"] + extra_broll
+
         t0 = t_cursor
         t1 = t0 + title_dur
-        t2 = t1 + seg["dur"]
+        t2 = t1 + seg_dur
         timeline.append(
             {
                 "card": card,
-                "seg": stretched,
+                "seg": seg_body,
                 "title": seg["title"],
                 "narration": seg["narration"],
                 "t_card0": t0,
                 "t_card1": t1,
-                "t_seg0": t1,
+                "t_seg0": t1 + extra_broll,
                 "t_seg1": t2,
             }
         )
@@ -330,7 +395,7 @@ def main() -> None:
     # Burn subtitles (soft ASS via srt) — use subtitles filter; escape path for Windows
     burned = OUT / "FY301_研发原理讲解_完整版.mp4"
     srt_esc = str(srt_path.resolve()).replace("\\", "/").replace(":", "\\:")
-    font_esc = r"C\:/Windows/Fonts/msyh.ttc"
+    sub_style = subtitle_force_style(font_size=18).replace("MarginV=26", "MarginV=28")
 
     if has_voice:
         # mux: stretch/pad audio? Use -shortest after delaying audio for first title
@@ -407,7 +472,7 @@ def main() -> None:
                     "-i",
                     str(voice_all),
                     "-vf",
-                    f"subtitles='{srt_esc}':force_style='FontName=Microsoft YaHei,FontSize=18,PrimaryColour=&H00FFFFFF&,OutlineColour=&H80000000&,Outline=2,Shadow=1,MarginV=28'",
+                    f"subtitles='{srt_esc}':force_style='{sub_style}'",
                     "-c:v",
                     "libx264",
                     "-pix_fmt",
@@ -432,7 +497,7 @@ def main() -> None:
                 "-i",
                 str(silent),
                 "-vf",
-                f"subtitles='{srt_esc}':force_style='FontName=Microsoft YaHei,FontSize=18,PrimaryColour=&H00FFFFFF&,OutlineColour=&H80000000&,Outline=2,Shadow=1,MarginV=28'",
+                f"subtitles='{srt_esc}':force_style='{sub_style}'",
                 "-c:v",
                 "libx264",
                 "-pix_fmt",

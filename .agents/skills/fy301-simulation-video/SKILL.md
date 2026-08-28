@@ -131,13 +131,15 @@ description: >-
 ```powershell
 python verify_fycal_assets.py
 python check_review_gate.py
+python check_principle_deliverable.py
 python run_principle_pipeline.py
 python run_principle_pipeline.py --force-sims
-python run_principle_pipeline.py --with-blender
+python run_principle_pipeline.py --with-blender --with-product-parts --build-master
 python render_sims.py
 python build_principle_edition.py
 python build_master.py
 python add_sapi_voice.py
+python rebuild_parts_index.py
 ```
 
 改分镜时优先改 `storyboard.json`，保持旁白、照片节拍、HUD、takeaway 同步。
@@ -182,7 +184,9 @@ python add_sapi_voice.py
 - 网格包：`python blender/build_placeholder_meshes.py` → `blender/meshes/*.obj`（可同名替换真实 CAD）
 - 入口：`python render_blender_clips.py` 或 `python run_principle_pipeline.py --with-blender`
 - 默认交付门禁：`python check_default_deliverable.py`
-- 审片门禁：`python check_review_gate.py` + `AI研发产品/研发仿真视频/REVIEW_CHECKLIST.md`
+- 审片门禁：`python check_review_gate.py` + `REVIEW_CHECKLIST.md`
+- 成片软验收：`python check_principle_deliverable.py`
+- 完整版 master：优先 Blender + 可选 `product_parts` B-roll（`storyboard.json` → `master_edition`）
 - 合成优先使用 `out/blender/<sim>`，否则回退 matplotlib `out/<sim>`
 
 ## 验收标准

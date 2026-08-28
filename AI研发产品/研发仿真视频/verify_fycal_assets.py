@@ -97,6 +97,35 @@ def main() -> int:
     except Exception as e:  # noqa: BLE001
         errors.append(f"blender enhancement check failed: {e}")
 
+    # P5: master edition + product_parts B-roll metadata
+    try:
+        sb = json.loads(STORYBOARD_PATH.read_text(encoding="utf-8"))
+        master = sb.get("master_edition") or {}
+        broll = master.get("product_parts_broll") or {}
+        if not broll:
+            errors.append("master_edition.product_parts_broll missing in storyboard.json")
+        pp = sb.get("product_parts") or {}
+        pp_script = ROOT / str(pp.get("script") or "render_product_parts.py")
+        if not pp_script.exists():
+            errors.append(f"product_parts script missing: {pp_script.name}")
+        else:
+            import ast
+
+            ast.parse(pp_script.read_text(encoding="utf-8"))
+        if not (ROOT / "fy301_common.py").exists():
+            errors.append("missing fy301_common.py")
+        if not (ROOT / "check_principle_deliverable.py").exists():
+            errors.append("missing check_principle_deliverable.py")
+        idx = ROOT / "parts_index.json"
+        if idx.exists():
+            raw_idx = json.loads(idx.read_text(encoding="utf-8"))
+            for row in raw_idx.values():
+                p = str((row or {}).get("path", ""))
+                if Path(p).is_absolute() or re.match(r"^[A-Za-z]:/", p) or ":\\" in p:
+                    errors.append(f"absolute path in parts_index.json: {p}")
+    except Exception as e:  # noqa: BLE001
+        errors.append(f"master/product_parts check failed: {e}")
+
     if len(segs) < 5:
         errors.append(f"storyboard expected >=5 segments, got {len(segs)}")
 
