@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/recharge/recharge",
+    "pages/checkin/checkin",
+    "pages/records/records",
+    "pages/profile/profile",
+    "pages/admin/index/index",
+    "pages/admin/students/students",
+    "pages/admin/stats/stats"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#2c1810",
+    "navigationBarTitleText": "文房书法",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f7f3ee",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#8a7a6a",
+    "selectedColor": "#8b4513",
+    "backgroundColor": "#fffdf9",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "assets/tab-home.png",
+        "selectedIconPath": "assets/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/checkin/checkin",
+        "text": "签到",
+        "iconPath": "assets/tab-checkin.png",
+        "selectedIconPath": "assets/tab-checkin-active.png"
+      },
+      {
+        "pagePath": "pages/records/records",
+        "text": "明细",
+        "iconPath": "assets/tab-records.png",
+        "selectedIconPath": "assets/tab-records-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/tab-profile.png",
+        "selectedIconPath": "assets/tab-profile-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
