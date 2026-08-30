@@ -25,6 +25,28 @@ header {
 header h1 { margin: 0; font-size: 1.25rem; color: var(--accent); }
 .tag { margin: 4px 0 12px; font-size: 0.8rem; color: var(--muted); }
 
+.stage-bar {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  margin: 0 0 12px;
+  font-size: 0.72rem;
+}
+.stage-bar li {
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+.stage-bar .past { text-decoration: line-through; opacity: 0.7; }
+.stage-bar .now {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
 .tabs { display: flex; gap: 8px; }
 .tab {
   flex: 1;
@@ -150,3 +172,46 @@ footer {
   display: flex; gap: 12px; flex-wrap: wrap;
 }
 footer a { color: var(--accent); }
+
+#clip-video {
+  width: 100%;
+  max-height: 220px;
+  background: #000;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.clip-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.clip-card h3 { margin: 0 0 6px; font-size: 1rem; color: var(--accent); }
+.clip-time { font-size: 0.78rem; color: var(--warn); margin: 0 0 8px; }
+.clip-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.clip-actions a, .clip-actions button, .mini-clip {
+  font-size: 0.78rem;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.clip-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.clip-chip {
+  font-size: 0.75rem;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+}
+.clip-chip.active { border-color: var(--accent); color: var(--accent); }
+
+.mini-clip { margin-left: 8px; }

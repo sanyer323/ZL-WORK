@@ -1,6 +1,6 @@
 # 流衡 AI 助手 · 三产品（工厂 + 挂件 + FY301 手操器）
 
-把 AI 放进**小行动体**：同一套「语音 + 知识 + 权限」平台，两种终端形态。
+把 AI 放进**小行动体**：同一套「语音 + 知识 + 权限」平台，三种终端形态。
 
 | 产品 | 代号 | 第一能力 | 典型场景 |
 |------|------|----------|----------|
@@ -18,7 +18,9 @@
 | [架构设计.md](架构设计.md) | 共享平台、数据流、部署形态 |
 | [技术选型.md](技术选型.md) | 硬件与软件栈对比 |
 | [P0-Demo计划.md](P0-Demo计划.md) | 两周验证：任务拆解与成功标准 |
+| [FY301智能调试手操器.md](FY301智能调试手操器.md) | FY301 现场 AI 调试手操器 PRD |
 | [p0-demo/](p0-demo/) | 浏览器语音对话原型（可接 LLM API） |
+| [fy301-techmate/](fy301-techmate/) | FY301 TechMate M0 — 故障向导；培训视频已切成按故障跳转的切片 |
 
 ---
 
@@ -38,4 +40,4 @@ cd AI助手/p0-demo && python3 -m http.server 8765
 cd AI助手/fy301-techmate && python3 -m http.server 8766
 ```
 
-详见 [p0-demo/README.md](p0-demo/README.md)。
+详见 [p0-demo/README.md](p0-demo/README.md) 与 [fy301-techmate/README.md](fy301-techmate/README.md)。

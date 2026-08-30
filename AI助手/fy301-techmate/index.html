@@ -11,11 +11,17 @@
     <header>
       <div>
         <h1>FY301 TechMate</h1>
-        <p class="tag">AI 智能调试手操器 · M0 原型</p>
+        <p class="tag">AI 智能调试手操器 · M0 · 视频已降为切片</p>
       </div>
+      <ol class="stage-bar" aria-label="产品阶段">
+        <li class="past">昨天：只播视频</li>
+        <li class="now">今天：向导 + 跳切片</li>
+        <li>明天：+ HART 读数</li>
+      </ol>
       <div class="tabs">
         <button type="button" class="tab active" data-tab="chat">问答</button>
         <button type="button" class="tab" data-tab="wizard">逐步向导</button>
+        <button type="button" class="tab" data-tab="clip">对应切片</button>
         <button type="button" class="tab" data-tab="chain">排查链</button>
       </div>
     </header>
@@ -45,6 +51,16 @@
         <button type="button" id="wiz-next">下一步</button>
         <button type="button" id="wiz-done" hidden>完成</button>
       </div>
+    </section>
+
+    <section id="panel-clip" class="panel">
+      <p class="wizard-intro">培训片不再从头放到尾。诊断命中后，这里只播<strong>这一段</strong>。</p>
+      <div class="clip-player">
+        <video id="clip-video" controls playsinline></video>
+        <p id="clip-fallback" class="muted" hidden>本机未找到 MP4（仓库默认不提交大视频）。下面是该段字幕要点，可打开仿真工作台对照。</p>
+      </div>
+      <div id="clip-card" class="clip-card"></div>
+      <div id="clip-list" class="clip-list"></div>
     </section>
 
     <section id="panel-chain" class="panel">
