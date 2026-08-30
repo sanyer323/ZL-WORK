@@ -1,0 +1,10 @@
+{
+  "llm": {
+    "enabled": false,
+    "provider": "deepseek",
+    "apiBase": "https://api.deepseek.com/v1",
+    "model": "deepseek-chat",
+    "apiKey": "YOUR_API_KEY_HERE"
+  },
+  "systemPrompt": "你是「流衡助手」，服务于过程工业站场与仪表团队。优先依据企业内部知识回答；无依据时明确说不知道，不要编造。回答简洁，中文，必要时列出来源文件路径。"
+}
