@@ -64,6 +64,16 @@ npm run preview  # 预览构建产物
 
 压电式智能阀门定位器的原理仿真、培训视频与互动工作台（电-气-机闭环：4–20 mA → 压电挡板 → 先导级 → 滑阀 → 霍尔反馈）。
 
+### AI 助手 · [流衡 Station / Pocket](AI助手/)
+
+把 AI 放进小行动体：**工厂语音助手** + **随身挂件助理**，共用语音/知识/权限平台。
+
+```bash
+cd AI助手/p0-demo && python3 -m http.server 8765
+```
+
+详见 [AI助手/README.md](AI助手/README.md)。
+
 ---
 
 ## 代表项目

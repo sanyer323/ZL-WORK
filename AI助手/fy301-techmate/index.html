@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>FY301 TechMate · AI 智能调试手操器</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div>
+        <h1>FY301 TechMate</h1>
+        <p class="tag">AI 智能调试手操器 · M0 原型</p>
+      </div>
+      <div class="tabs">
+        <button type="button" class="tab active" data-tab="chat">问答</button>
+        <button type="button" class="tab" data-tab="wizard">逐步向导</button>
+        <button type="button" class="tab" data-tab="chain">排查链</button>
+      </div>
+    </header>
+
+    <section id="panel-chat" class="panel active">
+      <div class="quick-faults">
+        <button type="button" data-q="现场带电拔霍尔传感器现在报警了">⚡ 带电拔霍尔</button>
+        <button type="button" data-q="Auto Setup 报 FAIL MOVE 怎么办">FAIL MOVE</button>
+        <button type="button" data-q="压电电压超过 80 伏">压电电压高</button>
+        <button type="button" data-q="FYCAL 标定步骤">FYCAL 标定</button>
+      </div>
+      <div id="chat" class="chat"></div>
+      <div class="composer">
+        <textarea id="input" rows="2" placeholder="描述故障现象，或点上方快捷按钮…"></textarea>
+        <div class="row">
+          <button type="button" id="btn-voice" class="voice">按住说话</button>
+          <button type="button" id="btn-send" class="send">诊断</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-wizard" class="panel">
+      <p class="wizard-intro">霍尔传感器故障恢复向导（含带电插拔场景）</p>
+      <ol id="wizard-steps" class="wizard"></ol>
+      <div class="wizard-nav">
+        <button type="button" id="wiz-prev" disabled>上一步</button>
+        <button type="button" id="wiz-next">下一步</button>
+        <button type="button" id="wiz-done" hidden>完成</button>
+      </div>
+    </section>
+
+    <section id="panel-chain" class="panel">
+      <h2>标准排查链</h2>
+      <p class="muted">调不好时按此顺序（工程师培训版）</p>
+      <div class="chain">
+        <div class="chain-step"><span>1</span><div><strong>信号与供电</strong><p>4–20 mA、回路阻抗、极性</p></div></div>
+        <div class="chain-step"><span>2</span><div><strong>压电电压</strong><p>阀停稳后 30–70 V（理想 ~50 V）</p></div></div>
+        <div class="chain-step"><span>3</span><div><strong>先导压力</strong><p>节流孔–喷嘴–挡板链路</p></div></div>
+        <div class="chain-step"><span>4</span><div><strong>OUT1 / OUT2</strong><p>滑阀输出与接管</p></div></div>
+        <div class="chain-step"><span>5</span><div><strong>霍尔 / 磁铁</strong><p>间隙 2–4 mm，禁止带电插拔</p></div></div>
+      </div>
+      <p class="note">M1 版本将对接 HART 自动读数；M0 为人工读数 + AI 解释。</p>
+    </section>
+
+    <footer>
+      <span>HART 连接：M1 规划</span>
+      <a href="../FY301智能调试手操器.md" target="_blank">产品说明</a>
+      <a href="../../AI研发产品/研发仿真视频/FY301_研发仿真工作台.html" target="_blank">仿真工作台</a>
+    </footer>
+  </div>
+  <script src="app.js" type="module"></script>
+</body>
+</html>

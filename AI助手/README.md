@@ -1,4 +1,4 @@
-# 流衡 AI 助手 · 双产品线（工厂 + 挂件）
+# 流衡 AI 助手 · 三产品（工厂 + 挂件 + FY301 手操器）
 
 把 AI 放进**小行动体**：同一套「语音 + 知识 + 权限」平台，两种终端形态。
 
@@ -6,6 +6,7 @@
 |------|------|----------|----------|
 | **工厂/站场助手** | `Station` | 语音对话 + 规程/位号/仪表知识 | 工位屏、车间对讲、设计岗 |
 | **随身挂件助理** | `Pocket` | 短对话 + 备忘 + 轻提醒 | 巡检、出差、销售外勤 |
+| **FY301 智能调试手操器** | `TechMate` | 故障向导 + FYCAL/Auto Setup | 客户现场、售后、仪表工 |
 
 ---
 
@@ -32,9 +33,9 @@
 ## 快速体验 P0
 
 ```bash
-cd AI助手/p0-demo
-python3 -m http.server 8765
-# 浏览器打开 http://localhost:8765
+cd AI助手/p0-demo && python3 -m http.server 8765
+# FY301 调试手操器 M0：
+cd AI助手/fy301-techmate && python3 -m http.server 8766
 ```
 
 详见 [p0-demo/README.md](p0-demo/README.md)。
