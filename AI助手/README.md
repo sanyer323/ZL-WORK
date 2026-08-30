@@ -20,7 +20,8 @@
 | [P0-Demo计划.md](P0-Demo计划.md) | 两周验证：任务拆解与成功标准 |
 | [FY301智能调试手操器.md](FY301智能调试手操器.md) | FY301 现场 AI 调试手操器 PRD |
 | [p0-demo/](p0-demo/) | 浏览器语音对话原型（可接 LLM API） |
-| [fy301-techmate/](fy301-techmate/) | FY301 TechMate M0 — 故障向导；培训视频已切成按故障跳转的切片 |
+| [fy301-techmate/](fy301-techmate/) | FY301 故障向导（文本/切片，无 HART） |
+| [hart-host/](hart-host/) | **HART 主机（FY301 第一台）**：USB modem + 中文命令；打通后再扩 DD |
 
 ---
 
