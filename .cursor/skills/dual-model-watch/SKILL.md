@@ -65,7 +65,8 @@ description: 重要任务用「一模型做、一模型盯」双模型流程，�
 
 - 固件骨架、HART、仿真任务：默认走 **B（异模型盯梢）** + `/agent-review` Deep。
 - 验收至少包含：能编译/能跑通入口、关键模块有桩或实现边界清晰、文档/目录与仓库约定一致。
-- 可复用事实仍写入 `positioner-rd` Skill 与 `ValvePositioner/docs/kb`（增量，勿整篇重写）。
+- 可复用事实写入 `positioner-rd` Skill 与 `AI研发产品/docs/kb/`（镜像 `ValvePositioner/docs/kb`）；增量，勿整篇重写。
+- 本机安装：`AI研发产品/docs/kb/install-skills-to-home.ps1` → `~\.cursor\skills\positioner-rd`。
 
 ## 收工门槛（盯梢通过才算完成）
 
