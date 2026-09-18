@@ -1,0 +1,21 @@
+<view class="container">
+  <view class="search-bar">
+    <input placeholder="搜索姓名/手机" bindinput="onSearch" />
+  </view>
+
+  <view wx:if="{{loading}}" class="empty">加载中…</view>
+  <view wx:elif="{{!students.length}}" class="empty">暂无学员</view>
+
+  <view class="card student-item" wx:for="{{students}}" wx:key="_id">
+    <view class="row-top">
+      <text class="name">{{item.name}}</text>
+      <text class="tag tag-warn" wx:if="{{item.balance < item.classPrice}}">余额不足</text>
+    </view>
+    <view class="text-muted">{{item.phone || '无手机'}} · 课费 ¥{{formatMoney(item.classPrice)}}/次</view>
+    <view class="row-bottom">
+      <text>余额 <text class="money">¥{{formatMoney(item.balance)}}</text></text>
+      <text class="text-muted">已上 {{item.totalClasses || 0}} 次 · 约 {{item.estimatedLessons || 0}} 次余</text>
+    </view>
+    <view class="text-muted" wx:if="{{item.note}}">备注：{{item.note}}</view>
+  </view>
+</view>

@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="card">
+    <view class="card-title">选择充值金额</view>
+    <view class="preset-grid">
+      <view
+        class="preset-item {{selected === item ? 'active' : ''}}"
+        wx:for="{{presets}}"
+        wx:key="*this"
+        data-amount="{{item}}"
+        bindtap="selectPreset"
+      >
+        ¥{{item}}
+      </view>
+    </view>
+    <view class="custom-row">
+      <text>其他金额</text>
+      <input type="digit" placeholder="输入金额" value="{{customAmount}}" bindinput="onCustomInput" />
+    </view>
+  </view>
+
+  <view class="card hint" wx:if="{{mockMode}}">
+    <view class="tag">演示模式</view>
+    <view class="text-muted">当前为演示充值（无需真实付款）。配置微信支付后自动切换为正式收款。</view>
+  </view>
+
+  <button class="btn-primary pay-btn" loading="{{paying}}" disabled="{{paying}}" bindtap="onPay">
+    确认充值 ¥{{customAmount || selected}}
+  </button>
+</view>

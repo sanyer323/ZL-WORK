@@ -1,0 +1,41 @@
+[
+  {
+    "name": "张明远",
+    "phone": "13800001001",
+    "balance": 3000,
+    "classPrice": 150,
+    "totalClasses": 8,
+    "note": "周六班 · 示例数据，请用文房文件夹真实数据替换"
+  },
+  {
+    "name": "李雨桐",
+    "phone": "13800001002",
+    "balance": 1200,
+    "classPrice": 150,
+    "totalClasses": 12,
+    "note": "周日班"
+  },
+  {
+    "name": "王梓涵",
+    "phone": "13800001003",
+    "balance": 450,
+    "classPrice": 150,
+    "totalClasses": 5,
+    "note": "余额偏低，需提醒充值"
+  },
+  {
+    "name": "陈一鸣",
+    "phone": "13800001004",
+    "balance": 6000,
+    "classPrice": 200,
+    "note": "成人班 · 200元/次"
+  },
+  {
+    "name": "刘思齐",
+    "phone": "13800001005",
+    "balance": 0,
+    "classPrice": 150,
+    "totalClasses": 20,
+    "note": "历史学员 · 余额已用完"
+  }
+]

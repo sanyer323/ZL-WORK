@@ -1,0 +1,45 @@
+<view class="container">
+  <view wx:if="{{loading}}" class="empty">加载中…</view>
+  <block wx:else>
+    <view class="card">
+      <view class="card-title">今日概况</view>
+      <view class="grid">
+        <view class="grid-item">
+          <view class="money money-sm">{{overview.todayCheckins}}</view>
+          <view class="text-muted">今日签到</view>
+        </view>
+        <view class="grid-item">
+          <view class="money money-sm">¥{{formatMoney(overview.todayDeduct)}}</view>
+          <view class="text-muted">今日扣费</view>
+        </view>
+        <view class="grid-item">
+          <view class="money money-sm">¥{{formatMoney(overview.todayRecharge)}}</view>
+          <view class="text-muted">今日充值</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="card-title">学员总览</view>
+      <view class="grid">
+        <view class="grid-item">
+          <view class="money money-sm">{{overview.totalStudents}}</view>
+          <view class="text-muted">在册学员</view>
+        </view>
+        <view class="grid-item">
+          <view class="money money-sm">¥{{formatMoney(overview.totalBalance)}}</view>
+          <view class="text-muted">余额合计</view>
+        </view>
+        <view class="grid-item">
+          <view class="money money-sm">{{overview.lowBalanceCount}}</view>
+          <view class="text-muted">余额不足</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="menu card">
+      <view class="menu-item" bindtap="goStudents">学员列表与余额 →</view>
+      <view class="menu-item" bindtap="goStats">月度统计报表 →</view>
+    </view>
+  </block>
+</view>

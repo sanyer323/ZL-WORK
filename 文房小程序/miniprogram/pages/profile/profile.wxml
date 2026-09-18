@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="card profile-card" wx:if="{{student}}">
+    <view class="name">{{student.name}}</view>
+    <view class="text-muted">{{student.phone || '未填写手机号'}}</view>
+    <view class="balance-line">
+      余额 <text class="money">¥{{formatMoney(student.balance)}}</text>
+    </view>
+    <view class="text-muted">单次课费 ¥{{formatMoney(student.classPrice)}} · 已上课 {{student.totalClasses || 0}} 次</view>
+  </view>
+
+  <view class="card" wx:else>
+    <view class="card-title">绑定学员</view>
+    <view class="text-muted" style="margin-bottom:24rpx">请输入报名时登记的姓名，系统将匹配老师导入的学员档案。</view>
+    <view class="form-row">
+      <text>姓名</text>
+      <input placeholder="学员姓名" value="{{bindForm.name}}" bindinput="onNameInput" />
+    </view>
+    <view class="form-row">
+      <text>手机</text>
+      <input type="number" placeholder="选填，便于核对" value="{{bindForm.phone}}" bindinput="onPhoneInput" />
+    </view>
+    <button class="btn-primary" loading="{{binding}}" bindtap="onBind">确认绑定</button>
+  </view>
+
+  <view class="menu card">
+    <navigator url="/pages/recharge/recharge" class="menu-item">充值</navigator>
+    <navigator url="/pages/records/records" open-type="switchTab" class="menu-item">消费明细</navigator>
+    <view wx:if="{{isAdmin}}" class="menu-item" bindtap="goAdmin">老板后台</view>
+  </view>
+
+  <view class="footer text-muted">文房书法 · 自助缴费签到</view>
+</view>

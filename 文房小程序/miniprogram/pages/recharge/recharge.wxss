@@ -1,0 +1,41 @@
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20rpx;
+  margin-bottom: 32rpx;
+}
+
+.preset-item {
+  text-align: center;
+  padding: 28rpx 0;
+  border-radius: 16rpx;
+  background: rgba(139, 69, 19, 0.06);
+  color: #5c3d2e;
+  font-weight: 600;
+}
+
+.preset-item.active {
+  background: #8b4513;
+  color: #fff;
+}
+
+.custom-row {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.custom-row input {
+  flex: 1;
+  border-bottom: 1rpx solid rgba(139, 69, 19, 0.2);
+  padding: 12rpx 0;
+}
+
+.pay-btn {
+  margin-top: 48rpx;
+  width: 100%;
+}
+
+.hint {
+  margin-top: 0;
+}

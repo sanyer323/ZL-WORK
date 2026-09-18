@@ -1,0 +1,19 @@
+.grid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.grid-item {
+  flex: 1;
+  text-align: center;
+}
+
+.menu-item {
+  padding: 32rpx 0;
+  border-bottom: 1rpx solid rgba(139, 69, 19, 0.08);
+  font-size: 30rpx;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
