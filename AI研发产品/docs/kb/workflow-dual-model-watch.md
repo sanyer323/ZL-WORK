@@ -19,6 +19,10 @@
 - 单模型自审通过即收工
 - 用 `/best-of-n` 当审查
 
+## 交流讨论
+
+两模型不自动对话；用 Agents Window 双 Tab + 粘贴「问题清单 / 做方回复」闭环。详见 Skill「发现问题后的交流」。
+
 ## 关联
 
 - Skill：`positioner-rd`、`dual-model-watch`
