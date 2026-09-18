@@ -22,11 +22,16 @@ from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch, Ellipse,
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageOps
 
 ROOT = Path(__file__).resolve().parent
-SKD = Path(r"C:\Users\sanye\Desktop\SMAR\AI研发产品\SMAR SKD")
-OUT = ROOT / "out" / "product_parts"
-ASSETS = OUT / "_assets"
-OUT.mkdir(parents=True, exist_ok=True)
+OUT = ROOT / "out"
+OUT.mkdir(exist_ok=True)
+
+PRODUCT_OUT = ROOT / "out" / "product_parts"
+ASSETS = PRODUCT_OUT / "_assets"
+PRODUCT_OUT.mkdir(parents=True, exist_ok=True)
 ASSETS.mkdir(parents=True, exist_ok=True)
+OUT = PRODUCT_OUT  # legacy alias within this script
+
+from fy301_common import load_parts_index  # noqa: E402
 
 try:
     import imageio_ffmpeg
@@ -38,8 +43,20 @@ except Exception:
 
 from matplotlib import font_manager
 
-_CJK = "Microsoft YaHei"
-plt.rcParams["font.sans-serif"] = [_CJK, "SimHei", "DejaVu Sans"]
+_CJK = None
+for _name in ("Microsoft YaHei", "SimHei", "WenQuanYi Micro Hei", "Noto Sans CJK SC"):
+    for _f in font_manager.fontManager.ttflist:
+        if _name.lower() in (_f.name or "").lower():
+            _CJK = _f.name
+            break
+    if _CJK:
+        break
+if _CJK is None:
+    for _f in font_manager.fontManager.ttflist:
+        if any(k in (_f.name or "") for k in ("CJK", "Hei", "YaHei", "WenQuanYi")):
+            _CJK = _f.name
+            break
+plt.rcParams["font.sans-serif"] = [_CJK or "DejaVu Sans", "SimHei", "DejaVu Sans"]
 plt.rcParams["axes.unicode_minus"] = False
 
 FPS = 20
@@ -122,10 +139,14 @@ def style(ax, title):
 
 # ---------- prepare cropped assets from FY301 SKD ----------
 def prepare_assets():
-    idx = json.loads((ROOT / "parts_index.json").read_text(encoding="utf-8"))
-    by_name = {v["name"]: Path(v["path"]) for v in idx.values()}
-
-    skd = load_rgb(by_name["FY301 SKD Parts.jpeg"])
+    by_name = load_parts_index()
+    skd_path = by_name.get("FY301 SKD Parts.jpeg")
+    if skd_path is None or not skd_path.exists():
+        raise SystemExit(
+            "SKD photos not found. Place files under AI研发产品/SMAR SKD/ "
+            "then run: python rebuild_parts_index.py"
+        )
+    skd = load_rgb(skd_path)
     # approximate crops on  original resolution
     ow, oh = skd.size
     # normalized crops (l,t,r,b) based on layout description
@@ -153,15 +174,15 @@ def prepare_assets():
 
     # close-up parts
     extra = {
-        "pcb_front": by_name["301线路板正面.jpeg"],
-        "diaphragm": by_name["FY501膜片.png"],
-        "flapper": by_name["挡板01.jpg"],
-        "flapper2": by_name["挡板02.jpg"],
+        "pcb_front": by_name.get("301线路板正面.jpeg"),
+        "diaphragm": by_name.get("FY501膜片.png"),
+        "flapper": by_name.get("挡板01.jpg"),
+        "flapper2": by_name.get("挡板02.jpg"),
         "coil": by_name.get("线圈01.jpg"),
         "ip_top": by_name.get("上部小板.jpg"),
         "ip_base": by_name.get("下部大板.jpg"),
-        "test_platform": by_name["FY301 Test Plateform.jpeg"],
-        "skd_full": by_name["FY301 SKD Parts.jpeg"],
+        "test_platform": by_name.get("FY301 Test Plateform.jpeg"),
+        "skd_full": skd_path,
     }
     for k, p in extra.items():
         if p is None or not Path(p).exists():
