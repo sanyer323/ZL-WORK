@@ -1,6 +1,6 @@
 ---
 name: positioner-rd
-description: 阀门定位器 / FY301 / HART 研发约定与坑。含重要任务双模型盯梢。定位器固件、仿真、选型相关任务优先读本 Skill。
+description: 阀门定位器 / FY301 / HART 研发约定与坑。重要任务默认两版+主模型取舍。定位器固件、仿真、选型相关任务优先读本 Skill。
 ---
 
 # 定位器研发（FY301 / HART）
