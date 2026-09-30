@@ -1,0 +1,43 @@
+name: auto-merge-thinktank
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  merge:
+    if: >
+      contains(github.event.pull_request.title, '智库') &&
+      (github.event.pull_request.user.login == 'cursor[bot]' || github.event.pull_request.user.login == 'sanyer323')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mark ready and merge
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            if (pr.draft) {
+              await github.graphql(
+                `mutation($id: ID!) {
+                  markPullRequestReadyForReview(input: {pullRequestId: $id}) {
+                    pullRequest { isDraft }
+                  }
+                }`,
+                { id: pr.node_id }
+              );
+            }
+            try {
+              await github.rest.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+                merge_method: 'merge',
+                commit_title: `docs(智库): merge pull request #${pr.number}`,
+              });
+            } catch (err) {
+              core.warning(`auto-merge skipped: ${err.message}`);
+            }

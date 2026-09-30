@@ -95,4 +95,8 @@ AI 在**打开的对话里**不会 24 小时自己上网；要持续养，用 **
 跨任务看：时间越久，罐越厚 → 同题完成度应更高；这就是「每个领域的智库」。
 
 ## 入库
-- Cursor Automation「智库每日喂养」默认开 **draft PR**，不会自动进 main。要入库就按日期从早到晚合进 `main`（同文件多 PR 时保留双方增量，禁止整篇覆盖）。
+- **打通（2026-09-30）**：智库喂养 PR 由 GitHub Action 自动合进 `main`（标题含「智库」）。本机计划任务「智库同步Obsidian」每天 **21:40** 和 **08:00** 把 `C:\Users\sanye\Downloads\ZL-WORK` 快进到 `origin/main`，Obsidian 才能看见。脚本：`~\.cursor\skills\domain-think-tank\sync-thinktank.ps1`。手动跑同一文件即可。
+- Cursor Automation「智库每日喂养」仍可能先开 draft PR；合进 main 靠上面这条，不要等聊天里有人喊合并。
+- 本机 Obsidian 库是 `C:\Users\sanye\Downloads\ZL-WORK\智库`，和桌面 `日常` 不是同一份工作副本。
+- **实时学 ≠ 改模型权重。** 打开的对话不会 24 小时自己上网。干活时当场写回 Skill/智库，才是真正的实时。后台闹钟每天 21:00、按星期换罐。
+- 闹钟**不会**自己提示「知识储备够了」。阶段 0 用金融罐四条验收对照；要检查就说「过一遍」。
