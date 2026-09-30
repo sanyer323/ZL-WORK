@@ -105,6 +105,10 @@ description: 阀门定位器 / FY301 / HART 研发约定与坑。重要任务默
 - 成片：MP4 + H.264 + AAC；Closed GOP；Fast Start；无 Edit Lists；SDR 用 BT.709
 - 软字幕优先；`.srt` 用 UTF-8、不要样式。网页播放另出 WebVTT
 - 响度用 BS.1770 量；广播交片按 R128 **−23 LUFS / −1 dBTP**。没有官方页的平台靶不写
+## 仿真视频成片（2026-09-30）
+- 本仓库 TTS/静音轨默认 **16 kHz**；外发前重采样到 **48 kHz**
+- 源是 20 fps 时，外发 Closed GOP = **10 帧**（半帧率）；成片加 Fast Start（`-movflags +faststart`）
+- 响度用 ffmpeg `ebur128` 看 `I` / 真峰值，不要用峰值表或 `loudnorm` 默认值冒充规范。中国数字电视 GY/T 282：**−24 LKFS / −2 dBTP**；欧广电 R128：**−23 LUFS / −1 dBTP**。对内培训不必套电视台靶
 ## 讲解旁白（2026-09-27）
 - 先画面后旁白；不把旁白全文再叠到图上
 - 一段只推进一步因果；5 秒内点题；长片切章节
