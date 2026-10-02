@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EA10 研发仿真 · 电机–蜗杆–力矩–行程</title>
+<style>
+  :root {
+    --bg: #0b1220;
+    --panel: #111827;
+    --fg: #e8eef7;
+    --muted: #94a3b8;
+    --accent: #4fc3f7;
+    --motor: #ce93d8;
+    --gear: #ffb74d;
+    --ok: #81c784;
+    --warn: #ff8a65;
+    --seal: #64b5f6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+    background: radial-gradient(1200px 600px at 20% 0%, #152238, var(--bg));
+    color: var(--fg); min-height: 100vh;
+  }
+  header { padding: 20px 28px 8px; border-bottom: 1px solid #1f2937; }
+  header h1 { margin: 0 0 6px; font-size: 22px; font-weight: 700; }
+  header p { margin: 0; color: var(--muted); font-size: 13px; max-width: 980px; line-height: 1.5; }
+  .layout {
+    display: grid; grid-template-columns: 340px 1fr; gap: 16px;
+    padding: 16px 20px 28px; max-width: 1480px; margin: 0 auto;
+  }
+  .panel {
+    background: color-mix(in srgb, var(--panel) 92%, black);
+    border: 1px solid #243044; border-radius: 14px; padding: 16px;
+  }
+  .panel h2 { margin: 0 0 12px; font-size: 14px; color: var(--accent); letter-spacing: .04em; }
+  label { display: block; font-size: 12px; color: var(--muted); margin: 12px 0 4px; }
+  input[type=range] { width: 100%; }
+  .val { font-variant-numeric: tabular-nums; color: var(--fg); font-weight: 600; }
+  .readout {
+    margin-top: 14px; font-family: ui-monospace, Consolas, monospace;
+    font-size: 12px; line-height: 1.55; background: #0a101a; border-radius: 10px;
+    padding: 12px; border: 1px solid #243044; white-space: pre-wrap;
+  }
+  .gate { margin-top: 10px; padding: 8px 10px; border-radius: 8px; font-size: 12px; }
+  .gate.ok { background: #14301f; color: var(--ok); }
+  .gate.bad { background: #3a1d16; color: var(--warn); }
+  canvas { width: 100%; height: auto; display: block; border-radius: 12px; background: #0a101a; }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 10px; font-size: 12px; color: var(--muted); }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+  .btns { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  button {
+    background: #1e293b; color: var(--fg); border: 1px solid #334155; border-radius: 8px;
+    padding: 8px 12px; cursor: pointer; font-size: 12px;
+  }
+  button:hover { border-color: var(--accent); color: var(--accent); }
+  button.active { background: #164e63; border-color: var(--accent); }
+  @media (max-width: 980px) { .layout { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>EA10 研发仿真工作台 · 电机 → 锤击 → 蜗杆 → 阀杆</h1>
+  <p>
+    首台冻结：额定 100 N·m、ISO 5210 F10、双密封一体化、Class A/B。
+    左侧改蜗杆几何与负载；右侧剖面演示解座锤击、力矩关断、绕组热保护。
+    Step 3 门槛：自锁、额定电机功率 ≤ 0.55 kW、解座堵转倍数够、启动压降 ≤ 10%。
+  </p>
+</header>
+<div class="layout">
+  <aside class="panel">
+    <h2>定型参数</h2>
+    <label>额定力矩 T（N·m） <span class="val" id="tVal">100</span></label>
+    <input id="tRated" type="range" min="40" max="160" step="1" value="100" />
+
+    <label>蜗轮齿数 z2 <span class="val" id="z2Val">70</span></label>
+    <input id="z2" type="range" min="40" max="90" step="1" value="70" />
+
+    <label>直径系数 q <span class="val" id="qVal">16.0</span></label>
+    <input id="q" type="range" min="8" max="20" step="0.5" value="16" />
+
+    <label>摩擦系数 μ <span class="val" id="muVal">0.08</span></label>
+    <input id="mu" type="range" min="0.04" max="0.14" step="0.005" value="0.08" />
+
+    <label>阀杆行程（mm） <span class="val" id="trVal">80</span></label>
+    <input id="travel" type="range" min="20" max="200" step="5" value="80" />
+
+    <label>电缆长度（m） <span class="val" id="cabVal">80</span></label>
+    <input id="cable" type="range" min="10" max="300" step="5" value="80" />
+
+    <label>关座力矩设定（%额定） <span class="val" id="tsVal">100</span></label>
+    <input id="tSet" type="range" min="40" max="150" step="5" value="100" />
+
+    <div class="btns">
+      <button type="button" id="btnOpen">开阀（含锤击）</button>
+      <button type="button" id="btnClose">关阀（力矩关断）</button>
+      <button type="button" id="btnFlood">端子舱进水</button>
+      <button type="button" id="btnReset">复位基线</button>
+    </div>
+    <div class="gate" id="gate"></div>
+    <div class="readout" id="readout"></div>
+  </aside>
+  <main class="panel">
+    <h2>剖面 + 行程/力矩</h2>
+    <canvas id="cv" width="1040" height="620"></canvas>
+    <div class="legend">
+      <span><i style="background:var(--motor)"></i>电机</span>
+      <span><i style="background:var(--gear)"></i>蜗杆/蜗轮</span>
+      <span><i style="background:var(--seal)"></i>双密封壁</span>
+      <span><i style="background:var(--ok)"></i>电子仓干燥</span>
+      <span><i style="background:var(--warn)"></i>端子舱 / 过力矩</span>
+    </div>
+  </main>
+</div>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const cv = $("cv");
+  const ctx = cv.getContext("2d");
+
+  const P = {
+    T: 100, z2: 70, q: 16, mu: 0.08, travel: 80, cable: 80, tSet: 100,
+    m: 2.5, z1: 1, poles: 4, slip: 0.067, kw: 0.55, U: 380,
+    etaBear: 0.92, pitch: 4, hammerDeg: 12, J: 0.0012,
+  };
+
+  const sim = {
+    pos: 0.15,          // 0 closed .. 1 open
+    motorOn: 0,         // -1 close, +1 open
+    hammerLeft: 0,
+    torque: 0,
+    winding: 40,        // °C
+    flood: false,
+    trip: "",
+    t: 0,
+    histT: [],
+    histP: [],
+  };
+
+  function deg(r) { return r * 180 / Math.PI; }
+  function calc() {
+    const i = P.z2 / P.z1;
+    const d1 = P.q * P.m;
+    const d2 = P.m * P.z2;
+    const a = 0.5 * (d1 + d2);
+    const gamma = Math.atan(P.z1 / P.q);
+    const phi = Math.atan(P.mu);
+    const lock = gamma < phi;
+    const etaW = Math.tan(gamma) / Math.tan(gamma + phi);
+    const eta = etaW * P.etaBear;
+    const nSync = 120 * 50 / P.poles;
+    const nM = nSync * (1 - P.slip);
+    const nOut = nM / i;
+    const wOut = nOut * 2 * Math.PI / 60;
+    const pOut = P.T * wOut;
+    const pM = pOut / eta;
+    const tM = P.T / (i * eta);
+    const tBo = P.T * 1.5;
+    const pBo = tBo * wOut / eta;
+    const In = (P.kw * 1000) / (Math.sqrt(3) * P.U * 0.75 * 0.72);
+    const Ist = In * 6.5;
+    const R = 0.018 * P.cable / 1.5;
+    const dV = Math.sqrt(3) * Ist * R;
+    const turns = P.travel / P.pitch;
+    const stroke = 60 * turns / nOut;
+    const Fa = tM / (d1 / 2000);
+    const tAvail = (P.kw * 1000) / (nM * 2 * Math.PI / 60);
+    const motorOk = pM <= P.kw * 1000 * 1.02;
+    const stallOk = tAvail * 2.2 >= tM * 1.5;
+    const dropOk = dV / P.U <= 0.10;
+    const wImp = 0.7 * nSync * 2 * Math.PI / 60;
+    const ke = 0.5 * P.J * wImp * wImp;
+    return {
+      i, d1, d2, a, gamma, phi, lock, eta, nM, nOut, pOut, pM, tM, tBo, pBo,
+      In, Ist, dV, turns, stroke, Fa, motorOk, stallOk, dropOk, ke, nSync,
+    };
+  }
+
+  function loadTorque(pos, dir) {
+    // seated extra near 0 (closed) and slight packing friction
+    const pack = 0.18 * P.T;
+    const seat = pos < 0.08 ? P.T * (1.35 - pos * 4) : 0;
+    const run = 0.35 * P.T;
+    return run + pack + (dir < 0 ? seat : (pos > 0.92 ? 0.15 * P.T : 0));
+  }
+
+  function step(dt) {
+    const c = calc();
+    sim.t += dt;
+    if (sim.trip === "热保护") {
+      sim.motorOn = 0;
+      sim.winding = Math.max(40, sim.winding - 8 * dt);
+      if (sim.winding < 90) sim.trip = "";
+    }
+    if (sim.motorOn && sim.trip === "") {
+      if (sim.hammerLeft > 0) {
+        sim.hammerLeft -= c.nSync * 6 * dt; // deg
+        sim.torque = 0.05 * P.T;
+        sim.winding += 4 * dt;
+      } else {
+        const dir = sim.motorOn;
+        const load = loadTorque(sim.pos, dir);
+        sim.torque = load;
+        const tSetNm = P.T * P.tSet / 100;
+        if (dir < 0 && sim.pos < 0.04 && load >= tSetNm) {
+          sim.motorOn = 0;
+          sim.trip = "关座力矩关断";
+        } else if (load > tSetNm * 1.05 && !(dir > 0 && sim.pos < 0.12)) {
+          sim.motorOn = 0;
+          sim.trip = "过力矩";
+        } else {
+          const dpos = dir * (c.nOut / 60) / c.turns * dt;
+          sim.pos = Math.min(1, Math.max(0, sim.pos + dpos));
+          if (sim.pos >= 1 && dir > 0) { sim.motorOn = 0; sim.trip = "开限位"; sim.pos = 1; }
+          if (sim.pos <= 0 && dir < 0) { sim.motorOn = 0; sim.trip = "关限位"; sim.pos = 0; }
+        }
+        sim.winding += (load / P.T) * 6 * dt;
+      }
+      if (sim.winding > 132) { sim.motorOn = 0; sim.trip = "热保护"; }
+    } else {
+      sim.torque *= 0.92;
+      sim.winding = Math.max(40, sim.winding - 5 * dt);
+    }
+    sim.histT.push(sim.torque);
+    sim.histP.push(sim.pos);
+    if (sim.histT.length > 220) { sim.histT.shift(); sim.histP.shift(); }
+  }
+
+  function draw() {
+    const c = calc();
+    const w = cv.width, h = cv.height;
+    ctx.clearRect(0, 0, w, h);
+
+    // housing
+    const x0 = 40, y0 = 70, W = 640, H = 360;
+    round(x0, y0, W, H, 16, "#1a2740");
+    ctx.strokeStyle = "#3d4f6f"; ctx.lineWidth = 2; ctx.stroke();
+
+    // terminal bunk (double seal)
+    round(x0 + 16, y0 + 18, 150, 90, 8, sim.flood ? "rgba(255,138,101,0.35)" : "#152033");
+    ctx.fillStyle = sim.flood ? "#ff8a65" : "#94a3b8";
+    ctx.font = "12px Segoe UI, Microsoft YaHei";
+    ctx.fillText("端子舱", x0 + 50, y0 + 48);
+    ctx.fillText(sim.flood ? "进水" : "干燥", x0 + 50, y0 + 68);
+    // seal wall
+    ctx.fillStyle = "#64b5f6";
+    ctx.fillRect(x0 + 166, y0 + 18, 8, 90);
+    ctx.fillStyle = "#4fc3f7";
+    ctx.font = "11px Segoe UI";
+    ctx.fillText("双密封", x0 + 178, y0 + 40);
+
+    round(x0 + 180, y0 + 18, 280, 90, 8, sim.flood ? "#14301f" : "#16324a");
+    ctx.fillStyle = "#81c784";
+    ctx.fillText("电子仓  " + (sim.flood ? "隔离，未进水" : "干燥"), x0 + 210, y0 + 58);
+    ctx.fillStyle = "#94a3b8";
+    ctx.fillText("绕组 " + sim.winding.toFixed(0) + " °C", x0 + 210, y0 + 78);
+
+    // motor
+    ctx.fillStyle = "#7e57c2";
+    roundFill(x0 + 470, y0 + 40, 130, 56, 8, "#7e57c2");
+    ctx.fillStyle = "#eee";
+    ctx.fillText("电机 " + c.nM.toFixed(0) + " r/min", x0 + 486, y0 + 73);
+
+    // worm
+    const wx = x0 + 300, wy = y0 + 210;
+    ctx.save();
+    ctx.translate(wx, wy);
+    ctx.rotate(sim.t * (sim.motorOn ? 6 : 0.2));
+    ctx.fillStyle = "#ffb74d";
+    ctx.fillRect(-70, -12, 140, 24);
+    ctx.strokeStyle = "#ffe0b2";
+    for (let i = -60; i < 60; i += 14) {
+      ctx.beginPath(); ctx.moveTo(i, -12); ctx.lineTo(i + 10, 12); ctx.stroke();
+    }
+    ctx.restore();
+    ctx.fillStyle = "#ffb74d";
+    ctx.fillText("蜗杆 γ=" + deg(c.gamma).toFixed(2) + "°", wx - 50, wy + 40);
+
+    // wheel
+    ctx.beginPath();
+    ctx.arc(wx, wy + 95, 62, 0, Math.PI * 2);
+    ctx.fillStyle = "#c28c3a";
+    ctx.fill();
+    ctx.strokeStyle = "#ffe0b2"; ctx.lineWidth = 3; ctx.stroke();
+    ctx.save();
+    ctx.translate(wx, wy + 95);
+    ctx.rotate(sim.pos * Math.PI * 2 * 3);
+    ctx.strokeStyle = "#0a101a";
+    ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(50, 0); ctx.stroke();
+    ctx.restore();
+    ctx.fillStyle = "#ffe0b2";
+    ctx.fillText("蜗轮 z2=" + P.z2, wx - 36, wy + 170);
+
+    // output / stem
+    const stemY = y0 + H - 10 - sim.pos * 70;
+    ctx.fillStyle = "#90caf9";
+    ctx.fillRect(wx - 8, wy + 95, 16, 120);
+    ctx.fillStyle = "#e3f2fd";
+    ctx.fillRect(wx - 18, stemY + 80, 36, 14);
+    ctx.fillStyle = "#94a3b8";
+    ctx.fillText("阀杆 " + (sim.pos * 100).toFixed(0) + "%", wx - 30, y0 + H + 8);
+
+    // handwheel
+    ctx.beginPath();
+    ctx.arc(x0 + 90, wy + 40, 34, 0, Math.PI * 2);
+    ctx.strokeStyle = "#b0bec5"; ctx.lineWidth = 6; ctx.stroke();
+    ctx.fillStyle = "#b0bec5";
+    ctx.fillText("手轮", x0 + 74, wy + 90);
+
+    // plots
+    const px = 720, py = 70, pw = 280, ph = 200;
+    round(px, py, pw, ph, 10, "#0e1624");
+    ctx.fillStyle = "#4fc3f7";
+    ctx.fillText("力矩 N·m", px + 10, py + 18);
+    drawHist(sim.histT, px + 10, py + 28, pw - 20, ph - 40, P.T * 1.6, "#ffb74d");
+    const py2 = 300;
+    round(px, py2, pw, ph, 10, "#0e1624");
+    ctx.fillStyle = "#4fc3f7";
+    ctx.fillText("阀位 %", px + 10, py2 + 18);
+    drawHist(sim.histP.map((v) => v * 100), px + 10, py2 + 28, pw - 20, ph - 40, 100, "#81c784");
+
+    ctx.fillStyle = sim.trip ? "#ff8a65" : "#81c784";
+    ctx.font = "16px Segoe UI, Microsoft YaHei";
+    ctx.fillText(sim.trip ? ("状态：" + sim.trip) : (sim.motorOn ? "运行中" : "停止"), 40, 48);
+    ctx.font = "12px Segoe UI, Microsoft YaHei";
+    ctx.fillStyle = "#94a3b8";
+    ctx.fillText("锤击剩余 " + Math.max(0, sim.hammerLeft).toFixed(0) + "°   负载力矩 " + sim.torque.toFixed(0) + " N·m", 220, 48);
+  }
+
+  function round(x, y, w, h, r, fill) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+    if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+  }
+  function roundFill(x, y, w, h, r, fill) { round(x, y, w, h, r, fill); }
+  function drawHist(arr, x, y, w, h, ymax, color) {
+    ctx.strokeStyle = "#243044";
+    ctx.strokeRect(x, y, w, h);
+    if (arr.length < 2) return;
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.5;
+    arr.forEach((v, i) => {
+      const xx = x + (i / (arr.length - 1)) * w;
+      const yy = y + h - (Math.min(ymax, Math.max(0, v)) / ymax) * h;
+      if (i === 0) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
+    });
+    ctx.stroke();
+  }
+
+  function readout() {
+    const c = calc();
+    $("tVal").textContent = P.T;
+    $("z2Val").textContent = P.z2;
+    $("qVal").textContent = P.q.toFixed(1);
+    $("muVal").textContent = P.mu.toFixed(3);
+    $("trVal").textContent = P.travel;
+    $("cabVal").textContent = P.cable;
+    $("tsVal").textContent = P.tSet;
+    const gateOk = c.lock && c.motorOk && c.stallOk && c.dropOk;
+    $("gate").className = "gate " + (gateOk ? "ok" : "bad");
+    $("gate").textContent = gateOk
+      ? "Step 3 门槛通过：自锁、0.55 kW、解座倍数、压降均满足"
+      : "Step 3 门槛未过：" +
+        (!c.lock ? " 非自锁" : "") +
+        (!c.motorOk ? " 电机功率超" : "") +
+        (!c.stallOk ? " 解座转矩不够" : "") +
+        (!c.dropOk ? " 启动压降>10%" : "");
+    $("readout").textContent = [
+      `i=${c.i.toFixed(1)}  n_out=${c.nOut.toFixed(1)} r/min  eta=${c.eta.toFixed(3)}`,
+      `γ=${deg(c.gamma).toFixed(2)}°  φ=${deg(c.phi).toFixed(2)}°  自锁=${c.lock}`,
+      `d1=${c.d1.toFixed(1)}  d2=${c.d2.toFixed(1)}  a=${c.a.toFixed(1)} mm`,
+      `P_out=${c.pOut.toFixed(0)} W  P_m=${c.pM.toFixed(0)} W  选 0.55 kW → ${c.motorOk}`,
+      `T_m=${c.tM.toFixed(2)} N·m  解座 ${ (P.T*1.5).toFixed(0) }  stall_ok=${c.stallOk}`,
+      `Fa=${c.Fa.toFixed(0)} N  锤击 KE=${c.ke.toFixed(3)} J`,
+      `行程 ${c.turns.toFixed(1)} 圈  ${c.stroke.toFixed(1)} s`,
+      `In=${c.In.toFixed(2)} A  Ist=${c.Ist.toFixed(1)} A  ΔU=${c.dV.toFixed(1)} V (${(100*c.dV/P.U).toFixed(1)}%)`,
+    ].join("\n");
+  }
+
+  function bind() {
+    const map = [
+      ["tRated", "T", 1], ["z2", "z2", 1], ["q", "q", 1], ["mu", "mu", 1],
+      ["travel", "travel", 1], ["cable", "cable", 1], ["tSet", "tSet", 1],
+    ];
+    map.forEach(([id, key]) => {
+      $(id).addEventListener("input", (e) => { P[key] = Number(e.target.value); readout(); });
+    });
+    $("btnOpen").onclick = () => {
+      sim.trip = ""; sim.motorOn = 1; sim.hammerLeft = P.hammerDeg;
+    };
+    $("btnClose").onclick = () => {
+      sim.trip = ""; sim.motorOn = -1; sim.hammerLeft = P.hammerDeg;
+    };
+    $("btnFlood").onclick = () => { sim.flood = !sim.flood; };
+    $("btnReset").onclick = () => {
+      P.T = 100; P.z2 = 70; P.q = 16; P.mu = 0.08; P.travel = 80; P.cable = 80; P.tSet = 100;
+      ["tRated","z2","q","mu","travel","cable","tSet"].forEach((id) => {
+        const el = $(id);
+        const keys = {tRated:"T",z2:"z2",q:"q",mu:"mu",travel:"travel",cable:"cable",tSet:"tSet"};
+        el.value = P[keys[id]];
+      });
+      sim.pos = 0.15; sim.motorOn = 0; sim.trip = ""; sim.flood = false; sim.winding = 40;
+      readout();
+    };
+  }
+
+  let last = performance.now();
+  function loop(now) {
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+    step(dt);
+    draw();
+    readout();
+    requestAnimationFrame(loop);
+  }
+  bind();
+  readout();
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
