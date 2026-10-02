@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>流衡助手 P0 · Station / Pocket</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-mode="station">
+  <div class="shell">
+    <header class="top">
+      <div>
+        <h1>流衡助手</h1>
+        <p class="sub">AI 双产品线 P0 · 工厂 Station / 挂件 Pocket</p>
+      </div>
+      <div class="mode-toggle">
+        <button type="button" id="mode-station" class="active">Station 工厂</button>
+        <button type="button" id="mode-pocket">Pocket 挂件</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="chat-panel">
+        <div id="chat" class="chat" aria-live="polite"></div>
+        <div class="quick">
+          <span class="quick-label">快速试问：</span>
+          <button type="button" data-quick="PH02 两级孔板推荐孔径是多少？">PH02 孔径</button>
+          <button type="button" data-quick="3051CD 推荐型号是什么？">3051 选型</button>
+          <button type="button" data-quick="FY301 压电正常工作电压范围？">FY301 电压</button>
+          <button type="button" data-quick="流衡 FlowSize 有哪些计算模块？">FlowSize</button>
+        </div>
+        <div class="composer">
+          <textarea id="input" rows="2" placeholder="输入问题，或按住「说话」…"></textarea>
+          <div class="composer-actions">
+            <button type="button" id="btn-voice" class="btn-voice">按住 说话</button>
+            <button type="button" id="btn-send" class="btn-send">发送</button>
+          </div>
+        </div>
+        <p id="voice-hint" class="hint">Chrome / Edge 推荐；P0 默认 FAQ 匹配，可选 config.json 接 LLM。</p>
+      </section>
+
+      <aside id="pocket-panel" class="side" hidden>
+        <h2>Pocket 备忘</h2>
+        <p class="side-desc">说「记一下：明天发 PH02 核算版」</p>
+        <ul id="memo-list"></ul>
+      </aside>
+    </main>
+  </div>
+  <script src="app.js" type="module"></script>
+</body>
+</html>
