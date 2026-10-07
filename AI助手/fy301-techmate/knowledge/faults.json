@@ -1,0 +1,110 @@
+[
+  {
+    "id": "hall-hotplug",
+    "keywords": ["霍尔", "hall", "带电", "拔", "插", "传感器", "halls", "报警"],
+    "title": "带电插拔霍尔传感器",
+    "severity": "high",
+    "answer": "【HALL 类故障 · 高危操作】\n\n您描述的情况（带电拔霍尔）是现场常见误操作。\n\n立即步骤：\n1. 停止反复插拔。\n2. 断回路电 30 秒后上电复位。\n3. 检查连接器无弯针、电缆完好。\n4. 确认磁铁在阀杆上，间隙 2–4 mm。\n5. 手动变位阀杆约 10%，HART 读 Hall/PV 应变化。\n6. 气源正常（约 20 psi 以上）后执行 Auto Setup。\n\n若仍报 HALL：查远程霍尔电缆（屏蔽、远离动力线、长度≤约 5 m）。\n\n预防：任何霍尔线操作必须先断电。",
+    "steps": [
+      "停止插拔，确认工艺安全",
+      "断电 30s 后上电",
+      "检查霍尔接插件与电缆",
+      "磁铁间隙 2–4 mm",
+      "HART 读 Hall 随阀杆变化",
+      "Auto Setup",
+      "仍失败 → 记录压电电压并联系厂家"
+    ],
+    "source": "FY301ME Auto Setup + 工程师培训版旁白",
+    "clip": "hall"
+  },
+  {
+    "id": "hall-gap",
+    "keywords": ["hall", "霍尔", "间隙", "距离", "2", "4", "mm", "乱跳", "跳变"],
+    "title": "霍尔间隙与 HALL 报警",
+    "severity": "medium",
+    "answer": "霍尔传感器与阀杆磁铁间隙目标 **2–4 mm**。太远会报 HALL 或位置乱跳；太近可能磁场饱和。\n\n排查：\n- 用塞尺或厂家 gauge 复测\n- 查传感器外壳是否松动\n- 远程霍尔：查电缆与接地\n\n恢复：调整间隙 → 断电上电 → Auto Setup。",
+    "steps": ["测间隙 2–4 mm", "紧固外壳", "查远程电缆", "Auto Setup"],
+    "source": "FY301ME §1.3",
+    "clip": "hall"
+  },
+  {
+    "id": "piezo-voltage-high",
+    "keywords": ["压电", "电压", "80", "70", "高", "偏高"],
+    "title": "压电电压偏高",
+    "severity": "medium",
+    "answer": "阀到位后压电电压正常约 **30–70 V**，理想近 **50 V**。\n\n**70–80 V**：仍可工作，建议安排预防性 FYCAL。\n**>80 V**：必须拆机用 FYCAL 标定 Piezo Base。\n\n现场：在 10%–90% 任一点，阀停稳后 HART 读 Control Voltage。",
+    "steps": ["10–90% 任一点停稳", "读压电电压", ">80V → FYCAL", "70–80V → 计划标定"],
+    "source": "压电陶瓷研发笔记.md",
+    "clip": "piezo"
+  },
+  {
+    "id": "piezo-voltage-low",
+    "keywords": ["压电", "电压", "20", "30", "低", "偏低"],
+    "title": "压电电压偏低",
+    "severity": "medium",
+    "answer": "**<20 V 或 >80 V** 必须 FYCAL 标定。\n**20–30 V**：能工作但需预防性维护。\n\nAlso check：先导压、OUT 压力、是否失电安全位。",
+    "steps": ["读压电电压", "<20V → FYCAL", "查先导与 OUT", "查气源"],
+    "source": "FY301ME §5",
+    "clip": "piezo"
+  },
+  {
+    "id": "fail-move",
+    "keywords": ["fail", "move", "不动", "卡", "行程", "setup", "自动校准"],
+    "title": "Auto Setup 报 FAIL MOVE",
+    "severity": "high",
+    "answer": "FAIL MOVE：阀门未移动或气路异常。\n\n按序检查：\n1. 供气 ≥ 约 20 psi（1.4 bar 以上）\n2. 过滤网、5 个排气孔是否堵塞\n3. 执行机构是否卡涩、手轮是否锁死\n4. 双作用 OUT1/OUT2 接管是否正确\n5. 压电电压是否在合理范围\n\n排除后重新 Auto Setup（约 4 分钟，10 步）。",
+    "steps": ["查气源压力", "查过滤器/排气孔", "查卡涩", "查接管", "重跑 Auto Setup"],
+    "source": "FY301ME Auto Setup",
+    "clip": "spool"
+  },
+  {
+    "id": "mgnt",
+    "keywords": ["mgnt", "磁铁", "magnet", "未接", "装错"],
+    "title": "MGNT 磁铁故障",
+    "severity": "high",
+    "answer": "MGNT：磁铁未连接或安装错误。\n\n检查：\n- 磁铁是否固定在阀杆\n- 极性/方向是否符合手册\n- 远程磁铁组件是否脱落\n\n修复后 Auto Setup。",
+    "steps": ["查磁铁固定", "查安装方向", "Auto Setup"],
+    "source": "FY301ME Auto Setup",
+    "clip": "hall"
+  },
+  {
+    "id": "fycal-procedure",
+    "keywords": ["fycal", "标定", "压电底座", "piezo", "盔帽", "20", "psi"],
+    "title": "FYCAL 压电标定流程",
+    "severity": "info",
+    "answer": "FYCAL @ **20 psi** 供气（FY301ME）：\n\n1. 去迟滞：0→100→0 V\n2. **50 V** 旋盔帽 → 先导 **5.8–6.2 psi**\n3. 验证 **0 V** → ≤ **2 psi**\n4. 验证 **100 V** → **12–13 psi**\n\n绝缘：100 V 限流 1 µA 压降 ≥2 V 或兆欧 <50 MΩ → 换 Piezo Base。",
+    "steps": ["FYCAL 供气 20 psi", "去迟滞", "50V 调 5.8-6.2 psi", "验证 0V/100V", "绝缘测试"],
+    "source": "压电陶瓷研发笔记.md §4",
+    "clip": "pilot"
+  },
+  {
+    "id": "debug-chain",
+    "keywords": ["排查", "顺序", "怎么查", "调不好", "步骤"],
+    "title": "标准排查顺序",
+    "severity": "info",
+    "answer": "FY301 现场标准排查链（工程师培训版）：\n\n1. 信号与供电（4–20 mA、回路）\n2. 压电电压（30–70 V）\n3. 先导压力\n4. OUT1 / OUT2 压力\n5. 霍尔 / 磁铁反馈（2–4 mm）\n\n对应：电 → 先导 → 放大 → 阀位 → 反馈。",
+    "steps": ["信号供电", "压电电压", "先导压", "OUT 压力", "霍尔反馈"],
+    "source": "旁白文案_工程师培训版.txt",
+    "clip": "chain"
+  },
+  {
+    "id": "loss-power-safe",
+    "keywords": ["失电", "故障安全", "out1", "out2", "安全位"],
+    "title": "失电故障安全",
+    "severity": "info",
+    "answer": "失电故障安全逻辑：**OUT1→0，OUT2→供气压力**，执行机构回预定安全位。\n\n排查失电相关问题时先确认工艺是否已切手动/旁路。",
+    "steps": ["确认工艺安全", "查 OUT1/OUT2", "上电后 Auto Setup"],
+    "source": "FY301 原理讲解",
+    "clip": "spool"
+  },
+  {
+    "id": "vent-block",
+    "keywords": ["排气", "堵塞", "排气孔", "烧结", "背压"],
+    "title": "排气口堵塞",
+    "severity": "medium",
+    "answer": "FY301 有 **5 个保护排气孔**。堵塞会导致背压异常、定位漂移。\n\n处理：关气源 → 清洁排气孔 → 查过滤网 → 恢复供气 → 验证压电电压与行程。",
+    "steps": ["关气源", "清洁 5 个排气孔", "查过滤网", "恢复供气", "验证"],
+    "source": "FY301ME §1.5 + 培训脚本",
+    "clip": "pilot"
+  }
+]
