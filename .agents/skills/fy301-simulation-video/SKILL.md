@@ -1,0 +1,221 @@
+---
+name: fy301-simulation-video
+description: >-
+  制作 SMAR FY301 阀门定位器研发仿真讲解视频：原理链路 + 手册数据 + 爆炸图/零件指认 +
+  可计算动作仿真。用于生成或改版原理讲解片、工程师培训片、分镜仿真与旁白合成；
+  非营销宣传片。当用户提到 FY301、FYCAL、压电挡板、定位器仿真视频、原理讲解版时使用。
+---
+
+# FY301 研发仿真视频
+
+## 目标
+
+做给工程师看的 **可计算仿真讲解片**，不是广告片，也不是纯故障排查片。
+
+一句话总链路必须始终成立：
+
+```text
+4–20 mA → CPU 设定 → 压电电压 → 压电盘弯曲（挡板）
+→ 节流孔 + 喷嘴 → 先导压 → 膜片力放大 → 滑阀
+→ OUT1 / OUT2 → 执行器阀位 → Hall 反馈再校正
+```
+
+研发一句话：
+
+> **V↑ → 压电盘弯曲 → 挡板靠近喷嘴 → 先导室压力↑ → 膜片放大 → 滑阀位移 → OUT1/OUT2 差动 → Hall 闭环**
+
+## 何时用这份 skill
+
+- 新做 / 改版 FY301 原理讲解视频
+- 把手册数据、爆炸图、零件指认编进仿真片
+- 写旁白、分镜、合成脚本
+- 区分「原理讲解版」与「故障排查口吻版」
+- 后续接入 Blender / 更高保真三维时，仍按本 skill 保因果与数据
+
+## 不要做成什么
+
+- 营销飞镜、炫光粒子抢戏
+- 一屏塞太多互不相关信息
+- 旁白未说完就切镜头
+- 只有抽象动画、没有手册数与实物对应
+- 把「坏了查哪里」做成主线（那是工程师培训/排故障版，需显式声明）
+
+## 标准输入（缺则先补）
+
+按优先级：
+
+1. `FY301ME` 原理与维护章节
+2. `fycalme` / FYCAL 压电标定资料
+3. 爆炸图、零件实物图、Excel 零件表
+4. 已有分镜仿真 `01`–`05` 或可调参工作台
+5. 旁白 / 分镜脚本
+
+仓库内常用落点：
+
+- 笔记与摘录：`AI研发产品/研发仿真视频/压电陶瓷研发笔记.md`、`FYCAL_压电资料摘录.md`
+- 分镜：`storyboard.json`
+- 一键流水线：`run_principle_pipeline.py`
+- 渲染：`render_sims.py`
+- 原理合成：`build_principle_edition.py`
+- 完整拼接：`build_master.py`
+- 配音：`add_sapi_voice.py`（Windows SAPI）
+- 互动台：`FY301_研发仿真工作台.html`
+- 说明：`README.md`
+
+## 强制原则
+
+1. **先机理，后画面**：因果链不清楚时，禁止先堆特效。
+2. **每段只讲一件事**：压电 / 先导 / 滑阀 / Hall / 全链路分开。
+3. **画面三件套**：原理动作 + 爆炸图或零件指认 + 手册关键数。
+4. **旁白说完再切**：信息完整优先于节奏炫技。
+5. **关键数据上镜或上旁白**：不可省略（见下节）。
+6. **增量修改**：已有 `storyboard.json` / 渲染函数时，只改缺陷清单，禁止无故全盘重写。
+
+## 必须上镜或上旁白的关键数据
+
+| 项 | 数值 / 判据 |
+|----|-------------|
+| 压电驱动范围 | 0–100 Vdc |
+| 控制电压目标 | 尽量靠近 50 Vdc |
+| 正常工作区 | 约 30–70 Vdc |
+| 预防性维护区 | 20–30 或 70–80 Vdc |
+| 必须标定区 | <20 或 >80 Vdc |
+| FYCAL 供气 | 20 psi |
+| FYCAL @0 V | ≤ 2 psi |
+| FYCAL @50 V | ≈ 5.8–6.2 psi |
+| FYCAL @100 V | ≈ 12–13 psi |
+| Hall 安装间隙 | 约 2–4 mm |
+| 环路供电量级 | 约 3.8 mA |
+| 稳态功耗含义 | 压电近似电容，稳态近零额外耗电 |
+
+数值以现行手册摘录为准；若手册更新，先改正文数据表再改正片。
+
+## 标准五段结构
+
+| 段 | 仿真素材 | 只讲什么 | 画面建议 |
+|----|----------|----------|----------|
+| 01 | `01_压电陶瓷原理.mp4` | 电 → 挡板微小位移 | 左仿真，右清洁片/爆炸图/FYCAL 底座 |
+| 02 | `02_喷嘴挡板先导级.mp4` | 节流孔+喷嘴 → 先导压 | 左仿真，右 FYCAL 气路/底座照片 |
+| 03 | `03_膜片放大与滑阀.mp4` | 力平衡 → 滑阀 → OUT | 零件指认：膜片、滑阀 |
+| 04 | `04_霍尔反馈与闭环.mp4` | Hall 反馈回改电压 | 零件指认：霍尔、外壳 |
+| 05 | `05_全系统闭环信号流.mp4` | 电–气–机全链路 | 线路板 + 气动组件 + Hall |
+
+每段固定模板：
+
+1. 标题（本段一件事）
+2. 零件指认或 FYCAL 实物/爆炸图（**全程右侧分屏**，不少于 2 张）
+3. 可计算原理动作（左侧）
+4. 关键数据（旁白 + **左上角 HUD 角标**）
+5. **本段要点（takeaway）**
+
+`build_principle_edition.py` 中对应字段：
+
+- `fycal_imgs` 或 `parts` → 右侧栏
+- `hud` → 关键数角标（如 `0–100 V`、`Hall 间隙 2–4 mm`、`环路 ~3.8 mA`）
+- `photo_beats` → 旁白节拍切换高亮图
+- `panel_title` → 右栏标题
+
+## 推荐制作流程
+
+```text
+1. 编辑 storyboard.json（旁白 / hud / 侧栏图 / 节拍）
+2. python verify_fycal_assets.py
+3. python run_principle_pipeline.py
+   （缺 01–05 时自动 render_sims，再 build_principle_edition）
+4. 需要完整版时再跑 build_master.py；需要配音时 add_sapi_voice.py
+5. 人工审片（见验收标准）
+```
+
+常用命令（在 `AI研发产品/研发仿真视频` 下）：
+
+```powershell
+python verify_fycal_assets.py
+python check_review_gate.py
+python check_principle_deliverable.py
+python run_principle_pipeline.py
+python run_principle_pipeline.py --force-sims
+python run_principle_pipeline.py --with-blender --with-product-parts --build-master
+python render_sims.py
+python build_principle_edition.py
+python build_master.py
+python add_sapi_voice.py
+python rebuild_parts_index.py
+```
+
+改分镜时优先改 `storyboard.json`，保持旁白、照片节拍、HUD、takeaway 同步。
+人工审片勾选 `AI研发产品/研发仿真视频/REVIEW_CHECKLIST.md`；自动覆盖的关键数据检查走 `check_review_gate.py`。
+
+## 版本分工
+
+| 版本 | 用途 | 主脚本 |
+|------|------|--------|
+| 原理讲解版 | 讲清楚怎么工作（默认交付） | `build_principle_edition.py` |
+| 工程师培训/排故障口吻版 | 坏了查哪里（对照用，非默认） | `build_engineer_edition*.py` |
+| 研发完整版 | 章节片头 + 拉长仿真 + 字幕 | `build_master.py` |
+| 互动工作台 | 调参看间隙/先导压/滑阀/阀位 | `FY301_研发仿真工作台.html` |
+
+默认用户要「仿真视频 / 原理片」时，走 **原理讲解版**，不要默默做成排故障片。
+
+## 视觉与技术约束
+
+- 成片优先 1280×720 或同级横版；左仿真 / 右实物分屏是已验证布局。
+- 当前主链路是 **matplotlib 可计算 2D 仿真 + 照片/爆炸图合成**；Blender/Three.js 是增强层，不能替代因果与数据。
+- 资源路径尽量相对仓库，避免写死本机绝对路径。
+- 图片文件名必须与 `out/_fycal_figs/_named/manifest.json`、代码引用一致。
+- 中文字体在 Windows 常用雅黑/黑体；换环境先确认 CJK 字体，避免方框字。
+- 改分镜时优先改 `storyboard.json`（由 `build_principle_edition.load_segments()` 加载），保持旁白、照片节拍、takeaway、hud 同步。
+
+## 接入 Blender / 高保真三维时
+
+仍遵守本 skill。额外要求：
+
+1. 先锁定五段因果与数据，再建模。
+2. 三维只加强「压电弯曲、膜片、滑阀、爆炸装配」等运动部件；讲解结构不变。
+3. 导出素材后仍回到同一合成流程（或等价分镜表），保证要点卡与手册数不丢。
+4. 禁止为了画面好看改写与手册冲突的机理。
+
+首切片（已落地并深化，P3+P4）：
+
+- `blender/render_piezo_bend.py` → `out/blender/01_压电陶瓷原理.mp4`
+- `blender/render_nozzle_flapper.py` → `out/blender/02_喷嘴挡板先导级.mp4`
+- `blender/render_spool_valve.py` → `out/blender/03_膜片放大与滑阀.mp4`
+- `blender/render_hall_feedback.py` → `out/blender/04_霍尔反馈与闭环.mp4`
+- `blender/render_signal_flow.py` → `out/blender/05_全系统闭环信号流.mp4`
+- 网格包：`python blender/build_placeholder_meshes.py` → `blender/meshes/*.obj`（可同名替换真实 CAD）
+- 入口：`python render_blender_clips.py` 或 `python run_principle_pipeline.py --with-blender`
+- 默认交付门禁：`python check_default_deliverable.py`
+- 审片门禁：`python check_review_gate.py` + `REVIEW_CHECKLIST.md`
+- 成片软验收：`python check_principle_deliverable.py`
+- 完整版 master：优先 Blender + 可选 `product_parts` B-roll（`storyboard.json` → `master_edition`）
+- 合成优先使用 `out/blender/<sim>`，否则回退 matplotlib `out/<sim>`
+
+## 验收标准
+
+成品至少满足：
+
+1. 工程师能复述完整电–气–机闭环
+2. 压电、先导、滑阀、Hall 四段可单独看懂
+3. 上表关键手册数据均出现在旁白或画面
+4. 爆炸图/零件图与讲解一一对应，无张冠李戴
+5. 默认成片是原理片，不是广告片/排故障片
+6. 每段结束有清晰 takeaway
+7. 旁白与镜头切换基本对齐（说完再切）
+
+## 审片缺陷清单模板
+
+迭代时只修列出项，例如：
+
+```text
+- [ ] 01 段 Fig.14 文件名与 manifest 不一致
+- [ ] 02 段 FYCAL 20 psi 判据未上字幕
+- [ ] 03 段缺少膜片零件指认时长
+- [ ] 05 段 3.8 mA 仅旁白、建议画面角标
+- [ ] 绝对路径导致他机无法合成
+```
+
+## 代理执行时的默认策略
+
+1. 先读 `README.md` 与 `storyboard.json`，再改。
+2. 改机理或数据前，核对 `压电陶瓷研发笔记.md` / `FYCAL_压电资料摘录.md`。
+3. 优先增量修补脚本与资源，不重开无关宣传片风格。
+4. 交付时说明：改了哪几段、是否需重跑 `run_principle_pipeline.py`、审片还剩什么。
