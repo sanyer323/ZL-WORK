@@ -2,6 +2,52 @@
 
 基于 `FY301ME` 手册与 `SMAR_FY301_3D动画视频脚本.docx`，面向研发的**可计算仿真**（非营销三维宣传片）。
 
+**Agent skill（正确做法说明书）：** [`.agents/skills/fy301-simulation-video/SKILL.md`](../../.agents/skills/fy301-simulation-video/SKILL.md)  
+**对照缺口检查：** [`SKILL_GAP_CHECK.md`](./SKILL_GAP_CHECK.md)
+
+资源校验（不渲染、不配音）：
+
+```powershell
+python verify_fycal_assets.py
+python rebuild_fycal_manifest.py   # 如需按磁盘 PNG 重建相对路径 manifest
+```
+
+一键流水线（校验 → 缺仿真则渲染 → 合成原理讲解版）：
+
+```powershell
+python run_principle_pipeline.py
+# 或
+.\run_principle_pipeline.ps1
+
+python run_principle_pipeline.py --verify-only
+python run_principle_pipeline.py --force-sims
+python run_principle_pipeline.py --with-blender
+python run_principle_pipeline.py --with-product-parts --build-master
+python check_default_deliverable.py
+python check_review_gate.py
+python check_principle_deliverable.py
+python rebuild_parts_index.py          # 有 SMAR SKD 照片时
+```
+
+Blender 增强层（可选，P3+P4：01–05；可替换 `blender/meshes/`）：
+
+```powershell
+python blender\build_placeholder_meshes.py
+python render_blender_clips.py --dry-run
+python render_blender_clips.py
+python render_blender_clips.py --only 05
+```
+
+说明见 [`blender/README.md`](./blender/README.md)。有 `out/blender/` 对应片段时，合成会优先用三维片段。
+
+审片：先跑 `check_review_gate.py`，再按 [`REVIEW_CHECKLIST.md`](./REVIEW_CHECKLIST.md) 人工勾选缺陷项增量修补。
+
+**完整版 master（非默认交付）** 可在各段前插入 `out/product_parts/` 透明实物 B-roll（见 `storyboard.json` → `master_edition`），并优先使用 Blender 仿真片段。
+
+分镜文案/旁白/角标请改：[`storyboard.json`](./storyboard.json)（不要再把长旁白写死在 Python 里）。
+
+**默认交付：** 只把 `out/FY301_原理讲解版.mp4` 当主交付；工程师培训/排故障版仅作对照，不作为默认成片。
+
 ## 输出内容
 
 ### 原理讲解版（推荐：讲清楚怎么工作）
