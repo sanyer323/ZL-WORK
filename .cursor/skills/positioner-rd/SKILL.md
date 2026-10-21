@@ -189,3 +189,6 @@ description: 阀门定位器 / FY301 / HART 研发约定与坑。重要任务默
 ## 仿真视频成片（2026-10-18）
 - 外发 YouTube：符合条件的频道 **自动配音默认开**。工业讲解关掉 **Allow automatic dubbing**，或改成发布前人工听过；不要把自动英音当培训版
 - 自动配音 ≠ 自动字幕。术语错了在该视频 Languages 里取消发布/删除。细则在 `智库/视频制作/`
+## 仿真视频成片（2026-10-21）
+- 外发 YouTube：频道关掉 **Allow viewers to clip my content**；单条再关 **Shorts remixing**。未列出不会自动清掉已有剪辑
+- 自己传外语音轨 ≠ 自动配音。要 Advanced features；该语种若已有自动配音须先删。不要把自动英音当培训版。细则在 `智库/视频制作/`
