@@ -1,0 +1,23 @@
+{
+  "device": "FY301",
+  "protocol": "HART",
+  "identity": {
+    "manufacturer_id": null,
+    "device_type": null,
+    "note": "由 cli.py poll（Command 0）写入"
+  },
+  "intents": {
+    "读身份": { "command": 0, "write": false },
+    "读阀门位置": { "command": 1, "write": false, "hint": "PV，通常是阀位 %" },
+    "读回路电流": { "command": 2, "write": false },
+    "读四变量": { "command": 3, "write": false },
+    "读压电电压": { "command": null, "write": false, "todo": "实机对照 Trex 监控项后填 command/index" },
+    "读霍尔值": { "command": null, "write": false, "todo": "手册监控：霍尔原始值约 26000–38000" },
+    "自动校准": { "command": null, "write": true, "todo": "Auto Setup，必须 --write 且现场确认" }
+  },
+  "notes": [
+    "压电电压现场合格范围 30–70 V",
+    "霍尔间隙 2–4 mm；禁止带电插拔霍尔",
+    "专用命令见 SMAR《HART Command Specification – FY301》；无手册则 probe + 对照原厂软件"
+  ]
+}

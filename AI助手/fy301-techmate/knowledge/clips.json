@@ -1,0 +1,78 @@
+{
+  "productStage": {
+    "yesterday": "仅培训/仿真视频（客户自己看完仍不会下手）",
+    "today": "TechMate 向导主导 + 视频切片按故障跳转",
+    "tomorrow": "HART 读数 + 向导 + 切片"
+  },
+  "videos": {
+    "engineer": {
+      "id": "engineer",
+      "title": "工程师培训版",
+      "file": "../../AI研发产品/研发仿真视频/out/FY301_工程师培训版.mp4",
+      "srt": "../../AI研发产品/研发仿真视频/out/FY301_工程师培训版.srt",
+      "note": "mp4 若未放入仓库，用手操器内嵌字幕切片 + 仿真 HTML"
+    }
+  },
+  "sims": {
+    "workbench": {
+      "title": "压电–先导–滑阀 可调参工作台",
+      "href": "../../AI研发产品/研发仿真视频/FY301_研发仿真工作台.html"
+    },
+    "parts": {
+      "title": "产品部件透明动作台",
+      "href": "../../AI研发产品/研发仿真视频/FY301_产品部件透明动作台.html"
+    }
+  },
+  "clips": [
+    {
+      "id": "piezo",
+      "title": "压电挡板 + 现场读电压",
+      "video": "engineer",
+      "start": 0,
+      "end": 50,
+      "faults": ["piezo-voltage-high", "piezo-voltage-low", "fycal-procedure"],
+      "line": "现场用手操器看压电电压，正常大概三十到七十伏。电压异常先查驱动板和气动组件顶部压电件。",
+      "sim": "workbench"
+    },
+    {
+      "id": "pilot",
+      "title": "过滤 + 先导气路",
+      "video": "engineer",
+      "start": 50,
+      "end": 107,
+      "faults": ["fail-move", "vent-block", "fycal-procedure"],
+      "line": "先导压不对：查过滤堵塞、节流孔脏、喷嘴脏，或挡板不到位。FYCAL 参考 0/50/100 V → ≤2 / ~6 / 12–13 psi。",
+      "sim": "workbench"
+    },
+    {
+      "id": "spool",
+      "title": "膜片滑阀 + OUT / 失电安全",
+      "video": "engineer",
+      "start": 107,
+      "end": 155,
+      "faults": ["fail-move", "loss-power-safe"],
+      "line": "有先导压但阀不动：查滑阀卡滞、过滤器、OUT1/OUT2 是否接反。失电 OUT1→0、OUT2→供气。",
+      "sim": "workbench"
+    },
+    {
+      "id": "hall",
+      "title": "霍尔传感器 · 2–4 mm · HALL/MGNT",
+      "video": "engineer",
+      "start": 155,
+      "end": 199,
+      "faults": ["hall-hotplug", "hall-gap", "mgnt"],
+      "line": "磁铁面到传感器约 2–4 mm，太远报 HALL 或位置乱跳。Auto Setup 报 HALL/MGNT 先查间距和安装方向。禁止带电插拔。",
+      "sim": "parts"
+    },
+    {
+      "id": "chain",
+      "title": "全链路五步排查",
+      "video": "engineer",
+      "start": 199,
+      "end": 243,
+      "faults": ["debug-chain", "hall-hotplug"],
+      "line": "调不好按顺序查：信号供电 → 压电电压 → 先导压 → OUT 压力 → 磁铁反馈。比盲目换件快。",
+      "sim": "workbench"
+    }
+  ]
+}
