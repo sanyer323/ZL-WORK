@@ -1,0 +1,55 @@
+# 实验 A · 涨停可成交性 — 纸面参数（scaffold，尚未接数据）
+experiment_id: A_limit_up_fill
+title: 涨停可成交性
+status: scaffold  # 尚未接数据
+data_vendor: 待定  # Raymond 点名之前不接聚宽/掘金/米筐
+
+sample_start: "2021-01-01"
+sample_end: 待定  # 最近完整交易日
+
+universe:
+  description: 全A可交易日频
+  exclude_ipo_days_lt: 60  # 剔除上市未满60日
+  exclude_delisting_arrange: true  # 剔除退市整理窗
+
+price_rule:
+  # 涨跌停判定：未复权价 + 交易所前收盘/除权参考价
+  use_unadjusted: true
+  limit_ref: exchange_prev_close_or_ex_rights_ref
+  limit_price_round: 0.01  # 限制价四舍五入到 0.01
+  # 禁止：用复权价判涨跌停；把盘后定价当无限量收盘成交
+
+signal:
+  type: dummy_or_fixed_turnover  # 哑信号或固定换手规则
+  note: 禁止具体标的结论 / 不荐股
+
+legs:
+  - id: A0
+    description: 次日收盘价100%成交，忽略涨跌停
+  - id: A1
+    description: 一字涨停买入失败、一字跌停卖出失败
+    hold_on_sell_fail: 卖出失败则继续持有至下一可卖日
+    skip_on_buy_fail: 买入失败则该信号空仓跳过
+  - id: A1b_optional
+    description: 按当日成交量一小部分封顶
+    enabled: false  # 默认关闭
+    volume_cap_fraction: null  # 启用时再填
+
+costs:
+  enabled: false  # 本实验可不计成本（留给实验 B）
+  t_plus_one: true  # 股票 T+1
+
+outputs:
+  dir: results/
+  metrics:
+    - 净值差
+    - 计划换手vs实际换手
+    - 受阻买卖笔数
+    - 期末残余仓
+
+prohibitions:
+  - 不荐股
+  - 不实盘
+  - 不接券商API
+  - 不用复权价判涨跌停
+  - 不把盘后定价当无限量收盘成交

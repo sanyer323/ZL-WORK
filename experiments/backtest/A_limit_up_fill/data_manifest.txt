@@ -1,0 +1,6 @@
+# 实验 A 数据清单（占位）
+data_vendor: 待定
+as_of: 2026-10-31
+files: （尚无）
+hash: （尚无）
+note: Raymond 点名数据商之前不接聚宽/掘金/米筐
