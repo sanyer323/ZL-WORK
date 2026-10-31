@@ -1,11 +1,19 @@
 # 实验 A · 涨停可成交性 — 纸面参数（scaffold，尚未接数据）
 experiment_id: A_limit_up_fill
 title: 涨停可成交性
-status: scaffold  # 尚未接数据
-data_vendor: 聚宽  # 已由总管按 Raymond 授权点名；仍不登录、不拉数，等风控纸面预检通过后再接日频
+status: scaffold  # 尚未接数据；风控预检=有条件通过，补条件中
+data_vendor: 聚宽  # 已点名；仍不登录、不拉数，等风控复检通过后再接日频
 
 sample_start: "2021-01-01"
 sample_end: 待定  # 最近完整交易日
+
+# 样本外切分占位（未跑；接数后按此切，禁止用 holdout 调参）
+oos_split:
+  status: placeholder
+  in_sample: "2021-01-01 .. 2023-12-31"
+  holdout: "2024-01-01 .. sample_end"
+  rule: 仅用 in_sample 定哑信号/固定换手强度与对照解读；holdout 只做一次最终对照表；禁止用 holdout 反调 A1 规则或换手参数
+  note: 区间可随 sample_end 定稿微调，但 IS/OOS 边界日须事先写死再拉数
 
 universe:
   description: 全A可交易日频
@@ -17,7 +25,14 @@ price_rule:
   use_unadjusted: true
   limit_ref: exchange_prev_close_or_ex_rights_ref
   limit_price_round: 0.01  # 限制价四舍五入到 0.01
-  # 禁止：用复权价判涨跌停；把盘后定价当无限量收盘成交
+  # 幅度按「交易日 × 板块 × 是否风险警示」取当日有效文本（与智库口径一致）
+  limit_pct_source: board_st_day_effective
+  limit_pct_examples:
+    main_board: 0.10
+    chi_next_or_star: 0.20
+    main_board_st_before_2026_07_06: 0.05
+    main_board_st_from_2026_07_06: 0.10
+  # 禁止：用复权价判涨跌停；把盘后定价当无限量收盘成交；用现行幅度铺满全历史
 
 signal:
   type: dummy_or_fixed_turnover  # 哑信号或固定换手规则
@@ -27,7 +42,9 @@ legs:
   - id: A0
     description: 次日收盘价100%成交，忽略涨跌停
   - id: A1
-    description: 一字涨停买入失败、一字跌停卖出失败
+    # 与智库清单一致：更宽「涨停买/跌停卖记失败」，不限于一字板
+    description: 触及涨停的买入记失败、触及跌停的卖出记失败（含一字与非一字收盘涨跌停）
+    fail_rule: limit_touch  # 收盘价触及当日限制价即失败；非仅 open==close==limit 的一字
     hold_on_sell_fail: 卖出失败则继续持有至下一可卖日
     skip_on_buy_fail: 买入失败则该信号空仓跳过
   - id: A1b_optional
@@ -46,6 +63,7 @@ outputs:
     - 计划换手vs实际换手
     - 受阻买卖笔数
     - 期末残余仓
+    - IS与holdout分段对照（占位）
 
 prohibitions:
   - 不荐股
@@ -53,3 +71,4 @@ prohibitions:
   - 不接券商API
   - 不用复权价判涨跌停
   - 不把盘后定价当无限量收盘成交
+  - 不用 holdout 反调规则
