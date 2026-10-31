@@ -1,0 +1,17 @@
+{
+  "name": "FlowSize 工程计算软件",
+  "install": "cd 计算软件 && npm ci",
+  "terminals": [
+    {
+      "name": "vite-dev",
+      "command": "cd 计算软件 && npm run dev -- --host 0.0.0.0 --port 5173",
+      "description": "FlowSize (流衡) Vite dev server for the React + TypeScript engineering calculation app. Serves at http://localhost:5173"
+    }
+  ],
+  "ports": [
+    {
+      "name": "vite-dev-server",
+      "port": 5173
+    }
+  ]
+}
