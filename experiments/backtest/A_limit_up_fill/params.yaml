@@ -2,7 +2,7 @@
 experiment_id: A_limit_up_fill
 title: 涨停可成交性
 status: scaffold  # 尚未接数据
-data_vendor: 待定  # Raymond 点名之前不接聚宽/掘金/米筐
+data_vendor: 聚宽  # 已由总管按 Raymond 授权点名；仍不登录、不拉数，等风控纸面预检通过后再接日频
 
 sample_start: "2021-01-01"
 sample_end: 待定  # 最近完整交易日
