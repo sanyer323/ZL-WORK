@@ -129,8 +129,14 @@ AI 在**打开的对话里**不会 24 小时自己上网；要持续养，用 **
 跨任务看：时间越久，罐越厚 → 同题完成度应更高；这就是「每个领域的智库」。
 
 ## 入库
-- **打通（2026-09-30）**：智库喂养 PR 由 GitHub Action 自动合进 `main`（标题含「智库」）。本机计划任务「智库同步Obsidian」每天 **21:40** 和 **08:00** 把 `C:\Users\sanye\Downloads\ZL-WORK` 快进到 `origin/main`，Obsidian 才能看见。脚本：`~\.cursor\skills\domain-think-tank\sync-thinktank.ps1`。手动跑同一文件即可。
+- **打通（2026-09-30）**：智库喂养 PR 由 GitHub Action 自动合进 `main`。本机 `ThinktankSync-2140` / `0800` 把 **`C:\Users\sanye\Desktop\AI\日常`** 快进到 `origin/main`（Obsidian 打开这里的 `智库/`）。一次拉取补上漏掉的几天。脚本：`~\.cursor\skills\domain-think-tank\sync-thinktank.ps1`。
+- **开机即拉（2026-10-13）**：`ThinktankSync-Logon` 登录约 1 分钟后拉取；`ThinktankSync-1200` 中午再拉一次。这两次若当时没开机，Windows 会在下次开机后补跑。云端喂养不看本机开没开。
 - Cursor Automation「智库每日喂养」仍可能先开 draft PR；合进 main 靠上面这条，不要等聊天里有人喊合并。
-- 本机 Obsidian 库是 `C:\Users\sanye\Downloads\ZL-WORK\智库`，和桌面 `日常` 不是同一份工作副本。
-- **实时学 ≠ 改模型权重。** 打开的对话不会 24 小时自己上网。干活时当场写回 Skill/智库，才是真正的实时。后台闹钟每天 21:00、按星期换罐。
+- 本机 Obsidian 库（2026-10-02 已切）：`C:\Users\sanye\Desktop\AI\日常\智库`。`Downloads\ZL-WORK` 与桌面 `ZL-WORK` 已删（独有文件已进 `日常`）。
+- **目录分类（2026-10-02）**：定位器进 `日常/AI研发产品/`；报销/ERP/采购/库存/合同执行进 `C:\工作\2026\公司运营`；厂家样本进 `日常/厂家资料/`。Cursor 从 `桌面\AI` 点父目录，不要再平铺开子文件夹。
+- **产品AE（2026-10-07）**：画图、变送器选型、计算软件收到 `日常/产品AE/`（桌面 `AI\产品AE` 是链接）。不要再单独开这三个旧文件夹。
+- **电动执行机构（2026-10-07）**：另一条产品，目录 `日常/AI研发产品/电动执行机构/`。云端 `Electric actuator system` 的方案/图纸/手册已收进该目录。冻结：F10、φ20、100 N·m。不要和定位器混任务。
+- **报销后续（2026-10-07）**：表和流水没丢，在 `公司运营/报销/`。打开 `桌面\AI\公司运营` 新开对话做下个月；规矩在该库 `.cursor/rules/expense-exclusions.mdc` 与 `~\.cursor\skills\uking-expenses`。不要再开旧路径 `C:\工作\2026\报销`。7 月旧对话标题 `July reimbursement data entry`。
+- **ERP 后续（2026-10-07）**：管理表格源码仍在 `C:\Users\sanye\Desktop\Uking\管理表格`（选型 `sys.path` 不要改）；公司运营里用链接 `ERP/管理表格`。Agents 里原「管理表格」对话已挂到公司运营。不要再单独开那个文件夹。
+- **实时学 ≠ 改模型权重。** 打开的对话不会 24 小时自己上网。干活时当场写回 Skill/智库，才是真正的实时。后台闹钟自 2026-10-15 起改为每小时补一个罐（五个罐轮流）。旧的每天按星期换罐要关掉。
 - 闹钟**不会**自己提示「知识储备够了」。阶段 0 用金融罐四条验收对照；要检查就说「过一遍」。
