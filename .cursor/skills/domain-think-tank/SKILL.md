@@ -133,6 +133,7 @@ AI 在**打开的对话里**不会 24 小时自己上网；要持续养，用 **
 ## 入库
 - **打通（2026-09-30）**：智库喂养 PR 由 GitHub Action 自动合进 `main`。本机 `ThinktankSync-2140` / `0800` 把 **`C:\Users\sanye\Desktop\AI\日常`** 快进到 `origin/main`（Obsidian 打开这里的 `智库/`）。一次拉取补上漏掉的几天。脚本：`~\.cursor\skills\domain-think-tank\sync-thinktank.ps1`。
 - **开机即拉（2026-10-13）**：`ThinktankSync-Logon` 登录约 1 分钟后拉取；`ThinktankSync-1200` 中午再拉一次。这两次若当时没开机，Windows 会在下次开机后补跑。云端喂养不看本机开没开。
+- **Git/Sync 代理（2026-11-01 常驻坑）**：环境常残留 `HTTP_PROXY`/`HTTPS_PROXY`/`ALL_PROXY=http://127.0.0.1:1080`，但 **1080 常无监听** → fetch/Sync 假失败。全局 git `http(s).proxy` 若指向 1080 也要 unset。拉起 SSR（`vpn-restart-ssr2.ps1` / ShadowsocksR，监听多为 `127.0.0.1:39111`），命令级清掉 1080 环境变量，设 `ALL_PROXY=socks5h://127.0.0.1:39111` 再 `git fetch/push` 与 ThinktankSync。WinHTTP 直连、IE ProxyEnable=0 时仍可能被进程环境代理坑到。详见 `智库/金融股票/事实与坑.md` 同日条。**勿改**每日 21:00 喂养调度。
 - Cursor Automation「智库每日喂养」仍可能先开 draft PR；合进 main 靠上面这条，不要等聊天里有人喊合并。
 - 本机 Obsidian 库（2026-10-02 已切）：`C:\Users\sanye\Desktop\AI\日常\智库`。`Downloads\ZL-WORK` 与桌面 `ZL-WORK` 已删（独有文件已进 `日常`）。
 - **目录分类（2026-10-02）**：定位器进 `日常/AI研发产品/`；报销/ERP/采购/库存/合同执行进 `C:\工作\2026\公司运营`；厂家样本进 `日常/厂家资料/`。Cursor 从 `桌面\AI` 点父目录，不要再平铺开子文件夹。
