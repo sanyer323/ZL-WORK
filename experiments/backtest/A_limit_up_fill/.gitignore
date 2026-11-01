@@ -1,0 +1,19 @@
+# local env
+.venv/
+__pycache__/
+*.py[cod]
+
+# runtime data / secrets / samples (never commit)
+data/
+*.parquet
+auth_evidence.txt
+*_sample_meta.json
+
+# server / poll logs
+*.log
+server_stdout.txt
+server_stderr.txt
+
+# keep results/.gitkeep; ignore generated result artifacts
+results/*
+!results/.gitkeep
