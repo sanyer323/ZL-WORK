@@ -60,5 +60,29 @@
     "after_hours_fixed_price_default_off": true,
     "holdout_not_tuned": true
   },
-  "status": "scaffold + fake dry-run"
+  "status": "scaffold + fake dry-run",
+  "as_of_patch": "2026-11-01T20:05:00+08:00",
+  "coverage_gaps": {
+    "ST_securities_in_fake": false,
+    "main_board_ST_pct_cutover_2026_07_06": false,
+    "note": "假样本无 ST/*ST；未演练 2026-07-06 前后主板 ST 5%→10%。真数交付时强制抽检主板 ST 在该日前后限制价。params.price_rule.limit_pct_examples 仅占位。"
+  },
+  "risk_redline_exemption": {
+    "exempt_numerical_redlines_v0": true,
+    "exempt_items": [
+      "single_name_cap_15pct",
+      "industry_cap_30pct",
+      "drawdown_fuse_10_15_20"
+    ],
+    "explicit_text": "假跑豁免单票15%/行业30%/回撤熔断，只验 A0/A1 成交约束；将来组合策略假跑必须嵌入仓位上限。",
+    "reason": "本实验目的是成交约束对照，不是组合风控达标。假信号=dummy_fixed_rotation_100pct_one_symbol，期末单票权重100%>>15%；行业暴露同理；A0假跑大幅回撤>>10%。勿用本假跑验收仓位/回撤数值线。",
+    "scope": "fake dry-run only",
+    "future_portfolio_fake_must_embed_position_caps": true
+  },
+  "three_line_summary": {
+    "done": "假跑 A0/A1/A1κ 对齐假设A；manifest 已挂 fake 路径+sha256+FAKE=true；显式豁免单票15%/行业30%/回撤熔断。",
+    "blocked": "假样本无 ST；未演练 2026-07-06 ST 切日（真数交付强制抽检）；真数仍等 8765；defer 未实现。",
+    "next": "风控复验本补丁 → 8765 真样本后强制抽检 ST/切日；将来组合策略假跑必须嵌入仓位上限。"
+  },
+  "data_manifest": "data_manifest.txt"
 }

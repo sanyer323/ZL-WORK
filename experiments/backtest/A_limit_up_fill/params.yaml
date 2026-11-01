@@ -21,7 +21,7 @@ a1k:
   enabled: true
   kappa: 0.01  # FAKE 占位；禁当真标定
   note: 非一字收盘封板买卖用 kappa*当日成交量封顶
-data_vendor: 聚宽  # 已点名；仍不登录、不拉数，等风控复检通过后再接日频
+data_vendor: 聚宽  # 已点名；假干跑用 FAKE；真数等本机 8765 鉴权后写入 data/（不堵假跑迭代）
 
 sample_start: "2021-01-01"
 sample_end: 待定  # 最近完整交易日
@@ -112,3 +112,14 @@ fake_run:
     commission_rate: 0.0003   # 万三占位；本实验 costs.enabled=false，不计入净值
     slippage_bps: 5           # 5bp 占位，留给实验 B
     note: costs.enabled=false for experiment A; placeholders for experiment B only
+# 假跑风控声明（2026-11-01）
+risk_redline_exemption:
+  exempt_numerical_redlines_v0: true
+  exempt_items: [single_name_cap_15pct, industry_cap_30pct, drawdown_fuse]
+  explicit_text: 假跑豁免单票15%/行业30%/回撤熔断，只验 A0/A1 成交约束；将来组合策略假跑必须嵌入仓位上限
+  reason: 本实验只验成交约束；假信号 100% 单票不满足仓位线；勿用假跑验收仓位/回撤数值红线
+coverage_gaps_fake:
+  no_ST_in_fake: true
+  no_ST_pct_cutover_2026_07_06_in_fake: true
+  true_data_mandatory_ST_spotcheck: 真数交付时强制抽检主板 ST 在 2026-07-06 前后限制价（5%→10%）
+  note: 假数不补 ST 切日用例；真数强制抽检
