@@ -126,3 +126,7 @@ cd "C:\Users\sanye\Desktop\AI\日常\experiments\backtest\A_limit_up_fill"
 - 不用 holdout 反调 A1 或换手参数
 - 不把密码写进命令行、普通文件或仓库
 - 不用复权价判板；不混报开/收净值
+
+## 10. 真数接数检查单
+
+假跑复验通过后进真数：见 `risk_notes/真数接数检查单.md`（auth → 最小日频 → ST 2026-07-06 切日抽检 → 再跑 A0/A1）。
