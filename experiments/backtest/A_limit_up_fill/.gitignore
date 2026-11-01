@@ -14,6 +14,14 @@ auth_evidence.txt
 server_stdout.txt
 server_stderr.txt
 
-# keep results/.gitkeep; ignore generated result artifacts
+# results: keep structure + small fake dry-run artifacts; ignore bulky dumps
 results/*
 !results/.gitkeep
+!results/fake/
+!results/fake/**
+!results/live_sample/
+!results/live_sample/**
+results/fake/*.parquet
+results/**/*.pkl
+
+results/fake/equity_curves.csv

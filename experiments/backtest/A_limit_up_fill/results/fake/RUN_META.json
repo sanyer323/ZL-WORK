@@ -1,0 +1,64 @@
+{
+  "as_of": "2026-11-01T19:37:29+08:00",
+  "timezone_note": "Asia/Shanghai (UKING-ZL local)",
+  "hypothesis_id": "A",
+  "hypothesis_doc": "智库/金融股票/假设-A-涨停可成交性.md",
+  "experiment_id": "A_limit_up_fill",
+  "data_mode": "fake",
+  "FAKE": true,
+  "warning": "FAKE dry-run only. Do NOT treat as real backtest conclusions or stock advice.",
+  "script": "scripts/run_a0_a1_fill.py",
+  "params_path": "params.yaml",
+  "fake_data_path": "data/fake_daily_bars.parquet",
+  "fake_data_sha256": "82366733498a278e2063451dc04ddf3e16d6b5dd6f4bc0e10e5e39b7cdc489b6",
+  "fill_default": "next_open",
+  "fill_robustness": "next_close_separate_file",
+  "fail_policy": "skip",
+  "groups": [
+    "A0",
+    "A1",
+    "A1k"
+  ],
+  "kappa": 0.01,
+  "rebalance_every_sessions": 5,
+  "signal": "dummy_fixed_rotation_100pct_one_symbol",
+  "legs": {
+    "A0": "naive next_open 100% fill; limits/halts ignored",
+    "A1": "honest-hard: one-word-up buy=0; one-word-down sell=0; close-seal-up buy=0; close-seal-down sell=0; halt/zero-vol fail",
+    "A1k": "same as A1 but non-one-word close-seal buys/sells capped by kappa*day_volume"
+  },
+  "limit_rule": "unadjusted OHLC + pre_close; round_half_up to 0.01",
+  "oos_split": {
+    "in_sample": "2021-01-01 .. 2023-12-31",
+    "holdout": "2024-01-01 .. 2024-09-30",
+    "rule": "仅用 in_sample 定哑信号/固定换手强度与对照解读；holdout 只做一次最终对照表；禁止用 holdout 反调 A1 规则或换手参数",
+    "holdout_not_used_for_tuning": true
+  },
+  "costs_assumptions": {
+    "costs.enabled": false,
+    "t_plus_one": true,
+    "commission_rate_placeholder": 0.0003,
+    "slippage_bps_placeholder": 5,
+    "note": "costs.enabled=false for experiment A; placeholders for experiment B only"
+  },
+  "board_segments": [
+    "main",
+    "chi_next"
+  ],
+  "outputs": {
+    "summary_default_next_open": "results/fake/summary_IS_holdout_next_open.csv",
+    "summary_robustness_next_close": "results/fake/summary_IS_holdout_next_close_ROBUSTNESS.csv",
+    "equity": "results/fake/equity_curves.csv",
+    "blocked_turnover": "results/fake/blocked_and_turnover.csv",
+    "board_segment": "results/fake/board_segment_main_vs_chinext.csv",
+    "residual": "results/fake/end_residual_positions.json"
+  },
+  "self_check": {
+    "unadjusted_limit_judge": true,
+    "fill_open_close_not_mixed": true,
+    "halt_fails": true,
+    "after_hours_fixed_price_default_off": true,
+    "holdout_not_tuned": true
+  },
+  "status": "scaffold + fake dry-run"
+}

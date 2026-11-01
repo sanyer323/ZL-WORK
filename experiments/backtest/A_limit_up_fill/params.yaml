@@ -1,7 +1,26 @@
 # 实验 A · 涨停可成交性 — 纸面参数（scaffold，尚未接数据）
 experiment_id: A_limit_up_fill
 title: 涨停可成交性
-status: scaffold  # 尚未接数据；风控预检=有条件通过，补条件中
+status: scaffold_fake_dryrun  # scaffold + fake dry-run；真数仍等本机 8765 鉴权
+
+hypothesis_id: A
+hypothesis_doc: 智库/金融股票/假设-A-涨停可成交性.md
+
+# 成交时点写死：默认次日开盘；次日收盘仅稳健单列，禁止混报一条净值
+fill:
+  default: next_open
+  robustness: next_close
+  after_hours_fixed_price: false  # 本实验默认关闭
+
+# 失败后持仓：事先写死，禁止跑后改（fake 用 skip）
+fail_policy: skip  # skip|defer；本干跑实现 skip
+
+groups: [A0, A1, A1k]
+
+a1k:
+  enabled: true
+  kappa: 0.01  # FAKE 占位；禁当真标定
+  note: 非一字收盘封板买卖用 kappa*当日成交量封顶
 data_vendor: 聚宽  # 已点名；仍不登录、不拉数，等风控复检通过后再接日频
 
 sample_start: "2021-01-01"
@@ -11,7 +30,7 @@ sample_end: 待定  # 最近完整交易日
 oos_split:
   status: placeholder
   in_sample: "2021-01-01 .. 2023-12-31"
-  holdout: "2024-01-01 .. sample_end"
+  holdout: "2024-01-01 .. 2024-09-30"  # fake dry-run 写死；真数接上后再定 sample_end
   rule: 仅用 in_sample 定哑信号/固定换手强度与对照解读；holdout 只做一次最终对照表；禁止用 holdout 反调 A1 规则或换手参数
   note: 区间可随 sample_end 定稿微调，但 IS/OOS 边界日须事先写死再拉数
 
@@ -24,7 +43,7 @@ price_rule:
   # 涨跌停判定：未复权价 + 交易所前收盘/除权参考价
   use_unadjusted: true
   limit_ref: exchange_prev_close_or_ex_rights_ref
-  limit_price_round: 0.01  # 限制价四舍五入到 0.01
+  limit_price_round: 0.01  # round half up 到 0.01（未复权+pre_close）
   # 幅度按「交易日 × 板块 × 是否风险警示」取当日有效文本（与智库口径一致）
   limit_pct_source: board_st_day_effective
   limit_pct_examples:
@@ -40,17 +59,18 @@ signal:
 
 legs:
   - id: A0
-    description: 次日收盘价100%成交，忽略涨跌停
+    description: 天真组 — 次日开盘价100%成交；涨跌停/停牌不挡（对照基线）
   - id: A1
-    # 与智库清单一致：更宽「涨停买/跌停卖记失败」，不限于一字板
-    description: 触及涨停的买入记失败、触及跌停的卖出记失败（含一字与非一字收盘涨跌停）
-    fail_rule: limit_touch  # 收盘价触及当日限制价即失败；非仅 open==close==limit 的一字
-    hold_on_sell_fail: 卖出失败则继续持有至下一可卖日
-    skip_on_buy_fail: 买入失败则该信号空仓跳过
+    description: 诚实-硬 — 开盘一字涨停买=0；开盘一字跌停卖=0；收盘封涨停且非一字买=0；收盘封跌停对称卖=0；停牌/无量失败
+    one_word_rule: open==high==low==close==limit 且 volume>0
+    fail_policy_ref: fail_policy  # 见顶层 skip
+  - id: A1k
+    description: 同 A1；非一字收盘封板买卖用 kappa*当日成交量封顶（灵敏度，FAKE 占位）
+    kappa_ref: a1k.kappa
   - id: A1b_optional
-    description: 按当日成交量一小部分封顶
-    enabled: false  # 默认关闭
-    volume_cap_fraction: null  # 启用时再填
+    description: 旧名占位；请用 A1k
+    enabled: false
+    volume_cap_fraction: null
 
 costs:
   enabled: false  # 本实验可不计成本（留给实验 B）
@@ -72,3 +92,23 @@ prohibitions:
   - 不用复权价判涨跌停
   - 不把盘后定价当无限量收盘成交
   - 不用 holdout 反调规则
+
+
+# --- fake dry-run (不依赖聚宽真数；禁止当真结论) ---
+fake_run:
+  enabled: true
+  data_mode: fake
+  hypothesis_id: A
+  data_path: data/fake_daily_bars.parquet
+  data_csv: data/fake_daily_bars.csv
+  holdout_end: "2024-09-30"
+  rebalance_every_sessions: 5
+  signal: dummy_fixed_rotation_100pct_one_symbol
+  fail_policy: skip
+  groups: [A0, A1, A1k]
+  kappa: 0.01
+  outputs_dir: results/fake/
+  costs_placeholder:
+    commission_rate: 0.0003   # 万三占位；本实验 costs.enabled=false，不计入净值
+    slippage_bps: 5           # 5bp 占位，留给实验 B
+    note: costs.enabled=false for experiment A; placeholders for experiment B only

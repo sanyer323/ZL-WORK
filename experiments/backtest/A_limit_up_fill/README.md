@@ -1,6 +1,6 @@
 # 实验 A · 涨停可成交性（A_limit_up_fill）
 
-状态：`scaffold`（纸面骨架，尚未接数据）。数据商 = **聚宽**（已点名；**仍不登录、不拉数**，等风控复检通过后再接日频）。
+状态：`scaffold + fake dry-run`（假数据骨架对齐假设 A；**真数仍未接**）。数据商 = **聚宽**（已点名；**仍不登录、不拉数**，等风控复检通过后再接日频）。
 
 风控预检 = **有条件通过**；本版按缺口补齐 A1 宽规则、板块/ST 当日幅度、样本外切分占位。
 
@@ -76,3 +76,45 @@
 - 路径：`experiments/backtest/A_limit_up_fill/`
 - 脏库先报再 commit；GitHub 已通时可 push（本任务允许）
 - 不接数据商账号（待派接数）、不写实盘、不荐股
+
+
+
+## 9. 怎么复现（一页）
+
+假设标准件：`智库/金融股票/假设-A-涨停可成交性.md`（`hypothesis_id=A`）。
+**默认成交时点 = 次日开盘价**；次日收盘仅稳健单列，禁止混报一条净值。
+对照基线 = **A0 天真组**。A1=诚实-硬；A1κ=κ·成交量封顶（κ 默认 0.01，FAKE 占位）。`fail_policy=skip`（事先写死）。
+
+### 假跑（当前可立刻）
+
+在 UKING-ZL、本实验目录、已有 `.venv`：
+
+```powershell
+cd "C:\Users\sanye\Desktop\AI\日常\experiments\backtest\A_limit_up_fill"
+.\.venv\Scripts\python.exe .\scripts\gen_fake_daily.py
+.\.venv\Scripts\python.exe .\scripts\run_a0_a1_fill.py
+```
+
+成功标准：exit 0；`results/fake/RUN_META.json` 与 `summary_IS_holdout_next_open.csv` 存在；全文 `data_mode=fake` / `FAKE=true` / `hypothesis_id=A`。
+
+### 真数路径（等鉴权）
+
+1. 本机浏览器打开 `http://127.0.0.1:8765/` 提交聚宽密码（密码只进本机进程）。
+2. 成功后应有：`data/auth_evidence.txt`、`data/daily_min_sample.parquet`。
+3. 再用真数跑对照（脚本接真数开关另开；**禁止**把假跑曲线当真）。
+
+### 证据目录
+
+| 路径 | 含义 |
+|------|------|
+| `data/`（gitignore） | 真/假样本；含 `fake_*` 与日后真数 parquet |
+| `results/fake/` | 假跑（默认 next_open；next_close 稳健单列） |
+| `results/live_sample/` | 真数结果占位 |
+
+### 禁事项（再强调）
+
+- 不把 FAKE 结果当真实回测结论 / 荐股
+- 不实盘、不接券商 API
+- 不用 holdout 反调 A1 或换手参数
+- 不把密码写进命令行、普通文件或仓库
+- 不用复权价判板；不混报开/收净值

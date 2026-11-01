@@ -1,0 +1,28 @@
+{
+  "hypothesis_id": "A",
+  "data_mode": "fake",
+  "FAKE": true,
+  "fail_policy": "skip",
+  "fill_default": "next_open",
+  "note": "Residuals from DEFAULT next_open legs only",
+  "rows": [
+    {
+      "segment": "IS",
+      "A0_end_residual_weights": "{\"FAKE300001.XSHE\": 0.0, \"FAKE000002.XSHE\": 0.0, \"FAKE600001.XSHG\": 1.0}",
+      "A1_end_residual_weights": "{\"FAKE300001.XSHE\": 0.0, \"FAKE000002.XSHE\": 0.0, \"FAKE600001.XSHG\": 1.0}",
+      "A1k_end_residual_weights": "{\"FAKE300001.XSHE\": 0.0, \"FAKE000002.XSHE\": 0.0, \"FAKE600001.XSHG\": 1.0}",
+      "A0_end_cash": 0.0,
+      "A1_end_cash": 0.0,
+      "A1k_end_cash": 0.0
+    },
+    {
+      "segment": "holdout",
+      "A0_end_residual_weights": "{\"FAKE300001.XSHE\": 0.0, \"FAKE000002.XSHE\": 0.0, \"FAKE600001.XSHG\": 1.0}",
+      "A1_end_residual_weights": "{\"FAKE300001.XSHE\": 0.0, \"FAKE000002.XSHE\": 0.0, \"FAKE600001.XSHG\": 1.0}",
+      "A1k_end_residual_weights": "{\"FAKE300001.XSHE\": 0.0, \"FAKE000002.XSHE\": 0.0, \"FAKE600001.XSHG\": 1.0}",
+      "A0_end_cash": 0.0,
+      "A1_end_cash": 0.0,
+      "A1k_end_cash": 0.0
+    }
+  ]
+}
