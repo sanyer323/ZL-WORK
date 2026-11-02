@@ -1,8 +1,8 @@
 # 假设 S · 经手费按现行档铺满 / 把 30% 当减半（成本诚信）
 
-更新：2026-11-02  
+更新：2026-11-02（风控补丁）  
 来源：总管线 / R 草稿已交预检后写下一纸面 S；清单实验 S  
-状态：**草稿 · 待数据 · 待跑**（结论栏空；禁止把「经手费=0 / 现行 0.0341‰ 铺满 / 2023-08-28 当减半 / 已含代收佣金再加一遍经手费」当实盘成本预期；不抢实验 A 真数队列；本页不开回测；不催 8765；R 预检回来后优先补 R，不改 R 正文）
+状态：**草稿 · 待数据 · 待跑**（结论栏空；禁止把「经手费=0 / 现行 0.0341‰ 铺满 / 2023-08-28 当减半 / 已含代收佣金再加一遍经手费」当实盘成本预期；不抢实验 A 真数队列；本页不开回测；不催 8765；风控四条已冻结；不改 R/T/A 正文）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 实验 S 对齐。与假设 B 类「印花税切片」、过户费（2022-04-29 切片）互补：本页专测**沪深 A 股竞价经手费**——用现行 0.0341‰ 铺满历史、把 2023-08-28 的 30% 当成印花税那种减半、或在已含代收费的佣金上再叠一遍经手费。**证管费（股票 0.02‰ 双边、2023-08-28 不改、ETF/债券免收）属实验 T；股票 ETF 假回转属实验 R；印花税只打卖方属既有费用切片。本页主结论不混。**
 
@@ -21,13 +21,14 @@
 ### 2.1 经手费 ≠ 佣金；沪深 A 股竞价三切日；30% ≠ 减半；已含代收禁双计（未复权成交金额）
 
 ```
-# 配置写死 / 待预检键（见 §7）
+# 配置写死键（见 §7；风控四条已冻结）
 # params.asof_check_date                 写死默认 2026-10-30  # 事实与坑「经手费≠佣金」核对日；泄露组「现行」锚
 # params.fill_time                        写死 next_open      # 成交腿与 A/D 对齐；不抢 A 板上真数
 # params.fee_cut_20120901                 写死 2012-09-01     # 0.087‰ → 0.0696‰
 # params.fee_cut_20150801                 写死 2015-08-01     # 0.0696‰ → 0.0487‰
 # params.fee_cut_20230828                 写死 2023-08-28     # 0.0487‰ → 0.0341‰（降 30%，非减半）
-# params.handling_bps_pre_20120901        待预检             # 2012-09-01 前档；未核死则 skip 该窗或拉数前冻结
+# params.handling_bps_pre_20120901        写死（窗外置）      # 主窗自 2012-09-01；见 params.pre_20120901_window
+# params.pre_20120901_window             写死 skip_or_out_of_scope  # 主窗不含 2012 前；禁未冻结静默用 0.0696 前推标 S3
 # params.handling_bps_20120901            写死 0.0696         # 单位：‰（千分之）；双边各收
 # params.handling_bps_20150801            写死 0.0487
 # params.handling_bps_20230828            写死 0.0341         # 现行核对日档
@@ -39,9 +40,10 @@
 # params.side                             写死 both           # 买卖双边
 # params.block_discount_pct               写死 0.30           # 大宗再下浮 30%（竞价主跑可 off）
 # params.block_in_main_run                写死 False          # 主跑竞价-only；大宗另桶
-# params.commission_includes_agency       待预检             # True=佣金已含代收经手费/证管费 → PIT 不再叠经手费
+# params.commission_includes_agency       写死 True           # 佣金已含代收经手费/证管费 → S3 不再叠；禁缺键静默双计/漏计
 # params.s3_stack_handling_if_included    写死 False          # 诚实组：已含代收则禁止再加经手费
 # params.s0_double_count_demo             写死 True           # 天真可演示「已含仍再加」（暴露双计）
+# params.s0_primary_demo                  写死 double_count_agency  # S0 主报腿；禁双挂 zero_handling；禁混进 S3/主结论
 # params.apply_ashare_fee_to_etf          写死 False          # 禁把 A 股 0.0341‰ 套股票 ETF（基金另档）
 # params.copy_bse_fee_to_hs               写死 False          # 禁把北交所 0.0125% 抄到沪深
 # params.missing_notional_policy          写死 skip           # 缺未复权成交金额 → skip
@@ -50,11 +52,11 @@
 # params.merge_with_R_etf_rotation        写死 False          # ETF 回转另页 R
 # params.merge_with_stamp_transfer        写死 False          # 印花税/过户费本页当对照输入，不重开实验
 # params.diff_buckets                     写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                   待预检             # 相对门槛；键名稳；值拉数前冻结；禁 holdout 标定
+# params.Y / G / N / Y2                   写死 0.02/0.01/0.05/0.015  # 相对门槛；禁 holdout 标定；禁 null
 # params.date_start / date_end            写死主窗并冻结
 # params.oos_split.*                      写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope          写死 position_industry_dd_only
-# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改切日·费率档·30%当减半定义·已含代收双计开关·ETF/北交所禁项·Y/G/N/Y2·主窗/oos
+# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改切日·费率档·30%当减半定义·已含代收双计开关·commission_includes_agency·pre_20120901_window·s0_primary_demo·ETF/北交所禁项·Y/G/N/Y2·主窗/oos
 
 fill_time = "next_open"
 asof_check_date = "2026-10-30"
@@ -76,6 +78,10 @@ merge_with_R_etf_rotation = False
 merge_with_stamp_transfer = False
 missing_notional_policy = "skip"
 missing_sec_type_policy = "skip"
+commission_includes_agency = True
+pre_20120901_window = "skip_or_out_of_scope"
+s0_primary_demo = "double_count_agency"
+Y, G, N, Y2 = 0.02, 0.01, 0.05, 0.015
 
 def pit_handling_bps(d):
     """当日已生效沪深 A 股竞价经手费（‰，单边；双边各收）。"""
@@ -146,16 +152,25 @@ def forbid_copy_bse(copy_flag):
 
 **`params.merge_with_T_csrc_fee=False` / `params.merge_with_R_etf_rotation=False`（写死）**：证管费、ETF 回转不得混进本页主表。
 
-**待预检冻结键（值可暂「待预检」，键名稳；拉数前必须写入具体值并冻结）**：
+**风控补丁四条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.commission_includes_agency = 待预检   # 建议 True（官方：佣金含代收经手费/证管费）；拉数前二选一写死
-params.handling_bps_pre_20120901  = 待预检   # 2012-09-01 前；未核则该窗 skip
-params.Y                          = 待预检   # 成本差 / 「成本吃掉的那截」门槛
-params.G                          = 待预检   # 费率档标签差异率门槛
-params.N                          = 待预检   # 失败/跳过率差门槛
-params.Y2                         = 待预检   # 高换手桶成本差专项门槛
+params.Y                            = 0.02                # 成本差显著门槛 ≥ 2pp（同系列纸面占位；来源 L/M/N/O/P/R；禁 holdout 标定）
+params.G                            = 0.01                # 费率档标签差异率门槛 ≥ 1pp
+params.N                            = 0.05                # 失败/跳过率差门槛 ≥ 5pp
+params.Y2                           = 0.015               # 高换手桶成本差专项门槛 ≥ 1.5pp
+params.commission_includes_agency   = True                # 佣金已含代收经手费/证管费；与 s3_stack_handling_if_included=False 同向 → S3 不再叠；禁缺键静默双计/漏计；禁跑后改口
+params.pre_20120901_window          = skip_or_out_of_scope  # 主窗自 2012-09-01；2012 前窗外置；禁未冻结静默用 0.0696 前推标 S3；若前推样本须另写 handling_bps_pre_20120901 ‰ 并冻结
+params.s0_primary_demo              = double_count_agency # S0 主报「已含代收仍再叠」；依赖 commission_includes_agency=True；枚举另有 zero_handling（本页不选）；禁双挂；禁把演示双计腿写进 S3/主结论
 ```
+
+**`params.Y` / `params.G` / `params.N` / `params.Y2`（写死；拉数前冻结）**：`0.02` / `0.01` / `0.05` / `0.015`。预检禁 holdout 标定且未给推荐数 → 与同系列 L/M/N/O/P/R 纸面占位一致。单位：Y=abs(ΔCost) 成本差；G=abs(ΔFeeTag) 费率档标签差异率；N=abs(ΔFail) 失败/跳过率差；Y2=abs(ΔCost_HT) 高换手桶成本差。**禁止** null 开工；**禁止**用 holdout/OOS 标定或跑后因显著性改口。
+
+**`params.commission_includes_agency`（写死；拉数前冻结）**：`True`。官方口径佣金常含代收经手费/证管费；与 `s3_stack_handling_if_included=False` 同向时 S3 不再叠经手费。**禁止**缺键时实现静默双计或静默漏计；**禁止**跑后因成本差改口。
+
+**`params.pre_20120901_window`（写死；拉数前冻结）**：`skip_or_out_of_scope`。主窗 `date_start=2012-09-01` 不含 2012 前，该窗外置；`params.handling_bps_pre_20120901` 本页不写入具体‰。若前推样本，须另写具体‰并冻结。**禁止**未冻结时静默用 `0.0696` 前推却标 S3 PIT。
+
+**`params.s0_primary_demo`（写死；拉数前冻结；禁双挂）**：`double_count_agency`。S0 主报腿取「已含代收仍再叠」（暴露高换手被罚两次的成本截失真）；依赖 `commission_includes_agency=True` 与 `s0_double_count_demo=True`。枚举另有 `zero_handling`（主报零经手费），本页不选。**禁止**双挂争主表；**禁止**把演示双计腿写进 S3/主结论。
 
 ---
 
@@ -166,7 +181,7 @@ params.Y2                         = 待预检   # 高换手桶成本差专项门
 - **主窗（写死；拉数前冻结）**：  
   - `params.date_start=2012-09-01`  
   - `params.date_end=2026-09-30`  
-  - 覆盖 2015-08-01、2023-08-28 切日；若跑 2012-09-01 前须先冻结 `handling_bps_pre_20120901`。  
+  - 覆盖 2015-08-01、2023-08-28 切日；**`params.pre_20120901_window=skip_or_out_of_scope`（写死）**；若前推样本须另写 `handling_bps_pre_20120901` ‰ 并冻结。  
 - **PIT 切片原则**：经手费档一律按**成交日**当时已生效文本；切日按施行日不按印发日。
 
 ### 3.1 oos_split（写死四日期；拉数前冻结；禁 holdout 反调）
@@ -221,10 +236,10 @@ params.diff_buckets = [
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| Y | 成本差显著门槛 | 键名 `params.Y`；**值待预检**；拉数前写死并冻结 |
-| G | 费率档标签差异率门槛 | 键名 `params.G`；**值待预检**；拉数前写死并冻结 |
-| N | 失败笔数率差门槛 | 键名 `params.N`；**值待预检**；拉数前写死并冻结 |
-| Y2 | 高换手桶成本差门槛 | 键名 `params.Y2`；**值待预检**；拉数前写死并冻结 |
+| Y | 成本差显著门槛 | **写死** `params.Y=0.02` 并冻结 |
+| G | 费率档标签差异率门槛 | **写死** `params.G=0.01` 并冻结 |
+| N | 失败笔数率差门槛 | **写死** `params.N=0.05` 并冻结 |
+| Y2 | 高换手桶成本差门槛 | **写死** `params.Y2=0.015` 并冻结 |
 | asof_check_date | 核对日锚点（泄露诊断） | **写死默认** `2026-10-30`；拉数前冻结 |
 | fill_time | 成交时点 | **写死** `next_open` |
 | fee_cut_* | 三切日 | **写死** 2012-09-01 / 2015-08-01 / 2023-08-28 |
@@ -232,9 +247,12 @@ params.diff_buckets = [
 | s2_wrong_half_bps | 误切减半档 | **写死** 0.02435 |
 | apply_ashare_fee_to_etf | ETF 套 A 股档？ | **写死** `False` |
 | copy_bse_fee_to_hs | 北交所抄沪深？ | **写死** `False` |
+| commission_includes_agency | 佣金已含代收？ | **写死** `True` |
+| pre_20120901_window | 2012 前窗 | **写死** `skip_or_out_of_scope` |
+| s0_primary_demo | S0 主报腿 | **写死** `double_count_agency`（禁双挂） |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛键名已稳；**具体数值待风控预检后写入并冻结**；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、切日/费率档、30%≠减半、已含代收双计、`commission_includes_agency`、主窗/`oos_split` 开工拉数前必须保持冻结；**禁止跑后改口**。
+门槛已在纸面写入并冻结；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、切日/费率档、30%≠减半、已含代收双计、`commission_includes_agency`、`pre_20120901_window`、`s0_primary_demo`、主窗/`oos_split` 开工拉数前必须保持冻结；**禁止跑后改口**。
 
 **失败/不显著**：差异落在噪声带内——结论栏写明，不得改口称「经手费按现行档差不多」或「这类票费更低所以能买」。
 
@@ -263,7 +281,7 @@ params.diff_buckets = [
 7. **把证管费（实验 T）或 ETF 回转（实验 R）或印花税/过户费重开实验混进本页主表**。  
 8. **宇宙泄露 / holdout 反调**：看完 OOS 再改切日、费率档或显著性门槛。  
 9. **把差异写成「这类票/品种费更低所以能买」或选股公式**。  
-10. **2012-09-01 前费率未冻结却硬跑并标 PIT**。
+10. **2012-09-01 前费率未冻结却硬跑并标 PIT**（本页已冻结 `pre_20120901_window=skip_or_out_of_scope`）。
 
 ---
 
@@ -281,7 +299,7 @@ params.diff_buckets = [
 | 经手费 PIT 表 | 三切日三档 | 本页 §2.1 已锁默认 |
 | 印花税/过户费切片（对照输入） | 控制变量 | 不重开实验；按罐内已有切片 |
 
-**明确**：不依赖聚宽；**不要求新开 Level-2 / 新数据商**——日频未复权成交金额 + 证券类别 + 本页经手费规则表即可起步。2012-09-01 前缺档时 **`params.handling_bps_pre_20120901` 待预检冻结或该窗 skip**，不得静默用 0.0696‰ 前推。
+**明确**：不依赖聚宽；**不要求新开 Level-2 / 新数据商**——日频未复权成交金额 + 证券类别 + 本页经手费规则表即可起步。主窗自 2012-09-01；**`params.pre_20120901_window=skip_or_out_of_scope`（写死冻结）**，不得静默用 0.0696‰ 前推标 S3。
 
 ---
 
@@ -289,7 +307,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗；待预检项标出）：`hypothesis_id=S`，`groups=[S0,S1,S2,S3]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-30`**，**`params.fill_time=next_open`（写死）**，**`params.fee_cut_20120901=2012-09-01`**，**`params.fee_cut_20150801=2015-08-01`**，**`params.fee_cut_20230828=2023-08-28`**，**`params.handling_bps_20120901=0.0696`**，**`params.handling_bps_20150801=0.0487`**，**`params.handling_bps_20230828=0.0341`**，**`params.s2_wrong_half_bps=0.02435`**，**`params.s0_handling_fee=0.0`**，**`params.s1_asof_leak_bps=0.0341`**，**`params.s2_treat_30pct_as_half=True`**，**`params.s3_pit=True`**，**`params.side=both`**，**`params.block_discount_pct=0.30`**，**`params.block_in_main_run=False`**，**`params.s3_stack_handling_if_included=False`**，**`params.s0_double_count_demo=True`**，**`params.apply_ashare_fee_to_etf=False`**，**`params.copy_bse_fee_to_hs=False`**，**`params.commission_includes_agency=待预检`**，**`params.handling_bps_pre_20120901=待预检`**，**`params.missing_notional_policy=skip`**，**`params.missing_sec_type_policy=skip`**，**`params.merge_with_T_csrc_fee=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.merge_with_stamp_transfer=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[pre_20150801,20150801_to_20230827,post_20230828,high_turnover,leak_vs_pit_cost,half_vs_30pct,double_count_agency,vs_T_csrc_fee,vs_R_etf_rotation,vs_stamp_transfer]`（写死默认；拉数前冻结）**，**`params.Y/G/N/Y2=待预检`（键名稳；值拉数前冻结；禁 holdout 标定）**，`universe_rule`，**`params.date_start=2012-09-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2012-09-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_R=off`，`overlay_T=off`，`stamp_transfer_control=on`（印花税/过户费按罐内切片作控制变量）。  
+- 配置块（写死项加粗）：`hypothesis_id=S`，`groups=[S0,S1,S2,S3]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-30`**，**`params.fill_time=next_open`（写死）**，**`params.fee_cut_20120901=2012-09-01`**，**`params.fee_cut_20150801=2015-08-01`**，**`params.fee_cut_20230828=2023-08-28`**，**`params.handling_bps_20120901=0.0696`**，**`params.handling_bps_20150801=0.0487`**，**`params.handling_bps_20230828=0.0341`**，**`params.s2_wrong_half_bps=0.02435`**，**`params.s0_handling_fee=0.0`**，**`params.s1_asof_leak_bps=0.0341`**，**`params.s2_treat_30pct_as_half=True`**，**`params.s3_pit=True`**，**`params.side=both`**，**`params.block_discount_pct=0.30`**，**`params.block_in_main_run=False`**，**`params.s3_stack_handling_if_included=False`**，**`params.s0_double_count_demo=True`**，**`params.apply_ashare_fee_to_etf=False`**，**`params.copy_bse_fee_to_hs=False`**，**`params.commission_includes_agency=True`（写死冻结）**，**`params.pre_20120901_window=skip_or_out_of_scope`（写死冻结）**，**`params.s0_primary_demo=double_count_agency`（写死冻结；禁双挂）**，**`params.missing_notional_policy=skip`**，**`params.missing_sec_type_policy=skip`**，**`params.merge_with_T_csrc_fee=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.merge_with_stamp_transfer=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[pre_20150801,20150801_to_20230827,post_20230828,high_turnover,leak_vs_pit_cost,half_vs_30pct,double_count_agency,vs_T_csrc_fee,vs_R_etf_rotation,vs_stamp_transfer]`（写死默认；拉数前冻结）**，**`params.Y=0.02` / `params.G=0.01` / `params.N=0.05` / `params.Y2=0.015`（写死具体数并冻结；禁 holdout 标定；禁 null）**，`universe_rule`，**`params.date_start=2012-09-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2012-09-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_R=off`，`overlay_T=off`，`stamp_transfer_control=on`（印花税/过户费按罐内切片作控制变量）。  
 - 行情与费率表：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -298,7 +316,7 @@ params.diff_buckets = [
 - 自检布尔：是否未复权金额；S3 是否三切日三档；2023-08-28 是否按 0.0341 而非 0.02435；已含代收是否未双计；是否未套 ETF/北交所；holdout 是否未反调。  
 - **禁止输出**：具体买卖标的列表当「建议」；把零经手费/现行档铺满当实盘成本预期；催跑抢 A 真数队列；催 8765。
 
-**队列声明**：本页纸面就绪 ≠ 开工指令；**不抢实验 A 真数队列**；不催本机 8765 鉴权；不派回测开工；**本页不开回测**；**不改 R 正文**；R 预检条件回来后由研究岗优先补 R。
+**队列声明**：本页纸面就绪 ≠ 开工指令；**不抢实验 A 真数队列**；不催本机 8765 鉴权；不派回测开工；**本页不开回测**；**不改 R/T/A 正文**；风控四条已冻结，交复检+基金入库。
 
 ---
 
@@ -318,10 +336,11 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；日频未复权成交金额 + 证券类别 + 本页经手费三切日表即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2012-09-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-30；**fill_time=next_open 写死**；三切日三档写死；**s2_wrong_half_bps=0.02435**；**apply_ashare_fee_to_etf=False**；**copy_bse_fee_to_hs=False**；**s3_stack_handling_if_included=False**；diff_buckets 十桶写死冻结；**Y/G/N/Y2 与 commission_includes_agency / handling_bps_pre_20120901 键名稳、值待预检** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2012-09-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-30；**fill_time=next_open 写死**；三切日三档写死；**s2_wrong_half_bps=0.02435**；**apply_ashare_fee_to_etf=False**；**copy_bse_fee_to_hs=False**；**s3_stack_handling_if_included=False**；diff_buckets 十桶写死冻结；**`commission_includes_agency=True`**；**`pre_20120901_window=skip_or_out_of_scope`**；**`s0_primary_demo=double_count_agency`（禁双挂）**；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死具体数并冻结、禁 holdout 标定、禁 null** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：R 已交预检后写 S；选型严格对齐清单实验 S「经手费按现行档铺满 / 把 30% 当减半」；与 T 证管费分列；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 R/A/P/Q 正文**）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设S-20261102.md` 有条件通过补四条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写入具体数并冻结（预检禁 holdout 标定且未给推荐数；与同系列 L/M/N/O/P/R 纸面占位一致；禁 null）；② `params.commission_includes_agency=True`；③ `params.pre_20120901_window=skip_or_out_of_scope`（主窗不含 2012 前，不写 `handling_bps_pre_20120901` ‰）；④ `params.s0_primary_demo=double_count_agency`（禁双挂 `zero_handling`；依赖条件②）。**不抢实验 A**；**S 不开回测**；未动 R/T/A。
