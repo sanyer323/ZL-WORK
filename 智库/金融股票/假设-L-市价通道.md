@@ -1,6 +1,6 @@
 # 假设 L · 市价申报当「穿过整本档位的无限价」（市价通道）
 
-更新：2026-11-02  
+更新：2026-11-02（风控补丁）  
 来源：总管线 / K 风控四条已交后下一可离线纸面；清单实验 L  
 状态：**草稿 · 待数据 · 待跑**（结论栏空；禁止把「市价=从买一吃到涨跌停」当实盘预期；不抢实验 A 真数队列）
 
@@ -35,13 +35,21 @@
 # params.day_freq_mode                写死 far_mkt_sensitivity  # 无买卖一时只做远市价敏感性，禁声称精确吃档复盘
 # params.far_mkt_mult                 写死默认 [1.0, 1.02, 1.05, 1.10]  # 相对参考价的「愿接受多远」敏感性；拉数前冻结
 # params.diff_buckets                 写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2               拉数前写入具体数并冻结；禁 holdout 标定
-# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 fill_time·protect_*·far_mkt_mult·auction_mkt_allowed
+# params.Y / G / N / Y2               写死具体数并冻结；禁 holdout 标定
+# params.date_start / date_end        写死主窗并冻结
+# params.oos_split.*                  写死四日期并冻结；禁 holdout 反调
+# params.l0_fill_def                  写死单一枚举 extreme_hl|target_in_range（本页=extreme_hl）
+# params.missing_session_policy       写死枚举（本页=assume_continuous_plus_auction_bucket）
+# params.protect_cap_round            写死 tick|none（本页=tick）
+# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 fill_time·protect_*·far_mkt_mult·auction_mkt_allowed·l0_fill_def·missing_session_policy·protect_cap_round·Y/G/N/Y2·主窗/oos
 
 tick = 0.01  # A 股股票默认；基金/ETF/可转债勿混入本页主样本
 fill_time = next_open
 auction_mkt_allowed = False
 short_leg_mkt_allowed = False
+l0_fill_def = extreme_hl  # 单一枚举；禁双挂
+missing_session_policy = assume_continuous_plus_auction_bucket
+protect_cap_round = tick
 
 def is_no_limit_day(i, t, no_limit_table):
     # 复用假设 G 的 PIT 无板表
@@ -71,13 +79,22 @@ def protect_cap(side, ref_px):
     # 有真实保护限价字段时优先生效；本函数只服务 day_freq_mode=far_mkt_sensitivity
     if ref_px is None or ref_px <= 0:
         return None
-    if side == "buy":
-        return ref_px * params.protect_limit_pct_buy
-    return ref_px * params.protect_limit_pct_sell
+    raw = ref_px * params.protect_limit_pct_buy if side == "buy" else ref_px * params.protect_limit_pct_sell
+    if params.protect_cap_round == "tick":
+        # 四舍五入到 tick（默认 0.01）；与假设 F/J 同向
+        return round(raw / tick) * tick
+    # protect_cap_round=none：显式禁止把未取整保护限价当真盘口输出
+    return raw
 
-def naive_mkt_fill(side, high, low):
-    # L0：市价=吃穿到当日极值
-    return high if side == "buy" else low
+def naive_mkt_fill(side, high, low, target=None):
+    # L0：params.l0_fill_def 单一枚举；本页写死 extreme_hl；禁双挂
+    if params.l0_fill_def == "extreme_hl":
+        return high if side == "buy" else low
+    if params.l0_fill_def == "target_in_range":
+        if target is None or high is None or low is None:
+            return None  # fail_policy=skip
+        return target if (low <= target <= high) else None
+    raise ValueError("l0_fill_def must be extreme_hl|target_in_range")
 ```
 
 - **沪市诚实（L1）**：市价**只适用于连续竞价**；须带买入/卖出保护限价；成交价与转限价不得突破保护限价；无保护限价 → **废单**（`fail_policy=skip`）。科创开市起即要保护限价；沪市主板保护限价与本方/对手方最优自 **`params.sh_protect_cut_date=2023-04-10`** 落地（非印发日）。切日前主板：诚实组**不得**用现行保护限价规则假装当时已有；无字段则该市价腿 skip 或仅报「无保护限价通道」失败（与 L3 泄露对照）。  
@@ -95,7 +112,7 @@ def naive_mkt_fill(side, high, low):
 
 | 组 | 市价假设 | 保护限价 / 接受条件 | 无板日与集合竞价 |
 |----|----------|---------------------|------------------|
-| L0 天真-无限价吃穿 | 按当日最高买 / 最低卖（或目标价夹在 high-low 内即成） | 无 | 仍可「市价」成 |
+| L0 天真-无限价吃穿 | **`l0_fill_def=extreme_hl`（写死）**：买=当日 high / 卖=当日 low；**禁**再挂 `target_in_range` | 无 | 仍可「市价」成 |
 | L1 沪市诚实 | 仅连续竞价；成交≤保护限价 | **每个交易日**用当日已生效沪市规则；无保护限价→废单；切日前不套现行 | 沪市切日后无板证券可市价但仍受保护限价；集合竞价仍废 |
 | L2 深市诚实 | 仅有板证券连续竞价 | **不**套沪市保护限价 | 无板日与集合竞价 → 失败 |
 | L3 泄露-现行沪市铺满 | 受「保护限价」约束 | **全样本**（含深市、含沪市 `<2023-04-10`）抄核对日沪市现行保护限价口径 | 可能把深市无板日/切日前错标成「有保护即可市价」 |
@@ -111,6 +128,12 @@ def naive_mkt_fill(side, high, low):
 
 **`params.far_mkt_mult`（写死默认列表；拉数前冻结）**：`[1.0, 1.02, 1.05, 1.10]`。用于远市价敏感性；**禁 holdout 改列表**；**禁**与假设 I 的 `far_limit_mult` 混用同一输出列名却不标注通道。
 
+**`params.l0_fill_def`（写死单一枚举；拉数前冻结）**：`extreme_hl` | `target_in_range`。本页主对照 **写死 `extreme_hl`**（买=high / 卖=low），以放大通道差。**禁止**正文双挂且不定义优先级；改枚举须拉数前写入 params 并冻结，禁跑后改口。
+
+**`params.missing_session_policy`（写死；拉数前冻结）**：`assume_continuous_plus_auction_bucket`——缺 session 标签时默认当连续竞价腿参与主对照，**同时**强制计入 `auction_session` 诊断桶；**禁止**把缺标签腿静默当可市价且不报桶。
+
+**`params.protect_cap_round`（写死；拉数前冻结）**：`tick` | `none`。本页 **写死 `tick`**（四舍五入到 `tick=0.01`，与假设 F/J 同向）。若改为 `none`，须显式禁止把未取整保护限价当真盘口输出。
+
 ---
 
 ## 3. 样本区间
@@ -118,19 +141,23 @@ def naive_mkt_fill(side, high, low):
 - **宇宙（默认）**：沪深 A 股股票。不含可转债主样本、不含股票 ETF 主样本（ETF 市价/收盘机制另案）。  
 - **排除（默认）**：调仓日未上市；成交日缺 high/low（L0 需要）或无法识别交易所/板块；融券卖出腿（本页多头/普通买卖市价；空头市价直接 fail）；把集合竞价腿硬标成连续竞价。  
 - **股票池 PIT**：每个调仓日只用当日已生效名单（可与实验 C 共用）。  
-- **区间建议**：待数据接入后锁定起止。建议复现默认（可改，须写入配置）：  
-  - 主窗：覆盖 `params.sh_protect_cut_date=2023-04-10` 前后，并含足够深市无板日（G 表）与科创样本；  
+- **主窗（写死；拉数前冻结）**：  
+  - `params.date_start=2021-01-01`  
+  - `params.date_end=2024-09-30`  
+  - 覆盖 `params.sh_protect_cut_date=2023-04-10` 前后，并含足够深市无板日（G 表）与科创样本；与实验 A 假跑主窗同向。  
   - 稳健分桶：见 `params.diff_buckets`。  
 - **PIT 切片原则**：该日该所是否接受市价、是否须保护限价、无板日是否可市价，一律按成交日当时规则。
 
-### 3.1 oos_split 占位（拉数前冻结；禁 holdout 反调）
+### 3.1 oos_split（写死四日期；拉数前冻结；禁 holdout 反调）
 
-配置占位字段（数值待锁，先占位）：
+```
+params.oos_split.is_start       = 2021-01-01
+params.oos_split.is_end         = 2023-12-31
+params.oos_split.holdout_start  = 2024-01-01
+params.oos_split.holdout_end    = 2024-09-30
+```
 
-- `oos_split.is_start` / `oos_split.is_end`：样本内（IS）起止交易日  
-- `oos_split.holdout_start` / `oos_split.holdout_end`：样本外 / holdout 起止  
-
-**硬规则**：holdout / OOS 段**只用于一次性报告**；**禁止**用 holdout 反调切日、四组定义、`far_mkt_mult`、`protect_limit_*`、显著性阈值或任何事后标定。切分一经写入 params 即冻结，不得因 IS 结果改 holdout 边界。
+**硬规则**：holdout / OOS 段**只用于一次性报告**；**禁止**用 holdout 反调切日、四组定义、`far_mkt_mult`、`protect_limit_*`、`l0_fill_def`、`missing_session_policy`、`protect_cap_round`、显著性阈值或任何事后标定。切分一经写入 params 即冻结，不得因 IS 结果改 holdout 边界。
 
 ---
 
@@ -168,10 +195,10 @@ params.diff_buckets = [
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| Y | 净值差显著门槛 | 拉数前写入 `params.Y` 并冻结 |
-| G | 偏离/冲击差门槛 | 拉数前写入 `params.G` 并冻结 |
-| N | 废单率/笔数差门槛 | 拉数前写入 `params.N` 并冻结 |
-| Y2 | 稳健子窗净值差门槛（可选） | 拉数前写入 `params.Y2` 并冻结 |
+| Y | 净值差显著门槛 | **写死** `params.Y=0.02` 并冻结 |
+| G | 偏离/冲击差门槛 | **写死** `params.G=0.005` 并冻结 |
+| N | 废单率/笔数差门槛 | **写死** `params.N=0.05` 并冻结 |
+| Y2 | 稳健子窗净值差门槛（可选） | **写死** `params.Y2=0.015` 并冻结 |
 | asof_check_date | 泄露组「现行」核对日 | **写死默认** `params.asof_check_date=2026-10-16`；拉数前冻结 |
 | sh_protect_cut_date | 沪市主板保护限价落地 | **写死默认** `2023-04-10` |
 | far_mkt_mult | 远市价敏感性列表 | **写死默认** `[1.0,1.02,1.05,1.10]`；拉数前冻结 |
@@ -179,17 +206,18 @@ params.diff_buckets = [
 | protect_limit_mode | 无字段时保护限价假设 | **写死** `default_pct` |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-**`params.Y` / `params.G` / `params.N` / `params.Y2` 写入冻结（本页占位槽已开；拉数前必须落入具体数）**：
+**`params.Y` / `params.G` / `params.N` / `params.Y2` 写入冻结（具体数已写入；禁继续 null；禁 holdout 标定）**：
 
 ```
-# 拉数前在 IS 标定窗约定噪声带后写入具体数，一经写入即冻结
-params.Y  = null   # 净值差显著门槛；拉数前替换为具体数并冻结
-params.G  = null   # 偏离/冲击差门槛；拉数前替换为具体数并冻结
-params.N  = null   # 废单率/笔数差门槛；拉数前替换为具体数并冻结
-params.Y2 = null   # 稳健子窗净值差门槛（可选）；拉数前替换为具体数并冻结
+# 纸面冻结默认（预检未给推荐数；与 A 假跑窗同向的机制实验相对门槛；一经写入即冻结）
+# 单位：Y/Y2 = abs(ΔNAV) 年化；G = abs(ΔDev) 相对参考价；N = abs(ΔFail) 废单率（百分点用小数）
+params.Y  = 0.02    # 净值差显著门槛 ≥ 2pp 年化
+params.G  = 0.005   # 偏离/冲击差门槛 ≥ 50bp
+params.N  = 0.05    # 废单率差门槛 ≥ 5pp
+params.Y2 = 0.015   # 稳健子窗净值差门槛 ≥ 1.5pp 年化
 ```
 
-门槛可在 **IS 标定窗**（非 holdout）内事先约定噪声带后写入；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、`fill_time`、`far_mkt_mult`、`protect_limit_*` 开工拉数前必须落进 params 并冻结；**禁止跑后改口**。
+门槛已在纸面写入并冻结；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、`fill_time`、`far_mkt_mult`、`protect_limit_*`、`l0_fill_def`、`missing_session_policy`、`protect_cap_round`、主窗/`oos_split` 开工拉数前必须保持冻结；**禁止跑后改口**。
 
 **失败/不显著**：差异落在噪声带内——结论栏写明，不得改口称「市价通道无关」。
 
@@ -232,7 +260,7 @@ params.Y2 = null   # 稳健子窗净值差门槛（可选）；拉数前替换�
 | open/high/low/close（未复权） | L0 极值路径；参考价 | |
 | pre_close（未复权） | protect_ref 回退 | |
 | is_no_limit_day 或可推导 | 深市无板拒市价 | **可与假设 G PIT 表共用** |
-| session 标签（可选） | 集合竞价 vs 连续 | 无则日频默认当连续腿 + 另报 auction 诊断桶 |
+| session 标签（可选） | 集合竞价 vs 连续 | 缺标签：`missing_session_policy=assume_continuous_plus_auction_bucket`（写死） |
 | bid1/ask1/last（可选） | 增强盘口偏离 | **非纸面最小集**；无则 far_mkt_sensitivity |
 | 投资者保护限价字段（可选） | 真保护限价 | 无则 `protect_limit_mode=default_pct` |
 | 信号表（可选） | 选股臂 | 无信号可先跑「市价腿 × 通道标签」差 |
@@ -246,7 +274,7 @@ params.Y2 = null   # 稳健子窗净值差门槛（可选）；拉数前替换�
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=L`，`groups=[L0,L1,L2,L3]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-16`**，**`params.sh_protect_cut_date=2023-04-10`**，**`params.sz_mkt_only_with_limit=True`**，**`params.auction_mkt_allowed=False`**，**`params.short_leg_mkt_allowed=False`**，**`params.protect_limit_mode=default_pct`**，**`params.protect_limit_pct_buy=1.02`**，**`params.protect_limit_pct_sell=0.98`**，**`params.protect_ref=last_or_preclose`**，**`params.day_freq_mode=far_mkt_sensitivity`**，**`params.far_mkt_mult=[1.0,1.02,1.05,1.10]`（写死默认；拉数前冻结）**，**`fill_time=next_open`（写死；不用 next_close）**，**`params.diff_buckets=[sz_no_limit_day,sh_main_pre_20230410,board_star,board_chinext,auction_session,far_mkt_1p00,far_mkt_1p02_plus]`（写死默认；拉数前冻结）**，**`params.Y` / `params.G` / `params.N` / `params.Y2`（占位槽已开；拉数前写入具体数并冻结；禁 holdout 标定）**，`universe_rule`，`date_start/date_end`（可空=待锁），`oos_split.{is_start,is_end,holdout_start,holdout_end}`（占位，禁 holdout 反调），`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_G=on`（建议 on：无板表共用），`overlay_I=off|on`（默认 off；限价笼子分表），`overlay_K=off`（默认 off；融券另案），`overlay_A=off|on`（默认 off）。  
+- 配置块（写死项加粗）：`hypothesis_id=L`，`groups=[L0,L1,L2,L3]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-16`**，**`params.sh_protect_cut_date=2023-04-10`**，**`params.sz_mkt_only_with_limit=True`**，**`params.auction_mkt_allowed=False`**，**`params.short_leg_mkt_allowed=False`**，**`params.protect_limit_mode=default_pct`**，**`params.protect_limit_pct_buy=1.02`**，**`params.protect_limit_pct_sell=0.98`**，**`params.protect_ref=last_or_preclose`**，**`params.day_freq_mode=far_mkt_sensitivity`**，**`params.far_mkt_mult=[1.0,1.02,1.05,1.10]`（写死默认；拉数前冻结）**，**`fill_time=next_open`（写死；不用 next_close）**，**`params.diff_buckets=[sz_no_limit_day,sh_main_pre_20230410,board_star,board_chinext,auction_session,far_mkt_1p00,far_mkt_1p02_plus]`（写死默认；拉数前冻结）**，**`params.Y=0.02` / `params.G=0.005` / `params.N=0.05` / `params.Y2=0.015`（写死具体数并冻结；禁 holdout 标定；禁 null）**，`universe_rule`，**`params.date_start=2021-01-01` / `params.date_end=2024-09-30`（写死；覆盖 2023-04-10 前后）**，**`oos_split.{is_start=2021-01-01,is_end=2023-12-31,holdout_start=2024-01-01,holdout_end=2024-09-30}`（写死四日期；禁 holdout 反调）**，**`params.l0_fill_def=extreme_hl`（写死单一枚举；禁双挂）**，**`params.missing_session_policy=assume_continuous_plus_auction_bucket`（写死）**，**`params.protect_cap_round=tick`（写死；可选 none 但禁未取整当真盘口）**，`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_G=on`（建议 on：无板表共用），`overlay_I=off|on`（默认 off；限价笼子分表），`overlay_K=off`（默认 off；融券另案），`overlay_A=off|on`（默认 off）。  
 - 行情与规则表：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -275,11 +303,12 @@ params.Y2 = null   # 稳健子窗净值差门槛（可选）；拉数前替换�
 | 数据 | 待接入（字段见 §6；日频 OHLC + 交易所/板块 + G 无板表即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；oos_split 占位+禁 holdout 反调；红线 v0 机制豁免；asof_check_date=2026-10-16 / sh_protect_cut_date=2023-04-10 / sz_mkt_only_with_limit=True / auction_mkt_allowed=False / short_leg_mkt_allowed=False；**fill_time=next_open 写死**；**protect_limit_mode=default_pct** + pct 1.02/0.98；**day_freq_mode=far_mkt_sensitivity**；**far_mkt_mult=[1.0,1.02,1.05,1.10] 写死+拉数前冻结**；diff_buckets 七桶写死+拉数前冻结；**Y/G/N/Y2 占位槽已开、拉数前写入具体数并冻结、禁 holdout 标定** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2021-01-01..2024-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免；asof_check_date=2026-10-16 / sh_protect_cut_date=2023-04-10 / sz_mkt_only_with_limit=True / auction_mkt_allowed=False / short_leg_mkt_allowed=False；**fill_time=next_open 写死**；**protect_limit_mode=default_pct** + pct 1.02/0.98；**day_freq_mode=far_mkt_sensitivity**；**far_mkt_mult=[1.0,1.02,1.05,1.10] 写死冻结**；diff_buckets 七桶写死冻结；**l0_fill_def=extreme_hl 写死（禁双挂）**；**missing_session_policy=assume_continuous_plus_auction_bucket 写死**；**protect_cap_round=tick 写死**；**Y=0.02 / G=0.005 / N=0.05 / Y2=0.015 写死具体数并冻结、禁 holdout 标定、禁 null** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：K 风控四条已交后继续可离线下一纸面；选型 L 优先于 B 消歧/C/M/N——清单定义清晰、可复用 G、日频不依赖新盘口商；机制类预埋 fail_policy/oos/红线豁免/params 冻结；**不抢实验 A**）。
+- 2026-11-02：风控有条件通过四条补齐——① `params.Y=0.02` / `G=0.005` / `N=0.05` / `Y2=0.015` 写入具体数并冻结（预检无推荐数；禁 null）；② `date_start=2021-01-01` / `date_end=2024-09-30` + `oos_split` 四日期写死冻结（与 A 假跑窗同向；覆盖 2023-04-10）；③ `l0_fill_def=extreme_hl` 单一枚举写死（禁双挂 `target_in_range`）；④ `missing_session_policy=assume_continuous_plus_auction_bucket` + `protect_cap_round=tick` 写死。参考 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设L-20261102.md`。**不抢实验 A**；**L 不开回测**。
 
