@@ -23,7 +23,7 @@
 ### 2.1 北交所 ≠ 沪深抄写；涨跌幅 30% 另键；盘后 2026-07-06=off；经手费另档只诊断
 
 ```
-# 配置写死键（见 §7；待风控预检后冻结补丁）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AC
 # params.asof_check_date                 写死默认 2026-10-09  # 与 X/G 同批「ST/涨跌幅」核对锚；盘后条款同向引用 2026-07-06 事实
 # params.fill_time                        写死 next_open      # 成交腿与 A/D 对齐；本页主测北交所标板+盘后误开，不抢 A 板上真数
@@ -33,7 +33,7 @@
 # params.bse_limit_pct_honest            写死 0.30           # 事实与坑「北交所 30%」；诚实组板上比例
 # params.bse_aft_on_20260706             写死 False          # 新华社/中证报：北交所 7-6 暂不实施
 # params.bse_aft_start                   写死 None           # leave_unsliced；启动日另行通知 → 本窗一律 off
-# params.ac0_primary_demo                写死 copy_main_10pct  # 建议主报：把北交所按沪深主板 ±10% 标板；禁与 invent_aft_on 双挂争主表（待预检确认）
+# params.ac0_primary_demo                写死 copy_main_10pct  # 风控补丁冻结；主报：把北交所按沪深主板 ±10% 标板；禁与 invent_aft_on 双挂争主表
 # params.ac0_limit_pct                   写死 0.10           # 天真主路径：沪深主板抄写
 # params.ac0_invent_aft                  写死 True           # 天真可叠诊断：发明盘后已开（须进诊断桶；主报仍以 ac0_primary_demo 为准）
 # params.ac1_limit_pct                   写死 0.20           # 半泄露：按创业/科创 20% 抄到北交所
@@ -49,7 +49,7 @@
 # params.missing_bse_flag_policy         写死 skip           # 缺交易所/北交所标记 → skip
 # params.px_basis                        写死 unadj
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  键名稳；建议 0.02/0.01/0.05/0.015；params.Y≠实验字母 AC；禁 null/holdout；待预检写死
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 AC；禁 null/holdout
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -59,7 +59,7 @@ asof_check_date = "2026-10-09"
 bse_limit_pct_honest = 0.30
 bse_aft_on_20260706 = False
 bse_aft_start = None
-ac0_primary_demo = "copy_main_10pct"  # 待预检冻结；禁双挂
+ac0_primary_demo = "copy_main_10pct"  # 风控补丁冻结；禁双挂
 ac0_limit_pct = 0.10
 ac0_invent_aft = True
 ac1_limit_pct = 0.20
@@ -75,8 +75,8 @@ universe_rule = "bse_only"
 missing_bse_flag_policy = "skip"
 px_basis = "unadj"
 
-# 拉数前待风控补丁写死；草稿建议值如下（禁 holdout 标定）
-Y = 0.02   # 相对门槛 ≠ 实验字母 AC
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改 ac0_primary_demo
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 AC
 G = 0.01
 N = 0.05
 Y2 = 0.015
@@ -117,7 +117,7 @@ def aft_allowed(group, trade_date):
 
 **`params.merge_with_X_main_st=False` / `merge_with_M_aft=False` / `merge_with_S_fee=False` / `merge_with_G_ipo_window=False` / `merge_with_A_fill=False`（写死）**。
 
-**待风控预检冻结（建议；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
 params.Y                            = 0.02                 # 板标签/净值差显著门槛；≠实验字母 AC
@@ -184,22 +184,22 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔTag| 或 |ΔPnL| **≥ params.Y** 或 |ΔAftFake| **≥ params.G** 或 |ΔTag_(AC1−AC2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「北交所误套沪深执行鸿沟显著」。
 
-**params.Y / G / N / Y2（键名稳；建议值待预检冻结；禁 holdout 标定；与实验字母 AC 无关）**
+**params.Y / G / N / Y2（写死冻结；禁 holdout 标定；与实验字母 AC 无关）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 板标签/净值差显著门槛（≠实验字母 AC） | **建议** `0.02`；待预检写死冻结 |
-| params.G | 盘后假成交桶相对对照差 | **建议** `0.01` |
-| params.N | 失败笔数率差门槛 | **建议** `0.05` |
-| params.Y2 | AC1−AC2 专项门槛 | **建议** `0.015` |
+| params.Y | 板标签/净值差显著门槛（≠实验字母 AC） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 盘后假成交桶相对对照差 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败笔数率差门槛 | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | AC1−AC2 专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-09` |
 | fill_time | 成交时点 | **写死** `next_open` |
 | bse_limit_pct_honest | 诚实涨跌幅 | **写死** `0.30` |
 | bse_aft_on_20260706 | 诚实盘后 | **写死** `False` |
-| ac0_primary_demo | 天真主报枚举 | **建议** `copy_main_10pct`（禁双挂；待预检） |
+| ac0_primary_demo | 天真主报枚举 | **写死冻结** `copy_main_10pct`（风控补丁 2026-11-02；禁双挂） |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛键名已写入 params；**具体数值待风控预检后冻结**；**禁止用 holdout / 事后显著性改口**；**`ac0_primary_demo` 单一主报，禁与 invent_aft_on 双挂争主表**。
+门槛键名与具体数值已写入 params 并冻结（风控补丁 2026-11-02；**`params.Y`≠实验字母 AC**）；**禁止用 holdout / 事后显著性改口**；**`ac0_primary_demo=copy_main_10pct` 单一主报，禁与 invent_aft_on 双挂争主表**。
 
 **失败/不显著**：差异落在噪声带内或均匀散在非北交所误套对照桶——结论栏写明，不得改口称「北交所差不多能按沪深板回放」或「这类票更能买」。
 
@@ -250,7 +250,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=AC`（**实验字母**），`groups=[AC0,AC1,AC2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-09`**，**`params.fill_time=next_open`（写死）**，**`params.bse_limit_pct_honest=0.30`**，**`params.bse_aft_on_20260706=False`**，**`params.bse_aft_start=None`**，**`params.merge_with_X_main_st=False`**，**`params.merge_with_M_aft=False`**，**`params.merge_with_S_fee=False`**，**`params.merge_with_G_ipo_window=False`**，**`params.merge_with_A_fill=False`**，**`params.universe_rule=bse_only`**，**`params.missing_bse_flag_policy=skip`**，**`params.px_basis=unadj`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y` / `G` / `N` / `Y2`（键名稳；建议 0.02/0.01/0.05/0.015；待预检冻结；禁 holdout；禁 null；params.Y≠实验字母 AC）**，**`params.ac0_primary_demo=copy_main_10pct`（建议；待预检；禁双挂）**，`universe_rule`，**`params.date_start=2021-11-15` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2021-11-15,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_X=off`，`overlay_M=off`，`overlay_S=off`，`overlay_A=off`。  
+- 配置块（写死项加粗）：`hypothesis_id=AC`（**实验字母**），`groups=[AC0,AC1,AC2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-09`**，**`params.fill_time=next_open`（写死）**，**`params.bse_limit_pct_honest=0.30`**，**`params.bse_aft_on_20260706=False`**，**`params.bse_aft_start=None`**，**`params.merge_with_X_main_st=False`**，**`params.merge_with_M_aft=False`**，**`params.merge_with_S_fee=False`**，**`params.merge_with_G_ipo_window=False`**，**`params.merge_with_A_fill=False`**，**`params.universe_rule=bse_only`**，**`params.missing_bse_flag_policy=skip`**，**`params.px_basis=unadj`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015`（写死冻结；禁 holdout；禁 null；params.Y≠实验字母 AC）**，**`params.ac0_primary_demo=copy_main_10pct`（写死冻结；禁双挂）**，`universe_rule`，**`params.date_start=2021-11-15` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2021-11-15,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_X=off`，`overlay_M=off`，`overlay_S=off`，`overlay_A=off`。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -279,10 +279,11 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；未复权前收/收盘 + 北交所标记即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2021-11-15..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-09；**fill_time=next_open 写死**；**bse_limit_pct_honest=0.30 / bse_aft_on_20260706=False 写死**；diff_buckets 八桶写死冻结；**Y/G/N/Y2 键名稳建议 0.02/0.01/0.05/0.015（待预检冻结；params.Y≠实验字母 AC）**；**ac0_primary_demo=copy_main_10pct 建议（禁双挂；待预检）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2021-11-15..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-09；**fill_time=next_open 写死**；**bse_limit_pct_honest=0.30 / bse_aft_on_20260706=False 写死**；diff_buckets 八桶写死冻结；**Y/G/N/Y2=0.02/0.01/0.05/0.015 写死冻结（params.Y≠实验字母 AC）**；**ac0_primary_demo=copy_main_10pct 写死冻结（禁双挂）**；**风控补丁两条 2026-11-02 已写死待复检** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：并行写下一纸面 AC；Y/Z/AA/AB 补丁已交不改；清单止于 AB → 自 `事实与坑`「北交所 30% / 盘后 7-6 暂不实施 / 经手费另档」+ 总管候选「北交所涨跌幅/交易时段」选题，**与 A/D–AB 不撞主结论**；近邻 X=主板 ST、M=沪深盘后、S=经手费，本页主测北交所误套；**实验字母 AC ≠ params.Y**；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 Y/Z/AA/AB/A/D–X 正文**）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AC-20261102.md` 有条件通过补两条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写死冻结（**params.Y≠实验字母 AC**；禁 null/holdout 标定）；② `params.ac0_primary_demo=copy_main_10pct` 写死冻结（禁与 `invent_aft_on` 双挂争主表）。**已写死待复检**；**不抢实验 A**；**不开回测**；**不改 Y/Z/AA/AB 及其他 A/D–AB 正文**。
