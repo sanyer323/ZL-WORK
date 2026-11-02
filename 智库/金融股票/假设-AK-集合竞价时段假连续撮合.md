@@ -2,7 +2,7 @@
 
 更新：2026-11-02  
 来源：总管线 / AJ 补丁已交后写下一纸面 AK；清单原止于 AJ，无 AK 节 → 自立实验 AK；选题自 `事实与坑`「沪深现行竞价时段：**9:15–9:25** 开盘集合竞价，**9:30–11:30 / 13:00–14:57** 连续竞价，**14:57–15:00** 收盘集合竞价（上交所 2.4.2；深交所 2.3.2）。开盘价/收盘价由集合竞价产生（上交所 4.1.1–4.1.3；深交所 4.2.1–4.2.3）。核对日锚 2026-10-02」+ 口径「执行鸿沟」；与假设 A（板上可成交）/ H（退市整理）/ X（主板 ST 涨跌幅）/ E（整手）/ M（盘后补成交）/ O（大宗）/ R（股票 ETF 假回转）/ Q（可转债）/ AC（北交所）/ AD（风险警示 50 万）/ AE（普通股票假 T+0）/ AF（单笔数量上限）/ AG（超涨跌停价无效）/ AH（集合不可撤窗假撤改）/ AI（无板日集合有效申报范围）/ AJ（临停复牌假连续）/ I（价格笼子）/ F（涨跌停价取整）/ L（市价保护限价）/ G（无板日误套板块默认板）/ J（无板日临停触发）/ N（收盘机制与假 GTC）/ Y（集合量分母）/ D（成交时点与停牌）/ K（融券空头名单）**分列**；**新建实验 AK**  
-状态：**草稿 · 待数据 · 待跑 · 待预检**（结论栏空；禁止把「集合竞价时段按连续竞价逐笔多价撮合」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AJ 及其他 A/D–AJ 已交正文与冻结补丁；不改假设-H；不改假设-K；不改假设-N；不改假设-AH**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-02）**（结论栏空；禁止把「集合竞价时段按连续竞价逐笔多价撮合」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AJ 及其他 A/D–AJ 已交正文与冻结补丁；不改假设-H；不改假设-K；不改假设-N；不改假设-AH**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单原止于 AJ，本页自立实验 AK 标准件。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/排队能否按板上价成交；本页 = **开盘/收盘集合竞价钟点内**是否被改成连续竞价逐笔撮合。双字母 **AK ≠ 单字母 A**。与假设 **K（融券空头名单 PIT）** **硬分列**：K = 空头标的当时名单；本页 = 集合竞价**时段撮合方式**，不碰融券名单。双字母 **AK ≠ 单字母 K**。与假设 **AH（不可撤窗假撤改）** **分列**：AH = 9:20–9:25 / 14:57–15:00 **能否撤改**；本页 = 整段集合窗内**撮合机制**是否被发明成连续逐笔，不重开撤改权。与假设 **N（收盘机制与假 GTC）** **分列**：N = 沪市收盘价产生方式**历史切日**误套 + 限价**隔夜**假 GTC；本页 = 在**已适用收盘集合**的样本日，仍把 14:57–15:00（及开盘 9:15–9:25）当成连续撮合，不重开切日/隔夜有效。与假设 **AJ（临停复牌假连续）** **分列**：AJ = 无板日临停**复牌瞬间**跳过复牌集合；本页 = **日常开盘/收盘集合窗**假连续，不要求临停事件。与假设 **Y（集合量分母）** **分列**：Y = 冲击/κ 分母是否吞集合量；本页 = 集合窗内成交**路径**是否假连续。与假设 **D（开/收时点）** **分列**：D = 次日开 vs 收成交时点与停牌假成交；本页 = 集合窗内撮合方式。与假设 A/H/X/E/M/O/R/Q/AC–AJ/I/F/L/G/J **分列**：各自主测，不并表。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 集合竞价时段撮合 ≠ 不可撤窗；≠ 收盘切日/假 GTC；≠ 临停复牌；≠ 板上枯竭；≠ 融券名单
 
 ```
-# 配置写死键（见 §7；待预检建议值如下，拉数前须冻结）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AK；≠ 实验字母 A；≠ 实验字母 K
 # params.asof_check_date                 写死默认 2026-10-02  # 事实与坑「竞价时段 / 开收盘价产生」核对锚
 # params.fill_time                        写死 next_open      # 主腿与 A/D 对齐；集合窗冲击作主测；不抢 A 板上真数
@@ -38,7 +38,7 @@
 # params.continuous_pm_start             写死 13:00
 # params.continuous_pm_end               写死 14:57
 # params.call_match_honest               写死 single_clearing # 诚实：集合窗一次集中撮合 → 单一开/收盘价
-# params.ak0_primary_demo                待预检建议 invent_call_as_continuous  # 主报：集合窗假连续逐笔；禁与 invent_multi_px_in_call 双挂争主表
+# params.ak0_primary_demo                写死 invent_call_as_continuous  # 风控补丁冻结；主报：集合窗假连续逐笔；禁与 invent_multi_px_in_call 双挂争主表
 # params.ak0_invent_call_as_continuous   写死 True           # 天真主路径（与建议主报同向）
 # params.ak0_invent_multi_px_in_call     写死 False          # 诊断可叠；主报以 ak0_primary_demo 为准
 # params.ak1_close_call_only_fake        写死 True           # 半泄露：仅收盘集合窗发明连续，开盘集合诚实
@@ -75,7 +75,7 @@
 # params.missing_session_clock_policy    写死 skip           # 缺会话钟/时戳 → skip（禁静默当全日连续）
 # params.day_freq_proxy                  写死 call_session_match_sensitivity  # 日频无 L2 时只报「集合窗假连续」敏感性档；禁假装精确复盘簿
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  待预检建议 0.02/0.01/0.05/0.015  # params.Y=相对门槛键 ≠ 实验字母 AK；禁 null/holdout
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 AK；禁 null/holdout
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -93,7 +93,7 @@ continuous_am_end = "11:30"
 continuous_pm_start = "13:00"
 continuous_pm_end = "14:57"
 call_match_honest = "single_clearing"
-ak0_primary_demo = "invent_call_as_continuous"  # 待预检建议；禁双挂
+ak0_primary_demo = "invent_call_as_continuous"  # 风控补丁冻结；禁双挂
 ak0_invent_call_as_continuous = True
 ak0_invent_multi_px_in_call = False
 ak1_close_call_only_fake = True
@@ -105,8 +105,8 @@ universe_rule = "sse_szse_common_stock_call_sessions"
 missing_session_clock_policy = "skip"
 day_freq_proxy = "call_session_match_sensitivity"
 
-# 待预检建议（拉数前须写死冻结）；禁 holdout / 事后改口 / 禁跑后改 ak0_primary_demo
-Y = 0.02   # 相对门槛 ≠ 实验字母 AK
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改 ak0_primary_demo
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 AK
 G = 0.01
 N = 0.05
 Y2 = 0.015
@@ -156,7 +156,7 @@ def call_match_mode(group, ts):
 
 **`params.merge_with_A_fill=False` / `merge_with_K_short_list=False` / `merge_with_AH_nocancel=False` / `merge_with_N_close_gtc=False` / `merge_with_AJ_resume=False` / `merge_with_Y_call_volume=False` / `merge_with_D_halt_timing=False` / `merge_with_J_halt=False` / `merge_with_AI_call_band=False` / `merge_with_AG_beyond_limit=False` / `merge_with_I_cage=False` / `merge_with_F_round=False` / `merge_with_L_mkt=False` / `merge_with_H_exit=False` / `merge_with_X_st_limit=False` / `merge_with_E_lot=False` / `merge_with_M_aft=False` / `merge_with_O_block=False` / `merge_with_R_etf_rotation=False` / `merge_with_Q_cb_rotation=False` / `merge_with_AC_bse=False` / `merge_with_AD_50w=False` / `merge_with_AE_stock_t0=False` / `merge_with_AF_qty_cap=False` / `merge_with_G_nolimit_pct=False`（写死）**。
 
-**待预检键（建议值；拉数前须冻结；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
 params.Y                            = 0.02                      # 可成交名义/冲击差显著门槛；≠实验字母 AK
@@ -226,17 +226,17 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔNotional| 或 |ΔImpact| **≥ params.Y** 或 |ΔFakeCallCont 桶贡献| **≥ params.G** 或 |ΔNotional_(AK1−AK2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「集合竞价时段撮合执行鸿沟显著」。
 
-**params.Y / G / N / Y2（待预检建议；与实验字母 AK 无关）**
+**params.Y / G / N / Y2（写死冻结；与实验字母 AK 无关）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 名义/冲击差显著门槛（≠实验字母 AK） | **待预检建议** `0.02`；拉数前须写死冻结 |
-| params.G | 集合假连续桶相对对照差 | **待预检建议** `0.01`；拉数前须写死冻结 |
-| params.N | 失败/废单率差门槛 | **待预检建议** `0.05`；拉数前须写死冻结 |
-| params.Y2 | AK1−AK2 专项门槛 | **待预检建议** `0.015`；拉数前须写死冻结 |
+| params.Y | 名义/冲击差显著门槛（≠实验字母 AK） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 集合假连续桶相对对照差 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败/废单率差门槛 | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | AK1−AK2 专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-02` |
 | fill_time | 成交时点 | **写死** `next_open` |
-| ak0_primary_demo | 天真主报枚举 | **待预检建议** `invent_call_as_continuous`（禁双挂） |
+| ak0_primary_demo | 天真主报枚举 | **写死冻结** `invent_call_as_continuous`（禁双挂；风控补丁 2026-11-02） |
 
 ### 4.3 红线 v0
 
@@ -274,7 +274,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`AK`  
 - **组**：AK0 / AK1 / AK2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-02`；`open_call=09:15-09:25`；`close_call=14:57-15:00`；`continuous=09:30-11:30|13:00-14:57`；`call_match_honest=single_clearing`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_call_sessions`；`missing_session_clock_policy=skip`；`day_freq_proxy=call_session_match_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 待预检建议 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 AK；禁 null/holdout）；**`params.ak0_primary_demo` 待预检建议 `invent_call_as_continuous`**（禁与 invent_multi_px_in_call 双挂）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-02`；`open_call=09:15-09:25`；`close_call=14:57-15:00`；`continuous=09:30-11:30|13:00-14:57`；`call_match_honest=single_clearing`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_call_sessions`；`missing_session_clock_policy=skip`；`day_freq_proxy=call_session_match_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2=0.02/0.01/0.05/0.015` 写死冻结**（params.Y≠实验字母 AK；禁 null/holdout）；**`params.ak0_primary_demo=invent_call_as_continuous` 写死冻结**（禁与 invent_multi_px_in_call 双挂；风控补丁 2026-11-02）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -303,17 +303,18 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；会话钟或日频代理即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-02；**fill_time=next_open 写死**；**call_match_honest=single_clearing + 开/收集合钟点写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 待预检建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 AK）**；**ak0_primary_demo 待预检建议 invent_call_as_continuous（禁双挂）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-02；**fill_time=next_open 写死**；**call_match_honest=single_clearing + 开/收集合钟点写死**；diff_buckets 写死待冻结；**Y/G/N/Y2=0.02/0.01/0.05/0.015 写死冻结（params.Y≠实验字母 AK）**；**ak0_primary_demo=invent_call_as_continuous 写死冻结（禁双挂）**；**风控补丁两条 2026-11-02 已写死待复检** |
 
 ---
 
-## 待预检键（纸面占位；拉数前须冻结）
+## 已冻结键（风控补丁 2026-11-02；已写死待复检）
 
-1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：建议 **`0.02` / `0.01` / `0.05` / `0.015`**；**`params.Y` ≠ 实验字母 AK**；禁 null / holdout 标定。  
-2. **`params.ak0_primary_demo`**：建议 **`invent_call_as_continuous`**；禁与 **`invent_multi_px_in_call`** 双挂争主表。
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 AK**；禁 null / holdout 标定。  
+2. **`params.ak0_primary_demo`**：**写死冻结** **`invent_call_as_continuous`**；禁与 **`invent_multi_px_in_call`** 双挂争主表。
 
 ---
 
 ## 变更
 
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AK-20261102.md` 有条件通过补两条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写死冻结（**params.Y≠实验字母 AK**；禁 null/holdout 标定）；② `params.ak0_primary_demo=invent_call_as_continuous` 写死冻结（禁与 `invent_multi_px_in_call` 双挂争主表）。**已写死待复检**；**不抢实验 A**；**不开回测**；**不改假设-H**；**不改假设-K**；**不改假设-N**；**不改假设-AH**；**不改 Y/Z/AA–AJ 及其他 A/D–AJ 正文**。
 - 2026-11-02：新建标准件（总管线：AJ 补丁已交后写下一纸面 AK；Y/Z/AA–AJ 补丁已交不改；清单止于 AJ → 自 `事实与坑`「开盘集合 9:15–9:25 / 连续 9:30–11:30·13:00–14:57 / 收盘集合 14:57–15:00；开收盘价由集合产生」选题，**与 A/H/X/E/M/O/AC–AJ/R/Q/I/F/L/J/G/D/N/Y/K 不撞主结论**；**明确双字母 AK ≠ 单字母 A ≠ 单字母 K**；近邻 AH=不可撤窗、N=收盘切日/假 GTC、AJ=复牌跳过集合、Y=集合量分母、A=板上、K=融券名单，本页主测集合竞价时段假连续撮合；**实验字母 AK ≠ params.Y ≠ 实验字母 A ≠ 实验字母 K**；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 Y/Z/AA–AJ/A/D–AJ 正文**；**不改假设-H**；**不改假设-K**；**不改假设-N**；**不改假设-AH**）。
