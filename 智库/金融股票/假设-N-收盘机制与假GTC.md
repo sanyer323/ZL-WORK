@@ -1,8 +1,8 @@
 # 假设 N · 沪市收盘价产生方式误套 + 限价单隔夜有效（收盘机制与假 GTC）
 
-更新：2026-11-02  
-来源：总管线 / M 草稿已收后写 N；清单实验 N  
-状态：**草稿 · 待数据 · 待跑**（结论栏空；禁止把「收盘=14:57 集合 / 限价隔夜 GTC」当实盘预期；不抢实验 A 真数队列；本页不开回测；M 预检回来后优先补 M，不由本页抢）
+更新：2026-11-02（风控补丁）  
+来源：总管线 / 假设 N 纸面预检有条件通过；清单实验 N  
+状态：**草稿 · 待数据 · 待跑**（结论栏空；禁止把「收盘=14:57 集合 / 限价隔夜 GTC」当实盘预期；不抢实验 A 真数队列；本页不开回测；N 不开回测）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 实验 N 对齐。与假设 D（开/收时点）、M（盘后补成交 / 竞价剩单不自动进盘后）、L（市价通道）、O（大宗通道）互补：本页专测两件事——（1）把现行「收盘=14:57 集合竞价」误套到 **沪市股票 `<2018-08-20`** 或 **沪市基金/ETF `<2026-07-06`**；（2）把未成交限价当成 **次日仍在簿上（假 GTC）**。**深市股票收盘集合竞价更早切日本页不写死**（事实与坑未核到官方首日）。
 
@@ -32,12 +32,16 @@
 # params.n0_limit_gtc                 写死默认 True   # 天真：未成交限价留到次日开盘
 # params.n1_limit_day_only            写死默认 True   # 诚实：申报当日有效；次日须重报
 # params.n1_no_auto_aft               写死默认 True   # 诚实：未成交限价不自动进盘后（与 M 一致）
-# params.fake_gtc_fill_proxy          写死 next_open_if_touched  # 日频假 GTC 代理：次日开盘价触及原限价则记「假成交」；禁假装精确簿上排队
+# params.n2_limit_gtc                 写死 False      # 泄露组与 N1 同向只测机制泄露；禁与 N0 缠死事后改口
+# params.fake_gtc_fill_proxy          写死 next_open_if_touched  # 日频假 GTC 代理名；实现见 fake_gtc_touch_impl
+# params.fake_gtc_touch_impl          写死 touched_only  # 单一枚举 touched_only|carry_all_no_touch；禁双挂；与 proxy 名对齐
+# params.pre_auction_close_px_source  写死 official_close_tagged  # 切日前 continuous_last_min_vwap 日频无 L2 时用官方未复权收盘+mech标签；禁复权/自造VWAP主价
+# params.sz_stock_fill_policy         写死 fill_tagged_diagnostic  # 深市 unsliced：打诊断标签仍可成；禁并进主切日结论；≠硬切片
 # params.diff_buckets                 写死默认桶名（§4.1）；拉数前冻结
 # params.Y / G / N / Y2               写死具体数并冻结；禁 holdout 标定
 # params.date_start / date_end        写死主窗并冻结
 # params.oos_split.*                  写死四日期并冻结；禁 holdout 反调
-# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 fill_time·切日·假GTC代理·Y/G/N/Y2·主窗/oos
+# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 fill_time·切日·假GTC代理·touch_impl·n2_limit_gtc·pre_auction_close_px_source·sz_stock_fill_policy·Y/G/N/Y2·主窗/oos
 
 tick = 0.01  # A 股股票默认；基金/ETF 价位另案，本页主样本可含沪市基金桶但须分列
 fill_time = "next_close"
@@ -46,6 +50,10 @@ sh_stock_close_auction_start = "2018-08-20"
 sh_fund_close_auction_start = "2026-07-06"
 sz_stock_close_auction_start = None  # leave_unsliced：深市切日未核，不写死
 fake_gtc_fill_proxy = "next_open_if_touched"
+fake_gtc_touch_impl = "touched_only"              # 单一枚举；禁双挂；与 proxy 名对齐
+n2_limit_gtc = False                              # 泄露组不带假 GTC
+pre_auction_close_px_source = "official_close_tagged"
+sz_stock_fill_policy = "fill_tagged_diagnostic"   # 诊断≠硬切片；禁并进主切日结论
 
 def close_mech(exch, sec_type, asof_date):
     # 返回: "closing_auction_1457" | "continuous_last_min_vwap" | "unknown_skip"
@@ -79,16 +87,29 @@ def naive_close_fill(intent_qty, close):
 def honest_close_fill(intent_qty, close, mech):
     if mech in ("unknown_skip",) or close is None or close <= 0:
         return 0  # fail_policy=skip
-    # 日频：诚实组仍可用当日未复权收盘价成交，但必须打上 mech 标签；
+    # 深市 unsliced：params.sz_stock_fill_policy=fill_tagged_diagnostic（写死）
+    # → 可成但必须打诊断标签；禁并进主切日结论。若改为 skip 则此处 return 0。
+    if mech == "sz_stock_unsliced_diagnostic" and sz_stock_fill_policy == "skip":
+        return 0
+    # 切日前 continuous_last_min_vwap：params.pre_auction_close_px_source=official_close_tagged
+    # → 日频无 L2 时用官方未复权收盘价成交并打 mech 标签；禁复权价；禁自造最后一分钟 VWAP 当主成交价且不标注
+    if mech == "continuous_last_min_vwap" and pre_auction_close_px_source == "skip_if_no_last_min_vwap":
+        return 0  # 本页不用此分支；本页=official_close_tagged
     # 禁止把 continuous_last_min_vwap 样本的冲击/跳空统计并进 closing_auction_1457 主桶
+    # 禁止把 sz_stock_unsliced_diagnostic 并进主切日结论（只进 sz_stock_diagnostic 桶）
     return intent_qty
 
-def naive_gtc_carry(unfilled_qty, limit_px, next_open):
-    # N0 假 GTC：未成交限价留到次日；代理 = 次日开盘触及则「吃到」
+def naive_gtc_carry(unfilled_qty, limit_px, next_open, side):
+    # N0 假 GTC：未成交限价留到次日；实现由 params.fake_gtc_touch_impl 单一枚举决定（禁双挂）
     if unfilled_qty <= 0 or limit_px is None or next_open is None:
         return 0
-    # 买：next_open <= limit；卖：next_open >= limit（方向由 side 传入；此处示意）
-    return unfilled_qty  # 天真甚至可不看触及，直接全留次日——本页默认仍用 touched 代理以便可比
+    if fake_gtc_touch_impl == "touched_only":
+        # 买：next_open <= limit；卖：next_open >= limit；否则 0（本页默认；与 fake_gtc_fill_proxy=next_open_if_touched 对齐）
+        touched = (next_open <= limit_px) if side == "buy" else (next_open >= limit_px)
+        return unfilled_qty if touched else 0
+    if fake_gtc_touch_impl == "carry_all_no_touch":
+        return unfilled_qty  # 本页不用；若选用须同步改名 proxy 并在自检注明
+    raise ValueError("fake_gtc_touch_impl must be touched_only|carry_all_no_touch")
 
 def honest_day_only(unfilled_qty):
     # N1：当日有效；未成交作废；次日必须重新申报 → 假 GTC 贡献 = 0
@@ -102,7 +123,7 @@ def honest_day_only(unfilled_qty):
   - 限价：**当日有效**；未成交只进**当日**后续竞价；**不隔夜**；**不**自动变盘后单（与 M 一致）。次日必须重新申报。
   - 9:20–9:25、14:57–15:00 不可撤单 = **当日**该时段约束，**不是**把有效期延长到次日。
 - **天真（N0）**：全样本收盘价当集合竞价一次成交；未成交限价留到次日开盘（假 GTC）。
-- **泄露（N2）**：全样本用核对日现行收盘机制（`asof_check_date=2026-10-19`：沪市股票/基金均已是 14:57 集合），铺到切日前样本。
+- **泄露（N2）**：全样本用核对日现行收盘机制（`asof_check_date=2026-10-19`：沪市股票/基金均已是 14:57 集合），铺到切日前样本。**`params.n2_limit_gtc=False`（写死冻结）**——与 N1 同向只测收盘机制泄露，不带假 GTC；禁与 N0 定义缠死事后改口。
 - **禁止**：用复权收盘价；深市股票收盘集合切日随便填；把 9:20–9:25 不可撤单写成隔夜有效；把假 GTC 写成选股；与 M 的「剩单进盘后」混成同一主结论却不标注（M=盘后通道；N=收盘机制+隔夜有效期）。
 
 ### 2.2 fail_policy（写死默认）
@@ -116,11 +137,19 @@ def honest_day_only(unfilled_qty):
 |----|--------------|------------|
 | N0 天真-全集合+假GTC | 全样本收盘=14:57 集合一次成交 | **留到次日开盘**（`n0_limit_gtc=True`） |
 | N1 PIT 诚实 | **每个交易日**按交易所×证券类别×切日判 mech；沪股 `<2018-08-20` / 沪基 `<2026-07-06` 不按集合 | **当日有效**；作废；次日重报（`n1_limit_day_only=True`）；不自动进盘后 |
-| N2 泄露-现行铺满 | 全样本抄核对日现行（股票+沪市基金均已集合） | 本页默认与 N1 同（只测机制泄露）；若开假 GTC 须另声明且不得标成诚实 |
+| N2 泄露-现行铺满 | 全样本抄核对日现行（股票+沪市基金均已集合） | **`params.n2_limit_gtc=False`（写死冻结）**；与 N1 同向只测机制泄露；禁与 N0 缠死事后改口 |
 
 同一信号、同一 T+1、同一成本开关（本页可先零成本只比机制差）。**`params.fill_time=next_close` 写死**（本页主测收盘腿；与假设 D 开/收对照互补）。禁止把假 GTC 腿报成「诚实排队」。
 
 **`params.fake_gtc_fill_proxy`（写死；拉数前冻结）**：`next_open_if_touched`——日频无真实委托簿时，只做「次日开盘触及原限价」敏感性；**禁止**声称精确隔夜簿上排队复盘。
+
+**`params.n2_limit_gtc`（写死；拉数前冻结）**：`False`。泄露组与 N1 同向，只测收盘机制泄露；**禁止**与 N0 假 GTC 定义缠死事后改口。
+
+**`params.fake_gtc_touch_impl`（写死；拉数前冻结；禁双挂）**：`touched_only`。枚举仅允许 `touched_only` / `carry_all_no_touch`；本页与已写死 proxy 名对齐为触及才记假成交（买：`next_open<=limit` / 卖：`next_open>=limit`，否则 0）。**禁止**伪码「直接 return unfilled_qty」与 proxy 名双挂；若改选 `carry_all_no_touch` 须同步改名 proxy 并在自检注明。
+
+**`params.pre_auction_close_px_source`（写死；拉数前冻结）**：`official_close_tagged`。沪股 `<2018-08-20` / 沪基 `<2026-07-06` 的 `continuous_last_min_vwap` 在日频无 L2 时，用**官方未复权收盘价**成交并打 mech 标签。枚举另有 `skip_if_no_last_min_vwap`，本页不用；**禁止**跑后改口用复权价或自造最后一分钟 VWAP 当主成交价且不标注。
+
+**`params.sz_stock_fill_policy`（写死；拉数前冻结）**：`fill_tagged_diagnostic`。深市 `sz_stock_unsliced_diagnostic` 时诚实组可成但必须打诊断标签；**诊断 ≠ 硬切片**（硬按某日切片仍走 fail_policy=skip）；**禁止**把深市桶并进主切日结论。枚举另有 `skip`，本页不用。
 
 ---
 
@@ -194,7 +223,11 @@ params.diff_buckets = [
 | sh_fund_close_auction_start | 沪市基金收盘集合起 | **写死默认** `2026-07-06` |
 | sz_stock_close_auction_start | 深市股票切日 | **写死** `None` / `leave_unsliced`；禁随便填日 |
 | fill_time | 成交时点 | **写死** `next_close` |
-| fake_gtc_fill_proxy | 假 GTC 日频代理 | **写死** `next_open_if_touched` |
+| fake_gtc_fill_proxy | 假 GTC 日频代理名 | **写死** `next_open_if_touched` |
+| fake_gtc_touch_impl | 假 GTC 触及实现 | **写死** `touched_only`；禁双挂 |
+| n2_limit_gtc | 泄露组是否假 GTC | **写死** `False` |
+| pre_auction_close_px_source | 切日前收盘价来源 | **写死** `official_close_tagged` |
+| sz_stock_fill_policy | 深市 unsliced 成交 | **写死** `fill_tagged_diagnostic` |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
 **`params.Y` / `params.G` / `params.N` / `params.Y2` 写入冻结（具体数已写入；禁继续 null；禁 holdout 标定）**：
@@ -208,7 +241,16 @@ params.N  = 0.05    # 失败率差门槛 ≥ 5pp
 params.Y2 = 0.015   # 稳健子窗净值差门槛 ≥ 1.5pp 年化
 ```
 
-门槛已在纸面写入并冻结；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、切日、假 GTC 代理、主窗/`oos_split` 开工拉数前必须保持冻结；**禁止跑后改口**。
+门槛已在纸面写入并冻结；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、切日、假 GTC 代理/`fake_gtc_touch_impl`、`n2_limit_gtc`、`pre_auction_close_px_source`、`sz_stock_fill_policy`、主窗/`oos_split` 开工拉数前必须保持冻结；**禁止跑后改口**。
+
+**风控补丁四条（2026-11-02；拉数前冻结）**：
+
+```
+params.n2_limit_gtc                = False                    # 显式写入；只测机制泄露
+params.fake_gtc_touch_impl         = touched_only             # 单一枚举；禁双挂；与 next_open_if_touched 对齐
+params.pre_auction_close_px_source = official_close_tagged    # 切日前用官方未复权收盘+mech标签
+params.sz_stock_fill_policy        = fill_tagged_diagnostic   # 深市诊断可成；禁并进主切日结论
+```
 
 **失败/不显著**：差异落在噪声带内——结论栏写明，不得改口称「收盘机制无关」或「限价可以隔夜」。
 
@@ -231,7 +273,8 @@ params.Y2 = 0.015   # 稳健子窗净值差门槛 ≥ 1.5pp 年化
 1. **沪市股票 `<2018-08-20` 进 N1 却按 14:57 集合**：该段属 N0/N2 敏感，不是 N1。  
 2. **沪市基金/ETF `<2026-07-06` 按股票收盘集合处理**。  
 3. **深市股票收盘集合切日随便填进 params 并进主结论**（本页 `leave_unsliced`）。  
-4. **未成交限价隔夜 / 假 GTC 却标成诚实（N1）**：发明规则；仅允许出现在 N0。  
+4. **未成交限价隔夜 / 假 GTC 却标成诚实（N1）**：发明规则；仅允许出现在 N0；N2 在 `n2_limit_gtc=False` 下亦禁假 GTC。  
+4b. **`fake_gtc_touch_impl` 与 proxy 名双挂**（注释写 touched、实现 carry_all），或切日前用复权/自造 VWAP 主价却标 `official_close_tagged`，或深市诊断桶并进主切日结论。  
 5. **把 9:20–9:25 或 14:57–15:00 不可撤单写成隔夜有效**。  
 6. **用复权收盘价撮合**。  
 7. **与实验 M（竞价剩单自动进盘后）混报主结论且不标注**：M=盘后通道；N=收盘机制+有效期。  
@@ -265,16 +308,16 @@ params.Y2 = 0.015   # 稳健子窗净值差门槛 ≥ 1.5pp 年化
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=N`，`groups=[N0,N1,N2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-19`**，**`params.sh_stock_close_auction_start=2018-08-20`**，**`params.sh_fund_close_auction_start=2026-07-06`**，**`params.sz_stock_close_auction_start=None`（leave_unsliced；禁随便填日）**，**`params.close_mech_mode=pit_by_exch_sec_type`**，**`params.fill_time=next_close`（写死）**，**`params.n0_treat_all_close_as_auction=True`**，**`params.n0_limit_gtc=True`**，**`params.n1_limit_day_only=True`**，**`params.n1_no_auto_aft=True`**，**`params.fake_gtc_fill_proxy=next_open_if_touched`（写死；拉数前冻结）**，**`params.diff_buckets=[sh_stock_pre_20180820,sh_stock_post_20180820,sh_fund_pre_20260706,sh_fund_post_20260706,sz_stock_diagnostic,fake_gtc_overnight_gap,no_cancel_0920_or_1457,vs_M_auto_roll_aft]`（写死默认；拉数前冻结）**，**`params.Y=0.02` / `params.G=0.01` / `params.N=0.05` / `params.Y2=0.015`（写死具体数并冻结；禁 holdout 标定；禁 null）**，`universe_rule`，**`params.date_start=2017-01-01` / `params.date_end=2026-09-30`（写死；覆盖 2018-08-20 与 2026-07-06）**，**`oos_split.{is_start=2017-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_D=on`（建议 on：开/收时点对照共用），`overlay_M=off`（默认 off；盘后剩单分表），`overlay_A=off`，`cost_switch=off`（N 主跑）。  
+- 配置块（写死项加粗）：`hypothesis_id=N`，`groups=[N0,N1,N2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-19`**，**`params.sh_stock_close_auction_start=2018-08-20`**，**`params.sh_fund_close_auction_start=2026-07-06`**，**`params.sz_stock_close_auction_start=None`（leave_unsliced；禁随便填日）**，**`params.close_mech_mode=pit_by_exch_sec_type`**，**`params.fill_time=next_close`（写死）**，**`params.n0_treat_all_close_as_auction=True`**，**`params.n0_limit_gtc=True`**，**`params.n1_limit_day_only=True`**，**`params.n1_no_auto_aft=True`**，**`params.n2_limit_gtc=False`（写死冻结；显式写入）**，**`params.fake_gtc_fill_proxy=next_open_if_touched`（写死；拉数前冻结）**，**`params.fake_gtc_touch_impl=touched_only`（写死；禁双挂）**，**`params.pre_auction_close_px_source=official_close_tagged`（写死）**，**`params.sz_stock_fill_policy=fill_tagged_diagnostic`（写死；禁并进主切日）**，**`params.diff_buckets=[sh_stock_pre_20180820,sh_stock_post_20180820,sh_fund_pre_20260706,sh_fund_post_20260706,sz_stock_diagnostic,fake_gtc_overnight_gap,no_cancel_0920_or_1457,vs_M_auto_roll_aft]`（写死默认；拉数前冻结）**，**`params.Y=0.02` / `params.G=0.01` / `params.N=0.05` / `params.Y2=0.015`（写死具体数并冻结；禁 holdout 标定；禁 null）**，`universe_rule`，**`params.date_start=2017-01-01` / `params.date_end=2026-09-30`（写死；覆盖 2018-08-20 与 2026-07-06）**，**`oos_split.{is_start=2017-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_D=on`（建议 on：开/收时点对照共用），`overlay_M=off`（默认 off；盘后剩单分表），`overlay_A=off`，`cost_switch=off`（N 主跑）。  
 - 行情与规则表：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
 
 - N0/N1/N2 净值、隔夜跳空、假 GTC 贡献、失败笔数；分桶（沪股切日前/后、沪基切日前/后、深市诊断、假GTC×跳空、不可撤单误标、vs M）。  
-- 自检布尔：是否未复权；是否 PIT 切日；沪基 2026-07-06 前是否未按股票集合；深市切日是否未瞎填；N1 是否禁假 GTC；是否未把不可撤单写成隔夜；是否未与 M 混主表；切日/代理是否已冻结；holdout 是否未反调。  
+- 自检布尔：是否未复权；是否 PIT 切日；沪基 2026-07-06 前是否未按股票集合；深市切日是否未瞎填；N1 是否禁假 GTC；`n2_limit_gtc` 是否 False；`fake_gtc_touch_impl` 是否 touched_only（伪码是否真看触及）；`pre_auction_close_px_source` 是否 official_close_tagged；`sz_stock_fill_policy` 是否 fill_tagged_diagnostic 且深市未并进主切日；是否未把不可撤单写成隔夜；是否未与 M 混主表；切日/代理是否已冻结；holdout 是否未反调。  
 - **禁止输出**：具体买卖标的列表当「建议」；把天真全集合/假 GTC 当实盘预期；催跑抢 A 真数队列。
 
-**队列声明**：本页纸面就绪 ≠ 开工指令；**不抢实验 A 真数队列**；不催本机 8765 鉴权；不派回测开工；**本页不开回测**；M 预检回来后优先补 M，不由本页抢。
+**队列声明**：本页纸面就绪 ≠ 开工指令；**不抢实验 A 真数队列**；不催本机 8765 鉴权；不派回测开工；**本页不开回测**；**N 不开回测**。
 
 ---
 
@@ -292,12 +335,13 @@ params.Y2 = 0.015   # 稳健子窗净值差门槛 ≥ 1.5pp 年化
 |----|----|
 | 文档状态 | 草稿 |
 | 数据 | 待接入（字段见 §6；日频未复权 OHLC + 交易所/证券类别 + 切日表即可起步） |
-| 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
+| 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测；**N 不开回测**） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2017-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免；asof_check_date=2026-10-19 / sh_stock_close_auction_start=2018-08-20 / sh_fund_close_auction_start=2026-07-06 / sz_stock_close_auction_start=None(leave_unsliced)；**fill_time=next_close 写死**；**n0 全集合+假GTC / n1 当日有效+不进盘后**；**fake_gtc_fill_proxy=next_open_if_touched 写死冻结**；diff_buckets 八桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死具体数并冻结、禁 holdout 标定、禁 null** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2017-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免；asof_check_date=2026-10-19 / sh_stock_close_auction_start=2018-08-20 / sh_fund_close_auction_start=2026-07-06 / sz_stock_close_auction_start=None(leave_unsliced)；**fill_time=next_close 写死**；**n0 全集合+假GTC / n1 当日有效+不进盘后 / n2_limit_gtc=False**；**fake_gtc_fill_proxy=next_open_if_touched / fake_gtc_touch_impl=touched_only 写死冻结（禁双挂）**；**pre_auction_close_px_source=official_close_tagged**；**sz_stock_fill_policy=fill_tagged_diagnostic**；diff_buckets 八桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死具体数并冻结、禁 holdout 标定、禁 null** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：M 草稿已收后写 N；选型对齐清单实验 N；机制类预埋 fail_policy/oos/红线豁免/params 冻结；**不抢实验 A**；**不派回测**；**本页不开回测**；M 预检回来后优先补 M）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设N-20261102.md` 有条件通过补四条——① `params.n2_limit_gtc=False` 显式写入冻结；② `params.fake_gtc_touch_impl=touched_only`（伪码改真看触及；禁双挂）；③ `params.pre_auction_close_px_source=official_close_tagged`；④ `params.sz_stock_fill_policy=fill_tagged_diagnostic`（诊断≠硬切片；禁并进主切日）。**不抢实验 A**；**N 不开回测**。
