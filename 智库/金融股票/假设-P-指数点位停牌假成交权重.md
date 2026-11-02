@@ -1,6 +1,6 @@
 # 假设 P · 指数点位当可交易组合（停牌价 + 总股本权重）
 
-更新：2026-11-02  
+更新：2026-11-02（风控补丁）  
 来源：总管线 / O 四条风控补丁已交后恢复写 P；清单实验 P  
 状态：**草稿 · 待数据 · 待跑**（结论栏空；禁止把「指数日收益当可交易组合 / 停牌按前收盘成交 / 总股本权重」当实盘预期；不抢实验 A 真数队列；本页不开回测；O 不开回测）
 
@@ -49,7 +49,11 @@
 # params.Y / G / N / Y2                   写死具体数并冻结；禁 holdout 标定
 # params.date_start / date_end            写死主窗并冻结
 # params.oos_split.*                      写死四日期并冻结；禁 holdout 反调
-# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 fill_time·membership_mode·权重口径·停牌可成交开关·0.00001 政策·Y/G/N/Y2·主窗/oos
+# params.grade_le15_impl                  写死 ceil_nearest_int_pct  # ≤15% 靠档；与中证文本对齐；禁双挂
+# params.p0_primary_metric                写死 reconstructed_total_shares_halt_fill  # P0主表=总股本+停牌可成重构；官方指数仅锚点；禁双挂
+# params.te_mark_px_source                写死 same_day_close_mark  # TE盯市用当日close；成交腿仍 next_open
+# params.ff_rebal_calendar_source         写死 exchange_calendar_computed  # 按交易日历算6/12月第二个星期五下一交易日
+# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 fill_time·membership_mode·权重口径·停牌可成交开关·0.00001 政策·grade_le15_impl·p0_primary_metric·te_mark_px_source·ff_rebal_calendar_source·Y/G/N/Y2·主窗/oos
 
 tick = 0.01  # A 股股票默认；本页主样本股票成分
 fill_time = "next_open"
@@ -67,7 +71,7 @@ missing_free_float_policy = "skip_weight_leg"
 missing_halt_flag_policy = "skip"
 
 GRADE_BANDS = [
-  (0.0, 0.15, "ceil_int_pct"),   # ≤15% 上调到最接近整数（按中证文本）
+  (0.0, 0.15, "ceil_nearest_int_pct"),   # ≤15%：params.grade_le15_impl=ceil_nearest_int_pct（与中证文本对齐）
   (0.15, 0.20, 0.20),
   (0.20, 0.30, 0.30),
   (0.30, 0.40, 0.40),
@@ -82,8 +86,8 @@ def graded_free_float_ratio(ff_ratio):
     if ff_ratio is None:
         return None
     if ff_ratio <= 0.15:
-        # ≤15%：上调到最接近整数百分点；实现细节拉数前写入 params.grade_le15_impl 并冻结
-        return "ceil_int_pct"  # 占位标记；真实数在引擎按中证文本实现
+        # ≤15%：params.grade_le15_impl=ceil_nearest_int_pct（写死；上调到最接近整数百分点；与中证文本对齐）
+        return "ceil_nearest_int_pct"
     for lo, hi, band in GRADE_BANDS[1:]:
         if lo < ff_ratio <= hi or (lo == 0.80 and ff_ratio > 0.80):
             return band if isinstance(band, float) else band
@@ -99,8 +103,8 @@ def free_float_effective(asof_date, unlock_date, ff_pre, ff_post):
 
 def next_ff_rebalance_on_or_after(d):
     # 返回 d 当日或之后最近的「6/12 月第二个星期五下一交易日」
-    # 具体日历拉数前固化；本页只锁规则名 jun_dec_2nd_friday_next
-    return "calendar_lookup"
+    # params.ff_rebal_calendar_source=exchange_calendar_computed（写死）：按交易日历计算；规则名仍 jun_dec_2nd_friday_next
+    return "exchange_calendar_computed"
 
 def is_halt_or_no_trade(suspend_flag, volume):
     if suspend_flag is None and missing_halt_flag_policy == "skip":
@@ -177,6 +181,14 @@ def long_halt_priority_exclude(consec_halt_days, still_halted):
 **`params.treat_delist_halt_px_as_auction=False`（写死）**：0.00001 只作指数剔除价诊断，禁止写成竞价可成交。
 
 **`params.block_into_index=False` / `params.exit_period_into_index=False`（写死）**：与 O/H 分列；禁止把大宗折价或整理期成交写进指数中性主表。
+
+**`params.grade_le15_impl`（写死；拉数前冻结；禁双挂）**：`ceil_nearest_int_pct`。枚举另有 `round_half_up_int_pct` / `vendor_pregraded_field`，本页不用。≤15% 自由流通比例上调到最接近整数百分点（与中证文本对齐）；**禁止**跑后因权重差改口靠档算法。
+
+**`params.p0_primary_metric`（写死；拉数前冻结；禁双挂）**：`reconstructed_total_shares_halt_fill`。P0 **主表**用总股本+停牌可成重构组合收益，以便主指标 ΔTE / ΔHalt / ΔW 能暴露停牌假成交与权重失真；官方指数日收益仅作锚点对照/诊断桶，**不进 P0 主 Δ**。枚举另有 `official_index_return_only`（主表只用官方指数日收益），本页不选——否则停牌腿/权重差无法进主表。**禁止**主表同时冒充「指数点位」与「重构假可交易」却不标注；**禁止**把重构腿差写进「官方指数可交易」叙事。既有 `p0_use_index_return_as_portfolio=True` 仅表示天真叙事可引用指数点位；**主度量以本键为准**，不再与重构腿双挂主表。
+
+**`params.te_mark_px_source`（写死；拉数前冻结）**：`same_day_close_mark`。TE/盯市用当日 close；成交腿仍 `fill_time=next_open`。枚举另有 `fill_time_open_mark`，本页不用。**禁止**把盯市 close 改口写成停牌可成交价；**禁止**跑后因 ΔTE 改盯市源。
+
+**`params.ff_rebal_calendar_source`（写死；拉数前冻结）**：`exchange_calendar_computed`。按交易日历计算每年 6/12 月第二个星期五的下一交易日（与 `free_float_rebalance_rule=jun_dec_2nd_friday_next` 同向；与实验 C 调样生效日规则对齐、生效日字段可分列核对）。枚举另有 `vendor_ff_rebal_effective_date`，本页不绑供应商字段优先自算。**禁止**解禁当日改流通盘；**禁止**跑后改生效日算法。
 
 ---
 
@@ -265,7 +277,16 @@ params.N  = 0.05    # 失败率差门槛 ≥ 5pp
 params.Y2 = 0.015   # 权重差/稳健子窗门槛 ≥ 1.5pp
 ```
 
-门槛已在纸面写入并冻结；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、停牌可成交开关、权重口径、0.00001 政策、主窗/`oos_split` 开工拉数前必须保持冻结；**禁止跑后改口**。
+门槛已在纸面写入并冻结；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、停牌可成交开关、权重口径、0.00001 政策、`grade_le15_impl` / `p0_primary_metric` / `te_mark_px_source` / `ff_rebal_calendar_source`、主窗/`oos_split` 开工拉数前必须保持冻结；**禁止跑后改口**。
+
+**风控补丁四条（2026-11-02；拉数前冻结）**：
+
+```
+params.grade_le15_impl           = ceil_nearest_int_pct                 # ≤15%靠档；与中证文本对齐；禁双挂
+params.p0_primary_metric         = reconstructed_total_shares_halt_fill # P0主表=重构腿；官方指数仅锚点；禁双挂
+params.te_mark_px_source         = same_day_close_mark                  # TE盯市=同日close；成交腿仍 next_open
+params.ff_rebal_calendar_source  = exchange_calendar_computed           # 交易日历算6/12月第二周五下一交易日
+```
 
 **失败/不显著**：差异落在噪声带内——结论栏写明，不得改口称「指数点位可以当组合」或「总股本权重差不多」。
 
@@ -326,7 +347,7 @@ params.Y2 = 0.015   # 权重差/稳健子窗门槛 ≥ 1.5pp
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=P`，`groups=[P0,P1,P2,P3]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-23`**，**`params.index_id=CSI300`**，**`params.membership_mode=pit`（写死；禁 asof_leak 进本页主结论）**，**`params.fill_time=next_open`（写死）**，**`params.p0_use_index_return_as_portfolio=True`**，**`params.p0_halt_tradable=True`**，**`params.p0_weight_basis=total_shares`**，**`params.p1_membership_pit=True`**，**`params.p1_halt_tradable=True`**，**`params.p1_weight_basis=total_shares`**，**`params.p2_halt_tradable=False`**，**`params.p2_weight_basis=free_float_graded`**，**`params.p3_long_halt_priority_exclude=True`**，**`params.long_halt_days=25`**，**`params.free_float_rebalance_rule=jun_dec_2nd_friday_next`**，**`params.unlock_same_day_add_float=False`**，**`params.delist_halt_exclude_px=0.00001`**，**`params.treat_delist_halt_px_as_auction=False`**，**`params.block_into_index=False`**，**`params.exit_period_into_index=False`**，**`params.missing_free_float_policy=skip_weight_leg`**，**`params.missing_halt_flag_policy=skip`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[halt_days,long_halt_gt25,delist_halt_px_1e-5,unlock_before_ff_rebal,ff_rebal_jun_dec,vs_C_membership,vs_O_block,vs_H_exit_period,weight_total_vs_ff]`（写死默认；拉数前冻结）**，**`params.Y=0.02` / `params.G=0.01` / `params.N=0.05` / `params.Y2=0.015`（写死具体数并冻结；禁 holdout 标定；禁 null）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_C=off`（默认 off；名单对照分表），`overlay_O=off`，`overlay_H=off`，`overlay_A=off`，`cost_switch=off`（P 主跑）。  
+- 配置块（写死项加粗）：`hypothesis_id=P`，`groups=[P0,P1,P2,P3]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-23`**，**`params.index_id=CSI300`**，**`params.membership_mode=pit`（写死；禁 asof_leak 进本页主结论）**，**`params.fill_time=next_open`（写死）**，**`params.p0_use_index_return_as_portfolio=True`**，**`params.p0_halt_tradable=True`**，**`params.p0_weight_basis=total_shares`**，**`params.p1_membership_pit=True`**，**`params.p1_halt_tradable=True`**，**`params.p1_weight_basis=total_shares`**，**`params.p2_halt_tradable=False`**，**`params.p2_weight_basis=free_float_graded`**，**`params.p3_long_halt_priority_exclude=True`**，**`params.long_halt_days=25`**，**`params.free_float_rebalance_rule=jun_dec_2nd_friday_next`**，**`params.unlock_same_day_add_float=False`**，**`params.delist_halt_exclude_px=0.00001`**，**`params.treat_delist_halt_px_as_auction=False`**，**`params.block_into_index=False`**，**`params.exit_period_into_index=False`**，**`params.missing_free_float_policy=skip_weight_leg`**，**`params.missing_halt_flag_policy=skip`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[halt_days,long_halt_gt25,delist_halt_px_1e-5,unlock_before_ff_rebal,ff_rebal_jun_dec,vs_C_membership,vs_O_block,vs_H_exit_period,weight_total_vs_ff]`（写死默认；拉数前冻结）**，**`params.Y=0.02` / `params.G=0.01` / `params.N=0.05` / `params.Y2=0.015`（写死具体数并冻结；禁 holdout 标定；禁 null）**，**`params.grade_le15_impl=ceil_nearest_int_pct`（写死冻结；禁双挂）**，**`params.p0_primary_metric=reconstructed_total_shares_halt_fill`（写死冻结；禁双挂；官方指数仅锚点）**，**`params.te_mark_px_source=same_day_close_mark`（写死；成交腿仍 next_open）**，**`params.ff_rebal_calendar_source=exchange_calendar_computed`（写死）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_C=off`（默认 off；名单对照分表），`overlay_O=off`，`overlay_H=off`，`overlay_A=off`，`cost_switch=off`（P 主跑）。  
 - 行情与规则表：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -355,10 +376,11 @@ params.Y2 = 0.015   # 权重差/稳健子窗门槛 ≥ 1.5pp
 | 数据 | 待接入（字段见 §6；日频未复权 OHLC + 停牌 + 成分 PIT + 总股本/自由流通（有则）即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测；**O 不开回测**） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-23；index_id=CSI300；**membership_mode=pit**；**fill_time=next_open 写死**；P0 指数当组合+停牌可成+总股本 / P1 名单PIT仍假价权 / P2 停牌不可成+自由流通靠档 / P3 长停牌>25+0.00001禁成交；unlock_same_day_add_float=False；block_into_index=False；exit_period_into_index=False；missing_free_float_policy=skip_weight_leg；diff_buckets 九桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死具体数并冻结、禁 holdout 标定、禁 null** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-23；index_id=CSI300；**membership_mode=pit**；**fill_time=next_open 写死**；P0 指数当组合叙事+停牌可成+总股本（**主度量 `p0_primary_metric=reconstructed_total_shares_halt_fill`**） / P1 名单PIT仍假价权 / P2 停牌不可成+自由流通靠档 / P3 长停牌>25+0.00001禁成交；unlock_same_day_add_float=False；block_into_index=False；exit_period_into_index=False；missing_free_float_policy=skip_weight_leg；**`grade_le15_impl=ceil_nearest_int_pct`**；**`te_mark_px_source=same_day_close_mark`**；**`ff_rebal_calendar_source=exchange_calendar_computed`**；diff_buckets 九桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死具体数并冻结、禁 holdout 标定、禁 null** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：O 四条风控补丁已交后恢复写 P；选型对齐清单实验 P；机制类预埋 fail_policy/oos/红线豁免/params 冻结；**不抢实验 A**；**不派回测**；**本页不开回测**；**O 不开回测**）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设P-20261102.md` 有条件通过补四条——① `params.grade_le15_impl=ceil_nearest_int_pct`（与中证文本对齐；禁双挂）；② `params.p0_primary_metric=reconstructed_total_shares_halt_fill`（P0主表=总股本+停牌可成重构；官方指数仅锚点；禁双挂）；③ `params.te_mark_px_source=same_day_close_mark`（TE盯市同日close；成交腿仍 next_open）；④ `params.ff_rebal_calendar_source=exchange_calendar_computed`（交易日历算半年度生效日）。**不抢实验 A**；**P 不开回测**；未动 Q/A。
