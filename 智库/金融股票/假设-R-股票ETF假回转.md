@@ -1,6 +1,6 @@
 # 假设 R · 股票 ETF 当当日回转 / 全部 ETF 套 3.1.5（假 T+0）
 
-更新：2026-11-02  
+更新：2026-11-02（风控补丁）  
 来源：总管线 / Q 四条补丁已收后写下一纸面 R；清单实验 R  
 状态：**草稿 · 待数据 · 待跑**（结论栏空；禁止把「ETF 都能 T+0 / 股票 ETF 当日进出 / 盘后固定价格当 T+0」当实盘预期；不抢实验 A 真数队列；本页不开回测；Q/P 不开回测）
 
@@ -21,7 +21,7 @@
 ### 2.1 3.1.5 回转名单 ≠ 全部 ETF；股票 ETF = T+1；跨境但书；商品期货切日（未复权）
 
 ```
-# 配置写死 / 待预检键（见 §7）
+# 配置写死（见 §7；风控四条已冻结）
 # params.asof_check_date                 写死默认 2026-10-26  # 事实与坑「股票 ETF 仍 T+1」核对日；泄露组「现行」锚
 # params.fill_time                        写死 next_open      # 成交腿与 A/D 对齐；不抢 A 板上真数
 # params.rule_315_cut_date               写死 2026-07-06     # 《交易规则（2026年修订）》施行；名单文本锚
@@ -38,19 +38,20 @@
 # params.szse_315_includes_warrant       写死 False
 # params.aft_fixed_as_t0_channel         写死 False          # 禁把盘后固定价格写成股票 ETF 的 T+0 通道
 # params.etf_tick                        写死 0.001          # 基金最小价位；禁用股票 0.01 套主结论
-# params.etf_lot_shares                  待预检             # ETF 申报数量单位（常见 100 份/手；拉数前冻结）
-# params.r0_unit_source                  待预检             # 天真组是否混用股票 100 股/0.01（建议 stock_share_tick；暴露鸿沟）
+# params.etf_lot_shares                  写死 100            # ETF 申报数量单位（份/手）；禁跑后改口；禁用股票手数冒充却不另标
+# params.r0_unit_source                  写死 stock_share_tick  # 天真组混用股票 100 股/0.01，暴露与 etf_tick=0.001+etf_lot_shares 鸿沟；禁双挂 etf_native
+# params.underlying_rotatable_source     写死 vendor_flag    # 跨境但书字段来源；缺 → skip；禁静默 True；枚举另有 rule_table_pit / manual_asof_map
 # params.missing_etf_class_policy        写死 skip           # 缺 ETF 分类 → skip，禁静默当可回转
 # params.missing_underlying_rot_flag_policy 写死 skip        # 跨境缺底层可回转标记 → skip，禁一律 T+0
 # params.missing_exch_policy             写死 skip
 # params.merge_with_Q_cb_rotation        写死 False          # 禁与可转债回转混进同一主表
 # params.merge_with_S_T_fee              写死 False          # 经手费/证管费另页
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  待预检             # 相对门槛；键名稳；值拉数前冻结；禁 holdout 标定
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 相对门槛；禁 holdout 标定；禁 null
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
-# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 fill_time·stock_etf_rotation·commodity 切日·跨境但书·aft_fixed_as_t0·Y/G/N/Y2·主窗/oos
+# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 fill_time·stock_etf_rotation·commodity 切日·跨境但书·aft_fixed_as_t0·etf_lot_shares·r0_unit_source·underlying_rotatable_source·Y/G/N/Y2·主窗/oos
 
 fill_time = "next_open"
 asof_check_date = "2026-10-26"
@@ -66,6 +67,10 @@ missing_underlying_rot_flag_policy = "skip"
 missing_exch_policy = "skip"
 merge_with_Q_cb_rotation = False
 merge_with_S_T_fee = False
+etf_lot_shares = 100
+r0_unit_source = "stock_share_tick"
+underlying_rotatable_source = "vendor_flag"
+Y, G, N, Y2 = 0.02, 0.01, 0.05, 0.015
 
 # ETF 分类枚举（本页）
 ETF_CLASS = [
@@ -146,16 +151,23 @@ def treat_aft_fixed_as_rotation(group):
 
 **`params.merge_with_Q_cb_rotation=False` / `params.merge_with_S_T_fee=False`（写死）**：可转债回转、经手费/证管费不得混进本页主表。
 
-**待预检冻结键（值可暂「待预检」，键名稳；拉数前必须写入具体值并冻结）**：
+**风控补丁四条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.etf_lot_shares     = 待预检   # 建议 100（份/手常见档）；禁跑后改口
-params.r0_unit_source     = 待预检   # 建议 stock_share_tick（天真混用股票 100 股/0.01）；枚举另有 etf_native
-params.Y                  = 待预检   # 假 T+0 贡献 / 换手差门槛
-params.G                  = 待预检   # 回转标签差异率门槛
-params.N                  = 待预检   # 失败率差门槛
-params.Y2                 = 待预检   # 股票 ETF 假 T+0 贡献专项门槛
+params.etf_lot_shares               = 100                 # ETF 份/手；禁跑后因整手失败率改口；禁股票 100 股冒充却不另标
+params.r0_unit_source               = stock_share_tick    # 天真组混用股票 100 股/0.01；枚举另有 etf_native（本页不选）；禁双挂；禁混进 R2/主结论
+params.underlying_rotatable_source  = vendor_flag         # 跨境但书字段来源；缺 → missing_underlying_rot_flag_policy=skip；禁静默 True；枚举另有 rule_table_pit / manual_asof_map
+params.Y                            = 0.02                # 换手差显著门槛 ≥ 2pp（同系列纸面占位；来源 L/M/N/O/P；禁 holdout 标定）
+params.G                            = 0.01                # 回转标签差异率门槛 ≥ 1pp
+params.N                            = 0.05                # 失败率差门槛 ≥ 5pp
+params.Y2                           = 0.015               # 股票 ETF 假 T+0 贡献专项门槛 ≥ 1.5pp
 ```
+
+**`params.etf_lot_shares`（写死；拉数前冻结）**：`100`。ETF 申报数量单位（份/手常见档）。**禁止**跑后因手数换算/整手失败率改口；**禁止**用股票 100 股规则冒充 ETF 手数却不另标（与 `r0_unit_source` 分列）。
+
+**`params.r0_unit_source`（写死；拉数前冻结；禁双挂）**：`stock_share_tick`。天真组（R0）故意混用股票 100 股 / 0.01 价位，暴露与 `etf_tick=0.001` + `etf_lot_shares=100` 的执行鸿沟。枚举另有 `etf_native`（R0 仍用 ETF 份/0.001），本页不选。**禁止**双挂；**禁止**把股票价位/手数混进 R2/主结论。
+
+**`params.underlying_rotatable_source`（写死；拉数前冻结）**：`vendor_flag`。跨境但书依赖 `underlying_rotatable` 字段，来源取供应商布尔旗；缺源或映射不明时按 `missing_underlying_rot_flag_policy=skip`，**禁止**静默 `True` 标 R2。枚举另有 `rule_table_pit` / `manual_asof_map`，本页不用。
 
 ---
 
@@ -220,18 +232,42 @@ params.diff_buckets = [
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| Y | 换手差显著门槛 | 键名 `params.Y`；**值待预检**；拉数前写死并冻结 |
-| G | 回转标签差异率门槛 | 键名 `params.G`；**值待预检**；拉数前写死并冻结 |
-| N | 失败笔数率差门槛 | 键名 `params.N`；**值待预检**；拉数前写死并冻结 |
-| Y2 | 股票 ETF 假 T+0 贡献门槛 | 键名 `params.Y2`；**值待预检**；拉数前写死并冻结 |
+| Y | 换手差显著门槛 | **写死** `params.Y=0.02` 并冻结 |
+| G | 回转标签差异率门槛 | **写死** `params.G=0.01` 并冻结 |
+| N | 失败笔数率差门槛 | **写死** `params.N=0.05` 并冻结 |
+| Y2 | 股票 ETF 假 T+0 贡献门槛 | **写死** `params.Y2=0.015` 并冻结 |
 | asof_check_date | 核对日锚点（泄露诊断） | **写死默认** `2026-10-26`；拉数前冻结 |
 | fill_time | 成交时点 | **写死** `next_open` |
 | stock_etf_rotation | 股票 ETF 回转 | **写死** `t1` |
 | commodity_etf_rotation_start | 商品期货切日 | **写死** `2020-01-20` |
 | aft_fixed_as_t0_channel | 盘后当 T+0？ | **写死** `False` |
+| etf_lot_shares | ETF 手数 | **写死** `100` |
+| r0_unit_source | 天真组单位源 | **写死** `stock_share_tick` |
+| underlying_rotatable_source | 跨境但书字段源 | **写死** `vendor_flag` |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛键名已稳；**具体数值待风控预检后写入并冻结**；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、股票 ETF 口径、跨境但书、商品期货切日、`aft_fixed_as_t0_channel`、主窗/`oos_split` 开工拉数前必须保持冻结；**禁止跑后改口**。
+**`params.Y` / `params.G` / `params.N` / `params.Y2` 写入冻结（具体数已写入；禁继续 null；禁 holdout 标定）**：
+
+```
+# 纸面冻结默认（机制实验相对门槛；一经写入即冻结）
+# 单位：Y = abs(ΔTO) 换手差；G = abs(ΔRot) 回转标签差异率；N = abs(ΔFail) 失败率；Y2 = abs(ΔFake) 股票ETF假T+0贡献
+# 来源：预检禁 holdout 标定且未给推荐数 → 与同系列 L/M/N/O/P 纸面占位一致
+params.Y  = 0.02    # 换手差显著门槛 ≥ 2pp
+params.G  = 0.01    # 回转标签差异率门槛 ≥ 1pp
+params.N  = 0.05    # 失败率差门槛 ≥ 5pp
+params.Y2 = 0.015   # 股票 ETF 假 T+0 贡献专项门槛 ≥ 1.5pp
+```
+
+门槛已在纸面写入并冻结；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、股票 ETF 口径、跨境但书、商品期货切日、`aft_fixed_as_t0_channel`、`etf_lot_shares` / `r0_unit_source` / `underlying_rotatable_source`、主窗/`oos_split` 开工拉数前必须保持冻结；**禁止跑后改口**。
+
+**风控补丁四条（2026-11-02；拉数前冻结）**：
+
+```
+params.Y / G / N / Y2                 = 0.02 / 0.01 / 0.05 / 0.015   # 相对门槛写死；禁 holdout 标定；禁 null
+params.etf_lot_shares                 = 100                          # ETF 份/手
+params.r0_unit_source                 = stock_share_tick             # 天真混用股票单位；禁双挂
+params.underlying_rotatable_source    = vendor_flag                  # 跨境但书字段源；缺→skip
+```
 
 **失败/不显著**：差异落在噪声带内——结论栏写明，不得改口称「ETF 都按 T+0 差不多」或「这类 ETF 能买」。
 
@@ -256,7 +292,7 @@ params.diff_buckets = [
 3. **2020-01-20 前发明商品期货 ETF 回转通道却标 PIT**。  
 4. **跨境 ETF 不看底层是否本身可回转就一律 T+0 却标诚实**。  
 5. **把盘后固定价格写成股票 ETF 的 T+0 通道**（违反 `aft_fixed_as_t0_channel=False`）。  
-6. **用股票 0.01 价位 / 100 股去套 ETF 整手却不另标，并混进主结论**（价位应 `etf_tick=0.001`；手数键待预检冻结）。  
+6. **用股票 0.01 价位 / 100 股去套 ETF 整手却不另标，并混进主结论**（价位应 `etf_tick=0.001`；手数 `etf_lot_shares=100` 已冻结；天真组混用仅限 R0 且 `r0_unit_source=stock_share_tick`）。  
 7. **把可转债回转（实验 Q）或经手费/证管费（实验 S/T）混进本页主表**。  
 8. **宇宙泄露 / holdout 反调**：看完 OOS 再改回转定义、但书或显著性门槛。  
 9. **把差异写成「这类 ETF 能买」或选基公式**。  
@@ -273,7 +309,7 @@ params.diff_buckets = [
 | etf_class | 分类枚举见 §2.1 | 缺 → skip；禁静默 stock→same_day |
 | open/high/low/close（未复权匹配成交） | 价腿 | **禁复权** |
 | volume | 换手/失败诊断 | 可选 |
-| underlying_rotatable | 跨境但书 | 跨境缺 → skip |
+| underlying_rotatable | 跨境但书 | 来源 `params.underlying_rotatable_source=vendor_flag`；跨境缺 → skip |
 | is_stock_etf | 冗余布尔（可与 etf_class 互校） | 有则更好 |
 | 3.1.5 回转表（PIT） | 名单+切日 | 本页 §2.1 已锁默认；商品期货自 2020-01-20 |
 | aft_fixed_eligible（可选） | 盘后≠T+0 自检 | 与 M 分列；本页只禁当回转通道 |
@@ -286,7 +322,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗；待预检项标出）：`hypothesis_id=R`，`groups=[R0,R1,R2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-26`**，**`params.fill_time=next_open`（写死）**，**`params.rule_315_cut_date=2026-07-06`**，**`params.commodity_etf_rotation_start=2020-01-20`**，**`params.stock_etf_rotation=t1`**，**`params.r0_all_etf_same_day=True`**，**`params.r1_asof_leak_315=True`**，**`params.r1_exclude_stock_etf=False`**，**`params.r2_pit=True`**，**`params.r2_stock_etf_rotation=t1`**，**`params.r2_crossborder_require_underlying_rotatable=True`**，**`params.r2_commodity_pre_cut_fail=True`**，**`params.sse_315_includes_warrant=True`**，**`params.szse_315_includes_warrant=False`**，**`params.aft_fixed_as_t0_channel=False`**，**`params.etf_tick=0.001`**，**`params.etf_lot_shares=待预检`**，**`params.r0_unit_source=待预检`**，**`params.missing_etf_class_policy=skip`**，**`params.missing_underlying_rot_flag_policy=skip`**，**`params.missing_exch_policy=skip`**，**`params.merge_with_Q_cb_rotation=False`**，**`params.merge_with_S_T_fee=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[stock_etf,crossborder_but_fail,commodity_pre_20200120,commodity_post_20200120,bond_money_gold,warrant_sse_only,fake_t0_contrib,aft_fixed_not_t0,vs_Q_cb_rotation,vs_S_T_fee]`（写死默认；拉数前冻结）**，**`params.Y/G/N/Y2=待预检`（键名稳；值拉数前冻结；禁 holdout 标定）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_Q=off`，`overlay_M=off`，`overlay_S=off`，`overlay_T=off`，`cost_switch=off`（R 主跑）。  
+- 配置块（写死项加粗）：`hypothesis_id=R`，`groups=[R0,R1,R2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-26`**，**`params.fill_time=next_open`（写死）**，**`params.rule_315_cut_date=2026-07-06`**，**`params.commodity_etf_rotation_start=2020-01-20`**，**`params.stock_etf_rotation=t1`**，**`params.r0_all_etf_same_day=True`**，**`params.r1_asof_leak_315=True`**，**`params.r1_exclude_stock_etf=False`**，**`params.r2_pit=True`**，**`params.r2_stock_etf_rotation=t1`**，**`params.r2_crossborder_require_underlying_rotatable=True`**，**`params.r2_commodity_pre_cut_fail=True`**，**`params.sse_315_includes_warrant=True`**，**`params.szse_315_includes_warrant=False`**，**`params.aft_fixed_as_t0_channel=False`**，**`params.etf_tick=0.001`**，**`params.etf_lot_shares=100`（写死冻结）**，**`params.r0_unit_source=stock_share_tick`（写死冻结；禁双挂）**，**`params.underlying_rotatable_source=vendor_flag`（写死冻结）**，**`params.missing_etf_class_policy=skip`**，**`params.missing_underlying_rot_flag_policy=skip`**，**`params.missing_exch_policy=skip`**，**`params.merge_with_Q_cb_rotation=False`**，**`params.merge_with_S_T_fee=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[stock_etf,crossborder_but_fail,commodity_pre_20200120,commodity_post_20200120,bond_money_gold,warrant_sse_only,fake_t0_contrib,aft_fixed_not_t0,vs_Q_cb_rotation,vs_S_T_fee]`（写死默认；拉数前冻结）**，**`params.Y=0.02` / `params.G=0.01` / `params.N=0.05` / `params.Y2=0.015`（写死具体数并冻结；禁 holdout 标定；禁 null）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_Q=off`，`overlay_M=off`，`overlay_S=off`，`overlay_T=off`，`cost_switch=off`（R 主跑）。  
 - 行情与规则表：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -315,10 +351,11 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；日频未复权匹配成交 OHLC + ETF 分类 + 交易所 + 跨境但书标记 + 本页 3.1.5 规则表即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测；**Q/P 不开回测**） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-26；**fill_time=next_open 写死**；**stock_etf_rotation=t1**；**commodity_etf_rotation_start=2020-01-20**；**aft_fixed_as_t0_channel=False**；跨境但书强制；沪深权证分列；diff_buckets 十桶写死冻结；**Y/G/N/Y2 与 etf_lot_shares / r0_unit_source 键名稳、值待预检** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-26；**fill_time=next_open 写死**；**stock_etf_rotation=t1**；**commodity_etf_rotation_start=2020-01-20**；**aft_fixed_as_t0_channel=False**；跨境但书强制；沪深权证分列；diff_buckets 十桶写死冻结；**`etf_lot_shares=100`**；**`r0_unit_source=stock_share_tick`（禁双挂）**；**`underlying_rotatable_source=vendor_flag`**；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死具体数并冻结、禁 holdout 标定、禁 null** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：Q 四条补丁已收后写 R；选型严格对齐清单实验 R「股票 ETF 当当日回转 / 全部 ETF 套 3.1.5」；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设R-20261102.md` 有条件通过补四条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写入具体数并冻结（预检禁 holdout 标定且未给推荐数；与同系列 L/M/N/O/P 纸面占位一致；禁 null）；② `params.etf_lot_shares=100`；③ `params.r0_unit_source=stock_share_tick`（禁双挂 `etf_native`）；④ `params.underlying_rotatable_source=vendor_flag`（缺→skip；禁静默 True）。**不抢实验 A**；**R 不开回测**；未动 S/P/Q/A。
