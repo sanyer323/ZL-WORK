@@ -2,7 +2,7 @@
 
 更新：2026-11-02  
 来源：总管线 / AD 补丁已交后并行写下一纸面 AE；清单原止于 AD，无 AE 节 → 自立实验 AE；选题自 `事实与坑`「A 股股票默认不能当天买当天卖 / 3.1.4 交收前不得卖出、3.1.5 当日回转名单不含普通 A 股」+ `假设-R` 旁路「B 类股票 T+1（普通 A 股不在 3.1.5）」+ 口径「执行鸿沟」；与假设 A（板上可成交）/ H（退市整理）/ X（主板 ST 涨跌幅）/ E（整手）/ M（盘后补成交）/ O（大宗）/ R（股票 ETF 假回转）/ Q（可转债回转）/ AC（北交所）/ AD（风险警示 50 万买入上限）**分列**；**新建实验 AE**  
-状态：**草稿 · 待数据 · 待跑 · 待预检**（结论栏空；禁止把「普通股票可当日买当日卖 / 盘后当绕开 T+1」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA/AB/AC/AD 及其他 A/D–AD 已交正文与冻结补丁**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-02）**（结论栏空；禁止把「普通股票可当日买当日卖 / 盘后当绕开 T+1」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA/AB/AC/AD 及其他 A/D–AD 已交正文与冻结补丁**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单原止于 AD，本页自立实验 AE 标准件。与假设 R（股票 ETF / 3.1.5 假回转）**分列**：R 主测 ETF 宇宙误开当日回转；本页主测**普通 A 股股票**被当成 T+0。与假设 Q（可转债）**分列**：可转债诚实可当日回转，勿把转债细则抄到股票，也勿把股票 T+1 罚到转债。与假设 M（盘后固定价格）**分列**：盘后仍是**当日**成交，**不改变**交收前不得卖出；本页禁止把盘后写成股票 T+0 逃生通道（M 同向禁止句，本页主测）。与假设 A（涨停可成交）**分列**：A 主测板上能否成交；本页在可成交前提下另测**当日新买仓可否当日卖**。与假设 E（整手）/ H（整理期）/ X（ST 涨跌幅）/ O（大宗）/ AC（北交所）/ AD（50 万买入上限）**分列**：各自主测，不并表。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 普通股票 T+1 ≠ ETF 3.1.5；≠ 可转债回转；盘后 ≠ 绕开交收
 
 ```
-# 配置写死键（见 §7；待预检键见 §4.2 / 交 AE 回报）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AE
 # params.asof_check_date                 写死默认 2026-09-28  # 事实与坑「股票默认 T+1」核对锚（3.1.4/3.1.5）
 # params.fill_time                        写死 next_open      # 成交腿与 A/D 对齐；本页主测库存可卖性，不抢 A 板上真数
@@ -31,7 +31,7 @@
 # params.same_day_buy_sellable_honest    写死 False          # 诚实：当日新买仓不可卖
 # params.cash_from_sell_reusable_same_day 写死 True          # 诚实：卖出资金当日可再买（与「股不能当日卖」分列）
 # params.aft_as_t0_channel_honest        写死 False          # 诚实：盘后固定价格不改 T+1
-# params.ae0_primary_demo                待预检（建议 invent_same_day_sell）  # 主报：允许当日新买仓当日卖；禁与 invent_aft_as_t0 双挂争主表
+# params.ae0_primary_demo                写死 invent_same_day_sell  # 风控补丁冻结；主报：允许当日新买仓当日卖；禁与 invent_aft_as_t0 双挂争主表
 # params.ae0_allow_same_day_sell         写死 True           # 天真主路径：假 T+0
 # params.ae0_aft_as_t0                   写死 False          # 天真可叠诊断；主报仍以 ae0_primary_demo 为准
 # params.ae1_invent_aft_as_t0            写死 True           # 半泄露/误开：盘后当 T+0 逃生通道
@@ -54,7 +54,7 @@
 # params.inventory_lot_policy            写死 fifo_by_buy_date  # 可卖库存按买入日批次；当日批次 honest=不可卖
 # params.px_basis                        写死 unadj
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  待预检（建议 0.02/0.01/0.05/0.015）；params.Y≠实验字母 AE；禁 null/holdout
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 AE；禁 null/holdout
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -65,7 +65,7 @@ stock_rotation_honest = "t1"
 same_day_buy_sellable_honest = False
 cash_from_sell_reusable_same_day = True
 aft_as_t0_channel_honest = False
-ae0_primary_demo = "invent_same_day_sell"  # 待预检建议值；禁双挂
+ae0_primary_demo = "invent_same_day_sell"  # 风控补丁冻结；禁双挂
 ae0_allow_same_day_sell = True
 ae0_aft_as_t0 = False
 ae1_invent_aft_as_t0 = True
@@ -88,8 +88,8 @@ missing_security_class_policy = "skip"
 inventory_lot_policy = "fifo_by_buy_date"
 px_basis = "unadj"
 
-# 拉数前须冻结（待预检写死；禁 holdout / 事后改口 / 禁跑后改 ae0_primary_demo）
-Y = 0.02   # 建议值；相对门槛 ≠ 实验字母 AE
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改 ae0_primary_demo
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 AE
 G = 0.01
 N = 0.05
 Y2 = 0.015
@@ -133,14 +133,14 @@ def aft_sell_ok_same_day_buy(group, is_aft_session):
 
 **`params.merge_with_R_etf_rotation=False` / `merge_with_Q_cb_rotation=False` / `merge_with_M_aft=False` / `merge_with_A_fill=False` / `merge_with_E_lot=False` / `merge_with_H_exit=False` / `merge_with_X_st_limit=False` / `merge_with_O_block=False` / `merge_with_AC_bse=False` / `merge_with_AD_50w=False`（写死）**。
 
-**待预检键（建议值；拉数前须写死冻结；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
 params.Y                            = 0.02                 # 换手/净值/可卖名义差显著门槛；≠实验字母 AE
 params.G                            = 0.01                 # 假 T+0 腿贡献 / 盘后误开桶相对对照差
 params.N                            = 0.05                 # 失败/跳过率差门槛
 params.Y2                           = 0.015                # AE1（盘后当 T+0）相对 AE2 专项门槛
-params.ae0_primary_demo             = invent_same_day_sell # 建议主报允许当日新买仓当日卖；禁与 invent_aft_as_t0 双挂争主表
+params.ae0_primary_demo             = invent_same_day_sell # 主报允许当日新买仓当日卖；禁与 invent_aft_as_t0 双挂争主表
 ```
 
 ---
@@ -201,23 +201,23 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔRoundTrip| 或 |ΔTurnover| 或 |ΔPnL| **≥ params.Y** 或 |ΔSellableNotional 桶贡献| **≥ params.G** 或 |ΔRoundTrip_(AE1−AE2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「普通股票假 T+0 执行鸿沟显著」。
 
-**params.Y / G / N / Y2（待预检建议值；与实验字母 AE 无关）**
+**params.Y / G / N / Y2（写死冻结；禁 holdout 标定；与实验字母 AE 无关）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 换手/净值/回转腿差显著门槛（≠实验字母 AE） | **待预检建议** `0.02`；拉数前写死冻结 |
-| params.G | 假 T+0 / 盘后误开桶相对对照差 | **待预检建议** `0.01`；拉数前写死冻结 |
-| params.N | 失败笔数率差门槛 | **待预检建议** `0.05`；拉数前写死冻结 |
-| params.Y2 | AE1−AE2 专项门槛 | **待预检建议** `0.015`；拉数前写死冻结 |
+| params.Y | 换手/净值/回转腿差显著门槛（≠实验字母 AE） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 假 T+0 / 盘后误开桶相对对照差 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败笔数率差门槛 | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | AE1−AE2 专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-09-28` |
 | fill_time | 成交时点 | **写死** `next_open` |
 | stock_rotation_honest | 诚实回转属性 | **写死** `t1` |
 | same_day_buy_sellable_honest | 当日新买可卖 | **写死** `False` |
 | aft_as_t0_channel_honest | 盘后绕开 T+1 | **写死** `False` |
-| ae0_primary_demo | 天真主报枚举 | **待预检建议** `invent_same_day_sell`（禁双挂） |
+| ae0_primary_demo | 天真主报枚举 | **写死冻结** `invent_same_day_sell`（风控补丁 2026-11-02；禁双挂） |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛键名稳、建议值如上；**禁止用 holdout / 事后显著性改口**；**`ae0_primary_demo` 单一主报，禁与 invent_aft_as_t0 双挂争主表**。
+门槛键名与具体数值已写入 params 并冻结（风控补丁 2026-11-02；**`params.Y`≠实验字母 AE**）；**禁止用 holdout / 事后显著性改口**；**`ae0_primary_demo=invent_same_day_sell` 单一主报，禁与 invent_aft_as_t0 双挂争主表**。
 
 **失败/不显著**：差异落在噪声带内或均匀散在非假 T+0 对照桶——结论栏写明，不得改口称「普通股票差不多能按 T+0 回放」或「这类票更能做日内」。
 
@@ -270,7 +270,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=AE`（**实验字母**），`groups=[AE0,AE1,AE2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-09-28`**，**`params.fill_time=next_open`（写死）**，**`params.stock_rotation_honest=t1`**，**`params.same_day_buy_sellable_honest=False`**，**`params.cash_from_sell_reusable_same_day=True`**，**`params.aft_as_t0_channel_honest=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.merge_with_Q_cb_rotation=False`**，**`params.merge_with_M_aft=False`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_E_lot=False`**，**`params.merge_with_H_exit=False`**，**`params.merge_with_X_st_limit=False`**，**`params.merge_with_O_block=False`**，**`params.merge_with_AC_bse=False`**，**`params.merge_with_AD_50w=False`**，**`params.universe_rule=sse_szse_common_stock`**，**`params.missing_security_class_policy=skip`**，**`params.inventory_lot_policy=fifo_by_buy_date`**，**`params.px_basis=unadj`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y` / `G` / `N` / `Y2`（建议 0.02/0.01/0.05/0.015；待预检写死；禁 holdout；禁 null；params.Y≠实验字母 AE）**，**`params.ae0_primary_demo`（建议 invent_same_day_sell；待预检写死；禁双挂）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_R=off`，`overlay_Q=off`，`overlay_M=off`，`overlay_A=off`。  
+- 配置块（写死项加粗）：`hypothesis_id=AE`（**实验字母**），`groups=[AE0,AE1,AE2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-09-28`**，**`params.fill_time=next_open`（写死）**，**`params.stock_rotation_honest=t1`**，**`params.same_day_buy_sellable_honest=False`**，**`params.cash_from_sell_reusable_same_day=True`**，**`params.aft_as_t0_channel_honest=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.merge_with_Q_cb_rotation=False`**，**`params.merge_with_M_aft=False`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_E_lot=False`**，**`params.merge_with_H_exit=False`**，**`params.merge_with_X_st_limit=False`**，**`params.merge_with_O_block=False`**，**`params.merge_with_AC_bse=False`**，**`params.merge_with_AD_50w=False`**，**`params.universe_rule=sse_szse_common_stock`**，**`params.missing_security_class_policy=skip`**，**`params.inventory_lot_policy=fifo_by_buy_date`**，**`params.px_basis=unadj`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015`（写死冻结；禁 holdout；禁 null；params.Y≠实验字母 AE）**，**`params.ae0_primary_demo=invent_same_day_sell`（写死冻结；禁双挂）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_R=off`，`overlay_Q=off`，`overlay_M=off`，`overlay_A=off`。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -299,10 +299,11 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；日频买卖腿 + 证券类别 + 买入日批次即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-09-28；**fill_time=next_open 写死**；**stock_rotation_honest=t1 / same_day_buy_sellable_honest=False / aft_as_t0_channel_honest=False 写死**；diff_buckets 八桶写死冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015 待预检（params.Y≠实验字母 AE）**；**ae0_primary_demo 建议 invent_same_day_sell 待预检（禁双挂）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-09-28；**fill_time=next_open 写死**；**stock_rotation_honest=t1 / same_day_buy_sellable_honest=False / aft_as_t0_channel_honest=False 写死**；diff_buckets 八桶写死冻结；**Y/G/N/Y2=0.02/0.01/0.05/0.015 写死冻结（params.Y≠实验字母 AE）**；**ae0_primary_demo=invent_same_day_sell 写死冻结（禁双挂）**；**风控补丁两条 2026-11-02 已写死待复检** |
 
 ---
 
 ## 变更
 
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AE-20261102.md` 有条件通过补两条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写死冻结（**params.Y≠实验字母 AE**；禁 null/holdout 标定）；② `params.ae0_primary_demo=invent_same_day_sell` 写死冻结（禁与 `invent_aft_as_t0` 双挂争主表）。**已写死待复检**；**不抢实验 A**；**不开回测**；**不改 Y/Z/AA/AB/AC/AD 及其他 A/D–AD 正文**。
 - 2026-11-02：新建标准件（总管线：AD 补丁已交后写下一纸面 AE；Y/Z/AA/AB/AC/AD 补丁已交不改；清单止于 AD → 自 `事实与坑`「普通 A 股 T+1 / 3.1.4–3.1.5」+ R 旁路「B 类股票 T+1」选题，**与 A/H/X/E/M/O/AC/AD/R/Q 不撞主结论**；近邻 R=ETF 假回转、Q=转债回转、M=盘后通道，本页主测普通股票假 T+0；**实验字母 AE ≠ params.Y**；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 Y/Z/AA/AB/AC/AD/A/D–AD 正文**）。
