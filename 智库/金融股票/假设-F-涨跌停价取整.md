@@ -1,7 +1,7 @@
 # 假设 F · 涨跌停价取整 / 低价股错标板（执行鸿沟）
 
-更新：2026-11-02  
-来源：总管 09:08 催办 / 清单实验 F  
+更新：2026-11-02（风控补丁）  
+来源：总管 09:08 催办 / 清单实验 F；风控有条件通过三条已补  
 状态：**草稿 · 待数据 · 待跑**（结论栏空；禁止把「未取整限制价」当交易所板上价；不抢实验 A 真数队列）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 实验 F 对齐。与假设 A（涨停可成交性）互补：A 假定板上价已按交易所取整后写诚实成交；本页专测**先乘比例再四舍五入到最小价位** vs **未取整小数直接比价**带来的标签翻车，尤其低价股与除权日。
@@ -21,8 +21,10 @@
 ### 2.1 涨跌停价两套算法（未复权；按成交日当时比例）
 
 ```
-tick = 0.01   # A 股股票默认最小价位；基金/可转债勿混用本页
-pct  = limit_pct(i, t)   # 当时规则切片（主板 10% / 创业科创 20% / ST 档按切日；无涨跌幅日本页不标板）
+# 配置写死（见 §7）
+tick = 0.01                         # 仅沪深 A 股股票；禁基金/可转债 0.001
+limit_pct_source = board_st_day_effective   # 主板/创业/科创/ST 按日生效；含主板 ST 2026-07-06 5%→10%
+pct  = limit_pct(i, t)              # 由 limit_pct_source 切片；无涨跌幅日本页不标板
 
 raw_up   = pre_close * (1 + pct)
 raw_down = pre_close * (1 - pct)
@@ -43,12 +45,23 @@ if abs(limit_down - pre_close) < tick: limit_down = pre_close - tick
 if limit_up < tick:   limit_up = tick
 if limit_down < tick: limit_down = tick
 
+# 标签比较符写死（默认）：>= / <=（与假设 A 板上判定一致）
 is_up_honest   = (close >= limit_up)
 is_down_honest = (close <= limit_down)
 ```
 
+#### 标签比较符写死 + 与假设 A 对齐声明
+
+| 项 | 写死值 |
+|----|--------|
+| **默认比较符** | **`>=` / `<=`**：`is_up = (close >= limit_or_raw_up)`；`is_down = (close <= limit_or_raw_down)` |
+| **非默认（本页不用）** | `==`（先把 `close` 与板上价都四舍五入到同一 `tick` 再比相等）——**本页默认关闭**；不得事后改成 `==` 解读差异率 |
+| **与假设 A** | 假设 A §2.1：`is_limit_up_close = (close >= limit_up)` / `is_limit_down_close = (close <= limit_down)`。**本页 F1 与 A 板上判定一致**（同 `>=`/`<=`、同 `round_half_up`+不足一档补一档）。叠 A 时板上价来源必须为 F1，标签比较符不得另切。 |
+| **有意边界** | F0 用未取整 `raw_*` 做同一 `>=`/`<=` 是本实验对照臂，**不是** A 的诚实板上标签；A 禁止用未取整 raw 判板。除权参考价、未复权、`limit_pct_source` 与 A 同向。 |
+
 - **前收盘**：除权/息日用交易所**除权参考价**（见罐内事实与坑），禁止用数据商复权前收盘。  
-- **禁止**：用复权价做任一对照；把未取整 `raw_*` 当成交易所挂牌涨跌停价；无涨跌幅日硬套 ±10%/±20%。
+- **tick 范围（写死）**：`tick=0.01` **仅**沪深 A 股股票主样本；**禁止**基金 / ETF / 可转债 `0.001` tick 混进本页。交易所若另有**股价分档 tick** 表：**未核验到现行表则本页不按分档切片**（一律 0.01）；**禁止事后用分档表反打已跑标签**（不得用结果回头改 tick/分档）。  
+- **禁止**：用复权价做任一对照；把未取整 `raw_*` 当成交易所挂牌涨跌停价；无涨跌幅日硬套 ±10%/±20%；跑后改比较符或 tick。
 
 ### 2.2 对照组（本实验编码）
 
@@ -95,7 +108,7 @@ is_down_honest = (close <= limit_down)
 ### 4.1 主对比
 
 1. **F0 vs F1**：未取整 vs 取整的涨停/跌停标签差异率（全日、涨停子集、跌停子集）。  
-2. **分桶**：股价分桶默认建议（拉数前写入 params 冻结）——`≤5` / `5–20` / `>20`（元，未复权收盘）；另报**除权（息）日** vs 非除权日。  
+2. **分桶**：`params.price_buckets` **写死默认** `[0,5,20,inf]`（元，未复权收盘；桶为左闭右开至最后开：`[0,5)` / `[5,20)` / `[20,inf)`）；**拉数前冻结**；**禁止 holdout 标定 / 事后改桶边**再解读「低价集中」。另报**除权（息）日** vs 非除权日。  
 3. **F2 − F1**（可选反例）：复权判板相对诚实取整的差异；应与除权日高度重叠。
 
 ### 4.2 成功 / 失败判据（相对）
@@ -115,9 +128,9 @@ is_down_honest = (close <= limit_down)
 | D | 总体标签差异率显著门槛 | 拉数前写入 `params.D` 并冻结 |
 | D_gap | 低价桶相对高价桶差异率差门槛 | 拉数前写入 `params.D_gap` 并冻结 |
 | D_ex | 除权日相对非除权差异率差门槛 | 拉数前写入 `params.D_ex` 并冻结 |
-| price_buckets | 股价分桶边界 | 拉数前写入 `params.price_buckets`（建议 `[0,5,20,inf]`）并冻结 |
+| price_buckets | 股价分桶边界 | **写死默认** `params.price_buckets=[0,5,20,inf]`；拉数前冻结；**禁 holdout 标定 / 事后改桶** |
 
-门槛可在 **IS 标定窗**（非 holdout）内事先约定噪声带后写入；**禁止用 holdout / OOS 段标定或反调**。本页可不填死数，但开工拉数前必须落进 params。
+门槛 D/D_gap/D_ex 可在 **IS 标定窗**（非 holdout）内事先约定噪声带后写入；**禁止用 holdout / OOS 段标定或反调**。**`price_buckets` 已写死默认 `[0,5,20,inf]`**，拉数前冻结，不得因 IS/holdout 结果改桶。D* 开工拉数前必须落进 params（可先占位后冻结）。
 
 **失败/不显著**：δ 落在噪声带内，或差异均匀散开而非低价/除权集中——结论栏写明，不得改口称「取整无关」。
 
@@ -141,7 +154,7 @@ is_down_honest = (close <= limit_down)
 2. **除权日用错前收盘**：用数据商复权前收盘而非交易所除权参考价。  
 3. **无涨跌幅日硬套板**：IPO 前 5 日/整理首日等仍标 ±10%/±20%（见实验 G）。  
 4. **规则切日未切片**：用现行 ST 档或创业板 20% 铺满历史。  
-5. **tick 错位**：用基金/债券最小价位，或把港股/北交所价位抄进沪深 A 股主样本。  
+5. **tick 错位 / 事后反打**：用基金/债券 `0.001` 最小价位；或把港股/北交所价位抄进沪深 A 股主样本；或分档 tick 未核验却切片；或用跑后结果回头改 tick/分档。  
 6. **与 A 混报主结论**：把「错标导致的假成交差」算进「取整标签差」却不声明。  
 7. **宇宙泄露**：用今天还上市的票回放；低价/除权样本过少却宣称无差异。  
 8. **holdout 反调**：看完 OOS 差异后再改 round 模式或分桶。
@@ -170,14 +183,14 @@ is_down_honest = (close <= limit_down)
 
 **输入期望**
 
-- 配置块：`hypothesis_id=F`，`groups=[F0,F1,F2?]`，`tick=0.01`，`round_mode=half_up_then_min_one_tick`，`fail_policy=skip`（**默认写死**），`params.price_buckets`（建议 `[0,5,20,inf]`，拉数前冻结），`params.{D,D_gap,D_ex}`（拉数前写入；禁 holdout 标定），`universe_rule`，`date_start/date_end`（可空=待锁），`oos_split.{is_start,is_end,holdout_start,holdout_end}`（占位，禁 holdout 反调），`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_A=off|on`（默认 off）。  
+- 配置块（写死项加粗）：`hypothesis_id=F`，`groups=[F0,F1,F2?]`，**`limit_pct_source=board_st_day_effective`**（含主板 ST 2026-07-06 5%→10%），**`tick=0.01`（仅 A 股股票；禁基金/可转债 0.001；分档 tick 未核验则不切片；禁事后反打）**，`tag_cmp=ge_le`（**写死** `>=`/`<=`；禁默认改 `==`；与假设 A 板上判定对齐），`round_mode=half_up_then_min_one_tick`，`fail_policy=skip`（**默认写死**），**`params.price_buckets=[0,5,20,inf]`（写死默认；拉数前冻结；禁 holdout 标定/事后改桶）**，`params.{D,D_gap,D_ex}`（拉数前写入；禁 holdout 标定），`universe_rule`，`date_start/date_end`（可空=待锁），`oos_split.{is_start,is_end,holdout_start,holdout_end}`（占位，禁 holdout 反调），`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_A=off|on`（默认 off；on 时板上价=F1 且比较符不得另切）。  
 - 行情与规则表：见 §6（无需信号表即可跑纯标签差异；若叠 A 再接信号表）。  
 
 **输出期望（结论栏仍空，由回测岗填）**
 
 - 总体及分桶标签差异率；涨停/跌停分列；除权 vs 非除权。  
 - （可选）F2 反例与除权日重叠度。  
-- 自检布尔：是否未复权、除权日是否用除权参考价、无涨跌幅日是否 skip、F2 是否未混进主结论、`price_buckets`/`D*` 是否已冻结。  
+- 自检布尔：是否未复权、除权日是否用除权参考价、无涨跌幅日是否 skip、F2 是否未混进主结论、`price_buckets=[0,5,20,inf]`/`D*` 是否已冻结、`limit_pct_source` 是否 board_st_day_effective、`tick` 是否仅 0.01 且未混入基金 0.001、标签比较符是否 `ge_le` 且与 A 对齐、分档 tick 未核是否未切片。  
 - **禁止输出**：具体买卖标的列表当「建议」；把未取整板上价当实盘预期；催跑抢 A 真数队列。
 
 **队列声明**：本页纸面就绪 ≠ 开工指令；**不抢实验 A 真数队列**；不催本机 8765 鉴权。
@@ -200,10 +213,11 @@ is_down_honest = (close <= limit_down)
 | 数据 | 待接入（字段见 §6） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；oos_split 占位+禁 holdout 反调；红线 v0 机制豁免；D/D_gap/D_ex/price_buckets 拉数前入 params；§9=状态 |
+| 风控预埋 | fail_policy=skip；oos_split 占位+禁 holdout 反调；红线 v0 机制豁免；**price_buckets=[0,5,20,inf] 写死+拉数前冻结**；tag_cmp=ge_le 与 A 对齐；limit_pct_source=board_st_day_effective；tick=0.01 仅 A 股、禁基金 0.001、分档未核不切片、禁事后反打；D* 拉数前入 params |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管 09:08 催办 / 清单实验 F；A 真数仍卡鉴权期间下一可离线纸面项；优先不依赖新数据商；机制类预埋 fail_policy/oos/红线豁免/params 冻结）。
+- 2026-11-02：风控有条件通过补三条——① `params.price_buckets=[0,5,20,inf]` 写死默认并拉数前冻结、禁 holdout/事后改桶；② 标签比较符写死 `>=`/`<=`（`tag_cmp=ge_le`），与假设 A 板上判定对齐声明；③ 配置写死 `limit_pct_source=board_st_day_effective`、`tick=0.01` 仅 A 股股票、禁基金 0.001、分档 tick 未核不切片、禁事后反打。参考 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设F-20261102.md`。
