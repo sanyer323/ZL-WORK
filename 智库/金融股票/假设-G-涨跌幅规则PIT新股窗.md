@@ -1,7 +1,7 @@
 # 假设 G · 无涨跌幅日误套板块默认涨跌停（PIT / 新股窗）
 
-更新：2026-11-02  
-来源：总管离线派 / 清单实验 G（涨跌幅规则 PIT/新股窗）；F 风控补丁已交后下一可离线纸面  
+更新：2026-11-02（风控补丁）  
+来源：总管离线派 / 清单实验 G；风控有条件通过三条已补  
 状态：**草稿 · 待数据 · 待跑**（结论栏空；禁止用现行「IPO 前 5 日无板 + 创业板永远 20%」铺满历史；不抢实验 A 真数队列）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 实验 G 对齐。与假设 A/F 互补：A/F 假定「该日是否有板、当时比例」已正确切片后，再测可成交性/取整；本页专测**涨跌幅规则表是否按交易日 PIT**——泄露现行规则会在注册制前主板/创业板新股窗、以及 2020-08-24 前创业板日把板上标签标反。
@@ -34,18 +34,37 @@ limit_rule_source = pit_board_ipo_st     # 按 板块 × 交易日 × 上市窗 
    - ST/风险警示：仍 20%（勿抄主板 ST 档）
 
 2) 创业板
-   - 2020-08-24 前（不含当日）：存量默认 limit_pct=0.10；新股首日等按当时文本（非「前 5 日无板」现行句）
+   - 2020-08-24 前（不含当日）：
+     · 存量（非新股首日窗）默认 limit_pct=0.10；is_no_limit=False
+     · **新股/首日窗（注册制前）编码写死**：`chinext_pre_reg_ipo_mode=skip_separate_bucket`
+       ——该窗 **skip**：不进主差分 δ；打标 `tag_bucket=chinext_ipo_pre_20200824_skip` 单独桶只计数不进 δ；
+       ——**禁止**空写「按当时文本」；**禁止**事后改成「前 5 日无板」或硬套 ±10%/±20% 进主结论
    - 2020-08-24 起：存量 + 相关基金改 20%；按注册办法发行的新股前 5 日 is_no_limit=True
    - 切日当日仍在退市整理期的存量票：整理期内勿一刀切成 20%（按当时整理说明；与实验 H 衔接）
 
 3) 沪深主板
-   - 2023-04-10 前：新股首日 ≠「前 5 日无板」；首日按发行价申报上下限（集合 80%–120%、连续 64%–144% 等当时控制），第 2 个交易日起 ±10%
+   - 2023-04-10 前：新股 ≠「前 5 日无板」。**编码写死**（`main_pre_reg_ipo_mode=ipo_first_day_band`）：
+     · 上市首日：`is_no_limit=False`；`limit_mode=ipo_first_day_band`
+       （集合竞价申报相对发行价 80%–120%；连续竞价 64%–144%；本页不把该日当成无板）
+     · 第 2 个交易日起：`limit_pct=0.10`；`limit_mode=pct`
+     · **如何进入 δ**：G0（泄露现行：首日当 is_no_limit=True）vs G1 首日 → 至少 `is_no_limit` 列翻车计入 δ；
+       因 G1 首日无单一 `limit_pct`，**pct 列比较跳过**（该日×票不进 limit_pct 不等分母；只报 is_no_limit / limit_mode 差异）
    - 2023-04-10 起（首只注册制主板上市首日，**不是** 2023-02-17 印发日）：新股前 5 日 is_no_limit=True；此后 ±10%
    - 主板 ST/*ST：2026-07-06 前 5%；之后 10%（与普通主板一致）
 
 4) 特殊无板窗（现行且按落地日切片）
    - 上市后前 5 日 / 退市整理首日 / 重新上市首日：is_no_limit=True（仅在该制度已对该板块生效之后）
 ```
+
+#### 注册制前新股窗编码写死（禁空指针）
+
+| 窗 | params 字段 | 写死默认 | 进 δ 方式 |
+|----|-------------|---------|-----------|
+| 主板交易日 < 2023-04-10 且上市首日 | `main_pre_reg_ipo_mode=ipo_first_day_band` | `is_no_limit=False`；`limit_mode=ipo_first_day_band`（80%–120% / 64%–144%）；D2+ `limit_pct=0.10` | `is_no_limit` 差异进 δ；**pct 列跳过** |
+| 创业板交易日 < 2020-08-24 且新股/首日窗 | `chinext_pre_reg_ipo_mode=skip_separate_bucket` | **skip**：不进主 δ；进单独桶 `chinext_ipo_pre_20200824_skip` 只计数 | 主 δ 分母剔除该窗；禁止空「按当时文本」 |
+| 创业板交易日 < 2020-08-24 存量非首日 | （无额外 mode） | `limit_pct=0.10`；`is_no_limit=False` | 正常进 δ（相对 G0「永远 20%」） |
+
+拉数前冻结上表；**禁止事后改 mode / 把 skip 窗塞回主 δ 解读「集中在切日」。**
 
 - **前收盘 / 除权**：有板日板上价基准用未复权前收盘；除权日用交易所除权参考价（与 A/F 同向）。本页主测**有板/无板与 pct 切片**，取整细节交给假设 F。  
 - **禁止**：用复权价做任一对照；把 2023-02-17 当主板新交易制度生效日；用现行「前 5 日无板」铺满注册制前主板/创业板；无板日仍标 ±10%/±20%。
@@ -54,7 +73,7 @@ limit_rule_source = pit_board_ipo_st     # 按 板块 × 交易日 × 上市窗 
 
 | 组 | 规则来源 | 标签规则 |
 |----|----------|----------|
-| G0 泄露-现行铺满 | 核对日现行句：IPO 前 5 日无板 + 创业板永远 20% + 主板新股一律前 5 日无板；ST 可用现行 10% 或不切片（须在 params 声明） | 全样本同一套「今天的规则」 |
+| G0 泄露-现行铺满 | 核对日现行句：IPO 前 5 日无板 + 创业板永远 20% + 主板新股一律前 5 日无板；**`params.g0_st_mode=use_current_10pct`（写死）**：主板 ST/*ST 全历史一律按核对日现行 10% 标，不做 2026-07-06 前 5% 切片（`leave_unsliced` 本页不用） | 全样本同一套「今天的规则」；asof=`params.asof_check_date=2026-10-09` |
 | G1 诚实-PIT | `limit_rule_source=pit_board_ipo_st`（§2.1 切日表） | 每个交易日用当日已生效文本 |
 | G2 误切-印发日（反例） | 主板新股制度用 **2023-02-17** 当生效日 | **仅作反例**；差异应集中在 2023-02-17～2023-04-09；不得当主结论 |
 
@@ -66,6 +85,15 @@ limit_rule_source = pit_board_ipo_st     # 按 板块 × 交易日 × 上市窗 
 
 - 默认 **`fail_policy=skip`**：缺上市日/无法识别板块/规则表空洞 → **跳过该日该票标签**，不填假板、不借邻日规则。  
 - 允许拉数前改为其他剔除策略，**必须写入 params 并冻结**；**禁止跑后/看完差异率再改口**。未写明则以 skip 为准。
+
+### 2.4 params 写死冻结（风控补丁）
+
+| 字段 | 写死值 | 冻结规则 |
+|------|--------|----------|
+| **`params.asof_check_date`** | **`2026-10-09`**（罐内事实与坑规则段核对日） | **拉数前冻结**；禁止跑后/看完泄露差再改 asof 解读 |
+| **`params.g0_st_mode`** | **`use_current_10pct`** | 二选一已锁；含义：G0 把主板 ST/*ST 全历史标成现行 10%，**不做**切日前 5%。备选 `leave_unsliced`（G0 不对 ST 单独切片）**本页不用**；禁双挂、禁事后改口 |
+| `main_pre_reg_ipo_mode` | `ipo_first_day_band` | 见 §2.1；拉数前冻结 |
+| `chinext_pre_reg_ipo_mode` | `skip_separate_bucket` | 见 §2.1；拉数前冻结 |
 
 ---
 
@@ -96,11 +124,12 @@ limit_rule_source = pit_board_ipo_st     # 按 板块 × 交易日 × 上市窗 
 
 1. **G0 vs G1**：泄露现行 vs PIT 的标签差异率——至少分列：`is_no_limit` 翻车、`limit_pct` 不等、（可选）叠 F1 后 `is_up`/`is_down` 翻车。  
 2. **分桶（写死默认；拉数前冻结）**：`params.diff_buckets` =  
-   - `main_ipo_pre_20230410`：主板、上市后前 5 日（或首日窗）、交易日 &lt; 2023-04-10  
-   - `chinext_pre_20200824`：创业板、交易日 &lt; 2020-08-24  
+   - `main_ipo_pre_20230410`：主板、上市首日（`limit_mode=ipo_first_day_band`）或第 2–5 日、交易日 < 2023-04-10（进主 δ）  
+   - `chinext_pre_20200824`：创业板、交易日 < 2020-08-24、**存量非首日窗**（进主 δ；相对 G0 永远 20%）  
+   - `chinext_ipo_pre_20200824_skip`：创业板、<2020-08-24 新股/首日窗（**skip，不进主 δ**；只计数）  
    - `no_limit_window`：PIT 下 `is_no_limit=True` 的日×票  
    - `other`：其余  
-   **禁止 holdout 标定 / 事后改桶名或切日**再解读「集中在切日」。  
+   **禁止 holdout 标定 / 事后改桶名或切日**再解读「集中在切日」；**禁止**把 skip 桶事后并入主 δ。  
 3. **G2 − G1**（可选反例）：印发日误切相对诚实 PIT；应与 2023-02-17～2023-04-09 主板新股窗高度重叠。
 
 ### 4.2 成功 / 失败判据（相对）
@@ -120,7 +149,10 @@ limit_rule_source = pit_board_ipo_st     # 按 板块 × 交易日 × 上市窗 
 | D | 总体标签差异率显著门槛 | 拉数前写入 `params.D` 并冻结 |
 | D_gap | 关键桶相对 other 差异率差门槛 | 拉数前写入 `params.D_gap` 并冻结 |
 | diff_buckets | 差异分桶定义 | **写死默认**见 §4.1；拉数前冻结；**禁 holdout 标定 / 事后改桶** |
-| asof_check_date | G0「现行」核对日 | 拉数前写入 `params.asof_check_date` 并冻结（建议用罐内事实与坑最新核对日，如 2026-10-09 规则段） |
+| **asof_check_date** | G0「现行」核对日 | **写死 `params.asof_check_date=2026-10-09`**；拉数前冻结；**禁事后改** |
+| **g0_st_mode** | G0 对主板 ST 处理 | **写死 `params.g0_st_mode=use_current_10pct`**（全历史现行 10%；`leave_unsliced` 本页不用）；拉数前冻结 |
+| main_pre_reg_ipo_mode | 主板 <2023-04-10 新股首日 | **写死 `ipo_first_day_band`**；pct 列跳过；见 §2.1 |
+| chinext_pre_reg_ipo_mode | 创业板 <2020-08-24 新股/首日窗 | **写死 `skip_separate_bucket`**；不进主 δ；见 §2.1 |
 
 门槛 D/D_gap 可在 **IS 标定窗**（非 holdout）内事先约定噪声带后写入；**禁止用 holdout / OOS 段标定或反调**。开工拉数前必须落进 params（可先占位后冻结）。
 
@@ -175,14 +207,14 @@ limit_rule_source = pit_board_ipo_st     # 按 板块 × 交易日 × 上市窗 
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=G`，`groups=[G0,G1,G2?]`，**`limit_rule_source=pit_board_ipo_st`（G1）**，`g0_mode=leak_current`，**`params.asof_check_date`（拉数前冻结）**，**主板新股制度生效日=`2023-04-10`（禁默认 2023-02-17）**，**创业板 20%/前 5 日无板切日=`2020-08-24`**，**主板 ST 5%→10% 切日=`2026-07-06`**，`fail_policy=skip`（**默认写死**），**`params.diff_buckets`（写死默认见 §4.1；拉数前冻结；禁 holdout 标定/事后改桶）**，`params.{D,D_gap}`（拉数前写入；禁 holdout 标定），`universe_rule`，`date_start/date_end`（可空=待锁；建议跨 2020-08-24 / 2023-04-10 / 2026-07-06），`oos_split.{is_start,is_end,holdout_start,holdout_end}`（占位，禁 holdout 反调），`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_F=off|on`（默认 off；on 时板上取整=F1），`overlay_A=off`（默认）。  
+- 配置块（写死项加粗）：`hypothesis_id=G`，`groups=[G0,G1,G2?]`，**`limit_rule_source=pit_board_ipo_st`（G1）**，`g0_mode=leak_current`，**`params.asof_check_date=2026-10-09`（写死；拉数前冻结；禁事后改）**，**`params.g0_st_mode=use_current_10pct`（写死；`leave_unsliced` 本页不用）**，**`main_pre_reg_ipo_mode=ipo_first_day_band`**，**`chinext_pre_reg_ipo_mode=skip_separate_bucket`**，**主板新股制度生效日=`2023-04-10`（禁默认 2023-02-17）**，**创业板 20%/前 5 日无板切日=`2020-08-24`**，**主板 ST 5%→10% 切日=`2026-07-06`（仅 G1；G0 按 g0_st_mode）**，`fail_policy=skip`（**默认写死**），**`params.diff_buckets`（写死默认见 §4.1，含 skip 桶；拉数前冻结；禁 holdout 标定/事后改桶）**，`params.{D,D_gap}`（拉数前写入；禁 holdout 标定），`universe_rule`，`date_start/date_end`（可空=待锁；建议跨 2020-08-24 / 2023-04-10 / 2026-07-06），`oos_split.{is_start,is_end,holdout_start,holdout_end}`（占位，禁 holdout 反调），`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_F=off|on`（默认 off；on 时板上取整=F1），`overlay_A=off`（默认）。  
 - 规则表与字段：见 §6（无需信号表即可跑纯标签差异）。  
 
 **输出期望（结论栏仍空，由回测岗填）**
 
 - 总体及分桶标签差异率；`is_no_limit` / `limit_pct` 分列；可选叠 F 后板上翻车率。  
 - （可选）G2 反例与 2023-02-17～2023-04-09 重叠度。  
-- 自检布尔：是否未复权；主板生效日是否 2023-04-10；创业板切日是否 2020-08-24；ST 是否切 2026-07-06；G0 是否声明 asof；diff_buckets/D* 是否已冻结；G2 是否未混进主结论；无板日是否未硬套 ±10%/±20%。  
+- 自检布尔：是否未复权；主板生效日是否 2023-04-10；创业板切日是否 2020-08-24；G1 ST 是否切 2026-07-06；**`asof_check_date` 是否=2026-10-09 且已冻结**；**`g0_st_mode` 是否=use_current_10pct**；**主板首日是否 ipo_first_day_band 且 pct 列已跳过**；**创业板注册制前新股窗是否 skip 单独桶、未空写「按当时文本」**；diff_buckets/D* 是否已冻结；G2 是否未混进主结论；无板日是否未硬套 ±10%/±20%；正文是否无 HTML 实体残留。  
 - **禁止输出**：具体买卖标的列表当「建议」；把泄露规则当实盘预期；催跑抢 A 真数队列；写成「这类次新能买」。
 
 **队列声明**：本页纸面就绪 ≠ 开工指令；**不抢实验 A 真数队列**；不催本机 8765 鉴权。
@@ -205,10 +237,11 @@ limit_rule_source = pit_board_ipo_st     # 按 板块 × 交易日 × 上市窗 
 | 数据 | 待接入（字段见 §6；公开规则表即可，不绑新商） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；oos_split 占位+禁 holdout 反调；红线 v0 机制豁免；diff_buckets/asof_check_date/D* 拉数前入 params；主板生效日 2023-04-10；创业板切日 2020-08-24；ST 切日 2026-07-06 |
+| 风控预埋 | fail_policy=skip；oos_split 占位+禁 holdout 反调；红线 v0 机制豁免；**asof_check_date=2026-10-09 写死+拉数前冻结**；**g0_st_mode=use_current_10pct 写死**；**main_pre_reg_ipo_mode=ipo_first_day_band**；**chinext_pre_reg_ipo_mode=skip_separate_bucket**；diff_buckets（含 skip 桶）/D* 拉数前入 params；主板生效日 2023-04-10；创业板切日 2020-08-24；G1 ST 切日 2026-07-06 |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管离线派 / 清单实验 G；F 风控补丁已交后下一可离线纸面；优先不依赖新数据商；机制类预埋 fail_policy/oos/红线豁免/params 冻结）。
+- 2026-11-02：风控有条件通过补三条——① `params.asof_check_date=2026-10-09` 写死并拉数前冻结、禁事后改；② `params.g0_st_mode=use_current_10pct` 二选一写死（`leave_unsliced` 本页不用）；③ 注册制前新股窗编码写死：主板 `<2023-04-10` 首日=`ipo_first_day_band`（pct 列跳过进 δ）、创业板 `<2020-08-24` 新股/首日窗=`skip_separate_bucket`（禁空「按当时文本」）；正文 HTML 实体改真小于号。参考 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设G-20261102.md`。
