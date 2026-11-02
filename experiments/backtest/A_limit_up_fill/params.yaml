@@ -14,6 +14,7 @@ fill:
 
 # 失败后持仓：事先写死，禁止跑后改（fake 用 skip）
 fail_policy: skip  # skip|defer；本干跑实现 skip
+fail_rule: close_seal_incl_non_one_word  # A1 诚实：一字开盘涨停买=0/一字跌停卖=0 + 非一字收盘封涨停买=0/封跌停卖=0（含收盘触及涨跌停）；禁收窄成「仅一字」；对照诚信表 §1 limit_touch 语义
 
 groups: [A0, A1, A1k]
 
