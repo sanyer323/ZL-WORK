@@ -21,7 +21,7 @@
 ### 2.1 印花税 ≠ 佣金 ≠ 经手费 ≠ 证管费 ≠ 过户费；只打卖方；2023-08-28 减半；ETF/债券不抽（未复权成交金额）
 
 ```
-# 配置写死键（见 §7；Y/G/N/Y2 与若干枚举待预检冻结）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02；v1_side 随主报 asof_leak 去耦为 sell）
 # params.asof_check_date                 写死默认 2026-10-02  # 事实与坑「印花税只抽卖出」核对锚（费用层早期条目）；再核见罐内 10-30 分层
 # params.fill_time                        写死 next_open      # 成交腿与 A/D/S/T/U 对齐；不抢 A 板上真数
 # params.stamp_cut_20230828              写死 2023-08-28     # 财政部税务总局公告 2023 年第 39 号减半生效日
@@ -29,7 +29,7 @@
 # params.stamp_bps_post_cut              写死 0.5            # 减半后卖方实际 0.5‰
 # params.v0_stamp_fee                    写死 0.0            # 天真：印花税=0
 # params.v1_asof_leak_bps                写死 0.5            # 泄露/误铺：全样本用核对日现行 0.5‰
-# params.v1_side                         写死 both           # 误铺可叠加：买卖双边计税（暴露双边坑）
+# params.v1_side                         写死 sell           # 主报 asof_leak_flat_05 去耦；双边误抽改分桶/另演，禁与主报双挂
 # params.v1_apply_stamp_to_etf           写死 True           # 误铺可叠加：ETF 按股票印花税抽
 # params.v1_apply_stamp_to_bond          写死 True           # 同上，债券/债基腿
 # params.v2_pit                          写死 True           # 诚实 PIT
@@ -45,11 +45,12 @@
 # params.missing_sec_type_policy         写死 skip
 # params.missing_side_policy             写死 skip           # 缺买卖方向却要分卖方税 → skip
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  键名稳值待预检      # 建议占位 0.02/0.01/0.05/0.015；禁 holdout 标定
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 相对门槛；禁 holdout 标定；禁 null
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
-# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 1.0/0.5 档、切日、双边/ETF 误抽开关、Y/G/N/Y2、主窗/oos、v1_primary_demo
+# params.v1_primary_demo                 写死 asof_leak_flat_05  # 主报现行档误铺；禁双挂 bilateral_both / etf_wrong_charge / omit_zero
+# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 1.0/0.5 档、切日、双边/ETF 误抽开关、Y/G/N/Y2、主窗/oos、v1_primary_demo、v1_side
 
 fill_time = "next_open"
 asof_check_date = "2026-10-02"
@@ -58,7 +59,7 @@ stamp_bps_pre_cut = 1.0    # ‰
 stamp_bps_post_cut = 0.5
 v0_stamp_fee = 0.0
 v1_asof_leak_bps = 0.5
-v1_side = "both"
+v1_side = "sell"
 v2_side = "sell"
 v1_apply_stamp_to_etf = True
 v1_apply_stamp_to_bond = True
@@ -70,6 +71,11 @@ merge_with_R_etf_rotation = False
 missing_notional_policy = "skip"
 missing_sec_type_policy = "skip"
 missing_side_policy = "skip"
+Y = 0.02
+G = 0.01
+N = 0.05
+Y2 = 0.015
+v1_primary_demo = "asof_leak_flat_05"
 
 def pit_stamp_bps(sec_type, d):
     """当日已生效印花税（‰，只打卖方）。股票/股票存托凭证按切日；ETF/债券 → 0。"""
@@ -124,15 +130,15 @@ def stamp_cost(notional, bps, trade_side, group):
 
 **`params.merge_with_S_handling_fee=False` / `params.merge_with_T_csrc_fee=False` / `params.merge_with_U_transfer_fee=False`（写死）**：经手费、证管费、过户费不得混进本页主表。
 
-**待预检冻结键（草稿占位；拉数前必须写入具体值；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.Y                            # 建议 0.02；成本差显著门槛；禁 holdout 标定
-params.G                            # 建议 0.01；税率/方向/类别标签差异率门槛
-params.N                            # 建议 0.05；失败/跳过率差门槛
-params.Y2                           # 建议 0.015；ETF 腿误抽或双边误抽成本差专项门槛
-params.v1_primary_demo              # 建议 asof_leak_flat_05（主报现行档误铺）；枚举另有 bilateral_both / etf_wrong_charge / omit_zero；禁双挂
-params.v1_side                      # 已写死默认 both（误抽演示）；若预检要求主测只报 asof_leak，可改 sell 并冻结，禁双挂
+params.Y                            = 0.02                # 成本差显著门槛 ≥ 2pp（同系列纸面占位；来源 L/M/N/O/P/R/S/T/U；禁 holdout 标定）
+params.G                            = 0.01                # 税率/方向/类别标签差异率门槛 ≥ 1pp
+params.N                            = 0.05                # 失败/跳过率差门槛 ≥ 5pp
+params.Y2                           = 0.015               # ETF 腿误抽或双边误抽成本差专项门槛 ≥ 1.5pp
+params.v1_primary_demo              = asof_leak_flat_05   # 主报现行档误铺；枚举另有 bilateral_both / etf_wrong_charge / omit_zero；禁双挂争主表
+params.v1_side                      = sell                # 随主报 asof_leak_flat_05 去耦（预检条件②）；原 both 改 sell；双边误抽改分桶，禁与主报双挂
 ```
 
 ---
@@ -198,12 +204,12 @@ params.diff_buckets = [
 
 **Y / G / N / Y2（拉数前写入 params；禁 holdout 标定）**
 
-| 符号 | 含义（占位） | 规则 |
-|------|--------------|------|
-| Y | 成本差显著门槛 | **待预检写入**具体数并冻结（建议 0.02） |
-| G | 税率/方向/类别标签差异率门槛 | **待预检**（建议 0.01） |
-| N | 失败笔数率差门槛 | **待预检**（建议 0.05） |
-| Y2 | ETF/双边误抽成本差门槛 | **待预检**（建议 0.015） |
+| 符号 | 含义 | 规则 |
+|------|------|------|
+| Y | 成本差显著门槛 | **写死** `0.02` 并冻结 |
+| G | 税率/方向/类别标签差异率门槛 | **写死** `0.01` 并冻结 |
+| N | 失败笔数率差门槛 | **写死** `0.05` 并冻结 |
+| Y2 | ETF/双边误抽成本差门槛 | **写死** `0.015` 并冻结 |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-02`；拉数前冻结 |
 | fill_time | 成交时点 | **写死** `next_open` |
 | stamp_cut_20230828 | 减半日 | **写死** 2023-08-28 |
@@ -211,7 +217,7 @@ params.diff_buckets = [
 | v2_side | PIT 征收方向 | **写死** `sell` |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛键名已列；**具体数值待风控预检有条件通过后写入并冻结**；**禁止用 holdout / OOS 段标定或反调**。
+门槛键名与具体数值已写入 params 并冻结（风控补丁 2026-11-02）；**禁止用 holdout / OOS 段标定或反调**。
 
 **失败/不显著**：差异落在噪声带内——结论栏写明，不得改口称「印花税跟佣金捆着差不多」或「这类品种费更低所以能买」。
 
@@ -265,7 +271,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=V`，`groups=[V0,V1,V2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-02`**，**`params.fill_time=next_open`（写死）**，**`params.stamp_cut_20230828=2023-08-28`**，**`params.stamp_bps_pre_cut=1.0`**，**`params.stamp_bps_post_cut=0.5`**，**`params.v0_stamp_fee=0.0`**，**`params.v1_asof_leak_bps=0.5`**，**`params.v1_side=both`**，**`params.v1_apply_stamp_to_etf=True`**，**`params.v1_apply_stamp_to_bond=True`**，**`params.v2_pit=True`**，**`params.v2_side=sell`**，**`params.stamp_bps_etf_pit=0.0`**，**`params.stamp_bps_bond_pit=0.0`**，**`params.missing_notional_policy=skip`**，**`params.missing_sec_type_policy=skip`**，**`params.missing_side_policy=skip`**，**`params.merge_with_S_handling_fee=False`**，**`params.merge_with_T_csrc_fee=False`**，**`params.merge_with_U_transfer_fee=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y/G/N/Y2`（待预检写入具体数并冻结；禁 holdout 标定；禁 null）**，**`params.v1_primary_demo`（待预检；禁双挂）**，`universe_rule`，**`params.date_start=2020-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2020-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_S=off`，`overlay_T=off`，`overlay_U=off`，`overlay_R=off`，`S_T_U_control=on`（经手费/证管费/过户费按罐内或 S/T/U 切片作控制变量）。  
+- 配置块（写死项加粗）：`hypothesis_id=V`，`groups=[V0,V1,V2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-02`**，**`params.fill_time=next_open`（写死）**，**`params.stamp_cut_20230828=2023-08-28`**，**`params.stamp_bps_pre_cut=1.0`**，**`params.stamp_bps_post_cut=0.5`**，**`params.v0_stamp_fee=0.0`**，**`params.v1_asof_leak_bps=0.5`**，**`params.v1_side=sell`**，**`params.v1_apply_stamp_to_etf=True`**，**`params.v1_apply_stamp_to_bond=True`**，**`params.v2_pit=True`**，**`params.v2_side=sell`**，**`params.stamp_bps_etf_pit=0.0`**，**`params.stamp_bps_bond_pit=0.0`**，**`params.missing_notional_policy=skip`**，**`params.missing_sec_type_policy=skip`**，**`params.missing_side_policy=skip`**，**`params.merge_with_S_handling_fee=False`**，**`params.merge_with_T_csrc_fee=False`**，**`params.merge_with_U_transfer_fee=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y=0.02` / `params.G=0.01` / `params.N=0.05` / `params.Y2=0.015`（写死具体数并冻结；禁 holdout 标定；禁 null）**，**`params.v1_primary_demo=asof_leak_flat_05`（写死冻结；禁双挂 bilateral_both / etf_wrong_charge / omit_zero）**，`universe_rule`，**`params.date_start=2020-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2020-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_S=off`，`overlay_T=off`，`overlay_U=off`，`overlay_R=off`，`S_T_U_control=on`（经手费/证管费/过户费按罐内或 S/T/U 切片作控制变量）。  
 - 行情与税率表：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -294,10 +300,11 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；日频未复权成交金额 + 买卖方向 + 证券类别 + 本页印花税规则表即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2020-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-02；**fill_time=next_open 写死**；**两档 1.0/0.5‰ + 切日 2023-08-28 + v2_side=sell 写死**；diff_buckets 十二桶写死冻结；**Y/G/N/Y2·v1_primary_demo 待预检** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2020-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-02；**fill_time=next_open 写死**；**两档 1.0/0.5‰ + 切日 2023-08-28 + v2_side=sell 写死**；diff_buckets 十二桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死冻结**；**v1_primary_demo=asof_leak_flat_05 写死（禁双挂）**；**v1_side=sell 写死（主报去耦）** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：U 已交预检中并行写 V；清单止于 U → 自 `事实与坑` 印花税坑选题，**与 A–U 不撞**；近邻 S=经手费、T=证管费、U=过户费，本页只动卖方印花税层；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 U/R/S/T/A 正文**）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设V-20261102.md` 有条件通过补两条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写入具体数并冻结（预检禁 holdout 标定且建议 0.02/0.01/0.05/0.015；与同系列 R/S/T/U 纸面占位一致；禁 null）；② `params.v1_primary_demo=asof_leak_flat_05`（主报现行档误铺；禁双挂 bilateral_both / etf_wrong_charge / omit_zero）；并按预检条件②同步 `params.v1_side=sell` 与主报去耦（原 both）。**不抢实验 A**；**V 不开回测**；未动 W/U/R/S/T/A。
