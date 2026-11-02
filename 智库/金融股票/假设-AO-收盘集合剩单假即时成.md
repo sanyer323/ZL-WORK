@@ -2,7 +2,7 @@
 
 更新：2026-11-02  
 来源：总管线 / AN 补丁已交后写下一纸面 AO；清单原止于 AN，无 AO 节 → 自立实验 AO；选题自 `事实与坑`「申报当日有效：不能一次全部成交的，未成交部分继续参加当日竞价；当前竞价阶段未成交的买卖申报，自动进入当日后续竞价阶段；**不隔夜**；竞价剩下的限价单**不会自动变成盘后单**（核对日锚 2026-10-19）」+ 口径「执行鸿沟」；与假设 A（板上可成交）/ H（退市整理）/ X（主板 ST 涨跌幅）/ E（整手）/ M（盘后补成交 / 竞价剩单自动进盘后）/ O（大宗）/ R（股票 ETF 假回转）/ Q（可转债）/ AC（北交所）/ AD（风险警示 50 万）/ AE（普通股票假 T+0）/ AF（单笔数量上限）/ AG（超涨跌停价无效）/ AH（集合不可撤窗假撤改）/ AI（无板日集合有效申报范围）/ AJ（临停复牌假连续）/ AK（集合竞价时段假连续）/ AL（午休与开盘空窗假连续）/ AM（停牌期间假连续）/ AN（开盘集合剩单假即时成）/ I（价格笼子）/ F（涨跌停价取整）/ L（市价通道）/ G（无板日误套板块默认板）/ J（无板日临停触发）/ D（成交时点与停牌）/ N（收盘机制与假 GTC）/ Y（集合量分母）/ K（融券空头名单）/ AA（分钟 bar 时区误标）**分列**；**新建实验 AO**  
-状态：**草稿 · 待数据 · 待跑 · 待预检（params.Y/G/N/Y2 + ao0_primary_demo）**（结论栏空；禁止把「收盘集合未成交部分按收盘价即时全成」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AN 及其他 A/D–AN 已交正文与冻结补丁；不改假设-H；不改假设-N；不改假设-M；不改假设-AN；不改假设-AK；不改假设-O；不改假设-A**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-02）**（结论栏空；禁止把「收盘集合未成交部分按收盘价即时全成」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AN 及其他 A/D–AN 已交正文与冻结补丁；不改假设-H；不改假设-N；不改假设-M；不改假设-AN；不改假设-AK；不改假设-O；不改假设-A**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单原止于 AN，本页自立实验 AO 标准件。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/排队能否按板上价成交；本页 = **收盘集合撮合后未成交部分**是否被发明成按收盘价即时全成。双字母 **AO ≠ 单字母 A**。与假设 **O（大宗）** **硬分列**：O = 大宗/盘后大宗通道可成交性；本页 = 收盘集合剩单在**当日竞价会话收束后**的命运，**不**主测大宗。双字母 **AO ≠ 单字母 O**。与假设 **AN（开盘集合剩单假即时成）** **硬分列**：AN = **开盘**集合清算后剩单 → 应转入 9:30 连续；本页 = **收盘**集合清算后剩单 → 当日有效结束应作废，**不**发明按收盘价全成、**不**隔夜、**不**自动进盘后。双字母 **AO ≠ AN**。与假设 **M（盘后补成交）** **分列**：M = 盘后通道 PIT + 竞价剩单**自动进盘后 15:05**；本页主病 = 收盘集合剩单**假按收盘价即时全成**；AO1 半泄露桶可诊断「假进盘后」，主结论仍交 M。与假设 **N（收盘机制与假 GTC）** **分列**：N = 收盘价产生方式误套 + **隔夜**假 GTC；本页 = 收盘集合清算后**当日**剩单是否被发明成交，**不**主测隔夜有效、**不**主测收盘切日公式。与假设 **AK（集合时段假连续）** **分列**：AK = 集合**窗内**改成连续多价撮合；本页 = 收盘集合**清算后**剩单命运。与假设 **Y（集合量分母）** **分列**：Y = 集合成交量是否计入日线分母；本页 = 剩单执行路径。与假设 A/H/X/E/M/O/R/Q/AC–AN/I/F/L/G/J/N/Y/AA/D/K **分列**：各自主测，不并表。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 收盘集合剩单假即时成 ≠ 开盘集合剩单假即时成；≠ 剩单进盘后；≠ 隔夜假 GTC；≠ 集合窗假连续；≠ 板上枯竭；≠ 大宗
 
 ```
-# 配置写死键（见 §7；待预检两条见文末）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AO；≠ 实验字母 A；≠ 实验字母 O
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 AO
 # params.asof_check_date                 写死默认 2026-10-19  # 事实与坑「申报当日有效 / 竞价剩单不自动进盘后」核对锚
@@ -35,7 +35,7 @@
 # params.close_call_leftover_honest      写死 expire_after_close_call  # 诚实：当日有效结束，未成交失效
 # params.close_call_leftover_instant_fill_honest 写死 False
 # params.close_call_leftover_to_aft_honest        写死 False
-# params.ao0_primary_demo                待预检建议 invent_close_call_leftover_instant_fill  # 主报：收盘集合剩单假即时成；禁与 invent_close_call_leftover_as_aft 双挂
+# params.ao0_primary_demo                写死 invent_close_call_leftover_instant_fill  # 风控补丁冻结；主报：收盘集合剩单假即时成；禁与 invent_close_call_leftover_as_aft 双挂
 # params.ao0_invent_instant_fill         写死 True           # 天真主路径（随 primary_demo）
 # params.ao1_as_aft_only                 写死 True           # 半泄露：仅假进盘后；不发明按收盘价即时全成（对照交 M）
 # params.ao2_leftover_policy             写死 expire_after_close_call
@@ -73,7 +73,7 @@
 # params.missing_close_call_leftover_policy 写死 skip       # 缺收盘集合/未成标记 → skip（禁静默当即时全成）
 # params.day_freq_proxy                  写死 close_call_leftover_sensitivity  # 日频无 L2 时只报敏感性档；禁假装精确复盘簿
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  待预检建议 0.02/0.01/0.05/0.015  # params.Y=相对门槛键 ≠ 实验字母 AO；params.N≠实验字母 AO；禁 null/holdout
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 AO；params.N≠实验字母 AO；禁 null/holdout
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -87,7 +87,7 @@ close_call_end = "15:00"
 close_call_leftover_honest = "expire_after_close_call"
 close_call_leftover_instant_fill_honest = False
 close_call_leftover_to_aft_honest = False
-ao0_primary_demo = "invent_close_call_leftover_instant_fill"  # 待预检；禁双挂
+ao0_primary_demo = "invent_close_call_leftover_instant_fill"  # 风控补丁冻结；禁双挂
 ao0_invent_instant_fill = True
 ao1_as_aft_only = True
 ao2_leftover_policy = "expire_after_close_call"
@@ -95,10 +95,10 @@ universe_rule = "sse_szse_common_stock_close_call_leftover"
 missing_close_call_leftover_policy = "skip"
 day_freq_proxy = "close_call_leftover_sensitivity"
 
-# 待预检建议值（拉数前须写死冻结；禁 holdout / 事后改口 / 禁跑后改 ao0_primary_demo）
-Y = 0.02   # 建议；相对门槛 ≠ 实验字母 AO
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改 ao0_primary_demo
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 AO
 G = 0.01
-N = 0.05   # 建议；失败率门槛键 params.N ≠ 实验字母 AO
+N = 0.05   # 风控补丁冻结；失败率门槛键 params.N ≠ 实验字母 AO
 Y2 = 0.015
 
 def after_close_call_clearing(ts):
@@ -107,7 +107,7 @@ def after_close_call_clearing(ts):
 
 def leftover_policy(group, has_close_call_unfilled):
     """
-    AO0：按 ao0_primary_demo 单一主报（建议 invent_close_call_leftover_instant_fill）
+    AO0：按 ao0_primary_demo 单一主报（写死 invent_close_call_leftover_instant_fill）
     AO1：仅假进盘后（as_aft），不发明按收盘价即时全成；对照声明交 M
     AO2：expire_after_close_call
     """
@@ -138,7 +138,7 @@ def leftover_policy(group, has_close_call_unfilled):
 
 **全部 `merge_with_*=False`（写死；含 A/O/AN/M/N/AK/AL/AM/Y/AH/AI/AJ/AG/I/F/L/H/X/E/R/Q/AC/AD/AE/AF/G/J/D/K/AA）**。
 
-**待预检两条（建议值；拉数前须写死冻结；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
 params.Y                            = 0.02                      # 可成交名义/冲击差显著门槛；≠实验字母 AO
@@ -207,17 +207,17 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔNotional| 或 |ΔImpact| **≥ params.Y** 或 |ΔFakeLeftover 桶贡献| **≥ params.G** 或 |ΔNotional_(AO1?AO2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「收盘集合剩单交接执行鸿沟显著」。
 
-**params.Y / G / N / Y2（待预检建议；与实验字母 AO 无关）**
+**params.Y / G / N / Y2（写死冻结；与实验字母 AO 无关；风控补丁 2026-11-02）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 名义/冲击差显著门槛（≠实验字母 AO） | **待预检建议** `0.02` |
-| params.G | 收盘集合剩单假即时成桶相对对照差 | **待预检建议** `0.01` |
-| params.N | 失败/废单率差门槛（≠实验字母 AO） | **待预检建议** `0.05` |
-| params.Y2 | AO1?AO2 专项门槛 | **待预检建议** `0.015` |
+| params.Y | 名义/冲击差显著门槛（≠实验字母 AO） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 收盘集合剩单假即时成桶相对对照差 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败/废单率差门槛（≠实验字母 AO） | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | AO1?AO2 专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-19` |
 | fill_time | 成交时点 | **写死** `next_open` |
-| ao0_primary_demo | 天真主报枚举 | **待预检建议** `invent_close_call_leftover_instant_fill`（禁双挂） |
+| ao0_primary_demo | 天真主报枚举 | **写死冻结** `invent_close_call_leftover_instant_fill`（禁双挂；风控补丁 2026-11-02） |
 
 ### 4.3 红线 v0
 
@@ -256,7 +256,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`AO`  
 - **组**：AO0 / AO1 / AO2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-19`；`close_call_leftover_honest=expire_after_close_call`；`close_call_leftover_instant_fill_honest=False`；`close_call_leftover_to_aft_honest=False`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_close_call_leftover`；`missing_close_call_leftover_policy=skip`；`day_freq_proxy=close_call_leftover_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 待预检建议 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 AO；**params.N≠实验字母 AO**；禁 null/holdout）；**`params.ao0_primary_demo` 待预检建议 `invent_close_call_leftover_instant_fill`**（禁与 invent_close_call_leftover_as_aft 双挂）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-19`；`close_call_leftover_honest=expire_after_close_call`；`close_call_leftover_instant_fill_honest=False`；`close_call_leftover_to_aft_honest=False`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_close_call_leftover`；`missing_close_call_leftover_policy=skip`；`day_freq_proxy=close_call_leftover_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 AO；**params.N≠实验字母 AO**；禁 null/holdout；风控补丁 2026-11-02）；**`params.ao0_primary_demo` 写死冻结 `invent_close_call_leftover_instant_fill`**（禁与 invent_close_call_leftover_as_aft 双挂；风控补丁 2026-11-02）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -285,17 +285,18 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；收盘集合未成标记或日频代理即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-19；**fill_time=next_open 写死**；**close_call_leftover_honest=expire_after_close_call 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 待预检建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 AO；params.N≠实验字母 AO）**；**ao0_primary_demo 待预检建议 invent_close_call_leftover_instant_fill（禁双挂）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-19；**fill_time=next_open 写死**；**close_call_leftover_honest=expire_after_close_call 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 AO；params.N≠实验字母 AO；风控补丁 2026-11-02）**；**ao0_primary_demo 写死冻结 invent_close_call_leftover_instant_fill（禁双挂；风控补丁 2026-11-02）** |
 
 ---
 
-## 待预检键（草稿建议；拉数前须写死）
+## 已冻结键（风控补丁 2026-11-02；已写死待复检）
 
-1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：建议 **`0.02` / `0.01` / `0.05` / `0.015`**；**`params.Y` ≠ 实验字母 AO**；**`params.N` ≠ 实验字母 AO**；禁 null / holdout 标定。  
-2. **`params.ao0_primary_demo`**：建议 **`invent_close_call_leftover_instant_fill`**；禁与 **`invent_close_call_leftover_as_aft`** 双挂争主表。
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 AO**；**`params.N` ≠ 实验字母 AO**；禁 null / holdout 标定。  
+2. **`params.ao0_primary_demo`**：**写死冻结** **`invent_close_call_leftover_instant_fill`**；禁与 **`invent_close_call_leftover_as_aft`** 双挂争主表。
 
 ---
 
 ## 变更
 
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AO-20261102.md` 有条件通过补两条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` **写死冻结**（**params.Y≠实验字母 AO**；**params.N≠实验字母 AO**；禁 null/holdout）；② `params.ao0_primary_demo=invent_close_call_leftover_instant_fill` **写死冻结**（禁与 `invent_close_call_leftover_as_aft` 双挂）。**已写死待复检**。**不改 Y/Z/AA–AN 冻结补丁**；**不改假设-H**；**不改假设-N**；**不改假设-M**；**不改假设-AN**；**不改假设-AK**；**不改假设-O**；**不改假设-A**；不开回测；不抢 A；禁实盘。
 - 2026-11-02：新建标准件（总管线：AN 补丁已交后写下一纸面 AO；Y/Z/AA–AN 补丁已交不改；清单止于 AN → 自 `事实与坑`「申报当日有效 / 竞价剩单不自动进盘后」选题，**与 A/H/X/E/M/O/AC–AN/R/Q/I/F/L/J/G/D/N/Y/AA/K 不撞主结论**；**明确双字母 AO ≠ 单字母 A ≠ 单字母 O ≠ 双字母 AN**；**明确 params.Y ≠ 实验字母 AO；params.N ≠ 实验字母 AO**；近邻 AN=开盘集合剩单、M=剩单进盘后、N=隔夜假 GTC、AK=集合窗假连续、A=板上、O=大宗、Y=集合量，本页主测收盘集合剩单假即时成；**实验字母 AO ≠ params.Y ≠ params.N ≠ 实验字母 A ≠ 实验字母 O ≠ 实验字母 AN**；机制类预埋 fail_policy/oos/红线豁免/params 键；**待预检两条**见上；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 Y/Z/AA–AN/A/D–AN 正文**；**不改假设-H**；**不改假设-N**；**不改假设-M**；**不改假设-AN**；**不改假设-AK**；**不改假设-O**；**不改假设-A**）。
