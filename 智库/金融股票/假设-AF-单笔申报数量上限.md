@@ -2,7 +2,7 @@
 
 更新：2026-11-02  
 来源：总管线 / AE 补丁已交后并行写下一纸面 AF；清单原止于 AE，无 AF 节 → 自立实验 AF；选题自 `事实与坑`「单笔上限默认 100 万股；创业板限价 ≤30 万 / 市价 ≤15 万；科创板限价 ≤10 万 / 市价 ≤5 万」+ `假设-E` 旁路「`chinext_order_cap=off`（创业板单笔上限不主测）」+ 口径「执行鸿沟」；与假设 A（板上可成交）/ H（退市整理）/ X（主板 ST 涨跌幅）/ E（整手起买）/ M（盘后补成交）/ O（大宗门槛）/ R（股票 ETF 假回转）/ Q（可转债）/ AC（北交所）/ AD（风险警示累计买入 50 万）/ AE（普通股票假 T+0）**分列**；**新建实验 AF**  
-状态：**草稿 · 待数据 · 待跑 · 待预检**（结论栏空；禁止把「任意大单可挂」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA/AB/AC/AD/AE 及其他 A/D–AE 已交正文与冻结补丁**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-02）**（结论栏空；禁止把「任意大单可挂」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA/AB/AC/AD/AE 及其他 A/D–AE 已交正文与冻结补丁**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单原止于 AE，本页自立实验 AF 标准件。与假设 E（整手与科创板 200 股起买）**分列**：E 主测**最小**手数/起买与零股卖出，并把创业板单笔上限旁路 `chinext_order_cap=off`；本页**主测**把该上限打开后的执行差——忽略单笔上限、或把主板默认 100 万误套到创业/科创（或订单类型限价/市价互抄）。与假设 AD（风险警示累计买入 50 万股）**分列**：AD 是**当日累计**买上限；本页是**单笔申报**上限，不重开 ST 累计。与假设 O（大宗门槛）**分列**：O 主测大宗**最低** 30 万股/200 万金额与通道混用；本页主测竞价（及声明桶内盘后）**最高**单笔。与假设 A（板上）/ H / X / M / R / Q / AC / AE **分列**：各自主测，不并表。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 单笔上限 ≠ 整手起买；≠ 风险警示累计 50 万；≠ 大宗最低门槛
 
 ```
-# 配置写死键（见 §7；待预检：Y/G/N/Y2 与 af0_primary_demo）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AF
 # params.asof_check_date                 写死默认 2026-10-05  # 事实与坑「整手/单笔上限」核对锚
 # params.fill_time                        写死 next_open      # 成交腿与 A/D/E 对齐；本页主测单笔上限，不抢 A 板上真数
@@ -35,7 +35,7 @@
 # params.star_market_max_shares          写死 50000          # 诚实：科创市价 ≤5 万
 # params.star_aft_max_shares             写死 1000000        # 声明桶：科创盘后收盘定价 ≤100 万；默认不并进竞价主表
 # params.aft_order_cap_in_main           写死 False          # 诚实：盘后数量条款不默认并进连续竞价主测
-# params.af0_primary_demo                待预检建议 ignore_max_order_shares  # 主报：整段忽略单笔上限；禁与 misapply_board_caps 双挂争主表
+# params.af0_primary_demo                写死 ignore_max_order_shares  # 风控补丁冻结；主报：整段忽略单笔上限；禁与 misapply_board_caps 双挂争主表
 # params.af0_ignore_max                  写死 True           # 天真主路径
 # params.af1_misapply_main_1m            写死 True           # 半泄露：创业/科创也按主板 100 万
 # params.af1_swap_limit_market           写死 False          # 可叠诊断：限价/市价上限互抄；主报仍以 af0_primary_demo 为准
@@ -57,7 +57,7 @@
 # params.over_cap_policy_honest          写死 reject         # 诚实：超限 → 废单（与 fail_policy=skip 同向）；禁静默全成
 # params.px_basis                        写死 unadj
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  待预检建议 0.02/0.01/0.05/0.015  # params.Y=相对门槛键 ≠ 实验字母 AF；禁 null/holdout
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 AF；禁 null/holdout
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -70,7 +70,7 @@ chinext_market_max_shares = 150_000
 star_limit_max_shares = 100_000
 star_market_max_shares = 50_000
 aft_order_cap_in_main = False
-af0_primary_demo = "ignore_max_order_shares"  # 待预检建议；禁双挂
+af0_primary_demo = "ignore_max_order_shares"  # 风控补丁冻结；禁双挂
 af0_ignore_max = True
 af1_misapply_main_1m = True
 af2_apply_board_caps = True
@@ -90,8 +90,8 @@ missing_board_policy = "skip"
 over_cap_policy_honest = "reject"
 px_basis = "unadj"
 
-# 待预检占位（建议值；拉数前须风控冻结；禁 holdout / 事后改口）
-Y = 0.02   # 建议；相对门槛 ≠ 实验字母 AF
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改 af0_primary_demo
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 AF
 G = 0.01
 N = 0.05
 Y2 = 0.015
@@ -140,14 +140,14 @@ def apply_cap(qty, board, order_type, group):
 
 **`params.merge_with_E_lot=False` / `merge_with_AD_50w=False` / `merge_with_O_block=False` / `merge_with_A_fill=False` / `merge_with_H_exit=False` / `merge_with_X_st_limit=False` / `merge_with_M_aft=False` / `merge_with_R_etf_rotation=False` / `merge_with_Q_cb_rotation=False` / `merge_with_AC_bse=False` / `merge_with_AE_stock_t0=False`（写死）**。
 
-**待预检键（建议值；拉数前须冻结；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.Y                            = 0.02                      # 建议；可挂名义/净值差显著门槛；≠实验字母 AF
-params.G                            = 0.01                      # 建议；忽略/误套桶相对对照差
-params.N                            = 0.05                      # 建议；失败/废单率差门槛
-params.Y2                           = 0.015                     # 建议；AF1（误套主板 100 万）相对 AF2 专项门槛
-params.af0_primary_demo             = ignore_max_order_shares   # 建议；主报忽略上限；禁与 misapply_board_caps 双挂争主表
+params.Y                            = 0.02                      # 可挂名义/净值差显著门槛；≠实验字母 AF
+params.G                            = 0.01                      # 忽略/误套桶相对对照差
+params.N                            = 0.05                      # 失败/废单率差门槛
+params.Y2                           = 0.015                     # AF1（误套主板 100 万）相对 AF2 专项门槛
+params.af0_primary_demo             = ignore_max_order_shares   # 主报忽略上限；禁与 misapply_board_caps 双挂争主表
 ```
 
 ---
@@ -209,21 +209,21 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔNotional| 或 |ΔPnL| **≥ params.Y** 或 |ΔOverCap 桶贡献| **≥ params.G** 或 |ΔNotional_(AF1−AF2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「单笔上限执行鸿沟显著」。
 
-**params.Y / G / N / Y2（待预检建议；禁 holdout 标定；与实验字母 AF 无关）**
+**params.Y / G / N / Y2（写死冻结；禁 holdout 标定；与实验字母 AF 无关）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 可挂名义/净值差显著门槛（≠实验字母 AF） | **待预检建议** `0.02` |
-| params.G | 忽略/误套桶相对对照差 | **待预检建议** `0.01` |
-| params.N | 失败/废单率差门槛 | **待预检建议** `0.05` |
-| params.Y2 | AF1−AF2 专项门槛 | **待预检建议** `0.015` |
+| params.Y | 可挂名义/净值差显著门槛（≠实验字母 AF） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 忽略/误套桶相对对照差 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败/废单率差门槛 | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | AF1−AF2 专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-05` |
 | fill_time | 成交时点 | **写死** `next_open` |
 | main/chinext/star_*_max_shares | 诚实上限表 | **写死**见 §2.1 |
-| af0_primary_demo | 天真主报枚举 | **待预检建议** `ignore_max_order_shares`（禁双挂） |
+| af0_primary_demo | 天真主报枚举 | **写死冻结** `ignore_max_order_shares`（风控补丁 2026-11-02；禁双挂） |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛键名与建议值已写入；**拉数前须风控冻结**；**禁止用 holdout / 事后显著性改口**；**`af0_primary_demo` 单一主报，禁与 misapply_board_caps 双挂争主表**。
+门槛键名与具体数值已写入 params 并冻结（风控补丁 2026-11-02；**`params.Y`≠实验字母 AF**）；**禁止用 holdout / 事后显著性改口**；**`af0_primary_demo=ignore_max_order_shares` 单一主报，禁与 misapply_board_caps 双挂争主表**。
 
 **失败/不显著**：差异落在噪声带内或均匀散在非单笔上限对照桶——结论栏写明，不得改口称「单笔上限差不多可忽略」或「这类票更能挂大单」。
 
@@ -276,7 +276,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=AF`（**实验字母**），`groups=[AF0,AF1,AF2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-05`**，**`params.fill_time=next_open`（写死）**，**`params.main_limit_max_shares=1000000`**，**`params.chinext_limit_max_shares=300000`**，**`params.chinext_market_max_shares=150000`**，**`params.star_limit_max_shares=100000`**，**`params.star_market_max_shares=50000`**，**`params.aft_order_cap_in_main=False`**，**`params.over_cap_policy_honest=reject`**，**`params.merge_with_E_lot=False`**，**`params.merge_with_AD_50w=False`**，**`params.merge_with_O_block=False`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_H_exit=False`**，**`params.merge_with_X_st_limit=False`**，**`params.merge_with_M_aft=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.merge_with_Q_cb_rotation=False`**，**`params.merge_with_AC_bse=False`**，**`params.merge_with_AE_stock_t0=False`**，**`params.universe_rule=sse_szse_common_stock`**，**`params.missing_board_policy=skip`**，**`params.px_basis=unadj`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y` / `G` / `N` / `Y2`（待预检建议 0.02/0.01/0.05/0.015；禁 holdout；禁 null；params.Y≠实验字母 AF）**，**`params.af0_primary_demo`（待预检建议 ignore_max_order_shares；禁双挂）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_E=off`，`overlay_AD=off`，`overlay_O=off`，`overlay_A=off`。  
+- 配置块（写死项加粗）：`hypothesis_id=AF`（**实验字母**），`groups=[AF0,AF1,AF2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-05`**，**`params.fill_time=next_open`（写死）**，**`params.main_limit_max_shares=1000000`**，**`params.chinext_limit_max_shares=300000`**，**`params.chinext_market_max_shares=150000`**，**`params.star_limit_max_shares=100000`**，**`params.star_market_max_shares=50000`**，**`params.aft_order_cap_in_main=False`**，**`params.over_cap_policy_honest=reject`**，**`params.merge_with_E_lot=False`**，**`params.merge_with_AD_50w=False`**，**`params.merge_with_O_block=False`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_H_exit=False`**，**`params.merge_with_X_st_limit=False`**，**`params.merge_with_M_aft=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.merge_with_Q_cb_rotation=False`**，**`params.merge_with_AC_bse=False`**，**`params.merge_with_AE_stock_t0=False`**，**`params.universe_rule=sse_szse_common_stock`**，**`params.missing_board_policy=skip`**，**`params.px_basis=unadj`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015`（写死冻结；禁 holdout；禁 null；params.Y≠实验字母 AF）**，**`params.af0_primary_demo=ignore_max_order_shares`（写死冻结；禁双挂）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_E=off`，`overlay_AD=off`，`overlay_O=off`，`overlay_A=off`。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -305,10 +305,11 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；拟挂股数 + 板块 + 订单类型即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-05；**fill_time=next_open 写死**；诚实上限表写死；diff_buckets 九桶写死冻结；**Y/G/N/Y2 待预检建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 AF）**；**af0_primary_demo 待预检建议 ignore_max_order_shares（禁双挂）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-05；**fill_time=next_open 写死**；诚实上限表写死；diff_buckets 九桶写死冻结；**Y/G/N/Y2=0.02/0.01/0.05/0.015 写死冻结（params.Y≠实验字母 AF）**；**af0_primary_demo=ignore_max_order_shares 写死冻结（禁双挂）**；**风控补丁两条 2026-11-02 已写死待复检** |
 
 ---
 
 ## 变更
 
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AF-20261102.md` 有条件通过补两条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写死冻结（**params.Y≠实验字母 AF**；禁 null/holdout 标定）；② `params.af0_primary_demo=ignore_max_order_shares` 写死冻结（禁与 `misapply_board_caps` 双挂争主表）。**已写死待复检**；**不抢实验 A**；**不开回测**；**不改 Y/Z/AA/AB/AC/AD/AE 及其他 A/D–AE 正文**。
 - 2026-11-02：新建标准件（总管线：AE 补丁已交后写下一纸面 AF；Y/Z/AA/AB/AC/AD/AE 补丁已交不改；清单止于 AE → 自 `事实与坑`「单笔上限 100 万 / 创业 30·15 万 / 科创 10·5 万」+ E 旁路 `chinext_order_cap=off` 选题，**与 A/H/X/E/M/O/AC/AD/AE/R/Q 不撞主结论**；近邻 E=整手起买、AD=累计 50 万、O=大宗最低门槛，本页主测单笔上限忽略/误套；**实验字母 AF ≠ params.Y**；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 Y/Z/AA/AB/AC/AD/AE/A/D–AE 正文**）。
