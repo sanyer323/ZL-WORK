@@ -2,7 +2,7 @@
 
 更新：2026-11-02  
 来源：总管线 / AR 补丁已交后写下一纸面 AS；清单原止于 AR，无 AS 节 → 自立实验 AS；选题自 `事实与坑`「申报当日有效、未成交部分继续参加当日竞价——**部分市价类型除外，那些剩撤/FOK 本来就不留**」+ 口径「执行鸿沟」；与假设 A（板上可成交/枯竭）/ H（退市整理）/ X（主板 ST）/ E（整手）/ M（盘后）/ O（大宗）/ R（股票 ETF 假回转）/ Q（可转债）/ N（收盘机制与假 GTC）/ S（经手费）/ L（市价通道·保护限价/穿过整本档位）/ AC–AR（北交所/50万/假T+0/单笔上限/超板无效/不可撤窗/无板集合范围/复牌假连续/集合假连续/空窗假连续/停牌假连续/开盘集合剩单/收盘集合剩单/盘后错侧/临停笼子/板上假队首）/ I（价格笼子）/ F（涨跌停价取整）/ G（无板日误套默认板）/ J（无板日临停）/ D（成交时点与停牌）/ Y（集合量分母）/ K（融券空头名单）/ AA（分钟 bar 时区）/ P（指数停牌假成交权重）/ AB（融券卖出价限）**分列**；**新建实验 AS**  
-状态：**草稿 · 待数据 · 待跑 · 待预检**（结论栏空；禁止把「剩撤/FOK 未成部分继续留簿当日续成」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AR 及其他 A/D–AR 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-S；不改假设-L；不改假设-AR；勿再改 AR**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-02）**（结论栏空；禁止把「剩撤/FOK 未成部分继续留簿当日续成」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AR 及其他 A/D–AR 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-S；不改假设-L；不改假设-AR；勿再改 AR**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单原止于 AR，本页自立实验 AS 标准件。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **即时成交剩余撤销（IOC/最优五档剩撤等）与全额成交或撤销（FOK）** 在未即时全成时，是否诚实**撤销未成部分**，还是发明**假留簿**并按当日后续竞价（含板上）续成。双字母 **AS ≠ 单字母 A**。与假设 **S（经手费现行档误铺）** **硬分列**：S = 成本侧经手费 PIT；本页 = **申报类型剩撤语义**，不主测费率。双字母 **AS ≠ 单字母 S**。与假设 **L（市价通道）** **硬分列**：L = 市价当「穿过整本档位的无限价」及保护限价/集合禁市价等通道约束；本页 = 在已承认该腿为**剩撤类/FOK 类型**前提下，**未成部分是否留簿续成**；不重开保护限价带宽与「吃穿档位」主病。与假设 **AR（板上排队假队首）** **硬分列**：AR = 已留簿限价在板上的队序分配；本页 = **本不该留簿的剩撤/FOK 是否被发明成留簿**（发明留簿之后的队序交 AR，不重开）。与假设 AN–AQ **硬分列**：AN/AO=开/收盘**集合**剩单假即时成或假进盘后；本页 = **连续竞价市价剩撤/FOK** 类型语义，不重开集合清算剩单规则。与假设 AH/N **分列**：AH=不可撤窗假撤改；N=收盘切日/隔夜假 GTC；本页不主测撤改窗或隔夜有效。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 剩撤/FOK 假留簿 ≠ 市价保护通道；≠ 板上假队首；≠ 集合剩单；≠ 经手费；≠ 板上枯竭门槛
 
 ```
-# 配置写死键（见 §7；待预检）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AS；≠ 实验字母 A；≠ 实验字母 S
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 AS
 # params.asof_check_date                 写死默认 2026-10-19  # 事实与坑「剩撤/FOK 本来就不留」核对锚
@@ -33,7 +33,7 @@
 # params.ioc_fok_honest                  写死 cancel_unfilled  # 诚实：剩撤未成撤销；FOK 未全成整笔撤
 # params.mkt_channel_handoff             写死 l_page          # 保护限价/吃穿档位/集合禁市价交 L，不重开
 # params.queue_handoff                   写死 ar_page         # 若已诚实留簿后的队序交 AR，不重开
-# params.as0_primary_demo                建议 invent_ioc_as_resting_limit  # 待预检；主报：剩撤未成假留簿续成；禁与 invent_fok_as_partial_rest 双挂
+# params.as0_primary_demo                写死 invent_ioc_as_resting_limit  # 风控补丁冻结；主报：剩撤未成假留簿续成；禁与 invent_fok_as_partial_rest 双挂
 # params.as0_invent_ioc_rest             写死 True           # 天真主路径（随 primary_demo）
 # params.as1_fok_partial_only            写死 True           # 半泄露：仅 FOK 假部分成并留/续（非主报剩撤留簿）
 # params.as2_ioc_fok_policy              写死 cancel_unfilled
@@ -78,7 +78,7 @@
 # params.missing_ordtype_policy          写死 skip           # 缺申报类型标记 → skip（禁静默当留簿）
 # params.day_freq_proxy                  写死 ioc_fok_rest_sensitivity  # 日频无类型明细时只报敏感性档；禁假装精确复盘类型
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  建议 0.02/0.01/0.05/0.015  # 待预检；params.Y=相对门槛键 ≠ 实验字母 AS；params.N≠实验字母 AS；禁 null/holdout
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 AS；params.N≠实验字母 AS；禁 null/holdout
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -90,7 +90,7 @@ tick = 0.01
 ioc_fok_honest = "cancel_unfilled"
 mkt_channel_handoff = "l_page"
 queue_handoff = "ar_page"
-as0_primary_demo = "invent_ioc_as_resting_limit"  # 待预检建议；禁双挂
+as0_primary_demo = "invent_ioc_as_resting_limit"  # 风控补丁冻结；禁双挂
 as0_invent_ioc_rest = True
 as1_fok_partial_only = True
 as2_ioc_fok_policy = "cancel_unfilled"
@@ -98,10 +98,10 @@ universe_rule = "sse_szse_common_stock_ioc_fok_check"
 missing_ordtype_policy = "skip"
 day_freq_proxy = "ioc_fok_rest_sensitivity"
 
-# 纸面占位建议（待预检写死）；禁 holdout / 事后改口 / 禁跑后改 as0_primary_demo
-Y = 0.02   # 建议；相对门槛 ≠ 实验字母 AS
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改 as0_primary_demo
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 AS
 G = 0.01
-N = 0.05   # 建议；失败率门槛键 params.N ≠ 实验字母 AS
+N = 0.05   # 风控补丁冻结；失败率门槛键 params.N ≠ 实验字母 AS
 Y2 = 0.015
 
 def is_cancel_remainder_type(ordtype):
@@ -113,7 +113,7 @@ def is_fok_type(ordtype):
 
 def leftover_policy(group, ordtype, filled_qty, signal_qty):
     """
-    AS0：按 as0_primary_demo 单一主报（建议 invent_ioc_as_resting_limit）
+    AS0：按 as0_primary_demo 单一主报（写死 invent_ioc_as_resting_limit）
     AS1：仅 FOK 假部分成并续（非主报剩撤留簿）
     AS2：cancel_unfilled；缺类型 → skip（或日频敏感性档）
     """
@@ -153,14 +153,14 @@ def leftover_policy(group, ordtype, filled_qty, signal_qty):
 
 **全部 `merge_with_*=False`（写死；含 A/S/L/AR/AN/AO/AP/AQ/AK/AL/AM/AJ/AH/AI/AG/AF/E/I/F/H/X/M/O/Q/R/AC/AD/AE/G/J/D/N/Y/K/AA/P/AB）**。
 
-**待预检键（拉数前须写死冻结；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.Y                            = 0.02                      # 建议待预检；可成交名义/冲击差显著门槛；≠实验字母 AS
-params.G                            = 0.01                      # 建议待预检；假留簿桶相对对照差
-params.N                            = 0.05                      # 建议待预检；失败/废单率差门槛；≠实验字母 AS
-params.Y2                           = 0.015                     # 建议待预检；AS1（FOK 假部分）相对 AS2 专项门槛
-params.as0_primary_demo             = invent_ioc_as_resting_limit  # 建议待预检主报：剩撤假留簿；禁与 invent_fok_as_partial_rest 双挂争主表
+params.Y                            = 0.02                      # 写死冻结；可成交名义/冲击差显著门槛；≠实验字母 AS
+params.G                            = 0.01                      # 写死冻结；假留簿桶相对对照差
+params.N                            = 0.05                      # 写死冻结；失败/废单率差门槛；≠实验字母 AS
+params.Y2                           = 0.015                     # 写死冻结；AS1（FOK 假部分）相对 AS2 专项门槛
+params.as0_primary_demo             = invent_ioc_as_resting_limit  # 写死冻结主报：剩撤假留簿；禁与 invent_fok_as_partial_rest 双挂争主表
 ```
 
 ---
@@ -225,17 +225,17 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔNotional| 或 |ΔImpact| **≥ params.Y** 或 |ΔFakeRest 桶贡献| **≥ params.G** 或 |ΔNotional_(AS1−AS2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「剩撤/FOK 留簿执行鸿沟显著」。
 
-**params.Y / G / N / Y2（纸面建议待预检；与实验字母 AS 无关）**
+**params.Y / G / N / Y2（写死冻结；与实验字母 AS 无关；风控补丁 2026-11-02）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 名义/冲击差显著门槛（≠实验字母 AS） | **建议待预检** `0.02` |
-| params.G | 假留簿桶相对对照差 | **建议待预检** `0.01` |
-| params.N | 失败/废单率差门槛（≠实验字母 AS） | **建议待预检** `0.05` |
-| params.Y2 | AS1−AS2 专项门槛 | **建议待预检** `0.015` |
+| params.Y | 名义/冲击差显著门槛（≠实验字母 AS） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 假留簿桶相对对照差 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败/废单率差门槛（≠实验字母 AS） | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | AS1−AS2 专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-19` |
 | fill_time | 成交时点 | **写死** `next_open` |
-| as0_primary_demo | 天真主报枚举 | **建议待预检** `invent_ioc_as_resting_limit`（禁双挂） |
+| as0_primary_demo | 天真主报枚举 | **写死冻结** `invent_ioc_as_resting_limit`（禁双挂；风控补丁 2026-11-02） |
 
 ### 4.3 红线 v0
 
@@ -278,7 +278,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`AS`  
 - **组**：AS0 / AS1 / AS2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-19`；`ioc_fok_honest=cancel_unfilled`；`mkt_channel_handoff=l_page`；`queue_handoff=ar_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_ioc_fok_check`；`missing_ordtype_policy=skip`；`day_freq_proxy=ioc_fok_rest_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 建议 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 AS；**params.N≠实验字母 AS**；禁 null/holdout；**待预检**）；**`params.as0_primary_demo` 建议 `invent_ioc_as_resting_limit`**（禁与 invent_fok_as_partial_rest 双挂；**待预检**）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-19`；`ioc_fok_honest=cancel_unfilled`；`mkt_channel_handoff=l_page`；`queue_handoff=ar_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_ioc_fok_check`；`missing_ordtype_policy=skip`；`day_freq_proxy=ioc_fok_rest_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 AS；**params.N≠实验字母 AS**；禁 null/holdout；**风控补丁冻结 2026-11-02**）；**`params.as0_primary_demo` 写死 `invent_ioc_as_resting_limit`**（禁与 invent_fok_as_partial_rest 双挂；**风控补丁冻结 2026-11-02**）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -307,17 +307,18 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；申报类型+即时可成代理或日频敏感性即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-19；**fill_time=next_open 写死**；**ioc_fok_honest=cancel_unfilled 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 AS；params.N≠实验字母 AS；待预检）**；**as0_primary_demo 建议 invent_ioc_as_resting_limit（禁双挂；待预检）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-19；**fill_time=next_open 写死**；**ioc_fok_honest=cancel_unfilled 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死 0.02/0.01/0.05/0.015（params.Y≠实验字母 AS；params.N≠实验字母 AS；风控补丁冻结 2026-11-02）**；**as0_primary_demo 写死 invent_ioc_as_resting_limit（禁双挂；风控补丁冻结 2026-11-02）** |
 
 ---
 
-## 待预检键（草稿建议；未写死冻结）
+## 风控补丁两条（已写死冻结 · 2026-11-02）
 
-1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**建议** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 AS**；**`params.N` ≠ 实验字母 AS**；禁 null / holdout 标定（待风控写死）。  
-2. **`params.as0_primary_demo`**：**建议** **`invent_ioc_as_resting_limit`**；禁与 **`invent_fok_as_partial_rest`** 双挂争主表（待风控写死）。
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 AS**；**`params.N` ≠ 实验字母 AS**；禁 null / holdout 标定。  
+2. **`params.as0_primary_demo`**：**写死冻结** **`invent_ioc_as_resting_limit`**；禁与 **`invent_fok_as_partial_rest`** 双挂争主表（只挂一个 primary）。
 
 ---
 
 ## 变更
 
+- 2026-11-02：风控补丁两条写死冻结——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 AS**；**params.N≠实验字母 AS**；禁 null/holdout）；② `params.as0_primary_demo=invent_ioc_as_resting_limit`（禁与 `invent_fok_as_partial_rest` 双挂）。参考 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AS-20261102.md`。未改 Y/Z/AA–AR 及其他已冻结补丁；不改假设-H；不改假设-A；不改假设-S；不改假设-L；不改假设-AR；结论栏仍空；不开回测；不抢 A。
 - 2026-11-02：新建标准件（总管线：AR 补丁已交后写下一纸面 AS；Y/Z/AA–AR 补丁已交不改；清单止于 AR → 自 `事实与坑`「剩撤/FOK 本来就不留」选题，**与 A/H/X/E/M/O/R/Q/N/S/L/AC–AR 硬分列**；**双字母 AS ≠ 单字母 A ≠ 单字母 S**；**不与 AN–AR 重复**；结论栏空；不开回测；不抢 A；**勿再改 AR**）。
