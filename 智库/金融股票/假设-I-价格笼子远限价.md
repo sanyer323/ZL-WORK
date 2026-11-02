@@ -1,7 +1,7 @@
 # 假设 I · 价格笼子当「想挂多远都能进簿」（执行鸿沟）
 
-更新：2026-11-02  
-来源：总管催办 / H 已落盘后下一可离线纸面；清单实验 I  
+更新：2026-11-02（风控补丁）  
+来源：总管催办 / H 已落盘后下一可离线纸面；清单实验 I；风控有条件通过三条已补  
 状态：**草稿 · 待数据 · 待跑**（结论栏空；禁止把「远限价一定进簿/一定成交」当实盘预期；不抢实验 A 真数队列）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 实验 I 对齐。与假设 A（板上成交）、F（涨跌停价取整）、G（无板日 PIT）、L（市价保护限价，另页）互补：本页专测**连续竞价限价笼子**被当成「任意远限价都能进簿并按目标价成交」时，对废单率与成交偏离的扭曲。**日频无盘口时只做「远限价假设」敏感性，不假装精确复盘盘口。**
@@ -26,12 +26,18 @@
 # params.cage_chinext_start        写死默认 2020-08-24
 # params.cage_main_cut_date        写死默认 2023-04-10（首只注册制主板上市日；非印发日 2023-02-17）
 # params.ten_tick_star             写死默认 off（科创板无十个价位）
+# params.ten_tick_floor            写死默认 0.10（十价位「不足 0.1 元取到 0.1」）
 # params.day_freq_mode             写死默认 far_limit_sensitivity
 # params.baseline_source_dayfreq   写死默认 last_or_open_proxy
 #   （真盘口优先：bid1/ask1→对侧→最新成交→前收盘；日频无盘口不得用「仅前收盘×1.02」当唯一基准）
+# params.far_limit_mult            写死默认 [1.0, 1.02, 1.05, 1.10]；拉数前冻结；禁 holdout/事后改档
+# params.diff_buckets              写死默认五桶名（见 §4.1）；拉数前冻结
+# fill_time                        写死 next_open（不用 next_close；若改须另开对照页）
+# params.cage_band_round           写死 round_half_up_to_tick（边界四舍五入到 tick）
 # 拉数前冻结；禁 holdout / 事后改切日或基准定义
 
 tick = 0.01  # A 股股票默认；基金/ETF 勿混入本页主样本
+ten_tick_floor = 0.10  # params.ten_tick_floor；十价位不足 0.1 取到 0.1
 
 def cage_rule(board, asof_date):
     # 返回 (pct, ten_tick, overflow_mode)
@@ -50,17 +56,28 @@ def cage_rule(board, asof_date):
         return (0.02, True, "reject")
     return (None, False, "none")
 
+def round_half_up(x, tick):
+    # 与假设 F / 事实与坑同向：四舍五入到 tick
+    from math import floor
+    return floor(x / tick + 0.5) * tick
+
 def cage_band(baseline, pct, ten_tick, side):
     # side: buy → upper bound; sell → lower bound
     # 现行表述：买不得高于 max(baseline*1.02, baseline+10*tick)；卖对称
+    # 边界须四舍五入到 tick（params.cage_band_round=round_half_up_to_tick 写死）
+    # 本页不做「日频敏感性不做边界取整」豁免；禁输出未取整边界价当真盘口
     if pct is None:
         return None
     pct_bound = baseline * (1 + pct) if side == "buy" else baseline * (1 - pct)
     if ten_tick:
-        tick_bound = baseline + 10 * tick if side == "buy" else baseline - 10 * tick
+        # 十价位：10*tick，但不足 ten_tick_floor=0.10 取到 0.10
+        ten_offset = max(10 * tick, ten_tick_floor)
+        tick_bound = baseline + ten_offset if side == "buy" else baseline - ten_offset
         # 「孰宽」：买方取更高上界；卖方取更低下界
-        return max(pct_bound, tick_bound) if side == "buy" else min(pct_bound, tick_bound)
-    return pct_bound
+        raw = max(pct_bound, tick_bound) if side == "buy" else min(pct_bound, tick_bound)
+    else:
+        raw = pct_bound
+    return round_half_up(raw, tick)
 ```
 
 - **基准价**：优先即时揭示的对手方一档（买看卖一、卖看买一），再对侧，再最新成交，再前收盘。**禁止**默认只用「前收盘 × 1.02」。  
@@ -80,12 +97,12 @@ def cage_band(baseline, pct, ten_tick, side):
 | 组 | 限价进簿假设 | 笼子文本 | 超范围 |
 |----|--------------|----------|--------|
 | I0 天真-远限价总能成 | 次日开/收盘价 100% 成交；限价可远离盘口 | 无笼子约束 | 不废、不存 |
-| I1 泄露-现行铺满 | 受笼子约束 | **全样本**用核对日现行：2% + 十个价位（主板/创业）拒单；科创仍无十价位 | 超范围=拒单 |
+| I1 泄露-现行铺满 | 受笼子约束 | **全样本**用核对日现行：主板/创业 **2% + 十个价位**拒单；**I1 科创写死：仍 2% 拒单、无十价位**（`ten_tick_star=off`；不得被「主板/创业现行十价位」句带偏） | 超范围=拒单 |
 | I2 诚实-PIT | 受笼子约束 | **每个交易日**用当日已生效文本（切日/存单/无笼分段） | reject / store / none 按 §2.1 |
 
-同一信号、同一 T+1、同一成本开关（本页可先零成本只比笼子处理差）。成交时点默认与假设 A/D 声明一致（建议次日开；若用收须单列）。整手见 E；板上见 A；市价通道见 L——**勿把 A/D/E/L 主结论混进 I 主报告**；稳健性叠加须声明。
+同一信号、同一 T+1、同一成本开关（本页可先零成本只比笼子处理差）。**`fill_time=next_open` 写死**（与假设 A/D 次日开对齐；**本页不用** `next_close`；若要收盘对照须另开页，禁跑后改口）。整手见 E；板上见 A；市价通道见 L——**勿把 A/D/E/L 主结论混进 I 主报告**；稳健性叠加须声明。
 
-**远限价敏感性档（日频）**：事先写死 `params.far_limit_mult`（默认建议 `[1.0, 1.02, 1.05, 1.10]` 相对代理基准；拉数前冻结）。I0 在所有档都当成可成；I1/I2 按笼子上/下界裁切或标废/存。
+**远限价敏感性档（日频）**：`params.far_limit_mult` **写死默认** `[1.0, 1.02, 1.05, 1.10]`（相对代理基准的倍率档）；**拉数前冻结**；**禁 holdout 标定 / 事后改档解读**。I0 在所有档都当成可成；I1/I2 按笼子上/下界（已四舍五入到 tick）裁切或标废/存。
 
 ---
 
@@ -116,7 +133,17 @@ def cage_band(baseline, pct, ten_tick, side):
 
 1. **I0 − I2**：远限价总能成相对 PIT 笼子——废单率差、成交偏离差、净值差。  
 2. **I1 − I2**：现行铺满相对 PIT——看切日前主板/存单期是否被系统性错标成拒单。  
-3. **分桶（须报）**：主板 `<2023-04-10`；创业板存单期 `[2020-08-24, 2023-04-10)`；科创板；切日后拒单期；低价股（十价位孰宽是否敏感）。
+3. **分桶（须报；`params.diff_buckets` 写死默认名；拉数前冻结；禁 holdout 改桶/事后改解读）**：
+
+```
+params.diff_buckets = [
+  "main_pre_20230410",            # 主板 <2023-04-10（无本套笼子）
+  "chinext_store_period",         # 创业板存单期 [2020-08-24, 2023-04-10)
+  "star",                         # 科创板（I1/I2 均无十价位）
+  "post_cut_reject",              # 切日后拒单期（主板+创业 2%+十价位）
+  "low_price_ten_tick_sensitive", # 低价股（十价位孰宽是否敏感；科创桶仍无十价位）
+]
+```
 
 ### 4.2 成功 / 失败判据（相对）
 
@@ -141,9 +168,14 @@ def cage_band(baseline, pct, ten_tick, side):
 | cage_main_cut_date | 主板+创业板拒单/十价位 | **写死默认** `2023-04-10` |
 | ten_tick_star | 科创十价位 | **写死默认 off** |
 | day_freq_mode | 日频模式 | **写死默认** `far_limit_sensitivity` |
-| far_limit_mult | 远限价敏感性倍率列表 | 拉数前写入 params 冻结；禁事后改档 |
+| far_limit_mult | 远限价敏感性倍率列表 | **写死默认** `params.far_limit_mult=[1.0,1.02,1.05,1.10]`；拉数前冻结；禁 holdout/事后改档 |
+| fill_time | 成交时点 | **写死** `fill_time=next_open`（不用 next_close）；拉数前冻结 |
+| diff_buckets | 分桶名列表 | **写死默认** 见 §4.1 五桶；拉数前冻结；禁 holdout 改桶 |
+| ten_tick_floor | 十价位下限 | **写死默认** `params.ten_tick_floor=0.10`；不足 0.1 取到 0.1 |
+| cage_band_round | 笼子边界取整 | **写死** `round_half_up_to_tick`；与假设 F 同向；禁不做取整却输出边界价当真盘口 |
+| i1_star_ten_tick | I1 科创十价位 | **写死 off**：I1 科创仍 2% 拒单、**无**十价位 |
 
-门槛可在 **IS 标定窗**（非 holdout）内事先约定噪声带后写入；**禁止用 holdout / OOS 段标定或反调**。Y/D/N/Y2 开工拉数前必须落进 params（可先占位后冻结）。
+门槛可在 **IS 标定窗**（非 holdout）内事先约定噪声带后写入；**禁止用 holdout / OOS 段标定或反调**。**`far_limit_mult` / `fill_time` / `diff_buckets` / `ten_tick_floor` / `cage_band_round` 已写死默认**，拉数前冻结，不得因 IS/holdout 结果改档/改桶/改时点。Y/D/N/Y2 开工拉数前必须落进 params（可先占位后冻结）。
 
 **失败/不显著**：差异落在噪声带内——结论栏写明，不得改口称「笼子无关」。
 
@@ -170,8 +202,9 @@ def cage_band(baseline, pct, ten_tick, side):
 5. **把笼子和涨跌停混成一句**：板上逻辑属 A/F；本页只报进簿/废单/偏离。  
 6. **无盘口却报「精确复盘」**：违反 `day_freq_mode=far_limit_sensitivity`。  
 7. **与实验 L（市价）混表不标注通道**：限价笼子 ≠ 市价保护限价。  
-8. **宇宙泄露 / holdout 反调**：用今天规则铺满却当 PIT；看完 OOS 再改切日或 `far_limit_mult`。  
-9. **集合竞价/临停范围并进主结论不声明**：见实验 J；本页默认排除。
+8. **宇宙泄露 / holdout 反调**：用今天规则铺满却当 PIT；看完 OOS 再改切日、`far_limit_mult`、`fill_time` 或 `diff_buckets`。  
+9. **集合竞价/临停范围并进主结论不声明**：见实验 J；本页默认排除。  
+10. **笼子边界未取整却当真盘口**：违反 `cage_band_round=round_half_up_to_tick`；或 I1 科创被带偏套十价位；或十价位未用 `ten_tick_floor=0.10`。
 
 ---
 
@@ -195,13 +228,13 @@ def cage_band(baseline, pct, ten_tick, side):
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=I`，`groups=[I0,I1,I2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-12`**，**`params.cage_chinext_start=2020-08-24`**，**`params.cage_main_cut_date=2023-04-10`**，**`params.ten_tick_star=off`**，**`params.day_freq_mode=far_limit_sensitivity`**，**`params.baseline_source_dayfreq=last_or_open_proxy`**，`params.far_limit_mult`（拉数前写入冻结），`params.{Y,D,N,Y2}`（拉数前写入；禁 holdout 标定），`universe_rule`，`date_start/date_end`（可空=待锁），`oos_split.{is_start,is_end,holdout_start,holdout_end}`（占位，禁 holdout 反调），`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_A=off|on`（默认 off），`fill_time=next_open|next_close`（须写死；默认建议 next_open）。  
+- 配置块（写死项加粗）：`hypothesis_id=I`，`groups=[I0,I1,I2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-12`**，**`params.cage_chinext_start=2020-08-24`**，**`params.cage_main_cut_date=2023-04-10`**，**`params.ten_tick_star=off`**，**`params.ten_tick_floor=0.10`**，**`params.day_freq_mode=far_limit_sensitivity`**，**`params.baseline_source_dayfreq=last_or_open_proxy`**，**`params.far_limit_mult=[1.0,1.02,1.05,1.10]`（写死默认；拉数前冻结；禁 holdout/事后改档）**，**`params.diff_buckets=[main_pre_20230410,chinext_store_period,star,post_cut_reject,low_price_ten_tick_sensitive]`（写死默认；拉数前冻结）**，**`params.cage_band_round=round_half_up_to_tick`（写死；边界四舍五入到 tick）**，**`fill_time=next_open`（写死；不用 next_close）**，**I1 科创仍 2% 拒单、无十价位**，`params.{Y,D,N,Y2}`（拉数前写入；禁 holdout 标定），`universe_rule`，`date_start/date_end`（可空=待锁），`oos_split.{is_start,is_end,holdout_start,holdout_end}`（占位，禁 holdout 反调），`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_A=off|on`（默认 off）。  
 - 行情与规则表：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
 
 - I0/I1/I2 废单率、存单未成交计数、偏离、（可选）净值；分桶（主板切日前 / 创业板存单期 / 科创 / 切日后）。  
-- 自检布尔：是否未复权；是否未用前收盘×1.02 唯一基准；科创是否未套十价位；切日前主板是否 none；存单期是否非 reject；`far_limit_mult`/切日/Y·D·N·Y2 是否已冻结；holdout 是否未反调；是否未声称精确盘口复盘。  
+- 自检布尔：是否未复权；是否未用前收盘×1.02 唯一基准；科创是否未套十价位（含 I1）；切日前主板是否 none；存单期是否非 reject；`far_limit_mult=[1.0,1.02,1.05,1.10]`/`fill_time=next_open`/`diff_buckets` 五桶/`ten_tick_floor=0.10`/`cage_band_round`/切日/Y·D·N·Y2 是否已冻结；笼子边界是否四舍五入到 tick；holdout 是否未反调；是否未声称精确盘口复盘。  
 - **禁止输出**：具体买卖标的列表当「建议」；把天真远限价路径当实盘预期；催跑抢 A 真数队列。
 
 **队列声明**：本页纸面就绪 ≠ 开工指令；**不抢实验 A 真数队列**；不催本机 8765 鉴权；不派回测开工。
@@ -224,10 +257,11 @@ def cage_band(baseline, pct, ten_tick, side):
 | 数据 | 待接入（字段见 §6；日频远限价敏感性即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；oos_split 占位+禁 holdout 反调；红线 v0 机制豁免；asof_check_date=2026-10-12 / cage_chinext_start=2020-08-24 / cage_main_cut_date=2023-04-10 / ten_tick_star=off / day_freq_mode=far_limit_sensitivity 写死+拉数前冻结；far_limit_mult 与 Y/D/N/Y2 拉数前入 params |
+| 风控预埋 | fail_policy=skip；oos_split 占位+禁 holdout 反调；红线 v0 机制豁免；asof_check_date=2026-10-12 / cage_chinext_start=2020-08-24 / cage_main_cut_date=2023-04-10 / ten_tick_star=off / day_freq_mode=far_limit_sensitivity 写死+拉数前冻结；**far_limit_mult=[1.0,1.02,1.05,1.10] 写死+拉数前冻结**；**fill_time=next_open 写死**；**diff_buckets 五桶写死+拉数前冻结**；**cage_band_round=round_half_up_to_tick**；**ten_tick_floor=0.10**；**I1 科创仍 2% 拒单、无十价位**；Y/D/N/Y2 拉数前入 params |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管：H 已落盘后继续可离线下一纸面；优先 I；不依赖新数据商；机制类预埋 fail_policy/oos/红线豁免/params 冻结；**不抢实验 A**）。
+- 2026-11-02：风控有条件通过三条补齐——① `params.far_limit_mult=[1.0,1.02,1.05,1.10]` 写死默认并拉数前冻结；② `fill_time=next_open` 写死 + `params.diff_buckets` 五桶名写死冻结；③ `cage_band` 四舍五入到 tick（`cage_band_round=round_half_up_to_tick`）；`ten_tick_floor=0.10`；**I1 科创仍 2% 拒单、无十价位**。参考 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设I-20261102.md`。
