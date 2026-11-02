@@ -179,7 +179,12 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
-        threading.Thread(target=lambda: (HTTPServer.shutdown(self.server)), daemon=True).start()
+        # Only stop on success so a wrong password can be retried without restarting.
+        if STATUS.get("state") == "done":
+            threading.Thread(target=lambda: (HTTPServer.shutdown(self.server)), daemon=True).start()
+        else:
+            STATUS["state"] = "waiting"
+            STATUS["detail"] = STATUS.get("detail") or "last_attempt_failed"
 
 
 def main() -> int:
