@@ -2,7 +2,7 @@
 
 更新：2026-11-02  
 来源：总管线 / AG 补丁已交后并行写下一纸面 AH；清单原止于 AG，无 AH 节 → 自立实验 AH；选题自 `事实与坑`「9:20–9:25、14:57–15:00 不接受撤单（上交所 3.3.1；深交所同口径）」+ 口径「执行鸿沟」；与假设 A（板上可成交）/ H（退市整理期）/ X（主板 ST 涨跌幅）/ E（整手）/ M（盘后补成交）/ O（大宗）/ R（股票 ETF 假回转）/ Q（可转债）/ AC（北交所）/ AD（风险警示 50 万）/ AE（普通股票假 T+0）/ AF（单笔数量上限）/ AG（超涨跌停价无效）/ I（价格笼子）/ F（涨跌停价取整）/ L（市价保护限价）/ N（收盘机制与假 GTC）/ Y（集合量计入日线）**分列**；**新建实验 AH**  
-状态：**草稿 · 待数据 · 待跑 · 待预检**（结论栏空；禁止把「集合竞价不可撤窗内仍可撤单/改单并改写开收盘成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA/AB/AC/AD/AE/AF/AG 及其他 A/D–AG 已交正文与冻结补丁**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-02）**（结论栏空；禁止把「集合竞价不可撤窗内仍可撤单/改单并改写开收盘成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA/AB/AC/AD/AE/AF/AG 及其他 A/D–AG 已交正文与冻结补丁**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单原止于 AG，本页自立实验 AH 标准件。与假设 **H（退市整理期）** **硬分列**：H = 摘牌前整理窗长度/首日无板/指数剔除；本页 = **当日**开盘集合 9:20–9:25 与收盘集合 14:57–15:00 **不可撤窗**内是否仍允许撤改。双字母 **AH ≠ 单字母 H**。与假设 **N（收盘机制与假 GTC）** **分列**：N 主测收盘价产生方式 PIT + **隔夜**限价假 GTC；本页主测**当日**不可撤窗内的假撤改，不重开隔夜有效、不重开沪市收盘切日。与假设 **Y（集合竞价量计入日线）** **分列**：Y 主测集合量是否进连续流动性分母；本页主测撤单合法性，不重开量分母。与假设 A/X/E/M/O/R/Q/AC/AD/AE/AF/AG/I/F/L **分列**：各自主测，不并表。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 不可撤窗 ≠ 隔夜假 GTC；≠ 集合量分母；≠ 退市整理窗
 
 ```
-# 配置写死键（见 §7；值待预检项见 §4.2 / 待预检键）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AH；≠ 实验字母 H
 # params.asof_check_date                 写死默认 2026-10-19  # 事实与坑会话/撤单核对锚（与 N 同批会话规则）
 # params.fill_time                        写死 next_open      # 主腿与 A/D 对齐；收盘窗冲击作旁路指标；不抢 A 板上真数
@@ -31,7 +31,7 @@
 # params.open_nocancel_window            写死 09:20-09:25    # 开盘集合不可撤窗（上交所 3.3.1）
 # params.close_nocancel_window           写死 14:57-15:00    # 收盘集合不可撤窗
 # params.nocancel_policy_honest          写死 reject_cancel_replace  # 诚实：窗内撤/改 → 无效
-# params.ah0_primary_demo                待预检（建议 invent_cancel_in_nocancel_window）  # 主报：窗内仍允许撤单并改写成交；禁与 invent_replace_improve_fill 双挂
+# params.ah0_primary_demo                写死 invent_cancel_in_nocancel_window  # 风控补丁冻结；主报：窗内仍允许撤单并改写成交；禁与 invent_replace_improve_fill 双挂争主表
 # params.ah0_invent_cancel_in_nocancel   写死 True           # 天真主路径
 # params.ah0_invent_replace_improve_fill 写死 False          # 诊断可叠；主报以 ah0_primary_demo 为准
 # params.ah1_open_only_invent            写死 True           # 半泄露：只在开盘不可撤窗发明撤改，收盘窗按诚实
@@ -59,7 +59,7 @@
 # params.missing_session_clock_policy    写死 skip           # 缺会话钟/申报时戳 → skip（禁静默当可撤）
 # params.day_freq_proxy                  写死 open_close_path_sensitivity  # 日频无 L2 时只报「不可撤窗假撤改」敏感性档；禁假装精确复盘簿
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  待预检（建议 0.02/0.01/0.05/0.015）；params.Y≠实验字母 AH；禁 null/holdout
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 AH；禁 null/holdout
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -70,7 +70,7 @@ px_basis = "unadj"
 open_nocancel_window = "09:20-09:25"
 close_nocancel_window = "14:57-15:00"
 nocancel_policy_honest = "reject_cancel_replace"
-ah0_primary_demo = "invent_cancel_in_nocancel_window"  # 建议值；待预检写死
+ah0_primary_demo = "invent_cancel_in_nocancel_window"  # 风控补丁冻结；禁双挂
 ah0_invent_cancel_in_nocancel = True
 ah0_invent_replace_improve_fill = False
 ah1_open_only_invent = True
@@ -83,8 +83,8 @@ universe_rule = "sse_szse_common_stock"
 missing_session_clock_policy = "skip"
 day_freq_proxy = "open_close_path_sensitivity"
 
-# 拉数前冻结建议（待预检）；禁 holdout / 事后改口 / 禁跑后改 ah0_primary_demo
-Y = 0.02   # 建议；相对门槛 ≠ 实验字母 AH
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改 ah0_primary_demo
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 AH
 G = 0.01
 N = 0.05
 Y2 = 0.015
@@ -126,14 +126,14 @@ def apply_cancel_replace(order, action, ts, group):
 
 **`params.merge_with_N_close_gtc=False` / `merge_with_Y_call_vol=False` / `merge_with_H_exit=False` / `merge_with_A_fill=False` / `merge_with_M_aft=False` / `merge_with_O_block=False` / `merge_with_X_st_limit=False` / `merge_with_E_lot=False` / `merge_with_R_etf_rotation=False` / `merge_with_Q_cb_rotation=False` / `merge_with_AC_bse=False` / `merge_with_AD_50w=False` / `merge_with_AE_stock_t0=False` / `merge_with_AF_qty_cap=False` / `merge_with_AG_beyond_limit=False` / `merge_with_I_cage=False` / `merge_with_F_round=False` / `merge_with_L_mkt=False`（写死）**。
 
-**待预检键（纸面占位；拉数前须写死冻结；禁 null；禁 holdout 标定；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.Y                            = 0.02                      # 建议；可成交名义/冲击差显著门槛；≠实验字母 AH
-params.G                            = 0.01                      # 建议；假撤改桶相对对照差
-params.N                            = 0.05                      # 建议；失败/废单率差门槛
-params.Y2                           = 0.015                     # 建议；AH1（仅开盘窗发明）相对 AH2 专项门槛
-params.ah0_primary_demo             = invent_cancel_in_nocancel_window  # 建议；主报窗内假撤；禁与 invent_replace_improve_fill 双挂争主表
+params.Y                            = 0.02                      # 可成交名义/冲击差显著门槛；≠实验字母 AH
+params.G                            = 0.01                      # 假撤改桶相对对照差
+params.N                            = 0.05                      # 失败/废单率差门槛
+params.Y2                           = 0.015                     # AH1（仅开盘窗发明）相对 AH2 专项门槛
+params.ah0_primary_demo             = invent_cancel_in_nocancel_window  # 主报窗内假撤；禁与 invent_replace_improve_fill 双挂争主表
 ```
 
 ---
@@ -193,21 +193,21 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔNotional| 或 |ΔImpact| **≥ params.Y** 或 |ΔFakeCancel 桶贡献| **≥ params.G** 或 |ΔNotional_(AH1−AH2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「集合竞价不可撤窗执行鸿沟显著」。
 
-**params.Y / G / N / Y2（待预检；与实验字母 AH 无关）**
+**params.Y / G / N / Y2（已冻结；与实验字母 AH 无关）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 名义/冲击差显著门槛（≠实验字母 AH） | **待预检**建议 `0.02`；拉数前写死冻结 |
-| params.G | 假撤改桶相对对照差 | **待预检**建议 `0.01`；拉数前写死冻结 |
-| params.N | 失败/废单率差门槛 | **待预检**建议 `0.05`；拉数前写死冻结 |
-| params.Y2 | AH1−AH2 专项门槛 | **待预检**建议 `0.015`；拉数前写死冻结 |
+| params.Y | 名义/冲击差显著门槛（≠实验字母 AH） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 假撤改桶相对对照差 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败/废单率差门槛 | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | AH1−AH2 专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-19` |
 | fill_time | 成交时点 | **写死** `next_open` |
 | nocancel_policy_honest | 诚实窗内处理 | **写死** `reject_cancel_replace` |
-| ah0_primary_demo | 天真主报枚举 | **待预检**建议 `invent_cancel_in_nocancel_window`（禁双挂） |
+| ah0_primary_demo | 天真主报枚举 | **写死冻结** `invent_cancel_in_nocancel_window`（禁双挂；风控补丁 2026-11-02） |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛键名与建议值见上；**禁止用 holdout / 事后显著性改口**；**`ah0_primary_demo` 单一主报，禁与 invent_replace_improve_fill 双挂争主表**。
+门槛键名与冻结值见上；**禁止用 holdout / 事后显著性改口**；**`ah0_primary_demo` 单一主报，禁与 invent_replace_improve_fill 双挂争主表**。
 
 **失败/不显著**：差异落在噪声带内或均匀散在非不可撤窗对照桶——结论栏写明，不得改口称「集合竞价撤单差不多可忽略」或「这类票更能改单」。
 
@@ -259,7 +259,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=AH`（**实验字母**；**≠H**），`groups=[AH0,AH1,AH2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-19`**，**`params.fill_time=next_open`（写死）**，**`params.px_basis=unadj`**，**`params.open_nocancel_window=09:20-09:25`**，**`params.close_nocancel_window=14:57-15:00`**，**`params.nocancel_policy_honest=reject_cancel_replace`**，**`params.merge_with_N_close_gtc=False`**，**`params.merge_with_Y_call_vol=False`**，**`params.merge_with_H_exit=False`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_M_aft=False`**，**`params.merge_with_O_block=False`**，**`params.merge_with_X_st_limit=False`**，**`params.merge_with_E_lot=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.merge_with_Q_cb_rotation=False`**，**`params.merge_with_AC_bse=False`**，**`params.merge_with_AD_50w=False`**，**`params.merge_with_AE_stock_t0=False`**，**`params.merge_with_AF_qty_cap=False`**，**`params.merge_with_AG_beyond_limit=False`**，**`params.merge_with_I_cage=False`**，**`params.merge_with_F_round=False`**，**`params.merge_with_L_mkt=False`**，**`params.universe_rule=sse_szse_common_stock`**，**`params.missing_session_clock_policy=skip`**，**`params.day_freq_proxy=open_close_path_sensitivity`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y/G/N/Y2` 待预检建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 AH；禁 null/holdout）**，**`params.ah0_primary_demo` 待预检建议 invent_cancel_in_nocancel_window（禁双挂）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_N=off`，`overlay_Y=off`，`overlay_H=off`，`overlay_A=off`。  
+- 配置块（写死项加粗）：`hypothesis_id=AH`（**实验字母**；**≠H**），`groups=[AH0,AH1,AH2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-19`**，**`params.fill_time=next_open`（写死）**，**`params.px_basis=unadj`**，**`params.open_nocancel_window=09:20-09:25`**，**`params.close_nocancel_window=14:57-15:00`**，**`params.nocancel_policy_honest=reject_cancel_replace`**，**`params.merge_with_N_close_gtc=False`**，**`params.merge_with_Y_call_vol=False`**，**`params.merge_with_H_exit=False`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_M_aft=False`**，**`params.merge_with_O_block=False`**，**`params.merge_with_X_st_limit=False`**，**`params.merge_with_E_lot=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.merge_with_Q_cb_rotation=False`**，**`params.merge_with_AC_bse=False`**，**`params.merge_with_AD_50w=False`**，**`params.merge_with_AE_stock_t0=False`**，**`params.merge_with_AF_qty_cap=False`**，**`params.merge_with_AG_beyond_limit=False`**，**`params.merge_with_I_cage=False`**，**`params.merge_with_F_round=False`**，**`params.merge_with_L_mkt=False`**，**`params.universe_rule=sse_szse_common_stock`**，**`params.missing_session_clock_policy=skip`**，**`params.day_freq_proxy=open_close_path_sensitivity`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015`（写死冻结；禁 holdout；禁 null；params.Y≠实验字母 AH）**，**`params.ah0_primary_demo=invent_cancel_in_nocancel_window`（写死冻结；禁双挂）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_N=off`，`overlay_Y=off`，`overlay_H=off`，`overlay_A=off`。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -288,11 +288,12 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；会话钟或日频代理即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-19；**fill_time=next_open 写死**；**nocancel_policy_honest=reject_cancel_replace / 两窗写死**；diff_buckets 九桶写死冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015 待预检（params.Y≠实验字母 AH）**；**ah0_primary_demo 建议 invent_cancel_in_nocancel_window 待预检（禁双挂）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-19；**fill_time=next_open 写死**；**nocancel_policy_honest=reject_cancel_replace / 两窗写死**；diff_buckets 九桶写死冻结；**Y/G/N/Y2=0.02/0.01/0.05/0.015 写死冻结（params.Y≠实验字母 AH）**；**ah0_primary_demo=invent_cancel_in_nocancel_window 写死冻结（禁双挂）**；**风控补丁两条 2026-11-02 已写死待复检** |
 
 ---
 
 ## 变更
 
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AH-20261102.md` 有条件通过补两条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写死冻结（**params.Y≠实验字母 AH**；禁 null/holdout 标定）；② `params.ah0_primary_demo=invent_cancel_in_nocancel_window` 写死冻结（禁与 `invent_replace_improve_fill` 双挂争主表）。**已写死待复检**；**不抢实验 A**；**不开回测**；**不改假设-H**；**不改 Y/Z/AA/AB/AC/AD/AE/AF/AG 及其他 A/D–AG 正文**。
 - 2026-11-02：新建标准件（总管线：AG 补丁已交后写下一纸面 AH；Y/Z/AA/AB/AC/AD/AE/AF/AG 补丁已交不改；清单止于 AG → 自 `事实与坑`「9:20–9:25 / 14:57–15:00 不接受撤单」选题，**与 A/H/X/E/M/O/AC/AD/AE/AF/AG/R/Q 及 I/F/L 及 N/Y 不撞主结论**；**明确与假设-H 分列：AH≠H**；近邻 N=隔夜假 GTC/收盘机制、Y=集合量分母、H=退市整理，本页主测当日不可撤窗假撤改；**实验字母 AH ≠ params.Y ≠ 实验字母 H**；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 Y/Z/AA/AB/AC/AD/AE/AF/AG/A/D–AG 正文**）。
 
