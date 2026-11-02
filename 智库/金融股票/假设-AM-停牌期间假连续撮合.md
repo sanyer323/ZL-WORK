@@ -2,7 +2,7 @@
 
 更新：2026-11-02  
 来源：总管线 / AL 补丁已交后写下一纸面 AM；清单原止于 AL，无 AM 节 → 自立实验 AM；选题自 `事实与坑`「无涨跌幅日盘中临时停牌：停牌期间可申报也可撤单；复牌对已接受申报做集合竞价；跨越 14:57 且须当日复牌的，于 14:57 复牌（先复牌集合再收盘集合）（上交所 4.2.5；深交所 4.3.4 / 4.3.6）。核对日锚 2026-10-12」+ 口径「执行鸿沟」；与假设 A（板上可成交）/ H（退市整理）/ X（主板 ST 涨跌幅）/ E（整手）/ M（盘后补成交）/ O（大宗）/ R（股票 ETF 假回转）/ Q（可转债）/ AC（北交所）/ AD（风险警示 50 万）/ AE（普通股票假 T+0）/ AF（单笔数量上限）/ AG（超涨跌停价无效）/ AH（集合不可撤窗假撤改）/ AI（无板日集合有效申报范围）/ AJ（临停复牌假连续）/ AK（集合竞价时段假连续）/ AL（午休与开盘空窗假连续）/ I（价格笼子）/ F（涨跌停价取整）/ L（市价通道）/ G（无板日误套板块默认板）/ J（无板日临停触发）/ D（成交时点与停牌）/ N（收盘机制与假 GTC）/ Y（集合量分母）/ K（融券空头名单）/ AA（分钟 bar 时区误标）**分列**；**新建实验 AM**  
-状态：**草稿 · 待数据 · 待跑 · 待预检**（结论栏空；禁止把「停牌钟点内仍连续撮合」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AL 及其他 A/D–AL 已交正文与冻结补丁；不改假设-H；不改假设-J；不改假设-AJ；不改假设-D；不改假设-M；不改假设-AL**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-02）**（结论栏空；禁止把「停牌钟点内仍连续撮合」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AL 及其他 A/D–AL 已交正文与冻结补丁；不改假设-H；不改假设-J；不改假设-AJ；不改假设-D；不改假设-M；不改假设-AL**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单原止于 AL，本页自立实验 AM 标准件。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/排队能否按板上价成交；本页 = **停牌（含临停与其他停牌）钟点内是否被发明成连续可撮合**。双字母 **AM ≠ 单字母 A**。与假设 **M（盘后补成交）** **硬分列**：M = 盘后固定价格通道误套/竞价剩单自动进盘后；本页 = **竞价时段内停牌窗**假连续撮合，**不**开盘后 15:05 通道。双字母 **AM ≠ 单字母 M**。与假设 **J（无板日临停）** **分列**：J = 较开盘价 30%/60% **触发**与用最高/最低穿过临停窗当全日连续可成；本页 = 一旦已处停牌钟点，**窗内**是否仍记连续成交（不重开 30%/60% 触发主结论）。与假设 **AJ（临停复牌假连续）** **分列**：AJ = **复牌瞬间**跳过复牌集合、假连续；本页 = **停牌持续期间**假连续，不主测复牌撮合方式。与假设 **D（成交时点与停牌）** **分列**：D = 次日开/收成交时点与**全日**停牌/无成交当横盘可交易；本页 = **日内停牌钟点**撮合可否。与假设 **AL（午休与开盘空窗）** **分列**：AL = 日常非停牌的会话空窗；本页 = **停牌事件驱动**的不可连续撮合窗。与假设 A/H/X/E/M/O/R/Q/AC–AL/I/F/L/G/J/N/Y/AA/D/K **分列**：各自主测，不并表。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 停牌窗假连续 ≠ 临停触发；≠ 复牌撮合；≠ 全日停牌横盘；≠ 盘后；≠ 板上枯竭；≠ 会话空窗
 
 ```
-# 配置写死键（见 §7；两条待预检键见文末）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AM；≠ 实验字母 A；≠ 实验字母 M
 # params.asof_check_date                 写死默认 2026-10-12  # 事实与坑「临停/停牌期间可申报撤单、复牌集合」核对锚
 # params.fill_time                        写死 next_open      # 主腿与 A/D 对齐；停牌窗冲击作主测；不抢 A 板上真数
@@ -32,7 +32,7 @@
 # params.halt_match_honest               写死 no_continuous_match  # 诚实：停牌窗不连续撮合（可申报/撤单不记成交）
 # params.halt_accept_orders_honest       写死 True           # 诚实：停牌窗可接受申报/撤单（不因此发明成交）
 # params.resume_match_handoff            写死 aj_page        # 复牌撮合方式交 AJ；本页不重开
-# params.am0_primary_demo                待预检（建议 invent_halt_window_continuous_fill）；禁与 invent_halt_as_flat_tradeable 双挂
+# params.am0_primary_demo                写死 invent_halt_window_continuous_fill  # 风控补丁冻结；主报：停牌窗假连续；禁与 invent_halt_as_flat_tradeable 双挂争主表
 # params.am0_invent_halt_continuous      写死 True           # 天真主路径（随 primary_demo）
 # params.am1_intraday_temp_halt_only     写死 True           # 半泄露：仅临停窗发明连续；其他停牌诚实 no_match
 # params.am2_halt_match                  写死 no_continuous_match
@@ -68,7 +68,7 @@
 # params.missing_halt_clock_policy       写死 skip           # 缺停牌起止钟/时戳 → skip（禁静默当未停牌连续）
 # params.day_freq_proxy                  写死 halt_window_match_sensitivity  # 日频无 L2 时只报「停牌窗假连续」敏感性档；禁假装精确复盘簿
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  键名稳、值待预检（建议 0.02/0.01/0.05/0.015）；params.Y≠实验字母 AM；禁 null/holdout
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 AM；禁 null/holdout
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -80,7 +80,7 @@ tick = 0.01
 halt_match_honest = "no_continuous_match"
 halt_accept_orders_honest = True
 resume_match_handoff = "aj_page"
-# am0_primary_demo = 待预检（建议 "invent_halt_window_continuous_fill"）
+am0_primary_demo = "invent_halt_window_continuous_fill"  # 风控补丁冻结；禁双挂
 am0_invent_halt_continuous = True
 am1_intraday_temp_halt_only = True
 am2_halt_match = "no_continuous_match"
@@ -88,11 +88,11 @@ universe_rule = "sse_szse_common_stock_halt_windows"
 missing_halt_clock_policy = "skip"
 day_freq_proxy = "halt_window_match_sensitivity"
 
-# 拉数前须冻结（待预检；建议值如下；禁 holdout / 事后改口 / 禁跑后改 am0_primary_demo）
-# Y = 0.02   # 建议；相对门槛 ≠ 实验字母 AM
-# G = 0.01
-# N = 0.05
-# Y2 = 0.015
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改 am0_primary_demo
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 AM
+G = 0.01
+N = 0.05
+Y2 = 0.015
 
 def in_halt_window(ts, halt_intervals):
     """halt_intervals: list of [start, end) in session clock; inclusive of temp halt and other suspensions."""
@@ -134,14 +134,14 @@ def halt_match_mode(group, ts, halt_intervals, is_temp_halt_only_interval):
 
 **全部 `merge_with_*=False`（写死；含 A/M/J/AJ/D/AL/AK/AH/AI/AG/I/F/L/H/X/E/O/R/Q/AC/AD/AE/AF/G/N/Y/K/AA）**。
 
-**待预检两条（拉数前须写死冻结；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.Y                            # 待预检；建议 0.02；可成交名义/冲击差显著门槛；≠实验字母 AM
-params.G                            # 待预检；建议 0.01；停牌窗假连续桶相对对照差
-params.N                            # 待预检；建议 0.05；失败/废单率差门槛
-params.Y2                           # 待预检；建议 0.015；AM1（仅临停窗假连续）相对 AM2 专项门槛
-params.am0_primary_demo             # 待预检；建议 invent_halt_window_continuous_fill；禁与 invent_halt_as_flat_tradeable 双挂争主表
+params.Y                            = 0.02                      # 可成交名义/冲击差显著门槛；≠实验字母 AM
+params.G                            = 0.01                      # 停牌窗假连续桶相对对照差
+params.N                            = 0.05                      # 失败/废单率差门槛
+params.Y2                           = 0.015                     # AM1（仅临停窗假连续）相对 AM2 专项门槛
+params.am0_primary_demo             = invent_halt_window_continuous_fill  # 主报：停牌窗假连续；禁与 invent_halt_as_flat_tradeable 双挂争主表
 ```
 
 ---
@@ -203,17 +203,17 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔNotional| 或 |ΔImpact| **≥ params.Y** 或 |ΔFakeHaltCont 桶贡献| **≥ params.G** 或 |ΔNotional_(AM1−AM2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「停牌窗撮合执行鸿沟显著」。
 
-**params.Y / G / N / Y2（键名稳；值待预检；与实验字母 AM 无关）**
+**params.Y / G / N / Y2（写死冻结；与实验字母 AM 无关；风控补丁 2026-11-02）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 名义/冲击差显著门槛（≠实验字母 AM） | **待预检**（建议 `0.02`）；拉数前冻结；禁 null/holdout |
-| params.G | 停牌窗假连续桶相对对照差 | **待预检**（建议 `0.01`） |
-| params.N | 失败/废单率差门槛 | **待预检**（建议 `0.05`） |
-| params.Y2 | AM1−AM2 专项门槛 | **待预检**（建议 `0.015`） |
+| params.Y | 名义/冲击差显著门槛（≠实验字母 AM） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 停牌窗假连续桶相对对照差 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败/废单率差门槛 | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | AM1−AM2 专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-12` |
 | fill_time | 成交时点 | **写死** `next_open` |
-| am0_primary_demo | 天真主报枚举 | **待预检**（建议 `invent_halt_window_continuous_fill`；禁双挂） |
+| am0_primary_demo | 天真主报枚举 | **写死冻结** `invent_halt_window_continuous_fill`（禁双挂；风控补丁 2026-11-02） |
 
 ### 4.3 红线 v0
 
@@ -251,7 +251,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`AM`  
 - **组**：AM0 / AM1 / AM2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-12`；`halt_match_honest=no_continuous_match`；`halt_accept_orders_honest=True`；`resume_match_handoff=aj_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_halt_windows`；`missing_halt_clock_policy=skip`；`day_freq_proxy=halt_window_match_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 键名稳、值待预检（建议 0.02/0.01/0.05/0.015；params.Y≠实验字母 AM；禁 null/holdout）**；**`params.am0_primary_demo` 待预检（建议 invent_halt_window_continuous_fill；禁与 invent_halt_as_flat_tradeable 双挂）**；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-12`；`halt_match_honest=no_continuous_match`；`halt_accept_orders_honest=True`；`resume_match_handoff=aj_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_halt_windows`；`missing_halt_clock_policy=skip`；`day_freq_proxy=halt_window_match_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2=0.02/0.01/0.05/0.015` 写死冻结**（params.Y≠实验字母 AM；禁 null/holdout）；**`params.am0_primary_demo=invent_halt_window_continuous_fill` 写死冻结**（禁与 invent_halt_as_flat_tradeable 双挂；风控补丁 2026-11-02）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -280,17 +280,18 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；停牌钟或日频代理即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-12；**fill_time=next_open 写死**；**halt_match_honest=no_continuous_match 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 键名稳、值待预检（建议 0.02/0.01/0.05/0.015；params.Y≠实验字母 AM）**；**am0_primary_demo 待预检（建议 invent_halt_window_continuous_fill；禁双挂）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-12；**fill_time=next_open 写死**；**halt_match_honest=no_continuous_match 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2=0.02/0.01/0.05/0.015 写死冻结（params.Y≠实验字母 AM）**；**am0_primary_demo=invent_halt_window_continuous_fill 写死冻结（禁双挂）**；**风控补丁两条 2026-11-02 已写死待复检** |
 
 ---
 
-## 待预检键（拉数前不补则打回）
+## 已冻结键（风控补丁 2026-11-02；已写死待复检）
 
-1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：键名稳；值**待预检**（建议 `0.02` / `0.01` / `0.05` / `0.015`）；**`params.Y` ≠ 实验字母 AM**；须写死冻结；禁 null / holdout 标定。  
-2. **`params.am0_primary_demo`**：**待预检**（建议 **`invent_halt_window_continuous_fill`**）；禁与 **`invent_halt_as_flat_tradeable`** 双挂争主表。
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 AM**；禁 null / holdout 标定。  
+2. **`params.am0_primary_demo`**：**写死冻结** **`invent_halt_window_continuous_fill`**；禁与 **`invent_halt_as_flat_tradeable`** 双挂争主表。
 
 ---
 
 ## 变更
 
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AM-20261102.md` 有条件通过补两条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写死冻结（**params.Y≠实验字母 AM**；禁 null/holdout 标定）；② `params.am0_primary_demo=invent_halt_window_continuous_fill` 写死冻结（禁与 `invent_halt_as_flat_tradeable` 双挂争主表）。**已写死待复检**；**不抢实验 A**；**不开回测**；**不改假设-H**；**不改假设-J**；**不改假设-AJ**；**不改假设-D**；**不改假设-M**；**不改假设-AL**；**不改 Y/Z/AA–AL 及其他 A/D–AL 正文**。
 - 2026-11-02：新建标准件（总管线：AL 补丁已交后写下一纸面 AM；Y/Z/AA–AL 补丁已交不改；清单止于 AL → 自 `事实与坑`「停牌期间可申报/撤单、不连续撮合；复牌集合另页」选题，**与 A/H/X/E/M/O/AC–AL/R/Q/I/F/L/J/G/D/N/Y/AA/K 不撞主结论**；**明确双字母 AM ≠ 单字母 A ≠ 单字母 M**；近邻 J=临停触发、AJ=复牌假连续、D=全日停牌时点、AL=会话空窗、A=板上、M=盘后，本页主测停牌期间假连续；**实验字母 AM ≠ params.Y ≠ 实验字母 A ≠ 实验字母 M**；机制类预埋 fail_policy/oos/红线豁免/params 键；**待预检两条**见上；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 Y/Z/AA–AL/A/D–AL 正文**；**不改假设-H**；**不改假设-J**；**不改假设-AJ**；**不改假设-D**；**不改假设-M**；**不改假设-AL**）。
