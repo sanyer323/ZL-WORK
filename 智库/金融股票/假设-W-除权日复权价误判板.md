@@ -21,7 +21,7 @@
 ### 2.1 判板基准三套；除权参考价用交易所公式；收益复权 ≠ 板上复权（未复权判板）
 
 ```
-# 配置写死键（见 §7；Y/G/N/Y2 与若干枚举待预检冻结）
+# 配置写死键（见 §7；风控补丁四条已冻结 2026-11-02；D_ex 与 G 合并）
 # params.asof_check_date                 写死默认 2026-10-05  # 事实与坑「整手+取整+除权公式」核对日
 # params.fill_time                        写死 next_open      # 成交腿与 A/D 对齐；本页主测标签，不抢 A 板上真数
 # params.tick                            写死 0.01           # 仅 A 股股票；禁基金 0.001 混主结论
@@ -30,7 +30,7 @@
 # params.round_half_up_to_tick           写死 True           # 诚实组板上价先取整（对齐 F1）；本页不主测取整差
 # params.w0_price_basis                  写死 adj_close      # 天真：数据商复权收盘判板
 # params.w0_preclose_basis               写死 adj_preclose   # 天真：复权前收盘当涨跌幅基准
-# params.w0_adj_flavor                   写死 forward_or_backward  # 前复权/后复权均可进天真臂；须分列报告
+# params.w0_adj_flavor                   写死 dual_report_forward_and_backward  # 前/后复权分列报告；禁只跑一种却写「复权都一样」；禁双挂未声明
 # params.w1_exref_formula                写死 cash_only      # 误切：只减现金红利，忘送转/配股
 # params.w2_price_basis                  写死 raw_close      # PIT 诚实：未复权收盘
 # params.w2_preclose_basis               写死 exchange_preclose_or_exref  # 除权日=交易所除权参考价
@@ -43,11 +43,11 @@
 # params.missing_exref_policy            写死 skip           # 除权日缺交易所参考价 → skip，禁静默用昨收/复权前收
 # params.missing_adj_policy              写死 skip           # 天真臂缺复权列 → skip，禁静默 raw
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  键名稳值待预检      # 建议占位 0.02/0.01/0.05/0.015；禁 holdout 标定
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；禁 holdout 标定；禁 null
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
-# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 price_basis、exref 公式、Y/G/N/Y2、主窗/oos、w1_primary_demo
+# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 price_basis、exref 公式、Y/G/N/Y2、主窗/oos、w0_adj_flavor、w1_primary_demo、D_ex
 
 fill_time = "next_open"
 asof_check_date = "2026-10-05"
@@ -68,6 +68,14 @@ merge_with_S_T_U_V_fee = False
 missing_ex_flag_policy = "skip"
 missing_exref_policy = "skip"
 missing_adj_policy = "skip"
+Y = 0.02
+G = 0.01
+N = 0.05
+Y2 = 0.015
+w0_adj_flavor = "dual_report_forward_and_backward"
+w1_primary_demo = "cash_only_exref"
+D_ex = 0.01  # 与 G 合并同槽；D_ex ≡ G
+D_ex_merged_with_G = True
 
 def round_half_up(x, tick=0.01):
     from math import floor
@@ -162,16 +170,17 @@ def tags_for_group(group, row):
 
 **`params.merge_with_A_fill=False` / `params.merge_with_F_rounding=False` / `params.merge_with_G_limit_pct_pit=False` / `params.merge_with_S_T_U_V_fee=False`（写死）**：A/F/G/费用层不得混进本页主表当主结论。
 
-**待预检冻结键（草稿占位；拉数前必须写入具体值；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁四条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.Y                            # 建议 0.02；标签差异率显著门槛（全样本或除权桶）
-params.G                            # 建议 0.01；除权日相对非除权日差异率差门槛（D_ex 同义可别名）
-params.N                            # 建议 0.05；失败/跳过率差门槛
-params.Y2                           # 建议 0.015；送转/配股日或 W1 cash_only 专项差异门槛
-params.w0_adj_flavor                # 建议 dual_report_forward_and_backward（前/后复权分列报告）；禁只跑一种却写「复权都一样」；禁双挂未声明
-params.w1_primary_demo              # 建议 cash_only_exref（主报自造参考价）；枚举另有 adj_forward_tag / adj_backward_tag；禁双挂
-params.D_ex                         # 可选与 G 同槽；除权日 δ_ex − 非除权 δ_nex 门槛；待预检写死或与 G 合并声明
+params.Y                            = 0.02                # 标签差异率显著门槛 ≥ 2pp（同系列纸面占位；来源 L/M/N/O/P/R/S/T/U/V；禁 holdout 标定）
+params.G                            = 0.01                # 除权日相对非除权日差异率差门槛 ≥ 1pp（ΔTag_ex）
+params.N                            = 0.05                # 失败/跳过率差门槛 ≥ 5pp
+params.Y2                           = 0.015               # 送转/配股日或 W1 cash_only 专项差异门槛 ≥ 1.5pp
+params.w0_adj_flavor                = dual_report_forward_and_backward  # 前/后复权分列报告；禁只跑一种却写「复权都一样」；禁双挂未声明
+params.w1_primary_demo              = cash_only_exref     # 主报自造参考价；枚举另有 adj_forward_tag / adj_backward_tag；禁双挂争主表
+params.D_ex                         = 0.01                # 与 params.G 合并同槽（除权日 δ_ex − 非除权 δ_nex）；D_ex ≡ G；不另立冲突门槛
+params.D_ex_merged_with_G           = True                # 显式合并声明（预检条件④）；禁缺键静默自造
 ```
 
 ---
@@ -239,10 +248,13 @@ params.diff_buckets = [
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| Y | 标签差异率显著门槛 | **待预检写入**具体数并冻结（建议 0.02） |
-| G | 除权日相对非除权差异率差门槛 | **待预检**（建议 0.01） |
-| N | 失败笔数率差门槛 | **待预检**（建议 0.05） |
-| Y2 | 送转/配股或 cash_only 专项门槛 | **待预检**（建议 0.015） |
+| Y | 标签差异率显著门槛 | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| G | 除权日相对非除权差异率差门槛 | **写死冻结** `0.01`（与 D_ex 合并同槽） |
+| N | 失败笔数率差门槛 | **写死冻结** `0.05` |
+| Y2 | 送转/配股或 cash_only 专项门槛 | **写死冻结** `0.015` |
+| D_ex | 除权日 δ_ex − 非除权 δ_nex | **与 G 合并**；`D_ex=0.01`；`D_ex_merged_with_G=True` |
+| w0_adj_flavor | 复权口味 | **写死** `dual_report_forward_and_backward` |
+| w1_primary_demo | 主报枚举 | **写死** `cash_only_exref`（禁双挂） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-05`；拉数前冻结 |
 | fill_time | 成交时点 | **写死** `next_open` |
 | tick | 最小价位 | **写死** 0.01（仅 A 股股票） |
@@ -250,7 +262,7 @@ params.diff_buckets = [
 | w2_preclose_basis | 诚实基准 | **写死** `exchange_preclose_or_exref` |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛键名已列；**具体数值待风控预检有条件通过后写入并冻结**；**禁止用 holdout / OOS 段标定或反调**。
+门槛键名与具体数值已写入 params 并冻结（风控补丁 2026-11-02）；**禁止用 holdout / OOS 段标定或反调**。
 
 **失败/不显著**：差异落在噪声带内或均匀散在非除权日——结论栏写明，不得改口称「复权判板差不多」或「这类除权票能买」。
 
@@ -306,7 +318,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=W`，`groups=[W0,W1,W2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-05`**，**`params.fill_time=next_open`（写死）**，**`params.tick=0.01`**，**`params.tag_cmp=ge_le`**，**`params.limit_pct_source=board_st_day_effective`**，**`params.round_half_up_to_tick=True`**，**`params.w0_price_basis=adj_close`**，**`params.w0_preclose_basis=adj_preclose`**，**`params.w1_exref_formula=cash_only`**，**`params.w2_price_basis=raw_close`**，**`params.w2_preclose_basis=exchange_preclose_or_exref`**，**`params.exref_formula_source=exchange_rule`**，**`params.missing_ex_flag_policy=skip`**，**`params.missing_exref_policy=skip`**，**`params.missing_adj_policy=skip`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_F_rounding=False`**，**`params.merge_with_G_limit_pct_pit=False`**，**`params.merge_with_S_T_U_V_fee=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y/G/N/Y2`（待预检写入具体数并冻结；禁 holdout 标定；禁 null）**，**`params.w0_adj_flavor` / `params.w1_primary_demo`（待预检；禁双挂）**，`universe_rule`，**`params.date_start=2020-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2020-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_F=off`，`overlay_G=off`，`overlay_S=off`，`overlay_T=off`，`overlay_U=off`，`overlay_V=off`。  
+- 配置块（写死项加粗）：`hypothesis_id=W`，`groups=[W0,W1,W2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-05`**，**`params.fill_time=next_open`（写死）**，**`params.tick=0.01`**，**`params.tag_cmp=ge_le`**，**`params.limit_pct_source=board_st_day_effective`**，**`params.round_half_up_to_tick=True`**，**`params.w0_price_basis=adj_close`**，**`params.w0_preclose_basis=adj_preclose`**，**`params.w1_exref_formula=cash_only`**，**`params.w2_price_basis=raw_close`**，**`params.w2_preclose_basis=exchange_preclose_or_exref`**，**`params.exref_formula_source=exchange_rule`**，**`params.missing_ex_flag_policy=skip`**，**`params.missing_exref_policy=skip`**，**`params.missing_adj_policy=skip`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_F_rounding=False`**，**`params.merge_with_G_limit_pct_pit=False`**，**`params.merge_with_S_T_U_V_fee=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015`（写死冻结；禁 holdout 标定；禁 null）**，**`params.w0_adj_flavor=dual_report_forward_and_backward`（写死；禁双挂未声明）**，**`params.w1_primary_demo=cash_only_exref`（写死；禁双挂）**，**`params.D_ex=0.01` / `params.D_ex_merged_with_G=True`（与 G 合并冻结）**，`universe_rule`，**`params.date_start=2020-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2020-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_F=off`，`overlay_G=off`，`overlay_S=off`，`overlay_T=off`，`overlay_U=off`，`overlay_V=off`。  
 - 行情与除权字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -335,10 +347,11 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；日频未复权行情 + 交易所前收盘/除权字段 + 复权列即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2020-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-05；**fill_time=next_open 写死**；**tick=0.01 / tag_cmp=ge_le / w2_preclose_basis=exchange_preclose_or_exref 写死**；diff_buckets 十二桶写死冻结；**Y/G/N/Y2·w0_adj_flavor·w1_primary_demo 待预检** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2020-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-05；**fill_time=next_open 写死**；**tick=0.01 / tag_cmp=ge_le / w2_preclose_basis=exchange_preclose_or_exref 写死**；diff_buckets 十二桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死冻结**；**w0_adj_flavor=dual_report_forward_and_backward 写死（禁双挂未声明）**；**w1_primary_demo=cash_only_exref 写死（禁双挂）**；**D_ex=0.01 与 G 合并（D_ex_merged_with_G=True）** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：U 补丁/V 预检并行写 W；清单止于 V → 自清单早期实验 B + `事实与坑` 除权/复权坑选题，**与 A–V 不撞主结论**；近邻 A=可成交、F=取整（F2 仅反例）、G=规则窗，本页主测复权判板+自造参考价；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 U/V/R/S/T/A 正文**）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设W-20261102.md` 有条件通过补四条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写入具体数并冻结（预检禁 holdout 标定且建议 0.02/0.01/0.05/0.015；与同系列 R/S/T/U/V 纸面占位一致；禁 null）；② `params.w0_adj_flavor=dual_report_forward_and_backward`（前/后复权分列报告；禁双挂未声明）；③ `params.w1_primary_demo=cash_only_exref`（主报自造参考价；禁双挂 adj_forward_tag / adj_backward_tag）；④ `params.D_ex=0.01` 与 `params.G` 合并同槽（`D_ex_merged_with_G=True`；不另立冲突门槛）。**不抢实验 A**；**W 不开回测**；未动 X/V/U/R/S/T/A。
