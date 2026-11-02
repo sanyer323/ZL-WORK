@@ -1,6 +1,6 @@
 # 假设 J · 无涨跌幅日把最高价当连续可成交（盘中临停）
 
-更新：2026-11-02  
+更新：2026-11-02（风控补丁）  
 来源：总管催办 / H 复检·I 等预检期间下一可离线纸面；清单实验 J  
 状态：**草稿 · 待数据 · 待跑**（结论栏空；禁止把「无板日最高/最低总能连续成交」当实盘预期；不抢实验 A 真数队列）
 
@@ -31,9 +31,16 @@
 # params.halt_main_cut_date        写死默认 2023-04-10  # 主板复制 30%/60% 与新股前5日无板同日；非印发日
 # params.max_halts_per_direction   写死默认 1   # 同向直接冲过60%只停一次；涨跌两向最多四次
 # params.star_legacy_10_20         写死默认 off # 本页主测现行30%/60%；科创早期10%/20%不主测
-# 拉数前冻结；禁 holdout / 事后改阈值或基准
+# params.fill_time                 写死 next_open（不用 next_close；与 A/D 次日开对齐）
+# params.j2_fill_when_cross        写死 announce_then_skip（枚举仅 skip|open|announce_then_skip|announce_then_open；禁 high_low；禁复合名 skip_or_open）
+# params.halt_band_round           写死 tick（与假设 F / 事实与坑同向：open×(1±pct) 后四舍五入到 tick；若 none 须禁把未取整边界当真盘口）
+# params.Y / G / N / Y2            拉数前写入具体数并冻结；禁 holdout 标定
+# 拉数前冻结；禁 holdout / 事后改阈值或基准 / 禁跑后改 fill_time·j2_fill_when_cross·halt_band_round
 
 tick = 0.01  # A 股股票默认；基金/ETF/可转债勿混入本页主样本
+fill_time = next_open
+j2_fill_when_cross = announce_then_skip
+halt_band_round = tick  # tick | none；本页默认 tick
 
 def is_no_limit_day(i, t, no_limit_table):
     # 复用假设 G 的 PIT 无板表：IPO 前5日 / 退市整理首日 / 重新上市首日 等
@@ -49,6 +56,11 @@ def halt_rule_applies(board, asof_date):
         return asof_date >= params.halt_main_cut_date
     return False
 
+def round_half_up(x, tick):
+    # 与假设 F 同向：先乘比例再四舍五入到最小价位
+    from math import floor
+    return floor(x / tick + 0.5) * tick
+
 def intraday_halt_bands(open_px):
     # 基准 = 当日开盘价（交易所定义）；禁止前收盘/发行价
     if open_px is None or open_px <= 0:
@@ -57,6 +69,9 @@ def intraday_halt_bands(open_px):
     down1 = open_px * (1 - params.halt_pct_1)
     up2   = open_px * (1 + params.halt_pct_2)
     down2 = open_px * (1 - params.halt_pct_2)
+    if params.halt_band_round == "tick":
+        up1, down1, up2, down2 = (round_half_up(v, tick) for v in (up1, down1, up2, down2))
+    # halt_band_round=none：保留未取整小数；禁止把未取整边界价当真盘口输出
     return (up1, down1, up2, down2)
 
 def crosses_halt(high, low, bands):
@@ -70,7 +85,7 @@ def crosses_halt(high, low, bands):
 - **适用日**：仅 `is_no_limit_day=True` 且 `halt_rule_applies` 的交易日。有涨跌幅限制日的板上逻辑见 A/F；本页不主测。  
 - **比较基准写死**：`params.halt_baseline=open`。开盘价按交易所定义（集合竞价第一笔；走不成再连续竞价）。**禁止**对前收盘/发行价算 30%/60%。  
 - **时长与次数**：单次 **10 分钟**；同向直接冲过 60% 只停一次；涨、跌两向最多四次。停牌期间可申报也可撤单；复牌集合竞价；跨越 14:57 且须当日复牌的于 14:57 复牌——日频最小集**不精确复盘申报簿**，只禁止把穿过阈值后的极值当默认连续成交价。  
-- **日频最小集**：无分钟线/无临停公告时，诚实组对「`crosses_halt=True`」的成交腿：**不得**用当日 high（买）/ low（卖）作为默认成交价；改用开盘价、或记 skip/部分失败（须事先写死 `params.j2_fill_when_cross`）。有公告时段则优先公告窗内记临时不可连续撮合。  
+- **日频最小集**：无分钟线/无临停公告时，诚实组对「`crosses_halt=True`」的成交腿：**不得**用当日 high（买）/ low（卖）作为默认成交价；按 `params.j2_fill_when_cross=announce_then_skip`：有公告窗→公告时段内记临时不可连续撮合；无公告→该腿 skip（不成交）。**禁止** `high_low`；**禁止**复合名 `skip_or_open`。  
 - **禁止**：用复权价；临停比例对开盘价改成对前收盘/发行价；把 10 分钟临停写成全日不可交易；把可转债首日临停（较发行价 20%/30%）并进本页主结论；结论写成「这类次新能买」。
 
 ### 2.2 fail_policy（写死默认）
@@ -83,12 +98,20 @@ def crosses_halt(high, low, bands):
 | 组 | 无板日成交假设 | 临停文本 | 穿过 30%/60% 后 |
 |----|----------------|----------|-----------------|
 | J0 天真-极值连续可成 | 按当日最高买 / 最低卖（或信号目标价夹在 high-low 内即成） | 无临停约束 | 仍 100% 连续可成 |
-| J1 诚实-开盘价临停 | 受临停约束 | **每个交易日**用当日已生效文本（板块切日 + 开盘价基准） | 临时不可连续撮合；日频默认不用穿过后极值当成交价（见 `j2_fill_when_cross`） |
+| J1 诚实-开盘价临停 | 受临停约束 | **每个交易日**用当日已生效文本（板块切日 + 开盘价基准） | 临时不可连续撮合；日频按 `j2_fill_when_cross=announce_then_skip`（禁 high_low） |
 | J2 误切-注册制前也套 | 受临停约束 | **全样本**（含主板 `<2023-04-10` 新股首日等）用现行 30%/60% | 同 J1 处理，但切日前本不该套的也被套 |
 
-同一信号、同一 T+1、同一成本开关（本页可先零成本只比临停处理差）。成交时点默认与假设 A/D 声明一致（建议次日开；若用收须单列）。无板日判定见 G；笼子见 I；整理首日无板见 H——**勿把 A/D/G/H/I 主结论混进 J 主报告**；稳健性叠加须声明。
+同一信号、同一 T+1、同一成本开关（本页可先零成本只比临停处理差）。成交时点 **`fill_time=next_open` 写死**（与假设 A/D 次日开对齐；不用 next_close）。无板日判定见 G；笼子见 I；整理首日无板见 H——**勿把 A/D/G/H/I 主结论混进 J 主报告**；稳健性叠加须声明。
 
-**`params.j2_fill_when_cross`（拉数前写死；建议默认 `skip_or_open`）**：日频检测到穿过阈值后的成交价假设——`skip`（该腿失败）或 `open`（改用开盘价）或 `announce_window`（有公告才精细）。**禁止**默认 `high_low`。本页建议默认 **`skip_or_open`**（无公告→skip；有开盘→可回退 open；禁 high/low）。
+**成交时点（写死）**：`fill_time=next_open`（与假设 A/D 次日开对齐；**本页不用** `next_close`；若要收盘对照须另开页；拉数前冻结；禁跑后改口）。
+
+**`params.j2_fill_when_cross`（写死单一枚举；拉数前冻结）**：日频检测到穿过阈值后的成交价假设，**必须**落成下列之一并冻结：
+- `skip`：该腿失败；
+- `open`：改用开盘价；
+- `announce_then_skip`：有公告窗→按公告精细临停，无公告→skip；
+- `announce_then_open`：有公告窗→按公告精细临停，无公告→改用开盘价。
+
+**本页默认写死 `announce_then_skip`**（对齐 `fail_policy=skip` +「有公告用公告」）。**禁止** `high_low`；**禁止**保留复合名 `skip_or_open` 却不定义优先级。
 
 ---
 
@@ -157,10 +180,22 @@ params.diff_buckets = [
 | halt_baseline | 比较基准 | **写死默认** `open` |
 | halt_main_cut_date | 主板临停落地 | **写死默认** `2023-04-10` |
 | halt_chinext_start | 创业板临停起点 | **写死默认** `2020-08-24` |
-| j2_fill_when_cross | 日频穿过后成交价 | **写死默认** `skip_or_open`；禁 `high_low` |
+| j2_fill_when_cross | 日频穿过后成交价 | **写死** `announce_then_skip`（枚举仅 skip|open|announce_then_skip|announce_then_open；**禁** `high_low`；**禁** `skip_or_open`） |
+| fill_time | 成交时点 | **写死** `next_open`（不用 next_close）；拉数前冻结 |
+| halt_band_round | 临停阈值取整 | **写死** `tick`（与假设 F 同向四舍五入到 0.01；可选 `none` 但禁把未取整边界当真盘口） |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛可在 **IS 标定窗**（非 holdout）内事先约定噪声带后写入；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2 开工拉数前必须落进 params（可先占位后冻结）。
+**`params.Y` / `params.G` / `params.N` / `params.Y2` 写入冻结（本页占位槽已开；拉数前必须落入具体数）**：
+
+```
+# 拉数前在 IS 标定窗约定噪声带后写入具体数，一经写入即冻结
+params.Y  = null   # 净值差显著门槛；拉数前替换为具体数并冻结
+params.G  = null   # 极值贡献差门槛；拉数前替换为具体数并冻结
+params.N  = null   # 失败笔数/率差门槛；拉数前替换为具体数并冻结
+params.Y2 = null   # 稳健子窗净值差门槛（可选）；拉数前替换为具体数并冻结
+```
+
+门槛可在 **IS 标定窗**（非 holdout）内事先约定噪声带后写入；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、`fill_time`、`j2_fill_when_cross`、`halt_band_round` 开工拉数前必须落进 params 并冻结；**禁止跑后改口**。
 
 **失败/不显著**：差异落在噪声带内——结论栏写明，不得改口称「临停无关」。
 
@@ -186,7 +221,7 @@ params.diff_buckets = [
 4. **用复权 high/low**：一律未复权。  
 5. **无板表泄露 / 与 G 不一致**：无板日判定须与假设 G PIT 表同向；不得用核对日现行「前 5 日无板」铺满注册制前。  
 6. **可转债首日临停并进主结论**：转债是较发行价 20%/30%、时长不同——禁止混表不声明。  
-7. **日频却报「精确 10 分钟复盘」**：无分钟/无公告时只允许 skip_or_open 敏感性。  
+7. **日频却报「精确 10 分钟复盘」**：无分钟/无公告时只允许按写死的 `j2_fill_when_cross=announce_then_skip`（或同枚举其他值）做敏感性，禁声称精确分钟复盘。  
 8. **宇宙泄露 / holdout 反调**：看完 OOS 再改切日、阈值或 `j2_fill_when_cross`。  
 9. **与 I（笼子）/A（板上）混报主结论**：笼子管限价能挂多远；板上管有涨跌幅日；本页只管无板日临停路径。
 
@@ -201,7 +236,7 @@ params.diff_buckets = [
 | board / market | 临停落地路由 | 按日 PIT |
 | is_no_limit_day 或可推导 | 无板日 | **可与假设 G PIT 表共用** |
 | is_exit_first_day / is_relist_first_day / ipo_day_index | 分桶 | 可选增强 |
-| 临停公告时段（可选） | 精细窗 | 无则走日频 skip_or_open |
+| 临停公告时段（可选） | 精细窗 | 无则走日频 `announce_then_skip`（无公告→skip） |
 | 信号表（可选） | 选股臂 | 无信号可先跑「无板日 × 穿过阈值」标签差 |
 | 临停规则表 | 切日与阈值 | 可用本页 §2.1 编码，不必新开数据商 |
 
@@ -213,13 +248,13 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=J`，`groups=[J0,J1,J2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-12`**，**`params.halt_pct_1=0.30`**，**`params.halt_pct_2=0.60`**，**`params.halt_minutes=10`**，**`params.halt_baseline=open`**，**`params.halt_chinext_start=2020-08-24`**，**`params.halt_main_cut_date=2023-04-10`**，**`params.max_halts_per_direction=1`**，**`params.star_legacy_10_20=off`**，**`params.j2_fill_when_cross=skip_or_open`**，**`params.diff_buckets=[ipo_first5_post_cut,ipo_first_pre_main_cut,exit_first_day,relist_first_day,board_star,board_chinext,cross_30_only,cross_60]`（写死默认；拉数前冻结）**，`params.{Y,G,N,Y2}`（拉数前写入；禁 holdout 标定），`universe_rule`，`date_start/date_end`（可空=待锁），`oos_split.{is_start,is_end,holdout_start,holdout_end}`（占位，禁 holdout 反调），`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_G=on`（建议 on：无板表共用），`overlay_A=off|on`（默认 off），`fill_time=next_open|next_close`（须写死；默认建议 next_open）。  
+- 配置块（写死项加粗）：`hypothesis_id=J`，`groups=[J0,J1,J2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-12`**，**`params.halt_pct_1=0.30`**，**`params.halt_pct_2=0.60`**，**`params.halt_minutes=10`**，**`params.halt_baseline=open`**，**`params.halt_chinext_start=2020-08-24`**，**`params.halt_main_cut_date=2023-04-10`**，**`params.max_halts_per_direction=1`**，**`params.star_legacy_10_20=off`**，**`params.j2_fill_when_cross=announce_then_skip`（写死；枚举仅 skip|open|announce_then_skip|announce_then_open；禁 high_low；禁 skip_or_open）**，**`params.halt_band_round=tick`（写死；与假设 F 同向；可选 none 但禁未取整边界当真盘口）**，**`fill_time=next_open`（写死；不用 next_close）**，**`params.diff_buckets=[ipo_first5_post_cut,ipo_first_pre_main_cut,exit_first_day,relist_first_day,board_star,board_chinext,cross_30_only,cross_60]`（写死默认；拉数前冻结）**，**`params.Y` / `params.G` / `params.N` / `params.Y2`（占位槽已开；拉数前写入具体数并冻结；禁 holdout 标定）**，`universe_rule`，`date_start/date_end`（可空=待锁），`oos_split.{is_start,is_end,holdout_start,holdout_end}`（占位，禁 holdout 反调），`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_G=on`（建议 on：无板表共用），`overlay_A=off|on`（默认 off）。  
 - 行情与规则表：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
 
 - J0/J1/J2 失败笔数、极值贡献、（可选）净值；分桶（切日前新股首日 / 整理首日 / 科创创业 / 穿 30 vs 60）。  
-- 自检布尔：是否未复权；基准是否 open 而非 pre_close；J1 切日前主板是否未套临停；是否未把 10 分钟写成全日停牌；`j2_fill_when_cross` 是否非 high_low；Y/G/N/Y2 与切日/阈值是否已冻结；holdout 是否未反调；是否未声称精确分钟复盘。  
+- 自检布尔：是否未复权；基准是否 open 而非 pre_close；J1 切日前主板是否未套临停；是否未把 10 分钟写成全日停牌；`fill_time` 是否 `next_open`；`j2_fill_when_cross` 是否为四枚举之一且非 high_low/非 skip_or_open；`halt_band_round` 是否已写死 tick|none；Y/G/N/Y2 与切日/阈值是否已冻结；holdout 是否未反调；是否未声称精确分钟复盘。  
 - **禁止输出**：具体买卖标的列表当「建议」；把天真极值路径当实盘预期；催跑抢 A 真数队列。
 
 **队列声明**：本页纸面就绪 ≠ 开工指令；**不抢实验 A 真数队列**；不催本机 8765 鉴权；不派回测开工。
@@ -242,11 +277,12 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；日频 OHLC + G 无板表即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；oos_split 占位+禁 holdout 反调；红线 v0 机制豁免；asof_check_date=2026-10-12 / halt_pct_1=0.30 / halt_pct_2=0.60 / halt_baseline=open / halt_chinext_start=2020-08-24 / halt_main_cut_date=2023-04-10 / j2_fill_when_cross=skip_or_open / diff_buckets 八桶写死+拉数前冻结；Y/G/N/Y2 拉数前入 params |
+| 风控预埋 | fail_policy=skip；oos_split 占位+禁 holdout 反调；红线 v0 机制豁免；asof_check_date=2026-10-12 / halt_pct_1=0.30 / halt_pct_2=0.60 / halt_baseline=open / halt_chinext_start=2020-08-24 / halt_main_cut_date=2023-04-10；**fill_time=next_open 写死**；**j2_fill_when_cross=announce_then_skip 写死**（禁 high_low / 禁 skip_or_open）；**halt_band_round=tick 写死**（与 F 同向）；diff_buckets 八桶写死+拉数前冻结；**Y/G/N/Y2 占位槽已开、拉数前写入具体数并冻结、禁 holdout 标定** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管：H 补丁已派复检、I 等风控预检期间继续可离线下一纸面；选型 J；不依赖新数据商；机制类预埋 fail_policy/oos/红线豁免/params 冻结；**不抢实验 A**）。
+- 2026-11-02：风控有条件通过四条补齐——① `fill_time=next_open` 写死；② `j2_fill_when_cross=announce_then_skip` 单一枚举写死（禁 `high_low`、禁复合名 `skip_or_open`）；③ `halt_band_round=tick`（与假设 F 同向四舍五入到 tick）；④ `params.Y/G/N/Y2` 占位槽写入、拉数前落入具体数并冻结、禁 holdout 标定。参考 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设J-20261102.md`。
 
