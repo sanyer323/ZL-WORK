@@ -2,7 +2,7 @@
 
 更新：2026-11-02  
 来源：总管线 / AF 补丁已交后并行写下一纸面 AG；清单原止于 AF，无 AG 节 → 自立实验 AG；选题自 `事实与坑`「超过涨跌幅限制或有效申报价格范围的申报为无效（深交所 3.3.18；上交所 3.3.16 同类）」+ 口径「执行鸿沟」；与假设 A（板上可成交）/ H（退市整理）/ X（主板 ST 涨跌幅）/ E（整手）/ M（盘后补成交）/ O（大宗）/ R（股票 ETF 假回转）/ Q（可转债）/ AC（北交所）/ AD（风险警示 50 万）/ AE（普通股票假 T+0）/ AF（单笔数量上限）/ I（价格笼子）/ F（涨跌停价取整）/ L（市价保护限价）**分列**；**新建实验 AG**  
-状态：**草稿 · 待数据 · 待跑 · 待预检（params 键名稳、值待预检）**（结论栏空；禁止把「超涨跌停价限价单仍可进簿/成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA/AB/AC/AD/AE/AF 及其他 A/D–AF 已交正文与冻结补丁**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-02）**（结论栏空；禁止把「超涨跌停价限价单仍可进簿/成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA/AB/AC/AD/AE/AF 及其他 A/D–AF 已交正文与冻结补丁**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单原止于 AF，本页自立实验 AG 标准件。与假设 A（涨停可成交性）**分列**：A 主测触及板上时买卖枯竭能否按板上价成交；本页主测**限价申报价格本身是否已越过当日涨跌停价**——超板价在主机侧为无效申报，与「板上有没有对手盘」不是同一腿。与假设 I（价格笼子）**分列**：I 主测连续竞价限价相对买卖一/基准价能挂多远（2%/十个价位）；本页主测相对**当日涨跌停限制价**超限即拒单，不得把笼子当成唯一价格闸门而放过超板单。与假设 F（涨跌停价取整）**分列**：F 主测限制价四舍五入标签；本页承接取整后的限制价去做「超限拒单」执行差。与假设 L（市价保护限价）**分列**：L 主测市价通道；本页主测**限价**超板。与假设 AF（单笔数量上限）**分列**：AF=数量；AG=价格超板。与假设 H/X/E/M/O/R/Q/AC/AD/AE **分列**：各自主测，不并表。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 超板无效申报 ≠ 板上可成交；≠ 价格笼子；≠ 市价保护限价
 
 ```
-# 配置写死键（见 §7；Y/G/N/Y2 与 ag0_primary_demo 键名稳、值待预检）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AG
 # params.asof_check_date                 写死默认 2026-09-28  # 事实与坑「超涨跌幅/有效申报范围=无效」核对锚
 # params.fill_time                        写死 next_open      # 成交腿与 A/D 对齐；本页主测超板拒单，不抢 A 板上真数
@@ -33,7 +33,7 @@
 # params.tag_cmp                         写死 ge_le          # 限制价取整比较与 F/A 对齐
 # params.beyond_limit_policy_honest      写死 reject         # 诚实：买入申报价 > 涨停价 或 卖出申报价 < 跌停价 → 废单
 # params.no_limit_day_policy             写死 skip_separate_bucket  # 无涨跌幅日（G/J）不套 ±板拒单；另桶；禁发明
-# params.ag0_primary_demo                待预检（建议 invent_beyond_limit_fill）  # 主报：超板仍记成交；禁与 treat_cage_as_only_gate 双挂争主表
+# params.ag0_primary_demo                写死 invent_beyond_limit_fill  # 风控补丁冻结；主报：超板仍记成交；禁与 treat_cage_as_only_gate 双挂争主表
 # params.ag0_invent_beyond_limit_fill    写死 True           # 天真主路径
 # params.ag1_treat_cage_as_only_gate     写死 True           # 半泄露/混口径：只套笼子、放过超板
 # params.ag1_invent_beyond_limit_fill    写死 False          # AG1 主病不在「完全忽略」，而在「笼子当唯一闸门」
@@ -57,7 +57,7 @@
 # params.missing_limit_px_policy         写死 skip           # 缺前收/板块/限制价 → skip（禁静默当可挂）
 # params.order_side_required             写死 True           # 缺买卖方向 → skip
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  待预检（建议 0.02/0.01/0.05/0.015）；params.Y≠实验字母 AG；禁 null/holdout 标定
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 AG；禁 null/holdout
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -70,7 +70,7 @@ tick = 0.01
 tag_cmp = "ge_le"
 beyond_limit_policy_honest = "reject"
 no_limit_day_policy = "skip_separate_bucket"
-ag0_primary_demo = "invent_beyond_limit_fill"  # 建议值；待预检写死；禁双挂
+ag0_primary_demo = "invent_beyond_limit_fill"  # 风控补丁冻结；禁双挂
 ag0_invent_beyond_limit_fill = True
 ag1_treat_cage_as_only_gate = True
 ag1_invent_beyond_limit_fill = False
@@ -83,8 +83,8 @@ merge_with_AF_qty_cap = False
 universe_rule = "sse_szse_common_stock"
 missing_limit_px_policy = "skip"
 
-# 待预检建议（拉数前须冻结；禁 holdout / 事后改口 / 禁跑后改 ag0_primary_demo）
-Y = 0.02   # 建议；相对门槛 ≠ 实验字母 AG
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改 ag0_primary_demo
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 AG
 G = 0.01
 N = 0.05
 Y2 = 0.015
@@ -141,14 +141,14 @@ def apply_beyond_limit(order_px, side, preclose, board_pct, is_no_limit_day, gro
 
 **`params.merge_with_A_fill=False` / `merge_with_I_cage=False` / `merge_with_F_round=False` / `merge_with_L_mkt=False` / `merge_with_AF_qty_cap=False` / `merge_with_H_exit=False` / `merge_with_X_st_limit=False` / `merge_with_E_lot=False` / `merge_with_M_aft=False` / `merge_with_O_block=False` / `merge_with_R_etf_rotation=False` / `merge_with_Q_cb_rotation=False` / `merge_with_AC_bse=False` / `merge_with_AD_50w=False` / `merge_with_AE_stock_t0=False`（写死）**。
 
-**待预检键（键名稳；值待预检；建议如下；禁 null；禁 holdout 标定；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.Y                            = 0.02                      # 建议；可成交名义/净值差显著门槛；≠实验字母 AG
-params.G                            = 0.01                      # 建议；超板假成交桶相对对照差
-params.N                            = 0.05                      # 建议；失败/废单率差门槛
-params.Y2                           = 0.015                     # 建议；AG1（笼子当唯一闸门）相对 AG2 专项门槛
-params.ag0_primary_demo             = invent_beyond_limit_fill  # 建议；主报超板仍成交；禁与 treat_cage_as_only_gate 双挂争主表
+params.Y                            = 0.02                      # 可成交名义/净值差显著门槛；≠实验字母 AG
+params.G                            = 0.01                      # 超板假成交桶相对对照差
+params.N                            = 0.05                      # 失败/废单率差门槛
+params.Y2                           = 0.015                     # AG1（笼子当唯一闸门）相对 AG2 专项门槛
+params.ag0_primary_demo             = invent_beyond_limit_fill  # 主报超板仍成交；禁与 treat_cage_as_only_gate 双挂争主表
 ```
 
 ---
@@ -210,21 +210,21 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔNotional| 或 |ΔPnL| **≥ params.Y** 或 |ΔBeyond 桶贡献| **≥ params.G** 或 |ΔNotional_(AG1−AG2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「超板无效申报执行鸿沟显著」。
 
-**params.Y / G / N / Y2（键名稳；值待预检；与实验字母 AG 无关）**
+**params.Y / G / N / Y2（写死冻结；与实验字母 AG 无关；风控补丁 2026-11-02）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 名义/净值差显著门槛（≠实验字母 AG） | **待预检**建议 `0.02` |
-| params.G | 超板假成交桶相对对照差 | **待预检**建议 `0.01` |
-| params.N | 失败/废单率差门槛 | **待预检**建议 `0.05` |
-| params.Y2 | AG1−AG2 专项门槛 | **待预检**建议 `0.015` |
+| params.Y | 名义/净值差显著门槛（≠实验字母 AG） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 超板假成交桶相对对照差 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败/废单率差门槛 | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | AG1−AG2 专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-09-28` |
 | fill_time | 成交时点 | **写死** `next_open` |
 | beyond_limit_policy_honest | 诚实超板处理 | **写死** `reject` |
-| ag0_primary_demo | 天真主报枚举 | **待预检**建议 `invent_beyond_limit_fill`（禁双挂） |
+| ag0_primary_demo | 天真主报枚举 | **写死冻结** `invent_beyond_limit_fill`（风控补丁 2026-11-02；禁双挂） |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛键名已稳、建议值待预检写死（**`params.Y`≠实验字母 AG**）；**禁止用 holdout / 事后显著性改口**；**`ag0_primary_demo` 单一主报，禁与 treat_cage_as_only_gate 双挂争主表**。
+门槛键名与具体数值已写入 params 并冻结（风控补丁 2026-11-02；**`params.Y`≠实验字母 AG**）；**禁止用 holdout / 事后显著性改口**；**`ag0_primary_demo=invent_beyond_limit_fill` 单一主报，禁与 treat_cage_as_only_gate 双挂争主表**。
 
 **失败/不显著**：差异落在噪声带内或均匀散在非超板对照桶——结论栏写明，不得改口称「超板申报差不多可忽略」或「这类票更能挂远价」。
 
@@ -279,7 +279,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=AG`（**实验字母**），`groups=[AG0,AG1,AG2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-09-28`**，**`params.fill_time=next_open`（写死）**，**`params.px_basis=unadj`**，**`params.limit_pct_source=board_st_day_effective`**，**`params.tick=0.01`**，**`params.tag_cmp=ge_le`**，**`params.beyond_limit_policy_honest=reject`**，**`params.no_limit_day_policy=skip_separate_bucket`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_I_cage=False`**，**`params.merge_with_F_round=False`**，**`params.merge_with_L_mkt=False`**，**`params.merge_with_AF_qty_cap=False`**，**`params.merge_with_H_exit=False`**，**`params.merge_with_X_st_limit=False`**，**`params.merge_with_E_lot=False`**，**`params.merge_with_M_aft=False`**，**`params.merge_with_O_block=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.merge_with_Q_cb_rotation=False`**，**`params.merge_with_AC_bse=False`**，**`params.merge_with_AD_50w=False`**，**`params.merge_with_AE_stock_t0=False`**，**`params.universe_rule=sse_szse_common_stock`**，**`params.missing_limit_px_policy=skip`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y` / `G` / `N` / `Y2`（键名稳；建议 0.02/0.01/0.05/0.015；待预检写死；禁 holdout；禁 null；params.Y≠实验字母 AG）**，**`params.ag0_primary_demo`（建议 invent_beyond_limit_fill；待预检写死；禁双挂）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_I=off`，`overlay_F=off`，`overlay_L=off`，`overlay_AF=off`。  
+- 配置块（写死项加粗）：`hypothesis_id=AG`（**实验字母**），`groups=[AG0,AG1,AG2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-09-28`**，**`params.fill_time=next_open`（写死）**，**`params.px_basis=unadj`**，**`params.limit_pct_source=board_st_day_effective`**，**`params.tick=0.01`**，**`params.tag_cmp=ge_le`**，**`params.beyond_limit_policy_honest=reject`**，**`params.no_limit_day_policy=skip_separate_bucket`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_I_cage=False`**，**`params.merge_with_F_round=False`**，**`params.merge_with_L_mkt=False`**，**`params.merge_with_AF_qty_cap=False`**，**`params.merge_with_H_exit=False`**，**`params.merge_with_X_st_limit=False`**，**`params.merge_with_E_lot=False`**，**`params.merge_with_M_aft=False`**，**`params.merge_with_O_block=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.merge_with_Q_cb_rotation=False`**，**`params.merge_with_AC_bse=False`**，**`params.merge_with_AD_50w=False`**，**`params.merge_with_AE_stock_t0=False`**，**`params.universe_rule=sse_szse_common_stock`**，**`params.missing_limit_px_policy=skip`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015`（写死冻结；禁 holdout；禁 null；params.Y≠实验字母 AG）**，**`params.ag0_primary_demo=invent_beyond_limit_fill`（写死冻结；禁双挂）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_I=off`，`overlay_F=off`，`overlay_L=off`，`overlay_AF=off`。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -308,10 +308,11 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；未复权前收 + 涨跌幅 PIT + 拟挂限价即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-09-28；**fill_time=next_open 写死**；**beyond_limit_policy_honest=reject / no_limit_day_policy=skip_separate_bucket 写死**；diff_buckets 十桶写死冻结；**Y/G/N/Y2 键名稳、建议 0.02/0.01/0.05/0.015 待预检（params.Y≠实验字母 AG）**；**ag0_primary_demo 建议 invent_beyond_limit_fill 待预检（禁双挂）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-09-28；**fill_time=next_open 写死**；**beyond_limit_policy_honest=reject / no_limit_day_policy=skip_separate_bucket 写死**；diff_buckets 十桶写死冻结；**Y/G/N/Y2=0.02/0.01/0.05/0.015 写死冻结（params.Y≠实验字母 AG）**；**ag0_primary_demo=invent_beyond_limit_fill 写死冻结（禁双挂）**；**风控补丁两条 2026-11-02 已写死待复检** |
 
 ---
 
 ## 变更
 
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AG-20261102.md` 有条件通过补两条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写死冻结（**params.Y≠实验字母 AG**；禁 null/holdout 标定）；② `params.ag0_primary_demo=invent_beyond_limit_fill` 写死冻结（禁与 `treat_cage_as_only_gate` 双挂争主表）。**已写死待复检**；**不抢实验 A**；**不开回测**；**不改 Y/Z/AA/AB/AC/AD/AE/AF 及其他 A/D–AF 正文**。
 - 2026-11-02：新建标准件（总管线：AF 补丁已交后写下一纸面 AG；Y/Z/AA/AB/AC/AD/AE/AF 补丁已交不改；清单止于 AF → 自 `事实与坑`「超涨跌幅/有效申报范围=无效申报」选题，**与 A/H/X/E/M/O/AC/AD/AE/AF/R/Q 及 I/F/L 不撞主结论**；近邻 A=板上枯竭、I=笼子、F=取整、L=市价保护、AF=数量上限，本页主测超板限价无效拒单；**实验字母 AG ≠ params.Y**；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 Y/Z/AA/AB/AC/AD/AE/AF/A/D–AF 正文**）。
