@@ -24,23 +24,44 @@
 # 配置写死（见 §7）
 exit_period_len_source = rule_cut_20201214   # 切日前 30 交易日；切日后 15 交易日
 # params.exit_len_cut_date 写死默认 2020-12-14（上交所退市制度答记者问：30→15 并新增首日无板）
+# params.exit_len_cut_date_szse = same_as_sse   # 深市切日与沪市同日；不另给日；禁「只引上交所答记者问」却默覆盖深市不声明
 # 拉数前冻结；禁 holdout / 事后改切日
 
-def exit_len(asof_date):
-    if asof_date < params.exit_len_cut_date:
+def exit_len(asof_date, exchange=None):
+    # 沪深共用同一切日（same_as_sse）；若日后核出深市不同日，须改 params 并冻结，禁跑后改口
+    cut = params.exit_len_cut_date  # 2020-12-14；SZSE 走 same_as_sse
+    if asof_date < cut:
         return 30
     else:
         return 15
 
 # 整理期日历：自进入退市整理起计 exit_len 个「计入」交易日
-# 全天停牌不计入（上交所 4.4.3；累计停牌上限另记，本页最小集：停牌日不推进计数）
-# 届满后 N 个交易日内摘牌（上交所现行 5 日；本页摘牌日用数据商/公告 delist_date，不另发明）
+# 【写死】全天停牌日不推进计入日（上交所 4.4.3；本页最小集；累计停牌上限另记不主测）
+# 【写死】exit_end vs delist_date：
+#   exit_end(i)  = 自 exit_start(i) 起第 exit_len 个「计入」交易日（停牌日不计入）
+#   delist_date(i) = 数据商/公告摘牌日（不另发明；上交所现行通常为 exit_end 后若干交易日内）
+#   is_exit_day 只覆盖 [exit_start, exit_end] 计入窗 ∩ [exit_start, delist_date)；
+#   若 delist_date <= exit_end：窗截断到 delist_date 前一日（或无交易日则空窗），不把摘牌日当天当整理可交易日
+#   若 delist_date > exit_end+ε：仍以 exit_end 为计入窗终点；exit_end 之后至摘牌前不标 is_exit_day（本页不发明「延期整理」）
 
-is_exit_day(i, t)     = exit_start(i) <= t < delist_date(i) and in_counted_window
+counted_days = trading_days from exit_start where not full_day_suspend  # 停牌不推进
+exit_end(i)  = counted_days[exit_len(exit_start) - 1]   # 第 N 个计入日
+is_exit_day(i, t) = (exit_start(i) <= t <= exit_end(i)) and (t < delist_date(i)) and (not full_day_suspend(i,t) or t in counted_for_label)
+# 注：停牌日本身不推进计数；标签上停牌日可不标可交易，但不得用停牌日把计数往后挤占 N
 is_exit_first_day(i,t)= is_exit_day and (t == first_counted_trading_day)
 # 首日：不实行涨跌幅限制（上交所 3.3.13 / 深交所 3.3.15；与假设 G 无板表一致）
 # 首日之后：回到该板块当时限制（主板 10%；创业板/科创板 20% 按切日；勿整段当无板）
 ```
+
+**计数与深市切日（风控写死；拉数前冻结）**
+
+| 项 | 写死值 | 含义 |
+|----|--------|------|
+| 全天停牌 | **不推进** 15/30「计入」交易日 | 与失效条件 §5.7 一致；禁停牌仍推进 |
+| `exit_end` | 自 `exit_start` 起第 `exit_len` 个计入交易日 | 计入窗终点 |
+| `delist_date` | 数据商/公告摘牌日 | 不另发明 |
+| `is_exit_day` | `exit_start ≤ t ≤ exit_end` 且 `t < delist_date` | 摘牌日不当整理可交易；窗超出 `exit_end` 不延期 |
+| `params.exit_len_cut_date_szse` | **`same_as_sse`** | 深市 30→15 切日与沪市同用 `2020-12-14`；若核出不同日须改 params 冻结，禁默覆盖不声明 |
 
 - **指数**：整理期交易**不纳入本所指数**（上交所 4.4.12；深交所 4.5.7）。诚实组指数权重当日剔除；成交量可计入市场总量（本页不主测总量）。  
 - **50 万股买入上限**：规则写的是**风险警示股票**（上交所 4.4.10；深交所 4.5.4），**不要自动套到退市整理股**；科创板风险警示/退市整理不进风险警示板——**本页默认 `risk_warn_buy_cap_50w=off`（不主测）**。  
@@ -56,7 +77,7 @@ is_exit_first_day(i,t)= is_exit_day and (t == first_counted_trading_day)
 | 组 | 整理期可交易性 | 涨跌停 / 买入约束 | 指数权重 |
 |----|----------------|-------------------|----------|
 | H0 天真-当普通日 | 可交易、可新开仓 | 用板块**默认**比例（含首日仍套 ±10%/±20%） | **仍计入**（或按普通成分保留） |
-| H1 停牌化 | 不可新开仓；持仓收益记 0（横盘） | 不触发板上逻辑（当停牌） | 可按引擎默认；须声明 |
+| H1 停牌化 | 不可新开仓；持仓收益记 0（横盘） | 不触发板上逻辑（当停牌） | **`h1_index_mode=keep_or_engine_default`（写死）**：指数侧不另强制剔除，沿用引擎默认；与 H2「当日剔除」对照时指数差归 H0/H2，避免把「停牌化」与「不进指数」绑死。本页不用 `also_exclude` |
 | H2 诚实-整理窗口 | 可交易（有量日）；可新开仓受诚实规则 | **首日不套**涨跌停买入约束；其后用**当时板块**限制；与 G/A 板上一致时叠 A 须声明 | **当日剔除** |
 
 同一信号、同一 T+1、同一成本开关（本页可先零成本只比整理期处理差）。整手见 E；开/收时点见 D；无板 PIT 见 G——**勿把 A/D/E/G 主结论混进 H 主报告**；稳健性叠加须声明。
@@ -90,7 +111,21 @@ is_exit_first_day(i,t)= is_exit_day and (t == first_counted_trading_day)
 
 1. **H0 − H2**：当普通日（含首日误套板、指数仍计入）相对诚实整理窗口的净值差、失败笔数差、整理期贡献收益差。  
 2. **H1 − H2**：停牌化（收益 0）相对诚实组——看是否抹掉整理期真实波动/可交易贡献。  
-3. **分桶（须报）**：切日前（30 日规则）vs 切日后（15 日）；主板 vs 创业板/科创板；整理首日 vs 其后交易日；有指数权重臂 vs 纯选股臂。
+3. **分桶（须报；`params.diff_buckets` 写死默认名；拉数前冻结；禁 holdout 改桶/事后改解读）**：
+
+```
+params.diff_buckets = [
+  "exit_len_pre_cut",       # 切日前 30 日规则窗
+  "exit_len_post_cut",      # 切日后 15 日规则窗
+  "board_main",             # 主板
+  "board_chinext_or_star",  # 创业板/科创板
+  "exit_first_day",         # 整理首日
+  "exit_rest",              # 整理其后交易日
+  "index_arm",              # 指数权重臂
+  "stock_arm",              # 纯选股臂
+]
+# 可合并精简须改名后重冻；禁 holdout 标定；禁跑后改桶名解读
+```
 
 ### 4.2 成功 / 失败判据（相对）
 
@@ -110,7 +145,10 @@ is_exit_first_day(i,t)= is_exit_day and (t == first_counted_trading_day)
 | G | 整理期贡献收益差门槛 | 拉数前写入 `params.G` 并冻结 |
 | N | 失败笔数差门槛 | 拉数前写入 `params.N` 并冻结 |
 | Y2 | 稳健子窗净值差门槛（可选） | 拉数前写入 `params.Y2` 并冻结 |
-| exit_len_cut_date | 30→15 切日 | **写死默认** `params.exit_len_cut_date=2020-12-14`；拉数前冻结；禁事后改 |
+| exit_len_cut_date | 沪市 30→15 切日 | **写死默认** `params.exit_len_cut_date=2020-12-14`；拉数前冻结；禁事后改 |
+| exit_len_cut_date_szse | 深市切日 | **写死** `params.exit_len_cut_date_szse=same_as_sse`（与沪市同日；不另给日） |
+| h1_index_mode | H1 指数权重 | **写死** `params.h1_index_mode=keep_or_engine_default`（不用 `also_exclude`）；拉数前冻结；禁跑后改口 |
+| diff_buckets | 分桶名列表 | **写死默认** 见 §4.1；拉数前冻结；禁 holdout 改桶 |
 | risk_warn_buy_cap_50w | 50 万股上限 | **写死默认 off**（不主测、不套整理股/科创） |
 
 门槛可在 **IS 标定窗**（非 holdout）内事先约定噪声带后写入；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2 开工拉数前必须落进 params（可先占位后冻结）。
@@ -139,7 +177,7 @@ is_exit_first_day(i,t)= is_exit_day and (t == first_counted_trading_day)
 4. **主板 10% 套创业板/科创整理期**：其后限制未按板块当时规则。  
 5. **50 万股上限默认套整理股/科创**：本页 `risk_warn_buy_cap_50w=off`；纳入须另开配置并核规则，禁止默开。  
 6. **指数臂与选股臂混报**：整理期不进指数是指数规则；选股可交易性另计——混成一句「不能碰」属口径外延。  
-7. **停牌计数错**：全天停牌仍推进 15/30 日计数；或把无量日 close=pre_close 当可交易却不标（与假设 D 交叉）。  
+7. **停牌计数错 / 切日未声明**：全天停牌仍推进 15/30 日计数；或把无量日 close=pre_close 当可交易却不标（与假设 D 交叉）；深市切日未写 `same_as_sse` 却默用沪市日；`exit_end`/`delist_date` 关系与 §2.1 不符。  
 8. **宇宙泄露 / holdout 反调**：用今天名单倒填；看完 OOS 再改切日或三组定义。  
 9. **与 A/G 混报主结论**：把「错标无板导致的假成交」算进「整理期处理差」却不声明。
 
@@ -168,14 +206,14 @@ is_exit_first_day(i,t)= is_exit_day and (t == first_counted_trading_day)
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=H`，`groups=[H0,H1,H2]`，**`fail_policy=skip`（默认写死）**，**`params.exit_len_cut_date=2020-12-14`（写死默认；拉数前冻结）**，`exit_period_len_source=rule_cut_20201214`，**`risk_warn_buy_cap_50w=off`（写死默认；不主测）**，`params.{Y,G,N,Y2}`（拉数前写入；禁 holdout 标定），`universe_rule`，`date_start/date_end`（可空=待锁），`oos_split.{is_start,is_end,holdout_start,holdout_end}`（占位，禁 holdout 反调），`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_A=off|on`（默认 off；on 时首日无板须与 G/H2 一致），`index_arm=off|on`（默认建议 on 若有 PIT 成分表）。  
+- 配置块（写死项加粗）：`hypothesis_id=H`，`groups=[H0,H1,H2]`，**`fail_policy=skip`（默认写死）**，**`params.exit_len_cut_date=2020-12-14`（写死默认；拉数前冻结）**，**`params.exit_len_cut_date_szse=same_as_sse`（深市同沪；写死）**，`exit_period_len_source=rule_cut_20201214`，**`params.h1_index_mode=keep_or_engine_default`（写死；不用 also_exclude）**，**`params.diff_buckets=[exit_len_pre_cut,exit_len_post_cut,board_main,board_chinext_or_star,exit_first_day,exit_rest,index_arm,stock_arm]`（写死默认；拉数前冻结；禁 holdout 改桶）**，**`risk_warn_buy_cap_50w=off`（写死默认；不主测）**，`params.{Y,G,N,Y2}`（拉数前写入；禁 holdout 标定），`universe_rule`，`date_start/date_end`（可空=待锁），`oos_split.{is_start,is_end,holdout_start,holdout_end}`（占位，禁 holdout 反调），`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_A=off|on`（默认 off；on 时首日无板须与 G/H2 一致），`index_arm=off|on`（默认建议 on 若有 PIT 成分表）。  
 - 行情与窗口表：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
 
 - H0/H1/H2 净值、失败笔数、整理期贡献；分桶（切日前/后、板块、首日/非首日）。  
 - （可选）指数臂：计入 vs 剔除差。  
-- 自检布尔：是否未复权；切日前是否用 30 日；H2 首日是否未套板；其后是否按板块当时限制；`risk_warn_buy_cap_50w` 是否 off；Y/G/N/Y2 与 `exit_len_cut_date` 是否已冻结；holdout 是否未反调。  
+- 自检布尔：是否未复权；切日前是否用 30 日；H2 首日是否未套板；其后是否按板块当时限制；`risk_warn_buy_cap_50w` 是否 off；Y/G/N/Y2 与 `exit_len_cut_date` / `exit_len_cut_date_szse` / `h1_index_mode` / `diff_buckets` 是否已冻结；停牌日是否未推进计入；`exit_end` vs `delist_date` 是否按 §2.1；holdout 是否未反调。  
 - **禁止输出**：具体买卖标的列表当「建议」；把天真/停牌化路径当实盘预期；催跑抢 A 真数队列。
 
 **队列声明**：本页纸面就绪 ≠ 开工指令；**不抢实验 A 真数队列**；不催本机 8765 鉴权；不派回测开工。
@@ -198,10 +236,11 @@ is_exit_first_day(i,t)= is_exit_day and (t == first_counted_trading_day)
 | 数据 | 待接入（字段见 §6） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；oos_split 占位+禁 holdout 反调；红线 v0 机制豁免；**exit_len_cut_date=2020-12-14 写死+拉数前冻结**；risk_warn_buy_cap_50w=off；Y/G/N/Y2 拉数前入 params |
+| 风控预埋 | fail_policy=skip；oos_split 占位+禁 holdout 反调；红线 v0 机制豁免；**exit_len_cut_date=2020-12-14 写死+拉数前冻结**；**exit_len_cut_date_szse=same_as_sse**；**h1_index_mode=keep_or_engine_default**；**diff_buckets 八桶写死+拉数前冻结**；停牌不推进计入 / exit_end≤窗∩<delist_date；risk_warn_buy_cap_50w=off；Y/G/N/Y2 拉数前入 params |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管：G 风控补丁已交后继续可离线下一纸面；优先 H；不依赖新数据商；机制类预埋 fail_policy/oos/红线豁免/params 冻结；**不抢实验 A**）。
+- 2026-11-02：风控有条件通过三条补齐——① `h1_index_mode=keep_or_engine_default` 写死（不用 `also_exclude`）；② `params.diff_buckets` 八桶默认名写死+拉数前冻结；③ 停牌不推进计入日；`exit_end` vs `delist_date` 关系写死；`exit_len_cut_date_szse=same_as_sse`。参考 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设H-20261102.md`。
