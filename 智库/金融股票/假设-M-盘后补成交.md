@@ -1,7 +1,7 @@
 # 假设 M · 盘后定价通道误套全历史 / 竞价剩单自动进盘后（盘后补成交）
 
-更新：2026-11-02  
-来源：总管线 / L 风控四条已交后恢复写 M；清单实验 M  
+更新：2026-11-02（风控补丁）  
+来源：总管线 / 假设 M 纸面预检有条件通过；清单实验 M  
 状态：**草稿 · 待数据 · 待跑**（结论栏空；禁止把「收盘价盘后一定能补上」当实盘预期；不抢实验 A 真数队列；L 不开回测）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 实验 M 对齐。与假设 A（板上可成交，盘后默认关）、D（开/收时点）、G（无板日 PIT）、H（退市整理）、L（市价通道）、O（大宗/三条盘后通道）互补：本页专测**盘后固定价格通道**被当成「凡收盘价都能再补一笔」或「竞价剩单自动进 15:05」时，对可成交量与失败笔数的高估。**比较通道写死为盘后固定价格；禁止与深市盘后定价大宗、沪市大宗固定价格申报混成同一张主表却不标注通道（那是实验 O）。**
@@ -36,13 +36,18 @@
 # params.m0_auto_roll_auction_remainder 写死默认 True     # 天真：竞价剩单自动进 15:05（发明通道）
 # params.m1_auto_roll_auction_remainder 写死默认 False    # 诚实：必须另下收盘定价申报
 # params.day_freq_mode                写死 channel_avail_plus_kappa  # 无独立盘后量时：只做通道可用性+κ敏感性，禁声称精确盘后复盘
-# params.kappa                        写死默认 0.01       # 盘后可成量 ≤ floor(κ·当日竞价成交量) 占位；拉数前冻结
+# params.kappa                        写死默认 0.01       # 盘后可成量帽；取整见 kappa_cap_round；拉数前冻结
+# params.kappa_vol_basis              写死 day_total_excl_aft  # 单一枚举 auction_only|day_total_excl_aft|day_total；本页=day_total_excl_aft；禁双挂
+# params.kappa_vol_basis_fallback     写死 skip_aft_leg   # 无法构造 excl_aft 且无 auction_only → skip 该盘后腿；禁静默改 day_total
+# params.kappa_cap_round              写死 floor          # 单一枚举 floor|trunc；本页=floor；与伪码一致；禁 int 向零截断冒充 floor
+# params.chinext_exit_aft_policy_post_cut 写死 exclude   # 切日之后新进整理期：exclude|allow_if_channel_on|skip_missing_flag_only；本页=exclude（与切日存量同向）
+# params.m2_auto_roll_auction_remainder 写死 False      # 显式冻结；与 M1 同向只测通道泄露；禁事后改口
 # params.opponent_policy              写死 kappa_cap|skip  # 本页默认 kappa_cap；无量/无对手 → skip
 # params.diff_buckets                 写死默认桶名（§4.1）；拉数前冻结
 # params.Y / G / N / Y2               写死具体数并冻结；禁 holdout 标定
 # params.date_start / date_end        写死主窗并冻结
 # params.oos_split.*                  写死四日期并冻结；禁 holdout 反调
-# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 fill_time·切日·auto_roll·kappa·Y/G/N/Y2·主窗/oos
+# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 fill_time·切日·auto_roll·kappa·kappa_vol_basis·kappa_cap_round·chinext_exit_aft_policy_post_cut·m2_auto_roll·Y/G/N/Y2·主窗/oos
 
 tick = 0.01  # A 股股票默认；基金/ETF 价位另案，本页主样本股票
 fill_primary = next_open
@@ -51,9 +56,14 @@ sh_accept_start = "09:30"
 sz_accept_start = "09:15"
 bse_aft_on_20260706 = False
 chinext_exit_exclude_on_cut = True
+chinext_exit_aft_policy_post_cut = "exclude"  # 切日之后新进整理期一律不引入盘后
+m2_auto_roll_auction_remainder = False        # 显式冻结；只测通道泄露
 day_freq_mode = "channel_avail_plus_kappa"
 opponent_policy = "kappa_cap"
 kappa = 0.01
+kappa_vol_basis = "day_total_excl_aft"        # 禁用含盘后日总量自证自帽；无字段→skip_aft_leg
+kappa_vol_basis_fallback = "skip_aft_leg"
+kappa_cap_round = "floor"                     # 与下方 math.floor 一致；禁 int/trunc 冒充
 
 def aft_channel_on(board, exchange, asof_date, in_exit_period_on_chinext_cut):
     # 北交所：扩围日仍无
@@ -70,8 +80,11 @@ def aft_channel_on(board, exchange, asof_date, in_exit_period_on_chinext_cut):
             and in_exit_period_on_chinext_cut
             and params.chinext_exit_exclude_on_cut):
             return False
-        # 切日后若仍处整理期：本页默认仍按「整理期内不引入」只绑切日存量说明；
-        # 切日之后新进整理期是否有盘后 → 未在本页另核，缺旗则 fail_policy=skip
+        # 切日之后新进整理期：params.chinext_exit_aft_policy_post_cut=exclude（写死）
+        # → 整理期内一律不引入盘后，与切日存量同向；缺 in_exit_period 旗 → fail_policy=skip
+        if in_exit_period_on_chinext_cut and params.chinext_exit_aft_policy_post_cut == "exclude":
+            # 注：日频接口把「是否在整理期」统一经 in_exit_period 传入；切日存量与切后新进同判
+            return False
         return True
     # 沪深主板 A 股（及 ETF 分桶）：2026-07-06 起
     if board in ("Main", "SH_Main", "SZ_Main"):
@@ -88,22 +101,54 @@ def naive_aft_fill(side, close, intent_qty, day_vol):
         return 0
     return intent_qty  # 无限量；不看通道、不看停牌、不看对手盘
 
-def honest_aft_fill(side, close, intent_qty, day_vol, channel_on, susp_1500):
+def kappa_basis_vol(day_vol_total, vol_auction_only, vol_aft, channel_on):
+    # params.kappa_vol_basis 写死单一枚举；本页=day_total_excl_aft
+    basis = params.kappa_vol_basis
+    if basis == "auction_only":
+        if vol_auction_only is None:
+            return None  # → kappa_vol_basis_fallback=skip_aft_leg
+        return vol_auction_only
+    if basis == "day_total_excl_aft":
+        if channel_on:
+            if day_vol_total is None:
+                return None
+            if vol_aft is None:
+                # 通道已开却无法剔盘后 → 不静默改 day_total；走 fallback
+                return None
+            return max(0, day_vol_total - vol_aft)
+        # 通道未开：日总量即 excl_aft
+        return day_vol_total
+    if basis == "day_total":
+        return day_vol_total  # 本页不用；保留枚举位，启用须改 params 并自检声明自证自帽风险
+    return None
+
+def kappa_cap_shares(kappa, basis_vol):
+    # params.kappa_cap_round 写死 floor|trunc；本页=floor（与注释一致；禁 int 向零截断冒充）
+    import math
+    raw = kappa * basis_vol
+    if params.kappa_cap_round == "floor":
+        return int(math.floor(raw))
+    if params.kappa_cap_round == "trunc":
+        return int(raw)  # 向零；本页不用
+    raise ValueError("kappa_cap_round must be floor|trunc")
+
+def honest_aft_fill(side, close, intent_qty, day_vol_total, vol_auction_only, vol_aft, channel_on, susp_1500):
     if not channel_on or susp_1500 or close is None or close <= 0:
         return 0  # fail / skip
     # 必须另下收盘定价申报（auto_roll=False）；买限价≥收盘、卖限价≤收盘才有效——日频默认按「限价=收盘」可进簿
     if params.opponent_policy == "skip":
-        return 0 if (day_vol is None or day_vol <= 0) else min(intent_qty, intent_qty)  # 有量才试；精确对手未知
-    # kappa_cap：盘后可成 ≤ floor(κ · 当日成交量占位)；无独立盘后量时禁止声称精确复盘
-    if day_vol is None or day_vol <= 0:
-        return 0
-    cap = int(params.kappa * day_vol)
+        return 0 if (day_vol_total is None or day_vol_total <= 0) else min(intent_qty, intent_qty)  # 有量才试；精确对手未知
+    # kappa_cap：盘后可成 ≤ floor(κ · basis_vol)；无独立盘后量时禁止声称精确复盘
+    basis_vol = kappa_basis_vol(day_vol_total, vol_auction_only, vol_aft, channel_on)
+    if basis_vol is None or basis_vol <= 0:
+        return 0  # kappa_vol_basis_fallback=skip_aft_leg
+    cap = kappa_cap_shares(params.kappa, basis_vol)
     return max(0, min(intent_qty, cap))
 ```
 
 - **PIT 诚实（M1）**：每个交易日只用当日已生效通道（科创开市起 / 创业板 `2020-08-24` / 主板+ETF `2026-07-06`；北交所该日仍无）。盘后 = **单独的收盘定价申报**，竞价剩单**不**自动进 15:05。撮合窗 **15:05–15:30**，按**当日未复权收盘价、时间优先**。停牌至 15:00 → 失败。仍要有对手盘（日频用 `opponent_policy`+`kappa`，禁假装无限量）。盘后仍是**当日**成交，**不**改变股票 T+1，**不**绕开涨停。  
 - **天真（M0）**：凡收盘价都允许按收盘价再成交一笔盘后量；`m0_auto_roll_auction_remainder=True`（发明通道）。可忽略板块切日与停牌。  
-- **泄露（M2）**：全样本用核对日现行「全 A + ETF 都有盘后」（`asof_check_date=2026-10-19` 锚点），含主板 `<2026-07-06`、创业板 `<2020-08-24`、甚至北交所错标。  
+- **泄露（M2）**：全样本用核对日现行「全 A + ETF 都有盘后」（`asof_check_date=2026-10-19` 锚点），含主板 `<2026-07-06`、创业板 `<2020-08-24`、甚至北交所错标。**`params.m2_auto_roll_auction_remainder=False`（写死冻结）**——只测通道泄露，不自动滚剩单。  
 - **申报窗诊断（非主对照改口项）**：沪市接受盘后单自 **09:30**；深市自 **09:15**。误把沪市写成 09:15 起算 → 计入 `sh_accept_mislabel_0915` 诊断桶，**不**改主结论定义。  
 - **与 O 分列**：O = 大宗量价 / 盘后定价大宗 / 沪市大宗固定价格；M = **股票盘后固定价格**通道。主报告分表。  
 - **禁止**：用复权收盘价；把盘后当成绕开涨停或绕开 T+1；北交所 2026-07-06 写成已开通；竞价剩单默认滚进 15:05 却标成诚实；与 O 混主表不标注；把差异写成选股。
@@ -119,13 +164,21 @@ def honest_aft_fill(side, close, intent_qty, day_vol, channel_on, susp_1500):
 |----|----------|----------|----------------------|
 | M0 天真-收盘必补 | 凡有收盘价即可盘后补一笔 | **自动滚进 15:05**（`m0_auto_roll=True`） | 不停牌挡；无限量 |
 | M1 PIT 诚实 | **每个交易日**用当日已生效通道；无通道→盘后腿 skip | **必须另下**收盘定价申报（`m1_auto_roll=False`） | 停牌→失败；`opponent_policy=kappa_cap`（默认） |
-| M2 泄露-现行铺满 | 全样本抄核对日「全 A+ETF 有盘后」 | 可与 M0 同或单独声明；本页默认**不**自动滚，只测通道泄露 | 同 M1 的停牌/对手盘开关，避免与通道泄露缠死 |
+| M2 泄露-现行铺满 | 全样本抄核对日「全 A+ETF 有盘后」 | **`params.m2_auto_roll_auction_remainder=False`（写死冻结）**；只测通道泄露，不与 M0 缠死 | 同 M1 的停牌/对手盘开关，避免与通道泄露缠死 |
 
 同一信号、同一 T+1、同一成本开关（本页可先零成本只比盘后通道差）。**主腿**成交时点 **`primary_leg_fill_time=next_open` 写死**（与 A/D 对齐）；**盘后附加腿**在信号日/成交日**当日** 15:05–15:30（若通道开）。禁止把盘后腿报成「次日开盘」。
 
 **`params.day_freq_mode`（写死；拉数前冻结）**：`channel_avail_plus_kappa`——无独立「盘后成交量」字段时，只报通道可用性差、失败笔数、κ 敏感性；**禁止**声称精确盘后吃单复盘。有独立盘后量字段时可增强，但不得事后改主结论口径。
 
 **`params.kappa`（写死默认；拉数前冻结）**：`0.01`。用于 M1/M2 对手盘帽；**禁 holdout 改 κ**。
+
+**`params.kappa_vol_basis`（写死；拉数前冻结；禁双挂）**：`day_total_excl_aft`。枚举仅允许 `auction_only` / `day_total_excl_aft` / `day_total`；本页不用 `day_total`（通道已开后含盘后日总量会自证自帽）。无 `volume_aft` 无法构造 excl_aft、且无 `volume_auction_only` → **`params.kappa_vol_basis_fallback=skip_aft_leg`**（跳过该盘后腿）；**禁止**静默改 `day_total`。
+
+**`params.kappa_cap_round`（写死；拉数前冻结）**：`floor`。伪码用 `math.floor`；**禁止**用 `int(...)`（向零截断/`trunc`）却标成 floor。本页不用 `trunc`。
+
+**`params.chinext_exit_aft_policy_post_cut`（写死；拉数前冻结）**：`exclude`。切日之后新进整理期 → 整理期内一律不引入盘后（与 `chinext_exit_exclude_on_cut=True` 同向）。枚举另有 `allow_if_channel_on` / `skip_missing_flag_only`，本页不用；**禁止**跑后因净值改口。
+
+**`params.m2_auto_roll_auction_remainder`（写死；拉数前冻结）**：`False`。与 M1 同向，只测通道泄露；**禁止**与 M0 定义缠死事后改口。
 
 ---
 
@@ -212,7 +265,17 @@ params.N  = 0.05    # 失败率差门槛 ≥ 5pp
 params.Y2 = 0.015   # 稳健子窗净值差门槛 ≥ 1.5pp 年化
 ```
 
-门槛已在纸面写入并冻结；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、切日、`kappa`、`auto_roll`、主窗/`oos_split` 开工拉数前必须保持冻结；**禁止跑后改口**。
+门槛已在纸面写入并冻结；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、切日、`kappa`、`kappa_vol_basis`、`kappa_cap_round`、`chinext_exit_aft_policy_post_cut`、`m0/m1/m2_auto_roll`、主窗/`oos_split` 开工拉数前必须保持冻结；**禁止跑后改口**。
+
+**风控补丁四条（2026-11-02；拉数前冻结）**：
+
+```
+params.kappa_vol_basis                   = day_total_excl_aft   # 单一枚举；禁双挂；fallback=skip_aft_leg
+params.chinext_exit_aft_policy_post_cut  = exclude              # 切后新进整理期一律不引入
+params.m2_auto_roll_auction_remainder    = False                # 显式写入；只测通道泄露
+params.kappa_cap_round                   = floor                # 与伪码 math.floor 一致；禁 int/trunc 冒充
+```
+
 
 **失败/不显著**：差异落在噪声带内——结论栏写明，不得改口称「盘后通道无关」或「收盘价一定能补上」。
 
@@ -233,14 +296,14 @@ params.Y2 = 0.015   # 稳健子窗净值差门槛 ≥ 1.5pp 年化
 本假设或实验设定在下列情形下失效/须重切，不得硬套：
 
 1. **主板/ETF `<2026-07-06` 进 M1 却开盘后**：该段属 M0/M2 敏感，不是 M1。  
-2. **创业板 `<2020-08-24` 开盘后**，或切日当日仍在整理期的存量创业板被写成已引入盘后。  
+2. **创业板 `<2020-08-24` 开盘后**，或切日当日仍在整理期的存量创业板被写成已引入盘后；或切日之后新进整理期在 `chinext_exit_aft_policy_post_cut=exclude` 下仍开盘后。  
 3. **北交所 2026-07-06 写成已开通盘后**。  
 4. **竞价剩单自动进 15:05 却标成诚实（M1）**：发明通道；仅允许出现在 M0。  
 5. **停牌至 15:00 仍记盘后成交**。  
 6. **用复权收盘价撮合**。  
 7. **把盘后当成绕开涨停或绕开 T+1**。  
 8. **与实验 O（大宗/盘后定价大宗/沪市大宗固定价格）混报主结论且不标注通道**。  
-9. **无独立盘后量却报「精确盘后复盘」**。  
+9. **无独立盘后量却报「精确盘后复盘」**；或 `kappa_vol_basis=day_total`（含盘后）却不声明自证自帽；或 `kappa_cap_round` 注释写 floor、实现用 `int`/`trunc`。  
 10. **宇宙泄露 / holdout 反调**：看完 OOS 再改切日、`kappa` 或 `auto_roll`。  
 11. **把差异写成选股/「这类票能买」**。  
 12. **沪市盘后申报误从 09:15 起算却不进诊断桶**。
@@ -255,9 +318,9 @@ params.Y2 = 0.015   # 稳健子窗净值差门槛 ≥ 1.5pp 年化
 | exchange (SH/SZ/BJ) | 通道与申报窗路由 | **必填** |
 | board / market | 科创/主板/创业/北交 | 按日 PIT |
 | close（未复权） | 盘后撮合价 | **禁复权** |
-| volume / amount | κ 帽；是否含盘后须注明 | 切日之后日总量才含盘后 |
-| volume_auction_only（可选） | 更干净的 κ 分母 | **非纸面最小集** |
-| volume_aft（可选） | 独立盘后量 | 有则可增强；无则 channel_avail_plus_kappa |
+| volume / amount | κ 帽原料；是否含盘后须注明 | 切日之后日总量才含盘后；**本页 κ 分母不用含盘后总量** |
+| volume_auction_only（可选） | `kappa_vol_basis=auction_only` 时分母 | **非纸面最小集**；本页默认不用 |
+| volume_aft（可选） | 独立盘后量；构造 `day_total_excl_aft` | 通道已开且缺此字段 → skip_aft_leg（不静默改 day_total） |
 | is_suspended_to_1500 / tradable_flag | 挡盘后 | 勿用收益=0 代替 |
 | in_exit_period | 创业板切日整理期除外 | 可与假设 H 共用 |
 | list_date | 宇宙 / 科创开市后样本 | |
@@ -272,16 +335,16 @@ params.Y2 = 0.015   # 稳健子窗净值差门槛 ≥ 1.5pp 年化
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=M`，`groups=[M0,M1,M2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-19`**，**`params.star_aft_start=2019-07-22`**，**`params.chinext_aft_start=2020-08-24`**，**`params.main_etf_aft_start=2026-07-06`**，**`params.bse_aft_on_20260706=False`**，**`params.chinext_exit_exclude_on_cut=True`**，**`params.sh_accept_start=09:30`**，**`params.sz_accept_start=09:15`**，**`params.match_window=15:05-15:30`**，**`params.primary_leg_fill_time=next_open`（写死）**，**`params.m0_auto_roll_auction_remainder=True`**，**`params.m1_auto_roll_auction_remainder=False`**，**`params.day_freq_mode=channel_avail_plus_kappa`**，**`params.opponent_policy=kappa_cap`**，**`params.kappa=0.01`（写死默认；拉数前冻结）**，**`params.diff_buckets=[main_pre_20260706,chinext_pre_20200824,chinext_exit_on_20200824,board_star,bse_on_or_after_20260706,suspend_to_1500,auto_roll_remainder,sh_accept_mislabel_0915]`（写死默认；拉数前冻结）**，**`params.Y=0.02` / `params.G=0.01` / `params.N=0.05` / `params.Y2=0.015`（写死具体数并冻结；禁 holdout 标定；禁 null）**，`universe_rule`，**`params.date_start=2020-01-01` / `params.date_end=2026-09-30`（写死；覆盖 2020-08-24 与 2026-07-06）**，**`oos_split.{is_start=2020-01-01,is_end=2025-12-31,holdout_start=2026-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_A=off`（默认 off；A 盘后默认关，叠加须声明），`overlay_H=on`（建议 on：整理期旗共用），`overlay_O=off`（默认 off；大宗分表），`cost_switch=off`（M 主跑）。  
+- 配置块（写死项加粗）：`hypothesis_id=M`，`groups=[M0,M1,M2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-19`**，**`params.star_aft_start=2019-07-22`**，**`params.chinext_aft_start=2020-08-24`**，**`params.main_etf_aft_start=2026-07-06`**，**`params.bse_aft_on_20260706=False`**，**`params.chinext_exit_exclude_on_cut=True`**，**`params.chinext_exit_aft_policy_post_cut=exclude`**，**`params.sh_accept_start=09:30`**，**`params.sz_accept_start=09:15`**，**`params.match_window=15:05-15:30`**，**`params.primary_leg_fill_time=next_open`（写死）**，**`params.m0_auto_roll_auction_remainder=True`**，**`params.m1_auto_roll_auction_remainder=False`**，**`params.m2_auto_roll_auction_remainder=False`（写死冻结；显式写入）**，**`params.day_freq_mode=channel_avail_plus_kappa`**，**`params.opponent_policy=kappa_cap`**，**`params.kappa=0.01`（写死默认；拉数前冻结）**，**`params.kappa_vol_basis=day_total_excl_aft`（写死；fallback=skip_aft_leg；禁双挂；禁静默改 day_total）**，**`params.kappa_cap_round=floor`（写死；与伪码 math.floor 一致）**，**`params.chinext_exit_aft_policy_post_cut=exclude`（写死；切后新进整理期一律不引入）**，**`params.diff_buckets=[main_pre_20260706,chinext_pre_20200824,chinext_exit_on_20200824,board_star,bse_on_or_after_20260706,suspend_to_1500,auto_roll_remainder,sh_accept_mislabel_0915]`（写死默认；拉数前冻结）**，**`params.Y=0.02` / `params.G=0.01` / `params.N=0.05` / `params.Y2=0.015`（写死具体数并冻结；禁 holdout 标定；禁 null）**，`universe_rule`，**`params.date_start=2020-01-01` / `params.date_end=2026-09-30`（写死；覆盖 2020-08-24 与 2026-07-06）**，**`oos_split.{is_start=2020-01-01,is_end=2025-12-31,holdout_start=2026-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；见 §4.3），`overlay_A=off`（默认 off；A 盘后默认关，叠加须声明），`overlay_H=on`（建议 on：整理期旗共用），`overlay_O=off`（默认 off；大宗分表），`cost_switch=off`（M 主跑）。  
 - 行情与规则表：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
 
 - M0/M1/M2 盘后补成交贡献、失败笔数、（可选）净值；分桶（主板扩围前 / 创业板切日前 / 切日整理期 / 科创 / 北交所 / 停牌 / auto_roll / 沪市 09:15 误标）。  
-- 自检布尔：是否未复权；是否 PIT 切日；北交所是否未假开通；M1 是否禁 auto_roll；停牌至 15:00 是否失败；是否未把盘后当绕开涨停/T+1；是否未与 O 混主表；`kappa`/切日是否已冻结；holdout 是否未反调。  
+- 自检布尔：是否未复权；是否 PIT 切日；北交所是否未假开通；M1/M2 是否禁 auto_roll（`m1/m2_auto_roll=False`）；停牌至 15:00 是否失败；是否未把盘后当绕开涨停/T+1；是否未与 O 混主表；`kappa`/`kappa_vol_basis=day_total_excl_aft`/`kappa_cap_round=floor`/`chinext_exit_aft_policy_post_cut=exclude`/切日是否已冻结；`kappa_cap` 是否用 floor 而非 int/trunc；holdout 是否未反调。  
 - **禁止输出**：具体买卖标的列表当「建议」；把天真盘后必成当实盘预期；催跑抢 A 真数队列。
 
-**队列声明**：本页纸面就绪 ≠ 开工指令；**不抢实验 A 真数队列**；不催本机 8765 鉴权；不派回测开工；**L 不开回测**。
+**队列声明**：本页纸面就绪 ≠ 开工指令；**不抢实验 A 真数队列**；不催本机 8765 鉴权；不派回测开工；**M 不开回测**；**L 不开回测**。
 
 ---
 
@@ -299,12 +362,13 @@ params.Y2 = 0.015   # 稳健子窗净值差门槛 ≥ 1.5pp 年化
 |----|----|
 | 文档状态 | 草稿 |
 | 数据 | 待接入（字段见 §6；日频未复权收盘 + 交易所/板块 + 停牌旗 + 切日表即可起步） |
-| 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；L 不开回测） |
+| 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；**M 不开回测**；L 不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2020-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免；asof_check_date=2026-10-19 / star_aft_start=2019-07-22 / chinext_aft_start=2020-08-24 / main_etf_aft_start=2026-07-06 / bse_aft_on_20260706=False / chinext_exit_exclude_on_cut=True；**primary_leg_fill_time=next_open 写死**；**m0_auto_roll=True / m1_auto_roll=False**；**day_freq_mode=channel_avail_plus_kappa**；**opponent_policy=kappa_cap / kappa=0.01 写死冻结**；diff_buckets 八桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死具体数并冻结、禁 holdout 标定、禁 null** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2020-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免；asof_check_date=2026-10-19 / star_aft_start=2019-07-22 / chinext_aft_start=2020-08-24 / main_etf_aft_start=2026-07-06 / bse_aft_on_20260706=False / chinext_exit_exclude_on_cut=True；**chinext_exit_aft_policy_post_cut=exclude 写死**；**primary_leg_fill_time=next_open 写死**；**m0_auto_roll=True / m1_auto_roll=False / m2_auto_roll=False（显式）**；**day_freq_mode=channel_avail_plus_kappa**；**opponent_policy=kappa_cap / kappa=0.01 / kappa_vol_basis=day_total_excl_aft / kappa_cap_round=floor 写死冻结**；diff_buckets 八桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死具体数并冻结、禁 holdout 标定、禁 null** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：L 风控四条已交后恢复写 M；选型对齐清单实验 M；机制类预埋 fail_policy/oos/红线豁免/params 冻结；**不抢实验 A**；**不派回测**；**L 不开回测**）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设M-20261102.md` 有条件通过补四条——① `params.kappa_vol_basis=day_total_excl_aft`（fallback=`skip_aft_leg`；禁双挂；禁静默改 `day_total`）；② `params.chinext_exit_aft_policy_post_cut=exclude`；③ `params.m2_auto_roll_auction_remainder=False` 显式写入冻结；④ `params.kappa_cap_round=floor`（伪码改 `math.floor`，消歧原 `int`/`trunc`）。**不抢实验 A**；**M 不开回测**。
