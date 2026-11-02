@@ -23,7 +23,7 @@
 ### 2.1 日总量 ≠ 连续可冲击量；集合 / 连续 / 盘后 / 大宗分列；收盘集合量窗 PIT
 
 ```
-# 配置写死键（见 §7；Y/G/N/Y2 与若干枚举待预检冻结）
+# 配置写死键（见 §7；风控补丁三条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 Y
 # params.asof_check_date                 写死默认 2026-10-19  # 与 N/M 同批「收盘机制+盘后计入日总量」核对锚；本页不重开收盘价定义
 # params.fill_time                        写死 next_open      # 成交腿与 A/D 对齐；本页主测流动性分母，不抢 A 板上真数
@@ -45,7 +45,7 @@
 # params.vol_session_source              写死 vendor_session_fields_or_minute_sum  # 优先分列字段；否则分钟加总；禁门槛反推
 # params.missing_session_vol_policy      写死 skip           # 缺开盘/收盘/连续分列且无分钟可加总 → skip 该腿
 # params.minute_bar_tz                   写死 Asia/Shanghai  # 分钟加总时区；禁 UTC 错位把午休并进连续
-# params.minute_bar_label                写死 bar_end        # 建议 bar 右端点；待预检可改但须写死冻结
+# params.minute_bar_label                写死 bar_end        # 风控补丁冻结；分钟 bar 右端点；与 minute_bar_tz=Asia/Shanghai 配套
 # params.merge_with_O_block              写死 False          # 大宗假流动性另页 O
 # params.merge_with_M_aft                写死 False          # 盘后通道另页 M
 # params.merge_with_N_close_mech         写死 False          # 收盘价产生方式另页 N；本页只切量桶
@@ -53,12 +53,12 @@
 # params.merge_with_L_mkt                写死 False          # 市价通道另页 L（市价本就只走连续）
 # params.merge_with_S_T_U_V_fee          写死 False
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  键名稳值待预检      # 建议占位 0.02/0.01/0.05/0.015；禁 holdout 标定；禁 null
-# params.y0_primary_demo                 键名稳值待预检      # 建议 day_total_as_continuous；枚举另有 matching_incl_call / swallow_aft；禁双挂
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=费用/冲击相对门槛键 ≠ 实验字母 Y；禁 holdout 标定；禁 null
+# params.y0_primary_demo                 写死 day_total_as_continuous  # 风控补丁冻结；主报日总量当连续；禁与 matching_incl_call / swallow_aft 双挂
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
-# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改分母枚举、切日、κ、params.Y/G/N/Y2、主窗/oos、y0_primary_demo
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改分母枚举、切日、κ、params.Y/G/N/Y2、主窗/oos、y0_primary_demo、minute_bar_label
 
 fill_time = "next_open"
 asof_check_date = "2026-10-19"
@@ -77,6 +77,12 @@ kappa_cap_round = "floor"
 vol_session_source = "vendor_session_fields_or_minute_sum"
 missing_session_vol_policy = "skip"
 minute_bar_tz = "Asia/Shanghai"
+minute_bar_label = "bar_end"  # 风控补丁冻结；分钟 bar 右端点
+Y = 0.02   # params.Y：换手/冲击差门槛；≠实验字母 Y
+G = 0.01
+N = 0.05
+Y2 = 0.015
+y0_primary_demo = "day_total_as_continuous"  # 单一主报；禁双挂
 merge_with_O_block = False
 merge_with_M_aft = False
 merge_with_N_close_mech = False
@@ -184,16 +190,18 @@ def kappa_cap(basis, kappa=0.01):
 
 **`params.merge_with_O_block=False` / `merge_with_M_aft=False` / `merge_with_N_close_mech=False` / `merge_with_A_fill=False` / `merge_with_L_mkt=False` / `merge_with_S_T_U_V_fee=False`（写死）**。
 
-**待预检冻结键（草稿占位；拉数前必须写入具体值；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁三条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
+
+> **消歧**：`params.Y` 是费用/冲击**相对门槛键**（与 G/N/Y2 同族），**不是**实验字母「假设 Y / hypothesis_id=Y」。
 
 ```
-params.Y                            # 建议 0.02；换手/冲击差显著门槛（全样本或高集合占比桶）——≠实验字母 Y
-params.G                            # 建议 0.01；高集合占比桶相对低集合对照的差门槛
-params.N                            # 建议 0.05；失败/跳过率差门槛
-params.Y2                           # 建议 0.015；Y1（含集合匹配）相对 Y2 专项门槛
-params.y0_primary_demo              # 建议 day_total_as_continuous；枚举另有 matching_incl_call / swallow_aft；禁双挂
-params.minute_bar_label             # 建议 bar_end；若预检要求改枚举须显式冻结
-params.vol_session_source           # 已写死 vendor_session_fields_or_minute_sum；改枚举须冻结
+params.Y                            = 0.02                # 换手/冲击差显著门槛 ≥ 2pp（全样本或高集合占比桶）；≠实验字母 Y
+params.G                            = 0.01                # 高集合占比桶相对低集合对照的差门槛 ≥ 1pp（ΔTO_call）
+params.N                            = 0.05                # 失败/跳过率差门槛 ≥ 5pp
+params.Y2                           = 0.015               # Y1（含集合匹配）相对 Y2 专项门槛 ≥ 1.5pp（ΔTO_(Y1−Y2)）
+params.y0_primary_demo              = day_total_as_continuous  # 主报日总量当连续；枚举另有 matching_incl_call / swallow_aft；禁双挂争主表
+params.minute_bar_label             = bar_end             # 分钟 bar 右端点；与 minute_bar_tz=Asia/Shanghai 配套；无分钟加总路径时本键不生效但仍冻结
+params.vol_session_source           = vendor_session_fields_or_minute_sum  # 已写死；改枚举须冻结
 ```
 
 ---
@@ -259,10 +267,10 @@ params.diff_buckets = [
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 换手/冲击差显著门槛 | **待预检写入**具体数并冻结（建议 0.02） |
-| params.G | 高集合桶相对对照差门槛 | **待预检**（建议 0.01） |
-| params.N | 失败笔数率差门槛 | **待预检**（建议 0.05） |
-| params.Y2 | Y1 含集合匹配专项门槛 | **待预检**（建议 0.015） |
+| params.Y | 换手/冲击差显著门槛（≠实验字母 Y） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 高集合桶相对对照差门槛 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败笔数率差门槛 | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | Y1 含集合匹配专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-19`；拉数前冻结 |
 | fill_time | 成交时点 | **写死** `next_open` |
 | sh_stock_close_auction_start | 沪市股票收盘集合量窗 | **写死** `2018-08-20` |
@@ -270,7 +278,7 @@ params.diff_buckets = [
 | y2_vol_basis | 诚实分母 | **写死** `continuous_only` |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛键名已列；**具体数值待风控预检有条件通过后写入并冻结**；**禁止用 holdout / OOS 段标定或反调**。
+门槛键名与具体数值已写入 params 并冻结（风控补丁 2026-11-02；**`params.Y`≠实验字母 Y**）；**禁止用 holdout / OOS 段标定或反调**。
 
 **失败/不显著**：差异落在噪声带内或均匀散在低集合对照桶——结论栏写明，不得改口称「日量当连续分母差不多」或「这类票更能打」。
 
@@ -326,7 +334,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=Y`（**实验字母**），`groups=[Y0,Y1,Y2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-19`**，**`params.fill_time=next_open`（写死）**，**`params.sh_stock_close_auction_start=2018-08-20`**，**`params.sh_fund_close_auction_start=2026-07-06`**，**`params.sz_stock_close_auction_start=None(leave_unsliced)`**，**`params.y0_vol_basis=day_total`**，**`params.y1_vol_basis=matching_incl_call`**，**`params.y2_vol_basis=continuous_only`**，**`params.exclude_block_from_all=True`**，**`params.exclude_aft_from_continuous=True`**，**`params.y0_swallow_aft=True`**，**`params.y0_swallow_block=False`**，**`params.kappa=0.01`**，**`params.kappa_cap_round=floor`**，**`params.vol_session_source=vendor_session_fields_or_minute_sum`**，**`params.missing_session_vol_policy=skip`**，**`params.minute_bar_tz=Asia/Shanghai`**，**`params.merge_with_O_block=False`**，**`params.merge_with_M_aft=False`**，**`params.merge_with_N_close_mech=False`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_L_mkt=False`**，**`params.merge_with_S_T_U_V_fee=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y/G/N/Y2`（待预检写入具体数并冻结；禁 holdout 标定；禁 null；≠实验字母）**，**`params.y0_primary_demo`（待预检；禁双挂）**，**`params.minute_bar_label`（待预检；建议 bar_end）**，`universe_rule`，**`params.date_start=2018-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2018-01-01,is_end=2023-12-31,holdout_start=2024-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_O=off`，`overlay_M=off`，`overlay_N=off`，`overlay_A=off`，`overlay_L=off`。  
+- 配置块（写死项加粗）：`hypothesis_id=Y`（**实验字母**），`groups=[Y0,Y1,Y2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-19`**，**`params.fill_time=next_open`（写死）**，**`params.sh_stock_close_auction_start=2018-08-20`**，**`params.sh_fund_close_auction_start=2026-07-06`**，**`params.sz_stock_close_auction_start=None(leave_unsliced)`**，**`params.y0_vol_basis=day_total`**，**`params.y1_vol_basis=matching_incl_call`**，**`params.y2_vol_basis=continuous_only`**，**`params.exclude_block_from_all=True`**，**`params.exclude_aft_from_continuous=True`**，**`params.y0_swallow_aft=True`**，**`params.y0_swallow_block=False`**，**`params.kappa=0.01`**，**`params.kappa_cap_round=floor`**，**`params.vol_session_source=vendor_session_fields_or_minute_sum`**，**`params.missing_session_vol_policy=skip`**，**`params.minute_bar_tz=Asia/Shanghai`**，**`params.merge_with_O_block=False`**，**`params.merge_with_M_aft=False`**，**`params.merge_with_N_close_mech=False`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_L_mkt=False`**，**`params.merge_with_S_T_U_V_fee=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015`（写死冻结；禁 holdout 标定；禁 null；params.Y≠实验字母 Y）**，**`params.y0_primary_demo=day_total_as_continuous`（写死；禁双挂）**，**`params.minute_bar_label=bar_end`（写死冻结）**，`universe_rule`，**`params.date_start=2018-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2018-01-01,is_end=2023-12-31,holdout_start=2024-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_O=off`，`overlay_M=off`，`overlay_N=off`，`overlay_A=off`，`overlay_L=off`。  
 - 行情与分量：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -355,10 +363,24 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；会话分列日量或 Asia/Shanghai 分钟加总即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2018-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-19；**fill_time=next_open 写死**；**sh_stock_close_auction_start=2018-08-20 / sh_fund_close_auction_start=2026-07-06 写死**；y0=day_total / y1=matching_incl_call / y2=continuous_only；diff_buckets 十桶写死冻结；**params.Y/G/N/Y2·y0_primary_demo·minute_bar_label 待预检**（params.Y≠实验字母 Y） |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2018-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-19；**fill_time=next_open 写死**；**sh_stock_close_auction_start=2018-08-20 / sh_fund_close_auction_start=2026-07-06 写死**；y0=day_total / y1=matching_incl_call / y2=continuous_only；diff_buckets 十桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死冻结**（params.Y≠实验字母 Y）；**y0_primary_demo=day_total_as_continuous 写死（禁双挂）**；**minute_bar_label=bar_end 写死** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：并行写下一纸面 Y；W 补丁/X 预检由他人负责；清单止于 X → 自开跑前优先项「集合竞价量计入日线」+ `事实与坑` 时段/日量估冲击坑选题，**与 A–X 不撞主结论**；近邻 O=大宗、M=盘后、N=收盘机制，本页主测集合量假连续分母；**实验字母 Y ≠ params.Y**；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 W/X/V/U/A 正文**）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设Y-20261102.md` 有条件通过补三条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写入具体数并冻结（预检禁 holdout 标定且建议 0.02/0.01/0.05/0.015；**params.Y≠实验字母 Y**，页内注明为费用/冲击相对门槛键；禁 null）；② `params.y0_primary_demo=day_total_as_continuous`（主报日总量当连续；禁与 matching_incl_call / swallow_aft 双挂争主表）；③ `params.minute_bar_label=bar_end`（分钟 bar 右端点；与 `minute_bar_tz=Asia/Shanghai` 配套；写死冻结）。**不抢实验 A**；**Y 不开回测**；未动 Z/X/A。
+
+### 增量补丁段 · 2026-11-02（风控三条冻结）
+
+| 键 | 冻结值 | 备注 |
+|----|--------|------|
+| params.Y | 0.02 | 费用/冲击相对门槛键；**≠实验字母 Y** |
+| params.G | 0.01 | 高集合桶相对对照差 |
+| params.N | 0.05 | 失败/跳过率差 |
+| params.Y2 | 0.015 | Y1−Y2 专项 |
+| params.y0_primary_demo | day_total_as_continuous | 单一主报；禁双挂 |
+| params.minute_bar_label | bar_end | 与 Asia/Shanghai 配套 |
+
+预检稿：`experiments/backtest/A_limit_up_fill/risk_notes/预检-假设Y-20261102.md`。
