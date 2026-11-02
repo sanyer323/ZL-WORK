@@ -1,6 +1,6 @@
 # 假设 Q · 可转债按股票规则回放（规则混用 / 执行鸿沟）
 
-更新：2026-11-02  
+更新：2026-11-02（风控补丁）  
 来源：总管线 / P 草稿已收后继续写 Q；清单实验 Q  
 状态：**草稿 · 待数据 · 待跑**（结论栏空；禁止把「转债当股票 / 假 T+1 / 假转股 T+0」当实盘预期；不抢实验 A 真数队列；本页不开回测；P 不开回测）
 
@@ -43,6 +43,12 @@
 # params.q1_asof_leak_rules               写死 True           # 泄露：全样本用核对日现行转债规则
 # params.q2_pit                           写死 True           # 诚实 PIT
 # params.q2_convert_stock_same_day_sell   写死 False          # 转股所得股票次日才可卖
+# params.q1_convert_stock_same_day_sell   写死 False          # Q1转股所得次日可卖；与§2.3表同向；禁缺键静默继承q0/q2
+# params.q1_rotation                      写死 same_day       # Q1现行转债回转；禁缺键误套stock_t1
+# params.missing_last_min_vwap_policy     写死 skip_first_day_close_leg  # 无last_min_vwap→skip首日收盘腿；禁静默auction_1457标Q2
+# params.cb_face_value                    写死 100            # 可转债面值（元）
+# params.cb_lot_size                      写死 10             # 可转债一手=10张
+# params.q0_unit_source                   写死 stock_share_lot # 天真组用股票100股一手混用；暴露执行鸿沟
 # params.merge_sz_cb_aft_with_stock_aft   写死 False          # 禁与股票盘后固定价格合成一张表却不标注
 # params.missing_exch_policy              写死 skip           # 缺沪/深标记 → skip
 # params.missing_ipo_flag_policy          写死 skip           # 缺上市首日标记 → skip 首日腿
@@ -50,7 +56,7 @@
 # params.Y / G / N / Y2                   写死具体数并冻结；禁 holdout 标定
 # params.date_start / date_end            写死主窗并冻结
 # params.oos_split.*                      写死四日期并冻结；禁 holdout 反调
-# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 fill_time·回转·板切日·首日沪深分列·转股可卖日·Y/G/N/Y2·主窗/oos
+# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 fill_time·回转·板切日·首日沪深分列·转股可卖日·q1_convert_stock_same_day_sell·q1_rotation·missing_last_min_vwap_policy·cb_face_value·cb_lot_size·q0_unit_source·Y/G/N/Y2·主窗/oos
 
 tick = 0.01  # A 股可转债价格最小变动默认；基金 0.001 不进本页
 fill_time = "next_open"
@@ -89,31 +95,39 @@ def cb_pit_limit_pct(d, is_first_day, exch):
     return ("board", cb_limit_pct_post_cut, cb_limit_pct_post_cut)
 
 def close_px_source(group, d, is_first_day, exch, official_close, last_min_vwap, auction_1457_px):
+    # params.missing_last_min_vwap_policy=skip_first_day_close_leg（写死）：无 last_min_vwap → skip 首日收盘腿
     if group == "Q0":
         return auction_1457_px if auction_1457_px is not None else official_close
     if group == "Q1":
         # 泄露：按核对日现行细则（含沪市首日 last_min_vwap / 深市首日 14:57）
         if is_first_day and exch == "SSE":
-            return last_min_vwap if last_min_vwap is not None else official_close
+            if last_min_vwap is None:
+                return None  # skip_first_day_close_leg；禁 fallback official_close / auction_1457 标诚实源
+            return last_min_vwap
         if is_first_day and exch == "SZSE":
             return auction_1457_px if auction_1457_px is not None else official_close
         return official_close
     # Q2 PIT
     if is_first_day and exch == "SSE":
-        return last_min_vwap if last_min_vwap is not None else official_close
+        if last_min_vwap is None:
+            return None  # skip_first_day_close_leg
+        return last_min_vwap
     if is_first_day and exch == "SZSE":
         return auction_1457_px if auction_1457_px is not None else official_close
     return official_close
 
 def rotation_allows_same_day_sell(group, instrument_kind):
+    # params.q1_rotation=same_day；params.q1_convert_stock_same_day_sell=False；params.q0_unit_source=stock_share_lot
     if instrument_kind == "cb":
         if group == "Q0":
-            return False  # 天真当股票 → T+1，压低可交易次数
-        return True       # Q1/Q2 转债当日回转
+            return False  # q0_rotation=stock_t1 → T+1，压低可交易次数
+        # Q1: q1_rotation=same_day；Q2: cb_rotation=same_day
+        return True
     if instrument_kind == "stock_from_convert":
         if group == "Q0":
-            return True   # 假正股 T+0
-        return False      # Q1/Q2：转股所得次日才可卖
+            return True   # q0_convert_stock_same_day_sell=True（假正股 T+0）
+        # Q1: q1_convert_stock_same_day_sell=False；Q2: q2_convert_stock_same_day_sell=False
+        return False
     return False
 
 def forbid_copy_sh_first_day_to_sz(exch, using_sh_first_day_board):
@@ -146,6 +160,14 @@ def forbid_copy_sh_first_day_to_sz(exch, using_sh_first_day_board):
 **`params.copy_sh_first_day_to_sz=False`（写死）**：深市首日不得套用 57.3%/43.3% 板。
 
 **`params.merge_sz_cb_aft_with_stock_aft=False`（写死）**：深市转债盘后定价与股票盘后固定价格必须分列标注；混表不得进本页主结论。
+
+**`params.q1_convert_stock_same_day_sell`（写死；拉数前冻结）**：`False`。与 §2.3 表「Q1 转股所得次日可卖」同向；**禁止**缺键时由实现静默继承 `q0_convert_stock_same_day_sell` / `q2_convert_stock_same_day_sell`；**禁止**跑后因假转股 T+0 贡献改口。枚举另有 `True`（本页不选）。
+
+**`params.q1_rotation`（写死；拉数前冻结）**：`same_day`。与现行转债回转 / 全局 `cb_rotation=same_day` 同向；**禁止**缺键时误套 `stock_t1` 或与 Q0 缠死事后改口。
+
+**`params.missing_last_min_vwap_policy`（写死；拉数前冻结；禁双挂）**：`skip_first_day_close_leg`。与 §6「无 last_min_vwap 字段时沪市首日收盘诊断 skip」同向；**禁止**无字段时静默用 `auction_1457` 标 Q2；**禁止**双挂 `fallback_official_close_tagged`。枚举另有 `fallback_official_close_tagged`（须打 mech/来源标签且禁止把 fallback 当成 `last_min_vwap` 诚实源），本页不用。
+
+**`params.cb_face_value` / `params.cb_lot_size` / `params.q0_unit_source`（写死；拉数前冻结）**：`cb_face_value=100`（元）、`cb_lot_size=10`（张/手）、`q0_unit_source=stock_share_lot`（天真组用股票 100 股一手规则混用，暴露执行鸿沟）。枚举另有 `cb_native_lot`（Q0 仍用转债张），本页不选。**禁止**跑后因手数/面值换算改口；**禁止**把基金 0.001 tick 混进本页主结论（`tick=0.01` 仍写死）。
 
 ---
 
@@ -230,7 +252,18 @@ params.N  = 0.05    # 失败率差门槛 ≥ 5pp
 params.Y2 = 0.015   # 假 T+1/假转股 T+0 贡献门槛 ≥ 1.5pp
 ```
 
-门槛已在纸面写入并冻结；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、回转/板切日/首日分列/转股可卖日、主窗/`oos_split` 开工拉数前必须保持冻结；**禁止跑后改口**。
+门槛已在纸面写入并冻结；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、回转/板切日/首日分列/转股可卖日、`q1_convert_stock_same_day_sell` / `q1_rotation` / `missing_last_min_vwap_policy` / `cb_face_value` / `cb_lot_size` / `q0_unit_source`、主窗/`oos_split` 开工拉数前必须保持冻结；**禁止跑后改口**。
+
+**风控补丁四条（2026-11-02；拉数前冻结）**：
+
+```
+params.q1_convert_stock_same_day_sell = False                      # Q1转股所得次日可卖；禁缺键继承
+params.missing_last_min_vwap_policy   = skip_first_day_close_leg   # 无last_min_vwap→skip首日收盘腿；禁双挂
+params.cb_face_value                  = 100                        # 可转债面值（元）
+params.cb_lot_size                    = 10                         # 一手=10张
+params.q0_unit_source                 = stock_share_lot            # 天真组股票100股一手混用；暴露鸿沟
+params.q1_rotation                    = same_day                   # Q1现行转债回转；禁误套stock_t1
+```
 
 **失败/不显著**：差异落在噪声带内——结论栏写明，不得改口称「转债按股票回放差不多」或「这类转债能买」。
 
@@ -278,7 +311,7 @@ params.Y2 = 0.015   # 假 T+1/假转股 T+0 贡献门槛 ≥ 1.5pp
 | 可转债规则表（回转/切日/首日沪深） | PIT | 本页 §2.1 已锁默认；不必新开数据商 |
 | 盘后通道标记（可选） | 禁混表自检 | 与 M/O 分列 |
 
-**明确**：不依赖聚宽；**不要求新开 Level-2 / 新数据商**——日频未复权匹配成交 OHLC + 交易所 + 首日/发行价 + 转股日期 + 本页规则表即可起步。无 last_min_vwap 字段时，沪市首日收盘诊断 skip，不得静默用 14:57 却标 Q2。
+**明确**：不依赖聚宽；**不要求新开 Level-2 / 新数据商**——日频未复权匹配成交 OHLC + 交易所 + 首日/发行价 + 转股日期 + 本页规则表即可起步。无 last_min_vwap 字段时，沪市首日收盘诊断 skip（**`params.missing_last_min_vwap_policy=skip_first_day_close_leg` 写死**），不得静默用 14:57 却标 Q2。
 
 ---
 
@@ -286,7 +319,7 @@ params.Y2 = 0.015   # 假 T+1/假转股 T+0 贡献门槛 ≥ 1.5pp
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=Q`，`groups=[Q0,Q1,Q2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-26`**，**`params.fill_time=next_open`（写死）**，**`params.cb_rotation=same_day`**，**`params.cb_limit_cut_date=2022-08-01`**，**`params.cb_limit_pct_post_cut=0.20`**，**`params.sh_first_day_up_pct=0.573` / `params.sh_first_day_dn_pct=0.433`**，**`params.sh_first_day_close_def=last_min_vwap`**，**`params.sz_first_day_board=none`**，**`params.sz_first_day_order_range_up=1.573` / `params.sz_first_day_order_range_dn=0.567`**，**`params.sz_first_day_close_def=auction_1457`**，**`params.copy_sh_first_day_to_sz=False`**，**`params.q0_treat_as_stock=True`**，**`params.q0_rotation=stock_t1`**，**`params.q0_limit_source=stock_board_default`**，**`params.q0_close_def=stock_1457_auction`**，**`params.q0_convert_stock_same_day_sell=True`**，**`params.q1_asof_leak_rules=True`**，**`params.q2_pit=True`**，**`params.q2_convert_stock_same_day_sell=False`**，**`params.merge_sz_cb_aft_with_stock_aft=False`**，**`params.missing_exch_policy=skip`**，**`params.missing_ipo_flag_policy=skip`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[pre_20220801,post_20220801,sh_first_day,sz_first_day,fake_t1_on_cb,fake_convert_t0,close_def_mismatch,vs_R_etf_rotation,vs_M_O_aft_channel]`（写死默认；拉数前冻结）**，**`params.Y=0.02` / `params.G=0.01` / `params.N=0.05` / `params.Y2=0.015`（写死具体数并冻结；禁 holdout 标定；禁 null）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_R=off`，`overlay_M=off`，`overlay_O=off`，`cost_switch=off`（Q 主跑）。  
+- 配置块（写死项加粗）：`hypothesis_id=Q`，`groups=[Q0,Q1,Q2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-26`**，**`params.fill_time=next_open`（写死）**，**`params.cb_rotation=same_day`**，**`params.cb_limit_cut_date=2022-08-01`**，**`params.cb_limit_pct_post_cut=0.20`**，**`params.sh_first_day_up_pct=0.573` / `params.sh_first_day_dn_pct=0.433`**，**`params.sh_first_day_close_def=last_min_vwap`**，**`params.sz_first_day_board=none`**，**`params.sz_first_day_order_range_up=1.573` / `params.sz_first_day_order_range_dn=0.567`**，**`params.sz_first_day_close_def=auction_1457`**，**`params.copy_sh_first_day_to_sz=False`**，**`params.q0_treat_as_stock=True`**，**`params.q0_rotation=stock_t1`**，**`params.q0_limit_source=stock_board_default`**，**`params.q0_close_def=stock_1457_auction`**，**`params.q0_convert_stock_same_day_sell=True`**，**`params.q1_asof_leak_rules=True`**，**`params.q2_pit=True`**，**`params.q2_convert_stock_same_day_sell=False`**，**`params.q1_convert_stock_same_day_sell=False`（写死冻结；禁缺键继承）**，**`params.q1_rotation=same_day`（写死）**，**`params.missing_last_min_vwap_policy=skip_first_day_close_leg`（写死；禁双挂）**，**`params.cb_face_value=100`**，**`params.cb_lot_size=10`**，**`params.q0_unit_source=stock_share_lot`（写死）**，**`params.merge_sz_cb_aft_with_stock_aft=False`**，**`params.missing_exch_policy=skip`**，**`params.missing_ipo_flag_policy=skip`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[pre_20220801,post_20220801,sh_first_day,sz_first_day,fake_t1_on_cb,fake_convert_t0,close_def_mismatch,vs_R_etf_rotation,vs_M_O_aft_channel]`（写死默认；拉数前冻结）**，**`params.Y=0.02` / `params.G=0.01` / `params.N=0.05` / `params.Y2=0.015`（写死具体数并冻结；禁 holdout 标定；禁 null）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_R=off`，`overlay_M=off`，`overlay_O=off`，`cost_switch=off`（Q 主跑）。  
 - 行情与规则表：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -315,10 +348,11 @@ params.Y2 = 0.015   # 假 T+1/假转股 T+0 贡献门槛 ≥ 1.5pp
 | 数据 | 待接入（字段见 §6；日频未复权匹配成交 OHLC + 交易所 + 首日/发行价 + 转股日期 + 本页规则表即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测；**P 不开回测**） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-26；**fill_time=next_open 写死**；cb_limit_cut_date=2022-08-01；沪市首日 57.3%/43.3%+last_min_vwap；深市首日无板+申报范围+14:57；**copy_sh_first_day_to_sz=False**；**q2_convert_stock_same_day_sell=False**；merge_sz_cb_aft_with_stock_aft=False；diff_buckets 九桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死具体数并冻结、禁 holdout 标定、禁 null** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-26；**fill_time=next_open 写死**；cb_limit_cut_date=2022-08-01；沪市首日 57.3%/43.3%+last_min_vwap；深市首日无板+申报范围+14:57；**copy_sh_first_day_to_sz=False**；**q2_convert_stock_same_day_sell=False**；**`q1_convert_stock_same_day_sell=False`**；**`q1_rotation=same_day`**；**`missing_last_min_vwap_policy=skip_first_day_close_leg`**；**`cb_face_value=100` / `cb_lot_size=10` / `q0_unit_source=stock_share_lot`**；merge_sz_cb_aft_with_stock_aft=False；diff_buckets 九桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死具体数并冻结、禁 holdout 标定、禁 null** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：P 草稿已收后写 Q；选型对齐清单实验 Q「可转债按股票规则回放 / 规则混用」；机制类预埋 fail_policy/oos/红线豁免/params 冻结；**不抢实验 A**；**不派回测**；**本页不开回测**；**P 不开回测**）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设Q-20261102.md` 有条件通过补四条——① `params.q1_convert_stock_same_day_sell=False`（与§2.3表同向；禁缺键继承）；② `params.missing_last_min_vwap_policy=skip_first_day_close_leg`（与§6同向；禁双挂）；③ `params.cb_face_value=100` / `params.cb_lot_size=10` / `params.q0_unit_source=stock_share_lot`；④ `params.q1_rotation=same_day`。**不抢实验 A**；**Q 不开回测**；未动 P/A。
