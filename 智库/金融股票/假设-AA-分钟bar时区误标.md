@@ -23,7 +23,7 @@
 ### 2.1 会话窗按 Asia/Shanghai；分钟 bar 标签写死；UTC 错位 = 假连续
 
 ```
-# 配置写死键（见 §7；待预检键见文末；拉数前冻结；禁 holdout 反调）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AA
 # params.asof_check_date                 写死默认 2026-10-19  # 与 Y/N/M 同批「竞价时段+盘后计入日总量」核对锚；本页不重开收盘价定义
 # params.fill_time                        写死 next_open      # 成交腿与 A/D/Y 对齐；本页主测分钟对齐，不抢 A 板上真数
@@ -33,7 +33,7 @@
 # params.continuous_windows              写死 [09:30-11:30,13:00-14:57]
 # params.close_auction_window            写死 14:57-15:00
 # params.lunch_gap                       写死 11:30-13:00    # 午休；诚实组不得并进连续
-# params.aa0_primary_demo                键名稳值待预检     # 建议 utc_tz_as_local；单一主报；禁与 bar_start_flip 双挂
+# params.aa0_primary_demo                写死 utc_tz_as_local  # 风控补丁冻结；主报 UTC 墙钟当本地；禁与 bar_start_flip 双挂
 # params.aa0_wrong_tz                    写死 UTC            # 天真主路径时区（当 UTC 墙钟当上海墙钟）
 # params.aa1_label_flip                  写死 bar_start      # 半泄露/诊断：标签反标（诚实为 bar_end）
 # params.aa2_tz                          写死 Asia/Shanghai
@@ -45,7 +45,7 @@
 # params.merge_with_A_fill               写死 False
 # params.missing_minute_policy           写死 skip           # 无分钟线 → skip 本页主测腿（不静默退回日总量）
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  键名稳值待预检     # 建议 0.02/0.01/0.05/0.015；params.Y≠实验字母 AA；禁 null/holdout 标定
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 AA；禁 null/holdout 标定
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -64,6 +64,13 @@ merge_with_O_block = False
 merge_with_N_close = False
 merge_with_A_fill = False
 missing_minute_policy = "skip"
+
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改 aa0_primary_demo
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 AA
+G = 0.01
+N = 0.05
+Y2 = 0.015
+aa0_primary_demo = "utc_tz_as_local"  # 风控补丁冻结；禁双挂
 
 def wall_clock_in_tz(ts_utc, tz_name):
     """把时间戳投到指定时区墙钟；本页禁把 UTC 墙钟直接当上海会话钟。"""
@@ -119,7 +126,7 @@ def continuous_volume(group, bars):
 
 **`params.merge_with_Y_vol_denominators=False` / `merge_with_M_aft=False` / `merge_with_O_block=False` / `merge_with_N_close=False` / `merge_with_A_fill=False`（写死）**。
 
-**待预检（键名稳；值建议如下；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
 params.Y                            = 0.02                 # 连续量/κ差显著门槛；≠实验字母 AA
@@ -192,16 +199,18 @@ params.diff_buckets = [
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 连续量/κ差显著门槛（≠实验字母 AA） | **键名稳；值待预检**（建议 `0.02`） |
-| params.G | 错桶/午休边界桶相对对照差门槛 | **键名稳；值待预检**（建议 `0.01`） |
-| params.N | 失败笔数率差门槛 | **键名稳；值待预检**（建议 `0.05`） |
-| params.Y2 | AA1 标签反标专项门槛 | **键名稳；值待预检**（建议 `0.015`） |
+| params.Y | 连续量/κ差显著门槛（≠实验字母 AA） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 错桶/午休边界桶相对对照差门槛 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败笔数率差门槛 | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | AA1 标签反标专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-19`；拉数前冻结 |
 | fill_time | 成交时点 | **写死** `next_open` |
 | session_tz_honest | 诚实时区 | **写死** `Asia/Shanghai` |
 | minute_bar_label_honest | 诚实标签 | **写死** `bar_end` |
-| aa0_primary_demo | 天真主报枚举 | **键名稳；值待预检**（建议 `utc_tz_as_local`；禁双挂） |
+| aa0_primary_demo | 天真主报枚举 | **写死冻结** `utc_tz_as_local`（风控补丁 2026-11-02；禁双挂） |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
+
+门槛键名与具体数值已写入 params 并冻结（风控补丁 2026-11-02；**`params.Y`≠实验字母 AA**）；**禁止用 holdout / 事后显著性改口**；**`aa0_primary_demo` 单一主报，禁与 bar_start_flip 双挂**。
 
 **失败/不显著**：差异落在噪声带内或均匀散在非时区·标签对照桶——结论栏写明，不得改口称「时区差不多」或「这类票更能买」。
 
@@ -251,7 +260,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=AA`（**实验字母**），`groups=[AA0,AA1,AA2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-19`**，**`params.fill_time=next_open`（写死）**，**`params.session_tz_honest=Asia/Shanghai`**，**`params.minute_bar_label_honest=bar_end`**，**`params.open_auction_window=09:15-09:25`**，**`params.continuous_windows=[09:30-11:30,13:00-14:57]`**，**`params.close_auction_window=14:57-15:00`**，**`params.lunch_gap=11:30-13:00`**，**`params.merge_with_Y_vol_denominators=False`**，**`params.merge_with_M_aft=False`**，**`params.merge_with_O_block=False`**，**`params.merge_with_N_close=False`**，**`params.merge_with_A_fill=False`**，**`params.missing_minute_policy=skip`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y` / `G` / `N` / `Y2`（键名稳值待预检；建议 0.02/0.01/0.05/0.015；禁 holdout 标定；禁 null；params.Y≠实验字母 AA）**，**`params.aa0_primary_demo`（键名稳值待预检；建议 utc_tz_as_local；禁双挂）**，`universe_rule`，**`params.date_start=2018-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2018-01-01,is_end=2023-12-31,holdout_start=2024-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_Y=off`，`overlay_M=off`，`overlay_A=off`。  
+- 配置块（写死项加粗）：`hypothesis_id=AA`（**实验字母**），`groups=[AA0,AA1,AA2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-19`**，**`params.fill_time=next_open`（写死）**，**`params.session_tz_honest=Asia/Shanghai`**，**`params.minute_bar_label_honest=bar_end`**，**`params.open_auction_window=09:15-09:25`**，**`params.continuous_windows=[09:30-11:30,13:00-14:57]`**，**`params.close_auction_window=14:57-15:00`**，**`params.lunch_gap=11:30-13:00`**，**`params.merge_with_Y_vol_denominators=False`**，**`params.merge_with_M_aft=False`**，**`params.merge_with_O_block=False`**，**`params.merge_with_N_close=False`**，**`params.merge_with_A_fill=False`**，**`params.missing_minute_policy=skip`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015`（写死冻结；禁 holdout 标定；禁 null；params.Y≠实验字母 AA）**，**`params.aa0_primary_demo=utc_tz_as_local`（写死冻结；禁双挂）**，`universe_rule`，**`params.date_start=2018-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2018-01-01,is_end=2023-12-31,holdout_start=2024-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_Y=off`，`overlay_M=off`，`overlay_A=off`。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -280,20 +289,23 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；可还原 Asia/Shanghai 的分钟量即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2018-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-19；**fill_time=next_open 写死**；**session_tz_honest=Asia/Shanghai / minute_bar_label_honest=bar_end 写死**；diff_buckets 十桶写死冻结；**Y/G/N/Y2 与 aa0_primary_demo 键名稳值待预检**（params.Y≠实验字母 AA） |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2018-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-19；**fill_time=next_open 写死**；**session_tz_honest=Asia/Shanghai / minute_bar_label_honest=bar_end 写死**；diff_buckets 十桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死冻结**（params.Y≠实验字母 AA）；**aa0_primary_demo=utc_tz_as_local 写死（禁双挂）** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：并行写下一纸面 AA；Y/Z 补丁已交不改；清单止于 Z → 自候选「分钟 bar 对齐/时区」+ `事实与坑` 竞价时段 + Y「禁 UTC 并午休」选题，**与 A/D–Z 不撞主结论**；近邻 Y=集合分母、M=盘后通道、N=收盘机制，本页主测时区/标签误标；**实验字母 AA ≠ params.Y**；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 Y/Z/A/D–X 正文**）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AA-20261102.md` 有条件通过补两条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写入具体数并冻结（预检禁 holdout 标定且建议 0.02/0.01/0.05/0.015；**params.Y≠实验字母 AA**；禁 null）；② `params.aa0_primary_demo=utc_tz_as_local`（主报 UTC 墙钟当本地；禁与 bar_start_flip 双挂争主表）。**不抢实验 A**；**AA 不开回测**；未动 Y/Z/A。
 
-### 待预检键（交总管入库预检）
+### 增量补丁段 · 2026-11-02（风控两条冻结）
 
-| 键 | 建议值 | 备注 |
+| 键 | 冻结值 | 备注 |
 |----|--------|------|
-| params.Y | 0.02 | 相对门槛；**≠实验字母 AA**；禁 null/holdout |
-| params.G | 0.01 | 错桶/午休边界桶 |
+| params.Y | 0.02 | 相对门槛键；**≠实验字母 AA** |
+| params.G | 0.01 | 错桶/午休边界桶相对对照差 |
 | params.N | 0.05 | 失败/跳过率差 |
 | params.Y2 | 0.015 | AA1−AA2 专项 |
 | params.aa0_primary_demo | utc_tz_as_local | 单一主报；禁与 bar_start_flip 双挂 |
+
+预检稿：`experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AA-20261102.md`。
