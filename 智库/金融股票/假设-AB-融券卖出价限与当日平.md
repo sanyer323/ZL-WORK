@@ -23,7 +23,7 @@
 ### 2.1 融券卖出价限 ≠ 名单；≠ 市价通道；≠ 保证金；ETF 免价限暂不实施
 
 ```
-# 配置写死键（见 §7；键名稳、值待预检冻结）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AB
 # params.asof_check_date                 写死默认 2026-10-16  # 与 K/Z 同批「融券/保证金」核对锚；本页不重开名单/保证金
 # params.fill_time                        写死 next_open      # 成交腿与 A/D/K 对齐；本页主测空头价限，不抢 A 板上真数
@@ -32,7 +32,7 @@
 # params.short_mkt_allowed               写死 False          # 两所均不接受融券卖出市价
 # params.short_same_day_cover            写死 forbid         # 自次一交易日起才可还券；禁当日开空当日平
 # params.etf_short_price_exempt          写死 off            # 细则有免价限款，通知写明继续暂不实施
-# params.ab0_primary_demo                键名稳值待预检      # 建议 below_last_as_fill 或 same_day_cover；禁双挂
+# params.ab0_primary_demo                写死 below_last_as_fill  # 风控补丁冻结；主报忽略价限按任意低于最新价可砸；禁与 same_day_cover 双挂
 # params.ab0_ignore_price_floor          写死 True           # 天真主路径：忽略价限
 # params.ab0_allow_short_mkt             写死 True           # 天真可叠加：融券走市价（诊断可拆）
 # params.ab0_same_day_cover              写死 True           # 天真可叠加：当日开空当日平
@@ -50,7 +50,7 @@
 # params.missing_last_trade_policy       写死 use_preclose    # 无最新成交 → 价限退回前收盘（与条文同向）
 # params.px_basis                        写死 unadj          # 价限用不复权；禁复权价
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  键名稳值待预检      # 建议 0.02/0.01/0.05/0.015；params.Y≠实验字母 AB；禁 null/holdout
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 AB；禁 null/holdout
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -71,8 +71,12 @@ list_overlay = "k2_honest_or_long_only"
 missing_last_trade_policy = "use_preclose"
 px_basis = "unadj"
 
-# 拉数前待预检冻结（键名已稳）；禁 holdout / 事后改口
-# Y, G, N, Y2, ab0_primary_demo  —— 待风控预检写死
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改 ab0_primary_demo
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 AB
+G = 0.01
+N = 0.05
+Y2 = 0.015
+ab0_primary_demo = "below_last_as_fill"  # 风控补丁冻结；禁双挂
 
 def short_price_ok(order_px, last_trade, preclose, group, is_etf):
     """融券卖出价限：诚实组 order_px >= last_trade（无成交则 >= preclose）。"""
@@ -112,14 +116,14 @@ def short_cover_ok(open_date, cover_date, group):
 
 **`params.merge_with_K_shortable_list=False` / `merge_with_L_mkt=False` / `merge_with_Z_margin=False` / `merge_with_A_fill=False` / `merge_with_Q_cb=False`（写死）**。
 
-**待预检冻结键（键名稳；值建议如下，正式数以预检回执为准）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.Y                            = 待预检  # 建议 0.02；空头失败/净值差显著门槛；≠实验字母 AB
-params.G                            = 待预检  # 建议 0.01；价限废单桶相对对照差
-params.N                            = 待预检  # 建议 0.05；失败/跳过率差
-params.Y2                           = 待预检  # 建议 0.015；AB1（ETF 误免）相对 AB2 专项
-params.ab0_primary_demo             = 待预检  # 建议 below_last_as_fill；禁与 same_day_cover 双挂争主表
+params.Y                            = 0.02                 # 空头失败/净值差显著门槛；≠实验字母 AB
+params.G                            = 0.01                 # 价限废单桶相对对照差
+params.N                            = 0.05                 # 失败/跳过率差门槛
+params.Y2                           = 0.015                # AB1（ETF 误免）相对 AB2 专项门槛
+params.ab0_primary_demo             = below_last_as_fill   # 主报忽略价限按任意低于最新价可砸；禁与 same_day_cover 双挂争主表
 ```
 
 ---
@@ -181,24 +185,24 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔShortFail| 或 |ΔShortPnL| **≥ params.Y** 或 |ΔCoverPath| **≥ params.G** 或 |ΔShortFail_(AB1−AB2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「融券价限/当日平执行鸿沟显著」。
 
-**params.Y / G / N / Y2（键名稳；值待预检写入；禁 holdout 标定；与实验字母 AB 无关）**
+**params.Y / G / N / Y2（键名稳；值已冻结 2026-11-02；禁 holdout 标定；与实验字母 AB 无关）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 空头失败/净值差显著门槛（≠实验字母 AB） | 键名稳；建议 `0.02`；待预检冻结 |
-| params.G | 价限废单/当日平路径桶相对对照差 | 键名稳；建议 `0.01`；待预检冻结 |
-| params.N | 失败笔数率差门槛 | 键名稳；建议 `0.05`；待预检冻结 |
-| params.Y2 | AB1 ETF 误免专项门槛 | 键名稳；建议 `0.015`；待预检冻结 |
+| params.Y | 空头失败/净值差显著门槛（≠实验字母 AB） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 价限废单/当日平路径桶相对对照差 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败笔数率差门槛 | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | AB1 ETF 误免专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-16`；拉数前冻结 |
 | fill_time | 成交时点 | **写死** `next_open` |
 | short_price_floor_rule | 诚实价限 | **写死** `last_trade_else_preclose` |
 | short_mkt_allowed | 融券市价 | **写死** `False` |
 | short_same_day_cover | 当日平 | **写死** `forbid` |
 | etf_short_price_exempt | ETF 免价限 | **写死** `off` |
-| ab0_primary_demo | 天真主报枚举 | 键名稳；建议 `below_last_as_fill`；待预检冻结；禁双挂 |
+| ab0_primary_demo | 天真主报枚举 | **写死冻结** `below_last_as_fill`（风控补丁 2026-11-02；禁双挂） |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛键名已稳；**具体数值待预检写死冻结**（建议 0.02/0.01/0.05/0.015；**`params.Y`≠实验字母 AB**）；**禁止用 holdout / 事后显著性改口**；**`ab0_primary_demo` 单一主报，禁与 same_day_cover 双挂争主表**。
+门槛键名与具体数值已写入 params 并冻结（风控补丁 2026-11-02；**`params.Y`≠实验字母 AB**）；**禁止用 holdout / 事后显著性改口**；**`ab0_primary_demo=below_last_as_fill` 单一主报，禁与 same_day_cover 双挂争主表**。
 
 **失败/不显著**：差异落在噪声带内或均匀散在非价限·当日平对照桶——结论栏写明，不得改口称「空头差不多能砸」或「这类票更能空」。
 
@@ -251,7 +255,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=AB`（**实验字母**），`groups=[AB0,AB1,AB2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-16`**，**`params.fill_time=next_open`（写死）**，**`params.short_channel_start=2010-03-31`**，**`params.short_price_floor_rule=last_trade_else_preclose`**，**`params.short_mkt_allowed=False`**，**`params.short_same_day_cover=forbid`**，**`params.etf_short_price_exempt=off`**，**`params.merge_with_K_shortable_list=False`**，**`params.merge_with_L_mkt=False`**，**`params.merge_with_Z_margin=False`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_Q_cb=False`**，**`params.list_overlay=k2_honest_or_long_only`**，**`params.missing_last_trade_policy=use_preclose`**，**`params.px_basis=unadj`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y` / `G` / `N` / `Y2`（键名稳值待预检；建议 0.02/0.01/0.05/0.015；禁 holdout 标定；禁 null；params.Y≠实验字母 AB）**，**`params.ab0_primary_demo`（键名稳值待预检；建议 below_last_as_fill；禁双挂）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2023-12-31,holdout_start=2024-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_K=off`，`overlay_L=off`，`overlay_Z=off`，`overlay_A=off`。  
+- 配置块（写死项加粗）：`hypothesis_id=AB`（**实验字母**），`groups=[AB0,AB1,AB2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-16`**，**`params.fill_time=next_open`（写死）**，**`params.short_channel_start=2010-03-31`**，**`params.short_price_floor_rule=last_trade_else_preclose`**，**`params.short_mkt_allowed=False`**，**`params.short_same_day_cover=forbid`**，**`params.etf_short_price_exempt=off`**，**`params.merge_with_K_shortable_list=False`**，**`params.merge_with_L_mkt=False`**，**`params.merge_with_Z_margin=False`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_Q_cb=False`**，**`params.list_overlay=k2_honest_or_long_only`**，**`params.missing_last_trade_policy=use_preclose`**，**`params.px_basis=unadj`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015`（写死冻结；禁 holdout 标定；禁 null；params.Y≠实验字母 AB）**，**`params.ab0_primary_demo=below_last_as_fill`（写死冻结；禁双挂）**，`universe_rule`，**`params.date_start=2019-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2019-01-01,is_end=2023-12-31,holdout_start=2024-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_K=off`，`overlay_L=off`，`overlay_Z=off`，`overlay_A=off`。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -280,10 +284,23 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；未复权最新价/前收盘 + 开平仓日即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**short_price_floor_rule / short_mkt_allowed=False / short_same_day_cover=forbid / etf_short_price_exempt=off 写死**；diff_buckets 十桶写死冻结；**Y/G/N/Y2 与 ab0_primary_demo 键名稳值待预检**（params.Y≠实验字母 AB） |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**short_price_floor_rule / short_mkt_allowed=False / short_same_day_cover=forbid / etf_short_price_exempt=off 写死**；diff_buckets 十桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死冻结**（params.Y≠实验字母 AB）；**ab0_primary_demo=below_last_as_fill 写死（禁双挂）** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：并行写下一纸面 AB；Y/Z/AA 补丁已交不改；清单止于 AA → 自 `事实与坑`「融券卖出不是最新价就能砸」+ 口径「低于最新价废单」选题，**与 A/D–AA 不撞主结论**；近邻 K=名单、L=市价、Z=保证金，本页主测价限/禁市价/禁当日平；**实验字母 AB ≠ params.Y**；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 Y/Z/AA/A/D–X 正文**）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AB-20261102.md` 有条件通过补两条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写入具体数并冻结（预检禁 holdout 标定且建议 0.02/0.01/0.05/0.015；**params.Y≠实验字母 AB**；禁 null）；② `params.ab0_primary_demo=below_last_as_fill`（主报忽略价限按任意低于最新价可砸；禁与 same_day_cover 双挂争主表）。**不抢实验 A**；**AB 不开回测**；未动 Y/Z/AA/A。
+
+### 增量补丁段 · 2026-11-02（风控两条冻结）
+
+| 键 | 冻结值 | 备注 |
+|----|--------|------|
+| params.Y | 0.02 | 相对门槛键；**≠实验字母 AB** |
+| params.G | 0.01 | 价限废单/当日平路径桶相对对照差 |
+| params.N | 0.05 | 失败/跳过率差 |
+| params.Y2 | 0.015 | AB1−AB2 专项 |
+| params.ab0_primary_demo | below_last_as_fill | 单一主报；禁与 same_day_cover 双挂 |
+
+预检稿：`experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AB-20261102.md`。
