@@ -2,7 +2,7 @@
 
 更新：2026-11-02  
 来源：总管线 / AH 补丁已交后写下一纸面 AI；清单原止于 AH，无 AI 节 → 自立实验 AI；选题自 `事实与坑`「无涨跌幅日开盘集合竞价有效申报范围为前收盘 900% 以内（上交所另写不低于前收盘 50%）；临停期间与收盘集合竞价为最近成交价上下 10%；连续竞价笼子不套到这些时段；科创板不适用该 900%/50% 开盘集合范围（上交所 3.3.15 / 深交所 3.3.17；核对日 2026-10-12）」+ 口径「执行鸿沟」；与假设 A（板上可成交）/ H（退市整理）/ X（主板 ST 涨跌幅）/ E（整手）/ M（盘后补成交）/ O（大宗）/ R（股票 ETF 假回转）/ Q（可转债）/ AC（北交所）/ AD（风险警示 50 万）/ AE（普通股票假 T+0）/ AF（单笔数量上限）/ AG（超涨跌停价无效）/ AH（集合不可撤窗假撤改）/ I（连续竞价价格笼子）/ F（涨跌停价取整）/ L（市价保护限价）/ G（无板日误套板块默认板）/ J（无板日盘中临停 30%/60%）**分列**；**新建实验 AI**  
-状态：**草稿 · 待数据 · 待跑 · 待风控预检**（结论栏空；禁止把「无板日开盘集合可任意远价进簿/成交」或「把连续竞价笼子套到开盘集合」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AH 及其他 A/D–AH 已交正文与冻结补丁；不改假设-H**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-02）**（结论栏空；禁止把「无板日开盘集合可任意远价进簿/成交」或「把连续竞价笼子套到开盘集合」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AH 及其他 A/D–AH 已交正文与冻结补丁；不改假设-H**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单原止于 AH，本页自立实验 AI 标准件。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/排队能否按板上价成交；本页 = **无涨跌幅日**集合竞价（开盘/收盘）与临停集合阶段的**有效申报价格范围**是否被忽略。双字母 **AI ≠ 单字母 A**。与假设 **I（价格笼子远限价）** **硬分列**：I = **连续竞价**限价相对买卖一/基准价的 2%/十价位笼子；本页 = 无板日**集合竞价/临停集合**专用有效申报范围（开盘集合相对前收盘 900%/50%；临停与收盘集合相对最近成交 ±10%），**连续竞价笼子不套到这些时段**。双字母 **AI ≠ 单字母 I**。与假设 **J（无板日盘中临停）** **分列**：J 主测较开盘价 30%/60% 临停窗是否被当成全日连续可按极值成交；本页主测临停/复牌**集合竞价申报价**是否超出最近成交 ±10% 仍进簿，不重开 30%/60% 触发。与假设 **G（无板日误套板块默认板）** **分列**：G 主测把 ±10%/±20% 假板套到无板日；本页在已承认无板的前提下测集合有效申报范围。与假设 **AG（超涨跌停价无效）** **分列**：AG 主测有板日超涨跌停限制价拒单；本页主测无板日集合范围。与假设 **AH（不可撤窗假撤改）** **分列**：AH 主测 9:20–9:25 / 14:57–15:00 能否撤改；本页主测申报价是否在有效范围内。与假设 H/X/E/M/O/R/Q/AC/AD/AE/AF/F/L **分列**：各自主测，不并表。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 无板日集合有效申报范围 ≠ 连续竞价笼子；≠ 盘中临停触发；≠ 有板日超板拒单
 
 ```
-# 配置写死键（见 §7；待风控预检后冻结 Y/G/N/Y2 与 ai0_primary_demo）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AI；≠ 实验字母 A；≠ 实验字母 I
 # params.asof_check_date                 写死默认 2026-10-12  # 事实与坑「无板日集合/临停有效申报范围」核对锚
 # params.fill_time                        写死 next_open      # 主腿与 A/D 对齐；开盘集合冲击作主测；不抢 A 板上真数
@@ -35,7 +35,7 @@
 # params.star_open_call_900_50_applies   写死 False          # 科创板不适用 3.3.15 开盘集合 900%/50%；禁抄套
 # params.band_round                      写死 round_half_up_to_tick  # 与 F 同向
 # params.no_limit_day_source             写死 g_pit_table    # 无板日标签复用实验 G 的 PIT；本页不重开 G 主结论
-# params.ai0_primary_demo                待预检建议 invent_open_call_band_bypass  # 主报：开盘集合超范围仍进簿/成交；禁与 misapply_continuous_cage_to_call 双挂争主表
+# params.ai0_primary_demo                写死 invent_open_call_band_bypass  # 风控补丁冻结；主报：开盘集合超范围仍进簿/成交；禁与 misapply_continuous_cage_to_call 双挂争主表
 # params.ai0_invent_open_call_band_bypass 写死 True
 # params.ai0_invent_halt_close_band_bypass 写死 False        # 诊断可叠；主报以 ai0_primary_demo 为准
 # params.ai1_misapply_continuous_cage_to_call 写死 True      # 半泄露：把连续竞价 2% 笼子套到开盘集合
@@ -65,7 +65,7 @@
 # params.missing_preclose_policy         写死 skip           # 缺前收/最近成交 → skip（禁静默当可挂）
 # params.day_freq_proxy                  写死 open_call_band_sensitivity  # 日频无 L2 时只报「开盘集合超范围」敏感性档；禁假装精确复盘簿
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  待预检建议 0.02/0.01/0.05/0.015  # params.Y=相对门槛键 ≠ 实验字母 AI；禁 null/holdout
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 AI；禁 null/holdout
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -80,7 +80,7 @@ halt_close_call_band_pct = 0.10
 star_open_call_900_50_applies = False
 band_round = "round_half_up_to_tick"
 no_limit_day_source = "g_pit_table"
-ai0_primary_demo = "invent_open_call_band_bypass"  # 待预检；禁双挂
+ai0_primary_demo = "invent_open_call_band_bypass"  # 风控补丁冻结；禁双挂
 ai0_invent_open_call_band_bypass = True
 ai0_invent_halt_close_band_bypass = False
 ai1_misapply_continuous_cage_to_call = True
@@ -91,8 +91,8 @@ universe_rule = "sse_szse_common_stock_nolimit_days"
 missing_preclose_policy = "skip"
 day_freq_proxy = "open_call_band_sensitivity"
 
-# 待预检建议值（拉数前须冻结；禁 holdout / 事后改口 / 禁跑后改 ai0_primary_demo）
-Y = 0.02   # 相对门槛 ≠ 实验字母 AI
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改 ai0_primary_demo
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 AI
 G = 0.01
 N = 0.05
 Y2 = 0.015
@@ -167,7 +167,7 @@ def apply_call_band(order_px, session, preclose, last_trade, exch, board, group)
 
 **`params.merge_with_A_fill=False` / `merge_with_I_cage=False` / `merge_with_J_halt=False` / `merge_with_G_nolimit_pct=False` / `merge_with_AG_beyond_limit=False` / `merge_with_AH_nocancel=False` / `merge_with_F_round=False` / `merge_with_L_mkt=False` / `merge_with_H_exit=False` / `merge_with_X_st_limit=False` / `merge_with_E_lot=False` / `merge_with_M_aft=False` / `merge_with_O_block=False` / `merge_with_R_etf_rotation=False` / `merge_with_Q_cb_rotation=False` / `merge_with_AC_bse=False` / `merge_with_AD_50w=False` / `merge_with_AE_stock_t0=False` / `merge_with_AF_qty_cap=False`（写死）**。
 
-**待预检键（拉数前须冻结；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
 params.Y                            = 0.02                      # 可成交名义/冲击差显著门槛；≠实验字母 AI
@@ -237,17 +237,17 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔNotional| 或 |ΔImpact| **≥ params.Y** 或 |ΔFakeBand 桶贡献| **≥ params.G** 或 |ΔNotional_(AI1?AI2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「无板日集合有效申报范围执行鸿沟显著」。
 
-**params.Y / G / N / Y2（待预检建议；与实验字母 AI 无关）**
+**params.Y / G / N / Y2（已冻结；与实验字母 AI 无关）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 名义/冲击差显著门槛（≠实验字母 AI） | **待预检建议** `0.02`；拉数前冻结；禁 null/holdout |
-| params.G | 假进簿桶相对对照差 | **待预检建议** `0.01` |
-| params.N | 失败/废单率差门槛 | **待预检建议** `0.05` |
-| params.Y2 | AI1?AI2 专项门槛 | **待预检建议** `0.015` |
+| params.Y | 名义/冲击差显著门槛（≠实验字母 AI） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 假进簿桶相对对照差 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败/废单率差门槛 | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | AI1?AI2 专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-12` |
 | fill_time | 成交时点 | **写死** `next_open` |
-| ai0_primary_demo | 天真主报枚举 | **待预检建议** `invent_open_call_band_bypass`；禁与 `misapply_continuous_cage_to_call` 双挂 |
+| ai0_primary_demo | 天真主报枚举 | **写死冻结** `invent_open_call_band_bypass`（禁双挂；风控补丁 2026-11-02） |
 
 ### 4.3 红线 v0
 
@@ -284,7 +284,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`AI`  
 - **组**：AI0 / AI1 / AI2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-12`；`open_call_band_upper_mult=9.0`；`open_call_band_lower_mult_sse=0.5`；`halt_close_call_band_pct=0.10`；`star_open_call_900_50_applies=False`；`band_round=round_half_up_to_tick`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_nolimit_days`；`missing_preclose_policy=skip`；`day_freq_proxy=open_call_band_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 待预检建议 0.02/0.01/0.05/0.015**（params.Y≠实验字母 AI）；**`params.ai0_primary_demo` 待预检建议 invent_open_call_band_bypass**（禁双挂）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-12`；`open_call_band_upper_mult=9.0`；`open_call_band_lower_mult_sse=0.5`；`halt_close_call_band_pct=0.10`；`star_open_call_900_50_applies=False`；`band_round=round_half_up_to_tick`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_nolimit_days`；`missing_preclose_policy=skip`；`day_freq_proxy=open_call_band_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2=0.02/0.01/0.05/0.015` 写死冻结**（params.Y≠实验字母 AI；禁 null/holdout）；**`params.ai0_primary_demo=invent_open_call_band_bypass` 写死冻结**（禁与 misapply_continuous_cage_to_call 双挂）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -313,11 +313,12 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；无板日标签+前收或日频代理即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-12；**fill_time=next_open 写死**；**开盘集合 900%/50% + 临停·收盘 ±10% 写死**；diff_buckets 十二桶写死待冻结；**Y/G/N/Y2 待预检建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 AI）**；**ai0_primary_demo 待预检建议 invent_open_call_band_bypass（禁双挂）**；**待风控预检** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-12；**fill_time=next_open 写死**；**开盘集合 900%/50% + 临停·收盘 ±10% 写死**；diff_buckets 十二桶写死待冻结；**Y/G/N/Y2=0.02/0.01/0.05/0.015 写死冻结（params.Y≠实验字母 AI）**；**ai0_primary_demo=invent_open_call_band_bypass 写死冻结（禁双挂）**；**风控补丁两条 2026-11-02 已写死待复检** |
 
 ---
 
 ## 变更
 
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AI-20261102.md` 有条件通过补两条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写死冻结（**params.Y≠实验字母 AI**；禁 null/holdout 标定）；② `params.ai0_primary_demo=invent_open_call_band_bypass` 写死冻结（禁与 `misapply_continuous_cage_to_call` 双挂争主表）。**已写死待复检**；**不抢实验 A**；**不开回测**；**不改假设-H**；**不改假设-I**；**不改 Y/Z/AA–AH 及其他 A/D–AH 正文**。
 - 2026-11-02：新建标准件（总管线：AH 补丁已交后写下一纸面 AI；Y/Z/AA–AH 补丁已交不改；清单止于 AH → 自 `事实与坑`「无板日开盘集合 900%/50%；临停与收盘集合 ±10%；连续笼子不套集合」选题，**与 A/H/X/E/M/O/AC/AD/AE/AF/AG/AH/R/Q 及 I/F/L 及 G/J 不撞主结论**；**明确双字母 AI ≠ 单字母 A ≠ 单字母 I**；近邻 I=连续笼子、J=临停 30%/60%、G=假板、AG=有板超板、AH=不可撤窗，本页主测无板日集合有效申报范围；**实验字母 AI ≠ params.Y ≠ 实验字母 A ≠ 实验字母 I**；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 Y/Z/AA–AH/A/D–AH 正文**；**不改假设-H**）。
 
