@@ -23,7 +23,7 @@
 ### 2.1 保证金比例 ≠ 标的名单；融资/融券分切日；交易所下限最宽（未复权名义）
 
 ```
-# 配置写死键（见 §7；Y/G/N/Y2 与若干枚举待预检冻结）
+# 配置写死键（见 §7；风控补丁四条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 Z
 # params.asof_check_date                 写死默认 2026-10-16  # 事实与坑「融券/保证金」核对日；与 K 同周五复盘锚
 # params.fill_time                        写死 next_open      # 成交腿与 A/D/K 对齐；不抢 A 板上真数
@@ -37,9 +37,10 @@
 # params.short_margin_pct_post           写死 1.00
 # params.short_margin_pct_pe_post        写死 1.20           # 私募证券投资基金
 # params.short_margin_pct_pre_cut        写死 leave_unsliced # 2024-07-22 前细则正文曾写 50% 等，已被通知覆盖；主窗若含切日前须显式冻结或 skip
-# params.pre_20240722_short_window       写死 skip_or_out_of_scope  # 建议主测不依赖未核死旧档；禁静默用 0.50 标 Z2
+# params.pre_20240722_short_window       写死 skip_or_out_of_scope  # 风控补丁冻结；主测不依赖未核死旧档；禁静默用 0.50 标 Z2
 # params.broker_may_tighten              写死 True           # 券商可在交易所下限之上加码；本页只用交易所下限当最宽杠杆
-# params.z0_primary_demo                 键名稳值待预检      # 建议 flat_one_times（全样本 1 倍/零占用）；枚举另有 asof_leak_flat_100；禁双挂
+# params.z0_primary_demo                 写死 flat_one_times  # 风控补丁冻结；主报全样本 1 倍/零占用；禁与 asof_leak_flat_100 双挂
+# params.fin_dayfreq_20230908_rule        写死 next_day_mid80  # 风控补丁冻结；日频把 2023-09-08 收市后近似到次日起 80%
 # params.z0_margin_pct                   写死 0.0            # 天真主路径：保证金占用≈0 → 名义杠杆无穷/1 倍现金当满仓融资（见编码注释）
 # params.z1_margin_pct_fin               写死 1.00           # 泄露：融资全样本用核对日 100%
 # params.z1_margin_pct_short             写死 1.00           # 泄露：融券全样本 100%（私募诊断桶可另用 1.20）
@@ -54,11 +55,11 @@
 # params.list_overlay                    写死 k2_honest_or_long_only  # 空头腿须有名单；缺名单 → skip 空头杠杆腿
 # params.missing_margin_leg_policy       写死 skip
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  键名稳值待预检      # 建议占位 0.02/0.01/0.05/0.015；禁 holdout 标定；禁 null
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 Z；禁 holdout 标定；禁 null
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
-# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改切日、比例档、z0_primary_demo、params.Y/G/N/Y2、主窗/oos
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改切日、比例档、z0_primary_demo、pre_20240722_short_window、fin_dayfreq_20230908_rule、params.Y/G/N/Y2、主窗/oos
 
 fill_time = "next_open"
 asof_check_date = "2026-10-16"
@@ -80,6 +81,13 @@ merge_with_S_T_U_V_fee = False
 merge_with_A_fill = False
 merge_with_Q_cb = False
 missing_margin_leg_policy = "skip"
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 Z
+G = 0.01
+N = 0.05
+Y2 = 0.015
+z0_primary_demo = "flat_one_times"  # 单一主报；禁与 asof_leak_flat_100 双挂
+pre_20240722_short_window = "skip_or_out_of_scope"  # 风控补丁冻结
+fin_dayfreq_20230908_rule = "next_day_mid80"  # 风控补丁冻结
 
 def pit_fin_margin_pct(open_date, is_new_open, legacy_open_date=None):
     """融资保证金下限（交易所）。返回 None → 上层 skip。"""
@@ -154,16 +162,16 @@ def max_notional(equity, margin_pct):
 
 **`params.merge_with_K_shortable_list=False` / `merge_with_L_mkt=False` / `merge_with_S_T_U_V_fee=False` / `merge_with_A_fill=False` / `merge_with_Q_cb=False`（写死）**。
 
-**待预检冻结键（草稿占位；拉数前必须写入具体值；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁四条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.Y                            # 建议 0.02；名义/占用差显著门槛——≠实验字母 Z
-params.G                            # 建议 0.01；切日窗桶相对对照差门槛
-params.N                            # 建议 0.05；失败/跳过率差门槛
-params.Y2                           # 建议 0.015；Z1（现行铺满）相对 Z2 专项门槛
-params.z0_primary_demo              # 建议 flat_one_times；枚举另有 asof_leak_flat_100（若预检要求 Z0/Z1 主报去耦则 Z0 只用 flat_one_times）；禁双挂
-params.pre_20240722_short_window    # 建议 skip_or_out_of_scope；若改枚举须显式冻结旧档‰
-params.fin_dayfreq_20230908_rule    # 建议 next_day_mid80（日频把 09-08 收市后近似到次日起 80%）；待预检可改但须写死
+params.Y                            = 0.02                 # 名义/占用差显著门槛；≠实验字母 Z
+params.G                            = 0.01                 # 切日窗桶相对对照差门槛
+params.N                            = 0.05                 # 失败/跳过率差门槛
+params.Y2                           = 0.015                # Z1（现行铺满）相对 Z2 专项门槛
+params.z0_primary_demo              = flat_one_times       # 主报全样本 1 倍/零占用；禁与 asof_leak_flat_100 双挂
+params.pre_20240722_short_window    = skip_or_out_of_scope # 切日前融券窗；禁静默用旧 50% 标 Z2
+params.fin_dayfreq_20230908_rule    = next_day_mid80       # 日频把 2023-09-08 收市后近似到次日起 80%
 ```
 
 ---
@@ -229,10 +237,10 @@ params.diff_buckets = [
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 名义/占用差显著门槛 | **待预检写入**具体数并冻结（建议 0.02） |
-| params.G | 切日窗桶相对对照差门槛 | **待预检**（建议 0.01） |
-| params.N | 失败笔数率差门槛 | **待预检**（建议 0.05） |
-| params.Y2 | Z1 现行铺满专项门槛 | **待预检**（建议 0.015） |
+| params.Y | 名义/占用差显著门槛（≠实验字母 Z） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 切日窗桶相对对照差门槛 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败笔数率差门槛 | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | Z1 现行铺满专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-16`；拉数前冻结 |
 | fill_time | 成交时点 | **写死** `next_open` |
 | fin_margin_cut_20230908 | 融资 80% 切日 | **写死** `2023-09-08` |
@@ -240,7 +248,7 @@ params.diff_buckets = [
 | short_margin_cut_20240722 | 融券 100% 切日 | **写死** `2024-07-22` |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛键名已列；**具体数值待风控预检有条件通过后写入并冻结**；**禁止用 holdout / OOS 段标定或反调**。
+门槛键名与具体数值已写入 params 并冻结（风控补丁 2026-11-02；**`params.Y`≠实验字母 Z**）；**禁止用 holdout / OOS 段标定或反调**。
 
 **失败/不显著**：差异落在噪声带内或均匀散在非切日对照桶——结论栏写明，不得改口称「保证金档差不多」或「这类票更能加杠杆」。
 
@@ -294,7 +302,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=Z`（**实验字母**），`groups=[Z0,Z1,Z2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-16`**，**`params.fill_time=next_open`（写死）**，**`params.margin_channel_start=2010-03-31`**，**`params.fin_margin_cut_20230908=2023-09-08`**，**`params.fin_margin_cut_20260119=2026-01-19`**，**`params.fin_margin_pct_mid=0.80`**，**`params.fin_margin_pct_post=1.00`**，**`params.fin_legacy_keep_pre_cut=True`**，**`params.short_margin_cut_20240722=2024-07-22`**，**`params.short_margin_pct_post=1.00`**，**`params.short_margin_pct_pe_post=1.20`**，**`params.broker_may_tighten=True`**，**`params.apply_fin_rules_to_short=False`**，**`params.apply_short_rules_to_fin=False`**，**`params.merge_with_K_shortable_list=False`**，**`params.merge_with_L_mkt=False`**，**`params.merge_with_S_T_U_V_fee=False`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_Q_cb=False`**，**`params.list_overlay=k2_honest_or_long_only`**，**`params.missing_margin_leg_policy=skip`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y/G/N/Y2`（待预检写入具体数并冻结；禁 holdout 标定；禁 null；≠实验字母）**，**`params.z0_primary_demo`（待预检；禁双挂）**，**`params.pre_20240722_short_window`（待预检；建议 skip_or_out_of_scope）**，**`params.fin_dayfreq_20230908_rule`（待预检；建议 next_day_mid80）**，`universe_rule`，**`params.date_start=2023-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2023-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_K=off`，`overlay_L=off`，`overlay_A=off`。  
+- 配置块（写死项加粗）：`hypothesis_id=Z`（**实验字母**），`groups=[Z0,Z1,Z2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-16`**，**`params.fill_time=next_open`（写死）**，**`params.margin_channel_start=2010-03-31`**，**`params.fin_margin_cut_20230908=2023-09-08`**，**`params.fin_margin_cut_20260119=2026-01-19`**，**`params.fin_margin_pct_mid=0.80`**，**`params.fin_margin_pct_post=1.00`**，**`params.fin_legacy_keep_pre_cut=True`**，**`params.short_margin_cut_20240722=2024-07-22`**，**`params.short_margin_pct_post=1.00`**，**`params.short_margin_pct_pe_post=1.20`**，**`params.broker_may_tighten=True`**，**`params.apply_fin_rules_to_short=False`**，**`params.apply_short_rules_to_fin=False`**，**`params.merge_with_K_shortable_list=False`**，**`params.merge_with_L_mkt=False`**，**`params.merge_with_S_T_U_V_fee=False`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_Q_cb=False`**，**`params.list_overlay=k2_honest_or_long_only`**，**`params.missing_margin_leg_policy=skip`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015`（写死冻结；禁 holdout 标定；禁 null；params.Y≠实验字母 Z）**，**`params.z0_primary_demo=flat_one_times`（写死；禁与 asof_leak_flat_100 双挂）**，**`params.pre_20240722_short_window=skip_or_out_of_scope`（写死冻结）**，**`params.fin_dayfreq_20230908_rule=next_day_mid80`（写死冻结）**，`universe_rule`，**`params.date_start=2023-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2023-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_K=off`，`overlay_L=off`，`overlay_A=off`。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -323,10 +331,25 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；日频开平仓腿 + 切日表即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2023-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**三切日 2023-09-08·2024-07-22·2026-01-19 写死**；融资 0.80/1.00、融券 1.00/私募 1.20；diff_buckets 十桶写死冻结；**params.Y/G/N/Y2·z0_primary_demo·pre_20240722_short_window·fin_dayfreq_20230908_rule 待预检**（params.Y≠实验字母 Z） |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2023-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**三切日 2023-09-08·2024-07-22·2026-01-19 写死**；融资 0.80/1.00、融券 1.00/私募 1.20；diff_buckets 十桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死冻结**（params.Y≠实验字母 Z）；**z0_primary_demo=flat_one_times 写死（禁双挂）**；**pre_20240722_short_window=skip_or_out_of_scope 写死**；**fin_dayfreq_20230908_rule=next_day_mid80 写死** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：并行写下一纸面 Z；Y 预检补丁由他人负责；清单止于 Y → 自开跑前检查第 15 条保证金半句 + `事实与坑` 保证金切片 + K「杠杆可另案」选题，**与 A–Y 不撞主结论**；近邻 K=名单、L=市价，本页主测保证金比例误铺；**实验字母 Z ≠ params.Y**；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 Y/X/W/A 正文**）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设Z-20261102.md` 有条件通过补四条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写入具体数并冻结（预检禁 holdout 标定且建议 0.02/0.01/0.05/0.015；**params.Y≠实验字母 Z**；禁 null）；② `params.z0_primary_demo=flat_one_times`（主报全样本 1 倍/零占用；禁与 asof_leak_flat_100 双挂争主表）；③ `params.pre_20240722_short_window=skip_or_out_of_scope`（切日前融券窗；禁静默用旧 50% 标 Z2）；④ `params.fin_dayfreq_20230908_rule=next_day_mid80`（日频把 2023-09-08 收市后近似到次日起 80%）。**不抢实验 A**；**Z 不开回测**；未动 Y/X/A。
+
+### 增量补丁段 · 2026-11-02（风控四条冻结）
+
+| 键 | 冻结值 | 备注 |
+|----|--------|------|
+| params.Y | 0.02 | 相对门槛键；**≠实验字母 Z** |
+| params.G | 0.01 | 切日窗桶相对对照差 |
+| params.N | 0.05 | 失败/跳过率差 |
+| params.Y2 | 0.015 | Z1−Z2 专项 |
+| params.z0_primary_demo | flat_one_times | 单一主报；禁双挂 |
+| params.pre_20240722_short_window | skip_or_out_of_scope | 禁静默旧 50% |
+| params.fin_dayfreq_20230908_rule | next_day_mid80 | 日频对齐 09-08 收市后 |
+
+预检稿：`experiments/backtest/A_limit_up_fill/risk_notes/预检-假设Z-20261102.md`。
