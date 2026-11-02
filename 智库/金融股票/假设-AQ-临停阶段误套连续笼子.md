@@ -2,7 +2,7 @@
 
 更新：2026-11-02  
 来源：总管线 / AP 补丁已交后写下一纸面 AQ；清单原止于 AP，无 AQ 节 → 自立实验 AQ；选题自 `事实与坑`「开市期间**临时停牌**阶段的限价**不适用**连续竞价有效申报价格范围两款（买入≤基准价102%与十价位孰高、卖出≥基准价98%与十价位孰低）；超过涨跌幅或有效申报范围=无效申报。上交所 3.3.14/3.3.16；深交所 3.3.16/3.3.18；核对日锚 2026-10-12」+ 口径「执行鸿沟」；与假设 A（板上可成交）/ H（退市整理）/ X（主板 ST 涨跌幅）/ E（整手）/ M（盘后）/ O（大宗）/ R（股票 ETF 假回转）/ Q（可转债）/ AC（北交所）/ AD（风险警示 50 万）/ AE（普通股票假 T+0）/ AF（单笔数量上限）/ AG（超涨跌停价无效）/ AH（集合不可撤窗假撤改）/ AI（无板日集合/临停 ±10% 有效申报范围）/ AJ（临停复牌假连续）/ AK（集合竞价时段假连续）/ AL（午休与开盘空窗假连续）/ AM（停牌期间假连续）/ AN（开盘集合剩单假即时成）/ AO（收盘集合剩单假即时成）/ AP（盘后错侧限价假有效）/ I（连续竞价价格笼子远限价）/ F（涨跌停价取整）/ L（市价通道）/ G（无板日误套板块默认板）/ J（无板日临停触发）/ D（成交时点与停牌）/ N（收盘机制与假 GTC）/ Y（集合量分母）/ K（融券空头名单）/ AA（分钟 bar 时区误标）/ P（指数点位停牌假成交权重）**分列**；**新建实验 AQ**  
-状态：**草稿 · 待数据 · 待跑 · 待预检**（结论栏空；禁止把「临停阶段仍套连续笼子拒远限价」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AP 及其他 A/D–AP 已交正文与冻结补丁；不改假设-H；不改假设-I；不改假设-J；不改假设-AI；不改假设-AJ；不改假设-AM；不改假设-A**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-02）**（结论栏空；禁止把「临停阶段仍套连续笼子拒远限价」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AP 及其他 A/D–AP 已交正文与冻结补丁；不改假设-H；不改假设-I；不改假设-J；不改假设-AI；不改假设-AJ；不改假设-AM；不改假设-A**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单原止于 AP，本页自立实验 AQ 标准件。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/排队能否按板上价成交；本页 = **临时停牌阶段**是否仍被发明套上**连续竞价价格笼子**而拒远限价。双字母 **AQ ≠ 单字母 A**。与假设 **Q（可转债规则混用）** **硬分列**：Q = 可转债按股票规则回放（回转/涨跌幅/收盘）；本页 = 普通 A 股**临停窗内连续笼子是否适用**，不主测转债。双字母 **AQ ≠ 单字母 Q**。与假设 **I（价格笼子远限价）** **硬分列**：I = **连续竞价未停牌时段**远限价能否进簿（笼子带宽/切日/科创无十价位）；本页**默认连续时段笼子规则另页 I**，主测**临停阶段误套该连续笼子**（诚实=临停阶段连续笼子两款不适用）。与假设 **AI（无板日集合有效申报范围）** **分列**：AI = 无板日开盘集合 900%/50%、临停/收盘集合 ±10%；本页不重开 ±10% 主测，半泄露仅诊断「无板日临停仍套连续笼子」时对照声明交 AI。与假设 **J（无板日临停）** **分列**：J = 30%/60% 临停**触发**与窗内假连续路径；本页不主测触发阈值，主测触发后/临停窗内**限价进簿是否误套连续笼子**。与假设 **AJ（临停复牌假连续）** **分列**：AJ = 复牌撮合跳过集合；本页 = 临停窗内申报有效性，不重开复牌撮合。与假设 **AM（停牌期间假连续）** **分列**：AM = 停牌窗内假连续**成交**；本页 = 临停窗内假**拒单/假进簿**（笼子误套），不发明连续成交。与假设 A/H/X/E/M/O/R/Q/AC–AP/I/F/L/G/J/N/Y/AA/D/K/P **分列**：各自主测，不并表。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 临停误套连续笼子 ≠ 连续时段笼子；≠ 无板日临停 ±10%；≠ 临停触发；≠ 复牌撮合；≠ 停牌窗假连续成交；≠ 板上枯竭
 
 ```
-# 配置写死键（见 §7；Y/G/N/Y2 与 aq0_primary_demo 待预检建议值）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AQ；≠ 实验字母 A；≠ 实验字母 Q
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 AQ
 # params.asof_check_date                 写死默认 2026-10-12  # 事实与坑「临停阶段笼子不适用」核对锚
@@ -33,7 +33,7 @@
 # params.halt_cage_honest                写死 no_continuous_cage  # 诚实：临停阶段连续笼子两款不适用
 # params.continuous_cage_handoff         写死 i_page          # 连续未停牌时段笼子交 I，不重开切日/科创十价位主测
 # params.nolimit_halt_band_handoff       写死 ai_page         # 无板日临停 ±10% 交 AI，不重开主测
-# params.aq0_primary_demo                待预检建议 invent_halt_apply_continuous_cage  # 主报：临停仍套连续笼子拒远限价；禁与 invent_halt_as_always_accept_far 双挂
+# params.aq0_primary_demo                写死 invent_halt_apply_continuous_cage  # 风控补丁冻结；主报：临停仍套连续笼子拒远限价；禁与 invent_halt_as_always_accept_far 双挂
 # params.aq0_invent_halt_cage_reject     写死 True           # 天真主路径（随 primary_demo）
 # params.aq1_nolimit_halt_cage_only     写死 True           # 半泄露：仅无板日临停仍套连续笼子（±10% 诚实可诊断；对照交 AI）
 # params.aq2_halt_cage_policy            写死 no_continuous_cage
@@ -74,7 +74,7 @@
 # params.missing_halt_cage_policy        写死 skip           # 缺临停钟/拟挂限价/基准价标记 → skip（禁静默当连续笼子可拒）
 # params.day_freq_proxy                  写死 halt_cage_sensitivity  # 日频无 L2 时只报敏感性档；禁假装精确复盘临停簿
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  待预检建议 0.02/0.01/0.05/0.015  # params.Y=相对门槛键 ≠ 实验字母 AQ；params.N≠实验字母 AQ；禁 null/holdout
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 AQ；params.N≠实验字母 AQ；禁 null/holdout
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -86,7 +86,7 @@ tick = 0.01
 halt_cage_honest = "no_continuous_cage"
 continuous_cage_handoff = "i_page"
 nolimit_halt_band_handoff = "ai_page"
-aq0_primary_demo = "invent_halt_apply_continuous_cage"  # 待预检建议；禁双挂
+aq0_primary_demo = "invent_halt_apply_continuous_cage"  # 风控补丁冻结；禁双挂
 aq0_invent_halt_cage_reject = True
 aq1_nolimit_halt_cage_only = True
 aq2_halt_cage_policy = "no_continuous_cage"
@@ -94,10 +94,10 @@ universe_rule = "sse_szse_common_stock_halt_cage_check"
 missing_halt_cage_policy = "skip"
 day_freq_proxy = "halt_cage_sensitivity"
 
-# 拉数前待预检建议；禁 holdout / 事后改口 / 禁跑后改 aq0_primary_demo
-Y = 0.02   # 待预检建议；相对门槛 ≠ 实验字母 AQ
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改 aq0_primary_demo
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 AQ
 G = 0.01
-N = 0.05   # 待预检建议；失败率门槛键 params.N ≠ 实验字母 AQ
+N = 0.05   # 风控补丁冻结；失败率门槛键 params.N ≠ 实验字母 AQ
 Y2 = 0.015
 
 def in_temp_halt(ts, halt_windows):
@@ -110,7 +110,7 @@ def would_reject_by_continuous_cage(side, limit_px, baseline_px, board, cage_imp
 
 def halt_cage_policy(group, side, limit_px, baseline_px, board, in_halt, is_nolimit_day, cage_impl):
     """
-    AQ0：按 aq0_primary_demo 单一主报（建议 invent_halt_apply_continuous_cage）
+    AQ0：按 aq0_primary_demo 单一主报（写死 invent_halt_apply_continuous_cage）
     AQ1：仅无板日临停仍套连续笼子；有板日临停可按诚实 no_continuous_cage（对照交 AI）
     AQ2：凡临停窗 no_continuous_cage（不发明连续笼子拒单）
     """
@@ -145,14 +145,14 @@ def halt_cage_policy(group, side, limit_px, baseline_px, board, in_halt, is_noli
 
 **全部 `merge_with_*=False`（写死；含 A/Q/I/AI/J/AJ/AM/AP/AO/AN/AK/AL/AH/AG/F/L/H/X/E/M/O/R/AC/AD/AE/AF/G/D/N/Y/K/AA/P）**。
 
-**待预检键（拉数前须冻结；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.Y                            = 0.02                      # 待预检建议；可成交名义/冲击差显著门槛；≠实验字母 AQ
-params.G                            = 0.01                      # 待预检建议；临停误套笼子桶相对对照差
-params.N                            = 0.05                      # 待预检建议；失败/废单率差门槛；≠实验字母 AQ
-params.Y2                           = 0.015                     # 待预检建议；AQ1（无板日临停误套笼子）相对 AQ2 专项门槛
-params.aq0_primary_demo             = invent_halt_apply_continuous_cage  # 待预检建议主报：临停仍套连续笼子；禁与 invent_halt_as_always_accept_far 双挂争主表
+params.Y                            = 0.02                      # 写死冻结；可成交名义/冲击差显著门槛；≠实验字母 AQ
+params.G                            = 0.01                      # 写死冻结；临停误套笼子桶相对对照差
+params.N                            = 0.05                      # 写死冻结；失败/废单率差门槛；≠实验字母 AQ
+params.Y2                           = 0.015                     # 写死冻结；AQ1（无板日临停误套笼子）相对 AQ2 专项门槛
+params.aq0_primary_demo             = invent_halt_apply_continuous_cage  # 写死冻结主报：临停仍套连续笼子；禁与 invent_halt_as_always_accept_far 双挂争主表
 ```
 
 ---
@@ -215,17 +215,17 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔNotional| 或 |ΔImpact| **≥ params.Y** 或 |ΔFakeHaltCage 桶贡献| **≥ params.G** 或 |ΔNotional_(AQ1−AQ2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「临停阶段笼子适用性执行鸿沟显著」。
 
-**params.Y / G / N / Y2（待预检建议；与实验字母 AQ 无关）**
+**params.Y / G / N / Y2（写死冻结；与实验字母 AQ 无关；风控补丁 2026-11-02）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 名义/冲击差显著门槛（≠实验字母 AQ） | **待预检建议** `0.02` |
-| params.G | 临停误套笼子桶相对对照差 | **待预检建议** `0.01` |
-| params.N | 失败/废单率差门槛（≠实验字母 AQ） | **待预检建议** `0.05` |
-| params.Y2 | AQ1−AQ2 专项门槛 | **待预检建议** `0.015` |
+| params.Y | 名义/冲击差显著门槛（≠实验字母 AQ） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 临停误套笼子桶相对对照差 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败/废单率差门槛（≠实验字母 AQ） | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | AQ1−AQ2 专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-12` |
 | fill_time | 成交时点 | **写死** `next_open` |
-| aq0_primary_demo | 天真主报枚举 | **待预检建议** `invent_halt_apply_continuous_cage`（禁双挂） |
+| aq0_primary_demo | 天真主报枚举 | **写死冻结** `invent_halt_apply_continuous_cage`（禁双挂；风控补丁 2026-11-02） |
 
 ### 4.3 红线 v0
 
@@ -265,7 +265,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`AQ`  
 - **组**：AQ0 / AQ1 / AQ2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-12`；`halt_cage_honest=no_continuous_cage`；`continuous_cage_handoff=i_page`；`nolimit_halt_band_handoff=ai_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_halt_cage_check`；`missing_halt_cage_policy=skip`；`day_freq_proxy=halt_cage_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 待预检建议 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 AQ；**params.N≠实验字母 AQ**；禁 null/holdout）；**`params.aq0_primary_demo` 待预检建议 `invent_halt_apply_continuous_cage`**（禁与 invent_halt_as_always_accept_far 双挂）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-12`；`halt_cage_honest=no_continuous_cage`；`continuous_cage_handoff=i_page`；`nolimit_halt_band_handoff=ai_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_halt_cage_check`；`missing_halt_cage_policy=skip`；`day_freq_proxy=halt_cage_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 AQ；**params.N≠实验字母 AQ**；禁 null/holdout；风控补丁 2026-11-02）；**`params.aq0_primary_demo` 写死冻结 `invent_halt_apply_continuous_cage`**（禁与 invent_halt_as_always_accept_far 双挂；风控补丁 2026-11-02）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -294,17 +294,18 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；临停钟+拟挂限价+笼子代理或日频代理即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-12；**fill_time=next_open 写死**；**halt_cage_honest=no_continuous_cage 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 待预检建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 AQ；params.N≠实验字母 AQ）**；**aq0_primary_demo 待预检建议 invent_halt_apply_continuous_cage（禁双挂）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-12；**fill_time=next_open 写死**；**halt_cage_honest=no_continuous_cage 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 AQ；params.N≠实验字母 AQ；风控补丁 2026-11-02）**；**aq0_primary_demo 写死冻结 invent_halt_apply_continuous_cage（禁双挂；风控补丁 2026-11-02）** |
 
 ---
 
-## 待预检键（草稿占位；拉数前须写死冻结）
+## 已冻结键（风控补丁 2026-11-02；已写死待复检）
 
-1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**待预检建议** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 AQ**；**`params.N` ≠ 实验字母 AQ**；禁 null / holdout 标定。  
-2. **`params.aq0_primary_demo`**：**待预检建议** **`invent_halt_apply_continuous_cage`**；禁与 **`invent_halt_as_always_accept_far`** 双挂争主表。
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 AQ**；**`params.N` ≠ 实验字母 AQ**；禁 null / holdout 标定。  
+2. **`params.aq0_primary_demo`**：**写死冻结** **`invent_halt_apply_continuous_cage`**；禁与 **`invent_halt_as_always_accept_far`** 双挂争主表。
 
 ---
 
 ## 变更
 
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AQ-20261102.md` 有条件通过补两条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` **写死冻结**（**params.Y≠实验字母 AQ**；**params.N≠实验字母 AQ**；禁 null/holdout）；② `params.aq0_primary_demo=invent_halt_apply_continuous_cage` **写死冻结**（禁与 `invent_halt_as_always_accept_far` 双挂）。**已写死待复检**。**不改 Y/Z/AA–AP 冻结补丁**；**不改假设-H**；**不改假设-I**；**不改假设-J**；**不改假设-AI**；**不改假设-AJ**；**不改假设-AM**；**不改假设-A**；**不改假设-Q**；**不改假设-AP**；不开回测；不抢 A；禁实盘。
 - 2026-11-02：新建标准件（总管线：AP 补丁已交后写下一纸面 AQ；Y/Z/AA–AP 补丁已交不改；清单止于 AP → 自 `事实与坑`「临停阶段连续笼子不适用」选题，**与 A/H/X/E/M/O/R/Q/AC–AP/I/AI/J/AJ/AM 硬分列**；**双字母 AQ ≠ 单字母 A ≠ 单字母 Q**；结论栏空；不开回测；不抢 A）。
