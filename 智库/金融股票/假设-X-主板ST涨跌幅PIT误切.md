@@ -21,7 +21,7 @@
 ### 2.1 主板 ST 5%→10% 切日写死；创业/科创风险警示 ≠ 主板 10%；未复权判板
 
 ```
-# 配置写死键（见 §7；Y/G/N/Y2 与若干枚举待预检冻结）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # params.asof_check_date                 写死默认 2026-10-09  # 与清单/事实「ST 5%→10%」同批核对日（G 同锚；本页不重开新股窗）
 # params.fill_time                        写死 next_open      # 成交腿与 A/D 对齐；本页主测标签，不抢 A 板上真数
 # params.tick                            写死 0.01           # 仅 A 股股票；禁基金 0.001 混主结论
@@ -50,12 +50,12 @@
 # params.missing_board_policy            写死 skip
 # params.no_limit_day_policy             写死 skip           # 无涨跌幅日（见 G）不硬套 ±5%/±10%/±20%
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  键名稳值待预检      # 建议占位 0.02/0.01/0.05/0.015；禁 holdout 标定
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；禁 holdout 标定；禁 null
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
-# params.x0_primary_demo                 键名稳值待预检      # 建议 flat_5pct；枚举另有 flat_10pct / copy_10_to_chinext_star；禁双挂
-# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改切日、5%/10%/20%、Y/G/N/Y2、主窗/oos、x0_primary_demo
+# params.x0_primary_demo                 写死 flat_5pct     # 风控补丁冻结；主报永远 5%；禁与 flat_10pct / copy_10_to_chinext_star 双挂
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改切日、5%/10%/20%、Y/G/N/Y2、主窗/oos、x0_primary_demo
 
 fill_time = "next_open"
 asof_check_date = "2026-10-09"
@@ -186,15 +186,15 @@ def tags_for_group(group, row):
 
 **`params.merge_with_A_fill=False` / `merge_with_F_rounding=False` / `merge_with_G_limit_pct_pit=False` / `merge_with_H_exit_period=False` / `merge_with_W_exref=False` / `merge_with_S_T_U_V_fee=False`（写死）**。
 
-**待预检冻结键（草稿占位；拉数前必须写入具体值；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.Y                            # 建议 0.02；标签差异率显著门槛（主板 ST 全样本或切日前桶）
-params.G                            # 建议 0.01；切日前相对切日后（或相对非 ST 对照）差异率差门槛
-params.N                            # 建议 0.05；失败/跳过率差门槛
-params.Y2                           # 建议 0.015；创业/科创风险警示误套 10% 专项门槛
-params.x0_primary_demo              # 建议 flat_5pct（主报永远 5%）；枚举另有 flat_10pct / copy_10_to_chinext_star；禁双挂
-params.st_flag_source               # 已写死 day_effective_risk_warn；若预检要求改枚举须显式冻结，禁核对日名单回放
+params.Y                            = 0.02                # 标签差异率显著门槛 ≥ 2pp（主板 ST 全样本或切日前桶；同系列纸面占位；禁 holdout 标定）
+params.G                            = 0.01                # 切日前相对切日后（或相对非 ST 对照）差异率差门槛 ≥ 1pp（ΔTag_cut）
+params.N                            = 0.05                # 失败/跳过率差门槛 ≥ 5pp
+params.Y2                           = 0.015               # 创业/科创风险警示误套 10% 专项门槛 ≥ 1.5pp（ΔTag_copy）
+params.x0_primary_demo              = flat_5pct           # 主报永远 5%；枚举另有 flat_10pct / copy_10_to_chinext_star；禁双挂争主表
+params.st_flag_source               = day_effective_risk_warn  # 已写死；禁核对日名单回放
 ```
 
 ---
@@ -255,14 +255,14 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔTag| **≥ Y** 或 |ΔTag_cut| **≥ G** 或 |ΔTag_copy| **≥ Y2** 或 |ΔFail| **≥ N**，记「主板 ST 涨跌幅 PIT 误切 / 创业科创误套执行鸿沟显著」。
 
-**Y / G / N / Y2（拉数前写入 params；禁 holdout 标定）**
+**Y / G / N / Y2（已写入 params 并冻结；禁 holdout 标定）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| Y | 标签差异率显著门槛 | **待预检写入**具体数并冻结（建议 0.02） |
-| G | 切日相关差异率差门槛 | **待预检**（建议 0.01） |
-| N | 失败笔数率差门槛 | **待预检**（建议 0.05） |
-| Y2 | 创业/科创误套 10% 专项门槛 | **待预检**（建议 0.015） |
+| Y | 标签差异率显著门槛 | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| G | 切日相关差异率差门槛 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| N | 失败笔数率差门槛 | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| Y2 | 创业/科创误套 10% 专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-09`；拉数前冻结 |
 | fill_time | 成交时点 | **写死** `next_open` |
 | st_limit_cut_date | 主板 ST 切日 | **写死** `2026-07-06` |
@@ -270,7 +270,7 @@ params.diff_buckets = [
 | chinext_star_risk_warn_pct | 创业/科创风险警示 | **写死** `0.20` |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛键名已列；**具体数值待风控预检有条件通过后写入并冻结**；**禁止用 holdout / OOS 段标定或反调**。
+门槛键名与具体数值已写入 params 并冻结（风控补丁 2026-11-02）；**禁止用 holdout / OOS 段标定或反调**。
 
 **失败/不显著**：差异落在噪声带内或均匀散在非 ST / 非切日桶——结论栏写明，不得改口称「ST 5% 和 10% 差不多」或「这类 ST 能买」。
 
@@ -324,7 +324,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=X`，`groups=[X0,X1,X1b,X2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-09`**，**`params.fill_time=next_open`（写死）**，**`params.tick=0.01`**，**`params.tag_cmp=ge_le`**，**`params.round_half_up_to_tick=True`**，**`params.st_limit_cut_date=2026-07-06`**，**`params.st_limit_pct_pre=0.05`**，**`params.st_limit_pct_post=0.10`**，**`params.main_non_st_pct=0.10`**，**`params.chinext_star_risk_warn_pct=0.20`**，**`params.x0_mode=flat_5pct`**，**`params.x1_mode=flat_10pct`**，**`params.x1b_copy_main10_to_chinext_star=True`**，**`params.x2_mode=pit_st_cut`**，**`params.st_flag_source=day_effective_risk_warn`**，**`params.missing_st_flag_policy=skip`**，**`params.missing_board_policy=skip`**，**`params.no_limit_day_policy=skip`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_F_rounding=False`**，**`params.merge_with_G_limit_pct_pit=False`**，**`params.merge_with_H_exit_period=False`**，**`params.merge_with_W_exref=False`**，**`params.merge_with_S_T_U_V_fee=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y/G/N/Y2`（待预检写入具体数并冻结；禁 holdout 标定；禁 null）**，**`params.x0_primary_demo`（待预检；禁双挂）**，`universe_rule`，**`params.date_start=2022-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2022-01-01,is_end=2025-06-30,holdout_start=2025-07-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_F=off`，`overlay_G=off`，`overlay_H=off`，`overlay_W=off`，`overlay_S=off`，`overlay_T=off`，`overlay_U=off`，`overlay_V=off`。  
+- 配置块（写死项加粗）：`hypothesis_id=X`，`groups=[X0,X1,X1b,X2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-09`**，**`params.fill_time=next_open`（写死）**，**`params.tick=0.01`**，**`params.tag_cmp=ge_le`**，**`params.round_half_up_to_tick=True`**，**`params.st_limit_cut_date=2026-07-06`**，**`params.st_limit_pct_pre=0.05`**，**`params.st_limit_pct_post=0.10`**，**`params.main_non_st_pct=0.10`**，**`params.chinext_star_risk_warn_pct=0.20`**，**`params.x0_mode=flat_5pct`**，**`params.x1_mode=flat_10pct`**，**`params.x1b_copy_main10_to_chinext_star=True`**，**`params.x2_mode=pit_st_cut`**，**`params.st_flag_source=day_effective_risk_warn`**，**`params.missing_st_flag_policy=skip`**，**`params.missing_board_policy=skip`**，**`params.no_limit_day_policy=skip`**，**`params.merge_with_A_fill=False`**，**`params.merge_with_F_rounding=False`**，**`params.merge_with_G_limit_pct_pit=False`**，**`params.merge_with_H_exit_period=False`**，**`params.merge_with_W_exref=False`**，**`params.merge_with_S_T_U_V_fee=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015`（写死冻结；禁 holdout 标定；禁 null）**，**`params.x0_primary_demo=flat_5pct`（写死；禁双挂）**，`universe_rule`，**`params.date_start=2022-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2022-01-01,is_end=2025-06-30,holdout_start=2025-07-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_F=off`，`overlay_G=off`，`overlay_H=off`，`overlay_W=off`，`overlay_S=off`，`overlay_T=off`，`overlay_U=off`，`overlay_V=off`。  
 - 行情与 ST 日标记：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -353,10 +353,11 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；日频未复权行情 + 按日风险警示 + 板块即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2022-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-09；**fill_time=next_open 写死**；**st_limit_cut_date=2026-07-06 / pre=0.05 / post=0.10 / chinext_star=0.20 写死**；diff_buckets 八桶写死冻结；**Y/G/N/Y2·x0_primary_demo 待预检** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2022-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-09；**fill_time=next_open 写死**；**st_limit_cut_date=2026-07-06 / pre=0.05 / post=0.10 / chinext_star=0.20 写死**；diff_buckets 八桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死冻结**；**x0_primary_demo=flat_5pct 写死（禁双挂）** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：V 补丁/W 预检并行写 X；清单止于 W → 自开跑前检查 + `事实与坑` 主板 ST 5%→10% 坑选题，**与 A–W 不撞主结论**；近邻 G=新股/无板窗（ST 仅附带）、H=整理期、W=除权复权，本页主测主板 ST 切日+创业科创误套；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 V/W/U/A 正文**）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设X-20261102.md` 有条件通过补两条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写入具体数并冻结（预检禁 holdout 标定且建议 0.02/0.01/0.05/0.015；与同系列 R/S/T/U/V/W 纸面占位一致；禁 null）；② `params.x0_primary_demo=flat_5pct`（主报永远 5%；禁与 flat_10pct / copy_10_to_chinext_star 双挂争主表）。**不抢实验 A**；**X 不开回测**；未动 Y/W/V/U/A。
