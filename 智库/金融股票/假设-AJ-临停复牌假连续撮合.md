@@ -2,7 +2,7 @@
 
 更新：2026-11-02  
 来源：总管线 / AI 补丁已交后写下一纸面 AJ；清单原止于 AI，无 AJ 节 → 自立实验 AJ；选题自 `事实与坑`「无涨跌幅日盘中临停：停牌期间可申报也可撤单；**复牌对已接受申报做集合竞价**；跨越 **14:57** 且须当日复牌的，于 14:57 复牌（先复牌集合竞价，再收盘集合竞价）。上交所 4.2.5；深交所 4.3.4 / 4.3.6（核对日 2026-10-12）」+ 口径「执行鸿沟」；与假设 A（板上可成交）/ H（退市整理）/ X（主板 ST 涨跌幅）/ E（整手）/ M（盘后补成交）/ O（大宗）/ R（股票 ETF 假回转）/ Q（可转债）/ AC（北交所）/ AD（风险警示 50 万）/ AE（普通股票假 T+0）/ AF（单笔数量上限）/ AG（超涨跌停价无效）/ AH（集合不可撤窗假撤改）/ AI（无板日集合有效申报范围）/ I（价格笼子）/ F（涨跌停价取整）/ L（市价保护限价）/ G（无板日误套板块默认板）/ J（无板日盘中临停 30%/60% 触发与窗内假连续）**分列**；**新建实验 AJ**  
-状态：**草稿 · 待数据 · 待跑 · 待预检**（结论栏空；禁止把「临停复牌跳过复牌集合、直接按连续撮合/末笔价成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AI 及其他 A/D–AI 已交正文与冻结补丁；不改假设-H；不改假设-J**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-02）**（结论栏空；禁止把「临停复牌跳过复牌集合、直接按连续撮合/末笔价成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AI 及其他 A/D–AI 已交正文与冻结补丁；不改假设-H；不改假设-J**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单原止于 AI，本页自立实验 AJ 标准件。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/排队能否按板上价成交；本页 = **无涨跌幅日临停结束后的复牌撮合方式**是否被跳过集合、发明假连续路径。双字母 **AJ ≠ 单字母 A**。与假设 **J（无板日临停）** **硬分列**：J = 较开盘价 **30%/60%** 临停**触发**与「窗内/穿过阈值后仍按最高最低连续可成交」；本页 = 临停**已结束后**，复牌是否仍须先走**复牌集合竞价**（跨越 14:57 则于 14:57 先复牌集合再收盘集合），不重开 30%/60% 触发阈值、不重开「窗内假连续」。双字母 **AJ ≠ 单字母 J**。与假设 **AI（无板日集合有效申报范围）** **分列**：AI = 临停/复牌集合阶段申报价是否超出最近成交 ±10% 仍进簿；本页 = 复牌**撮合机制**是否被跳过集合改成连续，不重开 ±10% 带宽。与假设 **AH（不可撤窗假撤改）** **分列**：AH = 9:20–9:25 / 14:57–15:00 能否撤改；本页 = 复牌集合是否被跳过。与假设 **D（成交时点与停牌）** **分列**：D = 停牌日/无成交日能否成交及次日开收时点；本页 = 盘中临停**复牌瞬间**的撮合方式。与假设 A/H/X/E/M/O/R/Q/AC/AD/AE/AF/AG/I/F/L/G/N **分列**：各自主测，不并表。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 临停复牌集合 ≠ 临停触发；≠ 窗内假连续；≠ 集合有效申报范围；≠ 板上枯竭
 
 ```
-# 配置写死键（见 §7；待预检两项见文末待预检键）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AJ；≠ 实验字母 A；≠ 实验字母 J
 # params.asof_check_date                 写死默认 2026-10-12  # 事实与坑「临停复牌集合竞价」核对锚（与 J/AI 同批）
 # params.fill_time                        写死 next_open      # 主腿与 A/D 对齐；复牌冲击作主测；不抢 A 板上真数
@@ -36,7 +36,7 @@
 # params.resume_match_honest             写死 call_auction   # 诚实：复牌对已接受申报做集合竞价
 # params.resume_at_1457_if_span          写死 True           # 跨越 14:57 且须当日复牌 → 于 14:57 复牌（先复牌集合再收盘集合）
 # params.close_auction_start             写死 14:57
-# params.aj0_primary_demo                待预检（建议 invent_resume_skip_call）  # 主报：复牌跳过集合、直接连续撮合；禁与 invent_resume_at_last_px 双挂争主表
+# params.aj0_primary_demo                写死 invent_resume_skip_call  # 风控补丁冻结；主报：复牌跳过集合、直接连续撮合；禁与 invent_resume_at_last_px 双挂争主表
 # params.aj0_invent_resume_skip_call     写死 True           # 天真主路径（与建议主报同向）
 # params.aj0_invent_resume_at_last_px    写死 False          # 诊断可叠；主报以 aj0_primary_demo 为准
 # params.aj1_ignore_1457_resume_clock    写死 True           # 半泄露：忽略跨越 14:57 须于 14:57 复牌
@@ -70,7 +70,7 @@
 # params.missing_halt_resume_policy      写死 skip           # 缺临停/复牌时点或公告 → skip（禁静默当连续可成）
 # params.day_freq_proxy                  写死 resume_match_sensitivity  # 日频无 L2 时只报「复牌跳过集合」敏感性档；禁假装精确复盘簿
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  待预检（建议 0.02/0.01/0.05/0.015）  # params.Y=相对门槛键 ≠ 实验字母 AJ；禁 null/holdout
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 AJ；禁 null/holdout
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -86,7 +86,7 @@ halt_baseline = "open"
 resume_match_honest = "call_auction"
 resume_at_1457_if_span = True
 close_auction_start = "14:57"
-aj0_primary_demo = "invent_resume_skip_call"  # 待预检建议值；拉数前须写死冻结；禁双挂
+aj0_primary_demo = "invent_resume_skip_call"  # 风控补丁冻结；禁双挂
 aj0_invent_resume_skip_call = True
 aj0_invent_resume_at_last_px = False
 aj1_ignore_1457_resume_clock = True
@@ -98,8 +98,8 @@ universe_rule = "sse_szse_common_stock_nolimit_halt_resume"
 missing_halt_resume_policy = "skip"
 day_freq_proxy = "resume_match_sensitivity"
 
-# 待预检占位（建议值；拉数前须写入具体数并冻结；禁 holdout / 事后改口 / 禁跑后改 aj0_primary_demo）
-Y = 0.02   # 建议；相对门槛 ≠ 实验字母 AJ
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改 aj0_primary_demo
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 AJ
 G = 0.01
 N = 0.05
 Y2 = 0.015
@@ -135,7 +135,7 @@ def resume_match_mode(group, halt_start_ts, scheduled_resume_ts):
 
 | 组 | 复牌撮合 | 说明 |
 |----|----------|------|
-| AJ0 天真 | 复牌跳过集合、直接连续撮合（按 `aj0_primary_demo` 单一主报；建议 `invent_resume_skip_call`） | 发明复牌假连续路径 |
+| AJ0 天真 | 复牌跳过集合、直接连续撮合（按 `aj0_primary_demo` 单一主报） | 发明复牌假连续路径 |
 | AJ1 半泄露/混口径 | 忽略跨越 14:57 须于 14:57 复牌；可诊断按末笔/极值发明复牌价 | 混口径假路径 |
 | AJ2 PIT 诚实 | 复牌对已接受申报做集合竞价；跨越 14:57 且须当日复牌 → 于 14:57 先复牌集合再收盘集合 | 与事实与坑同向 |
 
@@ -143,14 +143,14 @@ def resume_match_mode(group, halt_start_ts, scheduled_resume_ts):
 
 **`params.merge_with_A_fill=False` / `merge_with_J_halt=False` / `merge_with_AI_call_band=False` / `merge_with_AH_nocancel=False` / `merge_with_D_halt_timing=False` / `merge_with_G_nolimit_pct=False` / `merge_with_AG_beyond_limit=False` / `merge_with_I_cage=False` / `merge_with_F_round=False` / `merge_with_L_mkt=False` / `merge_with_H_exit=False` / `merge_with_X_st_limit=False` / `merge_with_E_lot=False` / `merge_with_M_aft=False` / `merge_with_O_block=False` / `merge_with_R_etf_rotation=False` / `merge_with_Q_cb_rotation=False` / `merge_with_AC_bse=False` / `merge_with_AD_50w=False` / `merge_with_AE_stock_t0=False` / `merge_with_AF_qty_cap=False` / `merge_with_N_close_gtc=False`（写死）**。
 
-**待预检两条（建议值；拉数前须写死冻结；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.Y                            = 0.02                      # 建议；可成交名义/冲击差显著门槛；≠实验字母 AJ
-params.G                            = 0.01                      # 建议；复牌假连续桶相对对照差
-params.N                            = 0.05                      # 建议；失败/废单率差门槛
-params.Y2                           = 0.015                     # 建议；AJ1（忽略 14:57 复牌钟）相对 AJ2 专项门槛
-params.aj0_primary_demo             = invent_resume_skip_call   # 建议主报：复牌跳过集合假连续；禁与 invent_resume_at_last_px 双挂争主表
+params.Y                            = 0.02                      # 可成交名义/冲击差显著门槛；≠实验字母 AJ
+params.G                            = 0.01                      # 复牌假连续桶相对对照差
+params.N                            = 0.05                      # 失败/废单率差门槛
+params.Y2                           = 0.015                     # AJ1（忽略 14:57 复牌钟）相对 AJ2 专项门槛
+params.aj0_primary_demo             = invent_resume_skip_call   # 主报：复牌跳过集合假连续；禁与 invent_resume_at_last_px 双挂争主表
 ```
 
 ---
@@ -216,13 +216,13 @@ params.diff_buckets = [
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 名义/冲击差显著门槛（≠实验字母 AJ） | **待预检建议** `0.02`；拉数前须写死冻结 |
-| params.G | 复牌假连续桶相对对照差 | **待预检建议** `0.01`；拉数前须写死冻结 |
-| params.N | 失败/废单率差门槛 | **待预检建议** `0.05`；拉数前须写死冻结 |
-| params.Y2 | AJ1?AJ2 专项门槛 | **待预检建议** `0.015`；拉数前须写死冻结 |
+| params.Y | 名义/冲击差显著门槛（≠实验字母 AJ） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 复牌假连续桶相对对照差 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败/废单率差门槛 | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | AJ1?AJ2 专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-12` |
 | fill_time | 成交时点 | **写死** `next_open` |
-| aj0_primary_demo | 天真主报枚举 | **待预检建议** `invent_resume_skip_call`（禁双挂） |
+| aj0_primary_demo | 天真主报枚举 | **写死冻结** `invent_resume_skip_call`（禁双挂；风控补丁 2026-11-02） |
 
 ### 4.3 红线 v0
 
@@ -260,7 +260,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`AJ`  
 - **组**：AJ0 / AJ1 / AJ2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-12`；`resume_match_honest=call_auction`；`resume_at_1457_if_span=True`；`close_auction_start=14:57`；`halt_pct_1/2=0.30/0.60`（消费 J，不重开）；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_nolimit_halt_resume`；`missing_halt_resume_policy=skip`；`day_freq_proxy=resume_match_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 待预检建议 0.02/0.01/0.05/0.015**（params.Y≠实验字母 AJ；禁 null/holdout）；**`params.aj0_primary_demo` 待预检建议 `invent_resume_skip_call`**（禁与 invent_resume_at_last_px 双挂）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-12`；`resume_match_honest=call_auction`；`resume_at_1457_if_span=True`；`close_auction_start=14:57`；`halt_pct_1/2=0.30/0.60`（消费 J，不重开）；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_nolimit_halt_resume`；`missing_halt_resume_policy=skip`；`day_freq_proxy=resume_match_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2=0.02/0.01/0.05/0.015` 写死冻结**（params.Y≠实验字母 AJ；禁 null/holdout）；**`params.aj0_primary_demo=invent_resume_skip_call` 写死冻结**（禁与 invent_resume_at_last_px 双挂）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -289,17 +289,18 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；无板日+临停复牌事件或日频代理即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-12；**fill_time=next_open 写死**；**resume_match_honest=call_auction + resume_at_1457_if_span=True 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 待预检建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 AJ）**；**aj0_primary_demo 待预检建议 invent_resume_skip_call（禁双挂）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-12；**fill_time=next_open 写死**；**resume_match_honest=call_auction + resume_at_1457_if_span=True 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2=0.02/0.01/0.05/0.015 写死冻结（params.Y≠实验字母 AJ）**；**aj0_primary_demo=invent_resume_skip_call 写死冻结（禁双挂）**；**风控补丁两条 2026-11-02 已写死待复检** |
 
 ---
 
-## 待预检键（拉数前不补则打回）
+## 已冻结键（风控补丁 2026-11-02；已写死待复检）
 
-1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：键名稳；**建议值 0.02 / 0.01 / 0.05 / 0.015**；**`params.Y` ≠ 实验字母 AJ**；须写死冻结；禁 null / holdout 标定。  
-2. **`params.aj0_primary_demo`**：建议 **`invent_resume_skip_call`**；禁与 **`invent_resume_at_last_px`** 双挂争主表；须写死冻结。
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 AJ**；禁 null / holdout 标定。  
+2. **`params.aj0_primary_demo`**：**写死冻结** **`invent_resume_skip_call`**；禁与 **`invent_resume_at_last_px`** 双挂争主表。
 
 ---
 
 ## 变更
 
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AJ-20261102.md` 有条件通过补两条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写死冻结（**params.Y≠实验字母 AJ**；禁 null/holdout 标定）；② `params.aj0_primary_demo=invent_resume_skip_call` 写死冻结（禁与 `invent_resume_at_last_px` 双挂争主表）。**已写死待复检**；**不抢实验 A**；**不开回测**；**不改假设-H**；**不改假设-J**；**不改 Y/Z/AA–AI 及其他 A/D–AI 正文**。
 - 2026-11-02：新建标准件（总管线：AI 补丁已交后写下一纸面 AJ；Y/Z/AA–AI 补丁已交不改；清单止于 AI → 自 `事实与坑`「临停复牌对已接受申报做集合竞价；跨越 14:57 于 14:57 复牌」选题，**与 A/H/X/E/M/O/AC–AI/R/Q/I/F/L/J/G/D/N 不撞主结论**；**明确双字母 AJ ≠ 单字母 A ≠ 单字母 J**；近邻 J=临停触发/窗内假连续、AI=集合 ±10%、A=板上、AH=不可撤窗、D=停牌时点，本页主测复牌跳过集合假连续；**实验字母 AJ ≠ params.Y ≠ 实验字母 A ≠ 实验字母 J**；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 Y/Z/AA–AI/A/D–AI 正文**；**不改假设-H**；**不改假设-J**）。
