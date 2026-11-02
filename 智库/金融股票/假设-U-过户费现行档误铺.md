@@ -21,15 +21,15 @@
 ### 2.1 过户费 ≠ 佣金 ≠ 经手费 ≠ 证管费；2015-08-01 / 2022-04-29 切片；买卖双边（未复权成交金额）
 
 ```
-# 配置写死键（见 §7；Y/G/N/Y2 与若干枚举待预检冻结）
+# 配置写死键（见 §7；风控补丁五条已冻结 2026-11-02）
 # params.asof_check_date                 写死默认 2026-10-02  # 事实与坑「过户费」核对日；费用分层再核见 2026-10-30
 # params.fill_time                        写死 next_open      # 成交腿与 A/D/S/T 对齐；不抢 A 板上真数
 # params.transfer_unify_start            写死 2015-08-01     # 沪深 A 股过户费统一 0.02‰ 双边起点
 # params.transfer_cut_20220429           写死 2022-04-29     # 0.02‰ → 0.01‰（下调 50%）
 # params.transfer_bps_20150801           写死 0.02           # 单位：‰；买卖双边各收
 # params.transfer_bps_20220429           写死 0.01           # 现行核对日档
-# params.transfer_bps_pre_20150801       键名稳值待预检      # 主窗默认自 2015-08-01；见 pre_20150801_window
-# params.pre_20150801_window             键名稳值待预检      # 建议 skip_or_out_of_scope
+# params.transfer_bps_pre_20150801       写死（窗外置）      # 主窗自 2015-08-01；见 params.pre_20150801_window；不写具体‰
+# params.pre_20150801_window             写死 skip_or_out_of_scope  # 主窗不含 2015-08-01 前；禁未冻结静默用 0.02 前推标 U2
 # params.u0_transfer_fee                 写死 0.0            # 天真：过户费=0（只留印花税+佣金等）
 # params.u1_asof_leak_bps                写死 0.01           # 泄露/误铺：全样本用核对日现行 0.01‰
 # params.u1_apply_stock_fee_to_etf       写死 True           # 误铺可叠加：ETF 按股票档抽（暴露误抽）
@@ -39,7 +39,7 @@
 # params.transfer_bps_etf_pit            写死 None→skip      # PIT：ETF/基金另表未核死 → skip，禁静默用股票档
 # params.transfer_bps_bond_pit           写死 None→skip      # 同上债券
 # params.missing_etf_transfer_schedule   写死 skip           # 缺 ETF 过户费表 → skip 该腿
-# params.broker_bundles_transfer_fee     键名稳值待预检      # 过户费属中国结算；与「佣金含经手费/证管费」不同层；建议 False
+# params.broker_bundles_transfer_fee     写死 False          # 过户费属中国结算；与「佣金含经手费/证管费」不同层；禁缺键静默双计/漏计
 # params.u2_stack_if_bundled             写死 False          # 若券商报价已代收过户费且开关 True，诚实组不再叠；默认按未捆处理
 # params.merge_with_S_handling_fee       写死 False          # 经手费另页 S
 # params.merge_with_T_csrc_fee           写死 False          # 证管费另页 T
@@ -48,11 +48,12 @@
 # params.missing_notional_policy         写死 skip
 # params.missing_sec_type_policy         写死 skip
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  键名稳值待预检      # 建议占位 0.02/0.01/0.05/0.015；禁 holdout 标定
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 相对门槛；禁 holdout 标定；禁 null
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
-# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 0.02/0.01 档、切日、ETF 误抽开关、Y/G/N/Y2、主窗/oos、pre_20150801_window
+# params.u1_primary_demo                 写死 asof_leak_flat_001  # 主报现行档误铺；禁双挂 omit_zero / etf_wrong_charge
+# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 0.02/0.01 档、切日、ETF 误抽开关、Y/G/N/Y2、主窗/oos、pre_20150801_window、broker_bundles_transfer_fee、u1_primary_demo
 
 fill_time = "next_open"
 asof_check_date = "2026-10-02"
@@ -73,6 +74,13 @@ merge_with_R_etf_rotation = False
 missing_notional_policy = "skip"
 missing_sec_type_policy = "skip"
 missing_etf_transfer_schedule = "skip"
+Y = 0.02
+G = 0.01
+N = 0.05
+Y2 = 0.015
+pre_20150801_window = "skip_or_out_of_scope"  # 不写 transfer_bps_pre_20150801 ‰
+broker_bundles_transfer_fee = False
+u1_primary_demo = "asof_leak_flat_001"  # 禁双挂 omit_zero / etf_wrong_charge
 
 def pit_transfer_bps(sec_type, d):
     """当日已生效过户费（‰，单边；双边各收）。股票按切日；ETF/债券未核死 → None(skip)。"""
@@ -106,7 +114,7 @@ def transfer_cost(notional, bps, side="both"):
 
 ### 2.2 fail_policy（写死默认）
 
-- 默认 **`fail_policy=skip`**：缺未复权成交金额、缺证券类别却要分 ETF/债券、2015-08-01 前费率未冻结却硬跑、把经手费 S / 证管费 T / 印花税重开混进本页主结论、ETF/债券过户费表未核却静默用股票 0.01‰ → **跳过该腿/该日该券**，不静默当 0 成本或改档。  
+- 默认 **`fail_policy=skip`**：缺未复权成交金额、缺证券类别却要分 ETF/债券、2015-08-01 前窗外置（`pre_20150801_window=skip_or_out_of_scope`）却硬跑、把经手费 S / 证管费 T / 印花税重开混进本页主结论、ETF/债券过户费表未核却静默用股票 0.01‰ → **跳过该腿/该日该券**，不静默当 0 成本或改档。  
 - 允许拉数前改为 `defer` 等，**必须写入 params 并冻结**；**禁止跑后/看完净值再改口**。未写明则以 skip 为准。
 
 ### 2.3 三组对照（本实验编码；自立实验 U）
@@ -121,17 +129,17 @@ def transfer_cost(notional, bps, side="both"):
 
 **`params.merge_with_S_handling_fee=False` / `params.merge_with_T_csrc_fee=False` / `params.merge_with_stamp=False`（写死）**：经手费、证管费、印花税不得混进本页主表。
 
-**待预检冻结键（草稿占位；拉数前必须写入具体值；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁五条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.Y                            # 建议 0.02；成本差显著门槛；禁 holdout 标定
-params.G                            # 建议 0.01；费率/类别标签差异率门槛
-params.N                            # 建议 0.05；失败/跳过率差门槛
-params.Y2                           # 建议 0.015；ETF 腿误抽成本差专项门槛
-params.pre_20150801_window          # 建议 skip_or_out_of_scope；主窗自 2015-08-01
-params.transfer_bps_pre_20150801    # 若前推样本须写死‰；否则不写具体‰
-params.broker_bundles_transfer_fee  # 建议 False（过户费=中国结算，与佣金含经手费/证管费不同层）
-params.u1_primary_demo              # 建议 asof_leak_flat_001（主报现行档误铺）；枚举另有 omit_zero / etf_wrong_charge；禁双挂
+params.Y                            = 0.02                # 成本差显著门槛 ≥ 2pp（同系列纸面占位；来源 L/M/N/O/P/R/S/T；禁 holdout 标定）
+params.G                            = 0.01                # 费率/类别标签差异率门槛 ≥ 1pp
+params.N                            = 0.05                # 失败/跳过率差门槛 ≥ 5pp
+params.Y2                           = 0.015               # ETF 腿误抽成本差专项门槛 ≥ 1.5pp
+params.pre_20150801_window          = skip_or_out_of_scope  # 主窗自 2015-08-01；2015-08-01 前窗外置；禁未冻结静默用 0.02 前推标 U2
+params.transfer_bps_pre_20150801    = （窗外置·不依赖）      # 与 pre_20150801_window=skip_or_out_of_scope 对称；不写具体‰；若前推样本须另写‰并冻结
+params.broker_bundles_transfer_fee  = False               # 过户费=中国结算，与「佣金含经手费/证管费」不同层；与 u2_stack_if_bundled=False 同向；禁缺键静默双计/漏计
+params.u1_primary_demo              = asof_leak_flat_001  # 主报现行档误铺/asof 泄漏；枚举另有 omit_zero / etf_wrong_charge；禁双挂争主表
 ```
 
 ---
@@ -143,7 +151,7 @@ params.u1_primary_demo              # 建议 asof_leak_flat_001（主报现行�
 - **主窗（写死；拉数前冻结）**：  
   - `params.date_start=2015-08-01`  
   - `params.date_end=2026-09-30`  
-  - 覆盖统一 0.02‰ 起点与 2022-04-29 切日；**`params.pre_20150801_window` 待预检（建议 skip_or_out_of_scope）**。  
+  - 覆盖统一 0.02‰ 起点与 2022-04-29 切日；**`params.pre_20150801_window=skip_or_out_of_scope`（写死冻结）**；不依赖 `transfer_bps_pre_20150801` ‰。  
 - **PIT 切片原则**：过户费档一律按**成交日**当时已生效文本；**2022-04-29 是过户费降档日**（与印花税 2023-08-28、经手费三切日、证管费不改档分列）。
 
 ### 3.1 oos_split（写死四日期；拉数前冻结；禁 holdout 反调）
@@ -169,7 +177,7 @@ params.oos_split.holdout_end    = 2026-09-30
 
 ```
 params.diff_buckets = [
-  "pre_20150801",              # 窗外置；待预检 pre_20150801_window
+  "pre_20150801",              # 窗外置；pre_20150801_window=skip_or_out_of_scope
   "20150801_to_20220428",      # 0.02‰ 窗；误铺主战场（现行 0.01 低估）
   "post_20220429",             # 真实 0.01‰ 窗
   "etf_leg_wrong_charge",      # ETF 按股票抽的那截
@@ -198,10 +206,10 @@ params.diff_buckets = [
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| Y | 成本差显著门槛 | **待预检写入**具体数并冻结（建议 0.02） |
-| G | 费率/类别标签差异率门槛 | **待预检**（建议 0.01） |
-| N | 失败笔数率差门槛 | **待预检**（建议 0.05） |
-| Y2 | ETF 腿误抽成本差门槛 | **待预检**（建议 0.015） |
+| Y | 成本差显著门槛 | **写死冻结** `0.02` |
+| G | 费率/类别标签差异率门槛 | **写死冻结** `0.01` |
+| N | 失败笔数率差门槛 | **写死冻结** `0.05` |
+| Y2 | ETF 腿误抽成本差门槛 | **写死冻结** `0.015` |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-02`；拉数前冻结 |
 | fill_time | 成交时点 | **写死** `next_open` |
 | transfer_unify_start | 统一档起点 | **写死** 2015-08-01 |
@@ -209,7 +217,7 @@ params.diff_buckets = [
 | transfer_bps_20150801 / 20220429 | 两档 | **写死** 0.02 / 0.01（‰） |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛键名已列；**具体数值待风控预检有条件通过后写入并冻结**；**禁止用 holdout / OOS 段标定或反调**。
+门槛键名与数值已写死冻结（风控补丁 2026-11-02）；**禁止用 holdout / OOS 段标定或反调**。
 
 **失败/不显著**：差异落在噪声带内——结论栏写明，不得改口称「过户费跟佣金捆着差不多」或「这类品种费更低所以能买」。
 
@@ -237,7 +245,7 @@ params.diff_buckets = [
 6. **把经手费（S）或证管费（T）或印花税重开实验混进本页主表**。  
 7. **宇宙泄露 / holdout 反调**：看完 OOS 再改 0.02/0.01 档或显著性门槛。  
 8. **把差异写成「这类品种费更低所以能买」或选股公式**。  
-9. **2015-08-01 前费率未冻结却硬跑并标 PIT**。  
+9. **2015-08-01 前费率未冻结却硬跑并标 PIT**（本页 `pre_20150801_window=skip_or_out_of_scope`，不得静默用 0.02‰ 前推）。  
 10. **把北交所/股转旧档 0.025‰ 与沪深合成一句却不另桶**。
 
 ---
@@ -255,7 +263,7 @@ params.diff_buckets = [
 | 过户费 PIT 表 | 2015-08-01:0.02‰；2022-04-29:0.01‰；ETF/债券另表或 skip | 本页 §2.1 已锁股票默认 |
 | 印花税/经手费/证管费切片（对照输入） | 控制变量 | 不重开；走罐内或 S/T |
 
-**明确**：不依赖聚宽；**不要求新开 Level-2 / 新数据商**——日频未复权成交金额 + 证券类别 + 本页过户费规则表即可起步。主窗自 2015-08-01；**`params.pre_20150801_window` 待预检**。
+**明确**：不依赖聚宽；**不要求新开 Level-2 / 新数据商**——日频未复权成交金额 + 证券类别 + 本页过户费规则表即可起步。主窗自 2015-08-01；**`params.pre_20150801_window=skip_or_out_of_scope`（写死冻结）**，不得静默用 0.02‰ 前推标 U2；不依赖 `transfer_bps_pre_20150801` ‰。
 
 ---
 
@@ -263,7 +271,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗）：`hypothesis_id=U`，`groups=[U0,U1,U2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-02`**，**`params.fill_time=next_open`（写死）**，**`params.transfer_unify_start=2015-08-01`**，**`params.transfer_cut_20220429=2022-04-29`**，**`params.transfer_bps_20150801=0.02`**，**`params.transfer_bps_20220429=0.01`**，**`params.u0_transfer_fee=0.0`**，**`params.u1_asof_leak_bps=0.01`**，**`params.u1_apply_stock_fee_to_etf=True`**，**`params.u1_apply_stock_fee_to_bond=True`**，**`params.u2_pit=True`**，**`params.side=both`**，**`params.missing_etf_transfer_schedule=skip`**，**`params.missing_notional_policy=skip`**，**`params.missing_sec_type_policy=skip`**，**`params.merge_with_S_handling_fee=False`**，**`params.merge_with_T_csrc_fee=False`**，**`params.merge_with_stamp=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y/G/N/Y2`（待预检写入具体数并冻结；禁 holdout 标定；禁 null）**，**`params.pre_20150801_window` / `params.broker_bundles_transfer_fee` / `params.u1_primary_demo`（待预检）**，`universe_rule`，**`params.date_start=2015-08-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2015-08-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_S=off`，`overlay_T=off`，`overlay_R=off`，`stamp_S_T_control=on`（印花税/经手费/证管费按罐内或 S/T 切片作控制变量）。  
+- 配置块（写死项加粗）：`hypothesis_id=U`，`groups=[U0,U1,U2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-02`**，**`params.fill_time=next_open`（写死）**，**`params.transfer_unify_start=2015-08-01`**，**`params.transfer_cut_20220429=2022-04-29`**，**`params.transfer_bps_20150801=0.02`**，**`params.transfer_bps_20220429=0.01`**，**`params.u0_transfer_fee=0.0`**，**`params.u1_asof_leak_bps=0.01`**，**`params.u1_apply_stock_fee_to_etf=True`**，**`params.u1_apply_stock_fee_to_bond=True`**，**`params.u2_pit=True`**，**`params.side=both`**，**`params.missing_etf_transfer_schedule=skip`**，**`params.missing_notional_policy=skip`**，**`params.missing_sec_type_policy=skip`**，**`params.merge_with_S_handling_fee=False`**，**`params.merge_with_T_csrc_fee=False`**，**`params.merge_with_stamp=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[...]`（§4.1 写死默认；拉数前冻结）**，**`params.Y=0.02` / `params.G=0.01` / `params.N=0.05` / `params.Y2=0.015`（写死具体数并冻结；禁 holdout 标定；禁 null）**，**`params.pre_20150801_window=skip_or_out_of_scope`（写死冻结；不写 `transfer_bps_pre_20150801` ‰）**，**`params.broker_bundles_transfer_fee=False`（写死冻结）**，**`params.u1_primary_demo=asof_leak_flat_001`（写死冻结；禁双挂）**，`universe_rule`，**`params.date_start=2015-08-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2015-08-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_S=off`，`overlay_T=off`，`overlay_R=off`，`stamp_S_T_control=on`（印花税/经手费/证管费按罐内或 S/T 切片作控制变量）。  
 - 行情与费率表：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -292,10 +300,11 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；日频未复权成交金额 + 证券类别 + 本页过户费规则表即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2015-08-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-02；**fill_time=next_open 写死**；**两档 0.02/0.01‰ + 切日 2022-04-29 写死**；diff_buckets 十一桶写死冻结；**Y/G/N/Y2·pre_20150801_window·broker_bundles_transfer_fee·u1_primary_demo 待预检** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2015-08-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-02；**fill_time=next_open 写死**；**两档 0.02/0.01‰ + 切日 2022-04-29 写死**；diff_buckets 十一桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死冻结**；**pre_20150801_window=skip_or_out_of_scope 写死**；**transfer_bps_pre_20150801 窗外置不依赖**；**broker_bundles_transfer_fee=False 写死**；**u1_primary_demo=asof_leak_flat_001 写死（禁双挂）** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：R/S/T 补丁链暂齐后写 U；清单止于 T → 自 `事实与坑` 过户费坑选题，**与 A–T 不撞**；近邻 S=经手费、T=证管费，本页只动中国结算过户费层；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 R/S/T/A 正文**）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设U-20261102.md` 有条件通过补五条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写入具体数并冻结（预检禁 holdout 标定且建议 0.02/0.01/0.05/0.015；与同系列 R/S/T 纸面占位一致；禁 null）；② `params.pre_20150801_window=skip_or_out_of_scope`；③ `params.transfer_bps_pre_20150801` 窗外置不依赖（与 S/T 对称；主窗不含 2015-08-01 前，不写具体‰）；④ `params.broker_bundles_transfer_fee=False`；⑤ `params.u1_primary_demo=asof_leak_flat_001`（主报现行档误铺/asof 泄漏；禁双挂 omit_zero / etf_wrong_charge）。**不抢实验 A**；**U 不开回测**；未动 V/R/S/T/A。
