@@ -2,7 +2,7 @@
 
 更新：2026-11-02  
 来源：总管线 / S 草稿已交后并行写下一纸面 T；清单实验 T  
-状态：**草稿 · 待数据 · 待跑**（结论栏空；禁止把「证管费=0 / 2023-08-28 改档或免收 / ETF·债券按股票 0.02‰ 抽」当实盘成本预期；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 R/S/A/P/Q 正文**；R 补丁由并行任务处理）
+状态：**草稿 · 待数据 · 待跑**（结论栏空；禁止把「证管费=0 / 2023-08-28 改档或免收 / ETF·债券按股票 0.02‰ 抽」当实盘成本预期；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 R/S/A/P/Q 正文**；**风控补丁四条已冻结 2026-11-02**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 实验 T 对齐。与假设 S「经手费现行档误铺 / 30% 当减半」**分列**：本页专测**证券交易监管费（证管费）**——股票 0.02‰ 双边自 2012-01-01、**2023-08-28 不改档**、基金/ETF/债券免收；严禁把证管费写成和印花税/经手费同一天改档，或对股票 ETF 按股票费率误抽。**经手费三切日三档属实验 S；股票 ETF 假回转属实验 R；印花税只打卖方属既有费用切片。本页主结论不混。**
 
@@ -21,7 +21,7 @@
 ### 2.1 证管费 ≠ 经手费 ≠ 印花税；2012-01-01 起股票 0.02‰ 双边；2023-08-28 不改；ETF/债券免收（未复权成交金额）
 
 ```
-# 配置写死 / 待预检键（见 §7）
+# 配置写死键（见 §7；风控补丁四条已冻结 2026-11-02）
 # params.asof_check_date                 写死默认 2026-10-30  # 事实与坑「证管费切片」核对日；与 S 同周五复盘锚
 # params.fill_time                        写死 next_open      # 成交腿与 A/D/S 对齐；不抢 A 板上真数
 # params.csrc_fee_start                   写死 2012-01-01     # 投资者侧本页默认档起点（发改价格〔2012〕2119 号执行日）
@@ -29,15 +29,16 @@
 # params.csrc_fee_bps_stock               写死 0.02           # 单位：‰；股票双边各收
 # params.csrc_fee_bps_etf                 写死 0.0            # 基金/ETF 免收
 # params.csrc_fee_bps_bond                写死 0.0            # 债券免收
-# params.csrc_fee_bps_pre_20120101        待预检             # 2012-01-01 前投资者侧未核死 → 该窗 skip 或拉数前冻结
+# params.csrc_fee_bps_pre_20120101        写死（窗外置）      # 主窗自 2012-01-01；见 params.pre_20120101_window
+# params.pre_20120101_window             写死 skip_or_out_of_scope  # 主窗不含 2012 前；禁未冻结静默用 0.02 前推标 T2
 # params.t0_csrc_fee                      写死 0.0            # 天真：证管费=0（只留印花税+过户费）
-# params.t1_wrong_post_cut_bps            待预检             # 误切：2023-08-28 起错档；建议 0.01（当减半）或 0.0（免收）；拉数前二选一写死
+# params.t1_wrong_post_cut_bps            写死 0.01           # 误切主测「误改档=当减半」；禁双挂 0.0；禁跑后改口
 # params.t1_apply_stock_fee_to_etf        写死 True           # 误切：ETF/债券按股票 0.02‰ 抽
 # params.t1_apply_stock_fee_to_bond       写死 True           # 同上，债券腿
 # params.t2_pit                           写死 True           # 诚实 PIT
 # params.t2_unchanged_on_20230828         写死 True           # 硬约束：切日后仍 0.02‰
 # params.side                             写死 both           # 买卖双边
-# params.commission_includes_agency       待预检             # True=佣金已含代收经手费/证管费 → PIT 不再叠证管费
+# params.commission_includes_agency       写死 True           # 佣金已含代收经手费/证管费 → T2 不再叠；与 S 同向；禁缺键静默双计/漏计
 # params.t2_stack_csrc_if_included        写死 False          # 诚实组：已含代收则禁止再加证管费
 # params.t0_double_count_demo             写死 False          # 本页天真主路径=漏计；双计演示留给 S（经手费）
 # params.merge_with_S_handling_fee        写死 False          # 经手费另页 S；本页只动证管费层
@@ -46,11 +47,11 @@
 # params.missing_notional_policy          写死 skip
 # params.missing_sec_type_policy          写死 skip           # 缺证券类别却要分 ETF/债券 → skip
 # params.diff_buckets                     写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                   待预检             # 相对门槛；键名稳；值拉数前冻结；禁 holdout 标定
+# params.Y / G / N / Y2                   写死 0.02/0.01/0.05/0.015  # 相对门槛；禁 holdout 标定；禁 null
 # params.date_start / date_end            写死主窗并冻结
 # params.oos_split.*                      写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope          写死 position_industry_dd_only
-# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 0.02‰ 档、2023-08-28 不改约束、ETF/债券免收、误切错档值、已含代收双计开关、Y/G/N/Y2、主窗/oos
+# 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改 0.02‰ 档、2023-08-28 不改约束、ETF/债券免收、误切错档值、已含代收双计开关、Y/G/N/Y2、主窗/oos、pre_20120101_window
 
 fill_time = "next_open"
 asof_check_date = "2026-10-30"
@@ -94,7 +95,7 @@ def csrc_bps_for_group(group, sec_type, d, commission_includes_agency, t1_wrong_
         else:
             base = csrc_fee_bps_stock
         if d >= fee_cut_20230828:
-            return t1_wrong_post_cut_bps  # 0.01 或 0.0；拉数前冻结
+            return t1_wrong_post_cut_bps  # 写死 0.01；禁双挂 0.0
         return base
     # T2 PIT
     bps = pit_csrc_bps(sec_type, d)
@@ -126,7 +127,7 @@ def assert_t2_unchanged(d, bps):
 | 组 | 证管费 | 2023-08-28 后股票 | ETF / 债券 |
 |----|--------|-------------------|------------|
 | T0 天真 | =0（只留印花税+过户费） | 仍为 0 | 0（漏计乐观） |
-| T1 误切 | 切日前可走股票 0.02‰；切日起按**错档** | **`t1_wrong_post_cut_bps`（建议 0.01 或 0）** | **按股票 0.02‰ 误抽** |
+| T1 误切 | 切日前可走股票 0.02‰；切日起按**错档** | **`t1_wrong_post_cut_bps=0.01`（写死；禁双挂 0.0）** | **按股票 0.02‰ 误抽** |
 | T2 PIT | 股票 **0.02‰ 双边** | **仍 0.02‰（不改）** | **记 0**；已含代收则不再叠 |
 
 同一信号、同一 T+1、**同一印花税（卖方、2023-08-28 前 1‰ / 后 0.5‰）、过户费（2022-04-29 前 0.02‰ / 后 0.01‰ 双边）、经手费（S 层 PIT 或罐内已冻结切片）**作对照输入；本页只动证管费层。**`params.fill_time=next_open` 写死**（与 A/D/S 对齐；不抢 A 板上真数队列）。
@@ -137,17 +138,25 @@ def assert_t2_unchanged(d, bps):
 
 **`params.merge_with_S_handling_fee=False` / `params.merge_with_R_etf_rotation=False`（写死）**：经手费、ETF 回转不得混进本页主表。
 
-**待预检冻结键（值可暂「待预检」，键名稳；拉数前必须写入具体值并冻结）**：
+**风控补丁四条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.t1_wrong_post_cut_bps       = 待预检   # 建议 0.01（当减半）或 0.0（免收）；拉数前二选一写死；禁双挂
-params.csrc_fee_bps_pre_20120101   = 待预检   # 2012-01-01 前；未核则该窗 skip
-params.commission_includes_agency  = 待预检   # 建议与 S 同向；拉数前二选一写死
-params.Y                           = 待预检   # 成本差 / 「成本吃掉的那截」门槛
-params.G                           = 待预检   # 费率档/证券类别标签差异率门槛
-params.N                           = 待预检   # 失败/跳过率差门槛
-params.Y2                          = 待预检   # ETF 腿误抽成本差专项门槛
+params.Y                            = 0.02                # 成本差显著门槛 ≥ 2pp（同系列纸面占位；来源 L/M/N/O/P/R/S；禁 holdout 标定）
+params.G                            = 0.01                # 费率/类别标签差异率门槛 ≥ 1pp
+params.N                            = 0.05                # 失败/跳过率差门槛 ≥ 5pp
+params.Y2                           = 0.015               # ETF 腿误抽成本差专项门槛 ≥ 1.5pp
+params.t1_wrong_post_cut_bps        = 0.01                # 误切主测「误改档=当减半」；禁双挂 0.0（误免收）；禁跑后因切日后成本差改口
+params.pre_20120101_window          = skip_or_out_of_scope  # 主窗自 2012-01-01；2012 前窗外置；禁未冻结静默用 0.02 前推标 T2；若前推样本须另写 csrc_fee_bps_pre_20120101 ‰ 并冻结
+params.commission_includes_agency   = True                # 佣金已含代收经手费/证管费；与 t2_stack_csrc_if_included=False 同向 → T2 不再叠；与 S 同向；禁缺键静默双计/漏计；禁跑后改口
 ```
+
+**`params.Y` / `params.G` / `params.N` / `params.Y2`（写死；拉数前冻结）**：`0.02` / `0.01` / `0.05` / `0.015`。预检禁 holdout 标定且未给推荐数 → 与同系列 L/M/N/O/P/R/S 纸面占位一致。单位：Y=abs(ΔCost) 成本差；G=abs(ΔFeeTag) 费率/类别标签差异率；N=abs(ΔFail) 失败/跳过率差；Y2=abs(ΔCost_ETF) ETF 腿误抽成本差。**禁止** null 开工；**禁止**用 holdout/OOS 标定或跑后因显著性改口。
+
+**`params.t1_wrong_post_cut_bps`（写死；拉数前冻结；禁双挂）**：`0.01`。主测「误改档」（把 2023-08-28 当成减半错档）；误切组切日后股票腿一律用该错档。枚举另有 `0.0`（误免收），本页不选。**禁止** 0.01 与 0.0 双挂争主表；**禁止**跑后因切日后成本差改口。
+
+**`params.pre_20120101_window`（写死；拉数前冻结）**：`skip_or_out_of_scope`。主窗 `date_start=2012-01-01` 不含 2012 前，该窗外置；`params.csrc_fee_bps_pre_20120101` 本页不写入具体‰。若前推样本，须另写具体‰并冻结。**禁止**未冻结时静默用 `0.02` 前推却标 T2 PIT。
+
+**`params.commission_includes_agency`（写死；拉数前冻结）**：`True`。官方口径佣金常含代收经手费/证管费；与 `t2_stack_csrc_if_included=False` 同向时 T2 不再叠证管费；与假设 S 同向。**禁止**缺键时实现静默双计或静默漏计；**禁止**跑后因成本差改口。
 
 ---
 
@@ -158,7 +167,7 @@ params.Y2                          = 待预检   # ETF 腿误抽成本差专项�
 - **主窗（写死；拉数前冻结）**：  
   - `params.date_start=2012-01-01`  
   - `params.date_end=2026-09-30`  
-  - 覆盖 2012-01-01 档起点与 2023-08-28 对照切日；若跑 2012-01-01 前须先冻结 `csrc_fee_bps_pre_20120101`。  
+  - 覆盖 2012-01-01 档起点与 2023-08-28 对照切日；**`params.pre_20120101_window=skip_or_out_of_scope`（写死）**；若前推样本须另写 `csrc_fee_bps_pre_20120101` ‰ 并冻结。  
 - **PIT 切片原则**：证管费档一律按**成交日**当时已生效文本；**2023-08-28 对证管费不是降档日**（仅作误切对照锚）。
 
 ### 3.1 oos_split（写死四日期；拉数前冻结；禁 holdout 反调）
@@ -184,7 +193,7 @@ params.oos_split.holdout_end    = 2026-09-30
 
 ```
 params.diff_buckets = [
-  "pre_20120101",              # 未核死窗；默认 skip 或待预检冻结后单列
+  "pre_20120101",              # 窗外置；params.pre_20120101_window=skip_or_out_of_scope
   "20120101_to_20230827",      # 股票 0.02‰ 稳定窗
   "post_20230828",             # 误切对照主战场（真实不改 vs 错档）
   "etf_leg_wrong_charge",      # ETF 按股票抽的那截
@@ -213,10 +222,10 @@ params.diff_buckets = [
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| Y | 成本差显著门槛 | 键名 `params.Y`；**值待预检**；拉数前写死并冻结 |
-| G | 费率/类别标签差异率门槛 | 键名 `params.G`；**值待预检**；拉数前写死并冻结 |
-| N | 失败笔数率差门槛 | 键名 `params.N`；**值待预检**；拉数前写死并冻结 |
-| Y2 | ETF 腿误抽成本差门槛 | 键名 `params.Y2`；**值待预检**；拉数前写死并冻结 |
+| Y | 成本差显著门槛 | **写死** `params.Y=0.02` 并冻结 |
+| G | 费率/类别标签差异率门槛 | **写死** `params.G=0.01` 并冻结 |
+| N | 失败笔数率差门槛 | **写死** `params.N=0.05` 并冻结 |
+| Y2 | ETF 腿误抽成本差门槛 | **写死** `params.Y2=0.015` 并冻结 |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-30`；拉数前冻结 |
 | fill_time | 成交时点 | **写死** `next_open` |
 | csrc_fee_start | 本页默认档起点 | **写死** 2012-01-01 |
@@ -225,7 +234,7 @@ params.diff_buckets = [
 | t1_apply_stock_fee_to_etf | ETF 误抽？ | **写死** `True`（仅 T1） |
 | diff_buckets | 分桶名 | 见 §4.1；拉数前冻结 |
 
-门槛键名已稳；**具体数值待风控预检后写入并冻结**；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、`t1_wrong_post_cut_bps`、`csrc_fee_bps_pre_20120101`、`commission_includes_agency`、主窗/`oos_split` 开工拉数前必须保持冻结；**禁止跑后改口**。
+门槛键名与具体数值已按预检有条件通过冻结；**禁止用 holdout / OOS 段标定或反调**。Y/G/N/Y2、`t1_wrong_post_cut_bps`、`pre_20120101_window`、`commission_includes_agency`、主窗/`oos_split` 开工拉数前必须保持冻结；**禁止跑后改口**。
 
 **失败/不显著**：差异落在噪声带内——结论栏写明，不得改口称「证管费跟着经手费改差不多」或「这类品种费更低所以能买」。
 
@@ -254,7 +263,7 @@ params.diff_buckets = [
 7. **把经手费（实验 S）或 ETF 回转（实验 R）或印花税/过户费重开实验混进本页主表**。  
 8. **宇宙泄露 / holdout 反调**：看完 OOS 再改 0.02‰ 档、误切错档值或显著性门槛。  
 9. **把差异写成「这类品种费更低所以能买」或选股公式**。  
-10. **2012-01-01 前费率未冻结却硬跑并标 PIT**。
+10. **2012-01-01 前费率未冻结却硬跑并标 PIT**（本页 `pre_20120101_window=skip_or_out_of_scope`，不得静默用 0.02‰ 前推）。
 
 ---
 
@@ -272,7 +281,7 @@ params.diff_buckets = [
 | 证管费 PIT 表 | 2012-01-01 起 0.02‰；切日不改；ETF/债券 0 | 本页 §2.1 已锁默认 |
 | 印花税/过户费/经手费切片（对照输入） | 控制变量 | 不重开实验；经手费走 S 或罐内已有切片 |
 
-**明确**：不依赖聚宽；**不要求新开 Level-2 / 新数据商**——日频未复权成交金额 + 证券类别 + 本页证管费规则表即可起步。2012-01-01 前缺档时 **`params.csrc_fee_bps_pre_20120101` 待预检冻结或该窗 skip**，不得静默用 0.02‰ 前推。
+**明确**：不依赖聚宽；**不要求新开 Level-2 / 新数据商**——日频未复权成交金额 + 证券类别 + 本页证管费规则表即可起步。主窗自 2012-01-01；**`params.pre_20120101_window=skip_or_out_of_scope`（写死冻结）**，不得静默用 0.02‰ 前推标 T2。
 
 ---
 
@@ -280,7 +289,7 @@ params.diff_buckets = [
 
 **输入期望**
 
-- 配置块（写死项加粗；待预检项标出）：`hypothesis_id=T`，`groups=[T0,T1,T2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-30`**，**`params.fill_time=next_open`（写死）**，**`params.csrc_fee_start=2012-01-01`**，**`params.fee_cut_20230828=2023-08-28`（对照锚）**，**`params.csrc_fee_bps_stock=0.02`**，**`params.csrc_fee_bps_etf=0.0`**，**`params.csrc_fee_bps_bond=0.0`**，**`params.t0_csrc_fee=0.0`**，**`params.t1_wrong_post_cut_bps=待预检`**，**`params.t1_apply_stock_fee_to_etf=True`**，**`params.t1_apply_stock_fee_to_bond=True`**，**`params.t2_pit=True`**，**`params.t2_unchanged_on_20230828=True`**，**`params.side=both`**，**`params.t2_stack_csrc_if_included=False`**，**`params.t0_double_count_demo=False`**，**`params.commission_includes_agency=待预检`**，**`params.csrc_fee_bps_pre_20120101=待预检`**，**`params.missing_notional_policy=skip`**，**`params.missing_sec_type_policy=skip`**，**`params.merge_with_S_handling_fee=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.merge_with_stamp_transfer=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[pre_20120101,20120101_to_20230827,post_20230828,etf_leg_wrong_charge,bond_leg_wrong_charge,high_turnover,leak_omit_vs_pit,wrong_cut_vs_pit,vs_S_handling_fee,vs_R_etf_rotation,vs_stamp_transfer]`（写死默认；拉数前冻结）**，**`params.Y/G/N/Y2=待预检`（键名稳；值拉数前冻结；禁 holdout 标定）**，`universe_rule`，**`params.date_start=2012-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2012-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_S=off`，`overlay_R=off`，`stamp_transfer_handling_control=on`（印花税/过户费/经手费按罐内或 S 切片作控制变量）。  
+- 配置块（写死项加粗）：`hypothesis_id=T`，`groups=[T0,T1,T2]`，**`fail_policy=skip`（默认写死）**，**`params.asof_check_date=2026-10-30`**，**`params.fill_time=next_open`（写死）**，**`params.csrc_fee_start=2012-01-01`**，**`params.fee_cut_20230828=2023-08-28`（对照锚）**，**`params.csrc_fee_bps_stock=0.02`**，**`params.csrc_fee_bps_etf=0.0`**，**`params.csrc_fee_bps_bond=0.0`**，**`params.t0_csrc_fee=0.0`**，**`params.t1_wrong_post_cut_bps=0.01`（写死冻结；禁双挂 0.0）**，**`params.t1_apply_stock_fee_to_etf=True`**，**`params.t1_apply_stock_fee_to_bond=True`**，**`params.t2_pit=True`**，**`params.t2_unchanged_on_20230828=True`**，**`params.side=both`**，**`params.t2_stack_csrc_if_included=False`**，**`params.t0_double_count_demo=False`**，**`params.commission_includes_agency=True`（写死冻结；与 S 同向）**，**`params.pre_20120101_window=skip_or_out_of_scope`（写死冻结；不写 `csrc_fee_bps_pre_20120101` ‰）**，**`params.missing_notional_policy=skip`**，**`params.missing_sec_type_policy=skip`**，**`params.merge_with_S_handling_fee=False`**，**`params.merge_with_R_etf_rotation=False`**，**`params.merge_with_stamp_transfer=False`**，**`params.redline_v0_exempt_scope=position_industry_dd_only`**，**`params.diff_buckets=[pre_20120101,20120101_to_20230827,post_20230828,etf_leg_wrong_charge,bond_leg_wrong_charge,high_turnover,leak_omit_vs_pit,wrong_cut_vs_pit,vs_S_handling_fee,vs_R_etf_rotation,vs_stamp_transfer]`（写死默认；拉数前冻结）**，**`params.Y=0.02` / `params.G=0.01` / `params.N=0.05` / `params.Y2=0.015`（写死具体数并冻结；禁 holdout 标定；禁 null）**，`universe_rule`，**`params.date_start=2012-01-01` / `params.date_end=2026-09-30`（写死）**，**`oos_split.{is_start=2012-01-01,is_end=2024-12-31,holdout_start=2025-01-01,holdout_end=2026-09-30}`（写死四日期；禁 holdout 反调）**，`redline_v0_exempt=true`（仅本机制实验；§4.3），`overlay_A=off`，`overlay_S=off`，`overlay_R=off`，`stamp_transfer_handling_control=on`（印花税/过户费/经手费按罐内或 S 切片作控制变量）。  
 - 行情与费率表：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -309,10 +318,11 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；日频未复权成交金额 + 证券类别 + 本页证管费规则表即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2012-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-30；**fill_time=next_open 写死**；**csrc_fee_bps_stock=0.02**；**t2_unchanged_on_20230828=True**；**ETF/债券免收写死**；**t1 误抽开关写死**；diff_buckets 十一桶写死冻结；**Y/G/N/Y2 与 t1_wrong_post_cut_bps / csrc_fee_bps_pre_20120101 / commission_includes_agency 键名稳、值待预检** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2012-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-30；**fill_time=next_open 写死**；**csrc_fee_bps_stock=0.02**；**t2_unchanged_on_20230828=True**；**ETF/债券免收写死**；**t1 误抽开关写死**；diff_buckets 十一桶写死冻结；**Y=0.02 / G=0.01 / N=0.05 / Y2=0.015 写死冻结**；**t1_wrong_post_cut_bps=0.01 写死（禁双挂）**；**pre_20120101_window=skip_or_out_of_scope 写死**；**commission_includes_agency=True 写死（与 S 同向）** |
 
 ---
 
 ## 变更
 
 - 2026-11-02：新建标准件（总管线：并行写 T=证管费误抽；选型严格对齐清单实验 T「证管费跟着 2023-08-28 改 / 对 ETF 误抽」；与 S 经手费分列；机制类预埋 fail_policy/oos/红线豁免/params 键；**不抢实验 A**；**不派回测**；**本页不开回测**；**不催 8765**；**不改 R/S/A/P/Q 正文**）。
+- 2026-11-02（风控补丁）：按 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设T-20261102.md` 有条件通过补四条——① `params.Y=0.02` / `G=0.01` / `N=0.05` / `Y2=0.015` 写入具体数并冻结（预检禁 holdout 标定且未给推荐数；与同系列 L/M/N/O/P/R/S 纸面占位一致；禁 null）；② `params.t1_wrong_post_cut_bps=0.01`（主测误改档=当减半；禁双挂 0.0）；③ `params.pre_20120101_window=skip_or_out_of_scope`（主窗不含 2012 前，不写 `csrc_fee_bps_pre_20120101` ‰）；④ `params.commission_includes_agency=True`（与 S 同向）。**不抢实验 A**；**T 不开回测**；未动 S/R/A。
