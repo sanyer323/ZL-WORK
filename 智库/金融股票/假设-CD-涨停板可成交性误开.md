@@ -2,7 +2,7 @@
 
 更新：2026-11-04  
 来源：总管线 / CC 两条补丁已交（tip=`78b803e`；复检/入库另线并行后写下一纸面 CD）；清单撞题规则另选正交执行缺口（**回测默认「触及涨停仍可按目标价/收盘价全额成交」** ≠ 假设-A 板上枯竭/一字与封板容量主实验 ≠ 假设-AR 板上排队假队首 ≠ 假设-D 成交时点开vs收与停牌假成交 ≠ 假设-C 股票池当时名单 ≠ 假设-CA 维持比分子分母 ≠ 假设-CB 融资展期审批 ≠ 假设-CC 两融标的调出强制了结时点 ≠ 两融审批/费用族）；选题自 `事实与坑`「涨停时卖方枯竭；回测用收盘价一律成交等于假设永远可成」+ 口径「执行鸿沟」；本页**假定板上容量层（A）/ 排队位次层（AR）/ 成交时点与停牌层（D）/ 超涨跌停价无效层（AG）/ 股票池层（C）诚实或显式旁路**，主病只在**发明「触及涨停仍可按目标价/收盘价全额成交」这一误开默认**；**A 正文主测「涨停可成交性/板上枯竭」真数队列**（**双字母 CD ≠ 单字母假设-A；严禁复用 A 题面；绝不可做成 A 续篇；不抢 A 真数队列**），**AR 正文主测「板上排队假队首」**（`invent_limit_queue_as_front`；假队首 ≠ 全额可成默认；**严禁改 AR**），**D 正文主测「成交时点开vs收与停牌假成交」**（开收时点 ≠ 涨停全额可成默认；**严禁改 D**），**C 正文主测「股票池当时名单」**（**双字母 CD ≠ 单字母假设-C；严禁复用 C**），**CA/CB/CC 正文主测两融族**（维持比公式/展期审批/调出了结时限；与本页正交；**严禁改 CA/CB/CC**）→ 自立；与假设 H（退市整理）/ B（历史清单实验 B 旧位；**双字母 CD ≠ 单字母 B；CD≠B**）/ Z/BA–CC（两融族；**CD≠Z/BA…CC**；与两融审批/费用类正交；**尤其不改 CC/CB/CA**）/ AG/AF/E/L/F/G/X/W/Y/K/AB 等**分列**；**新建实验 CD**  
-状态：**草稿 · 待入库预检**（结论栏空；禁止把「触及涨停仍可按目标价/收盘价全额成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CC 及其他 A/D–CC 已交正文与冻结补丁；尤其不改假设-A；尤其不改假设-AR；尤其不改假设-D；尤其不改假设-C；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-CC；不改假设-H；不改假设-K；不改假设-BA–CC；不改假设-AB；勿再改 CC/CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW/AR/AG**）
+状态：**草稿 · 预检有条件通过 · 两条已冻 · 待复检**（结论栏空；禁止把「触及涨停仍可按目标价/收盘价全额成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CC 及其他 A/D–CC 已交正文与冻结补丁；尤其不改假设-A；尤其不改假设-AR；尤其不改假设-D；尤其不改假设-C；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-CC；不改假设-H；不改假设-K；不改假设-BA–CC；不改假设-AB；勿再改 CC/CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW/AR/AG**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 CD（约 #87）。与假设 **A（涨停可成交性/板上枯竭）** **硬分列（专节强调）**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成（含一字开盘买记 0、封板容量门槛等）的**主实验与真数队列**；本页 = **纸面机制误开点**：回测/仿真是否默认发明「触及涨停仍可按目标价/收盘价**全额**成交」并系统性高估涨停日可实现收益、低估排队失败与次日缺口风险；容量门槛 ≠ 全额可成默认；**双字母 CD ≠ 单字母假设-A**；**严禁复用 A 题面**；**绝不可做成 A 续篇**；**不占** A 的 A0/A1 主报与真数席位；**尤其不改假设-A**。**CD≠A**。与假设 **AR（板上排队假队首）** **硬分列（专节强调）**：AR = 在已承认板上存在有限对手剩余的前提下是否发明假队首/假比例；本页 = 是否发明「触及涨停仍**全额**可成」（连有限剩余都不承认的更肥误开）；假队首 ≠ 全额可成默认；**禁止**复用 AR 的 `invent_limit_queue_as_front` 当本页主报；**尤其不改假设-AR**。**CD≠AR**。与假设 **D（成交时点与停牌）** **硬分列（专节强调）**：D = 开 vs 收成交时点与停牌假成交；本页 = 涨停日是否仍按目标价/收盘价**全额**记成；开收时点 ≠ 涨停全额可成；**双字母 CD ≠ 单字母假设-D**；**严禁复用 D 题面**；**尤其不改假设-D**。**CD≠D**。与假设 **C（股票池当时名单）** **硬分列**：C = 成分/股票池 PIT；本页 = 涨停全额可成误开；**双字母 CD ≠ 单字母假设-C**；**严禁复用 C**。**CD≠C**。与假设 **CA（维持担保比例分子分母）** **硬分列**：CA = 维持比怎么算；本页 = 涨停可成交性误开；公式 ≠ 板上全额可成；**尤其不改假设-CA**。**CD≠CA**。与假设 **CB（融资合约展期/续作审批）** **硬分列**：展期审批 ≠ 涨停全额可成；**尤其不改假设-CB**。**CD≠CB**。与假设 **CC（两融标的调出强制了结时点）** **硬分列（专节强调）**：CC = 调出后强制了结时限；本页 = 涨停板可成交性误开；调出了结时限 ≠ 涨停全额可成；**禁止**把「调出了结时限已诚实（CC）」静默写成「涨停可成交性已诚实」；**不占** CC 的 `invent_ignore_margin_universe_delist_force_deadline`；**尤其不改假设-CC**。**CD≠CC**。与假设 **BZ/BY/BX/BW/BV/BU/BT/BS/BO/BR/BH/BC/BD/BL/BF/BQ** 及两融审批/费用族 **硬分列**：与两融审批/费用类正交；本页不主测两融；**尤其不改**上述已冻页。与假设 AG/AF/E/L/F/G/X/W/Y/K/AB/H **硬分列**：超板无效/单笔上限/整手/市价/取整/板幅PIT/ST板幅/除权板价/集合量/融券名单/空头价限/退市整理 ≠ 涨停全额可成默认。与假设 AN–CC **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/两融族等。**明确避开预检T旧题（证管费误抽）**。**严禁复用假设-A / 假设-C / 假设-D**。**严禁改写/续写假设-CA / 假设-CB / 假设-CC / 假设-AR**。**本页主结论不混。**
 
@@ -37,10 +37,10 @@
 
 ## 2. 口径与可检验设计（纸面骨架）
 
-### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 与 cd0 待预检）
+### 2.1 写死键（拉数前冻结；本页不开跑）
 
 ```
-# 配置写死键（见 §7；草稿·待入库预检；Y/G/N/Y2 与 cd0_primary_demo 为建议占位，待风控预检冻结）
+# 配置写死键（见 §7；两条已冻 · 待复检；终值如下）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 CD；≠ 单字母假设-C；≠ 单字母假设-D；≠ 单字母假设-A；≠ 双字母假设-CA/CB/CC
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 CD
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 CD；≠ 单字母假设-N；亦≠实验字母 BN
@@ -69,7 +69,7 @@
 # params.csrc_fee_handoff                写死 t_page
 # params.handling_fee_handoff            写死 s_page
 # params.exit_period_handoff             写死 h_page
-# params.cd0_primary_demo                建议 invent_assume_limit_up_always_fillable  # 主报建议：假全额可成；禁与 invent_asof_leak_limit_up_always_fillable 双挂争主表；CD1半泄露不得升格并列主报；待预检冻结
+# params.cd0_primary_demo                写死冻结 invent_assume_limit_up_always_fillable  # 主报：假全额可成；禁与 invent_asof_leak_limit_up_always_fillable 双挂争主表；CD1半泄露不得升格并列主报
 # params.cd0_invent_assume_limit_up_always_fillable  建议 True
 # params.cd1_asof_leak_limit_up_always_fillable_only 建议 True
 # params.cd2_pit_limit_up_fill           建议 True
@@ -121,7 +121,7 @@
 # params.universe_rule                   写死 sse_szse_limit_up_fill_misopen_check
 # params.fail_policy                     写死 skip
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
-# params.Y / G / N / Y2                  建议 0.02/0.01/0.05/0.015  # 占位；params.Y≠实验字母CD；params.G≠实验字母CD；params.N≠实验字母CD；亦≠单字母实验C/D/A/Z；禁 null/holdout/跑后改口；待预检冻结
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # params.Y≠实验字母CD；params.G≠实验字母CD；params.N≠实验字母CD；亦≠单字母实验C/D/A/Z；禁 null/holdout/跑后改口
 # params.date_start / date_end           写死 2019-01-01..2026-09-30
 # params.oos_split.*                     写死四日期；禁 holdout 反调
 # 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改涨停可成交误开口径、Y/G/N/Y2、主窗/oos、cd0_primary_demo
@@ -144,7 +144,7 @@ px_basis = "unadj"
 limit_up_fill_honest = "pit_by_board_fill_rule"
 limit_up_fill_scope = "assume_limit_up_always_fillable_at_target_or_close"
 limit_up_fill_over_policy = "fail_or_cap_or_fail_missing_fill_rule"
-cd0_primary_demo = "invent_assume_limit_up_always_fillable"  # 单一主报建议；禁与 invent_asof_leak_limit_up_always_fillable 双挂；待预检冻结
+cd0_primary_demo = "invent_assume_limit_up_always_fillable"  # 单一主报·已冻结；禁与 invent_asof_leak_limit_up_always_fillable 双挂
 cd0_invent_assume_limit_up_always_fillable = True
 cd1_asof_leak_limit_up_always_fillable_only = True
 cd2_pit_limit_up_fill = True
@@ -162,7 +162,7 @@ fail_policy = "skip"
 
 | 组 | 口径 | 说明 |
 |----|------|------|
-| CD0 天真 | `invent_assume_limit_up_always_fillable`（单一主报建议） | 发明假全额可成路径；禁与 invent_asof_leak_limit_up_always_fillable 双挂 |
+| CD0 天真 | `invent_assume_limit_up_always_fillable`（单一主报·已冻结） | 发明假全额可成路径；禁与 invent_asof_leak_limit_up_always_fillable 双挂 |
 | CD1 半泄露·混口径 | 全样本用 `asof_check_date` 当天更宽「涨停日一律全额可成」规则铺满历史 | 仅涨停全额可成 asof 泄露；不升格并列主报 |
 | CD2 PIT | `limit_up_fill_honest=pit_by_board_fill_rule` | 每个交易日按当时已生效涨停可成交约束 PIT |
 
@@ -296,7 +296,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`CD`  
 - **组**：CD0 / CD1 / CD2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`limit_up_fill_honest=pit_by_board_fill_rule`；`limit_up_fill_scope=assume_limit_up_always_fillable_at_target_or_close`；`limit_up_fill_over_policy=fail_or_cap_or_fail_missing_fill_rule`；`board_capacity_handoff=a_page`；`queue_handoff=ar_page`；`fill_time_suspend_handoff=d_page`；`beyond_limit_handoff=ag_page`；`universe_pool_handoff=c_page`；`maint_ratio_formula_handoff=ca_page`；`financing_rollover_handoff=cb_page`；`delist_force_deadline_handoff=cc_page`；其余 handoff 见 §2.1；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_limit_up_fill_misopen_check`；`missing_limit_up_fill_policy=skip`；`day_freq_proxy=limit_up_fill_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 建议 `0.02/0.01/0.05/0.015`**（占位；**params.Y≠实验字母 CD**；**params.G≠实验字母 CD**；**params.N≠实验字母 CD**；亦≠单字母实验 C/D/A/Z；禁 null/holdout/跑后改口；**待预检冻结**）；**`params.cd0_primary_demo` 建议 `invent_assume_limit_up_always_fillable`**（禁与 invent_asof_leak_limit_up_always_fillable 双挂；CD1半泄露不得升格并列主报；**待预检冻结**）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`limit_up_fill_honest=pit_by_board_fill_rule`；`limit_up_fill_scope=assume_limit_up_always_fillable_at_target_or_close`；`limit_up_fill_over_policy=fail_or_cap_or_fail_missing_fill_rule`；`board_capacity_handoff=a_page`；`queue_handoff=ar_page`；`fill_time_suspend_handoff=d_page`；`beyond_limit_handoff=ag_page`；`universe_pool_handoff=c_page`；`maint_ratio_formula_handoff=ca_page`；`financing_rollover_handoff=cb_page`；`delist_force_deadline_handoff=cc_page`；其余 handoff 见 §2.1；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_limit_up_fill_misopen_check`；`missing_limit_up_fill_policy=skip`；`day_freq_proxy=limit_up_fill_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 CD**；**params.G≠实验字母 CD**；**params.N≠实验字母 CD**；亦≠单字母实验 C/D/A/Z；禁 null/holdout/跑后改口）；**`params.cd0_primary_demo` 写死冻结 `invent_assume_limit_up_always_fillable`**（禁与 invent_asof_leak_limit_up_always_fillable 双挂；CD1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -321,24 +321,37 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|----|
-| 状态 | **草稿 · 待入库预检**（结论栏空；**禁止标任何纸面齐**） |
+| 状态 | **草稿 · 预检有条件通过 · 两条已冻 · 待复检**（结论栏空；**禁止标任何纸面齐**） |
 | 标准件路径 | `假设-CD-涨停板可成交性误开.md` |
 | 清单序号 | 约 #87 |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**limit_up_fill_honest=pit_by_board_fill_rule 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 CD；params.G≠实验字母 CD；params.N≠实验字母 CD；亦≠单字母实验 C/D/A/Z；禁 null/holdout/跑后改口；待预检冻结）**；**cd0_primary_demo 建议 invent_assume_limit_up_always_fillable（禁双挂 invent_asof_leak_limit_up_always_fillable；CD1半泄露不得升格并列主报；待预检冻结）**；锚点保留 limit_up_fill_honest=pit_by_board_fill_rule / limit_up_fill_scope=assume_limit_up_always_fillable_at_target_or_close / limit_up_fill_over_policy=fail_or_cap_or_fail_missing_fill_rule / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**limit_up_fill_honest=pit_by_board_fill_rule 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 CD；params.G≠实验字母 CD；params.N≠实验字母 CD；亦≠单字母实验 C/D/A/Z；禁 null/holdout/跑后改口）**；**cd0_primary_demo 写死冻结 invent_assume_limit_up_always_fillable（禁双挂 invent_asof_leak_limit_up_always_fillable；CD1半泄露不得升格并列主报）**；锚点保留 limit_up_fill_honest=pit_by_board_fill_rule / limit_up_fill_scope=assume_limit_up_always_fillable_at_target_or_close / limit_up_fill_over_policy=fail_or_cap_or_fail_missing_fill_rule / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
 | 硬分列摘要 | **CD≠A/C/D/CA/CB/CC/AR/AG/BZ/BY/BX/BW/BV/BU/BT/BS/BO/BR/BH/BC/BD/BL/BF/BQ/Z/B**（及 ≠Y/BA–CC/K/AB/H/W/T/S/U/V/X），**严禁复用假设-A / 假设-C / 假设-D**；**尤其不改假设-A/AR/D/C/CA/CB/CC**；**params.Y≠实验字母 CD**；与两融审批/费用类正交 |
 | 结论栏 | 空 |
 
 ---
 
-## 待预检键清单（草稿；尚未冻结）
+## 待预检键清单（两条已冻 · 见下节）
 
-1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**建议占位**；**params.Y≠实验字母 CD**；**params.G≠实验字母 CD**；**params.N≠实验字母 CD**；禁 null/holdout；**待预检冻结**）  
-2. `params.cd0_primary_demo` = `invent_assume_limit_up_always_fillable`（**建议**；禁与 `invent_asof_leak_limit_up_always_fillable` 双挂；CD1不升格主报；**待预检冻结**）  
+1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**已冻结**；**params.Y≠实验字母 CD**；**params.G≠实验字母 CD**；**params.N≠实验字母 CD**；禁 null/holdout）  
+2. `params.cd0_primary_demo` = `invent_assume_limit_up_always_fillable`（**已冻结**；禁与 `invent_asof_leak_limit_up_always_fillable` 双挂；CD1不升格主报）  
 3. 锚点（已通写死）：`limit_up_fill_honest=pit_by_board_fill_rule` / `limit_up_fill_scope=assume_limit_up_always_fillable_at_target_or_close` / `limit_up_fill_over_policy=fail_or_cap_or_fail_missing_fill_rule` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`
+
+
+---
+
+## 风控预检补丁·冻结（两条已写死 · 2026-11-04）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 CD**；**`params.G` ≠ 实验字母 CD**；**`params.N` ≠ 实验字母 CD**；**`params.Y` ≠ 单字母实验 C/D/A/Z**；尤重**双字母 CD ≠ 单字母假设-A**；**双字母 CD ≠ 单字母假设-C**；**双字母 CD ≠ 单字母假设-D**；**双字母 CD ≠ 双字母假设-CA**；**双字母 CD ≠ 双字母假设-CB**；**双字母 CD ≠ 双字母假设-CC**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.cd0_primary_demo`**：**写死冻结** **`invent_assume_limit_up_always_fillable`**；禁与 **`invent_asof_leak_limit_up_always_fillable`** 双挂争主表（只挂一个 primary）；**CD1 半泄露不得升格并列主报**。
+
+**涨停板可成交性锚保留（已通写死）**：`params.limit_up_fill_honest=pit_by_board_fill_rule`；`params.limit_up_fill_scope=assume_limit_up_always_fillable_at_target_or_close`；`params.limit_up_fill_over_policy=fail_or_cap_or_fail_missing_fill_rule`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`（及正文已有涨停可成交相关锚点；不改口）。
+
+**与 A/C/D/CA/CB/CC/AR/AG/BZ/BY/BX/BW… 硬分列（保留）**：本页 = **涨停板可成交性误开（假全额可成默认）**；A = **板上枯竭主实验/真数队列**（**尤其双字母 CD ≠ 单字母假设-A**；**严禁复用假设-A**；**绝不可做成 A 续篇**；**不抢 A 真数队列**）；AR = **板上排队假队首**（**尤其 CD≠AR**；**尤其不改假设-AR**）；D = **成交时点开vs收与停牌假成交**（**尤其 CD≠D**；**严禁复用假设-D**）；C = **股票池当时名单**（**尤其 CD≠C**；**严禁复用假设-C**）；CA = **维持担保比例分子分母口径**（**尤其 CD≠CA**；**尤其不改假设-CA**）；CB = **融资合约展期/续作审批**（**尤其 CD≠CB**；**尤其不改假设-CB**）；CC = **两融标的调出强制了结时点**（**尤其 CD≠CC**；**尤其不改假设-CC**）。**双字母 CD ≠ 单字母 A ≠ 单字母 C ≠ 单字母 D ≠ 双字母 CA ≠ 双字母 CB ≠ 双字母 CC ≠ 双字母 AR ≠ 双字母 AG ≠ 双字母 BZ ≠ 双字母 BY ≠ 双字母 BX ≠ 双字母 BW ≠ 双字母 BV ≠ 双字母 BU ≠ 双字母 BT ≠ 双字母 BS ≠ 双字母 BO ≠ 双字母 BR ≠ 双字母 BH ≠ 双字母 BC ≠ 双字母 BD ≠ 双字母 BL ≠ 双字母 BF ≠ 双字母 BQ ≠ 单字母 B ≠ 单字母 Z ≠ 单字母 K ≠ 单字母 Y**；**params.Y ≠ 实验字母 CD**；**params.G ≠ 实验字母 CD**；**params.N ≠ 实验字母 CD**；禁止捆成「涨停一张表=假全额可成」；**尤其不改假设-A**；**尤其不改假设-AR**；**尤其不改假设-D**；**尤其不改假设-C**；**尤其不改假设-CA**；**尤其不改假设-CB**；**尤其不改假设-CC**；与两融审批/费用类正交；**未标纸面齐**；结论栏仍空；不开回测；不催 A。
 
 ## 变更
 
 | 日期 | 说明 |
 |------|------|
+| 2026-11-04 | 风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CD**；**params.G≠实验字母 CD**；**params.N≠实验字母 CD**；亦≠单字母实验 C/D/A/Z；尤重**双字母 CD ≠ 单字母假设-A**；**双字母 CD ≠ 单字母假设-C**；**双字母 CD ≠ 单字母假设-D**；**双字母 CD ≠ 双字母假设-CA/CB/CC**；禁 null/holdout/跑后改口）；② `params.cd0_primary_demo=invent_assume_limit_up_always_fillable`（禁与 `invent_asof_leak_limit_up_always_fillable` 双挂争主表；CD1半泄露不得升格并列主报）。涨停可成交锚保留：`limit_up_fill_honest=pit_by_board_fill_rule`；`limit_up_fill_scope=assume_limit_up_always_fillable_at_target_or_close`；`limit_up_fill_over_policy=fail_or_cap_or_fail_missing_fill_rule`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。硬分列保留：**CD≠A/C/D/CA/CB/CC/AR/AG/BZ/BY/BX/BW…**（及 ≠Y/BA–CC/K/AB/H/W/T/S/U/V/X）；**严禁复用假设-A / 假设-C / 假设-D**；参考总管派令 / 风控预检有条件通过（草稿 tip=`6bc630d`；清单待补丁 `d80291c` #87）。未改 Y/Z/AA–CC 及其他已冻结补丁；**不改假设-A**；**不改假设-AR**；**不改假设-D**；**不改假设-C**；**不改假设-CA**；**不改假设-CB**；**不改假设-CC**；结论栏仍空；不开回测；不催 A；**未标纸面齐** |
 | 2026-11-04 | 新建草稿·待入库预检（总管线：CC 补丁 tip=`78b803e` 已交后写 CD；选题涨停板可成交性误开；**CD≠A/C/D/CA/CB/CC/AR…**；primary_demo 建议=`invent_assume_limit_up_always_fillable`；Y/G/N/Y2 建议占位待预检；不开回测；未改 A/AR/D/C/CA/CB/CC 及其他已齐字母；**未标纸面齐**）。 |
 
