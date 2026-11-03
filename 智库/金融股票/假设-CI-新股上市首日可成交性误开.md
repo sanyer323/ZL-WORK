@@ -192,7 +192,7 @@ fail_policy = "skip"
 
 | 组 | 口径 | 说明 |
 |----|------|------|
-| CI0 天真 | `invent_assume_ipo_day1_always_fillable`（建议单一主报） | 发明假全额可成路径；禁与 invent_asof_leak_ipo_day1_always_fillable 双挂 |
+| CI0 天真 | `invent_assume_ipo_day1_always_fillable`（写死冻结单一主报） | 发明假全额可成路径；禁与 invent_asof_leak_ipo_day1_always_fillable 双挂 |
 | CI1 半泄露·混口径 | 全样本用 `asof_check_date` 当天更宽「上市首日一律全额可成」规则铺满历史 | 仅上市首日全额可成 asof 泄露；不升格并列主报 |
 | CI2 PIT | `ipo_day1_fill_honest=pit_by_ipo_day1_fill_rule`（已冻结） | 每个交易日按当时已生效上市首日撮合/临停/流动性约束 PIT |
 
