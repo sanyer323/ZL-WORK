@@ -2,7 +2,7 @@
 
 更新：2026-11-04  
 来源：总管线 / CI 补丁已交（tip=`fafbfdb`；复检/入库另线并行后写下一纸面 CJ）；清单撞题规则另选正交执行缺口（**回测默认「退市整理期订单必能按目标价或开盘价/收盘价全额成交」** ≠ 假设-CI 新股上市首日可成交性误开 ≠ 假设-CH 盘后固定价格可成交性误开 ≠ 假设-CG 停牌复牌首日可成交性误开 ≠ 假设-CF 集合竞价可成交性误开 ≠ 假设-CE 跌停板可成交性误开 ≠ 假设-CD 涨停板可成交性误开 ≠ 假设-H 退市整理期当普通可交易日（**双字母 CJ ≠ 单字母假设-H**；H=退出期/当普通日标签 ≠ 整理期全额可成默认） ≠ 假设-A 板上枯竭/一字与封板容量主实验 ≠ 假设-D 成交时点开vs收与停牌假成交 ≠ 假设-C 股票池当时名单 ≠ 假设-J 无板日临停 ≠ 假设-G 涨跌幅规则PIT新股窗 ≠ 假设-CA/CB/CC 两融族）；选题自 `事实与坑`「退市整理期不是普通可交易横盘；整理首日无板、其后回板块限制；流动性枯竭与摘牌前冲击；回测用目标价/开盘价/收盘价一律全额成交等于假设永远可成」+ 口径「执行鸿沟」+ 与 CD/CE/CF/CG/CH/CI 可成交性族正交、与 H 退出期/当普通日正交；本页**假定板上容量层（A）/ 排队位次层（AR）/ 成交时点与停牌层（D）/ 超涨跌停价无效层（AG）/ 涨停可成交误开层（CD）/ 跌停可成交误开层（CE）/ 集合竞价可成交误开层（CF）/ 停牌复牌首日可成交误开层（CG）/ 盘后固定价格可成交误开层（CH）/ 新股上市首日可成交误开层（CI）/ 退市整理退出期当普通日层（H）/ 无板日临停层（J）/ 新股涨跌幅窗层（G）诚实或显式旁路**，主病只在**发明「退市整理期订单必能按目标价或开盘价/收盘价全额成交」这一误开默认**；**A 正文主测「涨停可成交性/板上枯竭」真数队列**（**双字母 CJ ≠ 单字母假设-A；严禁复用 A 题面；绝不可做成 A 续篇；不抢 A 真数队列**），**H 正文主测「退市整理期当普通可交易日」**（退出期/当普通日标签 ≠ 整理期全额可成；**双字母 CJ ≠ 单字母假设-H；严禁复用 H 题面；尤其不改假设-H**），**CI 正文主测「新股上市首日可成交性误开」**（上市首日 ≠ 退市整理期；**严禁改 CI**），**CH 正文主测「盘后固定价格可成交性误开」**（盘后固定价 ≠ 退市整理期；**严禁改 CH**），**CG 正文主测「停牌复牌首日可成交性误开」**（复牌首日 ≠ 退市整理期；**严禁改 CG**），**CF/CE/CD 正文主测集合/跌停/涨停可成交误开**（**严禁改 CF/CE/CD**），**C 正文主测「股票池当时名单」**（**双字母 CJ ≠ 单字母假设-C；严禁复用 C**），**J 正文主测「无板日临停」**（**双字母 CJ ≠ 单字母假设-J；严禁复用 J 作主病**），**CA/CB/CC 正文主测两融族**（与本页正交；**严禁改 CA/CB/CC**）→ 自立；与假设 B/Z/BA–CI/AG/AF/E/L/X/W/K/AB/N/O/AN 等**分列**；**新建实验 CJ**  
-状态：**草稿 · 待入库预检**（结论栏空；禁止把「退市整理期订单必能按目标价或开盘价/收盘价全额成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CI 及其他 A/D–CI 已交正文与冻结补丁；尤其不改假设-CI；尤其不改假设-CH；尤其不改假设-CG；尤其不改假设-CF；尤其不改假设-CE；尤其不改假设-CD；尤其不改假设-H；尤其不改假设-A；尤其不改假设-C；尤其不改假设-J；尤其不改假设-G；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-CC；勿再改 CI/CH/CG/CF/CE/CD/CC/CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW/AR/AG/AN/H/G/J**）
+状态：**草稿 · 预检有条件通过 · 三条已冻 · 待复检**（结论栏空；禁止把「退市整理期订单必能按目标价或开盘价/收盘价全额成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CI 及其他 A/D–CI 已交正文与冻结补丁；尤其不改假设-CI；尤其不改假设-CH；尤其不改假设-CG；尤其不改假设-CF；尤其不改假设-CE；尤其不改假设-CD；尤其不改假设-H；尤其不改假设-A；尤其不改假设-C；尤其不改假设-J；尤其不改假设-G；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-CC；勿再改 CI/CH/CG/CF/CE/CD/CC/CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW/AR/AG/AN/H/G/J**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 CJ（约 #93）。与假设 **CI（新股上市首日可成交性误开）** **硬分列（专节强调）**：CI = 回测是否默认「**新股/次新上市首日**订单必能按目标价或开盘价/收盘价**全额**成交」；本页 = 回测是否默认「**退市整理期**订单必能按目标价或开盘价/收盘价**全额**成交」；上市首日 ≠ 退市整理期；**严禁复用 CI 题面或 `invent_assume_ipo_day1_always_fillable`**；**尤其不改假设-CI**。**CJ≠CI**。与假设 **CH（盘后固定价格可成交性误开）** **硬分列（专节强调）**：CH = 盘后固定价格全额可成误开；本页 = 退市整理期全额可成误开；盘后固定价 ≠ 退市整理期；**严禁复用 CH 题面或 `invent_assume_after_hours_fixed_price_always_fillable`**；**尤其不改假设-CH**。**CJ≠CH**。与假设 **CG（停牌复牌首日可成交性误开）** **硬分列（专节强调）**：CG = 停牌复牌首日全额可成误开；本页 = 退市整理期全额可成误开；复牌首日 ≠ 退市整理期；**严禁复用 CG 题面或 `invent_assume_resume_from_halt_always_fillable`**；**尤其不改假设-CG**。**CJ≠CG**。与假设 **CF（集合竞价可成交性误开）** **硬分列**：集合撮合 ≠ 退市整理期全额可成；**严禁复用 CF**；**尤其不改假设-CF**。**CJ≠CF**。与假设 **CE（跌停板可成交性误开）** **硬分列**：连续竞价跌停侧 ≠ 退市整理期全额可成；**严禁复用 CE**；**尤其不改假设-CE**。**CJ≠CE**。与假设 **CD（涨停板可成交性误开）** **硬分列**：连续竞价涨停侧 ≠ 退市整理期全额可成；**严禁复用 CD**；**尤其不改假设-CD**。**CJ≠CD**。与假设 **H（退市整理期当普通可交易日）** **硬分列（专节强调）**：H = 是否把退市整理期**当成普通可交易日/退出期规则标签**；本页 = 在退出期标签已诚实（或显式旁路交 H）的前提下，是否仍默认「整理期订单必能按目标价或开盘价/收盘价全额成交」；当普通日/退出期规则 ≠ 整理期全额可成默认；**双字母 CJ ≠ 单字母假设-H**；**严禁复用 H 题面**；**尤其不改假设-H**。**CJ≠H**。与假设 **A（涨停可成交性/板上枯竭）** **硬分列（专节强调）**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成的**主实验与真数队列**；本页 = **纸面机制误开点**：回测/仿真是否默认发明「退市整理期订单必能按目标价或开盘价/收盘价全额成交」并系统性高估整理期可实现成交、低估无板首日冲击、其后板上枯竭与摘牌前流动性枯竭；容量门槛 ≠ 整理期全额可成默认；**双字母 CJ ≠ 单字母假设-A**；**严禁复用 A 题面**；**绝不可做成 A 续篇**；**不占** A 的 A0/A1 主报与真数席位；**尤其不改假设-A**。**CJ≠A**。与假设 **J（无板日临停）** **硬分列**：J = 无板日 30%/60% 临停触发；本页 = 退市整理期全额可成误开；临停触发 ≠ 全额可成默认；**双字母 CJ ≠ 单字母假设-J**；**尤其不改假设-J**。**CJ≠J**。与假设 **G（涨跌幅规则PIT新股窗）** **硬分列**：涨跌幅标签切日 ≠ 整理期全额可成；**尤其不改假设-G**。**CJ≠G**。与假设 **C（股票池当时名单）** **硬分列**：股票池 ≠ 整理期全额可成；**双字母 CJ ≠ 单字母假设-C**；**严禁复用 C**。**CJ≠C**。与假设 **CA/CB/CC** **硬分列**：两融公式/展期/调出了结时限 ≠ 整理期全额可成；**尤其不改 CA/CB/CC**。**CJ≠CA≠CB≠CC**。与假设 **AR/AG/AN/BZ/BY/BX/BW…** 及两融审批/费用族 **硬分列**：假队首/超板无效/集合剩单/两融审批费用 ≠ 整理期全额可成默认。**明确避开预检T旧题（证管费误抽）**。**严禁复用假设-A / 假设-C / 假设-H / 假设-J / 假设-CD / 假设-CE / 假设-CF / 假设-CG / 假设-CH / 假设-CI**。**严禁改写/续写假设-CI / 假设-CH / 假设-CG / 假设-CF / 假设-CE / 假设-CD / 假设-H / 假设-A / 假设-J / 假设-G / 假设-CA / 假设-CB / 假设-CC**。**本页主结论不混。**
 
@@ -26,7 +26,7 @@
 | 题面 CA | **维持担保比例分子分母口径** | 公式 ≠ 整理期全额可成；**CJ≠CA**；**不改 CA** |
 | 题面 CB | **融资合约展期/续作审批** | 展期审批 ≠ 整理期全额可成；**CJ≠CB**；**不改 CB** |
 | 题面 CC | **两融标的调出强制了结时点** | 调出了结时限 ≠ 整理期全额可成；**CJ≠CC**；**不改 CC** |
-| 主演示 | （各页自有；本页不引用覆盖） | `invent_assume_delist_period_always_fillable`（**建议主挂**；待预检冻结；禁双挂 asof_leak；CJ1不升格） |
+| 主演示 | （各页自有；本页不引用覆盖） | `invent_assume_delist_period_always_fillable`（**写死冻结**单一主报；禁双挂 asof_leak；CJ1不升格） |
 | 文档 | 清单实验 A / C / H / J / G / `假设-CA-…` / `假设-CB-…` / `假设-CC-…` / `假设-CD-…` / `假设-CE-…` / `假设-CF-…` / `假设-CG-…` / `假设-CH-…` / `假设-CI-…`（**只读；禁止改写**） | `假设-CJ-退市整理期可成交性误开.md`（新建） |
 | 预检键 | 实验字母 A / C / H / J / G / CA / CB / CC / CD / CE / CF / CG / CH / CI | 实验字母 **CJ** / `cj0_primary_demo`；**不得**占用或改写预检 A/C/H/J/G/CA/CB/CC/CD/CE/CF/CG/CH/CI |
 
@@ -44,19 +44,19 @@
 
 ## 2. 口径与可检验设计（纸面骨架）
 
-### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 与 cj0 与锚 **建议占位 · 待预检**）
+### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 与 cj0 与锚 **三条已冻**）
 
 ```
-# 配置写死键（见 §7；草稿·待入库预检；下列为建议占位，待预检冻结）
+# 配置写死键（见 §7；预检有条件通过 · 三条已冻 · 待复检；下列已写死冻结）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 CJ；≠ 单字母假设-C；≠ 单字母假设-J；≠ 单字母假设-H；≠ 单字母假设-A；≠ 单字母假设-G；≠ 双字母假设-CA/CB/CC/CD/CE/CF/CG/CH/CI
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 CJ；≠ 单字母假设-G
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 CJ；≠ 单字母假设-N；亦≠实验字母 BN
-# params.fill_time 建议 next_open
-# params.asof_check_date 建议 2026-10-16
+# params.fill_time 写死冻结 next_open
+# params.asof_check_date 写死冻结 2026-10-16
 # params.px_basis 建议 unadj
-# params.delist_period_fill_honest 建议 pit_by_delist_period_fill_rule
-# params.delist_period_fill_scope 建议 assume_delist_period_always_fillable_at_target_or_open_or_close
-# params.delist_period_fill_over_policy 建议 fail_or_partial_or_fail_missing_delist_period_rule
+# params.delist_period_fill_honest 写死冻结 pit_by_delist_period_fill_rule
+# params.delist_period_fill_scope 写死冻结 assume_delist_period_always_fillable_at_target_or_open_or_close
+# params.delist_period_fill_over_policy 写死冻结 fail_or_partial_or_fail_missing_delist_period_rule
 # params.board_capacity_handoff 建议 a_page
 # params.queue_handoff 建议 ar_page
 # params.fill_time_suspend_handoff 建议 d_page
@@ -87,7 +87,7 @@
 # params.transfer_fee_handoff 建议 u_page
 # params.csrc_fee_handoff 建议 t_page
 # params.handling_fee_handoff 建议 s_page
-# params.cj0_primary_demo                建议 invent_assume_delist_period_always_fillable
+# params.cj0_primary_demo                写死冻结 invent_assume_delist_period_always_fillable
 # params.cj0_invent_assume_delist_period_always_fillable 建议 True
 # params.cj1_asof_leak_delist_period_always_fillable_only 建议 True
 # params.cj2_pit_delist_period_fill 建议 True
@@ -120,9 +120,9 @@
 # params.missing_delist_period_fill_policy 建议 skip
 # params.day_freq_proxy 建议 delist_period_fill_sensitivity
 # params.universe_rule 建议 sse_szse_delist_period_fill_misopen_check
-# params.fail_policy 建议 skip
+# params.fail_policy 写死冻结 skip
 # params.redline_v0_exempt_scope 建议 position_industry_dd_only
-# params.Y / G / N / Y2                  建议占位 0.02/0.01/0.05/0.015（待预检；勿改已冻他字母数值）
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 CJ；params.G≠实验字母 CJ；params.N≠实验字母 CJ；禁 null/holdout；勿改已冻他字母数值）
 # params.date_start / date_end 建议 2019-01-01..2026-09-30
 # params.oos_split.*                     建议四日期；禁 holdout 反调
 # CJ0：假全额可成——退市整理期订单按目标价或开盘价/收盘价 100% 成交
@@ -135,13 +135,13 @@
 
 | 组 | 角色 | 规则 |
 |----|------|------|
-| CJ0 | 天真 / 假全额可成 | 按 `cj0_primary_demo` 建议单一主报 `invent_assume_delist_period_always_fillable`：退市整理期订单按目标价或开盘价/收盘价 100% 成交（**禁**与 `invent_asof_leak_delist_period_always_fillable` 双挂主报） |
-| CJ1 | 半泄露 | 仅核对日（asof）更宽「退市整理期一律全额可成」规则泄露铺满全历史；**不得升格并列主报** |
-| CJ2 | 诚实 PIT | `pit_by_delist_period_fill_rule`：每个交易日按当时已生效退市整理期撮合/流动性约束；缺字段 skip |
+| CJ0 | 天真 / 假全额可成 | 按 `cj0_primary_demo` **写死冻结**单一主报 `invent_assume_delist_period_always_fillable`：退市整理期订单按目标价或开盘价/收盘价 100% 成交（**禁**与 `invent_asof_leak_delist_period_always_fillable` 双挂主报） |
+| CJ1 | 半泄露 | 仅核对日（asof）更宽「退市整理期一律全额可成」规则泄露铺满全历史；**不得升格并列主报**（已冻：CJ1不升格） |
+| CJ2 | 诚实 PIT | `delist_period_fill_honest=pit_by_delist_period_fill_rule`（已冻结）：每个交易日按当时已生效退市整理期撮合/流动性约束；缺字段 skip |
 
 ### 2.3 额度窗内日频可落点（写明但不真跑）
 
-主窗建议 `2019-01-01..2026-09-30`（额度窗内）；asof 建议 `2026-10-16`；fill_time 建议 `next_open`；fail 建议 `skip`。本页**不开回测**；不拉真数；不催实盘。
+主窗建议 `2019-01-01..2026-09-30`（额度窗内）；asof **写死冻结** `2026-10-16`；fill_time **写死冻结** `next_open`；fail **写死冻结** `skip`。本页**不开回测**；不拉真数；不催实盘。
 
 ### 3.1 oos_split（建议四日期；拉数前冻结；禁 holdout 反调）
 
@@ -196,9 +196,9 @@
 ## 7. 回测配置骨架（纸面；本页不开回测）
 
 - hypothesis_id=`CJ`；组 CJ0/CJ1/CJ2。
-- `cj0_primary_demo` 建议=`invent_assume_delist_period_always_fillable`（待预检；禁双挂 asof_leak）。
-- 锚建议：`delist_period_fill_honest=pit_by_delist_period_fill_rule`；`delist_period_fill_scope=assume_delist_period_always_fillable_at_target_or_open_or_close`；`delist_period_fill_over_policy=fail_or_partial_or_fail_missing_delist_period_rule`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。
-- `params.Y/G/N/Y2` 建议占位 `0.02/0.01/0.05/0.015`（**待预检**；**勿改已冻他字母数值**；**params.Y≠实验字母 CJ**）。
+- **写死键摘要（三条已冻）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`delist_period_fill_honest=pit_by_delist_period_fill_rule`；`delist_period_fill_scope=assume_delist_period_always_fillable_at_target_or_open_or_close`；`delist_period_fill_over_policy=fail_or_partial_or_fail_missing_delist_period_rule`；`fail_policy=skip`；`cj0_primary_demo=invent_assume_delist_period_always_fillable`（**写死冻结**单一主报；禁双挂 asof_leak；CJ1不升格）。
+- 锚升格写死（不可再写「建议」）：`delist_period_fill_honest=pit_by_delist_period_fill_rule`；`delist_period_fill_scope=assume_delist_period_always_fillable_at_target_or_open_or_close`；`delist_period_fill_over_policy=fail_or_partial_or_fail_missing_delist_period_rule`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。
+- `params.Y/G/N/Y2` **写死冻结** `0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CJ**；**params.G≠实验字母 CJ**；**params.N≠实验字母 CJ**；禁 null/holdout；**勿改已冻他字母数值**）。
 - 主窗建议 `2019-01-01..2026-09-30`；oos_split 四日期建议写死+禁 holdout 反调。
 - 全部 `merge_with_*=False`（见 §2.1）。
 - **本页不开回测**；不催 8765；不抢 A 真数。
@@ -217,17 +217,28 @@
 
 | 项 | 值 |
 |----|----|
-| 状态 | **草稿 · 待入库预检**（结论栏空；**禁止标任何纸面齐**） |
+| 状态 | **草稿 · 预检有条件通过 · 三条已冻 · 待复检**（结论栏空；**禁止标任何纸面齐**） |
 | 标准件路径 | `假设-CJ-退市整理期可成交性误开.md` |
 | 清单序号 | 约 #93 |
-| 风控预埋 | fail_policy=skip；主窗 date_start/end 建议 2019-01-01..2026-09-30；oos_split 四日期建议写死+禁 holdout 反调；红线 v0 机制豁免（`redline_v0_exempt_scope=position_industry_dd_only`）；asof_check_date 建议 2026-10-16；fill_time 建议 next_open；delist_period_fill_honest 建议 pit_by_delist_period_fill_rule；diff_buckets 默认名待预检；**Y/G/N/Y2 建议占位 0.02/0.01/0.05/0.015（params.Y≠实验字母 CJ；params.G≠实验字母 CJ；params.N≠实验字母 CJ；亦≠单字母实验 C/J/H/A/G/Z；禁 null/holdout/跑后改口；勿改他字母已冻）**；**cj0_primary_demo 建议 invent_assume_delist_period_always_fillable（禁双挂 invent_asof_leak_delist_period_always_fillable；CJ1半泄露不得升格并列主报；待预检冻结）**；锚建议 delist_period_fill_honest=pit_by_delist_period_fill_rule / delist_period_fill_scope=assume_delist_period_always_fillable_at_target_or_open_or_close / delist_period_fill_over_policy=fail_or_partial_or_fail_missing_delist_period_rule / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死冻结**；**delist_period_fill_honest=pit_by_delist_period_fill_rule 写死冻结**；diff_buckets 默认名待预检；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 CJ；params.G≠实验字母 CJ；params.N≠实验字母 CJ；亦≠单字母实验 C/J/H/A/G/Z；禁 null/holdout/跑后改口；勿改他字母已冻）**；**cj0_primary_demo 写死冻结 invent_assume_delist_period_always_fillable（禁双挂 invent_asof_leak_delist_period_always_fillable；CJ1半泄露不得升格并列主报）**；锚升格写死 delist_period_fill_honest=pit_by_delist_period_fill_rule / delist_period_fill_scope=assume_delist_period_always_fillable_at_target_or_open_or_close / delist_period_fill_over_policy=fail_or_partial_or_fail_missing_delist_period_rule / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
 | 硬分列摘要 | **CJ≠C/J/H/CA/CB/CC/CD/CE/CF/CG/CH/CI/A/G/AR/AG/AN/BZ/BY/BX/BW/BV/BU/BT/BS/BO/BR/BH/BC/BD/BL/BF/BQ/Z/B**（及 ≠BA–CI/K/AB/W/T/S/U/V/X/Y/F/E/D/I/M/O/AI/AJ/AQ），**严禁复用假设-A / 假设-C / 假设-H / 假设-J / 假设-CD / 假设-CE / 假设-CF / 假设-CG / 假设-CH / 假设-CI**；**尤其 CJ≠CI（勿撞新股上市首日可成交性）**；**尤其 CJ≠CH（勿撞盘后固定价格可成交性）**；**尤其 CJ≠CG（勿撞停牌复牌首日可成交性）**；**尤其 CJ≠CF（勿撞集合竞价可成交性）**；**尤其 CJ≠CE（勿撞跌停可成交性）**；**尤其 CJ≠CD（勿撞涨停可成交性）**；**尤其 CJ≠H（双字母 CJ ≠ 单字母假设-H；退出期当普通日 ≠ 整理期全额可成）**；**尤其 CJ≠A（不抢实验A真数队列）**；**尤其 CJ≠J / CJ≠C / CJ≠G**；**尤其不改假设-CI/CH/CG/CF/CE/CD/H/A/C/J/G/CA/CB/CC**；**params.Y≠实验字母 CJ**；**params.G≠实验字母 CJ**；与两融审批/费用类正交 |
 | 结论栏 | 空 |
 
 ---
 
+## 风控预检补丁·冻结（三条已写死 · 2026-11-04）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 CJ**；**`params.G` ≠ 实验字母 CJ**；**`params.N` ≠ 实验字母 CJ**；**`params.Y` ≠ 单字母实验 C/J/H/A/G/Z**；尤重**双字母 CJ ≠ 单字母假设-A**；**双字母 CJ ≠ 单字母假设-C**；**双字母 CJ ≠ 单字母假设-J**；**双字母 CJ ≠ 单字母假设-H**；**双字母 CJ ≠ 单字母假设-G**；**双字母 CJ ≠ 双字母假设-CI/CH/CG/CF/CE/CD/CA/CB/CC**；禁 null/holdout/跑后改口；**勿改他字母已冻 Y/G/N/Y2**。  
+2. **`params.cj0_primary_demo`**：**写死冻结** **`invent_assume_delist_period_always_fillable`**；禁与 **`invent_asof_leak_delist_period_always_fillable`** 双挂争主表（只挂一个 primary）；**CJ1 半泄露不得升格并列主报**。  
+3. **退市整理期可成交性锚升格写死（不可再写「建议」）**：`params.delist_period_fill_honest=pit_by_delist_period_fill_rule`；`params.delist_period_fill_scope=assume_delist_period_always_fillable_at_target_or_open_or_close`；`params.delist_period_fill_over_policy=fail_or_partial_or_fail_missing_delist_period_rule`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`。
+
+**硬分列保留**：CJ≠C/J/H/CA/CB/CC/CD/CE/CF/CG/CH/CI/A/G/AR/AG…；**尤其 CJ≠CI / CJ≠CH / CJ≠CG / CJ≠CF / CJ≠CE / CJ≠CD / CJ≠H / CJ≠A**；**双字母 CJ ≠ 单字母假设-H / 假设-C / 假设-J / 假设-A**；**严禁复用假设-C / 假设-J / 假设-H / 假设-CI / 假设-CH / 假设-CG / 假设-CF / 假设-CE / 假设-CD / 假设-A / 假设-G**；**params.Y/G/N ≠ 实验字母 CJ**。
+
+**状态**：预检有条件通过 · 三条已冻 · 待复检；**禁止标任何纸面齐**；本页不开回测/真数/实盘；不改已冻 CI/Y–CI。
+
 ## 变更
 
 | 日期 | 说明 |
 |------|------|
+| 2026-11-04 | 风控预检补丁·冻结三条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CJ**；**params.G≠实验字母 CJ**；**params.N≠实验字母 CJ**；亦≠单字母实验 C/J/H/A/G/Z；尤重**双字母 CJ ≠ 单字母假设-A/C/J/H/G**；**双字母 CJ ≠ 双字母假设-CI/CH/CG/CF/CE/CD/CA/CB/CC**；禁 null/holdout/跑后改口）；② `params.cj0_primary_demo=invent_assume_delist_period_always_fillable` 单一主报写死（禁与 `invent_asof_leak_delist_period_always_fillable` 双挂；CJ1不升格）；③ 锚升格写死 `delist_period_fill_honest=pit_by_delist_period_fill_rule` / `scope=assume_delist_period_always_fillable_at_target_or_open_or_close` / `over_policy=fail_or_partial_or_fail_missing_delist_period_rule` / `asof=2026-10-16` / `fill_time=next_open` / `fail=skip`；状态=预检有条件通过·三条已冻·待复检；**未标纸面齐**；不改已冻 CI/Y–CI；不开回测/真数/实盘。基线 tip=`b99cc4e`（祖先 `47e38c4`）。 |
 | 2026-11-04 | 新建草稿·待入库预检（总管线：CI 补丁 tip=`fafbfdb` 已交后写 CJ；选题退市整理期可成交性误开；**CJ≠C/J/H/CA/CB/CC/CD/CE/CF/CG/CH/CI/A/G…**；尤其 **CJ≠CI（勿撞新股上市首日可成交性）**、**CJ≠CH（勿撞盘后固定价格可成交性）**、**CJ≠CG（勿撞停牌复牌首日可成交性）**、**CJ≠CF（勿撞集合竞价可成交性）**、**CJ≠CE（勿撞跌停可成交性）**、**CJ≠CD（勿撞涨停可成交性）**、**CJ≠H（双字母 CJ ≠ 单字母假设-H）**、**CJ≠A（不抢实验A真数队列）**、**CJ≠J / CJ≠C / CJ≠G**；primary_demo 建议=`invent_assume_delist_period_always_fillable`；Y/G/N/Y2 建议占位 `0.02/0.01/0.05/0.015` 待预检；不开回测；未改 CI/CH/CG/CF/CE/CD/H/A/C/J/G/CA/CB/CC 及其他已齐字母；**未标纸面齐**）。 |
