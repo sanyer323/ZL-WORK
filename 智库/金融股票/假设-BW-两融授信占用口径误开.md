@@ -84,7 +84,7 @@
 # params.handling_fee_handoff            写死 s_page
 # params.exit_period_handoff             写死 h_page
 # params.bw0_primary_demo                写死建议 invent_understate_credit_usage  # 主报：假低授信占用/假高剩余额度；禁与 invent_asof_leak_credit_usage 双挂争主表；BW1半泄露不得升格并列主报
-# params.bv0_invent_understate_credit_usage  写死 True
+# params.bw0_invent_understate_credit_usage  写死 True
 # params.bw1_asof_leak_credit_usage_only 写死 True
 # params.bw2_pit_credit_usage            写死 True
 # params.merge_with_A_fill               写死 False
