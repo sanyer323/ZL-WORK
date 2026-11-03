@@ -2,7 +2,7 @@
 
 更新：2026-11-04  
 来源：总管线 / CH 补丁已交（tip=`13a2363`；复检/入库另线并行后写下一纸面 CI）；清单撞题规则另选正交执行缺口（**回测默认「新股/次新上市首日订单必能按目标价或开盘价/收盘价全额成交」** ≠ 假设-CH 盘后固定价格可成交性误开 ≠ 假设-CG 停牌复牌首日可成交性误开 ≠ 假设-CF 集合竞价可成交性误开 ≠ 假设-CE 跌停板可成交性误开 ≠ 假设-CD 涨停板可成交性误开 ≠ 假设-A 板上枯竭/一字与封板容量主实验 ≠ 假设-G 涨跌幅规则PIT新股窗 ≠ 假设-J 无板日临停 ≠ 假设-I 价格笼子远限价（**双字母 CI ≠ 单字母假设-I**） ≠ 假设-D 成交时点开vs收与停牌假成交 ≠ 假设-C 股票池当时名单 ≠ 假设-CA/CB/CC 两融族）；选题自 `事实与坑`「新股上市首日开盘大幅偏离、临停与流动性枯竭；回测用目标价/开盘价/收盘价一律全额成交等于假设永远可成」+ 口径「执行鸿沟」+ 与 CD/CE/CF/CG/CH 可成交性族正交、与 G 新股涨跌幅窗正交、与 J 临停触发正交；本页**假定板上容量层（A）/ 排队位次层（AR）/ 成交时点与停牌层（D）/ 超涨跌停价无效层（AG）/ 涨停可成交误开层（CD）/ 跌停可成交误开层（CE）/ 集合竞价可成交误开层（CF）/ 停牌复牌首日可成交误开层（CG）/ 盘后固定价格可成交误开层（CH）/ 涨跌幅规则新股窗层（G）/ 无板日临停层（J）/ 价格笼子层（I）诚实或显式旁路**，主病只在**发明「新股/次新上市首日订单必能按目标价或开盘价/收盘价全额成交」这一误开默认**；**A 正文主测「涨停可成交性/板上枯竭」真数队列**（**双字母 CI ≠ 单字母假设-A；严禁复用 A 题面；绝不可做成 A 续篇；不抢 A 真数队列**），**G 正文主测「涨跌幅规则PIT新股窗」**（涨跌幅标签切日 ≠ 上市首日全额可成；**严禁改 G**），**J 正文主测「无板日临停」**（临停触发标签 ≠ 上市首日全额可成；**严禁改 J**），**I 正文主测「价格笼子远限价」**（**双字母 CI ≠ 单字母假设-I；严禁复用 I**），**CH 正文主测「盘后固定价格可成交性误开」**（`invent_assume_after_hours_fixed_price_always_fillable`；盘后固定价 ≠ 上市首日；**严禁改 CH**），**CG 正文主测「停牌复牌首日可成交性误开」**（`invent_assume_resume_from_halt_always_fillable`；复牌首日 ≠ 上市首日；**严禁改 CG**），**CF/CE/CD 正文主测集合/跌停/涨停可成交误开**（**严禁改 CF/CE/CD**），**C 正文主测「股票池当时名单」**（**双字母 CI ≠ 单字母假设-C；严禁复用 C**），**CA/CB/CC 正文主测两融族**（与本页正交；**严禁改 CA/CB/CC**）→ 自立；与假设 B/Z/BA–CH/AG/AF/E/L/X/W/K/AB/N/O/AN 等**分列**；**新建实验 CI**  
-状态：**草稿 · 待入库预检**（结论栏空；禁止把「新股/次新上市首日订单必能按目标价或开盘价/收盘价全额成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CH 及其他 A/D–CH 已交正文与冻结补丁；尤其不改假设-CH；尤其不改假设-CG；尤其不改假设-CF；尤其不改假设-CE；尤其不改假设-CD；尤其不改假设-A；尤其不改假设-C；尤其不改假设-G；尤其不改假设-J；尤其不改假设-I；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-CC；勿再改 CH/CG/CF/CE/CD/CC/CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW/AR/AG/AN/M/N/O/G/J/I**）
+状态：**草稿 · 预检有条件通过 · 三条已冻 · 待复检**（结论栏空；禁止把「新股/次新上市首日订单必能按目标价或开盘价/收盘价全额成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CH 及其他 A/D–CH 已交正文与冻结补丁；尤其不改假设-CH；尤其不改假设-CG；尤其不改假设-CF；尤其不改假设-CE；尤其不改假设-CD；尤其不改假设-A；尤其不改假设-C；尤其不改假设-G；尤其不改假设-J；尤其不改假设-I；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-CC；勿再改 CH/CG/CF/CE/CD/CC/CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW/AR/AG/AN/M/N/O/G/J/I**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 CI（约 #92）。与假设 **CH（盘后固定价格可成交性误开）** **硬分列（专节强调）**：CH = 回测是否默认「**盘后固定价格交易时段**订单必能按收盘价/固定价**全额**成交」；本页 = 回测是否默认「**新股/次新上市首日**订单必能按目标价或开盘价/收盘价**全额**成交」；盘后固定价 ≠ 上市首日；**严禁复用 CH 题面或 `invent_assume_after_hours_fixed_price_always_fillable`**；**尤其不改假设-CH**。**CI≠CH**。与假设 **CG（停牌复牌首日可成交性误开）** **硬分列（专节强调）**：CG = 停牌复牌首日全额可成误开；本页 = 新股上市首日全额可成误开；复牌首日 ≠ 上市首日；**严禁复用 CG 题面或 `invent_assume_resume_from_halt_always_fillable`**；**尤其不改假设-CG**。**CI≠CG**。与假设 **CF（集合竞价可成交性误开）** **硬分列（专节强调）**：CF = 开盘/收盘集合竞价全额可成误开；本页 = 上市首日全额可成误开；集合撮合 ≠ 上市首日可成交默认；**严禁复用 CF 题面或 `invent_assume_call_auction_always_fillable`**；**尤其不改假设-CF**。**CI≠CF**。与假设 **CE（跌停板可成交性误开）** **硬分列（专节强调）**：CE = 连续竞价跌停侧全额可卖出误开；本页 = 上市首日全额可成误开；**严禁复用 CE 题面或 `invent_assume_limit_down_always_fillable`**；**尤其不改假设-CE**。**CI≠CE**。与假设 **CD（涨停板可成交性误开）** **硬分列（专节强调）**：CD = 连续竞价涨停侧全额可成误开；本页 = 上市首日全额可成误开；**严禁复用 CD 题面或 `invent_assume_limit_up_always_fillable`**；**尤其不改假设-CD**。**CI≠CD**。与假设 **A（涨停可成交性/板上枯竭）** **硬分列（专节强调）**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成的**主实验与真数队列**；本页 = **纸面机制误开点**：回测/仿真是否默认发明「新股/次新上市首日订单必能按目标价或开盘价/收盘价全额成交」并系统性高估上市首日可实现成交、低估开盘大幅偏离、临停与流动性枯竭；容量门槛 ≠ 上市首日全额可成默认；**双字母 CI ≠ 单字母假设-A**；**严禁复用 A 题面**；**绝不可做成 A 续篇**；**不占** A 的 A0/A1 主报与真数席位；**尤其不改假设-A**。**CI≠A**。与假设 **G（涨跌幅规则PIT新股窗）** **硬分列**：G = 新股窗涨跌幅标签切日；本页 = 上市首日全额可成误开；标签规则 ≠ 可成交默认；**尤其不改假设-G**。**CI≠G**。与假设 **J（无板日临停）** **硬分列**：J = 无板日 30%/60% 临停触发；本页 = 上市首日全额可成误开；临停触发 ≠ 全额可成默认；**尤其不改假设-J**。**CI≠J**。与假设 **I（价格笼子远限价）** **硬分列（专节强调）**：I = 连续竞价价格笼子远限价；本页 = 上市首日全额可成误开；**双字母 CI ≠ 单字母假设-I**；**严禁复用 I**；**尤其不改假设-I**。**CI≠I**。与假设 **C（股票池当时名单）** **硬分列**：C = 成分/股票池 PIT；本页 = 上市首日全额可成误开；**双字母 CI ≠ 单字母假设-C**；**严禁复用 C**。**CI≠C**。与假设 **CA/CB/CC** **硬分列**：两融公式/展期/调出了结时限 ≠ 上市首日全额可成；**尤其不改 CA/CB/CC**。**CI≠CA≠CB≠CC**。与假设 **AR/AG/AN/BZ/BY/BX/BW…** 及两融审批/费用族 **硬分列**：假队首/超板无效/集合剩单/两融审批费用 ≠ 上市首日全额可成默认。**明确避开预检T旧题（证管费误抽）**。**严禁复用假设-A / 假设-C / 假设-I / 假设-G / 假设-J / 假设-CD / 假设-CE / 假设-CF / 假设-CG / 假设-CH**。**严禁改写/续写假设-CH / 假设-CG / 假设-CF / 假设-CE / 假设-CD / 假设-A / 假设-G / 假设-J / 假设-I / 假设-CA / 假设-CB / 假设-CC**。**本页主结论不混。**
 
@@ -25,7 +25,7 @@
 | 题面 CA | **维持担保比例分子分母口径** | 公式 ≠ 上市首日全额可成；**CI≠CA**；**不改 CA** |
 | 题面 CB | **融资合约展期/续作审批** | 展期审批 ≠ 上市首日全额可成；**CI≠CB**；**不改 CB** |
 | 题面 CC | **两融标的调出强制了结时点** | 调出了结时限 ≠ 上市首日全额可成；**CI≠CC**；**不改 CC** |
-| 主演示 | （各页自有；本页不引用覆盖） | `invent_assume_ipo_day1_always_fillable`（建议主挂；待预检冻结） |
+| 主演示 | （各页自有；本页不引用覆盖） | `invent_assume_ipo_day1_always_fillable`（**写死冻结**单一主报；禁双挂 asof_leak；CI1不升格） |
 | 文档 | 清单实验 A / C / I / G / J / `假设-CA-…` / `假设-CB-…` / `假设-CC-…` / `假设-CD-…` / `假设-CE-…` / `假设-CF-…` / `假设-CG-…` / `假设-CH-…`（**只读；禁止改写**） | `假设-CI-新股上市首日可成交性误开.md`（新建） |
 | 预检键 | 实验字母 A / C / I / G / J / CA / CB / CC / CD / CE / CF / CG / CH | 实验字母 **CI** / `ci0_primary_demo`；**不得**占用或改写预检 A/C/I/G/J/CA/CB/CC/CD/CE/CF/CG/CH |
 
@@ -43,19 +43,19 @@
 
 ## 2. 口径与可检验设计（纸面骨架）
 
-### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 与 ci0 与锚 **待预检冻结**）
+### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 与 ci0 与锚 **三条已冻**）
 
 ```
-# 配置写死键（见 §7；草稿·待入库预检；下列为建议占位，待预检冻结）
+# 配置写死键（见 §7；预检有条件通过 · 三条已冻 · 待复检；下列已写死冻结）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 CI；≠ 单字母假设-C；≠ 单字母假设-I；≠ 单字母假设-A；≠ 单字母假设-G；≠ 单字母假设-J；≠ 双字母假设-CA/CB/CC/CD/CE/CF/CG/CH
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 CI；≠ 单字母假设-G
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 CI；≠ 单字母假设-N；亦≠实验字母 BN
-# params.fill_time 建议 next_open
-# params.asof_check_date 建议 2026-10-16
+# params.fill_time 写死冻结 next_open
+# params.asof_check_date 写死冻结 2026-10-16
 # params.px_basis 建议 unadj
-# params.ipo_day1_fill_honest 建议 pit_by_ipo_day1_fill_rule
-# params.ipo_day1_fill_scope 建议 assume_ipo_day1_always_fillable_at_target_or_open_or_close
-# params.ipo_day1_fill_over_policy 建议 fail_or_partial_or_fail_missing_ipo_day1_rule
+# params.ipo_day1_fill_honest 写死冻结 pit_by_ipo_day1_fill_rule
+# params.ipo_day1_fill_scope 写死冻结 assume_ipo_day1_always_fillable_at_target_or_open_or_close
+# params.ipo_day1_fill_over_policy 写死冻结 fail_or_partial_or_fail_missing_ipo_day1_rule
 # params.board_capacity_handoff 建议 a_page
 # params.queue_handoff 建议 ar_page
 # params.fill_time_suspend_handoff 建议 d_page
@@ -85,7 +85,7 @@
 # params.transfer_fee_handoff 建议 u_page
 # params.csrc_fee_handoff 建议 t_page
 # params.handling_fee_handoff 建议 s_page
-# params.ci0_primary_demo                建议 invent_assume_ipo_day1_always_fillable
+# params.ci0_primary_demo                写死冻结 invent_assume_ipo_day1_always_fillable
 # params.ci0_invent_assume_ipo_day1_always_fillable 建议 True
 # params.ci1_asof_leak_ipo_day1_always_fillable_only 建议 True
 # params.ci2_pit_ipo_day1_fill 建议 True
@@ -142,9 +142,9 @@
 # params.missing_ipo_day1_fill_policy 建议 skip
 # params.day_freq_proxy 建议 ipo_day1_fill_sensitivity
 # params.universe_rule 建议 sse_szse_ipo_day1_fill_misopen_check
-# params.fail_policy 建议 skip
+# params.fail_policy 写死冻结 skip
 # params.redline_v0_exempt_scope 建议 position_industry_dd_only
-# params.Y / G / N / Y2                  建议占位 0.02/0.01/0.05/0.015
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015
 # params.date_start / date_end 建议 2019-01-01..2026-09-30
 # params.oos_split.*                     建议四日期；禁 holdout 反调
 ```
@@ -152,7 +152,7 @@
 可编码摘要（伪代码，不开跑）：
 
 ```
-asof = params.asof_check_date  # 建议 2026-10-16
+asof = params.asof_check_date  # 写死冻结 2026-10-16
 # CI0：假全额可成——新股/次新上市首日订单按目标价或开盘价/收盘价 100% 成交
 # CI1：仅 asof 日更宽「上市首日一律全额可成」规则泄露铺满
 # CI2：每个交易日 d 按当日已生效上市首日撮合/临停/流动性约束 PIT
@@ -160,13 +160,13 @@ asof = params.asof_check_date  # 建议 2026-10-16
 ```
 
 ```
-fill_time = "next_open"
-asof_check_date = "2026-10-16"
+fill_time = "next_open"  # 写死冻结
+asof_check_date = "2026-10-16"  # 写死冻结
 px_basis = "unadj"
-ipo_day1_fill_honest = "pit_by_ipo_day1_fill_rule"
-ipo_day1_fill_scope = "assume_ipo_day1_always_fillable_at_target_or_open_or_close"
-ipo_day1_fill_over_policy = "fail_or_partial_or_fail_missing_ipo_day1_rule"
-ci0_primary_demo = "invent_assume_ipo_day1_always_fillable"
+ipo_day1_fill_honest = "pit_by_ipo_day1_fill_rule"  # 写死冻结
+ipo_day1_fill_scope = "assume_ipo_day1_always_fillable_at_target_or_open_or_close"  # 写死冻结
+ipo_day1_fill_over_policy = "fail_or_partial_or_fail_missing_ipo_day1_rule"  # 写死冻结
+ci0_primary_demo = "invent_assume_ipo_day1_always_fillable"  # 写死冻结单一主报；禁与 invent_asof_leak_ipo_day1_always_fillable 双挂
 ci0_invent_assume_ipo_day1_always_fillable = True
 ci1_asof_leak_ipo_day1_always_fillable_only = True
 ci2_pit_ipo_day1_fill = True
@@ -194,7 +194,7 @@ fail_policy = "skip"
 |----|------|------|
 | CI0 天真 | `invent_assume_ipo_day1_always_fillable`（建议单一主报） | 发明假全额可成路径；禁与 invent_asof_leak_ipo_day1_always_fillable 双挂 |
 | CI1 半泄露·混口径 | 全样本用 `asof_check_date` 当天更宽「上市首日一律全额可成」规则铺满历史 | 仅上市首日全额可成 asof 泄露；不升格并列主报 |
-| CI2 PIT | `ipo_day1_fill_honest=pit_by_ipo_day1_fill_rule`（建议；待预检冻结） | 每个交易日按当时已生效上市首日撮合/临停/流动性约束 PIT |
+| CI2 PIT | `ipo_day1_fill_honest=pit_by_ipo_day1_fill_rule`（已冻结） | 每个交易日按当时已生效上市首日撮合/临停/流动性约束 PIT |
 
 ### 2.3 额度窗内日频可落点（写明但不真跑）
 
@@ -341,7 +341,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`CI`  
 - **组**：CI0 / CI1 / CI2  
-- **写死键摘要（待预检冻结）**：`fill_time=next_open`（建议）；`asof_check_date=2026-10-16`（建议）；`ipo_day1_fill_honest=pit_by_ipo_day1_fill_rule`（建议）；`ipo_day1_fill_scope=assume_ipo_day1_always_fillable_at_target_or_open_or_close`（建议）；`ipo_day1_fill_over_policy=fail_or_partial_or_fail_missing_ipo_day1_rule`（建议）；`board_capacity_handoff=a_page`；`queue_handoff=ar_page`；`fill_time_suspend_handoff=d_page`；`beyond_limit_handoff=ag_page`；`limit_up_fill_handoff=cd_page`；`limit_down_fill_handoff=ce_page`；`call_auction_fill_handoff=cf_page`；`resume_halt_fill_handoff=cg_page`；`after_hours_fill_handoff=ch_page`；`limit_rule_ipo_window_handoff=g_page`；`nolimit_halt_handoff=j_page`；`price_cage_handoff=i_page`；`universe_pool_handoff=c_page`；`maint_ratio_formula_handoff=ca_page`；`financing_rollover_handoff=cb_page`；`delist_force_deadline_handoff=cc_page`；其余 handoff 见 §2.1；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_ipo_day1_fill_misopen_check`；`missing_ipo_day1_fill_policy=skip`；`day_freq_proxy=ipo_day1_fill_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 建议占位 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 CI**；**params.G≠实验字母 CI**；**params.N≠实验字母 CI**；亦≠单字母实验 C/I/A/G/J/Z；禁 null/holdout/跑后改口；**勿改他字母已冻 Y/G/N/Y2**）；**`params.ci0_primary_demo` 建议 `invent_assume_ipo_day1_always_fillable`**（禁与 invent_asof_leak_ipo_day1_always_fillable 双挂；CI1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期建议写死。  
+- **写死键摘要（三条已冻）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`ipo_day1_fill_honest=pit_by_ipo_day1_fill_rule`；`ipo_day1_fill_scope=assume_ipo_day1_always_fillable_at_target_or_open_or_close`；`ipo_day1_fill_over_policy=fail_or_partial_or_fail_missing_ipo_day1_rule`；`board_capacity_handoff=a_page`；`queue_handoff=ar_page`；`fill_time_suspend_handoff=d_page`；`beyond_limit_handoff=ag_page`；`limit_up_fill_handoff=cd_page`；`limit_down_fill_handoff=ce_page`；`call_auction_fill_handoff=cf_page`；`resume_halt_fill_handoff=cg_page`；`after_hours_fill_handoff=ch_page`；`limit_rule_ipo_window_handoff=g_page`；`nolimit_halt_handoff=j_page`；`price_cage_handoff=i_page`；`universe_pool_handoff=c_page`；`maint_ratio_formula_handoff=ca_page`；`financing_rollover_handoff=cb_page`；`delist_force_deadline_handoff=cc_page`；其余 handoff 见 §2.1；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_ipo_day1_fill_misopen_check`；`missing_ipo_day1_fill_policy=skip`；`day_freq_proxy=ipo_day1_fill_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 CI**；**params.G≠实验字母 CI**；**params.N≠实验字母 CI**；亦≠单字母实验 C/I/A/G/J/Z；禁 null/holdout/跑后改口；**勿改他字母已冻 Y/G/N/Y2**）；**`params.ci0_primary_demo` 写死冻结 `invent_assume_ipo_day1_always_fillable`**（禁与 invent_asof_leak_ipo_day1_always_fillable 双挂；CI1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期建议写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -366,17 +366,28 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|----|
-| 状态 | **草稿 · 待入库预检**（结论栏空；**禁止标任何纸面齐**） |
+| 状态 | **草稿 · 预检有条件通过 · 三条已冻 · 待复检**（结论栏空；**禁止标任何纸面齐**） |
 | 标准件路径 | `假设-CI-新股上市首日可成交性误开.md` |
 | 清单序号 | 约 #92 |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 建议写死**；**oos_split 四日期建议写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16（建议）；**fill_time=next_open（建议）**；**ipo_day1_fill_honest=pit_by_ipo_day1_fill_rule（建议；待预检冻结）**；diff_buckets 默认名待预检；**Y/G/N/Y2 建议占位 0.02/0.01/0.05/0.015（params.Y≠实验字母 CI；params.G≠实验字母 CI；params.N≠实验字母 CI；亦≠单字母实验 C/I/A/G/J/Z；禁 null/holdout/跑后改口；勿改他字母已冻）**；**ci0_primary_demo 建议 invent_assume_ipo_day1_always_fillable（禁双挂 invent_asof_leak_ipo_day1_always_fillable；CI1半泄露不得升格并列主报；待预检冻结）**；锚建议 ipo_day1_fill_honest=pit_by_ipo_day1_fill_rule / ipo_day1_fill_scope=assume_ipo_day1_always_fillable_at_target_or_open_or_close / ipo_day1_fill_over_policy=fail_or_partial_or_fail_missing_ipo_day1_rule / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死冻结**；**ipo_day1_fill_honest=pit_by_ipo_day1_fill_rule 写死冻结**；diff_buckets 默认名待预检；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 CI；params.G≠实验字母 CI；params.N≠实验字母 CI；亦≠单字母实验 C/I/A/G/J/Z；禁 null/holdout/跑后改口；勿改他字母已冻）**；**ci0_primary_demo 写死冻结 invent_assume_ipo_day1_always_fillable（禁双挂 invent_asof_leak_ipo_day1_always_fillable；CI1半泄露不得升格并列主报）**；锚升格写死 ipo_day1_fill_honest=pit_by_ipo_day1_fill_rule / ipo_day1_fill_scope=assume_ipo_day1_always_fillable_at_target_or_open_or_close / ipo_day1_fill_over_policy=fail_or_partial_or_fail_missing_ipo_day1_rule / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
 | 硬分列摘要 | **CI≠C/I/CA/CB/CC/CD/CE/CF/CG/CH/A/G/J/AR/AG/AN/BZ/BY/BX/BW/BV/BU/BT/BS/BO/BR/BH/BC/BD/BL/BF/BQ/Z/B**（及 ≠BA–CH/K/AB/W/T/S/U/V/X/Y/F/E/D/H/M/AI/AJ/AQ），**严禁复用假设-A / 假设-C / 假设-I / 假设-G / 假设-J / 假设-CD / 假设-CE / 假设-CF / 假设-CG / 假设-CH**；**尤其 CI≠CH（勿撞盘后固定价格可成交性）**；**尤其 CI≠CG（勿撞停牌复牌首日可成交性）**；**尤其 CI≠CF（勿撞集合竞价可成交性）**；**尤其 CI≠CE（勿撞跌停可成交性）**；**尤其 CI≠CD（勿撞涨停可成交性）**；**尤其 CI≠A（不抢实验A真数队列）**；**尤其 CI≠I（双字母 CI ≠ 单字母假设-I）**；**尤其 CI≠G / CI≠J / CI≠C**；**尤其不改假设-CH/CG/CF/CE/CD/A/C/G/J/I/CA/CB/CC**；**params.Y≠实验字母 CI**；**params.G≠实验字母 CI**；与两融审批/费用类正交 |
 | 结论栏 | 空 |
 
 ---
 
+## 风控预检补丁·冻结（三条已写死 · 2026-11-04）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 CI**；**`params.G` ≠ 实验字母 CI**；**`params.N` ≠ 实验字母 CI**；**`params.Y` ≠ 单字母实验 C/I/A/G/J/Z**；尤重**双字母 CI ≠ 单字母假设-A**；**双字母 CI ≠ 单字母假设-C**；**双字母 CI ≠ 单字母假设-I**；**双字母 CI ≠ 单字母假设-G**；**双字母 CI ≠ 单字母假设-J**；**双字母 CI ≠ 双字母假设-CH/CG/CF/CE/CD/CA/CB/CC**；禁 null/holdout/跑后改口；**勿改他字母已冻 Y/G/N/Y2**。  
+2. **`params.ci0_primary_demo`**：**写死冻结** **`invent_assume_ipo_day1_always_fillable`**；禁与 **`invent_asof_leak_ipo_day1_always_fillable`** 双挂争主表（只挂一个 primary）；**CI1 半泄露不得升格并列主报**。  
+3. **新股上市首日可成交性锚升格写死（不可再写「建议」）**：`params.ipo_day1_fill_honest=pit_by_ipo_day1_fill_rule`；`params.ipo_day1_fill_scope=assume_ipo_day1_always_fillable_at_target_or_open_or_close`；`params.ipo_day1_fill_over_policy=fail_or_partial_or_fail_missing_ipo_day1_rule`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`。
+
+**硬分列保留**：CI≠C/I/CA/CB/CC/CD/CE/CF/CG/CH/A/G/J/AR/AG…；**尤其 CI≠CH / CI≠CG / CI≠CF / CI≠CE / CI≠CD / CI≠A / CI≠I**；**双字母 CI ≠ 单字母假设-I**；**严禁复用假设-C / 假设-I / 假设-CH / 假设-CG / 假设-CF / 假设-CE / 假设-CD / 假设-A / 假设-G / 假设-J**；**params.Y/G/N ≠ 实验字母 CI**。
+
+**状态**：预检有条件通过 · 三条已冻 · 待复检；**禁止标任何纸面齐**；本页不开回测/真数/实盘；不改已冻 Y/Z/AA–CH。
+
 ## 变更
 
 | 日期 | 说明 |
 |------|------|
+| 2026-11-04 | 风控预检补丁·冻结三条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CI**；**params.G≠实验字母 CI**；**params.N≠实验字母 CI**；亦≠单字母实验 C/I/A/G/J/Z；尤重**双字母 CI ≠ 单字母假设-A/C/I/G/J**；**双字母 CI ≠ 双字母假设-CH/CG/CF/CE/CD/CA/CB/CC**；禁 null/holdout/跑后改口）；② `params.ci0_primary_demo=invent_assume_ipo_day1_always_fillable` 单一主报写死（禁与 `invent_asof_leak_ipo_day1_always_fillable` 双挂；CI1不升格）；③ 锚升格写死 `ipo_day1_fill_honest=pit_by_ipo_day1_fill_rule` / `scope=assume_ipo_day1_always_fillable_at_target_or_open_or_close` / `over_policy=fail_or_partial_or_fail_missing_ipo_day1_rule` / `asof=2026-10-16` / `fill_time=next_open` / `fail=skip`；状态「预检有条件通过 · 三条已冻 · 待复检」；清单 #92→已冻结·待复检；**未标纸面齐**；不改 CH/Y–CH 及其他已齐字母；不开回测/真数/实盘。 |
 | 2026-11-04 | 新建草稿·待入库预检（总管线：CH 补丁 tip=`13a2363` 已交后写 CI；选题新股上市首日可成交性误开；**CI≠C/I/CA/CB/CC/CD/CE/CF/CG/CH/A/G/J…**；尤其 **CI≠CH（勿撞盘后固定价格可成交性）**、**CI≠CG（勿撞停牌复牌首日可成交性）**、**CI≠CF（勿撞集合竞价可成交性）**、**CI≠CE（勿撞跌停可成交性）**、**CI≠CD（勿撞涨停可成交性）**、**CI≠A（不抢实验A真数队列）**、**CI≠I（双字母 CI ≠ 单字母假设-I）**、**CI≠G / CI≠J / CI≠C**；primary_demo 建议=`invent_assume_ipo_day1_always_fillable`；Y/G/N/Y2 建议占位 `0.02/0.01/0.05/0.015` 待预检；不开回测；未改 CH/CG/CF/CE/CD/A/C/G/J/I/CA/CB/CC 及其他已齐字母；**未标纸面齐**）。 |
