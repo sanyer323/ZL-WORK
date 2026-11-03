@@ -2,7 +2,7 @@
 
 更新：2026-11-04  
 来源：总管线 / CF 补丁已交（tip=`3b769d6`；复检/入库另线并行后写下一纸面 CG）；清单撞题规则另选正交执行缺口（**回测默认「停牌复牌首日订单必能按目标价/开盘价/收盘价全额成交」** ≠ 假设-CF 集合竞价可成交性误开 ≠ 假设-CE 跌停板可成交性误开 ≠ 假设-CD 涨停板可成交性误开 ≠ 假设-A 板上枯竭/一字与封板容量主实验 ≠ 假设-D 成交时点开vs收与停牌假成交（开收时点/停牌期间假成交 ≠ 复牌首日全额可成默认） ≠ 假设-C 股票池当时名单 ≠ 假设-G 市价保护相关（**双字母 CG ≠ 单字母假设-G**） ≠ 假设-CA/CB/CC 两融族）；选题自 `事实与坑`「停牌复牌首日开盘大幅偏离、临时停牌续停与流动性枯竭；回测用目标价/开盘价/收盘价一律全额成交等于假设永远可成」+ 口径「执行鸿沟」+ 与 CD/CE/CF 可成交性族正交；本页**假定板上容量层（A）/ 排队位次层（AR）/ 成交时点与停牌层（D）/ 超涨跌停价无效层（AG）/ 涨停可成交误开层（CD）/ 跌停可成交误开层（CE）/ 集合竞价可成交误开层（CF）诚实或显式旁路**，主病只在**发明「停牌复牌首日订单必能按目标价/开盘价/收盘价全额成交」这一误开默认**；**A 正文主测「涨停可成交性/板上枯竭」真数队列**（**双字母 CG ≠ 单字母假设-A；严禁复用 A 题面；绝不可做成 A 续篇；不抢 A 真数队列**），**CF 正文主测「集合竞价可成交性误开」**（`invent_assume_call_auction_always_fillable`；集合竞价全额可成 ≠ 复牌首日全额可成；**严禁改 CF**），**CE 正文主测「跌停板可成交性误开」**（`invent_assume_limit_down_always_fillable`；跌停全额可卖出 ≠ 复牌首日全额可成；**严禁改 CE**），**CD 正文主测「涨停板可成交性误开」**（`invent_assume_limit_up_always_fillable`；涨停全额可成 ≠ 复牌首日全额可成；**严禁改 CD**），**D 正文主测「成交时点开vs收与停牌假成交」**（开收时点/停牌期间假成交 ≠ 复牌首日全额可成默认；**双字母 CG ≠ 单字母假设-D；严禁复用 D**），**C 正文主测「股票池当时名单」**（**双字母 CG ≠ 单字母假设-C；严禁复用 C**），**G 正文主测市价保护相关**（**双字母 CG ≠ 单字母假设-G；严禁复用 G；且 params.G ≠ 实验字母 CG**），**CA/CB/CC 正文主测两融族**（与本页正交；**严禁改 CA/CB/CC**）→ 自立；与假设 H/B/Z/BA–CF/AG/AF/E/L/F/Y/X/W/K/AB/M/N/AN 等**分列**；**新建实验 CG**  
-状态：**草稿 · 待入库预检**（结论栏空；禁止把「停牌复牌首日订单必能按目标价/开盘价/收盘价全额成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CF 及其他 A/D–CF 已交正文与冻结补丁；尤其不改假设-CF；尤其不改假设-CE；尤其不改假设-CD；尤其不改假设-A；尤其不改假设-D；尤其不改假设-C；尤其不改假设-G；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-CC；勿再改 CF/CE/CD/CC/CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW/AR/AG/AN**）
+状态：**草稿 · 预检有条件通过 · 三条已冻 · 待复检**（结论栏空；禁止把「停牌复牌首日订单必能按目标价/开盘价/收盘价全额成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CF 及其他 A/D–CF 已交正文与冻结补丁；尤其不改假设-CF；尤其不改假设-CE；尤其不改假设-CD；尤其不改假设-A；尤其不改假设-D；尤其不改假设-C；尤其不改假设-G；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-CC；勿再改 CF/CE/CD/CC/CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW/AR/AG/AN**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 CG（约 #90）。与假设 **CF（集合竞价可成交性误开）** **硬分列（专节强调）**：CF = 回测是否默认「**开盘/收盘集合竞价**时段订单必能按目标价或参考价**全额**成交」；本页 = 回测是否默认「**停牌复牌首日**订单必能按目标价/开盘价/收盘价**全额**成交」；集合竞价撮合 ≠ 复牌首日可成交；**严禁复用 CF 题面或 `invent_assume_call_auction_always_fillable`**；**尤其不改假设-CF**。**CG≠CF**。与假设 **CE（跌停板可成交性误开）** **硬分列（专节强调）**：CE = 连续竞价跌停侧全额可卖出误开；本页 = 复牌首日全额可成误开；**严禁复用 CE 题面或 `invent_assume_limit_down_always_fillable`**；**尤其不改假设-CE**。**CG≠CE**。与假设 **CD（涨停板可成交性误开）** **硬分列（专节强调）**：CD = 连续竞价涨停侧全额可成误开；本页 = 复牌首日全额可成误开；**严禁复用 CD 题面或 `invent_assume_limit_up_always_fillable`**；**尤其不改假设-CD**。**CG≠CD**。与假设 **A（涨停可成交性/板上枯竭）** **硬分列（专节强调）**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成的**主实验与真数队列**；本页 = **纸面机制误开点**：回测/仿真是否默认发明「停牌复牌首日订单必能按目标价/开盘价/收盘价全额成交」并系统性高估复牌日可实现成交、低估开盘大幅偏离、临时停牌续停与流动性枯竭；容量门槛 ≠ 复牌首日全额可成默认；**双字母 CG ≠ 单字母假设-A**；**严禁复用 A 题面**；**绝不可做成 A 续篇**；**不占** A 的 A0/A1 主报与真数席位；**尤其不改假设-A**。**CG≠A**。与假设 **D（成交时点与停牌）** **硬分列（专节强调）**：D = 开 vs 收成交时点与停牌期间假成交；本页 = 复牌首日是否仍按目标价/开盘价/收盘价**全额**记成；开收时点/停牌假成交 ≠ 复牌首日全额可成；**双字母 CG ≠ 单字母假设-D**；**严禁复用 D 题面**；**尤其不改假设-D**。**CG≠D**。与假设 **C（股票池当时名单）** **硬分列**：C = 成分/股票池 PIT；本页 = 复牌首日全额可成误开；**双字母 CG ≠ 单字母假设-C**；**严禁复用 C**。**CG≠C**。与假设 **G（市价保护相关）** **硬分列**：G = 市价保护相关；本页 = 复牌首日全额可成误开；**双字母 CG ≠ 单字母假设-G**；**严禁复用 G**；**且 params.G ≠ 实验字母 CG**。**CG≠G**。与假设 **CA/CB/CC** **硬分列**：两融公式/展期/调出了结时限 ≠ 复牌首日全额可成；**尤其不改 CA/CB/CC**。**CG≠CA≠CB≠CC**。与假设 **AR/AG/AN/M/N/BZ/BY/BX/BW…** 及两融审批/费用族 **硬分列**：假队首/超板无效/集合剩单/收盘机制/收盘假GTC/两融审批费用 ≠ 复牌首日全额可成默认。**明确避开预检T旧题（证管费误抽）**。**严禁复用假设-A / 假设-C / 假设-G / 假设-D / 假设-CD / 假设-CE / 假设-CF**。**严禁改写/续写假设-CF / 假设-CE / 假设-CD / 假设-CA / 假设-CB / 假设-CC**。**本页主结论不混。**
 
@@ -22,7 +22,7 @@
 | 题面 CA | **维持担保比例分子分母口径** | 公式 ≠ 复牌首日全额可成；**CG≠CA**；**不改 CA** |
 | 题面 CB | **融资合约展期/续作审批** | 展期审批 ≠ 复牌首日全额可成；**CG≠CB**；**不改 CB** |
 | 题面 CC | **两融标的调出强制了结时点** | 调出了结时限 ≠ 复牌首日全额可成；**CG≠CC**；**不改 CC** |
-| 主演示 | （各页自有；本页不引用覆盖） | `invent_assume_resume_from_halt_always_fillable`（建议） |
+| 主演示 | （各页自有；本页不引用覆盖） | `invent_assume_resume_from_halt_always_fillable`（已冻结） |
 | 文档 | 清单实验 A / C / G / D / `假设-CA-…` / `假设-CB-…` / `假设-CC-…` / `假设-CD-…` / `假设-CE-…` / `假设-CF-…`（**只读；禁止改写**） | `假设-CG-停牌复牌首日可成交性误开.md`（新建） |
 | 预检键 | 实验字母 A / C / G / D / CA / CB / CC / CD / CE / CF | 实验字母 **CG** / `cg0_primary_demo`；**不得**占用或改写预检 A/C/G/D/CA/CB/CC/CD/CE/CF |
 
@@ -40,105 +40,105 @@
 
 ## 2. 口径与可检验设计（纸面骨架）
 
-### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 与 cg0 与锚 待预检冻结）
+### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 与 cg0 与锚 三条已冻）
 
 ```
-# 配置写死键（见 §7；草稿·待入库预检；建议占位如下，终值待预检冻结）
+# 配置写死键（见 §7；三条已冻 · 待复检；终值如下）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 CG；≠ 单字母假设-C；≠ 单字母假设-G；≠ 单字母假设-A；≠ 单字母假设-D；≠ 双字母假设-CA/CB/CC/CD/CE/CF
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 CG；尤重 params.G ≠ 实验字母 CG ≠ 单字母假设-G
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 CG；≠ 单字母假设-N；亦≠实验字母 BN
-# params.fill_time                        建议 next_open
-# params.asof_check_date                 建议 2026-10-16
-# params.px_basis                        建议 unadj
-# params.resume_halt_fill_honest         建议 pit_by_resume_fill_rule
-# params.resume_halt_fill_scope          建议 assume_resume_from_halt_always_fillable_at_target_or_open_or_close
-# params.resume_halt_fill_over_policy    建议 fail_or_partial_or_fail_missing_resume_rule
-# params.board_capacity_handoff          建议 a_page     # 板上容量/枯竭交 A；CG≠A；严禁复用假设-A；不抢 A 真数
-# params.queue_handoff                   建议 ar_page    # 排队假队首交 AR；CG≠AR；不改 AR
-# params.fill_time_suspend_handoff        建议 d_page     # 开收时点与停牌交 D；CG≠D；严禁复用假设-D（本页主病≠D开收/停牌期间假成交）
-# params.beyond_limit_handoff            建议 ag_page    # 超涨跌停价无效交 AG；CG≠AG
-# params.limit_up_fill_handoff           建议 cd_page    # 涨停可成交误开交 CD；CG≠CD；不改 CD
-# params.limit_down_fill_handoff         建议 ce_page    # 跌停可成交误开交 CE；CG≠CE；不改 CE
-# params.call_auction_fill_handoff       建议 cf_page    # 集合竞价可成交误开交 CF；CG≠CF；不改 CF
-# params.auction_vol_handoff             建议 y_page
-# params.auction_leftover_handoff        建议 an_page
-# params.lot_size_handoff                建议 e_page
-# params.limit_round_handoff             建议 f_page
-# params.mkt_protect_handoff             建议 g_page     # 市价保护交 G；CG≠G；严禁复用假设-G
-# params.universe_pool_handoff           建议 c_page     # 股票池交 C；CG≠C；严禁复用假设-C
-# params.maint_ratio_formula_handoff     建议 ca_page    # 维持比分子分母交 CA；CG≠CA；不改 CA
-# params.financing_rollover_handoff      建议 cb_page    # 展期审批交 CB；CG≠CB；不改 CB
-# params.delist_force_deadline_handoff   建议 cc_page    # 调出了结时限交 CC；CG≠CC；不改 CC
-# params.resume_halt_fill_handoff        建议 self       # 本页主病：停牌复牌首日可成交性误开（全额可成默认）
-# params.exright_board_handoff           建议 w_page
-# params.st_limit_handoff                建议 x_page
-# params.shortable_list_handoff          建议 k_page
-# params.short_px_handoff                建议 ab_page
-# params.stamp_tax_handoff               建议 v_page
-# params.transfer_fee_handoff            建议 u_page
-# params.csrc_fee_handoff                建议 t_page
-# params.handling_fee_handoff            建议 s_page
-# params.exit_period_handoff             建议 h_page
-# params.cg0_primary_demo                建议 invent_assume_resume_from_halt_always_fillable  # 主报：假全额可成；禁与 invent_asof_leak_resume_from_halt_always_fillable 双挂争主表；CG1半泄露不得升格并列主报
-# params.cg0_invent_assume_resume_from_halt_always_fillable  建议 True
-# params.cg1_asof_leak_resume_from_halt_always_fillable_only 建议 True
-# params.cg2_pit_resume_halt_fill        建议 True
-# params.merge_with_A_fill               建议 False  # CG≠A；严禁复用假设-A
-# params.merge_with_AR_queue             建议 False  # CG≠AR；不改 AR
-# params.merge_with_D_fill_time          建议 False  # CG≠D；严禁复用假设-D
-# params.merge_with_C_universe_pool      建议 False  # CG≠C；严禁复用假设-C
-# params.merge_with_G_mkt_protect        建议 False  # CG≠G；严禁复用假设-G
-# params.merge_with_CA_maint_ratio_formula 建议 False  # CG≠CA；不改 CA
-# params.merge_with_CB_financing_rollover 建议 False  # CG≠CB；不改 CB
-# params.merge_with_CC_delist_force_deadline 建议 False  # CG≠CC；不改 CC
-# params.merge_with_CD_limit_up_fill     建议 False  # CG≠CD；不改 CD
-# params.merge_with_CE_limit_down_fill   建议 False  # CG≠CE；不改 CE
-# params.merge_with_CF_call_auction_fill 建议 False  # CG≠CF；不改 CF
-# params.merge_with_AG_beyond_limit      建议 False
-# params.merge_with_B_legacy             建议 False  # CG≠B
-# params.merge_with_Z_margin_ratio       建议 False  # 与两融审批/费用类正交
-# params.merge_with_BA_margin_buy_list   建议 False
-# params.merge_with_BB_refinance_borrow  建议 False
-# params.merge_with_BC_maint_force       建议 False
-# params.merge_with_BD_haircut           建议 False
-# params.merge_with_BE_balance_pause     建议 False
-# params.merge_with_BF_contract_term     建议 False
-# params.merge_with_BG_collateral_list   建议 False
-# params.merge_with_BH_credit_quota      建议 False
-# params.merge_with_BI_short_proceeds    建议 False
-# params.merge_with_BJ_financing_sale_repay 建议 False
-# params.merge_with_BK_client_conc       建议 False
-# params.merge_with_BL_collateral_withdraw 建议 False
-# params.merge_with_BM_margin_call_open_ban 建议 False
-# params.merge_with_BN_cross_account     建议 False
-# params.merge_with_BO_financing_interest 建议 False
-# params.merge_with_BP_corp_action_comp  建议 False
-# params.merge_with_BQ_list_removal_stock 建议 False
-# params.merge_with_BR_short_borrow_fee  建议 False
-# params.merge_with_BS_financing_rate_tier 建议 False
-# params.merge_with_BT_force_close_order 建议 False
-# params.merge_with_BU_daily_short_inventory 建议 False
-# params.merge_with_BV_short_recall      建议 False
-# params.merge_with_BW_credit_usage      建议 False
-# params.merge_with_BX_interest_start_daycount 建议 False
-# params.merge_with_BY_margin_call_grace 建议 False
-# params.merge_with_BZ_early_repay_fee   建议 False
-# params.merge_with_K_shortable_list     建议 False
-# params.merge_with_AB_short_px          建议 False
-# params.merge_with_Y_auction_vol        建议 False
-# params.merge_with_AN_auction_leftover  建议 False
-# params.merge_with_W_exright            建议 False
-# params.merge_with_H_exit               建议 False
-# params.merge_with_N_close_gtc          建议 False
-# params.merge_with_M_aft                建议 False
-# params.missing_resume_halt_fill_policy 建议 skip
-# params.day_freq_proxy                  建议 resume_halt_fill_sensitivity
-# params.universe_rule                   建议 sse_szse_resume_halt_fill_misopen_check
-# params.fail_policy                     建议 skip
-# params.redline_v0_exempt_scope         建议 position_industry_dd_only
-# params.Y / G / N / Y2                  建议占位 0.02/0.01/0.05/0.015  # params.Y≠实验字母CG；params.G≠实验字母CG；params.N≠实验字母CG；亦≠单字母实验C/G/A/D/Z；禁 null/holdout/跑后改口；勿改他字母已冻 Y/G/N/Y2；待预检冻结
-# params.date_start / date_end           建议 2019-01-01..2026-09-30
-# params.oos_split.*                     建议四日期；禁 holdout 反调
+# params.fill_time 写死 next_open
+# params.asof_check_date 写死 2026-10-16
+# params.px_basis 写死 unadj
+# params.resume_halt_fill_honest 写死 pit_by_resume_fill_rule
+# params.resume_halt_fill_scope 写死 assume_resume_from_halt_always_fillable_at_target_or_open_or_close
+# params.resume_halt_fill_over_policy 写死 fail_or_partial_or_fail_missing_resume_rule
+# params.board_capacity_handoff 写死 a_page     # 板上容量/枯竭交 A；CG≠A；严禁复用假设-A；不抢 A 真数
+# params.queue_handoff 写死 ar_page    # 排队假队首交 AR；CG≠AR；不改 AR
+# params.fill_time_suspend_handoff 写死 d_page     # 开收时点与停牌交 D；CG≠D；严禁复用假设-D（本页主病≠D开收/停牌期间假成交）
+# params.beyond_limit_handoff 写死 ag_page    # 超涨跌停价无效交 AG；CG≠AG
+# params.limit_up_fill_handoff 写死 cd_page    # 涨停可成交误开交 CD；CG≠CD；不改 CD
+# params.limit_down_fill_handoff 写死 ce_page    # 跌停可成交误开交 CE；CG≠CE；不改 CE
+# params.call_auction_fill_handoff 写死 cf_page    # 集合竞价可成交误开交 CF；CG≠CF；不改 CF
+# params.auction_vol_handoff 写死 y_page
+# params.auction_leftover_handoff 写死 an_page
+# params.lot_size_handoff 写死 e_page
+# params.limit_round_handoff 写死 f_page
+# params.mkt_protect_handoff 写死 g_page     # 市价保护交 G；CG≠G；严禁复用假设-G
+# params.universe_pool_handoff 写死 c_page     # 股票池交 C；CG≠C；严禁复用假设-C
+# params.maint_ratio_formula_handoff 写死 ca_page    # 维持比分子分母交 CA；CG≠CA；不改 CA
+# params.financing_rollover_handoff 写死 cb_page    # 展期审批交 CB；CG≠CB；不改 CB
+# params.delist_force_deadline_handoff 写死 cc_page    # 调出了结时限交 CC；CG≠CC；不改 CC
+# params.resume_halt_fill_handoff 写死 self       # 本页主病：停牌复牌首日可成交性误开（全额可成默认）
+# params.exright_board_handoff 写死 w_page
+# params.st_limit_handoff 写死 x_page
+# params.shortable_list_handoff 写死 k_page
+# params.short_px_handoff 写死 ab_page
+# params.stamp_tax_handoff 写死 v_page
+# params.transfer_fee_handoff 写死 u_page
+# params.csrc_fee_handoff 写死 t_page
+# params.handling_fee_handoff 写死 s_page
+# params.exit_period_handoff 写死 h_page
+# params.cg0_primary_demo                写死冻结 invent_assume_resume_from_halt_always_fillable  # 主报：假全额可成；禁与 invent_asof_leak_resume_from_halt_always_fillable 双挂争主表；CG1半泄露不得升格并列主报
+# params.cg0_invent_assume_resume_from_halt_always_fillable 写死 True
+# params.cg1_asof_leak_resume_from_halt_always_fillable_only 写死 True
+# params.cg2_pit_resume_halt_fill 写死 True
+# params.merge_with_A_fill 写死 False  # CG≠A；严禁复用假设-A
+# params.merge_with_AR_queue 写死 False  # CG≠AR；不改 AR
+# params.merge_with_D_fill_time 写死 False  # CG≠D；严禁复用假设-D
+# params.merge_with_C_universe_pool 写死 False  # CG≠C；严禁复用假设-C
+# params.merge_with_G_mkt_protect 写死 False  # CG≠G；严禁复用假设-G
+# params.merge_with_CA_maint_ratio_formula 写死 False  # CG≠CA；不改 CA
+# params.merge_with_CB_financing_rollover 写死 False  # CG≠CB；不改 CB
+# params.merge_with_CC_delist_force_deadline 写死 False  # CG≠CC；不改 CC
+# params.merge_with_CD_limit_up_fill 写死 False  # CG≠CD；不改 CD
+# params.merge_with_CE_limit_down_fill 写死 False  # CG≠CE；不改 CE
+# params.merge_with_CF_call_auction_fill 写死 False  # CG≠CF；不改 CF
+# params.merge_with_AG_beyond_limit 写死 False
+# params.merge_with_B_legacy 写死 False  # CG≠B
+# params.merge_with_Z_margin_ratio 写死 False  # 与两融审批/费用类正交
+# params.merge_with_BA_margin_buy_list 写死 False
+# params.merge_with_BB_refinance_borrow 写死 False
+# params.merge_with_BC_maint_force 写死 False
+# params.merge_with_BD_haircut 写死 False
+# params.merge_with_BE_balance_pause 写死 False
+# params.merge_with_BF_contract_term 写死 False
+# params.merge_with_BG_collateral_list 写死 False
+# params.merge_with_BH_credit_quota 写死 False
+# params.merge_with_BI_short_proceeds 写死 False
+# params.merge_with_BJ_financing_sale_repay 写死 False
+# params.merge_with_BK_client_conc 写死 False
+# params.merge_with_BL_collateral_withdraw 写死 False
+# params.merge_with_BM_margin_call_open_ban 写死 False
+# params.merge_with_BN_cross_account 写死 False
+# params.merge_with_BO_financing_interest 写死 False
+# params.merge_with_BP_corp_action_comp 写死 False
+# params.merge_with_BQ_list_removal_stock 写死 False
+# params.merge_with_BR_short_borrow_fee 写死 False
+# params.merge_with_BS_financing_rate_tier 写死 False
+# params.merge_with_BT_force_close_order 写死 False
+# params.merge_with_BU_daily_short_inventory 写死 False
+# params.merge_with_BV_short_recall 写死 False
+# params.merge_with_BW_credit_usage 写死 False
+# params.merge_with_BX_interest_start_daycount 写死 False
+# params.merge_with_BY_margin_call_grace 写死 False
+# params.merge_with_BZ_early_repay_fee 写死 False
+# params.merge_with_K_shortable_list 写死 False
+# params.merge_with_AB_short_px 写死 False
+# params.merge_with_Y_auction_vol 写死 False
+# params.merge_with_AN_auction_leftover 写死 False
+# params.merge_with_W_exright 写死 False
+# params.merge_with_H_exit 写死 False
+# params.merge_with_N_close_gtc 写死 False
+# params.merge_with_M_aft 写死 False
+# params.missing_resume_halt_fill_policy 写死 skip
+# params.day_freq_proxy 写死 resume_halt_fill_sensitivity
+# params.universe_rule 写死 sse_szse_resume_halt_fill_misopen_check
+# params.fail_policy 写死 skip
+# params.redline_v0_exempt_scope 写死 position_industry_dd_only
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # params.Y≠实验字母CG；params.G≠实验字母CG；params.N≠实验字母CG；亦≠单字母实验C/G/A/D/Z；禁 null/holdout/跑后改口；勿改他字母已冻 Y/G/N/Y2
+# params.date_start / date_end 写死 2019-01-01..2026-09-30
+# params.oos_split.*                     写死四日期；禁 holdout 反调
 # 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改复牌首日可成交误开口径、Y/G/N/Y2、主窗/oos、cg0_primary_demo
 ```
 
@@ -159,7 +159,7 @@ px_basis = "unadj"
 resume_halt_fill_honest = "pit_by_resume_fill_rule"
 resume_halt_fill_scope = "assume_resume_from_halt_always_fillable_at_target_or_open_or_close"
 resume_halt_fill_over_policy = "fail_or_partial_or_fail_missing_resume_rule"
-cg0_primary_demo = "invent_assume_resume_from_halt_always_fillable"  # 单一主报·建议；禁与 invent_asof_leak_resume_from_halt_always_fillable 双挂
+cg0_primary_demo = "invent_assume_resume_from_halt_always_fillable"  # 单一主报·已冻结；禁与 invent_asof_leak_resume_from_halt_always_fillable 双挂
 cg0_invent_assume_resume_from_halt_always_fillable = True
 cg1_asof_leak_resume_from_halt_always_fillable_only = True
 cg2_pit_resume_halt_fill = True
@@ -181,17 +181,17 @@ fail_policy = "skip"
 
 | 组 | 口径 | 说明 |
 |----|------|------|
-| CG0 天真 | `invent_assume_resume_from_halt_always_fillable`（单一主报·建议） | 发明假全额可成路径；禁与 invent_asof_leak_resume_from_halt_always_fillable 双挂 |
+| CG0 天真 | `invent_assume_resume_from_halt_always_fillable`（单一主报·已冻结） | 发明假全额可成路径；禁与 invent_asof_leak_resume_from_halt_always_fillable 双挂 |
 | CG1 半泄露·混口径 | 全样本用 `asof_check_date` 当天更宽「复牌首日一律全额可成」规则铺满历史 | 仅复牌首日全额可成 asof 泄露；不升格并列主报 |
 | CG2 PIT | `resume_halt_fill_honest=pit_by_resume_fill_rule` | 每个交易日按当时已生效复牌首日可成交约束 PIT |
 
 ### 2.3 额度窗内日频可落点（写明但不真跑）
 
 - **日频代理**：停牌复牌首日标签代理 + 目标价/开盘价/收盘价全额成交默认 vs 诚实开盘偏离/临停续停/流动性枯竭 → 当日可实现成交与失败笔；缺字段 → skip（敏感性另桶）。  
-- **额度窗**：主窗 `2019-01-01..2026-09-30`；IS `2019-01-01..2024-12-31`；holdout `2025-01-01..2026-09-30`（建议写死；禁 holdout 反调）。  
+- **额度窗**：主窗 `2019-01-01..2026-09-30`；IS `2019-01-01..2024-12-31`；holdout `2025-01-01..2026-09-30`（写死；禁 holdout 反调）。  
 - **可落点声明**：有未复权 OHLC + 停牌/复牌标签代理 + 成交意图代理即可纸面起步；**本页不开回测、不拉真数、不派回测岗、不抢 A 真数队列**。
 
-### 3.1 oos_split（建议四日期；拉数前冻结；禁 holdout 反调）
+### 3.1 oos_split（写死四日期；拉数前冻结；禁 holdout 反调）
 
 ```
 params.oos_split.is_start       = 2019-01-01
@@ -323,13 +323,13 @@ params.diff_buckets = [
 
 - **假设 ID**：`CG`  
 - **组**：CG0 / CG1 / CG2  
-- **写死键摘要**：`fill_time=next_open`（建议）；`asof_check_date=2026-10-16`（建议）；`resume_halt_fill_honest=pit_by_resume_fill_rule`（建议）；`resume_halt_fill_scope=assume_resume_from_halt_always_fillable_at_target_or_open_or_close`（建议）；`resume_halt_fill_over_policy=fail_or_partial_or_fail_missing_resume_rule`（建议）；`board_capacity_handoff=a_page`；`queue_handoff=ar_page`；`fill_time_suspend_handoff=d_page`；`beyond_limit_handoff=ag_page`；`limit_up_fill_handoff=cd_page`；`limit_down_fill_handoff=ce_page`；`call_auction_fill_handoff=cf_page`；`mkt_protect_handoff=g_page`；`universe_pool_handoff=c_page`；`maint_ratio_formula_handoff=ca_page`；`financing_rollover_handoff=cb_page`；`delist_force_deadline_handoff=cc_page`；其余 handoff 见 §2.1；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_resume_halt_fill_misopen_check`；`missing_resume_halt_fill_policy=skip`；`day_freq_proxy=resume_halt_fill_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 建议占位 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 CG**；**params.G≠实验字母 CG**；**params.N≠实验字母 CG**；亦≠单字母实验 C/G/A/D/Z；禁 null/holdout/跑后改口；**勿改他字母已冻 Y/G/N/Y2**；待预检冻结）；**`params.cg0_primary_demo` 建议 `invent_assume_resume_from_halt_always_fillable`**（禁与 invent_asof_leak_resume_from_halt_always_fillable 双挂；CG1半泄露不得升格并列主报；待预检冻结）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期建议。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`resume_halt_fill_honest=pit_by_resume_fill_rule`（写死）；`resume_halt_fill_scope=assume_resume_from_halt_always_fillable_at_target_or_open_or_close`（写死）；`resume_halt_fill_over_policy=fail_or_partial_or_fail_missing_resume_rule`（写死）；`board_capacity_handoff=a_page`；`queue_handoff=ar_page`；`fill_time_suspend_handoff=d_page`；`beyond_limit_handoff=ag_page`；`limit_up_fill_handoff=cd_page`；`limit_down_fill_handoff=ce_page`；`call_auction_fill_handoff=cf_page`；`mkt_protect_handoff=g_page`；`universe_pool_handoff=c_page`；`maint_ratio_formula_handoff=ca_page`；`financing_rollover_handoff=cb_page`；`delist_force_deadline_handoff=cc_page`；其余 handoff 见 §2.1；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_resume_halt_fill_misopen_check`；`missing_resume_halt_fill_policy=skip`；`day_freq_proxy=resume_halt_fill_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 CG**；**params.G≠实验字母 CG**；**params.N≠实验字母 CG**；亦≠单字母实验 C/G/A/D/Z；禁 null/holdout/跑后改口；**勿改他字母已冻 Y/G/N/Y2**）；**`params.cg0_primary_demo` 写死冻结 `invent_assume_resume_from_halt_always_fillable`**（禁与 invent_asof_leak_resume_from_halt_always_fillable 双挂；CG1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
 
 - CG0/CG1/CG2 净收益/成本质量、ΔFakeAlwaysFillable、ΔRealizableFill、ΔOpenDeviationImpact、ΔRehaltOrDryFail；分桶（停牌复牌首日可成交性误开 / 核对日泄露 / 普通复牌窗 / 临停续停窗 / vs A·CF·CE·CD·D·C·G·CA·CB·CC·AR·AG·AN·Z·BA–CF·K·AB·H·W·X·V·U·T·S）。  
-- 自检气泡：CG2 是否 pit_by_resume_fill_rule；CG0 是否单一主报建议；CG1 是否仅核对日泄露；是否未与 A/CF/CE/CD/D/C/G/CA/CB/CC/AR/AG/AN/Z/BA–CF/K/AB/H/W/X/V/U/T/S 混主结论；holdout 是否未反调；**是否未把实验字母 CG 与 C 或 G 或 A 或 D 或 CF 或 CE 或 CD 或 CA 或 CB 或 CC 或 B 或 Z 或 K 或 BA–CF 或 params.Y 或 params.G 或 params.N 混用**；**是否特别写清双字母 CG≠单字母假设-A；CG≠单字母假设-C；CG≠单字母假设-G；CG≠单字母假设-D；CG≠双字母假设-CF；CG≠双字母假设-CE；CG≠双字母假设-CD；CG≠双字母假设-CA；CG≠双字母假设-CB；CG≠双字母假设-CC；params.Y≠实验字母 CG；params.G≠实验字母 CG**；**是否未改 Y/Z/AA–CF 冻结补丁正文**；**是否未改假设-A / 假设-CF / 假设-CE / 假设-CD / 假设-D / 假设-C / 假设-G / 假设-CA / 假设-CB / 假设-CC**；**是否未重做预检T**；**是否未复用假设-A / 假设-C / 假设-G / 假设-D / 假设-CD / 假设-CE / 假设-CF**；**是否未与 invent_asof_leak_resume_from_halt_always_fillable 双挂主报**。  
+- 自检气泡：CG2 是否 pit_by_resume_fill_rule；CG0 是否单一主报已冻；CG1 是否仅核对日泄露；是否未与 A/CF/CE/CD/D/C/G/CA/CB/CC/AR/AG/AN/Z/BA–CF/K/AB/H/W/X/V/U/T/S 混主结论；holdout 是否未反调；**是否未把实验字母 CG 与 C 或 G 或 A 或 D 或 CF 或 CE 或 CD 或 CA 或 CB 或 CC 或 B 或 Z 或 K 或 BA–CF 或 params.Y 或 params.G 或 params.N 混用**；**是否特别写清双字母 CG≠单字母假设-A；CG≠单字母假设-C；CG≠单字母假设-G；CG≠单字母假设-D；CG≠双字母假设-CF；CG≠双字母假设-CE；CG≠双字母假设-CD；CG≠双字母假设-CA；CG≠双字母假设-CB；CG≠双字母假设-CC；params.Y≠实验字母 CG；params.G≠实验字母 CG**；**是否未改 Y/Z/AA–CF 冻结补丁正文**；**是否未改假设-A / 假设-CF / 假设-CE / 假设-CD / 假设-D / 假设-C / 假设-G / 假设-CA / 假设-CB / 假设-CC**；**是否未重做预检T**；**是否未复用假设-A / 假设-C / 假设-G / 假设-D / 假设-CD / 假设-CE / 假设-CF**；**是否未与 invent_asof_leak_resume_from_halt_always_fillable 双挂主报**。  
 - **禁止输出**：具体买卖标的列表当「建议」；把假全额可成或核对日泄露吹成诚实 PIT；催跑抢 A 真数队列；催 8765。
 
 **队列声明**：本页纸面就绪 ≠ 开工指令；**不抢实验 A 真数队列**；不占本机 8765 席位；不派回测开工；**本页不开回测**；**不改 Y/Z/AA–CF 及其他 A/D–CF 已交正文**；**尤其不改假设-CF；尤其不改假设-CE；尤其不改假设-CD；尤其不改假设-A；尤其不改假设-D；尤其不改假设-C；尤其不改假设-G；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-CC**；**勿再改 CF/CE/CD/CC/CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW/AR/AG/AN**。
@@ -348,23 +348,32 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|----|
-| 状态 | **草稿 · 待入库预检**（结论栏空；**禁止标任何纸面齐**） |
+| 状态 | **草稿 · 预检有条件通过 · 三条已冻 · 待复检**（结论栏空；**禁止标任何纸面齐**） |
 | 标准件路径 | `假设-CG-停牌复牌首日可成交性误开.md` |
 | 清单序号 | 约 #90 |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 建议**；**oos_split 四日期建议+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 建议**；**resume_halt_fill_honest=pit_by_resume_fill_rule 建议**；diff_buckets 建议默认名；**Y/G/N/Y2 建议占位 0.02/0.01/0.05/0.015（params.Y≠实验字母 CG；params.G≠实验字母 CG；params.N≠实验字母 CG；亦≠单字母实验 C/G/A/D/Z；禁 null/holdout/跑后改口；勿改他字母已冻值；待预检冻结）**；**cg0_primary_demo 建议 invent_assume_resume_from_halt_always_fillable（禁双挂 invent_asof_leak_resume_from_halt_always_fillable；CG1半泄露不得升格并列主报；待预检冻结）**；锚点建议 resume_halt_fill_honest=pit_by_resume_fill_rule / resume_halt_fill_scope=assume_resume_from_halt_always_fillable_at_target_or_open_or_close / resume_halt_fill_over_policy=fail_or_partial_or_fail_missing_resume_rule / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**resume_halt_fill_honest=pit_by_resume_fill_rule 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 CG；params.G≠实验字母 CG；params.N≠实验字母 CG；亦≠单字母实验 C/G/A/D/Z；禁 null/holdout/跑后改口；勿改他字母已冻值）**；**cg0_primary_demo 写死冻结 invent_assume_resume_from_halt_always_fillable（禁双挂 invent_asof_leak_resume_from_halt_always_fillable；CG1半泄露不得升格并列主报）**；锚点写死 resume_halt_fill_honest=pit_by_resume_fill_rule / resume_halt_fill_scope=assume_resume_from_halt_always_fillable_at_target_or_open_or_close / resume_halt_fill_over_policy=fail_or_partial_or_fail_missing_resume_rule / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
 | 硬分列摘要 | **CG≠C/G/CA/CB/CC/CD/CE/CF/A/D/AR/AG/AN/BZ/BY/BX/BW/BV/BU/BT/BS/BO/BR/BH/BC/BD/BL/BF/BQ/Z/B**（及 ≠BA–CF/K/AB/H/W/T/S/U/V/X/Y/F/E），**严禁复用假设-A / 假设-C / 假设-G / 假设-D / 假设-CD / 假设-CE / 假设-CF**；**尤其 CG≠CF（勿撞集合竞价可成交性）**；**尤其 CG≠CE（勿撞跌停可成交性）**；**尤其 CG≠CD（勿撞涨停可成交性）**；**尤其 CG≠A（不抢实验A真数队列）**；**尤其 CG≠D（开收时点/停牌 ≠ 复牌首日全额可成）**；**尤其 CG≠C / CG≠G**；**尤其不改假设-CF/CE/CD/A/D/C/G/CA/CB/CC**；**params.Y≠实验字母 CG**；**params.G≠实验字母 CG**；与两融审批/费用类正交 |
 | 结论栏 | 空 |
 
 ---
 
-## 待预检键清单（草稿建议 · 待冻结）
+## 待预检键清单（三条已冻 · 见下节）
 
-1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**建议占位**；**params.Y≠实验字母 CG**；**params.G≠实验字母 CG**；**params.N≠实验字母 CG**；禁 null/holdout；**勿改他字母已冻 Y/G/N/Y2**；待预检冻结）  
-2. `params.cg0_primary_demo` = `invent_assume_resume_from_halt_always_fillable`（**建议**；禁与 `invent_asof_leak_resume_from_halt_always_fillable` 双挂；CG1不升格主报；待预检冻结）  
-3. 锚点（**建议占位 · 待预检升格**）：`resume_halt_fill_honest=pit_by_resume_fill_rule` / `resume_halt_fill_scope=assume_resume_from_halt_always_fillable_at_target_or_open_or_close` / `resume_halt_fill_over_policy=fail_or_partial_or_fail_missing_resume_rule` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`
+1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**已冻结**；**params.Y≠实验字母 CG**；**params.G≠实验字母 CG**；**params.N≠实验字母 CG**；禁 null/holdout；**勿改他字母已冻 Y/G/N/Y2**）  
+2. `params.cg0_primary_demo` = `invent_assume_resume_from_halt_always_fillable`（**已冻结**；禁与 `invent_asof_leak_resume_from_halt_always_fillable` 双挂；CG1不升格主报）  
+3. 锚点（**已升格写死**）：`resume_halt_fill_honest=pit_by_resume_fill_rule` / `resume_halt_fill_scope=assume_resume_from_halt_always_fillable_at_target_or_open_or_close` / `resume_halt_fill_over_policy=fail_or_partial_or_fail_missing_resume_rule` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`
+
+## 风控预检补丁·冻结（三条已写死 · 2026-11-04）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 CG**；**`params.G` ≠ 实验字母 CG**；**`params.N` ≠ 实验字母 CG**；**`params.Y` ≠ 单字母实验 C/G/A/D/Z**；尤重**双字母 CG ≠ 单字母假设-A**；**双字母 CG ≠ 单字母假设-C**；**双字母 CG ≠ 单字母假设-G**；**双字母 CG ≠ 单字母假设-D**；**双字母 CG ≠ 双字母假设-CA**；**双字母 CG ≠ 双字母假设-CB**；**双字母 CG ≠ 双字母假设-CC**；**双字母 CG ≠ 双字母假设-CD**；**双字母 CG ≠ 双字母假设-CE**；**双字母 CG ≠ 双字母假设-CF**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.cg0_primary_demo`**：**写死冻结** **`invent_assume_resume_from_halt_always_fillable`**；禁与 **`invent_asof_leak_resume_from_halt_always_fillable`** 双挂争主表（只挂一个 primary）；**CG1 半泄露不得升格并列主报**。  
+3. **停牌复牌首日可成交性锚升格写死（不可再写「建议」）**：`params.resume_halt_fill_honest=pit_by_resume_fill_rule`；`params.resume_halt_fill_scope=assume_resume_from_halt_always_fillable_at_target_or_open_or_close`；`params.resume_halt_fill_over_policy=fail_or_partial_or_fail_missing_resume_rule`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`（及正文已有停牌复牌首日可成交相关锚点；不改口）。
+
+**硬分列保留**：CG≠C/G/CA/CB/CC/CD/CE/CF/A/D/AR/AG…；**尤其 CG≠CF / CG≠CE / CG≠CD / CG≠A / CG≠D**；**严禁复用假设-C / 假设-G / 假设-CF / 假设-CE / 假设-CD / 假设-A / 假设-D**；**params.Y/G/N ≠ 实验字母 CG**。
 
 ## 变更
 
 | 日期 | 说明 |
 |------|------|
+| 2026-11-04 | 风控预检补丁·冻结三条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CG**；**params.G≠实验字母 CG**；**params.N≠实验字母 CG**；亦≠单字母实验 C/G/A/D/Z；尤重**双字母 CG ≠ 单字母假设-A**；**双字母 CG ≠ 单字母假设-C**；**双字母 CG ≠ 单字母假设-G**；**双字母 CG ≠ 单字母假设-D**；**双字母 CG ≠ 双字母假设-CF/CE/CD/CA/CB/CC**；禁 null/holdout/跑后改口）；② `params.cg0_primary_demo=invent_assume_resume_from_halt_always_fillable`（禁与 `invent_asof_leak_resume_from_halt_always_fillable` 双挂争主表；CG1半泄露不得升格并列主报）；③ 锚升格写死：`resume_halt_fill_honest=pit_by_resume_fill_rule`；`resume_halt_fill_scope=assume_resume_from_halt_always_fillable_at_target_or_open_or_close`；`resume_halt_fill_over_policy=fail_or_partial_or_fail_missing_resume_rule`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。硬分列保留：**CG≠C/G/CA/CB/CC/CD/CE/CF/A/D…**；**尤其 CG≠CF（勿撞集合竞价可成交性）**；**尤其 CG≠CE（勿撞跌停可成交性）**；**尤其 CG≠CD（勿撞涨停可成交性）**；**尤其 CG≠A（不抢实验A真数队列）**；**尤其 CG≠D**；**严禁复用假设-C / 假设-G / 假设-CF / 假设-CE / 假设-CD / 假设-A / 假设-D**；参考总管派令 / 风控预检有条件通过（草稿 tip=`084290f`；基线叠至 `d75f333`；清单 #90）。未改 Y/Z/AA–CF 及其他已冻结补丁；**不改假设-CF**；**不改假设-CE**；**不改假设-CD**；**不改假设-A**；**不改假设-D**；**不改假设-C**；**不改假设-G**；**不改假设-CA**；**不改假设-CB**；**不改假设-CC**；结论栏仍空；不开回测；不催 A；**未标纸面齐**。 |
 | 2026-11-04 | 新建草稿·待入库预检（总管线：CF 补丁 tip=`3b769d6` 已交后写 CG；选题停牌复牌首日可成交性误开；**CG≠C/G/CA/CB/CC/CD/CE/CF/A/D…**；尤其 **CG≠CF（勿撞集合竞价可成交性）**、**CG≠CE（勿撞跌停可成交性）**、**CG≠CD（勿撞涨停可成交性）**、**CG≠A（不抢实验A真数队列）**、**CG≠D**、**CG≠C**、**CG≠G**；primary_demo 建议=`invent_assume_resume_from_halt_always_fillable`；Y/G/N/Y2 建议占位 `0.02/0.01/0.05/0.015` 待预检；不开回测；未改 CF/CE/CD/A/D/C/G/CA/CB/CC 及其他已齐字母；**未标纸面齐**）。 |
