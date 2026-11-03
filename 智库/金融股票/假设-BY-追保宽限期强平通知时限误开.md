@@ -2,7 +2,7 @@
 
 更新：2026-11-03  
 来源：总管线 / BX 补丁已交（复检在途）、写下一纸面 BY；清单撞题规则另选正交执行缺口（**追保通知后宽限期与强平通知时限怎么算** ≠ 追保期内禁新开 ≠ 强制平仓顺序与范围 ≠ 维持担保强平闸门 ≠ 担保品提取 ≠ 融资利息起息日/日基数 ≠ 授信占用 ≠ 融资假零息 ≠ 融资利率档 ≠ 集合竞价量计入日线）；选题自两融会员风控公开口径：维持担保比例触及追保线并发出追保通知后，客户须在**当时有效宽限期/通知时限**内补足担保（常见按交易日计的宽限期；会员可加严）；逾期未到位须按当时规则进入强制平仓流程；规则按**施行日/生效日** PIT；不得默认「追保通知后永不计时/无限宽限、或永远按核对日更宽长宽限期铺满历史」；本页**假定追保通知已发、禁新开闸门（BM）与强平闸门（BC）层诚实或显式旁路**，主病只在**宽限期长度与强平通知时限**；2010-03-31 前无此通道；**BM 正文主测「追保期内仍假可新开」**（`invent_new_open_after_margin_call`），**BT 正文主测「强平触发后序与范围」**（`invent_force_close_best_order_or_min_scope`），**BC 正文主测「低维持强平闸门 on/off」**，本页主测**追保已通知后宽限期/时限被误开**（`invent_ignore_margin_call_grace_or_force_deadline`）→ 自立；与假设 A（板上可成交/枯竭）/ H（退市整理）/ B（历史清单「实验 B」旧位；**双字母 BY ≠ 单字母 B**）/ **Y（集合竞价量计入日线；双字母 BY ≠ 单字母假设-Y；严禁复用 Y 题面或集合量分母口径）** / Z（**开仓**融资/融券保证金比例；**BY≠Z**）/ BA–BX（两融族已冻/在途；**BY≠BA…BX**；**尤其不改 BX 正文**）/ **BM（追保禁新开；BY≠BM；尤其不改假设-BM）** / **BT（强平序与范围；BY≠BT；尤其不改假设-BT）** / **BC（维持线强平闸门；BY≠BC；尤其不改假设-BC）** / BW/BV/BU/BS/BO/BR/BH/BX 等**分列**；**新建实验 BY**  
-状态：**草稿 · 待预检**（结论栏空；禁止把「追保通知后无限宽限 / 用核对日更宽长时限铺满」当诚实追保时限口径；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BX 及其他 A/D–BX 已交正文与冻结补丁；尤其不改假设-BX；尤其不改假设-Y；尤其不改假设-BM；尤其不改假设-BT；尤其不改假设-BC；不改假设-H；不改假设-A；不改假设-B；不改假设-K；不改假设-Z；不改假设-BA–BX；不改假设-AB；勿再改 BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
+状态：**草稿 · 预检有条件通过 · 两条已冻 · 待复检**（结论栏空；禁止把「追保通知后无限宽限 / 用核对日更宽长时限铺满」当诚实追保时限口径；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BX 及其他 A/D–BX 已交正文与冻结补丁；尤其不改假设-BX；尤其不改假设-Y；尤其不改假设-BM；尤其不改假设-BT；尤其不改假设-BC；不改假设-H；不改假设-A；不改假设-B；不改假设-K；不改假设-Z；不改假设-BA–BX；不改假设-AB；勿再改 BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 BY（约 #82）。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **追保宽限期/强平通知时限**。**双字母 BY ≠ 单字母 A**。与假设 **B（历史实验 B 旧位）** **硬分列**：清单早期「实验 B」曾挂印花税时点+T+1 / 财务可见日 / 除权日复权价误判等，主病已迁 V/W 等页；本页**不重开**那些旧 B 题。**双字母 BY ≠ 单字母 B**。与假设 **Y（集合竞价量计入日线）** **硬分列（专节强调）**：Y = 日总量当连续可冲击分母（开盘/收盘集合量并进）；本页 = 信用账户**追保通知后宽限期与强平通知时限**；集合量分母 ≠ 追保时限。**双字母 BY ≠ 单字母假设-Y**；**严禁复用 Y 题面或 Y 口径键**；**亦强调 params.Y（显著性门槛键）≠ 实验字母 BY ≠ 单字母假设-Y**。与假设 **BM（追保通知后仍假可新开仓）** **硬分列**：BM = 追保期内**能否新开**；本页 = 追保通知后**几天内须到位、逾期是否按当时时限进入强平通知**；禁新开 ≠ 宽限期长度；**禁止**把「禁新开已诚实（BM）」静默写成「宽限期已诚实」；**不占** BM 的 primary_demo；**尤其不改假设-BM**。**BY≠BM**。与假设 **BT（强制平仓顺序与范围）** **硬分列**：BT = 强平**已触发后**平哪条腿、平多少；本页 = **触发前**宽限期/通知时限；序与范围 ≠ 时限；**尤其不改假设-BT**。**BY≠BT**。与假设 **BC（维持担保比例强制平仓闸门）** **硬分列**：BC = 低维持线强平闸门 **on/off**；本页 = 追保已通知后的**计时宽限**；闸门 ≠ 时限；**尤其不改假设-BC**。**BY≠BC**。与假设 **BX（融资利息起息日/计息天数）** **硬分列**：BX = 利息从哪天起算几天（复检在途）；本页 = 追保宽限几天；起息 ≠ 追保时限；**尤其不改假设-BX**。**BY≠BX**。与假设 **BW / BV / BU / BS / BO / BR / BH / BL / BF / BB / BA / BD / BG / Z / K / AB** **硬分列**：占用 / 召回 / 日库存 / 利率档 / 假零息 / 借券费 / 额度上限 / 提取 / 合约期限 / 转融暂停 / 融资名单 / 折算率 / 可充抵 / 开仓比例 / 融券名单 / 空头价限 ≠ 追保宽限期；并**带过 BX≠X/BW/BV/BU/BT/BS/BO/BR/BH…、BW≠W/BV/BU/BT/BS/BO/BR/BH…、BV≠V/BU/BT/BF/BC/BB/BQ/K…、BU≠U/BB/BT/K…、BT≠T/BC/BS/BO/BR/BH、BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC…、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BM≠BC、BM≠BL、BL≠BC、BK≠K**。与假设 AN–BX **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/两融族等。**明确避开预检T旧题（证管费误抽）**。**严禁复用假设-Y（集合竞价量计入日线）**。**本页主结论不混。**
 
@@ -39,7 +39,7 @@
 ### 2.1 追保宽限期/强平通知时限 ≠ 追保禁新开（BM）；≠ 强平序与范围（BT）；≠ 强平闸门（BC）；≠ 融资起息日基数（BX）；≠ 授信占用（BW）；≠ 集合量分母（Y）；≠ 开仓保证金比例（Z）；≠ 板上枯竭（A）；≠ 证管费（T）
 
 ```
-# 配置写死键（见 §7；草稿·待预检；终值建议如下，待风控冻结）
+# 配置写死键（见 §7；两条已冻 · 待复检；终值如下）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 BY；≠ 单字母假设-Y；≠ 实验字母 A；≠ 实验字母 B；≠ 实验字母 Z；≠ 实验字母 BM；≠ 实验字母 BT；≠ 实验字母 BC；≠ 实验字母 BX
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 BY
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 BY；≠ 单字母假设-N；亦≠实验字母 BN
@@ -88,7 +88,7 @@
 # params.csrc_fee_handoff                写死 t_page
 # params.handling_fee_handoff            写死 s_page
 # params.exit_period_handoff             写死 h_page
-# params.by0_primary_demo                建议 invent_ignore_margin_call_grace_or_force_deadline  # 主报建议：假无限宽限/假忽略强平通知时限；禁与 invent_asof_leak_margin_call_grace 双挂争主表；BY1半泄露不得升格并列主报；待预检冻结
+# params.by0_primary_demo                写死冻结 invent_ignore_margin_call_grace_or_force_deadline  # 主报：假无限宽限/假忽略强平通知时限；禁与 invent_asof_leak_margin_call_grace 双挂争主表；BY1半泄露不得升格并列主报
 # params.by0_invent_ignore_margin_call_grace_or_force_deadline  写死 True
 # params.by1_asof_leak_margin_call_grace_only 写死 True
 # params.by2_pit_margin_call_grace       写死 True
@@ -131,7 +131,7 @@
 # params.universe_rule                   写死 sse_szse_margin_call_grace_deadline_check
 # params.fail_policy                     写死 skip
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
-# params.Y / G / N / Y2                  建议 0.02/0.01/0.05/0.015  # 待预检；params.Y≠实验字母BY；params.G≠实验字母BY；params.N≠实验字母BY；亦≠单字母实验A/B/Y/Z；禁 null/holdout/跑后改口
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # params.Y≠实验字母BY；params.G≠实验字母BY；params.N≠实验字母BY；亦≠单字母实验A/B/Y/Z；禁 null/holdout/跑后改口
 # params.date_start / date_end           写死 2019-01-01..2026-09-30
 # params.oos_split.*                     写死四日期；禁 holdout 反调
 # 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改宽限规则、时限、Y/G/N/Y2、主窗/oos、by0_primary_demo
@@ -145,7 +145,7 @@ margin_call_grace_honest = "pit_by_effective_date"
 margin_call_grace_scope = "grace_period_and_force_notice_deadline"
 margin_call_grace_over_policy = "apply_or_fail_missing_grace_rule"
 margin_call_grace_naive = "invent_ignore_margin_call_grace_or_force_deadline"
-by0_primary_demo = "invent_ignore_margin_call_grace_or_force_deadline"  # 单一主报建议·待预检冻结；禁与 invent_asof_leak_margin_call_grace 双挂
+by0_primary_demo = "invent_ignore_margin_call_grace_or_force_deadline"  # 单一主报·已冻结；禁与 invent_asof_leak_margin_call_grace 双挂
 by1_asof_leak_margin_call_grace_only = True
 by2_pit_margin_call_grace = True
 merge_with_BM_margin_call_open_ban = False
@@ -160,7 +160,7 @@ fail_policy = "skip"
 
 | 组 | 口径 | 说明 |
 |----|------|------|
-| BY0 天真 | `invent_ignore_margin_call_grace_or_force_deadline`（单一主报建议·待预检） | 发明假无限宽限/假忽略强平通知时限路径；禁与 invent_asof_leak_margin_call_grace 双挂 |
+| BY0 天真 | `invent_ignore_margin_call_grace_or_force_deadline`（单一主报·已冻结） | 发明假无限宽限/假忽略强平通知时限路径；禁与 invent_asof_leak_margin_call_grace 双挂 |
 | BY1 半泄露/混口径 | 全样本用 `asof_check_date` 当天更宽长宽限期或更松时限规则铺满历史 | 仅宽限/时限规则 asof 泄露；不升格并列主报 |
 | BY2 PIT | `margin_call_grace_honest=pit_by_effective_date` | 每个交易日按当时已生效追保宽限期与强平通知时限规则 PIT |
 
@@ -288,7 +288,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`BY`  
 - **组**：BY0 / BY1 / BY2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`margin_call_grace_honest=pit_by_effective_date`；`margin_call_grace_scope=grace_period_and_force_notice_deadline`；`margin_call_grace_over_policy=apply_or_fail_missing_grace_rule`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`corp_action_comp_handoff=bp_page`；`list_removal_stock_handoff=bq_page`；`short_borrow_fee_handoff=br_page`；`financing_rate_tier_handoff=bs_page`；`force_close_order_handoff=bt_page`；`daily_short_inventory_handoff=bu_page`；`short_recall_handoff=bv_page`；`credit_usage_handoff=bw_page`；`interest_start_daycount_handoff=bx_page`；`auction_vol_handoff=y_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`st_limit_handoff=x_page`；`stamp_tax_handoff=v_page`；`transfer_fee_handoff=u_page`；`csrc_fee_handoff=t_page`；`handling_fee_handoff=s_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_margin_call_grace_deadline_check`；`missing_grace_rule_policy=skip`；`day_freq_proxy=margin_call_grace_deadline_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 建议 `0.02/0.01/0.05/0.015`（待预检；params.Y≠实验字母 BY；params.G≠实验字母 BY；params.N≠实验字母 BY；亦≠单字母实验 A/B/Y/Z；禁 null/holdout/跑后改口）**；**`params.by0_primary_demo` 建议 `invent_ignore_margin_call_grace_or_force_deadline`（待预检；禁与 invent_asof_leak_margin_call_grace 双挂；BY1半泄露不得升格并列主报）**；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`margin_call_grace_honest=pit_by_effective_date`；`margin_call_grace_scope=grace_period_and_force_notice_deadline`；`margin_call_grace_over_policy=apply_or_fail_missing_grace_rule`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`corp_action_comp_handoff=bp_page`；`list_removal_stock_handoff=bq_page`；`short_borrow_fee_handoff=br_page`；`financing_rate_tier_handoff=bs_page`；`force_close_order_handoff=bt_page`；`daily_short_inventory_handoff=bu_page`；`short_recall_handoff=bv_page`；`credit_usage_handoff=bw_page`；`interest_start_daycount_handoff=bx_page`；`auction_vol_handoff=y_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`st_limit_handoff=x_page`；`stamp_tax_handoff=v_page`；`transfer_fee_handoff=u_page`；`csrc_fee_handoff=t_page`；`handling_fee_handoff=s_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_margin_call_grace_deadline_check`；`missing_grace_rule_policy=skip`；`day_freq_proxy=margin_call_grace_deadline_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 BY**；**params.G≠实验字母 BY**；**params.N≠实验字母 BY**；亦≠单字母实验 A/B/Y/Z；禁 null/holdout/跑后改口）；**`params.by0_primary_demo` 写死冻结 `invent_ignore_margin_call_grace_or_force_deadline`**（禁与 invent_asof_leak_margin_call_grace 双挂；BY1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -313,20 +313,20 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|----|
-| 状态 | **草稿 · 待预检**（结论栏空；**未标纸面齐**） |
+| 状态 | **草稿 · 预检有条件通过 · 两条已冻 · 待复检**（结论栏空；**未标纸面齐**） |
 | 标准件路径 | `假设-BY-追保宽限期强平通知时限误开.md` |
 | 清单序号 | 约 #82 |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**margin_call_grace_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015（待预检；params.Y≠实验字母 BY；params.G≠实验字母 BY；params.N≠实验字母 BY；亦≠单字母实验 A/B/Y/Z；禁 null/holdout/跑后改口）**；**by0_primary_demo 建议 invent_ignore_margin_call_grace_or_force_deadline（待预检；禁双挂 invent_asof_leak_margin_call_grace；BY1半泄露不得升格并列主报）**；锚点建议 margin_call_grace_honest=pit_by_effective_date / margin_call_grace_scope=grace_period_and_force_notice_deadline / margin_call_grace_over_policy=apply_or_fail_missing_grace_rule / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**margin_call_grace_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 BY；params.G≠实验字母 BY；params.N≠实验字母 BY；亦≠单字母实验 A/B/Y/Z；禁 null/holdout/跑后改口）**；**by0_primary_demo 写死冻结 invent_ignore_margin_call_grace_or_force_deadline（禁双挂 invent_asof_leak_margin_call_grace；BY1半泄露不得升格并列主报）**；锚点建议 margin_call_grace_honest=pit_by_effective_date / margin_call_grace_scope=grace_period_and_force_notice_deadline / margin_call_grace_over_policy=apply_or_fail_missing_grace_rule / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
 | 硬分列摘要 | **BY≠Y/BX/BW/BV/BU/BT/BS/BO/BR/BH/BM/BC**（及 ≠B/A/Z/BA–BX/K/AB/H/W/T/S/U/V/X）；**严禁复用假设-Y**；**尤其不改假设-Y/BM/BT/BC/BX**；**params.Y≠实验字母 BY** |
 | 结论栏 | 空 |
 
 ---
 
-## 待预检键清单
+## 待预检键清单（两条已冻 · 见下节）
 
-1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**待预检冻结**；**params.Y≠实验字母 BY**；**params.G≠实验字母 BY**；**params.N≠实验字母 BY**；禁 null/holdout）  
-2. `params.by0_primary_demo` = `invent_ignore_margin_call_grace_or_force_deadline`（**待预检冻结**；禁与 `invent_asof_leak_margin_call_grace` 双挂；BY1不升格主报）  
-3. 锚点建议：`margin_call_grace_honest=pit_by_effective_date` / `margin_call_grace_scope=grace_period_and_force_notice_deadline` / `margin_call_grace_over_policy=apply_or_fail_missing_grace_rule` / `margin_channel_start=2010-03-31` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`
+1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**已冻结**；**params.Y≠实验字母 BY**；**params.G≠实验字母 BY**；**params.N≠实验字母 BY**；禁 null/holdout）  
+2. `params.by0_primary_demo` = `invent_ignore_margin_call_grace_or_force_deadline`（**已冻结**；禁与 `invent_asof_leak_margin_call_grace` 双挂；BY1不升格主报）  
+3. 锚点保留：`margin_call_grace_honest=pit_by_effective_date` / `margin_call_grace_scope=grace_period_and_force_notice_deadline` / `margin_call_grace_over_policy=apply_or_fail_missing_grace_rule` / `margin_channel_start=2010-03-31` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`
 
 ---
 
@@ -345,8 +345,20 @@ params.diff_buckets = [
 
 ---
 
+## 风控预检补丁·冻结（两条已写死 · 2026-11-03）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 BY**；**`params.G` ≠ 实验字母 BY**；**`params.N` ≠ 实验字母 BY**；**`params.Y` ≠ 单字母实验 A/B/Y/Z**；尤重 **双字母 BY ≠ 单字母假设-Y**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.by0_primary_demo`**：**写死冻结** **`invent_ignore_margin_call_grace_or_force_deadline`**；禁与 **`invent_asof_leak_margin_call_grace`** 双挂争主表（只挂一个 primary）；**BY1 半泄露不得升格并列主报**。
+
+**宽限锚保留（已通写死）**：`params.margin_call_grace_honest=pit_by_effective_date`；`params.margin_call_grace_scope=grace_period_and_force_notice_deadline`；`params.margin_call_grace_over_policy=apply_or_fail_missing_grace_rule`；`params.margin_channel_start=2010-03-31`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`（及正文已有宽限/时限相关锚点；不改口）。
+
+**与 BA–BX/Y/BM/BT/BC/Z/AB/B/A/H/K/T/S/U/V/W/X 硬分列（保留）**：本页 = **追保宽限期/强平通知时限误开**；Y = **集合竞价量计入日线**（**尤其双字母 BY ≠ 单字母假设-Y**；**严禁复用假设-Y**）；BM = **追保通知后禁新开**（**尤其 BY≠BM**；禁新开 ≠ 宽限；禁复用 `invent_new_open_after_margin_call`；**尤其不改假设-BM**）；BT = **强制平仓顺序与范围**（**尤其 BY≠BT**；序范围 ≠ 时限；禁复用 `invent_force_close_best_order_or_min_scope`；**尤其不改假设-BT**）；BC = **维持担保强平闸门**（**尤其 BY≠BC**；闸门 ≠ 宽限；**尤其不改假设-BC**）；BX = **融资利息起息日/计息天数**（**尤其 BY≠BX**；起息 ≠ 追保时限；**尤其不改假设-BX**）；BW/BV/BU/BS/BO/BR/BH = 占用/召回/日库存/利率档/假零息/借券费/额度（**尤其 BY≠…**）；宽限期/时限 ≠ 集合量分母 ≠ 禁新开 ≠ 强平序 ≠ 闸门 ≠ 起息 ≠ 占用 ≠ 召回 ≠ 日库存 ≠ 利率档 ≠ 假零息 ≠ 借券费 ≠ 额度上限；**双字母 BY ≠ 单字母 A ≠ 单字母 B ≠ 单字母 Y ≠ 单字母 K ≠ 单字母 Z ≠ 单字母 T ≠ 单字母 S ≠ 单字母 U ≠ 单字母 V ≠ 单字母 W ≠ 单字母 X ≠ 双字母 BA ≠ … ≠ 双字母 BX ≠ 双字母 BM ≠ 双字母 BT ≠ 双字母 BC ≠ 双字母 BW ≠ 双字母 BV ≠ 双字母 BU ≠ 双字母 BS ≠ 双字母 BO ≠ 双字母 BR ≠ 双字母 BH ≠ 双字母 AB ≠ 双字母 H**；**params.Y ≠ 实验字母 BY**；**params.G ≠ 实验字母 BY**；**params.N ≠ 实验字母 BY**；禁止捆成「两融一张表=假无限宽限」；**尤其不改假设-Y**；**尤其不改假设-BM**；**尤其不改假设-BT**；**尤其不改假设-BC**；**尤其不改假设-BX**；**尤其不改假设-BW**；**尤其不改假设-BV**；**尤其不改假设-BU**；**尤其不改假设-BS**；**尤其不改假设-BO**；**尤其不改假设-BR**；**尤其不改假设-BH**；不改假设-B；不改假设-Z；不改假设-BA–BX；不改假设-A；不改假设-AB；不改假设-K；不改假设-H；不改假设-T；不改假设-S；不改假设-U；不改假设-V；不改假设-W；不改假设-X。
+
+**专节保留 · 双字母 BY ≠ 单字母假设-Y；且 ≠ 假设-BM / 假设-BT / 假设-BC / 假设-BX / 假设-BW / 假设-BV / 假设-BU / 假设-BS / 假设-BO / 假设-BR / 假设-BH（硬）**：正文专节保留不删；**禁止**覆盖/混读/改写 `假设-Y` / `假设-BM` / `假设-BT` / `假设-BC` / `假设-BX` / `假设-BW` / `假设-BV` / `假设-BU` / `假设-BS` / `假设-BO` / `假设-BR` / `假设-BH`。
+
 ## 变更
 
 | 日期 | 说明 |
 |------|------|
+| 2026-11-03 | 风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 BY**；**params.G≠实验字母 BY**；**params.N≠实验字母 BY**；亦≠单字母实验 A/B/Y/Z；尤重 **双字母 BY ≠ 单字母假设-Y**；禁 null/holdout/跑后改口）；② `params.by0_primary_demo=invent_ignore_margin_call_grace_or_force_deadline`（禁与 `invent_asof_leak_margin_call_grace` 双挂争主表；BY1半泄露不得升格并列主报）。宽限锚保留：`margin_call_grace_honest=pit_by_effective_date`；`margin_call_grace_scope=grace_period_and_force_notice_deadline`；`margin_call_grace_over_policy=apply_or_fail_missing_grace_rule`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。硬分列保留：**BY≠Y/BX/BW/BV/BU/BT/BS/BO/BR/BH/BM/BC**（及 ≠B/A/Z/BA–BX/AB/H/K/T/S/U/V/W/X）；**严禁复用假设-Y**；参考总管派令 / 风控预检有条件通过（`预检-假设BY-20261103.md`；草稿 `f7c73cf` #82）。未改 Y/Z/AA–BX 及其他已冻结补丁；**不改假设-Y**；**不改假设-BM**；**不改假设-BT**；**不改假设-BC**；**不改假设-BX**；**不改假设-BW**；**不改假设-BV**；**不改假设-BU**；**不改假设-BS**；**不改假设-BO**；**不改假设-BR**；**不改假设-BH**；不改假设-H；不改假设-A；不改假设-B；不改假设-K；不改假设-Z；不改假设-BA–BX；不改假设-AB；结论栏仍空；不开回测；不抢 A；**未标纸面齐** |
 | 2026-11-03 | 新建草稿·待预检（总管线 BX 补丁已交后写 BY；选题追保宽限期/强平通知时限误开；**BY≠Y/BX/BW/BV/BU/BT/BS/BO/BR/BH/BM/BC**；primary_demo 建议=`invent_ignore_margin_call_grace_or_force_deadline`；Y/G/N/Y2 待预检；不开回测；未改 BX/BM/BT/BC/Y 及其他已齐字母；**未标纸面齐**）。 |
