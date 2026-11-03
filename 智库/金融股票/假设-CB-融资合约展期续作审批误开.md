@@ -2,7 +2,7 @@
 
 更新：2026-11-04  
 来源：总管线 / CA 补丁已交（复检在途）、写下一纸面 CB；清单撞题规则另选正交执行缺口（**融资合约到期前展期/续作是否须审批、可否自动续作** ≠ 合约期限到期强制了结 ≠ 提前了结手续费/违约金 ≠ 维持担保比例分子分母公式 ≠ 股票池当时名单 ≠ 板上枯竭 ≠ 印花税/财务可见/除权旧 B 位）；选题自融资融券业务公开口径：融资合约有约定期限，到期前展期/续作通常须满足资格与审批（客户申请、券商审核、维持担保比例/授信/名单等前提）；不得默认「到期前永远自动免审展期、无限续作，或用核对日更宽免审/无限展期规则铺满历史」；本页**假定合约期限层（BF）/提前了结费层（BZ）/维持比公式层（CA）/开仓保证金（Z）/融资名单（BA）/授信占用（BW）诚实或显式旁路**，主病只在**融资合约展期/续作审批**；2010-03-31 前无此通道；**BF 正文主测「期限到期强制了结」**（到期日闸门），**BZ 正文主测「主动提前了结手续费/违约金」**，**CA 正文主测「维持担保比例分子分母口径」**（复检在途；`invent_wrong_maint_guarantee_ratio_num_den`；**严禁改 CA**），**B 正文主测历史实验 B 旧位（印花税时点+T+1 / 财务可见日 / 除权日复权价误判等；已迁 V/W 等）**（**双字母 CB ≠ 单字母假设-B；严禁复用 B 题面**），**C 正文主测「股票池当时名单/幸存者偏差」**（**双字母 CB ≠ 单字母假设-C；严禁复用 C 题面**），本页主测**融资合约展期/续作审批被误开**（`invent_always_allow_financing_rollover`）→ 自立；与假设 A（板上；**CB≠A**）/ H（退市整理）/ **B（历史清单实验 B 旧位；双字母 CB ≠ 单字母 B；严禁复用 B；CB≠B）** / **C（股票池当时名单；双字母 CB ≠ 单字母假设-C；严禁复用 C；CB≠C）** / **CA（维持比分子分母；复检在途；CB≠CA；公式 ≠ 展期审批；尤其不改假设-CA）** / Z（开仓保证金比例；**CB≠Z**）/ BA–BZ（两融族已冻/在途；**CB≠BA…BZ**；**尤其不改 BZ/BF**）/ **BF（合约期限到期强制了结；CB≠BF；到期了结 ≠ 到期前展期审批；尤其不改假设-BF）** / **BZ（提前了结手续费；CB≠BZ；提前了结费 ≠ 展期审批；尤其不改假设-BZ）** / BW/BV/BU/BS/BO/BR/BH/BX/BY/BC/BT/BD/BL 等**分列**；**新建实验 CB**  
-状态：**草稿 · 待预检**（结论栏空；禁止把「假无限展期 / 用核对日免审无限续作规则铺满」当诚实展期审批口径；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–CA 及其他 A/D–CA 已交正文与冻结补丁；尤其不改假设-B；尤其不改假设-C；尤其不改假设-CA；尤其不改假设-BF；尤其不改假设-BZ；尤其不改假设-A；不改假设-H；不改假设-K；不改假设-BA–BZ；不改假设-AB；勿再改 CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
+状态：**草稿 · 预检有条件通过 · 两条已冻 · 待复检**（结论栏空；禁止把「假无限展期 / 用核对日免审无限续作规则铺满」当诚实展期审批口径；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–CA 及其他 A/D–CA 已交正文与冻结补丁；尤其不改假设-B；尤其不改假设-C；尤其不改假设-CA；尤其不改假设-BF；尤其不改假设-BZ；尤其不改假设-A；不改假设-H；不改假设-K；不改假设-BA–BZ；不改假设-AB；勿再改 CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 CB（约 #85）。与假设 **B（历史实验 B 旧位）** **硬分列（专节强调）**：清单早期「实验 B」曾挂印花税时点+T+1 / 财务可见日 / 除权日复权价误判等，主病已迁 V/W 等页；本页**不重开**那些旧 B 题。**双字母 CB ≠ 单字母 B**；**严禁复用 B 题面**；**绝不可做成 B 旧位续篇**。与假设 **C（股票池当时名单/幸存者偏差）** **硬分列（专节强调）**：C = 成分/股票池 PIT 与幸存者偏差；本页 = 融资合约**到期前展期/续作审批**；幸存者偏差 ≠ 展期审批。**双字母 CB ≠ 单字母假设-C**；**严禁复用 C 题面**；**绝不可做成 C 续篇**。与假设 **CA（维持担保比例分子分母口径）** **硬分列（专节强调）**：CA = 维持比**怎么算**（分子分母计项；复检在途）；本页 = 合约到期前**能否展期/续作及审批**；公式 ≠ 展期审批；**禁止**把「分子分母已诚实（CA）」静默写成「展期审批已诚实」；**不占** CA 的 `invent_wrong_maint_guarantee_ratio_num_den`；**尤其不改假设-CA**。**CB≠CA**。与假设 **BF（两融合约期限到期强制了结）** **硬分列**：BF = **到期日**是否强制了结；本页 = **到期前**展期/续作是否须审批、可否自动续；到期了结 ≠ 展期审批；**尤其不改假设-BF**。**CB≠BF**。与假设 **BZ（融资提前了结手续费/违约金）** **硬分列**：BZ = 主动提前了结费；本页 = 展期/续作审批；提前了结费 ≠ 展期审批；**尤其不改假设-BZ**。**CB≠BZ**。与假设 **BY / BC / BT / BW / BO / BS / BX / BH / BR / BA–BN / BP/BQ/BB/BD/BL/BM/Z/K/AB** **硬分列**：宽限 / 闸门 / 强平序 / 占用 / 假零息 / 利率档 / 起息 / 额度 / 借券费 / 融资名单等 ≠ 展期审批；并**带过 CA≠A/C/BZ/BY…、BZ≠Z/BY/BX…、BY≠Y/BX…、BX≠X/BW…、BW≠W/BV…、BV≠V/BU/BT…、BU≠U/BB/BT/K…、BT≠T/BC/BS/BO/BR/BH、BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC…、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BM≠BC、BM≠BL、BL≠BC、BK≠K、BH≠H**。与假设 AN–CA **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/两融族等。**明确避开预检T旧题（证管费误抽）**。**严禁复用假设-B（旧位）**。**严禁复用假设-C（股票池当时名单）**。**严禁改写/续写假设-CA（维持比公式）**。**本页主结论不混。**
 
@@ -38,7 +38,7 @@
 ### 2.1 融资合约展期/续作审批 ≠ 到期强制了结（BF）；≠ 提前了结费（BZ）；≠ 维持比分子分母（CA）；≠ 股票池当时名单（C）；≠ 历史实验 B 旧位
 
 ```
-# 配置写死键（见 §7；草稿·待预检；建议值如下；终值待风控预检冻结）
+# 配置写死键（见 §7；两条已冻 · 待复检；终值如下）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 CB；≠ 单字母假设-B；≠ 单字母假设-C；≠ 双字母假设-CA；≠ 实验字母 BF；≠ 实验字母 BZ
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 CB
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 CB；≠ 单字母假设-N；亦≠实验字母 BN
@@ -91,7 +91,7 @@
 # params.csrc_fee_handoff                写死 t_page
 # params.handling_fee_handoff            写死 s_page
 # params.exit_period_handoff             写死 h_page
-# params.cb0_primary_demo                建议 invent_always_allow_financing_rollover  # 主报：假无限免审展期；禁与 invent_asof_leak_financing_rollover 双挂争主表；CB1半泄露不得升格并列主报
+# params.cb0_primary_demo                写死冻结 invent_always_allow_financing_rollover  # 主报：假无限免审展期；禁与 invent_asof_leak_financing_rollover 双挂争主表；CB1半泄露不得升格并列主报
 # params.cb0_invent_always_allow_financing_rollover  建议 True
 # params.cb1_asof_leak_financing_rollover_only 建议 True
 # params.cb2_pit_financing_rollover      建议 True
@@ -138,7 +138,7 @@
 # params.universe_rule                   写死 sse_szse_financing_rollover_check
 # params.fail_policy                     写死 skip
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
-# params.Y / G / N / Y2                  待预检建议 0.02/0.01/0.05/0.015  # params.Y≠实验字母CB；params.G≠实验字母CB；params.N≠实验字母CB；亦≠单字母实验B/C/A/Z；禁 null/holdout/跑后改口
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # params.Y≠实验字母CB；params.G≠实验字母CB；params.N≠实验字母CB；亦≠单字母实验B/C/A/Z；禁 null/holdout/跑后改口
 # params.date_start / date_end           写死 2019-01-01..2026-09-30
 # params.oos_split.*                     写死四日期；禁 holdout 反调
 # 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改展期审批口径、Y/G/N/Y2、主窗/oos、cb0_primary_demo
@@ -163,7 +163,7 @@ margin_channel_start = "2010-03-31"
 financing_rollover_honest = "pit_by_effective_date"
 financing_rollover_scope = "financing_contract_rollover_or_renewal_approval"
 financing_rollover_over_policy = "approve_or_reject_or_fail_missing_rollover_rule"
-cb0_primary_demo = "invent_always_allow_financing_rollover"  # 单一主报建议；禁与 invent_asof_leak_financing_rollover 双挂
+cb0_primary_demo = "invent_always_allow_financing_rollover"  # 单一主报·已冻结；禁与 invent_asof_leak_financing_rollover 双挂
 cb0_invent_always_allow_financing_rollover = True
 cb1_asof_leak_financing_rollover_only = True
 cb2_pit_financing_rollover = True
@@ -180,7 +180,7 @@ fail_policy = "skip"
 
 | 组 | 口径 | 说明 |
 |----|------|------|
-| CB0 天真 | `invent_always_allow_financing_rollover`（单一主报建议） | 发明假无限免审展期路径；禁与 invent_asof_leak_financing_rollover 双挂 |
+| CB0 天真 | `invent_always_allow_financing_rollover`（单一主报·已冻结） | 发明假无限免审展期路径；禁与 invent_asof_leak_financing_rollover 双挂 |
 | CB1 半泄露·混口径 | 全样本用 `asof_check_date` 当天更宽免审/无限展期规则铺满历史 | 仅展期审批 asof 泄露；不升格并列主报 |
 | CB2 PIT | `financing_rollover_honest=pit_by_effective_date` | 每个交易日按当时已生效融资合约展期/续作审批规则 PIT |
 
@@ -310,7 +310,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`CB`  
 - **组**：CB0 / CB1 / CB2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`financing_rollover_honest=pit_by_effective_date`；`financing_rollover_scope=financing_contract_rollover_or_renewal_approval`；`financing_rollover_over_policy=approve_or_reject_or_fail_missing_rollover_rule`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`corp_action_comp_handoff=bp_page`；`list_removal_stock_handoff=bq_page`；`short_borrow_fee_handoff=br_page`；`financing_rate_tier_handoff=bs_page`；`force_close_order_handoff=bt_page`；`daily_short_inventory_handoff=bu_page`；`short_recall_handoff=bv_page`；`credit_usage_handoff=bw_page`；`interest_start_daycount_handoff=bx_page`；`margin_call_grace_handoff=by_page`；`early_repay_fee_handoff=bz_page`；`maint_ratio_formula_handoff=ca_page`；`universe_pool_handoff=c_page`；`auction_vol_handoff=y_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`st_limit_handoff=x_page`；`stamp_tax_handoff=v_page`；`transfer_fee_handoff=u_page`；`csrc_fee_handoff=t_page`；`handling_fee_handoff=s_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_financing_rollover_check`；`missing_financing_rollover_policy=skip`；`day_freq_proxy=financing_rollover_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 待预检建议 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 CB**；**params.G≠实验字母 CB**；**params.N≠实验字母 CB**；亦≠单字母实验 B/C/A/Z；禁 null/holdout/跑后改口）；**`params.cb0_primary_demo` 建议 `invent_always_allow_financing_rollover`**（禁与 invent_asof_leak_financing_rollover 双挂；CB1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`financing_rollover_honest=pit_by_effective_date`；`financing_rollover_scope=financing_contract_rollover_or_renewal_approval`；`financing_rollover_over_policy=approve_or_reject_or_fail_missing_rollover_rule`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`corp_action_comp_handoff=bp_page`；`list_removal_stock_handoff=bq_page`；`short_borrow_fee_handoff=br_page`；`financing_rate_tier_handoff=bs_page`；`force_close_order_handoff=bt_page`；`daily_short_inventory_handoff=bu_page`；`short_recall_handoff=bv_page`；`credit_usage_handoff=bw_page`；`interest_start_daycount_handoff=bx_page`；`margin_call_grace_handoff=by_page`；`early_repay_fee_handoff=bz_page`；`maint_ratio_formula_handoff=ca_page`；`universe_pool_handoff=c_page`；`auction_vol_handoff=y_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`st_limit_handoff=x_page`；`stamp_tax_handoff=v_page`；`transfer_fee_handoff=u_page`；`csrc_fee_handoff=t_page`；`handling_fee_handoff=s_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_financing_rollover_check`；`missing_financing_rollover_policy=skip`；`day_freq_proxy=financing_rollover_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 CB**；**params.G≠实验字母 CB**；**params.N≠实验字母 CB**；亦≠单字母实验 B/C/A/Z；禁 null/holdout/跑后改口）；**`params.cb0_primary_demo` 写死冻结 `invent_always_allow_financing_rollover`**（禁与 invent_asof_leak_financing_rollover 双挂；CB1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -335,20 +335,20 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|----|
-| 状态 | **草稿 · 待预检**（结论栏空；**未标纸面齐**） |
+| 状态 | **草稿 · 预检有条件通过 · 两条已冻 · 待复检**（结论栏空；**未标纸面齐**） |
 | 标准件路径 | `假设-CB-融资合约展期续作审批误开.md` |
 | 清单序号 | 约 #85 |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**financing_rollover_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 待预检建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 CB；params.G≠实验字母 CB；params.N≠实验字母 CB；亦≠单字母实验 B/C/A/Z；禁 null/holdout/跑后改口）**；**cb0_primary_demo 建议 invent_always_allow_financing_rollover（禁双挂 invent_asof_leak_financing_rollover；CB1半泄露不得升格并列主报）**；锚点建议 financing_rollover_honest=pit_by_effective_date / financing_rollover_scope=financing_contract_rollover_or_renewal_approval / financing_rollover_over_policy=approve_or_reject_or_fail_missing_rollover_rule / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**financing_rollover_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 CB；params.G≠实验字母 CB；params.N≠实验字母 CB；亦≠单字母实验 B/C/A/Z；禁 null/holdout/跑后改口）**；**cb0_primary_demo 写死冻结 invent_always_allow_financing_rollover（禁双挂 invent_asof_leak_financing_rollover；CB1半泄露不得升格并列主报）**；锚点建议 financing_rollover_honest=pit_by_effective_date / financing_rollover_scope=financing_contract_rollover_or_renewal_approval / financing_rollover_over_policy=approve_or_reject_or_fail_missing_rollover_rule / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
 | 硬分列摘要 | **CB≠B/C/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BO/BR/BH/BF/BC/BD/BL/Z/A**（及 ≠Y/BA–CA/K/AB/H/W/T/S/U/V/X），**严禁复用假设-B / 假设-C**；**尤其不改假设-B/C/CA/BF/BZ**；**params.Y≠实验字母 CB** |
 | 结论栏 | 空 |
 
 ---
 
-## 待预检键清单
+## 待预检键清单（两条已冻 · 见下节）
 
-1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**待预检**；**params.Y≠实验字母 CB**；**params.G≠实验字母 CB**；**params.N≠实验字母 CB**；禁 null/holdout）  
-2. `params.cb0_primary_demo` = `invent_always_allow_financing_rollover`（**待预检**；禁与 `invent_asof_leak_financing_rollover` 双挂；CB1不升格主报）  
-3. 锚点（已通写死建议）：`financing_rollover_honest=pit_by_effective_date` / `financing_rollover_scope=financing_contract_rollover_or_renewal_approval` / `financing_rollover_over_policy=approve_or_reject_or_fail_missing_rollover_rule` / `margin_channel_start=2010-03-31` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`
+1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**已冻结**；**params.Y≠实验字母 CB**；**params.G≠实验字母 CB**；**params.N≠实验字母 CB**；禁 null/holdout）  
+2. `params.cb0_primary_demo` = `invent_always_allow_financing_rollover`（**已冻结**；禁与 `invent_asof_leak_financing_rollover` 双挂；CB1不升格主报）  
+3. 锚点（已通写死）：`financing_rollover_honest=pit_by_effective_date` / `financing_rollover_scope=financing_contract_rollover_or_renewal_approval` / `financing_rollover_over_policy=approve_or_reject_or_fail_missing_rollover_rule` / `margin_channel_start=2010-03-31` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`
 
 ---
 
@@ -367,8 +367,20 @@ params.diff_buckets = [
 
 ---
 
+## 风控预检补丁·冻结（两条已写死 · 2026-11-04）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 CB**；**`params.G` ≠ 实验字母 CB**；**`params.N` ≠ 实验字母 CB**；**`params.Y` ≠ 单字母实验 B/C/A/Z**；尤重**双字母 CB ≠ 单字母假设-B**；**双字母 CB ≠ 单字母假设-C**；**双字母 CB ≠ 双字母假设-CA**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.cb0_primary_demo`**：**写死冻结** **`invent_always_allow_financing_rollover`**；禁与 **`invent_asof_leak_financing_rollover`** 双挂争主表（只挂一个 primary）；**CB1 半泄露不得升格并列主报**。
+
+**融资合约展期/续作审批锚保留（已通写死）**：`params.financing_rollover_honest=pit_by_effective_date`；`params.financing_rollover_scope=financing_contract_rollover_or_renewal_approval`；`params.financing_rollover_over_policy=approve_or_reject_or_fail_missing_rollover_rule`；`params.margin_channel_start=2010-03-31`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`（及正文已有展期审批相关锚点；不改口）。
+
+**与 BA–CA/B/C/BF/BZ/AB/A/H/K/T/S/U/V/W/X 硬分列（保留）**：本页 = **融资合约展期/续作审批误开**；B = **历史实验 B 旧位**（**尤其双字母 CB ≠ 单字母假设-B**；**严禁复用假设-B**）；C = **股票池当时名单**（**尤其双字母 CB ≠ 单字母假设-C**；**严禁复用假设-C**）；CA = **维持担保比例分子分母口径**（**尤其 CB≠CA**；公式 ≠ 展期审批；禁复用 `invent_wrong_maint_guarantee_ratio_num_den`；**尤其不改假设-CA**）；BF = **合约期限到期强制了结**（**尤其 CB≠BF**；到期了结 ≠ 到期前展期审批；**尤其不改假设-BF**）；BZ = **融资提前了结手续费/违约金**（**尤其 CB≠BZ**；提前了结费 ≠ 展期审批；禁复用 `invent_ignore_early_repay_fee_or_penalty`；**尤其不改假设-BZ**）；BY/BC/BT/BW/BO/BS/BX/BH/BR/BD/BL = 宽限/闸门/序/占用/假零息/利率档/起息/额度/借券费/折算/提取（**尤其 CB≠…**）；展期审批 ≠ 历史B旧位 ≠ 股票池 ≠ 维持比公式 ≠ 到期了结 ≠ 提前了结费 ≠ 宽限 ≠ 闸门 ≠ 强平序 ≠ 占用 ≠ 假零息 ≠ 利率档 ≠ 起息 ≠ 额度 ≠ 借券费。**双字母 CB ≠ 单字母 B ≠ 单字母 C ≠ 单字母 A ≠ 单字母 Z ≠ 单字母 K ≠ 单字母 Y ≠ 单字母 T ≠ 单字母 S ≠ 单字母 U ≠ 单字母 V ≠ 单字母 W ≠ 单字母 X ≠ 双字母 CA ≠ 双字母 BA ≠ … ≠ 双字母 BZ ≠ 双字母 BF ≠ 双字母 BY ≠ 双字母 BC ≠ 双字母 BT ≠ 双字母 BD ≠ 双字母 BL ≠ 双字母 BW ≠ 双字母 BV ≠ 双字母 BU ≠ 双字母 BS ≠ 双字母 BO ≠ 双字母 BR ≠ 双字母 BH ≠ 双字母 BX ≠ 双字母 AB ≠ 双字母 H**；**params.Y ≠ 实验字母 CB**；**params.G ≠ 实验字母 CB**；**params.N ≠ 实验字母 CB**；禁止捆成「两融一张表=假无限展期」；**尤其不改假设-B**；**尤其不改假设-C**；**尤其不改假设-CA**；**尤其不改假设-BF**；**尤其不改假设-BZ**；不改假设-A；不改假设-Z；不改假设-BA–BZ；不改假设-AB；不改假设-K；不改假设-H；不改假设-T；不改假设-S；不改假设-U；不改假设-V；不改假设-W；不改假设-X；不改假设-Y。
+
+**专节保留 · 双字母 CB ≠ 单字母假设-B；且 ≠ 单字母假设-C；且 ≠ 假设-CA / 假设-BF / 假设-BZ（硬）**：正文专节保留不删；**禁止**覆盖/混读/改写 `假设-B` / `假设-C` / `假设-CA` / `假设-BF` / `假设-BZ`。
+
 ## 变更
 
 | 日期 | 说明 |
 |------|------|
+| 2026-11-04 | 风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CB**；**params.G≠实验字母 CB**；**params.N≠实验字母 CB**；亦≠单字母实验 B/C/A/Z；尤重**双字母 CB ≠ 单字母假设-B**；**双字母 CB ≠ 单字母假设-C**；**双字母 CB ≠ 双字母假设-CA**；禁 null/holdout/跑后改口）；② `params.cb0_primary_demo=invent_always_allow_financing_rollover`（禁与 `invent_asof_leak_financing_rollover` 双挂争主表；CB1半泄露不得升格并列主报）。展期审批锚保留：`financing_rollover_honest=pit_by_effective_date`；`financing_rollover_scope=financing_contract_rollover_or_renewal_approval`；`financing_rollover_over_policy=approve_or_reject_or_fail_missing_rollover_rule`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。硬分列保留：**CB≠B/C/CA/BF/BZ/BY/BX/BW/BV/BU/BT/BS/BO/BR/BH/BC/BD/BL/Z…**（及 ≠A/Y/BA–CA/AB/H/K/T/S/U/V/W/X）；**严禁复用假设-B / 假设-C**；参考总管派令 / 风控预检有条件通过（`预检-假设CB-20261104.md`；草稿 `15a6b38` #85）。未改 Y/Z/AA–CA 及其他已冻结补丁；**不改假设-B**；**不改假设-C**；**不改假设-CA**；**不改假设-BF**；**不改假设-BZ**；不改假设-A；不改假设-H；不改假设-K；不改假设-Y；不改假设-BA–BZ；不改假设-AB；结论栏仍空；不开回测；不抢 A；**未标纸面齐** |
 | 2026-11-04 | 新建草稿·待预检（总管线：CA 补丁已交后写 CB；选题融资合约展期/续作审批误开；**CB≠B/C/CA/BF/BZ/BY/BX/BW/BV/BU/BT/BS/BO/BR/BH…**；primary_demo 建议=`invent_always_allow_financing_rollover`；Y/G/N/Y2 待预检；不开回测；未改 B/C/CA/BF/BZ 及其他已齐字母；**未标纸面齐**）。 |
