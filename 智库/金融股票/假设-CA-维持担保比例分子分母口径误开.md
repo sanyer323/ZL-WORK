@@ -2,7 +2,7 @@
 
 更新：2026-11-04  
 来源：总管线 / BZ 补丁已交（复检在途）、写下一纸面 CA（双字母进 C 段）；清单撞题规则另选正交执行缺口（**维持担保比例怎么算：分子/分母计哪些项** ≠ 强平闸门 on/off ≠ 追保宽限期/强平通知时限 ≠ 强平序与范围 ≠ 开仓保证金比例 ≠ 担保品折算率本身 ≠ 担保品提取线 ≠ 融资提前了结手续费/违约金 ≠ 股票池当时名单/幸存者偏差 ≠ 板上枯竭）；选题自交易所融资融券细则公开口径：维持担保比例 =（现金 + 信用证券账户内证券市值总和）/（融资买入金额 + 融券卖出证券数量×市价 + 利息及费用总和）一类公式；分子是否含未折算市值/非可充抵证券、分母是否漏计应计利息/融券市值重估/费用，按**施行日/生效日** PIT；不得默认「永远用更肥分子或更瘦分母、或永远按核对日更宽公式铺满历史」；本页**假定强平闸门层（BC）/追保宽限层（BY）/强平序层（BT）/开仓比例层（Z）/折算率层（BD）/可充抵名单层（BG）/提取线层（BL）诚实或显式旁路**，主病只在**维持担保比例分子分母计项口径**；2010-03-31 前无此通道；**BC 正文主测「低维持强平闸门 on/off」**（`invent_no_force_close`），**BY 正文主测「追保宽限期/强平通知时限」**，**BT 正文主测「强平序与范围」**，**Z 正文主测「开仓保证金比例」**，**BD 正文主测「折算率全1」**，**C 正文主测「股票池当时名单/幸存者偏差」**（清单实验 C；**双字母 CA ≠ 单字母假设-C；严禁复用 C 题面**），**A 正文主测「涨停可成交/板上枯竭」**（**双字母 CA ≠ 单字母假设-A；严禁复用 A 题面；绝不可做成 A 板上续篇**），**BZ 正文主测「融资提前了结手续费/违约金」**（复检在途；**严禁改 BZ**），本页主测**维持担保比例分子分母口径被误开**（`invent_wrong_maint_guarantee_ratio_num_den`）→ 自立；与假设 A（板上可成交/枯竭；**CA≠A**）/ H（退市整理）/ B（历史清单「实验 B」旧位；**双字母 CA ≠ 单字母 B**）/ **C（股票池当时名单；双字母 CA ≠ 单字母假设-C；严禁复用 C；CA≠C）** / Z（开仓融资/融券保证金比例；**CA≠Z**）/ BA–BZ（两融族已冻/在途；**CA≠BA…BZ**；**尤其不改 BZ 正文**）/ **BC（维持线强平闸门；CA≠BC；闸门 ≠ 分子分母公式；尤其不改假设-BC）** / **BY（追保宽限期；CA≠BY；时限 ≠ 公式；尤其不改假设-BY）** / **BT（强平序；CA≠BT；序范围 ≠ 公式；尤其不改假设-BT）** / **BD（折算率；CA≠BD；折算率数值 ≠ 分子是否按折算后计；尤其不改假设-BD）** / **BL（担保品提取；CA≠BL；提取线 ≠ 维持比公式；尤其不改假设-BL）** / BW/BV/BU/BS/BO/BR/BH/BX 等**分列**；**新建实验 CA**  
-状态：**草稿 · 待预检**（结论栏空；禁止把「假高维持担保比例 / 用核对日更宽分子或更瘦分母公式铺满」当诚实维持比口径；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BZ 及其他 A/D–BZ 已交正文与冻结补丁；尤其不改假设-A；尤其不改假设-C（清单实验 C）；尤其不改假设-BZ；尤其不改假设-BC；尤其不改假设-BY；尤其不改假设-BT；尤其不改假设-BD；尤其不改假设-BL；尤其不改假设-Z；不改假设-H；不改假设-B；不改假设-K；不改假设-BA–BZ；不改假设-AB；勿再改 BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
+状态：**草稿 · 预检有条件通过 · 两条已冻 · 待复检**（结论栏空；禁止把「假高维持担保比例 / 用核对日更宽分子或更瘦分母公式铺满」当诚实维持比口径；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BZ 及其他 A/D–BZ 已交正文与冻结补丁；尤其不改假设-A；尤其不改假设-C（清单实验 C）；尤其不改假设-BZ；尤其不改假设-BC；尤其不改假设-BY；尤其不改假设-BT；尤其不改假设-BD；尤其不改假设-BL；尤其不改假设-Z；不改假设-H；不改假设-B；不改假设-K；不改假设-BA–BZ；不改假设-AB；勿再改 BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 CA（约 #84）。与假设 **A（涨停可成交性）** **硬分列（专节强调）**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **信用账户维持担保比例分子分母计项**；板上枯竭 ≠ 维持比公式。**双字母 CA ≠ 单字母假设-A**；**严禁复用 A 题面**；**绝不可做成 A 板上续篇**。与假设 **C（股票池当时名单/幸存者偏差）** **硬分列（专节强调）**：C = 成分/股票池 PIT 与幸存者偏差；本页 = 维持担保比例**怎么算**；幸存者偏差 ≠ 分子分母口径。**双字母 CA ≠ 单字母假设-C**；**严禁复用 C 题面**；**绝不可做成 C 续篇**。与假设 **B（历史实验 B 旧位）** **硬分列**：清单早期「实验 B」曾挂印花税时点+T+1 / 财务可见日 / 除权日复权价误判等，主病已迁 V/W 等页；本页**不重开**那些旧 B 题。**双字母 CA ≠ 单字母 B**。与假设 **BC（维持担保比例强制平仓闸门）** **硬分列**：BC = 低维持线强平闸门 **on/off**（是否检查、是否强平）；本页 = 维持担保比例**分子分母计哪些项**；闸门 ≠ 公式；**禁止**把「闸门已诚实（BC）」静默写成「分子分母已诚实」；**不占** BC 的 primary_demo；**尤其不改假设-BC**。**CA≠BC**。与假设 **BY（追保宽限期/强平通知时限）** **硬分列**：BY = 追保通知后宽限几天；本页 = 维持比怎么算；时限 ≠ 公式；**尤其不改假设-BY**。**CA≠BY**。与假设 **BT（强制平仓顺序与范围）** **硬分列**：BT = 强平已触发后平哪条腿、平多少；本页 = 触发前维持比计项；序范围 ≠ 公式；**尤其不改假设-BT**。**CA≠BT**。与假设 **Z（开仓融资/融券保证金比例）** **硬分列**：Z = **新开**时保证金比例；本页 = **持仓存续期**维持担保比例公式；开仓比例 ≠ 维持比分子分母。**CA≠Z**。与假设 **BD（担保品折算率）** **硬分列**：BD = 折算率是否假全 1；本页 = 分子是否按**当时规则**用折算后市值、分母是否漏项（消费 BD 诚实折算或显式旁路）；折算率数值 ≠ 公式计项；**尤其不改假设-BD**。**CA≠BD**。与假设 **BL（担保品提取转出限制）** **硬分列**：BL = 高维持线能否提取；本页 = 维持比本身怎么算；提取线 ≠ 公式；**尤其不改假设-BL**。**CA≠BL**。与假设 **BZ（融资提前了结手续费/违约金）** **硬分列**：BZ = 主动提前了结费（复检在途）；本页 = 维持比分子分母；提前了结费 ≠ 公式；**尤其不改假设-BZ**。**CA≠BZ**。与假设 **BW / BV / BU / BS / BO / BR / BH / BX / BM / BF / BB / BA / BG / K / AB** **硬分列**：占用 / 召回 / 日库存 / 利率档 / 假零息 / 借券费 / 额度上限 / 起息日基数 / 追保禁开 / 合约期限 / 转融暂停 / 融资名单 / 可充抵 / 融券名单 / 空头价限 ≠ 维持比分子分母；并**带过 BZ≠Z/BY/BX/BW/BV/BU/BT/BS/BO/BR/BH…、BY≠Y/BX/BW/BV/BU/BT/BS/BO/BR/BH/BM/BC…、BX≠X/BW…、BW≠W/BV…、BV≠V/BU/BT…、BU≠U/BB/BT/K…、BT≠T/BC/BS/BO/BR/BH、BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC…、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BM≠BC、BM≠BL、BL≠BC、BK≠K、BH≠H**。与假设 AN–BZ **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/两融族等。**明确避开预检T旧题（证管费误抽）**。**严禁复用假设-A（板上枯竭）**。**严禁复用假设-C（股票池当时名单）**。**本页主结论不混。**
 
@@ -42,7 +42,7 @@
 ### 2.1 维持担保比例分子分母口径 ≠ 强平闸门（BC）；≠ 追保宽限期（BY）；≠ 强平序（BT）；≠ 开仓保证金比例（Z）；≠ 折算率数值（BD）；≠ 提取线（BL）；≠ 提前了结费（BZ）；≠ 股票池当时名单（C）；≠ 板上枯竭（A）
 
 ```
-# 配置写死键（见 §7；草稿·待预检；建议值如下）
+# 配置写死键（见 §7；两条已冻 · 待复检；终值如下）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 CA；≠ 单字母假设-A；≠ 单字母假设-C；≠ 实验字母 B；≠ 实验字母 Z；≠ 实验字母 BC；≠ 实验字母 BY；≠ 实验字母 BT；≠ 实验字母 BZ
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 CA
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 CA；≠ 单字母假设-N；亦≠实验字母 BN
@@ -94,7 +94,7 @@
 # params.csrc_fee_handoff                写死 t_page
 # params.handling_fee_handoff            写死 s_page
 # params.exit_period_handoff             写死 h_page
-# params.ca0_primary_demo                建议 invent_wrong_maint_guarantee_ratio_num_den  # 主报：假高维持比（更肥分子/更瘦分母）；禁与 invent_asof_leak_maint_ratio_formula 双挂争主表；CA1半泄露不得升格并列主报；终值待预检冻结
+# params.ca0_primary_demo                写死冻结 invent_wrong_maint_guarantee_ratio_num_den  # 主报：假高维持比（更肥分子/更瘦分母）；禁与 invent_asof_leak_maint_ratio_formula 双挂争主表；CA1半泄露不得升格并列主报
 # params.ca0_invent_wrong_maint_guarantee_ratio_num_den  建议 True
 # params.ca1_asof_leak_maint_ratio_formula_only 建议 True
 # params.ca2_pit_maint_ratio_formula     建议 True
@@ -140,7 +140,7 @@
 # params.universe_rule                   写死 sse_szse_maint_ratio_formula_check
 # params.fail_policy                     写死 skip
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
-# params.Y / G / N / Y2                  建议 0.02/0.01/0.05/0.015  # params.Y≠实验字母CA；params.G≠实验字母CA；params.N≠实验字母CA；亦≠单字母实验A/C/B/Z；禁 null/holdout/跑后改口；终值待预检冻结
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # params.Y≠实验字母CA；params.G≠实验字母CA；params.N≠实验字母CA；亦≠单字母实验A/C/B/Z；禁 null/holdout/跑后改口
 # params.date_start / date_end           写死 2019-01-01..2026-09-30
 # params.oos_split.*                     写死四日期；禁 holdout 反调
 # 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改分子分母公式、Y/G/N/Y2、主窗/oos、ca0_primary_demo
@@ -165,7 +165,7 @@ margin_channel_start = "2010-03-31"
 maint_ratio_formula_honest = "pit_by_effective_date"
 maint_ratio_formula_scope = "maint_ratio_num_den_composition"
 maint_ratio_formula_over_policy = "compute_or_fail_missing_formula_rule"
-ca0_primary_demo = "invent_wrong_maint_guarantee_ratio_num_den"  # 建议；待预检冻结；禁与 invent_asof_leak_maint_ratio_formula 双挂
+ca0_primary_demo = "invent_wrong_maint_guarantee_ratio_num_den"  # 单一主报·已冻结；禁与 invent_asof_leak_maint_ratio_formula 双挂
 ca0_invent_wrong_maint_guarantee_ratio_num_den = True
 ca1_asof_leak_maint_ratio_formula_only = True
 ca2_pit_maint_ratio_formula = True
@@ -185,7 +185,7 @@ fail_policy = "skip"
 
 | 组 | 口径 | 说明 |
 |----|------|------|
-| CA0 天真 | `invent_wrong_maint_guarantee_ratio_num_den`（单一主报建议） | 发明假高维持比（更肥分子/更瘦分母）路径；禁与 invent_asof_leak_maint_ratio_formula 双挂 |
+| CA0 天真 | `invent_wrong_maint_guarantee_ratio_num_den`（单一主报·已冻结） | 发明假高维持比（更肥分子/更瘦分母）路径；禁与 invent_asof_leak_maint_ratio_formula 双挂 |
 | CA1 半泄露·混口径 | 全样本用 `asof_check_date` 当天更宽分子或更瘦分母公式铺满历史 | 仅维持比公式 asof 泄露；不升格并列主报 |
 | CA2 PIT | `maint_ratio_formula_honest=pit_by_effective_date` | 每个交易日按当时已生效维持担保比例分子分母计项规则 PIT |
 
@@ -317,7 +317,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`CA`  
 - **组**：CA0 / CA1 / CA2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`maint_ratio_formula_honest=pit_by_effective_date`；`maint_ratio_formula_scope=maint_ratio_num_den_composition`；`maint_ratio_formula_over_policy=compute_or_fail_missing_formula_rule`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`corp_action_comp_handoff=bp_page`；`list_removal_stock_handoff=bq_page`；`short_borrow_fee_handoff=br_page`；`financing_rate_tier_handoff=bs_page`；`force_close_order_handoff=bt_page`；`daily_short_inventory_handoff=bu_page`；`short_recall_handoff=bv_page`；`credit_usage_handoff=bw_page`；`interest_start_daycount_handoff=bx_page`；`margin_call_grace_handoff=by_page`；`early_repay_fee_handoff=bz_page`；`universe_pool_handoff=c_page`；`auction_vol_handoff=y_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`st_limit_handoff=x_page`；`stamp_tax_handoff=v_page`；`transfer_fee_handoff=u_page`；`csrc_fee_handoff=t_page`；`handling_fee_handoff=s_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_maint_ratio_formula_check`；`missing_maint_ratio_formula_policy=skip`；`day_freq_proxy=maint_ratio_formula_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 建议 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 CA**；**params.G≠实验字母 CA**；**params.N≠实验字母 CA**；亦≠单字母实验 A/C/B/Z；禁 null/holdout/跑后改口；终值待预检冻结）；**`params.ca0_primary_demo` 建议 `invent_wrong_maint_guarantee_ratio_num_den`**（禁与 invent_asof_leak_maint_ratio_formula 双挂；CA1半泄露不得升格并列主报；终值待预检冻结）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`maint_ratio_formula_honest=pit_by_effective_date`；`maint_ratio_formula_scope=maint_ratio_num_den_composition`；`maint_ratio_formula_over_policy=compute_or_fail_missing_formula_rule`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`corp_action_comp_handoff=bp_page`；`list_removal_stock_handoff=bq_page`；`short_borrow_fee_handoff=br_page`；`financing_rate_tier_handoff=bs_page`；`force_close_order_handoff=bt_page`；`daily_short_inventory_handoff=bu_page`；`short_recall_handoff=bv_page`；`credit_usage_handoff=bw_page`；`interest_start_daycount_handoff=bx_page`；`margin_call_grace_handoff=by_page`；`early_repay_fee_handoff=bz_page`；`universe_pool_handoff=c_page`；`auction_vol_handoff=y_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`st_limit_handoff=x_page`；`stamp_tax_handoff=v_page`；`transfer_fee_handoff=u_page`；`csrc_fee_handoff=t_page`；`handling_fee_handoff=s_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_maint_ratio_formula_check`；`missing_maint_ratio_formula_policy=skip`；`day_freq_proxy=maint_ratio_formula_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 CA**；**params.G≠实验字母 CA**；**params.N≠实验字母 CA**；亦≠单字母实验 A/C/B/Z；禁 null/holdout/跑后改口）；**`params.ca0_primary_demo` 写死冻结 `invent_wrong_maint_guarantee_ratio_num_den`**（禁与 invent_asof_leak_maint_ratio_formula 双挂；CA1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -342,20 +342,20 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|----|
-| 状态 | **草稿 · 待预检**（结论栏空；**未标纸面齐**） |
+| 状态 | **草稿 · 预检有条件通过 · 两条已冻 · 待复检**（结论栏空；**未标纸面齐**） |
 | 标准件路径 | `假设-CA-维持担保比例分子分母口径误开.md` |
 | 清单序号 | 约 #84 |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**maint_ratio_formula_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 CA；params.G≠实验字母 CA；params.N≠实验字母 CA；亦≠单字母实验 A/C/B/Z；禁 null/holdout；终值待预检冻结）**；**ca0_primary_demo 建议 invent_wrong_maint_guarantee_ratio_num_den（禁双挂 invent_asof_leak_maint_ratio_formula；CA1半泄露不得升格并列主报；终值待预检冻结）**；锚点建议 maint_ratio_formula_honest=pit_by_effective_date / maint_ratio_formula_scope=maint_ratio_num_den_composition / maint_ratio_formula_over_policy=compute_or_fail_missing_formula_rule / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**maint_ratio_formula_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 CA；params.G≠实验字母 CA；params.N≠实验字母 CA；亦≠单字母实验 A/C/B/Z；禁 null/holdout/跑后改口）**；**ca0_primary_demo 写死冻结 invent_wrong_maint_guarantee_ratio_num_den（禁双挂 invent_asof_leak_maint_ratio_formula；CA1半泄露不得升格并列主报）**；锚点建议 maint_ratio_formula_honest=pit_by_effective_date / maint_ratio_formula_scope=maint_ratio_num_den_composition / maint_ratio_formula_over_policy=compute_or_fail_missing_formula_rule / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
 | 硬分列摘要 | **CA≠A/C/BZ/BY/BX/BW/BV/BU/BT/BS/BO/BR/BH/BC/BD/BL/Z**（及 ≠B/Y/BA–BZ/K/AB/H/W/T/S/U/V/X），**严禁复用假设-A / 假设-C**；**尤其不改假设-A/C/BZ/BC/BY/BT/BD/BL/Z**；**params.Y≠实验字母 CA** |
 | 结论栏 | 空 |
 
 ---
 
-## 待预检键清单
+## 待预检键清单（两条已冻 · 见下节）
 
-1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**待预检冻结**；**params.Y≠实验字母 CA**；**params.G≠实验字母 CA**；**params.N≠实验字母 CA**；禁 null/holdout）  
-2. `params.ca0_primary_demo` = `invent_wrong_maint_guarantee_ratio_num_den`（**待预检冻结**；禁与 `invent_asof_leak_maint_ratio_formula` 双挂；CA1不升格主报）  
-3. 锚点建议：`maint_ratio_formula_honest=pit_by_effective_date` / `maint_ratio_formula_scope=maint_ratio_num_den_composition` / `maint_ratio_formula_over_policy=compute_or_fail_missing_formula_rule` / `margin_channel_start=2010-03-31` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`
+1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**已冻结**；**params.Y≠实验字母 CA**；**params.G≠实验字母 CA**；**params.N≠实验字母 CA**；禁 null/holdout）  
+2. `params.ca0_primary_demo` = `invent_wrong_maint_guarantee_ratio_num_den`（**已冻结**；禁与 `invent_asof_leak_maint_ratio_formula` 双挂；CA1不升格主报）  
+3. 锚点（已通写死）：`maint_ratio_formula_honest=pit_by_effective_date` / `maint_ratio_formula_scope=maint_ratio_num_den_composition` / `maint_ratio_formula_over_policy=compute_or_fail_missing_formula_rule` / `margin_channel_start=2010-03-31` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`
 
 ---
 
@@ -378,8 +378,20 @@ params.diff_buckets = [
 
 ---
 
+## 风控预检补丁·冻结（两条已写死 · 2026-11-04）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 CA**；**`params.G` ≠ 实验字母 CA**；**`params.N` ≠ 实验字母 CA**；**`params.Y` ≠ 单字母实验 A/C/B/Z**；尤重**双字母 CA ≠ 单字母假设-A**；**双字母 CA ≠ 单字母假设-C**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.ca0_primary_demo`**：**写死冻结** **`invent_wrong_maint_guarantee_ratio_num_den`**；禁与 **`invent_asof_leak_maint_ratio_formula`** 双挂争主表（只挂一个 primary）；**CA1 半泄露不得升格并列主报**。
+
+**维持担保比例分子分母锚保留（已通写死）**：`params.maint_ratio_formula_honest=pit_by_effective_date`；`params.maint_ratio_formula_scope=maint_ratio_num_den_composition`；`params.maint_ratio_formula_over_policy=compute_or_fail_missing_formula_rule`；`params.margin_channel_start=2010-03-31`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`（及正文已有维持比分子分母相关锚点；不改口）。
+
+**与 BA–BZ/A/C/Z/AB/B/H/K/T/S/U/V/W/X 硬分列（保留）**：本页 = **维持担保比例分子分母口径误开**；A = **板上枯竭**（**尤其双字母 CA ≠ 单字母假设-A**；**严禁复用假设-A**）；C = **股票池当时名单**（**尤其双字母 CA ≠ 单字母假设-C**；**严禁复用假设-C**）；BC = **维持担保强平闸门**（**尤其 CA≠BC**；闸门 on/off ≠ 分子分母公式；禁复用 `invent_no_force_close`；**尤其不改假设-BC**）；BY = **追保宽限期/强平通知时限**（**尤其 CA≠BY**；时限 ≠ 公式；禁复用 `invent_ignore_margin_call_grace_or_force_deadline`；**尤其不改假设-BY**）；BT = **强制平仓顺序与范围**（**尤其 CA≠BT**；序范围 ≠ 公式；**尤其不改假设-BT**）；Z = **开仓保证金比例**（**尤其 CA≠Z**；**尤其不改假设-Z**）；BD = **担保品折算率**（**尤其 CA≠BD**；折算率数值 ≠ 分子是否按折算后计；**尤其不改假设-BD**）；BL = **担保品提取转出限制**（**尤其 CA≠BL**；提取线 ≠ 公式；**尤其不改假设-BL**）；BZ = **融资提前了结手续费/违约金**（**尤其 CA≠BZ**；提前了结费 ≠ 公式；禁复用 `invent_ignore_early_repay_fee_or_penalty`；**尤其不改假设-BZ**）；BW/BV/BU/BS/BO/BR/BH/BX = 占用/召回/日库存/利率档/假零息/借券费/额度/起息（**尤其 CA≠…**）；分子分母公式 ≠ 板上枯竭 ≠ 股票池 ≠ 强平闸门 ≠ 追保宽限 ≠ 强平序 ≠ 开仓比例 ≠ 折算率 ≠ 提取线 ≠ 提前了结费 ≠ 占用 ≠ 召回 ≠ 日库存 ≠ 利率档 ≠ 假零息 ≠ 借券费 ≠ 额度 ≠ 起息。**双字母 CA ≠ 单字母 A ≠ 单字母 C ≠ 单字母 B ≠ 单字母 Z ≠ 单字母 K ≠ 单字母 Y ≠ 单字母 T ≠ 单字母 S ≠ 单字母 U ≠ 单字母 V ≠ 单字母 W ≠ 单字母 X ≠ 双字母 BA ≠ … ≠ 双字母 BZ ≠ 双字母 BC ≠ 双字母 BY ≠ 双字母 BT ≠ 双字母 BD ≠ 双字母 BL ≠ 双字母 BW ≠ 双字母 BV ≠ 双字母 BU ≠ 双字母 BS ≠ 双字母 BO ≠ 双字母 BR ≠ 双字母 BH ≠ 双字母 BX ≠ 双字母 AB ≠ 双字母 H**；**params.Y ≠ 实验字母 CA**；**params.G ≠ 实验字母 CA**；**params.N ≠ 实验字母 CA**；禁止捆成「两融一张表=假高维持比」；**尤其不改假设-A**；**尤其不改假设-C**；**尤其不改假设-BZ**；**尤其不改假设-BC**；**尤其不改假设-BY**；**尤其不改假设-BT**；**尤其不改假设-BD**；**尤其不改假设-BL**；**尤其不改假设-Z**；不改假设-B；不改假设-BA–BZ；不改假设-AB；不改假设-K；不改假设-H；不改假设-T；不改假设-S；不改假设-U；不改假设-V；不改假设-W；不改假设-X；不改假设-Y。
+
+**专节保留 · 双字母 CA ≠ 单字母假设-A；且 ≠ 单字母假设-C；且 ≠ 假设-BC / 假设-BY / 假设-BT / 假设-Z / 假设-BD / 假设-BL / 假设-BZ（硬）**：正文专节保留不删；**禁止**覆盖/混读/改写 `假设-A` / `假设-C` / `假设-BC` / `假设-BY` / `假设-BT` / `假设-Z` / `假设-BD` / `假设-BL` / `假设-BZ`。
+
 ## 变更
 
 | 日期 | 说明 |
 |------|------|
+| 2026-11-04 | 风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CA**；**params.G≠实验字母 CA**；**params.N≠实验字母 CA**；亦≠单字母实验 A/C/B/Z；尤重**双字母 CA ≠ 单字母假设-A**；**双字母 CA ≠ 单字母假设-C**；禁 null/holdout/跑后改口）；② `params.ca0_primary_demo=invent_wrong_maint_guarantee_ratio_num_den`（禁与 `invent_asof_leak_maint_ratio_formula` 双挂争主表；CA1半泄露不得升格并列主报）。维持比分子分母锚保留：`maint_ratio_formula_honest=pit_by_effective_date`；`maint_ratio_formula_scope=maint_ratio_num_den_composition`；`maint_ratio_formula_over_policy=compute_or_fail_missing_formula_rule`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。硬分列保留：**CA≠A/C/BZ/BY/BX/BW/BV/BU/BT/BS/BO/BR/BH/BC/BD/BL/Z**（及 ≠B/Y/BA–BZ/AB/H/K/T/S/U/V/W/X）；**严禁复用假设-A / 假设-C**；参考总管派令 / 风控预检有条件通过（`预检-假设CA-20261104.md`；草稿 `9b302c3` #84）。未改 Y/Z/AA–BZ 及其他已冻结补丁；**不改假设-A**；**不改假设-C**；**不改假设-BZ**；**不改假设-BC**；**不改假设-BY**；**不改假设-BT**；**不改假设-BD**；**不改假设-BL**；**不改假设-Z**；不改假设-H；不改假设-B；不改假设-K；不改假设-Y；不改假设-BA–BZ；不改假设-AB；结论栏仍空；不开回测；不抢 A；**未标纸面齐** |
 | 2026-11-04 | 新建草稿·待预检（总管线：BZ 补丁已交后写 CA，双字母进 C 段；选题维持担保比例分子分母口径误开；**CA≠A/C/BZ/BY/BX/BW/BV/BU/BT/BS/BO/BR/BH/BC/BD/BL/Z**；primary_demo 建议=`invent_wrong_maint_guarantee_ratio_num_den`；Y/G/N/Y2 待预检；不开回测；未改 A/C/BZ/BC/BY/BT/BD/BL/Z 及其他已齐字母；**未标纸面齐**）。 |
