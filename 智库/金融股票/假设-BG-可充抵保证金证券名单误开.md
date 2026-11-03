@@ -2,7 +2,7 @@
 
 更新：2026-11-03  
 来源：总管线 / BF 补丁已收、写下一纸面 BG；清单撞题规则另选正交执行缺口（**可充抵保证金证券名单** ≠ 开仓保证金比例 ≠ 融资买入标的名单 ≠ 转融券券源 ≠ 维持担保比例强制平仓 ≠ 担保品折算率 ≠ 单标的两融余额25pct暂停 ≠ 两融合约期限到期强制了结）；选题自交易所融资融券细则公开规则：客户提交的担保证券须为交易所公布的**可充抵保证金证券**；会员向客户公布的可充抵范围不得超出本所范围；风险警示/暂停上市/退市整理/权证等不得充抵或折算率为 0；名单按**施行日/生效日**不按印发日；2010-03-31 前无此通道；与假设 A（板上可成交/枯竭）/ H（退市整理）/ B（历史清单「实验 B」旧位；**双字母 BG ≠ 单字母 B**）/ G（涨跌幅规则 PIT 新股窗；**双字母 BG ≠ 单字母 G**；**亦 ≠ params.G**）/ Z（**开仓**融资/融券保证金比例；**BG≠Z**）/ BA（**融资买入**标的名单；**BG≠BA**）/ BB（**转融券暂停后券源**；**BG≠BB**）/ BC（**维持担保比例强制平仓**；**BG≠BC**）/ BD（**担保品折算率**数值；**BG≠BD**）/ BE（**单标的两融余额25pct暂停**；**BG≠BE**）/ BF（**两融合约期限到期强制了结**；**BG≠BF**）/ K（融券空头名单；**BG≠K**）/ AB（融券卖出价限 / 当日平；**BG≠AB**）/ E（整手）/ AN–BF（集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/融资买入名单/转融券假无限券源/维持强平/折算率/余额25pct暂停/合约期限等）/ S/T/U/V（费用层；**避开预检T旧题**）等**分列**；**新建实验 BG**  
-状态：**草稿 · 待数据 · 待跑 · 待预检**（结论栏空；禁止把「全 A 任意证券均可充抵保证金 / 用核对日可充抵名单铺满全历史」当诚实保证金可用能力；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BF 及其他 A/D–BF 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-G；不改假设-Z；不改假设-BA；不改假设-BB；不改假设-BC；不改假设-BD；不改假设-BE；不改假设-BF；不改假设-K；不改假设-AB；勿再改 BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
+状态：**草稿 · 预检有条件通过 · 两条已冻结待复检**（结论栏空；禁止把「全 A 任意证券均可充抵保证金 / 用核对日可充抵名单铺满全历史」当诚实保证金可用能力；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BF 及其他 A/D–BF 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-G；不改假设-Z；不改假设-BA；不改假设-BB；不改假设-BC；不改假设-BD；不改假设-BE；不改假设-BF；不改假设-K；不改假设-AB；勿再改 BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 BG。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **拟充抵证券是否落在当日已生效可充抵保证金证券名单内**。**双字母 BG ≠ 单字母 A**。与假设 **B（历史实验 B 旧位）** **硬分列**：清单早期「实验 B」曾挂印花税时点+T+1 / 财务可见日 / 除权日复权价误判等，主病已迁 V/W 等页；本页**不重开**那些旧 B 题。**双字母 BG ≠ 单字母 B**。与假设 **G（涨跌幅规则 PIT 新股窗）** **硬分列**：G = 无涨跌幅日/新股窗/ST 板幅 PIT；本页 = 可充抵保证金证券**名单闸门**；板幅规则 ≠ 担保品名单。**双字母 BG ≠ 单字母 G**。与 **`params.G`（费用/费率或显著性同族门槛占位，建议值 0.01）** **硬分列**：**实验字母 BG ≠ params.G**；正文与回报凡写「实验 BG / 假设-BG / hypothesis_id=BG / 组 BG0·BG1·BG2」均指本实验；凡写 **`params.G`** 均指门槛数值键，**禁止**把二者混读或互改。与假设 **Z（开仓保证金比例）** **硬分列**：Z = **新开**融资/融券时的保证金**比例**数值；本页 = **哪些证券可以充抵**（名单闸门），不主测 80%/100% 比例。与假设 **BA（融资买入标的名单）** **硬分列**：BA = 能不能开**融资买入**腿（标的闸门）；本页 = 能不能把某证券**提交为担保品**（可充抵名单）；可融资买入 ≠ 可充抵担保。与假设 **BB（转融券暂停后假无限券源）** **硬分列**：BB = 空头**券源可借量**；本页 = 担保品**可充抵名单**；券源 ≠ 担保名单。与假设 **BC（维持担保比例强制平仓）** **硬分列**：BC = 持仓存续期**维持担保比例**是否触发追保/强平；本页 = 提交担保时证券是否在可充抵名单；维持线 ≠ 名单闸门。与假设 **BD（担保品折算率）** **硬分列**：BD = 已在可充抵范围内的证券按什么**折算率**计入保证金可用；本页 = **是否在可充抵名单内**（名单闸门）；名单外不得用「折算率=1」发明可充抵；折算率 ≠ 名单。与假设 **BE（单标的两融余额25pct暂停）** **硬分列**：BE = 市场层单标的余额/余量集中度暂停**新开**；本页 = 账户担保品**可充抵名单**。与假设 **BF（两融合约期限到期强制了结）** **硬分列**：BF = 已开合约的**存续期限上限与到期了结**；本页 = 担保品名单；期限 ≠ 名单。与假设 **K / AB** **硬分列**：不重开融券名单与空头价限/当日平。与假设 AN–BF **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/融资买入名单/转融券假无限券源/维持强平/折算率/余额25pct暂停/合约期限等。**明确避开预检T旧题（证管费误抽）**。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 可充抵保证金证券名单 ≠ 担保品折算率；≠ 融资买入名单；≠ 开仓保证金比例；≠ 维持担保强平；≠ 转融券券源；≠ 余额25pct暂停；≠ 合约期限；≠ 融券名单；≠ 板上枯竭；≠ 涨跌幅PIT；≠ 证管费
 
 ```
-# 配置写死键（见 §7；待预检；纸面占位如下）
+# 配置写死键（见 §7；两条已冻结待复检；终值如下）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 BG；≠ 实验字母 A；≠ 实验字母 B；≠ 实验字母 G；≠ 实验字母 Z
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 BG；≠ 单字母实验 G
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 BG
@@ -44,7 +44,7 @@
 # params.shortable_list_handoff          写死 k_page         # 融券空头名单交 K
 # params.short_px_handoff                写死 ab_page        # 融券卖出价限/当日平交 AB
 # params.limit_pct_handoff               写死 g_page         # 涨跌幅规则交 G；BG≠G
-# params.bg0_primary_demo                建议 invent_all_ashare_as_collateral  # 主报：全A任意证券均可充抵；禁与 invent_asof_leak_collateral_list 双挂争主表；BG1半泄露不得升格并列主报
+# params.bg0_primary_demo                写死冻结 invent_all_ashare_as_collateral  # 主报：全A任意证券均可充抵；禁与 invent_asof_leak_collateral_list 双挂争主表；BG1半泄露不得升格并列主报
 # params.bg0_invent_all_ashare_collateral 写死 True
 # params.bg1_asof_leak_collateral_list_only 写死 True           # 半泄露：仅用核对日可充抵名单铺满历史
 # params.bg2_pit_collateral_list         写死 True
@@ -112,16 +112,16 @@
 # params.missing_collateral_list_policy  写死 skip
 # params.day_freq_proxy                  写死 collateral_list_eligibility_sensitivity
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  纸面建议 0.02/0.01/0.05/0.015  # params.Y≠实验字母BG；params.G≠实验字母BG；params.N≠实验字母BG；亦≠单字母实验A/B/G/Z；禁null/holdout/跑后改口；待预检冻结
-# params.date_start / date_end           写死主窗并待冻结
-# params.oos_split.*                     写死四日期并待冻结；禁 holdout 反调
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # params.Y≠实验字母BG；params.G≠实验字母BG（特别消歧）；params.N≠实验字母BG；亦≠单字母实验A/B/G/Z；禁null/holdout/跑后改口
+# params.date_start / date_end           写死主窗并冻结
+# params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
 # params.fail_policy                     写死 skip
 
 fill_time = "next_open"
 asof_check_date = "2026-10-16"
 collateral_list_honest = "pit_by_effective_date"
-params.bg0_primary_demo = "invent_all_ashare_as_collateral"  # 建议主报；待预检冻结；禁与 invent_asof_leak_collateral_list 双挂
+params.bg0_primary_demo = "invent_all_ashare_as_collateral"  # 写死冻结；禁与 invent_asof_leak_collateral_list 双挂
 ```
 
 ### 2.2 三组对照（BG0 / BG1 / BG2）
@@ -237,7 +237,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`BG`  
 - **组**：BG0 / BG1 / BG2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`collateral_list_honest=pit_by_effective_date`；`risk_warn_exit_warrant_collateral=not_eligible`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`limit_pct_handoff=g_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_collateral_list_check`；`missing_collateral_list_policy=skip`；`day_freq_proxy=collateral_list_eligibility_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 纸面建议 `0.02/0.01/0.05/0.015`（待预检冻结）**（**params.Y≠实验字母 BG**；**params.G≠实验字母 BG**；**params.N≠实验字母 BG**；亦≠单字母实验 A/B/G/Z；禁 null/holdout/跑后改口）；**`params.bg0_primary_demo` 建议 `invent_all_ashare_as_collateral`（待预检冻结）**（禁与 invent_asof_leak_collateral_list 双挂；BG1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`collateral_list_honest=pit_by_effective_date`；`risk_warn_exit_warrant_collateral=not_eligible`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`limit_pct_handoff=g_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_collateral_list_check`；`missing_collateral_list_policy=skip`；`day_freq_proxy=collateral_list_eligibility_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 BG**；**params.G≠实验字母 BG（特别消歧）**；**params.N≠实验字母 BG**；亦≠单字母实验 A/B/G/Z；禁 null/holdout/跑后改口）；**`params.bg0_primary_demo` 写死冻结 `invent_all_ashare_as_collateral`**（禁与 invent_asof_leak_collateral_list 双挂；BG1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -262,14 +262,25 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|-----|
-| 文档状态 | 草稿 · 待数据 · 待跑 · 待预检 |
+| 文档状态 | 草稿 · 预检有条件通过 · 两条已冻结待复检 |
 | 数据 | 待接入（字段见 §6；日频拟充抵证券+可充抵名单生效日即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**collateral_list_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 纸面建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 BG；params.G≠实验字母 BG；params.N≠实验字母 BG；亦≠单字母实验 A/B/G/Z；禁 null/holdout/跑后改口；待预检冻结）**；**bg0_primary_demo 建议 invent_all_ashare_as_collateral（禁双挂 invent_asof_leak_collateral_list；BG1半泄露不得升格并列主报；待预检冻结）**；锚点保留 collateral_list_honest=pit_by_effective_date / risk_warn_exit_warrant_collateral=not_eligible / margin_channel_start=2010-03-31 / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**collateral_list_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 BG；params.G≠实验字母 BG（特别消歧）；params.N≠实验字母 BG；亦≠单字母实验 A/B/G/Z；禁 null/holdout/跑后改口）**；**bg0_primary_demo 写死冻结 invent_all_ashare_as_collateral（禁双挂 invent_asof_leak_collateral_list；BG1半泄露不得升格并列主报）**；锚点保留 collateral_list_honest=pit_by_effective_date / risk_warn_exit_warrant_collateral=not_eligible / margin_channel_start=2010-03-31 / fail_policy=skip |
 
 ---
 
+## 风控预检补丁·冻结（两条已写死 · 2026-11-03）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 BG**；**`params.G` ≠ 实验字母 BG（特别消歧）**；**`params.N` ≠ 实验字母 BG**；**`params.Y` ≠ 单字母实验 A/B/G/Z**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.bg0_primary_demo`**：**写死冻结** **`invent_all_ashare_as_collateral`**；禁与 **`invent_asof_leak_collateral_list`** 双挂争主表（只挂一个 primary）；**BG1 半泄露不得升格并列主报**。
+
+**可充抵名单锚保留（已通写死）**：`params.collateral_list_honest=pit_by_effective_date`；`params.risk_warn_exit_warrant_collateral=not_eligible`；`params.margin_channel_start=2010-03-31`；`params.fail_policy=skip`（及正文已有 `asof_check_date=2026-10-16` / `missing_collateral_list_policy=skip` / `fill_time=next_open` 等锚点；不改口）。
+
+**与 BA/BB/BC/BD/BE/BF/Z/K/AB/B/G 硬分列（保留）**：本页 = **可充抵保证金证券名单**；Z = **开仓**保证金比例；BA = **融资买入**标的名单；BB = **转融券暂停后券源**；BC = **维持担保比例强制平仓**；BD = **担保品折算率**；BE = **单标的两融余额25pct暂停**；BF = **两融合约期限到期强制了结**；A = **板上枯竭**；K = **融券空头名单**；AB = **融券卖出价限**；B = 历史实验 B 旧位；G = 涨跌幅规则 PIT；可充抵名单 ≠ 开仓比例 ≠ 融资可买名单 ≠ 转融券源 ≠ 维持强平 ≠ 折算率 ≠ 余额25pct暂停 ≠ 合约期限 ≠ 板上枯竭 ≠ 融券名单 ≠ 空头价限 ≠ 涨跌幅PIT；**双字母 BG ≠ 单字母 A ≠ 单字母 B ≠ 单字母 G ≠ 单字母 Z ≠ 双字母 BA ≠ 双字母 BB ≠ 双字母 BC ≠ 双字母 BD ≠ 双字母 BE ≠ 双字母 BF ≠ 双字母 AB ≠ 单字母 K**；**params.G ≠ 实验字母 BG**；禁止捆成「两融一张表=全A可充抵」；不改假设-Z；不改假设-BA；不改假设-BB；不改假设-BC；不改假设-BD；不改假设-BE；不改假设-BF；不改假设-A；不改假设-K；不改假设-AB；不改假设-B；不改假设-G。
+
 ## 变更
+
+- 2026-11-03：风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 BG**；**params.G≠实验字母 BG（特别消歧）**；**params.N≠实验字母 BG**；亦≠单字母实验 A/B/G/Z；禁 null/holdout/跑后改口）；② `params.bg0_primary_demo=invent_all_ashare_as_collateral`（禁与 `invent_asof_leak_collateral_list` 双挂争主表；BG1半泄露不得升格并列主报）。可充抵名单锚保留：`collateral_list_honest=pit_by_effective_date`；`risk_warn_exit_warrant_collateral=not_eligible`；`margin_channel_start=2010-03-31`；`fail_policy=skip`。与 BA/BB/BC/BD/BE/BF/Z/K/AB/B/G 硬分列保留。参考总管派令 / 风控预检有条件通过。未改 Y/Z/AA–BF 及其他已冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-G；不改假设-Z；不改假设-BA；不改假设-BB；不改假设-BC；不改假设-BD；不改假设-BE；不改假设-BF；不改假设-K；不改假设-AB；不改假设-AZ；不改假设-AY；不改假设-AX；不改假设-AW；结论栏仍空；不开回测；不抢 A。
 
 - 2026-11-03：新建纸面草稿（总管续派：BF 补丁已收 → 写假设-BG；自立 BG，勿占 BF/BE/BD/BC/BB/BA/B/G/A/Z；避开预检T；不开回测；禁实盘/荐股；**params.Y/N≠实验字母 BG**；**params.G≠实验字母 BG**）。选题：可充抵保证金证券名单误开（正交于 BA 融资买入名单 / BD 折算率数值 / Z 开仓比例 / BC 维持强平 / BB 转融券源 / BE 余额25pct暂停 / BF 合约期限；**双字母 BG ≠ 单字母 B ≠ 单字母 G**；**params.G ≠ 实验字母 BG**）。
