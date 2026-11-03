@@ -2,7 +2,7 @@
 
 更新：2026-11-04  
 来源：总管线 / CJ 补丁已交（tip=`991e4cf`；A/D–CJ纸面齐 HEAD=`6204049`；复检/入库另线并行后写下一纸面 CK）；清单撞题规则另选正交执行缺口（**回测默认「协议/成交申报大宗订单必能按目标价或谈妥价全额成交」** ≠ 假设-CJ 退市整理期可成交性误开 ≠ 假设-CI 新股上市首日可成交性误开 ≠ 假设-CH 盘后固定价格可成交性误开 ≠ 假设-CG 停牌复牌首日可成交性误开 ≠ 假设-CF 集合竞价可成交性误开 ≠ 假设-CE 跌停板可成交性误开 ≠ 假设-CD 涨停板可成交性误开 ≠ 假设-O 大宗假流动性（**双字母 CK ≠ 单字母假设-O**；O=大宗量价并进竞价/三通道混用 ≠ 协议大宗腿假全额可成） ≠ 假设-A 板上枯竭/一字与封板容量主实验 ≠ 假设-D 成交时点开vs收与停牌假成交 ≠ 假设-C 股票池当时名单 ≠ 假设-M 盘后通道存在 ≠ 假设-H 退市整理退出期 ≠ 假设-CA/CB/CC 两融族）；选题自 `事实与坑`「按大宗成交价回放普通信号=假设你总能找到30万股对手盘；门槛30万股/200万；确认时点PIT；协议/成交申报≠盘后固定价格」+ 口径「执行鸿沟」+ 与 CD/CE/CF/CG/CH/CI/CJ 可成交性族正交、与 O 大宗假流动性正交；本页**假定板上容量层（A）/ 排队位次层（AR）/ 成交时点与停牌层（D）/ 超涨跌停价无效层（AG）/ 涨停可成交误开层（CD）/ 跌停可成交误开层（CE）/ 集合竞价可成交误开层（CF）/ 停牌复牌首日可成交误开层（CG）/ 盘后固定价格可成交误开层（CH）/ 新股上市首日可成交误开层（CI）/ 退市整理期可成交误开层（CJ）/ 大宗量价并进竞价与三通道混用层（O）/ 盘后通道存在层（M）诚实或显式旁路**，主病只在**发明「协议/成交申报大宗订单必能按目标价或谈妥价全额成交」这一误开默认**；**A 正文主测「涨停可成交性/板上枯竭」真数队列**（**双字母 CK ≠ 单字母假设-A；严禁复用 A 题面；绝不可做成 A 续篇；不抢 A 真数队列**），**O 正文主测「大宗假流动性」**（量价并进竞价/三通道混用 ≠ 协议大宗腿假全额可成；**双字母 CK ≠ 单字母假设-O；严禁复用 O 题面；尤其不改假设-O**），**CJ 正文主测「退市整理期可成交性误开」**（退市整理期 ≠ 协议大宗；**严禁改 CJ**），**CI/CH/CG/CF/CE/CD 正文主测上市首日/盘后固定价/复牌/集合/跌停/涨停可成交误开**（**严禁改 CI/CH/CG/CF/CE/CD**），**M 正文主测盘后通道存在**（通道存在 ≠ 大宗腿全额可成；**严禁改 M**），**C 正文主测「股票池当时名单」**（**双字母 CK ≠ 单字母假设-C；严禁复用 C**），**CA/CB/CC 正文主测两融族**（与本页正交；**严禁改 CA/CB/CC**）→ 自立；与假设 B/Z/BA–CJ/AG/AF/E/L/X/W/K/AB/N/H/AN 等**分列**；**严禁复用假设-K 融券名单**；**新建实验 CK**  
-状态：**草稿 · 待入库预检**（结论栏空；禁止把「协议/成交申报大宗订单必能按目标价或谈妥价全额成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CJ 及其他 A/D–CJ 已交正文与冻结补丁；尤其不改假设-CJ；尤其不改假设-CI；尤其不改假设-CH；尤其不改假设-CG；尤其不改假设-CF；尤其不改假设-CE；尤其不改假设-CD；尤其不改假设-O；尤其不改假设-A；尤其不改假设-C；尤其不改假设-M；尤其不改假设-H；尤其不改假设-K；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-CC；勿再改 CJ/CI/CH/CG/CF/CE/CD/CC/CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW/AR/AG/AN/O/M/H/K**）
+状态：**草稿 · 预检有条件通过 · 三条已冻 · 待复检**（结论栏空；禁止把「协议/成交申报大宗订单必能按目标价或谈妥价全额成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CJ 及其他 A/D–CJ 已交正文与冻结补丁；尤其不改假设-CJ；尤其不改假设-CI；尤其不改假设-CH；尤其不改假设-CG；尤其不改假设-CF；尤其不改假设-CE；尤其不改假设-CD；尤其不改假设-O；尤其不改假设-A；尤其不改假设-C；尤其不改假设-M；尤其不改假设-H；尤其不改假设-K；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-CC；勿再改 CJ/CI/CH/CG/CF/CE/CD/CC/CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW/AR/AG/AN/O/M/H/K**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 CK（约 #94）。与假设 **CJ（退市整理期可成交性误开）** **硬分列（专节强调）**：CJ = 回测是否默认「**退市整理期**订单必能按目标价或开盘价/收盘价**全额**成交」；本页 = 回测是否默认「**协议/成交申报大宗**订单必能按目标价或谈妥价**全额**成交」；退市整理期 ≠ 协议大宗；**严禁复用 CJ 题面或 `invent_assume_delist_period_always_fillable`**；**尤其不改假设-CJ**。**CK≠CJ**。与假设 **CI（新股上市首日可成交性误开）** **硬分列**：上市首日 ≠ 协议大宗；**严禁复用 CI**；**尤其不改假设-CI**。**CK≠CI**。与假设 **CH（盘后固定价格可成交性误开）** **硬分列（专节强调）**：CH = 盘后固定价格全额可成误开；本页 = 协议大宗腿全额可成误开；盘后固定价 ≠ 协议大宗；**严禁复用 CH 题面或 `invent_assume_after_hours_fixed_price_always_fillable`**；**尤其不改假设-CH**。**CK≠CH**。与假设 **CG（停牌复牌首日可成交性误开）** **硬分列**：复牌首日 ≠ 协议大宗；**严禁复用 CG**；**尤其不改假设-CG**。**CK≠CG**。与假设 **CF（集合竞价可成交性误开）** **硬分列**：集合撮合 ≠ 协议大宗全额可成；**严禁复用 CF**；**尤其不改假设-CF**。**CK≠CF**。与假设 **CE（跌停板可成交性误开）** **硬分列**：连续竞价跌停侧 ≠ 协议大宗；**严禁复用 CE**；**尤其不改假设-CE**。**CK≠CE**。与假设 **CD（涨停板可成交性误开）** **硬分列**：连续竞价涨停侧 ≠ 协议大宗；**严禁复用 CD**；**尤其不改假设-CD**。**CK≠CD**。与假设 **O（大宗假流动性）** **硬分列（专节强调）**：O = 把**大宗量/价并进竞价**估冲击、或把**盘后固定价格/深市盘后定价大宗/沪市大宗固定价格申报**混成同一通道；本页 = 在 O 层诚实（或显式旁路交 O）的前提下，是否仍默认「协议/成交申报大宗订单必能按目标价或谈妥价全额成交」；量价并进竞价/三通道混用 ≠ 协议大宗腿假全额可成；**双字母 CK ≠ 单字母假设-O**；**严禁复用 O 题面**；**尤其不改假设-O**。**CK≠O**。与假设 **A（涨停可成交性/板上枯竭）** **硬分列（专节强调）**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成的**主实验与真数队列**；本页 = **纸面机制误开点**：回测/仿真是否默认发明「协议/成交申报大宗订单必能按目标价或谈妥价全额成交」并系统性高估大宗腿可实现成交、低估门槛未达、确认窗外失败与假对手盘；容量门槛 ≠ 协议大宗全额可成默认；**双字母 CK ≠ 单字母假设-A**；**严禁复用 A 题面**；**绝不可做成 A 续篇**；**不占** A 的 A0/A1 主报与真数席位；**尤其不改假设-A**。**CK≠A**。与假设 **M（盘后补成交/通道）** **硬分列**：通道存在/自动滚入 ≠ 协议大宗腿全额可成；**严禁复用 M**；**尤其不改假设-M**。**CK≠M**。与假设 **C（股票池当时名单）** **硬分列**：股票池 ≠ 协议大宗全额可成；**双字母 CK ≠ 单字母假设-C**；**严禁复用 C**。**CK≠C**。与假设 **K（融券空头名单PIT）** **硬分列（专节强调）**：**双字母 CK ≠ 单字母假设-K**；**严禁复用假设-K 融券名单**；**尤其不改假设-K**。**CK≠K**。与假设 **CA/CB/CC** **硬分列**：两融公式/展期/调出了结时限 ≠ 协议大宗全额可成；**尤其不改 CA/CB/CC**。**CK≠CA≠CB≠CC**。与假设 **AR/AG/AN/BZ/BY/BX/BW…** 及两融审批/费用族 **硬分列**：假队首/超板无效/集合剩单/两融审批费用 ≠ 协议大宗全额可成默认。**明确避开预检T旧题（证管费误抽）**。**严禁复用假设-A / 假设-C / 假设-O / 假设-K / 假设-M / 假设-CD / 假设-CE / 假设-CF / 假设-CG / 假设-CH / 假设-CI / 假设-CJ**。**严禁改写/续写假设-CJ / 假设-CI / 假设-CH / 假设-CG / 假设-CF / 假设-CE / 假设-CD / 假设-O / 假设-A / 假设-M / 假设-K / 假设-CA / 假设-CB / 假设-CC**。**本页主结论不混。**
 
@@ -27,7 +27,7 @@
 | 题面 CA | **维持担保比例分子分母口径** | 公式 ≠ 协议大宗全额可成；**CK≠CA**；**不改 CA** |
 | 题面 CB | **融资合约展期/续作审批** | 展期审批 ≠ 协议大宗全额可成；**CK≠CB**；**不改 CB** |
 | 题面 CC | **两融标的调出强制了结时点** | 调出了结时限 ≠ 协议大宗全额可成；**CK≠CC**；**不改 CC** |
-| 主演示 | （各页自有；本页不引用覆盖） | `invent_assume_block_trade_always_fillable`（**建议单一主报·待预检冻结**；禁双挂 asof_leak；CK1不升格） |
+| 主演示 | （各页自有；本页不引用覆盖） | `invent_assume_block_trade_always_fillable`（**写死冻结**单一主报；禁双挂 asof_leak；CK1不升格） |
 | 文档 | 清单实验 A / C / O / K / M / `假设-CA-…` / `假设-CB-…` / `假设-CC-…` / `假设-CD-…` / `假设-CE-…` / `假设-CF-…` / `假设-CG-…` / `假设-CH-…` / `假设-CI-…` / `假设-CJ-…`（**只读；禁止改写**） | `假设-CK-协议大宗可成交性误开.md`（新建） |
 | 预检键 | 实验字母 A / C / O / K / M / CA / CB / CC / CD / CE / CF / CG / CH / CI / CJ | 实验字母 **CK** / `ck0_primary_demo`；**不得**占用或改写预检 A/C/O/K/M/CA/CB/CC/CD/CE/CF/CG/CH/CI/CJ |
 
@@ -45,19 +45,19 @@
 
 ## 2. 口径与可检验设计（纸面骨架）
 
-### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 与 ck0 与锚 **建议占位 · 待预检**）
+### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 与 ck0 与锚 **三条已冻**）
 
 ```
-# 配置写死键（见 §7；草稿·待入库预检；下列为建议占位，待预检冻结）
+# 配置写死键（见 §7；预检有条件通过 · 三条已冻 · 待复检；下列已写死冻结）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 CK；≠ 单字母假设-C；≠ 单字母假设-K；≠ 单字母假设-O；≠ 单字母假设-A；≠ 单字母假设-M；≠ 双字母假设-CA/CB/CC/CD/CE/CF/CG/CH/CI/CJ
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 CK；≠ 单字母假设-G
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 CK；≠ 单字母假设-N；亦≠实验字母 BN
-# params.fill_time 建议 next_open
-# params.asof_check_date 建议 2026-10-16
+# params.fill_time 写死冻结 next_open
+# params.asof_check_date 写死冻结 2026-10-16
 # params.px_basis 建议 unadj
-# params.block_trade_fill_honest 建议 pit_by_block_trade_fill_rule
-# params.block_trade_fill_scope 建议 assume_block_trade_always_fillable_at_target_or_negotiated
-# params.block_trade_fill_over_policy 建议 fail_or_partial_or_fail_missing_block_trade_rule
+# params.block_trade_fill_honest 写死冻结 pit_by_block_trade_fill_rule
+# params.block_trade_fill_scope 写死冻结 assume_block_trade_always_fillable_at_target_or_negotiated
+# params.block_trade_fill_over_policy 写死冻结 fail_or_partial_or_fail_missing_block_trade_rule
 # params.block_threshold_shares 建议 300000
 # params.block_threshold_notional 建议 2000000
 # params.board_capacity_handoff 建议 a_page
@@ -80,7 +80,7 @@
 # params.delist_force_deadline_handoff 建议 cc_page
 # params.block_trade_fill_handoff 建议 self
 # params.shortable_list_handoff 建议 k_page
-# params.ck0_primary_demo                建议 invent_assume_block_trade_always_fillable
+# params.ck0_primary_demo                写死冻结 invent_assume_block_trade_always_fillable
 # params.ck0_invent_assume_block_trade_always_fillable 建议 True
 # params.ck1_asof_leak_block_trade_always_fillable_only 建议 True
 # params.ck2_pit_block_trade_fill 建议 True
@@ -106,9 +106,9 @@
 # params.missing_block_trade_fill_policy 建议 skip
 # params.day_freq_proxy 建议 block_trade_fill_sensitivity
 # params.universe_rule 建议 sse_szse_block_trade_fill_misopen_check
-# params.fail_policy 建议 skip
+# params.fail_policy 写死冻结 skip
 # params.redline_v0_exempt_scope 建议 position_industry_dd_only
-# params.Y / G / N / Y2                  建议占位 0.02/0.01/0.05/0.015（待预检；勿改已冻他字母数值）
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 CK；params.G≠实验字母 CK；params.N≠实验字母 CK；禁 null/holdout；勿改已冻他字母数值）
 # params.date_start / date_end 建议 2019-01-01..2026-09-30
 # params.oos_split.*                     建议四日期；禁 holdout 反调
 # CK0：假全额可成——协议/成交申报大宗订单按目标价或谈妥价 100% 成交
@@ -121,13 +121,13 @@
 
 | 组 | 角色 | 规则 |
 |----|------|------|
-| CK0 | 天真 / 假全额可成 | 按 `ck0_primary_demo` 建议单一主报 `invent_assume_block_trade_always_fillable`：协议/成交申报大宗订单按目标价或谈妥价 100% 成交；**禁**与 `invent_asof_leak_block_trade_always_fillable` 双挂主报 |
-| CK1 | 半泄露 | 仅核对日（asof）更宽「协议大宗一律全额可成」规则泄露铺满全历史；**不得升格并列主报** |
-| CK2 | 诚实 PIT | `pit_by_block_trade_fill_rule`：每个交易日按当时已生效协议大宗门槛/确认时点/对手盘约束；缺字段 skip |
+| CK0 | 天真 / 假全额可成 | 按 `ck0_primary_demo` **写死冻结**单一主报 `invent_assume_block_trade_always_fillable`：协议/成交申报大宗订单按目标价或谈妥价 100% 成交（**禁**与 `invent_asof_leak_block_trade_always_fillable` 双挂主报） |
+| CK1 | 半泄露 | 仅核对日（asof）更宽「协议大宗一律全额可成」规则泄露铺满全历史；**不得升格并列主报**（已冻：CK1不升格） |
+| CK2 | 诚实 PIT | `block_trade_fill_honest=pit_by_block_trade_fill_rule`（已冻结）：每个交易日按当时已生效协议大宗门槛/确认时点/对手盘约束；缺字段 skip |
 
 ### 2.3 额度窗内时频可落点（写明但不真跑）
 
-主窗建议 `2019-01-01..2026-09-30`（额度窗内）；asof 建议 `2026-10-16`；fill_time 建议 `next_open`；fail 建议 `skip`。本页**不开回测**；不拉真数；不做实盘。
+主窗建议 `2019-01-01..2026-09-30`（额度窗内）；asof **写死冻结** `2026-10-16`；fill_time **写死冻结** `next_open`；fail **写死冻结** `skip`。本页**不开回测**；不拉真数；不做实盘。
 
 ### 3.1 oos_split（建议四日期；拉数前冻结；禁 holdout 反调）
 
@@ -180,12 +180,15 @@
 
 ---
 
-## 7. params 建议块（待预检；勿改已冻他字母）
+## 7. 回测配置骨架（纸面；本页不开回测）
 
-- `params.Y/G/N/Y2` 建议占位 `0.02/0.01/0.05/0.015`（**params.Y≠实验字母CK**；**params.G≠实验字母CK**；**params.N≠实验字母CK**；禁 null/holdout；勿改已冻他字母数值）。
-- `ck0_primary_demo` 建议=`invent_assume_block_trade_always_fillable`（待预检；禁双挂 asof_leak）。
-- 锚建议：`block_trade_fill_honest=pit_by_block_trade_fill_rule`；`block_trade_fill_scope=assume_block_trade_always_fillable_at_target_or_negotiated`；`block_trade_fill_over_policy=fail_or_partial_or_fail_missing_block_trade_rule`；`asof=2026-10-16`；`fill_time=next_open`；`fail=skip`。
-- 主窗建议 `2019-01-01..2026-09-30`；门槛建议 `300000` 股 / `2000000` 元。
+- hypothesis_id=`CK`；组 CK0/CK1/CK2。
+- **写死键摘要（三条已冻）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`block_trade_fill_honest=pit_by_block_trade_fill_rule`；`block_trade_fill_scope=assume_block_trade_always_fillable_at_target_or_negotiated`；`block_trade_fill_over_policy=fail_or_partial_or_fail_missing_block_trade_rule`；`fail_policy=skip`；`ck0_primary_demo=invent_assume_block_trade_always_fillable`（**写死冻结**单一主报；禁双挂 asof_leak；CK1不升格）。
+- 锚升格写死（不可再写「建议」）：`block_trade_fill_honest=pit_by_block_trade_fill_rule`；`block_trade_fill_scope=assume_block_trade_always_fillable_at_target_or_negotiated`；`block_trade_fill_over_policy=fail_or_partial_or_fail_missing_block_trade_rule`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。
+- `params.Y/G/N/Y2` **写死冻结** `0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CK**；**params.G≠实验字母 CK**；**params.N≠实验字母 CK**；禁 null/holdout；**勿改已冻他字母数值**）。
+- 主窗建议 `2019-01-01..2026-09-30`；门槛建议 `300000` 股 / `2000000` 元；oos_split 四日期建议写死+禁 holdout 反调。
+- 全部 `merge_with_*=False`（见 §2.1）。
+- **本页不开回测**；不催 8765；不抢 A 真数。
 
 ---
 
@@ -195,12 +198,22 @@
 
 ---
 
-## 9. 变更表
+---
 
-| 日期 | 动作 | 说明 |
-|------|------|------|
-| 2026-11-04 | 新建草稿 | 总管派写假设-CK；基线 tip=`6204049`（CJ补丁交点 `991e4cf`）；选题协议大宗可成交性误开；ck0 建议 `invent_assume_block_trade_always_fillable`；清单约 #94；状态 **草稿 · 待入库预检**；**禁止标任何纸面齐** |
-| 状态 | **草稿 · 待入库预检**（结论栏空；**禁止标任何纸面齐**） | |
-| 硬分列 | CK≠C/K/O/CA–CJ/A/M…；尤≠CJ/CI/CH/CG/CF/CE/CD/O/A；双字母CK≠单字母C/K/O；严禁复用假设-K | |
-| 风控预埋 | fail_policy=skip；主窗 date_start/end 建议 2019-01-01..2026-09-30；oos_split 四日期建议写死+禁 holdout 反调；红线 v0 机制豁免（`redline_v0_exempt_scope=position_industry_dd_only`）；Y/G/N/Y2 建议占位；不开回测/真数/实盘 | |
+## 风控预检补丁·冻结（三条已写死 · 2026-11-04）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 CK**；**`params.G` ≠ 实验字母 CK**；**`params.N` ≠ 实验字母 CK**；**`params.Y` ≠ 单字母实验 C/K/O/A/M/Z**；尤重**双字母 CK ≠ 单字母假设-A**；**双字母 CK ≠ 单字母假设-C**；**双字母 CK ≠ 单字母假设-K**；**双字母 CK ≠ 单字母假设-O**；**双字母 CK ≠ 单字母假设-M**；**双字母 CK ≠ 双字母假设-CJ/CI/CH/CG/CF/CE/CD/CA/CB/CC**；禁 null/holdout/跑后改口；**勿改他字母已冻 Y/G/N/Y2**。  
+2. **`params.ck0_primary_demo`**：**写死冻结** **`invent_assume_block_trade_always_fillable`**；禁与 **`invent_asof_leak_block_trade_always_fillable`** 双挂争主表（只挂一个 primary）；**CK1 半泄露不得升格并列主报**。  
+3. **协议大宗可成交性锚升格写死（不可再写「建议」）**：`params.block_trade_fill_honest=pit_by_block_trade_fill_rule`；`params.block_trade_fill_scope=assume_block_trade_always_fillable_at_target_or_negotiated`；`params.block_trade_fill_over_policy=fail_or_partial_or_fail_missing_block_trade_rule`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`。
+
+**硬分列保留**：CK≠C/K/O/CA–CJ/A/M…；**尤其 CK≠O / CK≠CJ / CK≠CI / CK≠CH / CK≠CG / CK≠CF / CK≠CE / CK≠CD / CK≠A**；**双字母 CK ≠ 单字母假设-C / 假设-K / 假设-O / 假设-A / 假设-M**；**严禁复用假设-K / 假设-O / 假设-CJ / 假设-CI / 假设-CH / 假设-CG / 假设-CF / 假设-CE / 假设-CD / 假设-A / 假设-C / 假设-M**；**params.Y/G/N ≠ 实验字母 CK**。
+
+**状态**：预检有条件通过 · 三条已冻 · 待复检；**禁止标任何纸面齐**；本页不开回测/真数/实盘；不改已冻 CJ/Y–CJ。
+
+## 变更
+
+| 日期 | 说明 |
+|------|------|
+| 2026-11-04 | 风控预检补丁·冻结三条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CK**；**params.G≠实验字母 CK**；**params.N≠实验字母 CK**；亦≠单字母实验 C/K/O/A/M/Z；尤重**双字母 CK ≠ 单字母假设-A/C/K/O/M**；**双字母 CK ≠ 双字母假设-CJ/CI/CH/CG/CF/CE/CD/CA/CB/CC**；禁 null/holdout/跑后改口）；② `params.ck0_primary_demo=invent_assume_block_trade_always_fillable` 单一主报写死（禁与 `invent_asof_leak_block_trade_always_fillable` 双挂；CK1不升格）；③ 锚升格写死 `block_trade_fill_honest=pit_by_block_trade_fill_rule` / `scope=assume_block_trade_always_fillable_at_target_or_negotiated` / `over_policy=fail_or_partial_or_fail_missing_block_trade_rule` / `asof=2026-10-16` / `fill_time=next_open` / `fail=skip`；状态=预检有条件通过·三条已冻·待复检；**未标纸面齐**；不改已冻 CJ/Y–CJ；不开回测/真数/实盘。基线 tip=`270f9e8`（祖先 `294dd33`）。 |
+| 2026-11-04 | 新建草稿·待入库预检（总管线：CJ 补丁 tip=`991e4cf` 已交后写 CK；选题协议大宗可成交性误开；ck0 建议 `invent_assume_block_trade_always_fillable`；清单约 #94；**禁止标任何纸面齐**）。 |
 
