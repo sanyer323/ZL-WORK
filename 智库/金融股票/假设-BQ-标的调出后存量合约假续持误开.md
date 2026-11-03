@@ -2,7 +2,7 @@
 
 更新：2026-11-03  
 来源：总管线 / BP 补丁已交（已冻结待复检）、写下一纸面 BQ；清单撞题规则另选正交执行缺口（**融资/融券标的调出名单后存量合约如何处理**——能否续持至自然到期、能否展期/加仓、是否须限期了结 ≠ 融资买入**新开**名单闸门 ≠ 融券空头**新开**名单 PIT ≠ 合约**期限到期**强制了结 ≠ 维持担保**低线**强制平仓 ≠ 转融券暂停后**券源** ≠ 融资利息/罚息发明为零 ≠ 融券**权益补偿** ≠ 追保后禁新开 ≠ 跨账户现金混用）；选题自两融业务公开口径：融资买入标的/融券标的名单按生效日调整；**调出后一般不得新开/加仓**；存量合约处理按细则/合同（常见须在约定期限内了结或仅允许减仓了结，不得展期加仓）；规则按**施行日/生效日** PIT，不得用核对日更宽「调出后仍可无限续持/展期」回放全历史；2010-03-31 前无两融通道；与假设 A（板上可成交/枯竭）/ H（退市整理）/ B（历史清单「实验 B」旧位；**双字母 BQ ≠ 单字母 B**）/ **Q（可转债；双字母 BQ ≠ 单字母假设-Q）** / Z（**开仓**融资/融券保证金比例；**BQ≠Z**）/ BA–BP（两融族已冻/在途；**BQ≠BA…BP**）/ **K（融券空头名单 PIT；BQ≠K；并带过 BK≠K 消歧）** / AB（融券卖出价限 / 当日平；**BQ≠AB**）/ W（除权日复权价误判板；**BQ≠W**）/ BA（**融资买入新开名单**；**BQ≠BA**；新开 ≠ 调出后存量）/ BF（**两融合约期限到期强制了结**；**BQ≠BF**；期限到 ≠ 名单调出后存量规则）/ BC（**维持担保比例强制平仓**；**BQ≠BC**；低维持强平 ≠ 调出后存量处理）/ BB（**转融券券源**；**BQ≠BB**）/ BO（**融资利息与逾期罚息**；**BQ≠BO**）/ BP（**融券权益补偿**；**BQ≠BP**；权益补偿 ≠ 调出后存量；不占 invent_zero_short_corp_action_comp）/ BM（**追保后禁新开**；**BQ≠BM**；并带过 **BM≠BC、BM≠BL**）/ BN（**信用/普通账户串用**；**BQ≠BN**；并带过 **BN≠BI/BJ/BL/BM、params.N≠BN**）/ E（整手）/ AN–BP（集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/两融族等）/ S/T/U/V（费用层；**避开预检T旧题**）等**分列**；**新建实验 BQ**  
-状态：**草稿 · 待预检**（结论栏空；禁止把「标的调出后存量合约仍可无限续持/假可展期加仓」当诚实执行能力；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BP 及其他 A/D–BP 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-Q；不改假设-K；不改假设-W；不改假设-Z；不改假设-BA–BP；不改假设-AB；勿再改 BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
+状态：**草稿 · 预检有条件通过 · 两条已冻结待复检**（结论栏空；禁止把「标的调出后存量合约仍可无限续持/假可展期加仓」当诚实执行能力；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BP 及其他 A/D–BP 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-Q；不改假设-K；不改假设-W；不改假设-Z；不改假设-BA–BP；不改假设-AB；勿再改 BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 BQ（约 #74）。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **标的调出融资或融券名单后存量合约是否仍假可无限续持/展期加仓**。**双字母 BQ ≠ 单字母 A**。与假设 **B（历史实验 B 旧位）** **硬分列**：清单早期「实验 B」曾挂印花税时点+T+1 / 财务可见日 / 除权日复权价误判等，主病已迁 V/W 等页；本页**不重开**那些旧 B 题。**双字母 BQ ≠ 单字母 B**。与假设 **Q（可转债）** **硬分列（专节强调）**：Q = 可转债通道/债性执行；本页 = 信用账户**标的调出后存量合约处理**；可转债 ≠ 调出后存量。**双字母 BQ ≠ 单字母假设-Q**。与假设 **BA（融资买入新开名单）** **硬分列**：BA = **新开**融资买入是否在标的名单内；本页 = 调出后**已有存量**能否续持/展期/加仓；新开闸门 ≠ 存量处理。**BQ≠BA**。与假设 **K（融券空头名单 PIT）** **硬分列**：K = 当日是否在**交易所融券标的名单**内（新开）；本页 = 调出后存量续持/了结；名单内可空 ≠ 调出后可无限续持。**BQ≠K**；并**带过**：双字母 **BK ≠ 单字母假设-K / 预检K**。与假设 **BF（两融合约期限到期强制了结）** **硬分列**：BF = **合约期限到期**强制了结；本页 = **名单调出**后存量规则；期限到 ≠ 名单调出。**BQ≠BF**。与假设 **BC（维持担保比例强制平仓）** **硬分列**：BC = **低维持线**强制平仓；本页 = 调出后存量了结/禁展期加仓；强平 ≠ 调出了结。**BQ≠BC**。与假设 **BB（转融券券源）** **硬分列**：BB = 可借量/券源；本页 = 名单调出后存量处理；有券 ≠ 调出后可续持。**BQ≠BB**。与假设 **BO（融资利息与逾期罚息）** **硬分列**：BO = 融资计息/罚息；本页 = 调出后存量；零息 ≠ 调出存量。**BQ≠BO**。与假设 **BP（融券权益补偿）** **硬分列**：BP = 融券现金红利/红股/配股补偿；本页 = 调出后存量；权益补偿 ≠ 调出存量；**不占** `invent_zero_short_corp_action_comp`。**BQ≠BP**。与假设 **BM（追保后禁新开）** **硬分列**：BM = 追保期内禁新开；本页 = 名单调出后存量；追保状态 ≠ 名单调出；并**带过 BM≠BC、BM≠BL**。**BQ≠BM**。与假设 **BN（跨账户现金混用）** **硬分列**：BN = 信用/普通账户隔离；本页 = 调出后存量；并**带过 BN≠BI/BJ/BL/BM、params.N≠BN**。**BQ≠BN**。与假设 **Z（开仓保证金比例）** **硬分列**：Z = 新开保证金比例；本页 = 调出后存量处理。与假设 **W/AB/BD/BE/BG/BH/BI/BJ/BK/BL** **硬分列**：除权板价 / 空头价限 / 折算率 / 市场25pct / 可充抵 / 授信 / 所得用途 / 还债优先 / 集中度 / 提取 ≠ 调出后存量。与假设 AN–BP **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/两融族等。**明确避开预检T旧题（证管费误抽）**。**本页主结论不混。**
 
@@ -40,7 +40,7 @@
 ### 2.1 调出后存量处理 ≠ 新开融资名单；≠ 新开融券名单；≠ 合约期限到期了结；≠ 低维持强平；≠ 转融券券源；≠ 融资利息罚息；≠ 融券权益补偿；≠ 追保禁开；≠ 跨账户串用；≠ 开仓保证金比例；≠ 可转债；≠ 板上枯竭；≠ 证管费
 
 ```
-# 配置写死键（见 §7；待预检；建议终值如下）
+# 配置写死键（见 §7；两条已冻结待复检；终值如下）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 BQ；≠ 实验字母 A；≠ 实验字母 B；≠ 实验字母 Q；≠ 实验字母 Z
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 BQ
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 BQ；≠ 单字母假设-N；亦≠实验字母 BN
@@ -75,7 +75,7 @@
 # params.short_px_handoff                写死 ab_page
 # params.cb_handoff                      写死 q_page
 # params.exit_period_handoff             写死 h_page
-# params.bq0_primary_demo                建议写死 invent_keep_open_after_list_removal  # 主报：调出后存量仍假可无限续持/永不检查调出后了结；禁与 invent_asof_leak_list_removal_stock_rule 双挂争主表；BQ1半泄露不得升格并列主报
+# params.bq0_primary_demo                写死冻结 invent_keep_open_after_list_removal  # 主报：调出后存量仍假可无限续持/永不检查调出后了结；禁与 invent_asof_leak_list_removal_stock_rule 双挂争主表；BQ1半泄露不得升格并列主报
 # params.bq0_invent_keep_open_after_list_removal 写死 True
 # params.bq1_asof_leak_list_removal_stock_rule_only 写死 True
 # params.bq2_pit_list_removal_stock_rule 写死 True
@@ -147,7 +147,7 @@
 # params.missing_list_removal_stock_policy 写死 skip
 # params.day_freq_proxy                  写死 list_removal_stock_eligibility_sensitivity
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  建议 0.02/0.01/0.05/0.015  # params.Y≠实验字母BQ；params.G≠实验字母BQ；params.N≠实验字母BQ；亦≠单字母实验A/B/Q/Z；禁null/holdout/跑后改口
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # params.Y≠实验字母BQ；params.G≠实验字母BQ；params.N≠实验字母BQ；亦≠单字母实验A/B/Q/Z；禁null/holdout/跑后改口
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -160,7 +160,7 @@
 fill_time = "next_open"
 asof_check_date = "2026-10-16"
 list_removal_stock_honest = "pit_by_effective_date"
-params.bq0_primary_demo = "invent_keep_open_after_list_removal"  # 单一主报建议；禁与 invent_asof_leak_list_removal_stock_rule 双挂
+params.bq0_primary_demo = "invent_keep_open_after_list_removal"  # 单一主报·已冻结；禁与 invent_asof_leak_list_removal_stock_rule 双挂
 ```
 
 备选主报名（若预检改口，仍须单一）：`invent_roll_or_add_after_list_removal`（假可展期/加仓）——**不得与主报双挂**；若选此则原 keep_open 降为诊断桶。
@@ -169,7 +169,7 @@ params.bq0_primary_demo = "invent_keep_open_after_list_removal"  # 单一主报�
 
 | 组 | 口径 | 说明 |
 |----|------|------|
-| BQ0 天真 | `invent_keep_open_after_list_removal`（单一主报建议） | 调出后存量仍假可无限续持；永不检查调出后了结/禁展期加仓 |
+| BQ0 天真 | `invent_keep_open_after_list_removal`（单一主报·已冻结） | 调出后存量仍假可无限续持；永不检查调出后了结/禁展期加仓 |
 | BQ1 半泄露 | `invent_asof_leak_list_removal_stock_rule` | 仅用核对日调出后存量规则（含券商当日更宽续持口径）铺满全历史；**不得升格并列主报** |
 | BQ2 诚实 PIT | `pit_list_removal_stock_rule` / `list_removal_stock_honest=pit_by_effective_date` | 按当日已生效调出后存量规则；调出后不得新开/加仓；存量限期了结或仅减仓了结；缺字段 skip |
 
@@ -293,7 +293,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`BQ`  
 - **组**：BQ0 / BQ1 / BQ2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`list_removal_stock_honest=pit_by_effective_date`；`list_removal_stock_scope=no_new_or_add_unwind_only_or_deadline`；`list_removal_over_policy=reject_or_force_unwind_or_fail`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`corp_action_comp_handoff=bp_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`cb_handoff=q_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_list_removal_stock_rule_check`；`missing_list_removal_stock_policy=skip`；`day_freq_proxy=list_removal_stock_eligibility_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 建议 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 BQ**；**params.G≠实验字母 BQ**；**params.N≠实验字母 BQ**；亦≠单字母实验 A/B/Q/Z；禁 null/holdout/跑后改口）；**`params.bq0_primary_demo` 建议写死 `invent_keep_open_after_list_removal`**（禁与 invent_asof_leak_list_removal_stock_rule 双挂；BQ1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`list_removal_stock_honest=pit_by_effective_date`；`list_removal_stock_scope=no_new_or_add_unwind_only_or_deadline`；`list_removal_over_policy=reject_or_force_unwind_or_fail`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`corp_action_comp_handoff=bp_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`cb_handoff=q_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_list_removal_stock_rule_check`；`missing_list_removal_stock_policy=skip`；`day_freq_proxy=list_removal_stock_eligibility_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 BQ**；**params.G≠实验字母 BQ**；**params.N≠实验字母 BQ**；亦≠单字母实验 A/B/Q/Z；禁 null/holdout/跑后改口）；**`params.bq0_primary_demo` 写死冻结 `invent_keep_open_after_list_removal`**（禁与 invent_asof_leak_list_removal_stock_rule 双挂；BQ1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -318,18 +318,18 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|-----|
-| 文档状态 | 草稿 · 待预检 |
+| 文档状态 | 草稿 · 预检有条件通过 · 两条已冻结待复检 |
 | 数据 | 待接入（字段见 §6；日频存量合约+名单调出生效日+调出后存量规则生效日即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**list_removal_stock_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 BQ；params.G≠实验字母 BQ；params.N≠实验字母 BQ；亦≠单字母实验 A/B/Q/Z；禁 null/holdout/跑后改口）**；**bq0_primary_demo 建议 invent_keep_open_after_list_removal（禁双挂 invent_asof_leak_list_removal_stock_rule；BQ1半泄露不得升格并列主报）**；锚点保留 list_removal_stock_honest=pit_by_effective_date / list_removal_stock_scope=no_new_or_add_unwind_only_or_deadline / list_removal_over_policy=reject_or_force_unwind_or_fail / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**list_removal_stock_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 BQ；params.G≠实验字母 BQ；params.N≠实验字母 BQ；亦≠单字母实验 A/B/Q/Z；禁 null/holdout/跑后改口）**；**bq0_primary_demo 写死冻结 invent_keep_open_after_list_removal（禁双挂 invent_asof_leak_list_removal_stock_rule；BQ1半泄露不得升格并列主报）**；锚点保留 list_removal_stock_honest=pit_by_effective_date / list_removal_stock_scope=no_new_or_add_unwind_only_or_deadline / list_removal_over_policy=reject_or_force_unwind_or_fail / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
 
 ---
 
-## 待预检键清单
+## 待预检键清单（两条已冻结 · 见下节）
 
-1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（建议写死；**params.Y≠BQ**；**params.G≠BQ**；**params.N≠BQ**；禁 null/holdout）  
-2. `params.bq0_primary_demo` = `invent_keep_open_after_list_removal`（建议写死；禁与 `invent_asof_leak_list_removal_stock_rule` 双挂；BQ1不升格主报）  
+1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**已写死冻结**；**params.Y≠BQ**；**params.G≠BQ**；**params.N≠BQ**；禁 null/holdout）  
+2. `params.bq0_primary_demo` = `invent_keep_open_after_list_removal`（**已写死冻结**；禁与 `invent_asof_leak_list_removal_stock_rule` 双挂；BQ1不升格主报）  
 3. 调出后存量锚：`list_removal_stock_honest=pit_by_effective_date`；`list_removal_stock_scope=no_new_or_add_unwind_only_or_deadline`；`list_removal_over_policy=reject_or_force_unwind_or_fail`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`  
 4. 硬分列：≠B/Q/A/Z/BA–BP/K/AB/H/W/T；**尤其 BQ≠BA（新开融资名单≠调出后存量）**；**尤其 BQ≠K（新开融券名单≠调出后存量）**；**尤其 BQ≠BF（期限到期≠名单调出）**；**尤其 BQ≠BC（强平≠调出了结）**；**尤其 BQ≠BB/BO/BP/BM/BN**；**尤其 BQ≠Q**；**带过 BP≠P/BO/W、BM≠BC/BM≠BL、BN≠BI/BJ/BL/BM、params.N≠BN、BL≠BC、BK≠K**；避开预检T  
 5. `oos_split` 四日期；`diff_buckets`；全部 `merge_with_*=False`
@@ -362,6 +362,19 @@ params.diff_buckets = [
 
 **撞题检查：通过（纸面）** — 迁罐后对照正式清单 #74 再核一次 primary_demo 唯一性。
 
+## 风控预检补丁·冻结（两条已写死 · 2026-11-03）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 BQ**；**`params.G` ≠ 实验字母 BQ**；**`params.N` ≠ 实验字母 BQ**；**`params.Y` ≠ 单字母实验 A/B/Q/Z**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.bq0_primary_demo`**：**写死冻结** **`invent_keep_open_after_list_removal`**；禁与 **`invent_asof_leak_list_removal_stock_rule`** 双挂争主表（只挂一个 primary）；**BQ1 半泄露不得升格并列主报**。
+
+**调出后存量锚保留（已通写死）**：`params.list_removal_stock_honest=pit_by_effective_date`；`params.list_removal_stock_scope=no_new_or_add_unwind_only_or_deadline`；`params.list_removal_over_policy=reject_or_force_unwind_or_fail`；`params.margin_channel_start=2010-03-31`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`（及正文已有 `missing_list_removal_stock_policy=skip` 等锚点；不改口）。
+
+**与 BA–BP/Z/AB/B/A/H/Q/K/W/T 硬分列（保留）**：本页 = **标的调出后存量合约假续持/展期加仓**；Q = **可转债**（**尤其双字母 BQ ≠ 单字母假设-Q**）；BA = **融资买入新开名单**（**尤其 BQ≠BA**；新开 ≠ 调出后存量）；K = **融券空头新开名单**（**尤其 BQ≠K**；并**带过 BK≠K**）；BF = **合约期限到期强制了结**（**尤其 BQ≠BF**；期限到 ≠ 名单调出）；BC = **维持担保低线强制平仓**（**尤其 BQ≠BC**；强平 ≠ 调出了结）；BB = **转融券券源**（**尤其 BQ≠BB**）；BO = **融资利息与逾期罚息**（**尤其 BQ≠BO**）；BP = **融券权益补偿**（**尤其 BQ≠BP**；不占 invent_zero_short_corp_action_comp；并**带过 BP≠P/BO/W/BI/BJ/BB**）；BM = **追保通知后禁新开**（**尤其 BQ≠BM**；并**带过 BM≠BC、BM≠BL**）；BN = **信用/普通账户隔离**（**尤其 BQ≠BN**；并**带过 BN≠BI/BJ/BL/BM、params.N≠BN**）；Z = **开仓**保证金比例；W = **除权日复权价误判板**；AB = **融券卖出价限**；A = **板上枯竭**；B = 历史实验 B 旧位；H = **退市整理期**；T = **证管费**（避开预检T）；调出后存量 ≠ 可转债 ≠ 新开融资名单 ≠ 新开融券名单 ≠ 期限到期 ≠ 低维持强平 ≠ 转融券源 ≠ 融资计息 ≠ 权益补偿 ≠ 追保禁开 ≠ 账户隔离 ≠ 开仓比例 ≠ 除权板价 ≠ 空头价限 ≠ 板上枯竭 ≠ 退市整理 ≠ 证管费；**双字母 BQ ≠ 单字母 A ≠ 单字母 B ≠ 单字母 Q ≠ 单字母 K ≠ 单字母 Z ≠ 双字母 BA ≠ … ≠ 双字母 BP ≠ 双字母 BF ≠ 双字母 BC ≠ 双字母 BB ≠ 双字母 BO ≠ 双字母 BM ≠ 双字母 BN ≠ 双字母 W ≠ 双字母 AB ≠ 双字母 H ≠ 双字母 T**；**params.Y ≠ 实验字母 BQ**；**params.G ≠ 实验字母 BQ**；**params.N ≠ 实验字母 BQ**；禁止捆成「两融一张表=调出后可无限续持」；**尤其不改假设-Q**；**尤其不改假设-BA**；**尤其不改假设-K**；**尤其不改假设-BF**；**尤其不改假设-BC**；**尤其不改假设-BP**；**尤其不改假设-H**；不改假设-B；不改假设-Z；不改假设-BA–BP；不改假设-A；不改假设-AB；不改假设-BB；不改假设-BO；不改假设-BM；不改假设-BN。
+
+**专节保留 · 双字母 BQ ≠ 单字母假设-Q；且 ≠ 假设-BA / 假设-K / 假设-BF / 假设-BC；带过 BP≠P/BO/W、BM≠BC/BM≠BL、BN≠BI/BJ/BL/BM、params.N≠BN、BK≠K（硬）**：正文「### 专节 · 双字母 BQ ≠ 单字母假设-Q；且 ≠ 假设-BA / 假设-K / 假设-BF / 假设-BC；带过 BP≠P/BO/W、BM≠BC/BM≠BL、BN≠BI/BJ/BL/BM、params.N≠BN、BK≠K」保留不删；**禁止**覆盖/混读/改写 `假设-Q` / `假设-BA` / `假设-K` / `假设-BF` / `假设-BC` / `假设-BP`。
+
 ## 变更
+
+- 2026-11-03：风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 BQ**；**params.G≠实验字母 BQ**；**params.N≠实验字母 BQ**；亦≠单字母实验 A/B/Q/Z；禁 null/holdout/跑后改口）；② `params.bq0_primary_demo=invent_keep_open_after_list_removal`（禁与 `invent_asof_leak_list_removal_stock_rule` 双挂争主表；BQ1半泄露不得升格并列主报）。调出后存量锚保留：`list_removal_stock_honest=pit_by_effective_date`；`list_removal_stock_scope=no_new_or_add_unwind_only_or_deadline`；`list_removal_over_policy=reject_or_force_unwind_or_fail`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。与 BA–BP/Z/AB/B/A/H/Q/K/W/T 硬分列保留；**专节保留 BQ≠Q / BQ≠BA / BQ≠K / BQ≠BF / BQ≠BC / BQ≠BB / BQ≠BO / BQ≠BP / BQ≠BM / BQ≠BN / 带过 BP≠P/BO/W、BM≠BC/BM≠BL、BN≠BI/BJ/BL/BM、params.N≠BN、BK≠K**。参考总管派令 / 风控预检有条件通过（`预检-假设BQ-20261103.md`；草稿 HEAD=f859795）。未改 Y/Z/AA–BP 及其他已冻结补丁；**不改假设-BP**；不改假设-H；不改假设-A；不改假设-B；不改假设-Q；不改假设-K；不改假设-W；不改假设-Z；不改假设-BA–BP；不改假设-AB；不改假设-AZ；不改假设-AY；不改假设-AX；不改假设-AW；结论栏仍空；不开回测；不抢 A。
 
 - 2026-11-03：新建纸面草稿（总管续派：BP 补丁已交后写假设-BQ；离线大纲迁罐；自立 BQ，勿占 BA–BP/B/Q/A/Z/K/AB/H/W；避开预检T；不开回测；禁实盘/荐股；**params.Y/G/N≠实验字母 BQ**；**双字母 BQ ≠ 单字母 Q**；**BQ≠BA/K/BF/BC/BB/BO/BP/BM/BN**；**带过 BP≠P/BO/W、BM≠BC/BM≠BL、BN≠BI/BJ/BL/BM、params.N≠BN、BL≠BC、BK≠K**）。选题：标的调出名单后存量合约假续持/展期加仓误开（正交于 BA/K 新开名单 / BF 期限到期 / BC 强平 / BB 券源 / BO 利息 / BP 权益补偿）。primary_demo 建议 `invent_keep_open_after_list_removal`；禁与 `invent_asof_leak_list_removal_stock_rule` 双挂。
