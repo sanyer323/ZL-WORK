@@ -2,7 +2,7 @@
 
 更新：2026-11-04  
 来源：总管线 / CM 补丁已交（tip=`5330f4d`；复检/入库另线并行后写下一纸面 CN）；清单撞题规则另选正交执行缺口（**回测默认「配股/增发认购缴款订单必能按发行价或缴款价全额成交」** ≠ 假设-CM ETF申赎可成交性误开 ≠ 假设-CL 可转债盘后定价可成交性误开 ≠ 假设-CK 协议大宗可成交性误开 ≠ 假设-CJ 退市整理期可成交性误开 ≠ 假设-CI 新股上市首日可成交性误开 ≠ 假设-CH 盘后固定价格可成交性误开 ≠ 假设-CG 停牌复牌首日可成交性误开 ≠ 假设-CF 集合竞价可成交性误开 ≠ 假设-CE 跌停板可成交性误开 ≠ 假设-CD 涨停板可成交性误开 ≠ 假设-W 除权日复权价误判板（**除权板价/配股比例进参考价 ≠ 配股认购缴款腿假全额可成**；W 明文主测复权价判板 → 本页自立） ≠ 假设-BP 融券权益补偿（现金/红股/配股）（**配股权益补偿义务 ≠ 配股/增发认购缴款假全额可成**；BP 明文主测融券补偿 → 本页自立） ≠ 假设-N 收盘机制与假GTC（**双字母 CN ≠ 单字母假设-N；严禁复用假设-N**） ≠ 假设-O 大宗假流动性 ≠ 假设-M 盘后补成交 ≠ 假设-X 主板ST涨跌幅PIT误切 ≠ 假设-A 板上枯竭/一字与封板容量主实验 ≠ 假设-C 股票池当时名单（**双字母 CN ≠ 单字母假设-C；严禁复用假设-C**） ≠ 假设-CA/CB/CC 两融族）；选题自 `事实与坑`/口径「执行鸿沟」+ 与 CD–CM 可成交性族正交、与 W 除权板价正交、与 BP 融券配股补偿正交、与 N 收盘假GTC 正交；清单检索「配股认购」「增发认购」「rights」「seo subscription」未占坑；本页**假定板上容量层（A）/ 排队位次层（AR）/ 成交时点与停牌层（D）/ 超涨跌停价无效层（AG）/ 涨停可成交误开层（CD）/ 跌停可成交误开层（CE）/ 集合竞价可成交误开层（CF）/ 停牌复牌首日可成交误开层（CG）/ 盘后固定价格可成交误开层（CH）/ 新股上市首日可成交误开层（CI）/ 退市整理期可成交误开层（CJ）/ 协议大宗可成交误开层（CK）/ 可转债盘后定价可成交误开层（CL）/ ETF申赎可成交误开层（CM）/ 除权板价层（W）/ 融券权益补偿层（BP）/ 收盘假GTC层（N）/ 盘后通道存在层（M）/ 大宗假流动性层（O）诚实或显式旁路**，主病只在**发明「配股或增发认购缴款必能按发行价或缴款价全额成交」这一误开默认**；**A 正文主测「涨停可成交性/板上枯竭」真数队列**（**双字母 CN ≠ 单字母假设-A；严禁复用 A 题面；绝不可做成 A 续篇；不抢 A 真数队列**），**CM 正文主测「ETF申赎可成交性误开」**（ETF申赎 ≠ 配股/增发认购；**严禁改 CM**），**CL/CK/CJ/CI/CH/CG/CF/CE/CD 正文主测转债盘后定价/协议大宗/退市整理/上市首日/盘后固定价/复牌/集合/跌停/涨停可成交误开**（**严禁改 CL/CK/CJ/CI/CH/CG/CF/CE/CD**），**W 正文主测除权日复权价误判板**（板价判定 ≠ 认购缴款全额可成；**严禁改 W**），**BP 正文主测融券权益补偿**（补偿义务 ≠ 认购缴款全额可成；**严禁改 BP**），**N 正文主测收盘机制与假GTC**（**双字母 CN ≠ 单字母假设-N；严禁复用假设-N；尤其不改假设-N**），**C 正文主测「股票池当时名单」**（**双字母 CN ≠ 单字母假设-C；严禁复用 C**），**CA/CB/CC 正文主测两融族**（与本页正交；**严禁改 CA/CB/CC**）→ 自立；与假设 B/Z/BA–CM/AG/AF/E/X/K/AB/H/AN 等**分列**；**严禁复用假设-N / 假设-CM / 假设-CL / 假设-CK / 假设-W / 假设-BP / 假设-C / 假设-A**；**新建实验 CN**  
-状态：**草稿 · 待入库预检**（结论栏空；禁止把「配股/增发认购缴款必能按发行价或缴款价全额成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CM 及其他 A/D–CM 已交正文与冻结补丁；尤其不改假设-CM；尤其不改假设-CL；尤其不改假设-CK；尤其不改假设-CJ；尤其不改假设-CI；尤其不改假设-CH；尤其不改假设-CG；尤其不改假设-CF；尤其不改假设-CE；尤其不改假设-CD；尤其不改假设-W；尤其不改假设-BP；尤其不改假设-N；尤其不改假设-A；尤其不改假设-C；尤其不改假设-O；尤其不改假设-M；尤其不改假设-X；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-CC；勿再改 CM/CL/CK/CJ/CI/CH/CG/CF/CE/CD/CC/CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW/AR/AG/AN/Q/M/L/O/H/K/R/W/X/N**）
+状态：**草稿 · 预检有条件通过 · 三条已冻 · 待复检**（结论栏空；禁止把「配股/增发认购缴款必能按发行价或缴款价全额成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CM 及其他 A/D–CM 已交正文与冻结补丁；尤其不改假设-CM；尤其不改假设-CL；尤其不改假设-CK；尤其不改假设-CJ；尤其不改假设-CI；尤其不改假设-CH；尤其不改假设-CG；尤其不改假设-CF；尤其不改假设-CE；尤其不改假设-CD；尤其不改假设-W；尤其不改假设-BP；尤其不改假设-N；尤其不改假设-A；尤其不改假设-C；尤其不改假设-O；尤其不改假设-M；尤其不改假设-X；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-CC；勿再改 CM/CL/CK/CJ/CI/CH/CG/CF/CE/CD/CC/CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW/AR/AG/AN/Q/M/L/O/H/K/R/W/X/N**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 CN（约 #97）。与假设 **CM（ETF申赎可成交性误开）** **硬分列（专节强调）**：CM = ETF申购赎回腿假全额可成；本页 = 配股/增发认购缴款腿假全额可成；ETF申赎 ≠ 配股/增发认购；**严禁复用 CM 题面或 `invent_assume_etf_creation_redemption_always_fillable`**；**尤其不改假设-CM**。**CN≠CM**。与假设 **CL（可转债盘后定价可成交性误开）** **硬分列**：转债盘后定价 ≠ 配股/增发认购；**严禁复用 CL**；**尤其不改假设-CL**。**CN≠CL**。与假设 **CK（协议大宗可成交性误开）** **硬分列**：协议大宗 ≠ 配股/增发认购；**严禁复用 CK**；**尤其不改假设-CK**。**CN≠CK**。与假设 **CJ/CI/CH/CG/CF/CE/CD** **硬分列**：退市整理/上市首日/盘后固定价/复牌/集合/跌停/涨停 ≠ 配股/增发认购；**严禁复用**；**尤其不改**。**CN≠CJ≠CI≠CH≠CG≠CF≠CE≠CD**。与假设 **W（除权日复权价误判板）** **硬分列（专节强调）**：W = 用复权价/忘配股比例误标涨跌停；本页 = 在除权板价层诚实（或显式旁路交 W）的前提下，是否仍默认「配股/增发认购缴款必能按发行价或缴款价全额成交」；除权板价 ≠ 认购缴款假全额可成；**严禁复用 W 题面**；**尤其不改假设-W**。**CN≠W**。与假设 **BP（融券权益补偿·含配股）** **硬分列（专节强调）**：BP = 融券未了结期间配股等权益补偿义务；本页 = 正股持有人/获配对象对配股或增发认购缴款腿假全额可成；补偿义务 ≠ 认购缴款全额可成；**严禁复用 BP 题面**；**尤其不改假设-BP**。**CN≠BP**。与假设 **N（收盘机制与假GTC）** **硬分列（专节强调）**：**双字母 CN ≠ 单字母假设-N**；收盘定义/假GTC ≠ 认购缴款全额可成；**严禁复用假设-N**；**尤其不改假设-N**。**CN≠N**。与假设 **A（涨停可成交性/板上枯竭）** **硬分列（专节强调）**：容量门槛 ≠ 认购缴款全额可成默认；**双字母 CN ≠ 单字母假设-A**；**严禁复用 A 题面**；**绝不可做成 A 续篇**；**不占** A 的 A0/A1 主报与真数席位；**尤其不改假设-A**。**CN≠A**。与假设 **C（股票池当时名单）** **硬分列**：**双字母 CN ≠ 单字母假设-C**；**严禁复用 C**。**CN≠C**。与假设 **O（大宗假流动性）** **硬分列**：大宗量价/三通道 ≠ 认购缴款全额可成；**严禁复用 O**。**CN≠O**。与假设 **M（盘后补成交/通道）** **硬分列**：通道存在 ≠ 认购缴款全额可成；**严禁复用 M**。**CN≠M**。与假设 **X（主板ST涨跌幅PIT）** **硬分列**：ST 板幅 PIT ≠ 认购缴款全额可成；**严禁复用 X**。**CN≠X**。与假设 **CA/CB/CC** **硬分列**：两融公式/展期/调出了结时限 ≠ 认购缴款全额可成；**尤其不改 CA/CB/CC**。**CN≠CA≠CB≠CC**。与假设 **AR/AG/AN/BZ/BY/BX/BW…** 及两融审批/费用族 **硬分列**。**明确避开预检T旧题（证管费误抽）**。**严禁复用假设-A / 假设-C / 假设-N / 假设-CM / 假设-CL / 假设-CK / 假设-CJ / 假设-CI / 假设-CH / 假设-CG / 假设-CF / 假设-CE / 假设-CD / 假设-W / 假设-BP / 假设-O / 假设-M / 假设-X**。**严禁改写/续写假设-CM / 假设-CL / 假设-CK / 假设-CJ / 假设-CI / 假设-CH / 假设-CG / 假设-CF / 假设-CE / 假设-CD / 假设-W / 假设-BP / 假设-N / 假设-A / 假设-C / 假设-O / 假设-M / 假设-X / 假设-CA / 假设-CB / 假设-CC**。**本页主结论不混。**
 
@@ -33,7 +33,7 @@
 | 题面 CA | **维持担保比例分子分母口径** | 公式 ≠ 认购缴款全额可成；**CN≠CA**；**不改 CA** |
 | 题面 CB | **融资合约展期/续作审批** | 展期审批 ≠ 认购缴款全额可成；**CN≠CB**；**不改 CB** |
 | 题面 CC | **两融标的调出强制了结时点** | 调出了结时限 ≠ 认购缴款全额可成；**CN≠CC**；**不改 CC** |
-| 主演示 | （各页自有；本页不引用覆盖） | `invent_assume_rights_seo_subscription_always_fillable`（**建议**单一主报；禁双挂 asof_leak；CN1不升格） |
+| 主演示 | （各页自有；本页不引用覆盖） | `invent_assume_rights_seo_subscription_always_fillable`（**写死冻结**单一主报；禁双挂 asof_leak；CN1不升格） |
 | 文档 | 清单实验 A / C / N / W / O / M / X / BP / `假设-CA-…` … / `假设-CM-…`（**只读；禁止改写**） | `假设-CN-配股增发认购可成交性误开.md`（新建） |
 | 预检键 | 实验字母 A / C / N / W / O / M / X / BP / CA / CB / CC / CD / CE / CF / CG / CH / CI / CJ / CK / CL / CM | 实验字母 **CN** / `cn0_primary_demo`；**不得**占用或改写预检 A/C/N/W/O/M/X/BP/CA/CB/CC/CD/CE/CF/CG/CH/CI/CJ/CK/CL/CM |
 
@@ -51,19 +51,19 @@
 
 ## 2. 口径与可检验设计（纸面骨架）
 
-### 2.1 写死键（拉数前冻结；本页不开跑；下列为草稿建议占位，待预检三条补丁升格）
+### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 · cn0 与锚 **三条已冻**）
 
 ```
-# 配置写死键（见 §7；草稿 · 待入库预检；下列为建议占位，禁 null/holdout）
+# 配置写死键（见 §7；预检有条件通过 · 三条已冻 · 待复检；下列已写死冻结）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 CN；≠ 单字母假设-C；≠ 单字母假设-N；≠ 单字母假设-A；≠ 双字母假设-CA/CB/CC/CD/CE/CF/CG/CH/CI/CJ/CK/CL/CM
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 CN；≠ 单字母假设-G
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 CN；≠ 单字母假设-N；亦≠实验字母 BN；**尤重 params.N ≠ 实验字母 CN**
-# params.fill_time 建议 next_open
-# params.asof_check_date 建议 2026-10-16
+# params.fill_time 写死冻结 next_open
+# params.asof_check_date 写死冻结 2026-10-16
 # params.px_basis 建议 unadj
-# params.rights_seo_fill_honest 建议 pit_by_rights_seo_subscription_fill_rule
-# params.rights_seo_fill_scope 建议 assume_rights_seo_subscription_always_fillable_at_offer_or_payin
-# params.rights_seo_fill_over_policy 建议 fail_or_partial_or_fail_missing_rights_seo_rule
+# params.rights_seo_fill_honest 写死冻结 pit_by_rights_seo_subscription_fill_rule
+# params.rights_seo_fill_scope 写死冻结 assume_rights_seo_subscription_always_fillable_at_offer_or_payin
+# params.rights_seo_fill_over_policy 写死冻结 fail_or_partial_or_fail_missing_rights_seo_rule
 # params.rights_seo_px_mode 建议 offer_or_payin_price   # 一级认购缴款；禁静默抄二级竞价全额可成
 # params.board_capacity_handoff 建议 a_page
 # params.queue_handoff 建议 ar_page
@@ -90,7 +90,7 @@
 # params.financing_rollover_handoff 建议 cb_page
 # params.delist_force_deadline_handoff 建议 cc_page
 # params.rights_seo_fill_handoff 建议 self
-# params.cn0_primary_demo                建议 invent_assume_rights_seo_subscription_always_fillable
+# params.cn0_primary_demo                写死冻结 invent_assume_rights_seo_subscription_always_fillable
 # params.cn0_invent_assume_rights_seo_subscription_always_fillable 建议 True
 # params.cn1_asof_leak_rights_seo_subscription_always_fillable_only 建议 True
 # params.cn2_pit_rights_seo_fill 建议 True
@@ -121,9 +121,9 @@
 # params.missing_rights_seo_fill_policy 建议 skip
 # params.day_freq_proxy 建议 rights_seo_fill_sensitivity
 # params.universe_rule 建议 sse_szse_rights_seo_subscription_fill_misopen_check
-# params.fail_policy 建议 skip
+# params.fail_policy 写死冻结 skip
 # params.redline_v0_exempt_scope 建议 position_industry_dd_only
-# params.Y / G / N / Y2                  建议占位 0.02/0.01/0.05/0.015（params.Y≠实验字母 CN；params.G≠实验字母 CN；params.N≠实验字母 CN；禁 null/holdout；勿改已冻他字母数值）
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 CN；params.G≠实验字母 CN；params.N≠实验字母 CN；禁 null/holdout；勿改已冻他字母数值）
 # params.date_start / date_end 建议 2019-01-01..2026-09-30
 # params.oos_split.*                     建议四日期；禁 holdout 反调
 # CN0：假全额可成——配股/增发认购缴款腿按发行价或缴款价 100% 成交
@@ -136,13 +136,13 @@
 
 | 组 | 角色 | 规则 |
 |----|------|------|
-| CN0 | 天真 / 假全额可成 | 按 `cn0_primary_demo` **建议**单一主报 `invent_assume_rights_seo_subscription_always_fillable`：配股/增发认购缴款腿按发行价或缴款价 100% 成交（**禁**与 `invent_asof_leak_rights_seo_subscription_always_fillable` 双挂主报） |
-| CN1 | 半泄露 | 仅核对日（asof）更宽「配股/增发认购一律全额可成」规则泄露铺满全历史；**不得升格并列主报**（CN1不升格） |
-| CN2 | 诚实 PIT | `rights_seo_fill_honest=pit_by_rights_seo_subscription_fill_rule`（建议）：每个交易日/认购窗按当时已生效配股或增发认购缴款规则；缺字段 skip |
+| CN0 | 天真 / 假全额可成 | 按 `cn0_primary_demo` **写死冻结**单一主报 `invent_assume_rights_seo_subscription_always_fillable`：配股/增发认购缴款腿按发行价或缴款价 100% 成交（**禁**与 `invent_asof_leak_rights_seo_subscription_always_fillable` 双挂主报） |
+| CN1 | 半泄露 | 仅核对日（asof）更宽「配股/增发认购一律全额可成」规则泄露铺满全历史；**不得升格并列主报**（已冻：CN1不升格） |
+| CN2 | 诚实 PIT | `rights_seo_fill_honest=pit_by_rights_seo_subscription_fill_rule`（已冻结）：每个交易日/认购窗按当时已生效配股或增发认购缴款规则；缺字段 skip |
 
 ### 2.3 额度窗内时频可落点（写明但不真跑）
 
-主窗建议 `2019-01-01..2026-09-30`（额度窗内）；asof 建议 `2026-10-16`；fill_time 建议 `next_open`；fail 建议 `skip`。本页**不开回测**；不拉真数；不做实盘。
+主窗建议 `2019-01-01..2026-09-30`（额度窗内）；asof **写死冻结** `2026-10-16`；fill_time **写死冻结** `next_open`；fail **写死冻结** `skip`。本页**不开回测**；不拉真数；不做实盘。
 
 ### 3.1 oos_split（建议四日期；拉数前冻结；禁 holdout 反调）
 
@@ -201,9 +201,9 @@
 ## 7. 回测配置骨架（纸面；本页不开回测）
 
 - hypothesis_id=`CN`；组 CN0/CN1/CN2。
-- **建议键摘要（待预检三条升格）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`rights_seo_fill_honest=pit_by_rights_seo_subscription_fill_rule`；`rights_seo_fill_scope=assume_rights_seo_subscription_always_fillable_at_offer_or_payin`；`rights_seo_fill_over_policy=fail_or_partial_or_fail_missing_rights_seo_rule`；`fail_policy=skip`；`cn0_primary_demo=invent_assume_rights_seo_subscription_always_fillable`（**建议**单一主报；禁双挂 asof_leak；CN1不升格）。
-- 锚建议（预检通过后须升格写死）：`rights_seo_fill_honest=pit_by_rights_seo_subscription_fill_rule`；`rights_seo_fill_scope=assume_rights_seo_subscription_always_fillable_at_offer_or_payin`；`rights_seo_fill_over_policy=fail_or_partial_or_fail_missing_rights_seo_rule`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。
-- `params.Y/G/N/Y2` **建议占位** `0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CN**；**params.G≠实验字母 CN**；**params.N≠实验字母 CN**；禁 null/holdout；**勿改已冻他字母数值**）。
+- **写死键摘要（三条已冻）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`rights_seo_fill_honest=pit_by_rights_seo_subscription_fill_rule`；`rights_seo_fill_scope=assume_rights_seo_subscription_always_fillable_at_offer_or_payin`；`rights_seo_fill_over_policy=fail_or_partial_or_fail_missing_rights_seo_rule`；`fail_policy=skip`；`cn0_primary_demo=invent_assume_rights_seo_subscription_always_fillable`（**写死冻结**单一主报；禁双挂 asof_leak；CN1不升格）。
+- 锚升格写死（不可再写「建议」）：`rights_seo_fill_honest=pit_by_rights_seo_subscription_fill_rule`；`rights_seo_fill_scope=assume_rights_seo_subscription_always_fillable_at_offer_or_payin`；`rights_seo_fill_over_policy=fail_or_partial_or_fail_missing_rights_seo_rule`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。
+- `params.Y/G/N/Y2` **写死冻结** `0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CN**；**params.G≠实验字母 CN**；**params.N≠实验字母 CN**；禁 null/holdout；**勿改已冻他字母数值**）。
 - 主窗建议 `2019-01-01..2026-09-30`；oos_split 四日期建议写死+禁 holdout 反调。
 - 全部 `merge_with_*=False`（见 §2.1）。
 - **本页不开回测**；不催 8765；不抢 A 真数。
@@ -216,8 +216,21 @@
 
 ---
 
+## 风控预检补丁·冻结（三条已写死 · 2026-11-04）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 CN**；**`params.G` ≠ 实验字母 CN**；**`params.N` ≠ 实验字母 CN**；**`params.Y` ≠ 单字母实验 C/N/A/W/Z**；尤其 **双字母 CN ≠ 单字母假设-A**；**双字母 CN ≠ 单字母假设-C**；**双字母 CN ≠ 单字母假设-N**；**双字母 CN ≠ 双字母假设-CM/CL/CK/CH/CG/CF/CE/CD/CA/CB/CC/BP/W**；禁 null/holdout/跑后改口；**勿改他字母已冻 Y/G/N/Y2**。 
+
+2. **`params.cn0_primary_demo`**：**写死冻结** **`invent_assume_rights_seo_subscription_always_fillable`**；禁止与 **`invent_asof_leak_rights_seo_subscription_always_fillable`** 双挂争主表（只挂一个 primary）；**CN1 半泄露不得升格并列主报**。 
+
+3. **配股增发认购可成交性锚升格写死（不可再写「建议」）**：`params.rights_seo_fill_honest=pit_by_rights_seo_subscription_fill_rule`；`params.rights_seo_fill_scope=assume_rights_seo_subscription_always_fillable_at_offer_or_payin`；`params.rights_seo_fill_over_policy=fail_or_partial_or_fail_missing_rights_seo_rule`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`。
+
+**硬分列保留**：CN≠CM/CL/CK/CH/C/N/A/W/BP/CA–CM…；**尤其 CN≠CM / CN≠CL / CN≠CK / CN≠CH / CN≠N / CN≠W / CN≠BP / CN≠CJ / CN≠CI / CN≠CG / CN≠CF / CN≠CE / CN≠CD / CN≠A**；**双字母 CN ≠ 单字母假设-C / 假设-N / 假设-A / 假设-W**；**严禁复用假设-N / 假设-CM / 假设-CL / 假设-CK / 假设-CH / 假设-CJ / 假设-CI / 假设-CG / 假设-CF / 假设-CE / 假设-CD / 假设-W / 假设-BP / 假设-A / 假设-C**；不抢A；**params.Y/G/N ≠ 实验字母 CN**。
+
+**状态**：预检有条件通过 · 三条已冻 · 待复检；**禁止标任何纸面齐**；本页不开回测/真数/实盘；不改已冻 A/D–CM…BK。
+
 ## 变更
 
 | 日期 | 说明 |
 |------|------|
+| 2026-11-04 | 风控预检补丁·冻结三条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CN**；**params.G≠实验字母 CN**；**params.N≠实验字母 CN**；亦≠单字母实验 C/N/A/W/Z；尤其 **双字母 CN ≠ 单字母假设-A/C/N**；**双字母 CN ≠ 双字母假设-CM/CL/CK/CH/CG/CF/CE/CD/CA/CB/CC/BP/W**；禁 null/holdout/跑后改口）；② `params.cn0_primary_demo=invent_assume_rights_seo_subscription_always_fillable` 单一主报写死（禁与 `invent_asof_leak_rights_seo_subscription_always_fillable` 双挂；CN1不升格）；③ 锚升格写死 `rights_seo_fill_honest=pit_by_rights_seo_subscription_fill_rule` / `scope=assume_rights_seo_subscription_always_fillable_at_offer_or_payin` / `over_policy=fail_or_partial_or_fail_missing_rights_seo_rule` / `asof=2026-10-16` / `fill_time=next_open` / `fail=skip`；状态=预检有条件通过·三条已冻·待复检；**未标纸面齐**；不改已冻 A/D–CM…BK；不开回测/真数/实盘。基于 tip=`fd5261c`。 |
 | 2026-11-04 | 新建草稿·待入库预检（总管线：CM 补丁 tip=`5330f4d` 已交后写 CN；选题配股增发认购可成交性误开；cn0 建议 `invent_assume_rights_seo_subscription_always_fillable`；清单约 #97；硬分列 CN≠C/N/CA–CM…（尤≠CM/CL/CK/CH/N/A/W/BP）；**禁止标任何纸面齐**）。 |
