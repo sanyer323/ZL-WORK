@@ -2,7 +2,7 @@
 
 更新：2026-11-03  
 来源：总管线 / BA 补丁已收、写下一纸面 BB；清单撞题规则另选正交执行缺口（转融券通道/券源可借量 ≠ 融券标的名单 ≠ 融资买入名单 ≠ 保证金比例）；选题自 `事实与坑`「标的名单 ≠ 一定借得到；证监会 2024-07-10 批准中证金融自 2024-07-11 暂停转融券，存量不得晚于 2024-09-30 了结；暂停转融券不等于融券标的消失（券商自有券源仍可能出借），但回测不要假设名单里每只都能按任意量、任意日借到」公开规则；与假设 A（板上可成交/枯竭）/ H（退市整理）/ B（历史清单「实验 B」印花税时点·财务可见日·除权误判等旧位；**双字母 BB ≠ 单字母 B**）/ K（**融券空头名单** PIT；**BB≠K**：名单闸门 ≠ 券源可借量）/ BA（**融资买入**标的名单；**BB≠BA**）/ Z（保证金比例；**BB≠Z**）/ AB（融券卖出价限 / 禁市价 / 当日平；**BB≠AB**）/ E（整手）/ M（盘后）/ O（大宗）/ N（收盘切日/假 GTC）/ Q（可转债）/ R（股票 ETF 假回转）/ S/T/U/V（费用层；**避开预检T旧题**）/ W（除权判板）/ L（市价通道）/ D（开/收时点与停牌）/ AN–BA（集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/融资买入名单等）/ Y（集合量计入日线；**实验字母 Y ≠ params.Y**）/ AA–BA / AC–BA 等**分列**；**新建实验 BB**  
-状态：**草稿 · 待数据 · 待跑 · 待预检**（结论栏空；禁止把「在融券名单内 = 任意量任意日一定借得到 / 2024-07-11 后仍按无限转融券源回放」当诚实空头可成交能力；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BA 及其他 A/D–BA 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-K；不改假设-BA；不改假设-Z；不改假设-AB；勿再改 BA/AZ/AY/AX/AW**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-03）**（结论栏空；禁止把「在融券名单内 = 任意量任意日一定借得到 / 2024-07-11 后仍按无限转融券源回放」当诚实空头可成交能力；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BA 及其他 A/D–BA 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-K；不改假设-BA；不改假设-Z；不改假设-AB；勿再改 BA/AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 BB。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **空头腿在转融券暂停后是否仍发明无限券源**。**双字母 BB ≠ 单字母 A**。与假设 **B（历史实验 B 旧位）** **硬分列**：清单早期「实验 B」曾挂印花税时点+T+1 / 财务可见日 / 除权日复权价误判等，主病已迁 V/W 等页；本页**不重开**那些旧 B 题。**双字母 BB ≠ 单字母 B**。与假设 **K（融券空头名单）** **硬分列**：K = **能不能进空头名单闸门**（PIT 名单）；本页 = **进名单后转融券通道/券源是否按任意量可借**；名单内 ≠ 一定借得到；禁止捆成「融券名单一张表=无限券源」。与假设 **BA（融资买入标的名单）** **硬分列**：BA = **多头融资买入**可融名单；本页 = **空头券源/转融通道**可借量；融资买入 ≠ 融券券源。与假设 **Z（保证金比例）** **硬分列**：Z = 已允许融资/融券后的**比例/可开名义**；本页 = **转融暂停后的券源可成交性**，不主测 80%/100% 比例。与假设 **AB（融券卖出价限）** **硬分列**：AB = 融券卖出价限/禁市价/当日平；本页不主测空头价限。与假设 AN–BA **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/融资买入名单。**明确避开预检T旧题（证管费误抽）**。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 转融券通道/券源可借量 ≠ 融券标的名单；≠ 融资买入名单；≠ 保证金比例；≠ 融券卖出价限；≠ 板上枯竭；≠ 证管费
 
 ```
-# 配置写死键（见 §7；Y/G/N/Y2 与 bb0_primary_demo 为待预检建议值，拉数前须冻结）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-03）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 BB；≠ 实验字母 A；≠ 实验字母 B；≠ 实验字母 K
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 BB
 # params.asof_check_date                 写死默认 2026-10-16  # 与事实与坑「两融/转融券暂停」核对日同向
@@ -36,7 +36,7 @@
 # params.margin_buy_list_handoff         写死 ba_page        # 融资买入名单交 BA；BB≠BA
 # params.margin_ratio_handoff            写死 z_page         # 保证金比例交 Z；BB≠Z
 # params.short_px_handoff                写死 ab_page        # 融券卖出价限交 AB
-# params.bb0_primary_demo                待预检建议 invent_unlimited_borrow_post_pause  # 主报：暂停后仍发明无限转融券源；禁与 invent_ignore_refinance_pause 双挂争主表；BB1半泄露不得升格并列主报
+# params.bb0_primary_demo                写死 invent_unlimited_borrow_post_pause  # 风控补丁冻结；主报：暂停后仍发明无限转融券源；禁与 invent_ignore_refinance_pause 双挂争主表；BB1半泄露不得升格并列主报
 # params.bb0_invent_unlimited_post_pause 写死 True
 # params.bb1_ignore_pause_only           写死 True           # 半泄露：仅把暂停日当成未发生 / 忽略 pause 切片
 # params.bb2_pit_cap_or_skip             写死 True
@@ -97,7 +97,7 @@
 # params.missing_borrow_policy           写死 skip
 # params.day_freq_proxy                  写死 refinance_pause_borrow_sensitivity
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  待预检建议 0.02/0.01/0.05/0.015  # params.Y≠实验字母BB；params.N≠实验字母BB；亦≠单字母实验A/B/K；禁null/holdout/跑后改口
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y≠实验字母BB；params.N≠实验字母BB；亦≠单字母实验A/B/K；禁null/holdout/跑后改口
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -112,7 +112,7 @@ shortable_list_handoff = "k_page"
 margin_buy_list_handoff = "ba_page"
 margin_ratio_handoff = "z_page"
 short_px_handoff = "ab_page"
-bb0_primary_demo = "invent_unlimited_borrow_post_pause"  # 待预检建议；禁与 invent_ignore_refinance_pause 双挂；BB1半泄露不得升格并列主报
+bb0_primary_demo = "invent_unlimited_borrow_post_pause"  # 写死冻结；禁与 invent_ignore_refinance_pause 双挂；BB1半泄露不得升格并列主报
 bb0_invent_unlimited_post_pause = True
 bb1_ignore_pause_only = True
 bb2_pit_cap_or_skip = True
@@ -122,18 +122,18 @@ universe_rule = "sse_szse_short_borrow_inventory_check"
 missing_borrow_policy = "skip"
 day_freq_proxy = "refinance_pause_borrow_sensitivity"
 
-# 待预检建议（拉数前须写入并冻结；禁 null/holdout/跑后改口）
-Y = 0.02   # 建议；相对门槛 ≠ 实验字母 BB；≠ 单字母实验 A/B/K
-G = 0.01   # 建议
-N = 0.05   # 建议；失败/废单率差门槛 ≠ 实验字母 BB
-Y2 = 0.015 # 建议
+# 风控补丁写死冻结（2026-11-03；禁 null/holdout/跑后改口）
+Y = 0.02   # 写死冻结；相对门槛 ≠ 实验字母 BB；≠ 单字母实验 A/B/K
+G = 0.01   # 写死冻结
+N = 0.05   # 写死冻结；失败/废单率差门槛 ≠ 实验字母 BB
+Y2 = 0.015 # 写死冻结
 ```
 
 ### 2.2 组定义（BB0 / BB1 / BB2）
 
 | 组 | 转融券暂停后券源 | 说明 |
 |----|------------------|------|
-| BB0 天真 | 按 `bb0_primary_demo` 单一主报（**待预检建议** `invent_unlimited_borrow_post_pause`） | 暂停后仍发明无限转融券源；禁与 invent_ignore_refinance_pause 双挂 |
+| BB0 天真 | 按 `bb0_primary_demo` 单一主报（**写死冻结** `invent_unlimited_borrow_post_pause`） | 暂停后仍发明无限转融券源；禁与 invent_ignore_refinance_pause 双挂 |
 | BB1 半泄露/混口径 | 仅把暂停日当成未发生 / 忽略 `refinance_pause_start` 切片 | 半泄露对照；不升格并列主报 |
 | BB2 PIT 诚实 | 暂停后转融通道关闭或券源不保证 → cap/skip；自有券源另桶敏感性；存量 ≤2024-09-30；缺字段 skip | 诚实券源闸门 |
 
@@ -148,14 +148,14 @@ Y2 = 0.015 # 建议
 - **≠T**：证管费误抽（**避开预检T**）≠ 本页。  
 - **≠AN–BA**：不重开集合/失败回落/基金费用价位/融资买入名单链。
 
-**待预检键（建议值；拉数前须冻结；禁 holdout；禁 null；禁双挂；禁跑后改口）**：
+**风控补丁两条（已写死冻结 · 2026-11-03；禁 holdout；禁 null；禁双挂；禁跑后改口）**：
 
 ```
-params.Y                            = 0.02                              # 待预检建议；名义差显著门槛；≠实验字母 BB；≠单字母实验 A/B/K
-params.G                            = 0.01                              # 待预检建议；假空头腿桶相对对照差
-params.N                            = 0.05                              # 待预检建议；失败/废单率差门槛；≠实验字母 BB
-params.Y2                           = 0.015                             # 待预检建议；BB1（忽略暂停）相对 BB2 专项门槛
-params.bb0_primary_demo             = invent_unlimited_borrow_post_pause # 待预检建议主报：暂停后仍发明无限转融券源；禁与 invent_ignore_refinance_pause 双挂争主表；BB1半泄露不得升格并列主报
+params.Y                            = 0.02                              # 写死冻结；名义差显著门槛；≠实验字母 BB；≠单字母实验 A/B/K
+params.G                            = 0.01                              # 写死冻结；假空头腿桶相对对照差
+params.N                            = 0.05                              # 写死冻结；失败/废单率差门槛；≠实验字母 BB
+params.Y2                           = 0.015                             # 写死冻结；BB1（忽略暂停）相对 BB2 专项门槛
+params.bb0_primary_demo             = invent_unlimited_borrow_post_pause # 写死冻结主报：暂停后仍发明无限转融券源；禁与 invent_ignore_refinance_pause 双挂争主表；BB1半泄露不得升格并列主报
 ```
 
 ---
@@ -221,17 +221,17 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔNotional| **≥ params.Y** 或 |ΔFakeShortBorrow 桶贡献| **≥ params.G** 或 |ΔNotional_(BB1−BB2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「转融券暂停后券源执行鸿沟显著」。
 
-**params.Y / G / N / Y2（待预检建议；与实验字母 BB / 单字母实验 A/B/K 无关）**
+**params.Y / G / N / Y2（写死冻结 2026-11-03；与实验字母 BB / 单字母实验 A/B/K 无关）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 名义差显著门槛（≠实验字母 BB；≠单字母实验 A/B/K） | **待预检建议** `0.02` |
-| params.G | 假空头腿桶相对对照差 | **待预检建议** `0.01` |
-| params.N | 失败/废单率差门槛（≠实验字母 BB） | **待预检建议** `0.05` |
-| params.Y2 | BB1−BB2 专项门槛 | **待预检建议** `0.015` |
+| params.Y | 名义差显著门槛（≠实验字母 BB；≠单字母实验 A/B/K） | **写死冻结** `0.02` |
+| params.G | 假空头腿桶相对对照差 | **写死冻结** `0.01` |
+| params.N | 失败/废单率差门槛（≠实验字母 BB） | **写死冻结** `0.05` |
+| params.Y2 | BB1−BB2 专项门槛 | **写死冻结** `0.015` |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-16` |
 | fill_time | 成交时点 | **写死** `next_open` |
-| bb0_primary_demo | 天真主报枚举 | **待预检建议** `invent_unlimited_borrow_post_pause`（禁与 invent_ignore_refinance_pause 双挂；BB1半泄露不得升格并列主报） |
+| bb0_primary_demo | 天真主报枚举 | **写死冻结** `invent_unlimited_borrow_post_pause`（禁与 invent_ignore_refinance_pause 双挂；BB1半泄露不得升格并列主报） |
 
 ### 4.3 红线 v0
 
@@ -277,7 +277,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`BB`  
 - **组**：BB0 / BB1 / BB2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`refinance_pause_start=2024-07-11`；`refinance_stock_unwind_deadline=2024-09-30`；`borrow_honest=refinance_pause_cap_or_skip`；`shortable_list_handoff=k_page`；`margin_buy_list_handoff=ba_page`；`margin_ratio_handoff=z_page`；`short_px_handoff=ab_page`；`broker_own_inventory_bucket=separate_sensitivity`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_short_borrow_inventory_check`；`missing_borrow_policy=skip`；`day_freq_proxy=refinance_pause_borrow_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 待预检建议 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 BB；**params.N≠实验字母 BB**；亦≠单字母实验 A/B/K；禁 null/holdout）；**`params.bb0_primary_demo` 待预检建议 `invent_unlimited_borrow_post_pause`**（禁与 invent_ignore_refinance_pause 双挂；BB1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`refinance_pause_start=2024-07-11`；`refinance_stock_unwind_deadline=2024-09-30`；`borrow_honest=refinance_pause_cap_or_skip`；`shortable_list_handoff=k_page`；`margin_buy_list_handoff=ba_page`；`margin_ratio_handoff=z_page`；`short_px_handoff=ab_page`；`broker_own_inventory_bucket=separate_sensitivity`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_short_borrow_inventory_check`；`missing_borrow_policy=skip`；`day_freq_proxy=refinance_pause_borrow_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 BB；**params.N≠实验字母 BB**；亦≠单字母实验 A/B/K；禁 null/holdout；风控补丁冻结 2026-11-03）；**`params.bb0_primary_demo` 写死冻结 `invent_unlimited_borrow_post_pause`**（禁与 invent_ignore_refinance_pause 双挂；BB1半泄露不得升格并列主报；风控补丁冻结 2026-11-03）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -306,20 +306,24 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；转融暂停切日 + 日频券源敏感性即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**borrow_honest=refinance_pause_cap_or_skip 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 待预检建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 BB；params.N≠实验字母 BB；亦≠单字母实验 A/B/K）**；**bb0_primary_demo 待预检建议 invent_unlimited_borrow_post_pause（禁双挂；BB1半泄露不得升格并列主报）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**borrow_honest=refinance_pause_cap_or_skip 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死 0.02/0.01/0.05/0.015（params.Y≠实验字母 BB；params.N≠实验字母 BB；亦≠单字母实验 A/B/K；风控补丁冻结 2026-11-03）**；**bb0_primary_demo 写死 invent_unlimited_borrow_post_pause（禁双挂；BB1半泄露不得升格并列主报；风控补丁冻结 2026-11-03）** |
 
 ---
 
-## 待预检键 / demo 键名建议（交风控）
+## 风控预检补丁·冻结（两条已写死 · 2026-11-03）
 
-1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：建议写入并冻结 `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 BB**；**`params.Y` ≠ 单字母实验 A/B/K**；**`params.N` ≠ 实验字母 BB**；禁 null / holdout 标定 / 跑后改口。  
-2. **`params.bb0_primary_demo`**：建议写入并冻结 **`invent_unlimited_borrow_post_pause`**；禁与 **`invent_ignore_refinance_pause`** 双挂争主表（只挂一个 primary）；**BB1 半泄露不得升格并列主报**。
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 BB**；**`params.Y` ≠ 单字母实验 A/B/K**；**`params.N` ≠ 实验字母 BB**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.bb0_primary_demo`**：**写死冻结** **`invent_unlimited_borrow_post_pause`**；禁与 **`invent_ignore_refinance_pause`** 双挂争主表（只挂一个 primary）；**BB1 半泄露不得升格并列主报**。
 
-**与 K/BA 硬分列（保留）**：本页 = **转融券暂停后券源/通道可借量**；K = **融券空头名单**闸门；BA = **融资买入**标的名单；名单内 ≠ 一定借得到 ≠ 融资可买；禁止捆成「两融名单一张表=无限券源」；不改假设-K；不改假设-BA。
+**切日保留（已通写死）**：`params.refinance_pause_start=2024-07-11`；`params.refinance_stock_unwind_deadline=2024-09-30`（不改口）。
+
+**与 BA/K/AB 硬分列（保留）**：本页 = **转融券暂停后券源/通道可借量**；BA = **融资买入**标的名单；K = **融券空头名单**闸门；AB = **融券卖出价限**；名单内 ≠ 一定借得到 ≠ 融资可买 ≠ 空头价限；禁止捆成「两融名单一张表=无限券源」；不改假设-BA；不改假设-K；不改假设-AB。
 
 ---
 
 ## 变更
+
+- 2026-11-03：风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 BB**；亦≠单字母实验 A/B/K；**params.N≠实验字母 BB**；禁 null/holdout/跑后改口）；② `params.bb0_primary_demo=invent_unlimited_borrow_post_pause`（禁与 `invent_ignore_refinance_pause` 双挂争主表；BB1半泄露不得升格并列主报）。切日保留：`refinance_pause_start=2024-07-11`；`refinance_stock_unwind_deadline=2024-09-30`。与 BA/K/AB 硬分列保留。参考总管派令 / 风控预检有条件通过。未改 Y/Z/AA–BA 及其他已冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-K；不改假设-BA；不改假设-Z；不改假设-AB；不改假设-AZ；不改假设-AY；不改假设-AX；不改假设-AW；结论栏仍空；不开回测；不抢 A。
 
 - 2026-11-03：新建纸面草稿假设-BB（转融券暂停后假无限券源）。待预检键建议 Y/G/N/Y2=0.02/0.01/0.05/0.015；bb0_primary_demo=invent_unlimited_borrow_post_pause（禁双挂 invent_ignore_refinance_pause）。与 A/B/K/BA/Z/AB/T/AN–BA 硬分列；**双字母 BB ≠ 单字母 B**；明确避开预检T旧题。未改 Y/Z/AA–BA 及其他已冻结补丁；不改假设-H；不改假设-A；不改假设-K；不改假设-BA；不改假设-Z；不改假设-AB；勿再改 BA/AZ/AY/AX/AW；结论栏仍空；不开回测；不抢 A。
 
