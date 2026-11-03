@@ -1,0 +1,5 @@
+segment_window,board,limit_pct,n_bars,n_one_word_up,n_one_word_down,n_close_seal_up,n_close_seal_down,n_suspended,data_mode,FAKE,hypothesis_id,oos
+2025-07-28..2026-05-21,chi_next,0.2,1960,0,0,0,0,0,live_expand,False,A,LIVE_EXPAND_IS
+2025-07-28..2026-05-21,main,0.1,2940,0,0,5,3,0,live_expand,False,A,LIVE_EXPAND_IS
+2026-05-22..2026-07-31,chi_next,0.2,500,0,0,1,0,0,live_expand,False,A,LIVE_EXPAND_holdout
+2026-05-22..2026-07-31,main,0.1,750,0,0,4,1,0,live_expand,False,A,LIVE_EXPAND_holdout

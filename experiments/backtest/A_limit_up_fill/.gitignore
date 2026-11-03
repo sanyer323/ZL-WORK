@@ -21,6 +21,8 @@ results/*
 !results/fake/**
 !results/live_sample/
 !results/live_sample/**
+!results/live_expand/
+!results/live_expand/**
 results/fake/*.parquet
 results/**/*.pkl
 
