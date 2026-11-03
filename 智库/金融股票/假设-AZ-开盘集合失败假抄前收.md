@@ -2,7 +2,7 @@
 
 更新：2026-11-03  
 来源：总管线 / AY 补丁已收、写下一纸面 AZ；清单撞题规则另选正交微观结构缺口（开盘集合失败回落链 ≠ 收盘失败回落）；选题自 `事实与坑`「开盘价 = 当日竞价第一笔成交，先走集合竞价，走不成再走连续竞价」公开规则；与假设 A（板上可成交/枯竭）/ H（退市整理）/ Z（融资保证金比例误铺；**实验字母 Z ≠ 本页 AZ**）/ E（整手）/ M（盘后）/ O（大宗）/ N（收盘机制切日与假 GTC）/ Q（可转债）/ R（股票 ETF 假回转）/ S/T/U/V（费用层；**避开预检T旧题**）/ W（除权判板）/ L（市价通道）/ D（开/收时点与停牌假可交易）/ AN（开盘集合**剩单**假即时成）/ AO（收盘集合剩单）/ AK（集合时段假连续）/ AV（集合撮合三原则）/ AW（**收盘**集合失败假抄前收或假末笔）/ AY（基金ETF最小价位）/ AX（ETF基金经手费）/ Y（集合量计入日线；**实验字母 Y ≠ params.Y**）/ AA–AX / AC–AV 等**分列**；**新建实验 AZ**  
-状态：**草稿 · 待数据 · 待跑 · 待预检**（结论栏空；禁止把「开盘集合失败 → 抄前收盘 / 假理论未成交开盘价」当诚实开盘价产生链；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AY 及其他 A/D–AY 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-Z；不改假设-AW；不改假设-AN；不改假设-D；不改假设-AV；勿再改 AY/AX/AW**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-03）**（结论栏空；禁止把「开盘集合失败 → 抄前收盘 / 假理论未成交开盘价」当诚实开盘价产生链；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AY 及其他 A/D–AY 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-Z；不改假设-AW；不改假设-AN；不改假设-D；不改假设-AV；勿再改 AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 AZ。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **开盘集合竞价未能产生成交价时**，开盘价是否按**随后连续竞价第一笔**诚实回落，还是发明**前收盘 / 未成交理论集合价**冒充。**双字母 AZ ≠ 单字母 A**。与假设 **Z（融资保证金比例误铺）** **硬分列**：Z = 融资保证金/担保比例 PIT；本页 = **开盘价产生失败回落链**，不主测两融保证金。**双字母 AZ ≠ 单字母 Z**。与假设 **AW（收盘集合失败假抄前收或假末笔）** **硬分列**：AW = **收盘**集合失败 → last1min_vwap / 仅全日无成交才 prev；本页 = **开盘**集合失败 → first continuous trade；开≠收，禁止捆。与假设 **AN（开盘集合剩单假即时成）** **硬分列**：AN = 集合**结束后剩单**是否假即时成/假清空；本页 = **开盘价字段**在集合无成交时怎么定，不重开剩单假即时成。与假设 **D（开/收时点与停牌）** **硬分列**：D = 次日开 vs 次日收、停牌日假可交易；本页 = 开盘价**产生失败回落**口径，消费 D 的 open 字段定义但不重开开/收主对照。与假设 **AV（集合撮合三原则）** **硬分列**：AV = 集合**撮合本身**三原则是否被中间价/前收盘替换；本页 = 集合**未能产生价**后的开盘回落链。与假设 **AK（集合时段假连续）** **分列**：AK = 集合窗内假连续多价撮合；本页 = 集合失败后的开盘价回落。与假设 **AY/AX** **硬分列**：价位/经手费 ≠ 开盘失败回落。**明确避开预检T旧题（证管费误抽）**。与假设 AN–AY **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/基金经手费/基金 tick。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 开盘集合失败回落 ≠ 收盘失败回落；≠ 开盘剩单假即时成；≠ 开/收主对照；≠ 集合三原则；≠ 板上枯竭；≠ 融资保证金；≠ 证管费
 
 ```
-# 配置写死键（见 §7；待预检建议值；拉数前冻结）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-03）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AZ；≠ 实验字母 A；≠ 实验字母 Z
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 AZ
 # params.asof_check_date                 写死默认 2026-10-02  # 与事实与坑「开盘价来自集合」核对日同向
@@ -36,7 +36,7 @@
 # params.call_match_principle_handoff    写死 av_page
 # params.open_vs_close_handoff           写死 d_page
 # params.margin_ratio_handoff            写死 z_page         # 融资保证金交 Z；AZ≠Z
-# params.az0_primary_demo                建议 invent_open_fail_as_prev_close  # 主报：开盘集合失败假抄前收；禁与 invent_open_fail_as_theory_uncross 双挂争主表；AZ1半泄露不得升格并列主报
+# params.az0_primary_demo                写死 invent_open_fail_as_prev_close  # 风控补丁冻结；主报：开盘集合失败假抄前收；禁与 invent_open_fail_as_theory_uncross 双挂争主表；AZ1半泄露不得升格并列主报
 # params.az0_invent_prev_on_fail         写死 True
 # params.az1_theory_uncross_only         写死 True           # 半泄露：仅假理论未成交开盘价
 # params.az2_open_fail_policy            写死 call_then_first_continuous_else_skip
@@ -93,7 +93,7 @@
 # params.missing_minbar_policy           写死 skip
 # params.day_freq_proxy                  写死 open_fail_fallback_sensitivity
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  建议 0.02/0.01/0.05/0.015  # 待预检写死；params.Y≠实验字母AZ；params.N≠实验字母AZ；亦≠单字母实验A/Z；禁null/holdout/跑后改口
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y≠实验字母AZ；params.N≠实验字母AZ；亦≠单字母实验A/Z；禁null/holdout/跑后改口
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -108,7 +108,7 @@ open_leftover_handoff = "an_page"
 call_match_principle_handoff = "av_page"
 open_vs_close_handoff = "d_page"
 margin_ratio_handoff = "z_page"
-az0_primary_demo = "invent_open_fail_as_prev_close"  # 待预检写死；禁双挂
+az0_primary_demo = "invent_open_fail_as_prev_close"  # 写死冻结；禁与 invent_open_fail_as_theory_uncross 双挂；AZ1半泄露不得升格并列主报
 az0_invent_prev_on_fail = True
 az1_theory_uncross_only = True
 az2_open_fail_policy = "call_then_first_continuous_else_skip"
@@ -116,15 +116,15 @@ universe_rule = "sse_szse_common_stock_open_fail_check"
 missing_minbar_policy = "skip"
 day_freq_proxy = "open_fail_fallback_sensitivity"
 
-# 待预检建议（纸面占位；禁 null；禁 holdout 标定；禁跑后改口）
-Y = 0.02   # 建议；相对门槛 ≠ 实验字母 AZ；≠ 单字母实验 A/Z
-G = 0.01   # 建议
-N = 0.05   # 建议；失败率门槛键 params.N ≠ 实验字母 AZ
-Y2 = 0.015 # 建议
+# 风控补丁写死冻结（2026-11-03；禁 null/holdout/跑后改口）
+Y = 0.02   # 写死；相对门槛 ≠ 实验字母 AZ；≠ 单字母实验 A/Z
+G = 0.01   # 写死
+N = 0.05   # 写死；失败率门槛键 params.N ≠ 实验字母 AZ
+Y2 = 0.015 # 写死
 
 def invent_open_px(group, call_clear_px, first_continuous_px, theory_uncross_px, prev_close, had_post_call_trades):
     """
-    AZ0：按 az0_primary_demo 单一主报（建议 invent_open_fail_as_prev_close）
+    AZ0：按 az0_primary_demo 单一主报（写死 invent_open_fail_as_prev_close）
     AZ1：仅假理论未成交开盘价冒充失败回落（非主报前收）
     AZ2：call_then_first_continuous_else_skip；缺分钟成交 → skip（或日频敏感性档）
     """
@@ -154,7 +154,7 @@ def invent_open_px(group, call_clear_px, first_continuous_px, theory_uncross_px,
 
 | 组 | 开盘集合失败回落 | 说明 |
 |----|------------------|------|
-| AZ0 天真 | 集合失败假抄前收（按 `az0_primary_demo` 单一主报） | 发明假回落路径（错标/扭曲开盘名义与冲击） |
+| AZ0 天真 | 按 `az0_primary_demo` 单一主报（**写死冻结** `invent_open_fail_as_prev_close`） | 发明假回落路径（错标/扭曲开盘名义与冲击）；禁与 invent_open_fail_as_theory_uncross 双挂 |
 | AZ1 半泄露/混口径 | 仅假理论未成交开盘价冒充失败回落 | 混口径假路径（无成交却发明开盘） |
 | AZ2 PIT 诚实 | call → first continuous；全日无成交则无开盘/skip；缺分钟 skip/敏感性 | 与公开规则同向 |
 
@@ -162,14 +162,14 @@ def invent_open_px(group, call_clear_px, first_continuous_px, theory_uncross_px,
 
 **全部 `merge_with_*=False`（写死；含 A/Z/AW/AN/AO/AV/AK/D/Y/AY/AX/T/N/AL/AM/AJ/AH/AI/AG/AF/E/I/F/L/H/X/O/Q/R/S/U/V/W/M/AP/AU/AS/AT/AR/AQ/AC/AD/AE/G/J/K/AA/P/AB）**。
 
-**待预检键建议（纸面占位；拉数前须写死冻结；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁两条（已写死冻结 · 2026-11-03；禁 holdout；禁 null；禁双挂；禁跑后改口）**：
 
 ```
-params.Y                            = 0.02                         # 建议；可成交名义/冲击差显著门槛；≠实验字母 AZ；≠单字母实验 A/Z
-params.G                            = 0.01                         # 建议；假回落桶相对对照差
-params.N                            = 0.05                         # 建议；失败/废单率差门槛；≠实验字母 AZ
-params.Y2                           = 0.015                        # 建议；AZ1（假理论开盘）相对 AZ2 专项门槛
-params.az0_primary_demo             = invent_open_fail_as_prev_close  # 建议主报：开盘集合失败假抄前收；禁与 invent_open_fail_as_theory_uncross 双挂争主表；AZ1半泄露不得升格并列主报
+params.Y                            = 0.02                         # 写死冻结；可成交名义/冲击差显著门槛；≠实验字母 AZ；≠单字母实验 A/Z
+params.G                            = 0.01                         # 写死冻结；假回落桶相对对照差
+params.N                            = 0.05                         # 写死冻结；失败/废单率差门槛；≠实验字母 AZ
+params.Y2                           = 0.015                        # 写死冻结；AZ1（假理论开盘）相对 AZ2 专项门槛
+params.az0_primary_demo             = invent_open_fail_as_prev_close  # 写死冻结主报：开盘集合失败假抄前收；禁与 invent_open_fail_as_theory_uncross 双挂争主表；AZ1半泄露不得升格并列主报
 ```
 
 ---
@@ -237,17 +237,17 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔNotional| 或 |ΔImpact| **≥ params.Y** 或 |ΔFakeFallback 桶贡献| **≥ params.G** 或 |ΔNotional_(AZ1−AZ2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「开盘集合失败回落执行鸿沟显著」。
 
-**params.Y / G / N / Y2（待预检建议；与实验字母 AZ / 单字母实验 A/Z 无关）**
+**params.Y / G / N / Y2（写死冻结 2026-11-03；与实验字母 AZ / 单字母实验 A/Z 无关）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 名义/冲击差显著门槛（≠实验字母 AZ；≠单字母实验 A/Z） | **建议** `0.02`（待预检写死） |
-| params.G | 假回落桶相对对照差 | **建议** `0.01` |
-| params.N | 失败/废单率差门槛（≠实验字母 AZ） | **建议** `0.05` |
-| params.Y2 | AZ1−AZ2 专项门槛 | **建议** `0.015` |
+| params.Y | 名义/冲击差显著门槛（≠实验字母 AZ；≠单字母实验 A/Z） | **写死冻结** `0.02` |
+| params.G | 假回落桶相对对照差 | **写死冻结** `0.01` |
+| params.N | 失败/废单率差门槛（≠实验字母 AZ） | **写死冻结** `0.05` |
+| params.Y2 | AZ1−AZ2 专项门槛 | **写死冻结** `0.015` |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-02` |
 | fill_time | 成交时点 | **写死** `next_open` |
-| az0_primary_demo | 天真主报枚举 | **建议** `invent_open_fail_as_prev_close`（禁与 invent_open_fail_as_theory_uncross 双挂；AZ1半泄露不得升格并列主报） |
+| az0_primary_demo | 天真主报枚举 | **写死冻结** `invent_open_fail_as_prev_close`（禁与 invent_open_fail_as_theory_uncross 双挂；AZ1半泄露不得升格并列主报） |
 
 ### 4.3 红线 v0
 
@@ -293,7 +293,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`AZ`  
 - **组**：AZ0 / AZ1 / AZ2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-02`；`open_fail_honest=call_then_first_continuous_else_skip`；`close_fail_handoff=aw_page`；`open_leftover_handoff=an_page`；`call_match_principle_handoff=av_page`；`open_vs_close_handoff=d_page`；`margin_ratio_handoff=z_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_open_fail_check`；`missing_minbar_policy=skip`；`day_freq_proxy=open_fail_fallback_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 建议 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 AZ；**params.N≠实验字母 AZ**；亦≠单字母实验 A/Z；禁 null/holdout；待预检写死）；**`params.az0_primary_demo` 建议 `invent_open_fail_as_prev_close`**（禁与 invent_open_fail_as_theory_uncross 双挂；AZ1半泄露不得升格并列主报；待预检写死）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-02`；`open_fail_honest=call_then_first_continuous_else_skip`；`close_fail_handoff=aw_page`；`open_leftover_handoff=an_page`；`call_match_principle_handoff=av_page`；`open_vs_close_handoff=d_page`；`margin_ratio_handoff=z_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_open_fail_check`；`missing_minbar_policy=skip`；`day_freq_proxy=open_fail_fallback_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 AZ；**params.N≠实验字母 AZ**；亦≠单字母实验 A/Z；禁 null/holdout；风控补丁冻结 2026-11-03）；**`params.az0_primary_demo` 写死 `invent_open_fail_as_prev_close`**（禁与 invent_open_fail_as_theory_uncross 双挂；AZ1半泄露不得升格并列主报；风控补丁冻结 2026-11-03）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -322,10 +322,21 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；连续首笔代理或日频敏感性即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-02；**fill_time=next_open 写死**；**open_fail_honest=call_then_first_continuous_else_skip 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 AZ；params.N≠实验字母 AZ；亦≠单字母实验 A/Z；待预检写死）**；**az0_primary_demo 建议 invent_open_fail_as_prev_close（禁双挂；AZ1半泄露不得升格并列主报；待预检写死）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-02；**fill_time=next_open 写死**；**open_fail_honest=call_then_first_continuous_else_skip 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死 0.02/0.01/0.05/0.015（params.Y≠实验字母 AZ；params.N≠实验字母 AZ；亦≠单字母实验 A/Z；风控补丁冻结 2026-11-03）**；**az0_primary_demo 写死 invent_open_fail_as_prev_close（禁双挂；AZ1半泄露不得升格并列主报；风控补丁冻结 2026-11-03）** |
+
+---
+
+## 风控预检补丁·冻结（两条已写死 · 2026-11-03）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 AZ**；**`params.Y` ≠ 单字母实验 A/Z**；**`params.N` ≠ 实验字母 AZ**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.az0_primary_demo`**：**写死冻结** **`invent_open_fail_as_prev_close`**；禁与 **`invent_open_fail_as_theory_uncross`** 双挂争主表（只挂一个 primary）；**AZ1 半泄露不得升格并列主报**。
+
+**与 AW 开/收硬分列（保留）**：本页 = **开盘**集合失败回落；AW = **收盘**集合失败回落；开≠收；禁止把收盘失败回落链公式抄到开盘侧；不改假设-AW。
 
 ---
 
 ## 变更
+
+- 2026-11-03：风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 AZ**；亦≠单字母实验 A/Z；**params.N≠实验字母 AZ**；禁 null/holdout/跑后改口）；② `params.az0_primary_demo=invent_open_fail_as_prev_close`（禁与 `invent_open_fail_as_theory_uncross` 双挂争主表；AZ1半泄露不得升格并列主报）。与 AW 开/收硬分列保留。参考总管派令 / 风控预检有条件通过。未改 Y/Z/AA–AY 及其他已冻结补丁；不改假设-H；不改假设-A；不改假设-Z；不改假设-AW；不改假设-AN；不改假设-D；不改假设-AV；不改假设-AK；不改假设-AY；不改假设-AX；结论栏仍空；不开回测；不抢 A。
 
 - 2026-11-03：新建标准件（总管线：AY 补丁已收后写下一纸面 AZ；Y/Z/AA–AY 补丁/正文已交不改；清单撞题规则另选「开盘集合失败假抄前收或假理论开盘」；选题自 `事实与坑`；**与 A/H/Z/E/M/O/N/Q/R/S/T/U/V/W/L/D/AN/AO/AK/AV/AW/AY/AX/Y/AA–AX/AC–AV 硬分列**；**双字母 AZ ≠ 单字母 A ≠ 单字母 Z**；**不与 AN–AY 重复**；**明确避开预检T旧题（证管费误抽）**；**勿占 AY（基金ETF最小价位）/AX（ETF基金经手费）/AW（收盘集合失败）**；结论栏空；不开回测；不抢 A；**勿再改 AY/AX/AW**）。
