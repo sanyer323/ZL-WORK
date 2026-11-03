@@ -2,7 +2,7 @@
 
 更新：2026-11-03  
 来源：总管线 / AX 补丁已收、写下一纸面 AY；清单撞题规则另选正交微观结构缺口（基金 tick≠股票 tick）；选题自 `事实与坑`「A 股默认最小价位 0.01；基金是 0.001，不要和股票混用」；与假设 A（板上可成交）/ H（退市整理）/ Y（集合竞价量计入日线；**实验字母 Y ≠ 本页 AY**）/ E（整手与科创 200）/ F（**股票**涨跌停价取整；`tick=0.01` 仅 A 股股票、禁基金 0.001 进 F 主表）/ M（盘后）/ O（大宗）/ N（收盘切日/假 GTC）/ Q（可转债；债 tick 0.001 另档）/ R（股票 ETF 假回转）/ S/T/U/V（费用层）/ W（除权判板）/ L（市价通道）/ I（价格笼子）/ AX（**ETF 基金经手费**；费用≠价位）/ AW（收盘集合失败回落）/ AN–AV 等**分列**；**新建实验 AY**  
-状态：**草稿 · 待数据 · 待跑 · 待预检**（结论栏空；禁止把「基金/ETF 也按股票 0.01 元取整 / 或把股票腿发明成 0.001」当诚实价位；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AX 及其他 A/D–AX 已交正文与冻结补丁；不改假设-H；不改假设-F；不改假设-E；不改假设-Q；不改假设-AX；不改假设-AW；勿再改 AX/AW**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-03）**（结论栏空；禁止把「基金/ETF 也按股票 0.01 元取整 / 或把股票腿发明成 0.001」当诚实价位；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AX 及其他 A/D–AX 已交正文与冻结补丁；不改假设-H；不改假设-F；不改假设-E；不改假设-Q；不改假设-AX；不改假设-AW；勿再改 AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` 对齐；清单开跑前下一序号挂实验 AY。与假设 **F（股票涨跌停价取整）** **硬分列**：F = 未复权前收盘×板幅后按 **股票 tick=0.01** 四舍五入判板；F 已写死 `tick=0.01` 仅 A 股股票、**禁基金 0.001** 进 F 主切片；本页 = **证券类别维的最小价位误套**（基金/ETF 诚实 tick=0.001 vs 误套 0.01；及反向「股票腿发明 0.001」诊断）。与假设 **AX（ETF/基金经手费）** **硬分列**：AX = 经手费费率档；本页 = **申报/限制价最小变动单位**，费用≠价位，禁止捆。与假设 **E（整手）** **硬分列**：E = 股数整手/科创 200；本页 = 价格 tick。与假设 **Q（可转债）** **硬分列**：Q 可含债 tick 0.001，但本页主宇宙是场内基金/ETF，不重开转债规则。与假设 **A（板上枯竭）** **硬分列**：A = 有板日能否成交；本页 = 价位取整误套导致的**假有效限价 / 假板上价 / 假废单**。**双字母 AY ≠ 单字母 A ≠ 单字母 Y**。与假设 AN–AX **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/基金经手费。**明确避开预检T旧题（证管费误抽）**。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 基金 tick ≠ 股票 tick；≠ 经手费；≠ 整手；≠ 股票取整页 F
 
 ```
-# 配置写死键（见 §7；待预检建议值如下，预检通过后冻结）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-03）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AY；≠ 实验字母 A；≠ 实验字母 Y
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 AY
 # params.asof_check_date                 写死默认 2026-10-05  # 与事实与坑「最小价位」核对日同向（整手/取整周）
@@ -35,7 +35,7 @@
 # params.stock_limit_round_handoff       写死 f_page         # 股票板上取整主病交 F
 # params.lot_size_handoff                写死 e_page         # 整手交 E
 # params.fund_fee_handoff                写死 ax_page        # 基金经手费交 AX；费用≠价位
-# params.ay0_primary_demo                建议 invent_stock_tick_on_fund  # 主报：基金/ETF 套股票 0.01；禁与 invent_fund_tick_on_stock 双挂争主表；AY1半泄露不得升格并列主报
+# params.ay0_primary_demo                写死 invent_stock_tick_on_fund  # 风控补丁冻结；主报：基金/ETF 套股票 0.01；禁与 invent_fund_tick_on_stock 双挂争主表；AY1半泄露不得升格并列主报
 # params.ay0_invent_stock_tick_on_fund   写死 True
 # params.ay1_invent_fund_tick_on_stock   写死 True          # 半泄露/混口径：仅股票腿发明 0.001
 # params.ay2_pit                         写死 True
@@ -91,7 +91,7 @@
 # params.missing_sec_type_policy         写死 skip
 # params.missing_px_policy               写死 skip
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  建议 0.02/0.01/0.05/0.015  # 待预检写死；params.Y≠实验字母AY；params.N≠实验字母AY；禁null/holdout/跑后改口
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y≠实验字母AY；params.N≠实验字母AY；亦≠单字母实验Y；禁null/holdout/跑后改口
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -101,7 +101,7 @@ asof_check_date = "2026-10-05"
 px_basis = "unadj"
 stock_tick = 0.01
 fund_tick = 0.001
-ay0_primary_demo = "invent_stock_tick_on_fund"  # 待预检冻结；禁与 invent_fund_tick_on_stock 双挂
+ay0_primary_demo = "invent_stock_tick_on_fund"  # 写死冻结；禁与 invent_fund_tick_on_stock 双挂；AY1半泄露不得升格并列主报
 round_mode = "round_half_up_to_tick"
 limit_band_uses_tick = True
 min_one_tick_floor = True
@@ -109,11 +109,11 @@ universe_rule = "sse_szse_fund_etf_tick_check"
 missing_sec_type_policy = "skip"
 missing_px_policy = "skip"
 
-# 待预检建议（通过后写死冻结；禁 null/holdout/跑后改口）
-Y = 0.02   # 建议；相对门槛 ≠ 实验字母 AY；≠ 实验字母 Y
-G = 0.01   # 建议
-N = 0.05   # 建议；失败率门槛键 params.N ≠ 实验字母 AY
-Y2 = 0.015 # 建议
+# 风控补丁写死冻结（2026-11-03；禁 null/holdout/跑后改口）
+Y = 0.02   # 写死；相对门槛 ≠ 实验字母 AY；≠ 单字母实验 Y
+G = 0.01   # 写死
+N = 0.05   # 写死；失败率门槛键 params.N ≠ 实验字母 AY
+Y2 = 0.015 # 写死
 
 def round_to_tick(px, tick):
     """四舍五入到最小变动单位（与 F 同向 round_half_up）。"""
@@ -173,7 +173,7 @@ def snap_limit_px(raw_limit, prev_close, tick):
 
 | 组 | 最小价位口径 | 说明 |
 |----|--------------|------|
-| AY0 天真 | 按 `ay0_primary_demo` 单一主报（**建议** `invent_stock_tick_on_fund`） | 基金/ETF（及天真全市场）套股票 0.01；禁与 invent_fund_tick_on_stock 双挂 |
+| AY0 天真 | 按 `ay0_primary_demo` 单一主报（**写死冻结** `invent_stock_tick_on_fund`） | 基金/ETF（及天真全市场）套股票 0.01；禁与 invent_fund_tick_on_stock 双挂 |
 | AY1 半泄露/混口径 | 仅股票腿发明 0.001；基金腿 PIT 0.001 | 反向假精细价 |
 | AY2 PIT 诚实 | 股票 0.01 / 基金·ETF 0.001；限制价按所属 tick 取整 | 与公开规则同向 |
 
@@ -181,14 +181,14 @@ def snap_limit_px(raw_limit, prev_close, tick):
 
 **全部 `merge_with_*=False`（写死；含 A/Y/F/E/Q/AX/AW/AN–AV/R/S/T/U/V/I/L/H/M/N/O/G/J/K/P/W/AA–AM）**。
 
-**待预检键建议（预检通过后写死冻结；禁 holdout；禁 null；禁双挂；禁跑后改口）**：
+**风控补丁两条（已写死冻结 · 2026-11-03；禁 holdout；禁 null；禁双挂；禁跑后改口）**：
 
 ```
-params.Y                            = 0.02                         # 建议；标签/净值差显著门槛；≠实验字母 AY；≠实验字母 Y
-params.G                            = 0.01                         # 建议；误套桶相对对照差
-params.N                            = 0.05                         # 建议；失败/废单率差门槛；≠实验字母 AY
-params.Y2                           = 0.015                        # 建议；AY1（股票发明0.001）相对 AY2 专项门槛
-params.ay0_primary_demo             = invent_stock_tick_on_fund    # 建议主报：基金/ETF套股票0.01；禁与 invent_fund_tick_on_stock 双挂争主表；AY1半泄露不得升格并列主报
+params.Y                            = 0.02                         # 写死冻结；标签/净值差显著门槛；≠实验字母 AY；≠单字母实验 Y
+params.G                            = 0.01                         # 写死冻结；误套桶相对对照差
+params.N                            = 0.05                         # 写死冻结；失败/废单率差门槛；≠实验字母 AY
+params.Y2                           = 0.015                        # 写死冻结；AY1（股票发明0.001）相对 AY2 专项门槛
+params.ay0_primary_demo             = invent_stock_tick_on_fund    # 写死冻结主报：基金/ETF套股票0.01；禁与 invent_fund_tick_on_stock 双挂争主表；AY1半泄露不得升格并列主报
 ```
 
 ---
@@ -255,17 +255,17 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔTag| 或 |ΔNet| **≥ params.Y** 或 |ΔFakeTick 桶贡献| **≥ params.G** 或 |ΔTag_(AY1−AY2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「基金/ETF 最小价位执行鸿沟显著」。
 
-**params.Y / G / N / Y2（待预检建议；与实验字母 AY / 实验字母 Y 无关）**
+**params.Y / G / N / Y2（写死冻结 2026-11-03；与实验字母 AY / 单字母实验 Y 无关）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 标签/净值差显著门槛（≠实验字母 AY；≠实验字母 Y） | **建议** `0.02`（预检后冻结） |
-| params.G | 误套桶相对对照差 | **建议** `0.01` |
-| params.N | 失败/废单率差门槛（≠实验字母 AY） | **建议** `0.05` |
-| params.Y2 | AY1−AY2 专项门槛 | **建议** `0.015` |
+| params.Y | 标签/净值差显著门槛（≠实验字母 AY；≠单字母实验 Y） | **写死冻结** `0.02` |
+| params.G | 误套桶相对对照差 | **写死冻结** `0.01` |
+| params.N | 失败/废单率差门槛（≠实验字母 AY） | **写死冻结** `0.05` |
+| params.Y2 | AY1−AY2 专项门槛 | **写死冻结** `0.015` |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-05` |
 | fill_time | 成交时点 | **写死** `next_open` |
-| ay0_primary_demo | 天真主报枚举 | **建议** `invent_stock_tick_on_fund`（禁与 invent_fund_tick_on_stock 双挂；AY1半泄露不得升格并列主报） |
+| ay0_primary_demo | 天真主报枚举 | **写死冻结** `invent_stock_tick_on_fund`（禁与 invent_fund_tick_on_stock 双挂；AY1半泄露不得升格并列主报） |
 
 ### 4.3 红线 v0
 
@@ -308,7 +308,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`AY`  
 - **组**：AY0 / AY1 / AY2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-05`；`stock_tick=0.01`；`fund_tick=0.001`；`round_mode=round_half_up_to_tick`；`limit_band_uses_tick=True`；`min_one_tick_floor=True`；`stock_limit_round_handoff=f_page`；`lot_size_handoff=e_page`；`fund_fee_handoff=ax_page`；`cb_tick_handoff=q_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_fund_etf_tick_check`；`missing_sec_type_policy=skip`；`missing_px_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 建议 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 AY；**params.N≠实验字母 AY**；≠实验字母 Y；禁 null/holdout；待预检冻结）；**`params.ay0_primary_demo` 建议 `invent_stock_tick_on_fund`**（禁与 invent_fund_tick_on_stock 双挂；AY1半泄露不得升格并列主报；待预检冻结）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-05`；`stock_tick=0.01`；`fund_tick=0.001`；`round_mode=round_half_up_to_tick`；`limit_band_uses_tick=True`；`min_one_tick_floor=True`；`stock_limit_round_handoff=f_page`；`lot_size_handoff=e_page`；`fund_fee_handoff=ax_page`；`cb_tick_handoff=q_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_fund_etf_tick_check`；`missing_sec_type_policy=skip`；`missing_px_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 AY；**params.N≠实验字母 AY**；亦≠单字母实验 Y；禁 null/holdout；风控补丁冻结 2026-11-03）；**`params.ay0_primary_demo` 写死 `invent_stock_tick_on_fund`**（禁与 invent_fund_tick_on_stock 双挂；AY1半泄露不得升格并列主报；风控补丁冻结 2026-11-03）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -337,17 +337,19 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-05；**fill_time=next_open 写死**；stock_tick/fund_tick 写死；diff_buckets 写死待冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 AY；params.N≠实验字母 AY；≠实验字母 Y；待预检冻结）**；**ay0_primary_demo 建议 invent_stock_tick_on_fund（禁双挂；AY1半泄露不得升格并列主报；待预检冻结）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-05；**fill_time=next_open 写死**；stock_tick/fund_tick 写死；diff_buckets 写死待冻结；**Y/G/N/Y2 写死 0.02/0.01/0.05/0.015（params.Y≠实验字母 AY；params.N≠实验字母 AY；亦≠单字母实验 Y；风控补丁冻结 2026-11-03）**；**ay0_primary_demo 写死 invent_stock_tick_on_fund（禁双挂；AY1半泄露不得升格并列主报；风控补丁冻结 2026-11-03）** |
 
 ---
 
-## 待预检键 / demo 键名建议（交风控）
+## 风控预检补丁·冻结（两条已写死 · 2026-11-03）
 
-1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：建议写死 `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 AY**；**`params.N` ≠ 实验字母 AY**；**`params.Y` ≠ 实验字母 Y**；禁 null / holdout 标定 / 跑后改口。  
-2. **`params.ay0_primary_demo`**：建议写死 **`invent_stock_tick_on_fund`**；禁与 **`invent_fund_tick_on_stock`** 双挂争主表（只挂一个 primary）；**AY1 半泄露不得升格并列主报**。
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 AY**；**`params.Y` ≠ 单字母实验 Y**；**`params.N` ≠ 实验字母 AY**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.ay0_primary_demo`**：**写死冻结** **`invent_stock_tick_on_fund`**；禁与 **`invent_fund_tick_on_stock`** 双挂争主表（只挂一个 primary）；**AY1 半泄露不得升格并列主报**。
 
 ---
 
 ## 变更
+
+- 2026-11-03：风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 AY**；亦≠单字母实验 Y；**params.N≠实验字母 AY**；禁 null/holdout/跑后改口）；② `params.ay0_primary_demo=invent_stock_tick_on_fund`（禁与 `invent_fund_tick_on_stock` 双挂争主表；AY1半泄露不得升格并列主报）。参考总管派令 / 风控预检有条件通过。未改 Y/Z/AA–AX 及其他已冻结补丁；不改假设-H；不改假设-A；不改假设-Y；不改假设-F；不改假设-E；不改假设-Q；不改假设-AX；不改假设-AW；不改假设-AN–AV；结论栏仍空；不开回测；不抢 A。
 
 - 2026-11-03：新建标准件（总管线：AX 补丁已收后写下一纸面 AY；Y/Z/AA–AX 补丁/正文已交不改；清单撞题规则另选「基金/ETF 最小价位误套股票 0.01」；选题自 `事实与坑`；**与 A/H/Y/E/F/M/O/N/Q/R/S/T/U/V/W/L/I/AX/AW/AN–AV 硬分列**；**双字母 AY ≠ 单字母 A ≠ 单字母 Y**；**不与 AN–AX 重复**；**明确避开预检T旧题（证管费误抽）**；**勿占 AX（ETF基金经手费）/AW**；结论栏空；不开回测；不抢 A；**勿再改 AX/AW**）。
