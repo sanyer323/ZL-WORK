@@ -2,7 +2,7 @@
 
 更新：2026-11-02  
 来源：总管线 / AU 补丁已收、写下一纸面 AV；清单原止于 AU，无 AV 节 → 自立实验 AV；选题自 `事实与坑`「开盘价/收盘价来自集合竞价」+ 沪深竞价撮合三原则（最大成交量 / 最低剩余 / 市场压力）公开规则；与假设 A（板上可成交/枯竭）/ H（退市整理）/ X（主板 ST）/ E（整手）/ M（盘后）/ O（大宗）/ R（股票 ETF 假回转）/ Q（可转债）/ N（收盘机制与假 GTC）/ S（经手费）/ T（证管费；**避开预检T旧题**）/ U（过户费）/ V（印花税 PIT）/ L（市价通道）/ AS–AU（剩撤假留/五档转限/本方对手最优空簿）/ AN–AO（开盘/收盘集合**剩单**假即时成）/ AK（集合时段假连续撮合）/ Y（集合量计入日线分母）/ AH（不可撤窗假撤改）/ AI（无板日集合有效申报范围）/ AC–AR（北交所/50万/假T+0/单笔上限/超板无效/…/板上假队首）/ I（价格笼子）/ F（涨跌停价取整）/ G（无板日误套默认板）/ J（无板日临停）/ D（成交时点与停牌）/ K（融券空头名单）/ AA（分钟 bar 时区）/ P（指数停牌假成交权重）/ AB（融券卖出价限）**分列**；**新建实验 AV**  
-状态：**草稿 · 待数据 · 待跑 · 待预检**（结论栏空；禁止把集合竞价撮合价/量按中间价或前收盘发明；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AU 及其他 A/D–AU 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-V；不改假设-AU；勿再改 AU**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-02）**（结论栏空；禁止把集合竞价撮合价/量按中间价或前收盘发明；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AU 及其他 A/D–AU 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-V；不改假设-AU；勿再改 AU**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单原止于 AU，本页自立实验 AV 标准件。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **开盘/收盘集合竞价撮合原则**是否按**最大成交量原则 + 最低剩余原则 + 市场压力原则**诚实确定成交价与成交量，还是发明**中间价/前收盘价/最新价**当集合成交。双字母 **AV ≠ 单字母 A**。与假设 **V（印花税 PIT 误切）** **硬分列**：V = 成本侧印花税时点；本页 = **集合撮合原则**，不主测任何费率。双字母 **AV ≠ 单字母 V**。与假设 **AN / AO（开盘/收盘集合剩单假即时成）** **硬分列**：AN/AO = 集合**结束后剩单**是否假即时成进连续；本页 = 集合**撮合本身**的价量原则是否诚实；不重开剩单假即时成主病。与假设 **AK（集合时段假连续撮合）** **硬分列**：AK = 集合窗内误套连续撮合引擎；本页 = 仍承认集合引擎，但**撮合三原则**被中间价/前收盘替换。与假设 **Y（集合量计入日线）** **分列**：Y = 日线成交量分母是否含集合量；本页 = 集合撮合价/量怎么定，不重开分母口径。与假设 **AH（不可撤窗假撤改）** **分列**：AH = 不可撤窗内假撤/假改；本页不测撤改窗。**明确避开预检T旧题（证管费误抽）**。与假设 AS–AU **硬分列**：不重开剩撤/五档转限/本方对手最优空簿。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 集合撮合最大量原则误设 ≠ 集合剩单假即时成；≠ 集合时段假连续；≠ 集合量分母；≠ 印花税；≠ 板上枯竭门槛
 
 ```
-# 配置写死键（见 §7；params.Y/G/N/Y2 与 av0_primary_demo **待预检**）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-02）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AV；≠ 实验字母 A；≠ 实验字母 V
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 AV
 # params.asof_check_date                 写死默认 2026-10-02
@@ -35,7 +35,7 @@
 # params.close_call_handoff              写死 ao_page
 # params.call_as_continuous_handoff      写死 ak_page
 # params.call_volume_denom_handoff       写死 y_page
-# params.av0_primary_demo                待预检建议 invent_call_match_as_mid
+# params.av0_primary_demo                写死 invent_call_match_as_mid  # 风控补丁冻结；主报：中间价冒充集合价；禁与 invent_call_match_as_prev_close 双挂
 # params.av0_invent_mid_clear            写死 True
 # params.av1_prev_close_only             写死 True
 # params.av2_call_match_policy           写死 max_vol_min_residual_pressure
@@ -86,7 +86,7 @@
 # params.missing_book_depth_policy       写死 skip
 # params.day_freq_proxy                  写死 call_match_principle_sensitivity
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  待预检建议 0.02/0.01/0.05/0.015
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y=相对门槛键 ≠ 实验字母 AV；params.N≠实验字母 AV；禁 null/holdout
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -100,7 +100,7 @@ open_call_handoff = "an_page"
 close_call_handoff = "ao_page"
 call_as_continuous_handoff = "ak_page"
 call_volume_denom_handoff = "y_page"
-av0_primary_demo = "invent_call_match_as_mid"  # 待预检；禁双挂
+av0_primary_demo = "invent_call_match_as_mid"  # 风控补丁冻结；禁双挂
 av0_invent_mid_clear = True
 av1_prev_close_only = True
 av2_call_match_policy = "max_vol_min_residual_pressure"
@@ -108,14 +108,15 @@ universe_rule = "sse_szse_common_stock_call_match_check"
 missing_book_depth_policy = "skip"
 day_freq_proxy = "call_match_principle_sensitivity"
 
-Y = 0.02   # 待预检建议；相对门槛 ≠ 实验字母 AV
+# 拉数前已冻结（风控补丁 2026-11-02）；禁 holdout / 事后改口 / 禁跑后改 av0_primary_demo
+Y = 0.02   # 风控补丁冻结；相对门槛 ≠ 实验字母 AV
 G = 0.01
-N = 0.05   # 待预检建议；params.N ≠ 实验字母 AV
+N = 0.05   # 风控补丁冻结；失败率门槛键 params.N ≠ 实验字母 AV
 Y2 = 0.015
 
 def invent_clear_px(group, bid, ask, prev_close, last_px, honest_clear_px):
     """
-    AV0：按 av0_primary_demo 单一主报（建议 invent_call_match_as_mid）
+    AV0：按 av0_primary_demo 单一主报（写死 invent_call_match_as_mid）
     AV1：仅前收盘冒充集合价（非主报中间价）
     AV2：max_vol_min_residual_pressure；缺簿侧深度 → skip（或日频敏感性档）
     """
@@ -149,14 +150,14 @@ def invent_clear_px(group, bid, ask, prev_close, last_px, honest_clear_px):
 
 **全部 `merge_with_*=False`（写死；含 A/V/T/AN/AO/AK/Y/AH/AI/AU/AS/AT/AR/AP/AQ/AL/AM/AJ/AG/AF/E/I/F/L/H/X/M/O/Q/R/S/U/AC/AD/AE/G/J/D/N/K/AA/P/AB）**。
 
-**待预检键（纸面占位；拉数前须预检写死；禁 holdout 标定；禁 null；禁双挂）**：
+**风控补丁两条已冻结（2026-11-02；拉数前冻结；禁 holdout 标定；禁 null；禁双挂）**：
 
 ```
-params.Y                            = 0.02                      # 待预检建议；≠实验字母 AV
-params.G                            = 0.01                      # 待预检建议
-params.N                            = 0.05                      # 待预检建议；≠实验字母 AV
-params.Y2                           = 0.015                     # 待预检建议
-params.av0_primary_demo             = invent_call_match_as_mid  # 待预检建议；禁与 invent_call_match_as_prev_close 双挂
+params.Y                            = 0.02                      # 写死冻结；可成交名义/冲击差显著门槛；≠实验字母 AV
+params.G                            = 0.01                      # 写死冻结；假撮合桶相对对照差
+params.N                            = 0.05                      # 写死冻结；失败/废单率差门槛；≠实验字母 AV
+params.Y2                           = 0.015                     # 写死冻结；AV1（前收盘冒充）相对 AV2 专项门槛
+params.av0_primary_demo             = invent_call_match_as_mid  # 写死冻结主报：中间价冒充集合价；禁与 invent_call_match_as_prev_close 双挂争主表
 ```
 
 ---
@@ -224,17 +225,17 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔNotional| 或 |ΔImpact| **≥ params.Y** 或 |ΔFakeClear 桶贡献| **≥ params.G** 或 |ΔNotional_(AV1−AV2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「集合撮合原则执行鸿沟显著」。
 
-**params.Y / G / N / Y2（待预检建议；与实验字母 AV 无关）**
+**params.Y / G / N / Y2（写死冻结；与实验字母 AV 无关；风控补丁 2026-11-02）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 名义/冲击差显著门槛（≠实验字母 AV） | **待预检建议** `0.02` |
-| params.G | 假撮合桶相对对照差 | **待预检建议** `0.01` |
-| params.N | 失败/废单率差门槛（≠实验字母 AV） | **待预检建议** `0.05` |
-| params.Y2 | AV1−AV2 专项门槛 | **待预检建议** `0.015` |
+| params.Y | 名义/冲击差显著门槛（≠实验字母 AV） | **写死冻结** `0.02`（风控补丁 2026-11-02） |
+| params.G | 假撮合桶相对对照差 | **写死冻结** `0.01`（风控补丁 2026-11-02） |
+| params.N | 失败/废单率差门槛（≠实验字母 AV） | **写死冻结** `0.05`（风控补丁 2026-11-02） |
+| params.Y2 | AV1−AV2 专项门槛 | **写死冻结** `0.015`（风控补丁 2026-11-02） |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-02` |
 | fill_time | 成交时点 | **写死** `next_open` |
-| av0_primary_demo | 天真主报枚举 | **待预检建议** `invent_call_match_as_mid`（禁双挂） |
+| av0_primary_demo | 天真主报枚举 | **写死冻结** `invent_call_match_as_mid`（禁双挂；风控补丁 2026-11-02） |
 
 ### 4.3 红线 v0
 
@@ -278,7 +279,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`AV`  
 - **组**：AV0 / AV1 / AV2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-02`；`call_match_honest=max_vol_min_residual_pressure`；`open_call_handoff=an_page`；`close_call_handoff=ao_page`；`call_as_continuous_handoff=ak_page`；`call_volume_denom_handoff=y_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_call_match_check`；`missing_book_depth_policy=skip`；`day_freq_proxy=call_match_principle_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 待预检建议 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 AV；**params.N≠实验字母 AV**；禁 null/holdout）；**`params.av0_primary_demo` 待预检建议 `invent_call_match_as_mid`**（禁与 invent_call_match_as_prev_close 双挂）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-02`；`call_match_honest=max_vol_min_residual_pressure`；`open_call_handoff=an_page`；`close_call_handoff=ao_page`；`call_as_continuous_handoff=ak_page`；`call_volume_denom_handoff=y_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_common_stock_call_match_check`；`missing_book_depth_policy=skip`；`day_freq_proxy=call_match_principle_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 AV；**params.N≠实验字母 AV**；禁 null/holdout；风控补丁冻结 2026-11-02）；**`params.av0_primary_demo` 写死 `invent_call_match_as_mid`**（禁与 invent_call_match_as_prev_close 双挂；风控补丁冻结 2026-11-02）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -307,10 +308,19 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；集合簿侧深度代理或日频敏感性即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-02；**fill_time=next_open 写死**；**call_match_honest=max_vol_min_residual_pressure 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 待预检建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 AV；params.N≠实验字母 AV）**；**av0_primary_demo 待预检建议 invent_call_match_as_mid（禁双挂）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-02；**fill_time=next_open 写死**；**call_match_honest=max_vol_min_residual_pressure 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死 0.02/0.01/0.05/0.015（params.Y≠实验字母 AV；params.N≠实验字母 AV；风控补丁冻结 2026-11-02）**；**av0_primary_demo 写死 invent_call_match_as_mid（禁双挂；风控补丁冻结 2026-11-02）** |
+
+---
+
+## 风控补丁两条（已写死冻结 · 2026-11-02）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 AV**；**`params.N` ≠ 实验字母 AV**；禁 null / holdout 标定。  
+2. **`params.av0_primary_demo`**：**写死冻结** **`invent_call_match_as_mid`**；禁与 **`invent_call_match_as_prev_close`** 双挂争主表（只挂一个 primary）。
 
 ---
 
 ## 变更
+
+- 2026-11-02：风控补丁两条写死冻结——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 AV**；**params.N≠实验字母 AV**；禁 null/holdout）；② `params.av0_primary_demo=invent_call_match_as_mid`（禁与 `invent_call_match_as_prev_close` 双挂）。参考总管派令 / `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AV-20261102.md` 有条件通过。未改 Y/Z/AA–AU 及其他已冻结补丁；不改假设-H；不改假设-A；不改假设-V；不改假设-AU；结论栏仍空；不开回测；不抢 A。
 
 - 2026-11-02：新建标准件（总管线：AU 补丁已收后写下一纸面 AV；Y/Z/AA–AU 补丁/正文已交不改；清单止于 AU → 自 `事实与坑`「开盘/收盘集合竞价」+ 公开撮合三原则选题，**与 A/H/X/E/M/O/R/Q/N/S/T/U/V/L/AS–AU/AN–AO/AK/Y/AH/AI/AC–AR 硬分列**；**双字母 AV ≠ 单字母 A ≠ 单字母 V**；**不与 AN–AU 重复**；**明确避开预检T旧题（证管费误抽）**；结论栏空；不开回测；不抢 A；**勿再改 AU**）。
