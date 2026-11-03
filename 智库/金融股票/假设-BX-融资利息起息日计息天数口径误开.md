@@ -2,7 +2,7 @@
 
 更新：2026-11-03  
 来源：总管线 / BW 补丁已交（复检在途）、写下一纸面 BX；清单撞题规则另选正交执行缺口（**融资利息起息日与计息天数/日基数怎么算** ≠ 融资假零息 ≠ 融资利率档位 ≠ 授信占用口径 ≠ 融券提前召回 ≠ 日可借量 ≠ 强平序 ≠ 融券借券费 ≠ 授信额度上限 ≠ 开仓保证金比例 ≠ 主板 ST 涨跌幅 PIT）；选题自两融会员风控公开口径：融资买入未了结期间须计收融资利息时，**起息日**（成交日/交收日/下一自然日等）与**计息天数/日基数**（ACT/365、ACT/360、30/360、含头含尾等）按当时有效规则 PIT；不得默认「永远按成交日当日即起息且 ACT/365 含头含尾吹胖天数 / 或永远按核对日更宽晚起息+少天数规则铺满历史」；本页**假定利息非零且利率档已按 BO/BS 诚实或显式旁路**，主病只在**起息日与计息天数口径**；2010-03-31 前无此通道；**BO 正文主测「永不计息/零罚息」**（`invent_zero_financing_interest_penalty`），**BS 正文主测「有息但一律最低优惠档」**（`invent_always_lowest_financing_rate_tier`），本页主测**有息且档位诚实前提下起息日/日基数被误开**（`invent_wrong_financing_interest_start_or_daycount`）→ 自立；与假设 A（板上可成交/枯竭）/ H（退市整理）/ B（历史清单「实验 B」旧位；**双字母 BX ≠ 单字母 B**）/ **X（主板 ST 涨跌幅 PIT；双字母 BX ≠ 单字母假设-X；严禁复用 X 题面或 ST 板幅口径）** / Z（**开仓**融资/融券保证金比例；**BX≠Z**）/ BA–BW（两融族已冻/在途；**BX≠BA…BW**；**尤其不改 BW 正文**）/ **BO（融资假零息；BX≠BO；尤其不改假设-BO）** / **BS（融资利率档；BX≠BS；尤其不改假设-BS）** / **BW（授信占用；BX≠BW；在途复检亦勿改）** / BV/BU/BT/BR/BH/BQ/BP/BN/BM/BL/BF/BC/BB/BA 等**分列**；**新建实验 BX**  
-状态：**草稿 · 待预检**（结论栏空；禁止把「起息永远按成交日当日+ACT/365 含头含尾 / 用核对日更宽晚起息少天数规则铺满」当诚实融资利息日基数口径；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BW 及其他 A/D–BW 已交正文与冻结补丁；尤其不改假设-BW；尤其不改假设-X；尤其不改假设-BO；尤其不改假设-BS；不改假设-H；不改假设-A；不改假设-B；不改假设-K；不改假设-Z；不改假设-BA–BW；不改假设-AB；勿再改 BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
+状态：**草稿 · 预检有条件通过 · 两条已冻 · 待复检**（结论栏空；禁止把「起息永远按成交日当日+ACT/365 含头含尾 / 用核对日更宽晚起息少天数规则铺满」当诚实融资利息日基数口径；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BW 及其他 A/D–BW 已交正文与冻结补丁；尤其不改假设-BW；尤其不改假设-X；尤其不改假设-BO；尤其不改假设-BS；不改假设-H；不改假设-A；不改假设-B；不改假设-K；不改假设-Z；不改假设-BA–BW；不改假设-AB；勿再改 BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 BX（约 #81）。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **融资利息起息日与计息天数/日基数**。**双字母 BX ≠ 单字母 A**。与假设 **B（历史实验 B 旧位）** **硬分列**：清单早期「实验 B」曾挂印花税时点+T+1 / 财务可见日 / 除权日复权价误判等，主病已迁 V/W 等页；本页**不重开**那些旧 B 题。**双字母 BX ≠ 单字母 B**。与假设 **X（主板 ST 涨跌幅 PIT）** **硬分列（专节强调）**：X = 主板 ST/*ST 5%→10% 切日与创业/科创风险警示误套；本页 = 信用账户**融资利息起息日/计息天数**；ST 板幅 ≠ 起息日基数。**双字母 BX ≠ 单字母假设-X**；**严禁复用 X 题面或 X 口径键**。与假设 **BO（融资利息与逾期罚息假零息）** **硬分列**：BO = **是否计息**（永不计息/零罚息）；本页 = **有息前提下从哪天起息、按什么日基数计几天**；假零息 ≠ 起息日/日基数误开；**禁止**把「假零息已关（BO）」静默写成「起息日与日基数已诚实」；**禁止**把「起息晚一天」静默写成「零息」；**不占** BO 的 primary_demo；**尤其不改假设-BO**。**BX≠BO**。与假设 **BS（融资利率档位优惠档）** **硬分列**：BS = **用哪档年化利率**；本页 = **起息日与计息天数**；最低档 ≠ 日基数；**尤其不改假设-BS**。**BX≠BS**。与假设 **BW（两融授信占用口径）** **硬分列**：BW = 授信已占用怎么算（复检在途）；本页 = 利息起息/日基数；占用 ≠ 起息；**尤其不改假设-BW**。**BX≠BW**。与假设 **BV / BU / BT / BR / BH / BQ / BP / BN / BM / BL / BF / BC / BB / BA / BD / BG / Z / K / AB** **硬分列**：召回 / 日库存 / 强平序 / 借券费 / 额度上限 / 调出后存量 / 权益补偿 / 账户串用 / 追保禁开 / 提取 / 合约期限 / 维持线闸门 / 转融暂停 / 融资名单 / 折算率 / 可充抵 / 开仓比例 / 融券名单 / 空头价限 ≠ 起息日与计息天数；并**带过 BW≠W/BV/BU/BT/BS/BO/BR/BH…、BV≠V/BU/BT/BF/BC/BB/BQ/K…、BU≠U/BB/BT/K…、BT≠T/BC/BS/BO/BR/BH、BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC…、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BM≠BC、BM≠BL、BL≠BC、BK≠K**。与假设 AN–BW **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/两融族等。**明确避开预检T旧题（证管费误抽）**。**严禁复用假设-X（主板 ST 板幅）**。**本页主结论不混。**
 
@@ -38,7 +38,7 @@
 ### 2.1 起息日/计息天数 ≠ 假零息（BO）；≠ 利率档（BS）；≠ 授信占用（BW）；≠ 融券提前召回（BV）；≠ 日可借量（BU）；≠ 强平序（BT）；≠ 借券费（BR）；≠ 额度上限（BH）；≠ 开仓保证金比例（Z）；≠ 主板 ST 板幅（X）；≠ 板上枯竭（A）；≠ 证管费（T）
 
 ```
-# 配置写死键（见 §7；待预检；建议终值如下）
+# 配置写死键（见 §7；两条已冻 · 待复检；终值如下）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 BX；≠ 实验字母 A；≠ 实验字母 B；≠ 实验字母 X；≠ 实验字母 Z；≠ 实验字母 BO；≠ 实验字母 BS；≠ 实验字母 BW
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 BX
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 BX；≠ 单字母假设-N；亦≠实验字母 BN
@@ -85,7 +85,7 @@
 # params.csrc_fee_handoff                写死 t_page
 # params.handling_fee_handoff            写死 s_page
 # params.exit_period_handoff             写死 h_page
-# params.bx0_primary_demo                建议 invent_wrong_financing_interest_start_or_daycount  # 主报：假早起息或多天数/假晚起息或少天数；禁与 invent_asof_leak_financing_interest_daycount 双挂争主表；BX1半泄露不得升格并列主报
+# params.bx0_primary_demo                写死冻结 invent_wrong_financing_interest_start_or_daycount  # 主报：假早起息或多天数/假晚起息或少天数；禁与 invent_asof_leak_financing_interest_daycount 双挂争主表；BX1半泄露不得升格并列主报
 # params.bx0_invent_wrong_financing_interest_start_or_daycount  写死 True
 # params.bx1_asof_leak_financing_interest_daycount_only 写死 True
 # params.bx2_pit_interest_start_daycount 写死 True
@@ -127,7 +127,7 @@
 # params.universe_rule                   写死 sse_szse_financing_interest_start_daycount_check
 # params.fail_policy                     写死 skip
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
-# params.Y / G / N / Y2                  建议 0.02/0.01/0.05/0.015  # 待预检写死；禁 holdout 标定；禁 null；params.Y≠实验字母 BX
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # params.Y≠实验字母BX；params.G≠实验字母BX；params.N≠实验字母BX；亦≠单字母实验A/B/X/Z；禁 null/holdout/跑后改口
 # params.date_start / date_end           写死 2019-01-01..2026-09-30
 # params.oos_split.*                     写死四日期；禁 holdout 反调
 # 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改起息规则、日基数、Y/G/N/Y2、主窗/oos、bx0_primary_demo
@@ -141,7 +141,7 @@ interest_start_daycount_honest = "pit_by_effective_date"
 interest_start_daycount_scope = "accrual_start_and_daycount_convention"
 interest_start_daycount_over_policy = "accrue_or_fail_missing_daycount_rule"
 interest_start_daycount_naive = "invent_wrong_financing_interest_start_or_daycount"
-bx0_primary_demo = "invent_wrong_financing_interest_start_or_daycount"
+bx0_primary_demo = "invent_wrong_financing_interest_start_or_daycount"  # 单一主报·已冻结；禁与 invent_asof_leak_financing_interest_daycount 双挂
 bx1_asof_leak_financing_interest_daycount_only = True
 bx2_pit_interest_start_daycount = True
 merge_with_BO_financing_interest = False
@@ -155,7 +155,7 @@ fail_policy = "skip"
 
 | 组 | 口径 | 说明 |
 |----|------|------|
-| BX0 天真 | `invent_wrong_financing_interest_start_or_daycount`（单一主报·待预检） | 发明假早起息或多天数（或对称假晚起息/少天数）路径；禁与 invent_asof_leak_financing_interest_daycount 双挂 |
+| BX0 天真 | `invent_wrong_financing_interest_start_or_daycount`（单一主报·已冻结） | 发明假早起息或多天数（或对称假晚起息/少天数）路径；禁与 invent_asof_leak_financing_interest_daycount 双挂 |
 | BX1 半泄露/混口径 | 全样本用 `asof_check_date` 当天更宽晚起息或更瘦日基数规则铺满历史 | 仅起息/日基数规则 asof 泄露；不升格并列主报 |
 | BX2 PIT | `interest_start_daycount_honest=pit_by_effective_date` | 每个交易日按当时已生效起息日与计息天数/日基数规则 PIT |
 
@@ -282,7 +282,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`BX`  
 - **组**：BX0 / BX1 / BX2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`interest_start_daycount_honest=pit_by_effective_date`；`interest_start_daycount_scope=accrual_start_and_daycount_convention`；`interest_start_daycount_over_policy=accrue_or_fail_missing_daycount_rule`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`corp_action_comp_handoff=bp_page`；`list_removal_stock_handoff=bq_page`；`short_borrow_fee_handoff=br_page`；`financing_rate_tier_handoff=bs_page`；`force_close_order_handoff=bt_page`；`daily_short_inventory_handoff=bu_page`；`short_recall_handoff=bv_page`；`credit_usage_handoff=bw_page`；`st_limit_handoff=x_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`stamp_tax_handoff=v_page`；`transfer_fee_handoff=u_page`；`csrc_fee_handoff=t_page`；`handling_fee_handoff=s_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_financing_interest_start_daycount_check`；`missing_daycount_rule_policy=skip`；`day_freq_proxy=financing_interest_start_daycount_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 建议 `0.02/0.01/0.05/0.015` 待预检写死**（**params.Y≠实验字母 BX**；**params.G≠实验字母 BX**；**params.N≠实验字母 BX**；亦≠单字母实验 A/B/X/Z；禁 null/holdout/跑后改口）；**`params.bx0_primary_demo` 建议 `invent_wrong_financing_interest_start_or_daycount` 待预检写死**（禁与 invent_asof_leak_financing_interest_daycount 双挂；BX1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`interest_start_daycount_honest=pit_by_effective_date`；`interest_start_daycount_scope=accrual_start_and_daycount_convention`；`interest_start_daycount_over_policy=accrue_or_fail_missing_daycount_rule`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`corp_action_comp_handoff=bp_page`；`list_removal_stock_handoff=bq_page`；`short_borrow_fee_handoff=br_page`；`financing_rate_tier_handoff=bs_page`；`force_close_order_handoff=bt_page`；`daily_short_inventory_handoff=bu_page`；`short_recall_handoff=bv_page`；`credit_usage_handoff=bw_page`；`st_limit_handoff=x_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`stamp_tax_handoff=v_page`；`transfer_fee_handoff=u_page`；`csrc_fee_handoff=t_page`；`handling_fee_handoff=s_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_financing_interest_start_daycount_check`；`missing_daycount_rule_policy=skip`；`day_freq_proxy=financing_interest_start_daycount_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 BX**；**params.G≠实验字母 BX**；**params.N≠实验字母 BX**；亦≠单字母实验 A/B/X/Z；禁 null/holdout/跑后改口）；**`params.bx0_primary_demo` 写死冻结 `invent_wrong_financing_interest_start_or_daycount`**（禁与 invent_asof_leak_financing_interest_daycount 双挂；BX1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -307,19 +307,19 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|----|
-| 状态 | **草稿 · 待预检**（结论栏空；**未标纸面齐**） |
+| 状态 | **草稿 · 预检有条件通过 · 两条已冻 · 待复检**（结论栏空；**未标纸面齐**） |
 | 标准件路径 | `假设-BX-融资利息起息日计息天数口径误开.md` |
 | 清单序号 | 约 #81 |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**interest_start_daycount_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015 待预检写死（params.Y≠实验字母 BX；params.G≠实验字母 BX；params.N≠实验字母 BX；亦≠单字母实验 A/B/X/Z；禁 null/holdout/跑后改口）**；**bx0_primary_demo 建议 invent_wrong_financing_interest_start_or_daycount 待预检写死（禁双挂 invent_asof_leak_financing_interest_daycount；BX1半泄露不得升格并列主报）**；锚点保留 interest_start_daycount_honest=pit_by_effective_date / interest_start_daycount_scope=accrual_start_and_daycount_convention / interest_start_daycount_over_policy=accrue_or_fail_missing_daycount_rule / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**interest_start_daycount_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 BX；params.G≠实验字母 BX；params.N≠实验字母 BX；亦≠单字母实验 A/B/X/Z；禁 null/holdout/跑后改口）**；**bx0_primary_demo 写死冻结 invent_wrong_financing_interest_start_or_daycount（禁双挂 invent_asof_leak_financing_interest_daycount；BX1半泄露不得升格并列主报）**；锚点保留 interest_start_daycount_honest=pit_by_effective_date / interest_start_daycount_scope=accrual_start_and_daycount_convention / interest_start_daycount_over_policy=accrue_or_fail_missing_daycount_rule / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
 | 硬分列摘要 | **BX≠X/BW/BV/BU/BT/BS/BO/BR/BH**（及 ≠B/A/Z/BA–BW/K/AB/H/W/T/S/U/V）；**严禁复用假设-X**；**尤其不改假设-X/BO/BS/BW** |
 | 结论栏 | 空 |
 
 ---
 
-## 待预检键清单
+## 待预检键清单（两条已冻 · 见下节）
 
-1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**待预检写死**；**params.Y≠实验字母 BX**；**params.G≠实验字母 BX**；**params.N≠实验字母 BX**；禁 null/holdout）  
-2. `params.bx0_primary_demo` = `invent_wrong_financing_interest_start_or_daycount`（**待预检写死**；禁与 `invent_asof_leak_financing_interest_daycount` 双挂；BX1不升格主报）  
+1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**已冻结**；**params.Y≠实验字母 BX**；**params.G≠实验字母 BX**；**params.N≠实验字母 BX**；禁 null/holdout）  
+2. `params.bx0_primary_demo` = `invent_wrong_financing_interest_start_or_daycount`（**已冻结**；禁与 `invent_asof_leak_financing_interest_daycount` 双挂；BX1不升格主报）  
 3. 锚点保留：`interest_start_daycount_honest=pit_by_effective_date` / `interest_start_daycount_scope=accrual_start_and_daycount_convention` / `interest_start_daycount_over_policy=accrue_or_fail_missing_daycount_rule` / `margin_channel_start=2010-03-31` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`
 
 ---
@@ -338,6 +338,20 @@ params.diff_buckets = [
 
 ---
 
+## 风控预检补丁·冻结（两条已写死 · 2026-11-03）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 BX**；**`params.G` ≠ 实验字母 BX**；**`params.N` ≠ 实验字母 BX**；**`params.Y` ≠ 单字母实验 A/B/X/Z**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.bx0_primary_demo`**：**写死冻结** **`invent_wrong_financing_interest_start_or_daycount`**；禁与 **`invent_asof_leak_financing_interest_daycount`** 双挂争主表（只挂一个 primary）；**BX1 半泄露不得升格并列主报**。
+
+**起息/日基数锚保留（已通写死）**：`params.interest_start_daycount_honest=pit_by_effective_date`；`params.interest_start_daycount_scope=accrual_start_and_daycount_convention`；`params.interest_start_daycount_over_policy=accrue_or_fail_missing_daycount_rule`；`params.margin_channel_start=2010-03-31`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`（及正文已有起息/日基数相关锚点；不改口）。
+
+**与 BA–BW/Z/AB/B/A/H/X/K/T/S/U/V/W 硬分列（保留）**：本页 = **融资利息起息日/计息天数口径误开**；X = **主板 ST 涨跌幅 PIT**（**尤其双字母 BX ≠ 单字母假设-X**；**严禁复用假设-X**）；BO = **融资利息与逾期罚息假零息**（**尤其 BX≠BO**；假零息 ≠ 起息/日基数；禁复用 `invent_zero_financing_interest_penalty`；**尤其不改假设-BO**）；BS = **融资利率档位优惠档**（**尤其 BX≠BS**；利率档 ≠ 起息日基数；禁复用 `invent_always_lowest_financing_rate_tier`；**尤其不改假设-BS**）；BW = **两融授信占用口径**（**尤其 BX≠BW**；占用 ≠ 起息；禁复用 `invent_understate_credit_usage`；**尤其不改假设-BW**）；BV = **融券提前召回**（**尤其 BX≠BV**）；BU = **融券券池日可借量**（**尤其 BX≠BU**）；BT = **强制平仓顺序与范围**（**尤其 BX≠BT**）；BR = **融券借券费**（**尤其 BX≠BR**）；BH = **两融授信额度上限**（**尤其 BX≠BH**）；Z = **开仓**保证金比例；A = **板上枯竭**；B = 历史实验 B 旧位；K = **融券空头名单**；H = **退市整理期**；W = **除权板价**；T = **证管费**（避开预检T）；S = **经手费**；U = **过户费**；V = **印花税**；起息日/计息天数 ≠ 主板ST板幅 ≠ 假零息 ≠ 利率档 ≠ 授信占用 ≠ 提前召回 ≠ 日可借量 ≠ 强平序 ≠ 借券费 ≠ 额度上限 ≠ 开仓比例 ≠ 板上枯竭 ≠ 退市整理 ≠ 除权板价 ≠ 证管费 ≠ 经手费 ≠ 过户费 ≠ 印花税；**双字母 BX ≠ 单字母 A ≠ 单字母 B ≠ 单字母 X ≠ 单字母 K ≠ 单字母 Z ≠ 单字母 T ≠ 单字母 S ≠ 单字母 U ≠ 单字母 V ≠ 单字母 W ≠ 双字母 BA ≠ … ≠ 双字母 BW ≠ 双字母 BO ≠ 双字母 BS ≠ 双字母 BV ≠ 双字母 BU ≠ 双字母 BT ≠ 双字母 BR ≠ 双字母 BH ≠ 双字母 AB ≠ 双字母 H**；**params.Y ≠ 实验字母 BX**；**params.G ≠ 实验字母 BX**；**params.N ≠ 实验字母 BX**；禁止捆成「两融一张表=假起息」；**尤其不改假设-X**；**尤其不改假设-BO**；**尤其不改假设-BS**；**尤其不改假设-BW**；**尤其不改假设-BV**；**尤其不改假设-BU**；**尤其不改假设-BT**；**尤其不改假设-BR**；**尤其不改假设-BH**；不改假设-B；不改假设-Z；不改假设-BA–BW；不改假设-A；不改假设-AB；不改假设-K；不改假设-H；不改假设-T；不改假设-S；不改假设-U；不改假设-V；不改假设-W。
+
+**专节保留 · 双字母 BX ≠ 单字母假设-X；且 ≠ 假设-BW / 假设-BO / 假设-BS / 假设-BV / 假设-BU / 假设-BT / 假设-BR / 假设-BH（硬）**：正文专节保留不删；**禁止**覆盖/混读/改写 `假设-X` / `假设-BO` / `假设-BS` / `假设-BW` / `假设-BV` / `假设-BU` / `假设-BT` / `假设-BR` / `假设-BH`。
+
 ## 变更
 
-- 2026-11-03：新建草稿·待预检（总管线 BW 补丁已交后写 BX；选题融资利息起息日/计息天数口径误开；**BX≠X/BW/BV/BU/BT/BS/BO/BR/BH**；primary_demo=`invent_wrong_financing_interest_start_or_daycount`；Y/G/N/Y2 待预检；不开回测；未改 BW/BO/BS/X 及其他已齐字母）。
+| 日期 | 说明 |
+|------|------|
+| 2026-11-03 | 风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 BX**；**params.G≠实验字母 BX**；**params.N≠实验字母 BX**；亦≠单字母实验 A/B/X/Z；禁 null/holdout/跑后改口）；② `params.bx0_primary_demo=invent_wrong_financing_interest_start_or_daycount`（禁与 `invent_asof_leak_financing_interest_daycount` 双挂争主表；BX1半泄露不得升格并列主报）。起息/日基数锚保留：`interest_start_daycount_honest=pit_by_effective_date`；`interest_start_daycount_scope=accrual_start_and_daycount_convention`；`interest_start_daycount_over_policy=accrue_or_fail_missing_daycount_rule`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。硬分列保留：**BX≠X/BW/BV/BU/BT/BS/BO/BR/BH**（及 ≠B/A/Z/BA–BW/AB/H/K/T/S/U/V/W）；**严禁复用假设-X**；参考总管派令 / 风控预检有条件通过（`预检-假设BX-20261103.md`；草稿 `9c6a78e` #81）。未改 Y/Z/AA–BW 及其他已冻结补丁；**不改假设-X**；**不改假设-BO**；**不改假设-BS**；**不改假设-BW**；**不改假设-BV**；**不改假设-BU**；**不改假设-BT**；**不改假设-BR**；**不改假设-BH**；不改假设-H；不改假设-A；不改假设-B；不改假设-K；不改假设-Z；不改假设-BA–BW；不改假设-AB；结论栏仍空；不开回测；不抢 A；**未标纸面齐** |
+| 2026-11-03 | 新建草稿·待预检（总管线 BW 补丁已交后写 BX；选题融资利息起息日/计息天数口径误开；**BX≠X/BW/BV/BU/BT/BS/BO/BR/BH**；primary_demo=`invent_wrong_financing_interest_start_or_daycount`；Y/G/N/Y2 待预检；不开回测；未改 BW/BO/BS/X 及其他已齐字母）。 |
