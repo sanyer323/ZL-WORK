@@ -2,7 +2,7 @@
 
 更新：2026-11-04  
 来源：总管线 / CK 补丁已交（tip=`6f4aa74`；复检/入库另线并行后写下一纸面 CL）；清单撞题规则另选正交执行缺口（**回测默认「可转债盘后定价订单必能按收盘价或匹配 VWAP 全额成交」** ≠ 假设-CK 协议大宗可成交性误开 ≠ 假设-CJ 退市整理期可成交性误开 ≠ 假设-CI 新股上市首日可成交性误开 ≠ 假设-CH 盘后固定价格可成交性误开（**股票**盘后固定价 ≠ **可转债**盘后定价） ≠ 假设-CG 停牌复牌首日可成交性误开 ≠ 假设-CF 集合竞价可成交性误开 ≠ 假设-CE 跌停板可成交性误开 ≠ 假设-CD 涨停板可成交性误开 ≠ 假设-Q 可转债规则混用（**双字母 CL ≠ 单字母假设-Q**；Q=T+1/板幅/收盘定义/转股假T+0 混用 ≠ 转债盘后定价腿假全额可成；Q 明文把「深市转债盘后定价 vs 股票盘后固定价格混表」列为通道标注禁项、不并进 Q 主结论 → 本页自立） ≠ 假设-M 盘后通道存在 ≠ 假设-O 大宗假流动性 ≠ 假设-A 板上枯竭/一字与封板容量主实验 ≠ 假设-L 市价通道（**双字母 CL ≠ 单字母假设-L；严禁复用假设-L**） ≠ 假设-C 股票池当时名单（**双字母 CL ≠ 单字母假设-C；严禁复用假设-C**） ≠ 假设-R 股票ETF假回转 ≠ 假设-CA/CB/CC 两融族）；选题自 `事实与坑`「把深市可转债的盘后定价成交（15:05–15:30，收盘价或匹配 VWAP）和股票盘后固定价格合成一张表却不标注通道；盘后固定价格不是收盘价一定能成交」+ 口径「执行鸿沟」+ 与 CD/CE/CF/CG/CH/CI/CJ/CK 可成交性族正交、与 Q 规则混用正交、与 M 通道存在正交；本页**假定板上容量层（A）/ 排队位次层（AR）/ 成交时点与停牌层（D）/ 超涨跌停价无效层（AG）/ 涨停可成交误开层（CD）/ 跌停可成交误开层（CE）/ 集合竞价可成交误开层（CF）/ 停牌复牌首日可成交误开层（CG）/ 股票盘后固定价格可成交误开层（CH）/ 新股上市首日可成交误开层（CI）/ 退市整理期可成交误开层（CJ）/ 协议大宗可成交误开层（CK）/ 可转债规则混用层（Q）/ 盘后通道存在层（M）/ 市价通道层（L）诚实或显式旁路**，主病只在**发明「可转债盘后定价订单必能按收盘价或匹配 VWAP 全额成交」这一误开默认**；**A 正文主测「涨停可成交性/板上枯竭」真数队列**（**双字母 CL ≠ 单字母假设-A；严禁复用 A 题面；绝不可做成 A 续篇；不抢 A 真数队列**），**CH 正文主测「股票盘后固定价格可成交性误开」**（股票盘后固定价 ≠ 可转债盘后定价；**严禁改 CH**），**Q 正文主测「可转债规则混用」**（回转/板幅/收盘定义/转股腿 ≠ 盘后定价腿假全额可成；**双字母 CL ≠ 单字母假设-Q；严禁复用 Q 题面；尤其不改假设-Q**），**CK 正文主测「协议大宗可成交性误开」**（协议大宗 ≠ 转债盘后定价；**严禁改 CK**），**CJ/CI/CG/CF/CE/CD 正文主测退市整理/上市首日/复牌/集合/跌停/涨停可成交误开**（**严禁改 CJ/CI/CG/CF/CE/CD**），**M 正文主测盘后通道存在**（通道存在 ≠ 转债盘后定价腿全额可成；**严禁改 M**），**L 正文主测市价通道**（市价保护/废单 ≠ 转债盘后定价全额可成；**双字母 CL ≠ 单字母假设-L；严禁复用假设-L；尤其不改假设-L**），**C 正文主测「股票池当时名单」**（**双字母 CL ≠ 单字母假设-C；严禁复用 C**），**CA/CB/CC 正文主测两融族**（与本页正交；**严禁改 CA/CB/CC**）→ 自立；与假设 B/Z/BA–CK/AG/AF/E/R/X/W/K/AB/N/H/AN 等**分列**；**严禁复用假设-L / 假设-Q / 假设-CH / 假设-CK**；**新建实验 CL**  
-状态：**草稿 · 待入库预检**（结论栏空；禁止把「可转债盘后定价订单必能按收盘价或匹配 VWAP 全额成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CK 及其他 A/D–CK 已交正文与冻结补丁；尤其不改假设-CK；尤其不改假设-CJ；尤其不改假设-CI；尤其不改假设-CH；尤其不改假设-CG；尤其不改假设-CF；尤其不改假设-CE；尤其不改假设-CD；尤其不改假设-Q；尤其不改假设-M；尤其不改假设-L；尤其不改假设-A；尤其不改假设-C；尤其不改假设-O；尤其不改假设-R；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-CC；勿再改 CK/CJ/CI/CH/CG/CF/CE/CD/CC/CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW/AR/AG/AN/Q/M/L/O/H/K/R**）
+状态：**草稿 · 预检有条件通过 · 三条已冻 · 待复检**（结论栏空；禁止把「可转债盘后定价订单必能按收盘价或匹配 VWAP 全额成交」当诚实执行；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CK 及其他 A/D–CK 已交正文与冻结补丁；尤其不改假设-CK；尤其不改假设-CJ；尤其不改假设-CI；尤其不改假设-CH；尤其不改假设-CG；尤其不改假设-CF；尤其不改假设-CE；尤其不改假设-CD；尤其不改假设-Q；尤其不改假设-M；尤其不改假设-L；尤其不改假设-A；尤其不改假设-C；尤其不改假设-O；尤其不改假设-R；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-CC；勿再改 CK/CJ/CI/CH/CG/CF/CE/CD/CC/CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW/AR/AG/AN/Q/M/L/O/H/K/R**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 CL（约 #95）。与假设 **CK（协议大宗可成交性误开）** **硬分列（专节强调）**：CK = 协议/成交申报大宗腿假全额可成；本页 = 可转债盘后定价腿假全额可成；协议大宗 ≠ 转债盘后定价；**严禁复用 CK 题面或 `invent_assume_block_trade_always_fillable`**；**尤其不改假设-CK**。**CL≠CK**。与假设 **CJ（退市整理期可成交性误开）** **硬分列**：退市整理期 ≠ 转债盘后定价；**严禁复用 CJ**；**尤其不改假设-CJ**。**CL≠CJ**。与假设 **CI（新股上市首日可成交性误开）** **硬分列**：上市首日 ≠ 转债盘后定价；**严禁复用 CI**；**尤其不改假设-CI**。**CL≠CI**。与假设 **CH（盘后固定价格可成交性误开）** **硬分列（专节强调）**：CH = **股票**盘后固定价格全额可成误开；本页 = **可转债**盘后定价（尤深市 15:05–15:30 收盘价或匹配 VWAP）全额可成误开；股票盘后固定价 ≠ 可转债盘后定价；**严禁复用 CH 题面或 `invent_assume_after_hours_fixed_price_always_fillable`**；**尤其不改假设-CH**。**CL≠CH**。与假设 **CG/CF/CE/CD** **硬分列**：复牌/集合/跌停/涨停 ≠ 转债盘后定价；**严禁复用**；**尤其不改**。**CL≠CG≠CF≠CE≠CD**。与假设 **Q（可转债规则混用）** **硬分列（专节强调）**：Q = 把转债按股票 T+1/板幅/收盘定义回放、或转股假 T+0；本页 = 在规则混用层诚实（或显式旁路交 Q）的前提下，是否仍默认「可转债盘后定价订单必能按收盘价或匹配 VWAP 全额成交」；规则混用 ≠ 盘后定价腿假全额可成；**双字母 CL ≠ 单字母假设-Q**；**严禁复用 Q 题面**；**尤其不改假设-Q**。**CL≠Q**。与假设 **M（盘后补成交/通道）** **硬分列**：通道存在/自动滚入 ≠ 转债盘后定价腿全额可成；**严禁复用 M**；**尤其不改假设-M**。**CL≠M**。与假设 **L（市价通道）** **硬分列（专节强调）**：**双字母 CL ≠ 单字母假设-L**；市价保护/废单路径 ≠ 转债盘后定价全额可成；**严禁复用假设-L**；**尤其不改假设-L**。**CL≠L**。与假设 **A（涨停可成交性/板上枯竭）** **硬分列（专节强调）**：容量门槛 ≠ 转债盘后定价全额可成默认；**双字母 CL ≠ 单字母假设-A**；**严禁复用 A 题面**；**绝不可做成 A 续篇**；**不占** A 的 A0/A1 主报与真数席位；**尤其不改假设-A**。**CL≠A**。与假设 **C（股票池当时名单）** **硬分列**：**双字母 CL ≠ 单字母假设-C**；**严禁复用 C**。**CL≠C**。与假设 **O（大宗假流动性）** **硬分列**：大宗量价/三通道 ≠ 转债盘后定价全额可成；**严禁复用 O**。**CL≠O**。与假设 **R（股票ETF假回转）** **硬分列**：ETF 回转 ≠ 转债盘后定价全额可成；**严禁复用 R**。**CL≠R**。与假设 **CA/CB/CC** **硬分列**：两融公式/展期/调出了结时限 ≠ 转债盘后定价全额可成；**尤其不改 CA/CB/CC**。**CL≠CA≠CB≠CC**。与假设 **AR/AG/AN/BZ/BY/BX/BW…** 及两融审批/费用族 **硬分列**。**明确避开预检T旧题（证管费误抽）**。**严禁复用假设-A / 假设-C / 假设-L / 假设-Q / 假设-CH / 假设-CK / 假设-CJ / 假设-CI / 假设-CG / 假设-CF / 假设-CE / 假设-CD / 假设-M / 假设-O / 假设-R**。**严禁改写/续写假设-CK / 假设-CJ / 假设-CI / 假设-CH / 假设-CG / 假设-CF / 假设-CE / 假设-CD / 假设-Q / 假设-M / 假设-L / 假设-A / 假设-C / 假设-O / 假设-R / 假设-CA / 假设-CB / 假设-CC**。**本页主结论不混。**
 
@@ -30,7 +30,7 @@
 | 题面 CA | **维持担保比例分子分母口径** | 公式 ≠ 转债盘后定价全额可成；**CL≠CA**；**不改 CA** |
 | 题面 CB | **融资合约展期/续作审批** | 展期审批 ≠ 转债盘后定价全额可成；**CL≠CB**；**不改 CB** |
 | 题面 CC | **两融标的调出强制了结时点** | 调出了结时限 ≠ 转债盘后定价全额可成；**CL≠CC**；**不改 CC** |
-| 主演示 | （各页自有；本页不引用覆盖） | `invent_assume_cb_after_hours_pricing_always_fillable`（**建议**单一主报；禁双挂 asof_leak；CL1不升格——待预检冻结） |
+| 主演示 | （各页自有；本页不引用覆盖） | `invent_assume_cb_after_hours_pricing_always_fillable`（**写死冻结**单一主报；禁双挂 asof_leak；CL1不升格） |
 | 文档 | 清单实验 A / C / L / Q / M / O / R / `假设-CA-…` / `假设-CB-…` / `假设-CC-…` / `假设-CD-…` / `假设-CE-…` / `假设-CF-…` / `假设-CG-…` / `假设-CH-…` / `假设-CI-…` / `假设-CJ-…` / `假设-CK-…`（**只读；禁止改写**） | `假设-CL-可转债盘后定价可成交性误开.md`（新建） |
 | 预检键 | 实验字母 A / C / L / Q / M / O / R / CA / CB / CC / CD / CE / CF / CG / CH / CI / CJ / CK | 实验字母 **CL** / `cl0_primary_demo`；**不得**占用或改写预检 A/C/L/Q/M/O/R/CA/CB/CC/CD/CE/CF/CG/CH/CI/CJ/CK |
 
@@ -48,19 +48,19 @@
 
 ## 2. 口径与可检验设计（纸面骨架）
 
-### 2.1 写死键（拉数前冻结；本页不开跑；下列为**建议**占位，待预检冻结）
+### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 与 cl0 与锚 **三条已冻**）
 
 ```
-# 配置建议键（见 §7；草稿·待入库预检；下列均为建议占位，待预检写死）
+# 配置写死键（见 §7；预检有条件通过 · 三条已冻 · 待复检；下列已写死冻结）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 CL；≠ 单字母假设-C；≠ 单字母假设-L；≠ 单字母假设-Q；≠ 单字母假设-A；≠ 单字母假设-M；≠ 双字母假设-CA/CB/CC/CD/CE/CF/CG/CH/CI/CJ/CK
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 CL；≠ 单字母假设-G
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 CL；≠ 单字母假设-N；亦≠实验字母 BN
-# params.fill_time 建议 next_open
-# params.asof_check_date 建议 2026-10-16
+# params.fill_time 写死冻结 next_open
+# params.asof_check_date 写死冻结 2026-10-16
 # params.px_basis 建议 unadj
-# params.cb_ah_pricing_fill_honest 建议 pit_by_cb_ah_pricing_fill_rule
-# params.cb_ah_pricing_fill_scope 建议 assume_cb_ah_pricing_always_fillable_at_close_or_matched_vwap
-# params.cb_ah_pricing_fill_over_policy 建议 fail_or_partial_or_fail_missing_cb_ah_pricing_rule
+# params.cb_ah_pricing_fill_honest 写死冻结 pit_by_cb_ah_pricing_fill_rule
+# params.cb_ah_pricing_fill_scope 写死冻结 assume_cb_ah_pricing_always_fillable_at_close_or_matched_vwap
+# params.cb_ah_pricing_fill_over_policy 写死冻结 fail_or_partial_or_fail_missing_cb_ah_pricing_rule
 # params.cb_ah_window_start 建议 15:05
 # params.cb_ah_window_end 建议 15:30
 # params.cb_ah_px_mode 建议 close_or_matched_vwap   # 深市转债盘后定价；禁静默抄股票盘后固定价通道
@@ -86,7 +86,7 @@
 # params.financing_rollover_handoff 建议 cb_page
 # params.delist_force_deadline_handoff 建议 cc_page
 # params.cb_ah_pricing_fill_handoff 建议 self
-# params.cl0_primary_demo                建议 invent_assume_cb_after_hours_pricing_always_fillable
+# params.cl0_primary_demo                写死冻结 invent_assume_cb_after_hours_pricing_always_fillable
 # params.cl0_invent_assume_cb_after_hours_pricing_always_fillable 建议 True
 # params.cl1_asof_leak_cb_after_hours_pricing_always_fillable_only 建议 True
 # params.cl2_pit_cb_ah_pricing_fill 建议 True
@@ -114,9 +114,9 @@
 # params.missing_cb_ah_pricing_fill_policy 建议 skip
 # params.day_freq_proxy 建议 cb_ah_pricing_fill_sensitivity
 # params.universe_rule 建议 sse_szse_cb_ah_pricing_fill_misopen_check
-# params.fail_policy 建议 skip
+# params.fail_policy 写死冻结 skip
 # params.redline_v0_exempt_scope 建议 position_industry_dd_only
-# params.Y / G / N / Y2                  建议占位 0.02/0.01/0.05/0.015（params.Y≠实验字母 CL；params.G≠实验字母 CL；params.N≠实验字母 CL；禁 null/holdout；勿改已冻他字母数值；待预检冻结）
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 CL；params.G≠实验字母 CL；params.N≠实验字母 CL；禁 null/holdout；勿改已冻他字母数值）
 # params.date_start / date_end 建议 2019-01-01..2026-09-30
 # params.oos_split.*                     建议四日期；禁 holdout 反调
 # CL0：假全额可成——可转债盘后定价订单按收盘价或匹配 VWAP 100% 成交
@@ -129,13 +129,13 @@
 
 | 组 | 角色 | 规则 |
 |----|------|------|
-| CL0 | 天真 / 假全额可成 | 按 `cl0_primary_demo` **建议**单一主报 `invent_assume_cb_after_hours_pricing_always_fillable`：可转债盘后定价订单按收盘价或匹配 VWAP 100% 成交（**禁**与 `invent_asof_leak_cb_after_hours_pricing_always_fillable` 双挂主报） |
-| CL1 | 半泄露 | 仅核对日（asof）更宽「可转债盘后定价一律全额可成」规则泄露铺满全历史；**不得升格并列主报**（建议：CL1不升格） |
-| CL2 | 诚实 PIT | `cb_ah_pricing_fill_honest=pit_by_cb_ah_pricing_fill_rule`（建议）：每个交易日按当时已生效可转债盘后定价撮合/未匹配/额度约束；缺字段 skip |
+| CL0 | 天真 / 假全额可成 | 按 `cl0_primary_demo` **写死冻结**单一主报 `invent_assume_cb_after_hours_pricing_always_fillable`：可转债盘后定价订单按收盘价或匹配 VWAP 100% 成交（**禁**与 `invent_asof_leak_cb_after_hours_pricing_always_fillable` 双挂主报） |
+| CL1 | 半泄露 | 仅核对日（asof）更宽「可转债盘后定价一律全额可成」规则泄露铺满全历史；**不得升格并列主报**（已冻：CL1不升格） |
+| CL2 | 诚实 PIT | `cb_ah_pricing_fill_honest=pit_by_cb_ah_pricing_fill_rule`（已冻结）：每个交易日按当时已生效可转债盘后定价撮合/未匹配/额度约束；缺字段 skip |
 
 ### 2.3 额度窗内时频可落点（写明但不真跑）
 
-主窗建议 `2019-01-01..2026-09-30`（额度窗内）；asof 建议 `2026-10-16`；fill_time 建议 `next_open`；fail 建议 `skip`。本页**不开回测**；不拉真数；不做实盘。
+主窗建议 `2019-01-01..2026-09-30`（额度窗内）；asof **写死冻结** `2026-10-16`；fill_time **写死冻结** `next_open`；fail **写死冻结** `skip`。本页**不开回测**；不拉真数；不做实盘。
 
 ### 3.1 oos_split（建议四日期；拉数前冻结；禁 holdout 反调）
 
@@ -192,9 +192,9 @@
 ## 7. 回测配置骨架（纸面；本页不开回测）
 
 - hypothesis_id=`CL`；组 CL0/CL1/CL2。
-- **建议键摘要（待预检冻结）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`cb_ah_pricing_fill_honest=pit_by_cb_ah_pricing_fill_rule`；`cb_ah_pricing_fill_scope=assume_cb_ah_pricing_always_fillable_at_close_or_matched_vwap`；`cb_ah_pricing_fill_over_policy=fail_or_partial_or_fail_missing_cb_ah_pricing_rule`；`fail_policy=skip`；`cl0_primary_demo=invent_assume_cb_after_hours_pricing_always_fillable`（**建议**单一主报；禁双挂 asof_leak；CL1不升格）。
-- 锚建议（预检后升格写死）：`cb_ah_pricing_fill_honest=pit_by_cb_ah_pricing_fill_rule`；`cb_ah_pricing_fill_scope=assume_cb_ah_pricing_always_fillable_at_close_or_matched_vwap`；`cb_ah_pricing_fill_over_policy=fail_or_partial_or_fail_missing_cb_ah_pricing_rule`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。
-- `params.Y/G/N/Y2` **建议占位** `0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CL**；**params.G≠实验字母 CL**；**params.N≠实验字母 CL**；禁 null/holdout；**勿改已冻他字母数值**；待预检冻结）。
+- **写死键摘要（三条已冻）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`cb_ah_pricing_fill_honest=pit_by_cb_ah_pricing_fill_rule`；`cb_ah_pricing_fill_scope=assume_cb_ah_pricing_always_fillable_at_close_or_matched_vwap`；`cb_ah_pricing_fill_over_policy=fail_or_partial_or_fail_missing_cb_ah_pricing_rule`；`fail_policy=skip`；`cl0_primary_demo=invent_assume_cb_after_hours_pricing_always_fillable`（**写死冻结**单一主报；禁双挂 asof_leak；CL1不升格）。
+- 锚升格写死（不可再写「建议」）：`cb_ah_pricing_fill_honest=pit_by_cb_ah_pricing_fill_rule`；`cb_ah_pricing_fill_scope=assume_cb_ah_pricing_always_fillable_at_close_or_matched_vwap`；`cb_ah_pricing_fill_over_policy=fail_or_partial_or_fail_missing_cb_ah_pricing_rule`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。
+- `params.Y/G/N/Y2` **写死冻结** `0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CL**；**params.G≠实验字母 CL**；**params.N≠实验字母 CL**；禁 null/holdout；**勿改已冻他字母数值**）。
 - 主窗建议 `2019-01-01..2026-09-30`；oos_split 四日期建议写死+禁 holdout 反调。
 - 全部 `merge_with_*=False`（见 §2.1）。
 - **本页不开回测**；不催 8765；不抢 A 真数。
@@ -207,9 +207,22 @@
 
 ---
 
+## 风控预检补丁·冻结（三条已写死 · 2026-11-04）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 CL**；**`params.G` ≠ 实验字母 CL**；**`params.N` ≠ 实验字母 CL**；**`params.Y` ≠ 单字母实验 C/L/Q/A/M/Z**；尤重**双字母 CL ≠ 单字母假设-A**；**双字母 CL ≠ 单字母假设-C**；**双字母 CL ≠ 单字母假设-L**；**双字母 CL ≠ 单字母假设-Q**；**双字母 CL ≠ 单字母假设-M**；**双字母 CL ≠ 双字母假设-CK/CJ/CI/CH/CG/CF/CE/CD/CA/CB/CC**；禁 null/holdout/跑后改口；**勿改他字母已冻 Y/G/N/Y2**。  
+
+2. **`params.cl0_primary_demo`**：**写死冻结** **`invent_assume_cb_after_hours_pricing_always_fillable`**；禁与 **`invent_asof_leak_cb_after_hours_pricing_always_fillable`** 双挂争主表（只挂一个 primary）；**CL1 半泄露不得升格并列主报**。  
+
+3. **可转债盘后定价可成交性锚升格写死（不可再写「建议」）**：`params.cb_ah_pricing_fill_honest=pit_by_cb_ah_pricing_fill_rule`；`params.cb_ah_pricing_fill_scope=assume_cb_ah_pricing_always_fillable_at_close_or_matched_vwap`；`params.cb_ah_pricing_fill_over_policy=fail_or_partial_or_fail_missing_cb_ah_pricing_rule`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`。
+
+**硬分列保持**：CL≠CK/CH/Q/C/L/A/CA–CJ…；**尤其 CL≠CK / CL≠CH / CL≠Q / CL≠CJ / CL≠CI / CL≠CG / CL≠CF / CL≠CE / CL≠CD / CL≠A**；**双字母 CL ≠ 单字母假设-C / 假设-L / 假设-Q / 假设-A / 假设-M**；**严禁复用假设-L / 假设-Q / 假设-CH / 假设-CK / 假设-CJ / 假设-CI / 假设-CG / 假设-CF / 假设-CE / 假设-CD / 假设-A / 假设-C / 假设-M**；**params.Y/G/N ≠ 实验字母 CL**。
+
+**状态**：预检有条件通过 · 三条已冻 · 待复检；**禁止标任何纸面齐**；本页不开回测/真数/实盘；不改已冻 CK/Y–CK。
+
 ## 变更
 
 | 日期 | 说明 |
 |------|------|
-| 2026-11-04 | 新建草稿·待入库预检（总管线：CK 补丁 tip=`6f4aa74` 已交后写 CL；选题可转债盘后定价可成交性误开；cl0 建议 `invent_assume_cb_after_hours_pricing_always_fillable`；清单约 #95；**禁止标任何纸面齐**；不改已冻 CK/Y–CK；不开回测/真数/实盘）。 |
+| 2026-11-04 | 风控预检补丁·冻结三条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CL**；**params.G≠实验字母 CL**；**params.N≠实验字母 CL**；亦≠单字母实验 C/L/Q/A/M/Z；尤重**双字母 CL ≠ 单字母假设-A/C/L/Q/M**；**双字母 CL ≠ 双字母假设-CK/CJ/CI/CH/CG/CF/CE/CD/CA/CB/CC**；禁 null/holdout/跑后改口）；② `params.cl0_primary_demo=invent_assume_cb_after_hours_pricing_always_fillable` 单一主报写死（禁与 `invent_asof_leak_cb_after_hours_pricing_always_fillable` 双挂；CL1不升格）；③ 锚升格写死 `cb_ah_pricing_fill_honest=pit_by_cb_ah_pricing_fill_rule` / `scope=assume_cb_ah_pricing_always_fillable_at_close_or_matched_vwap` / `over_policy=fail_or_partial_or_fail_missing_cb_ah_pricing_rule` / `asof=2026-10-16` / `fill_time=next_open` / `fail=skip`；状态=预检有条件通过·三条已冻·待复检；**未标纸面齐**；不改已冻 CK/Y–CK；不开回测/真数/实盘。基线 tip=`07e21c4`。 |
+| 2026-11-04 | 新建草稿·待入库预检（总管线：CK 补丁 tip=`6f4aa74` 已交后写 CL；选题可转债盘后定价可成交性误开；cl0 建议 `invent_assume_cb_after_hours_pricing_always_fillable`；清单约 #95；**禁止标任何纸面齐**）。 |
 
