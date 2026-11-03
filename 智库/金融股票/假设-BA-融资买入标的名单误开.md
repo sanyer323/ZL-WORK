@@ -2,7 +2,7 @@
 
 更新：2026-11-03  
 来源：总管线 / AZ 补丁已收、写下一纸面 BA；清单撞题规则另选正交执行缺口（融资买入标的名单 ≠ 融券空头名单 ≠ 保证金比例）；选题自 `事实与坑`「标的须经交易所认可并公布；会员向客户公布的名单不得超出本所范围；风险警示当日调出；进入终止上市程序自公告当日调出；名单按施行日不按印发日；2010-03-31 起才接受融资融券申报」公开规则；与假设 A（板上可成交/枯竭）/ H（退市整理）/ B（历史清单「实验 B」印花税时点·财务可见日·除权误判等旧位；**双字母 BA ≠ 单字母 B**）/ K（**融券空头**名单 PIT；**BA≠K**）/ Z（融资/融券**保证金比例**误铺；**BA≠Z**）/ AB（融券卖出价限 / 禁市价 / 当日平；**BA≠AB**）/ E（整手）/ M（盘后）/ O（大宗）/ N（收盘切日/假 GTC）/ Q（可转债）/ R（股票 ETF 假回转）/ S/T/U/V（费用层；**避开预检T旧题**）/ W（除权判板）/ L（市价通道）/ D（开/收时点与停牌）/ AN–AZ（集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick 等）/ Y（集合量计入日线；**实验字母 Y ≠ params.Y**）/ AA–AZ / AC–AZ 等**分列**；**新建实验 BA**  
-状态：**草稿 · 待数据 · 待跑 · 待风控预检**（结论栏空；禁止把「全 A 任意日可融资买入 / 用核对日融资标的回放十年」当诚实两融能力；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AZ 及其他 A/D–AZ 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-K；不改假设-Z；不改假设-AB；勿再改 AZ/AY/AX/AW**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-03）**（结论栏空；禁止把「全 A 任意日可融资买入 / 用核对日融资标的回放十年」当诚实两融能力；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AZ 及其他 A/D–AZ 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-K；不改假设-Z；不改假设-AB；勿再改 AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 BA。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **融资买入腿是否落在当日已生效融资标的名单内**。**双字母 BA ≠ 单字母 A**。与假设 **B（历史实验 B 旧位）** **硬分列**：清单早期「实验 B」曾挂印花税时点+T+1 / 财务可见日 / 除权日复权价误判等，主病已迁 V/W 等页；本页**不重开**那些旧 B 题。**双字母 BA ≠ 单字母 B**。与假设 **K（融券空头名单）** **硬分列**：K = **空头/融券**可空名单；本页 = **多头融资买入**可融名单；可融资 ≠ 可融券，禁止捆成「两融名单一张表」。与假设 **Z（保证金比例）** **硬分列**：Z = 已允许融资/融券后的**比例/可开名义**；本页 = **能不能开融资买入腿**（名单闸门），不主测 80%/100% 比例。**双字母 BA ≠ 单字母 Z**。与假设 **AB（融券卖出价限）** **硬分列**：AB = 融券卖出价限/禁市价/当日平；本页不主测空头价限。与假设 AN–AZ **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick。**明确避开预检T旧题（证管费误抽）**。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 融资买入标的名单 ≠ 融券空头名单；≠ 保证金比例；≠ 融券卖出价限；≠ 板上枯竭；≠ 证管费
 
 ```
-# 配置写死键（见 §7；待预检后冻结）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-03）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 BA；≠ 实验字母 A；≠ 实验字母 B；≠ 实验字母 Z
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 BA
 # params.asof_check_date                 写死默认 2026-10-16  # 与事实与坑「两融标的/名单施行日」核对日同向
@@ -35,7 +35,7 @@
 # params.shortable_list_handoff          写死 k_page         # 融券空头名单交 K；BA≠K
 # params.margin_ratio_handoff            写死 z_page         # 保证金比例交 Z；BA≠Z
 # params.short_px_handoff                写死 ab_page        # 融券卖出价限交 AB
-# params.ba0_primary_demo                建议 invent_all_ashare_marginable  # 待预检；主报：全 A 默认可融资买入；禁与 invent_asof_leak_margin_buy_list 双挂争主表；BA1半泄露不得升格并列主报
+# params.ba0_primary_demo                写死 invent_all_ashare_marginable  # 风控补丁冻结；主报：全 A 默认可融资买入；禁与 invent_asof_leak_margin_buy_list 双挂争主表；BA1半泄露不得升格并列主报
 # params.ba0_invent_all_marginable       写死 True
 # params.ba1_asof_leak_list_only         写死 True           # 半泄露：仅用核对日融资标的铺满历史
 # params.ba2_pit_list                    写死 True
@@ -94,7 +94,7 @@
 # params.missing_list_policy             写死 skip
 # params.day_freq_proxy                  写死 margin_buy_list_sensitivity
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  建议 0.02/0.01/0.05/0.015  # 待预检写死；params.Y≠实验字母BA；params.N≠实验字母BA；亦≠单字母实验A/B/Z；禁null/holdout/跑后改口
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y≠实验字母BA；params.N≠实验字母BA；亦≠单字母实验A/B/Z；禁null/holdout/跑后改口
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -108,7 +108,7 @@ margin_buy_list_honest = "pit_by_effective_date"
 shortable_list_handoff = "k_page"
 margin_ratio_handoff = "z_page"
 short_px_handoff = "ab_page"
-ba0_primary_demo = "invent_all_ashare_marginable"  # 待预检建议；禁与 invent_asof_leak_margin_buy_list 双挂；BA1半泄露不得升格并列主报
+ba0_primary_demo = "invent_all_ashare_marginable"  # 写死冻结；禁与 invent_asof_leak_margin_buy_list 双挂；BA1半泄露不得升格并列主报
 ba0_invent_all_marginable = True
 ba1_asof_leak_list_only = True
 ba2_pit_list = True
@@ -118,18 +118,18 @@ universe_rule = "sse_szse_margin_buy_list_check"
 missing_list_policy = "skip"
 day_freq_proxy = "margin_buy_list_sensitivity"
 
-# 待预检写死建议（禁 null/holdout/跑后改口）
-Y = 0.02   # 建议；相对门槛 ≠ 实验字母 BA；≠ 单字母实验 A/B/Z
-G = 0.01
-N = 0.05   # 建议；失败/废单率差门槛 ≠ 实验字母 BA
-Y2 = 0.015
+# 风控补丁写死冻结（2026-11-03；禁 null/holdout/跑后改口）
+Y = 0.02   # 写死；相对门槛 ≠ 实验字母 BA；≠ 单字母实验 A/B/Z
+G = 0.01   # 写死
+N = 0.05   # 写死；失败/废单率差门槛 ≠ 实验字母 BA
+Y2 = 0.015 # 写死
 ```
 
 ### 2.2 组定义（BA0 / BA1 / BA2）
 
 | 组 | 融资买入标的 | 说明 |
 |----|--------------|------|
-| BA0 天真 | 全 A 任意日任意量可融资买入（按 `ba0_primary_demo` 单一主报） | 发明名单闸门不存在 |
+| BA0 天真 | 按 `ba0_primary_demo` 单一主报（**写死冻结** `invent_all_ashare_marginable`） | 发明名单闸门不存在；禁与 invent_asof_leak_margin_buy_list 双挂 |
 | BA1 半泄露/混口径 | 全样本用 `asof_check_date` 当天融资标的名单铺满历史 | 仅名单 asof 泄露；不升格并列主报 |
 | BA2 PIT 诚实 | 按成交日/调仓日已生效融资标的；通道日起算；ST/终止上市当日调出；缺名单 skip | 诚实闸门 |
 
@@ -142,6 +142,16 @@ Y2 = 0.015
 - **≠AB**：融券卖出价限 ≠ 融资买入名单。  
 - **≠T**：证管费误抽（**避开预检T**）≠ 本页。  
 - **≠AN–AZ**：不重开集合/失败回落/基金费用价位链。
+
+**风控补丁两条（已写死冻结 · 2026-11-03；禁 holdout；禁 null；禁双挂；禁跑后改口）**：
+
+```
+params.Y                            = 0.02                         # 写死冻结；名义差显著门槛；≠实验字母 BA；≠单字母实验 A/B/Z
+params.G                            = 0.01                         # 写死冻结；假融资腿桶相对对照差
+params.N                            = 0.05                         # 写死冻结；失败/废单率差门槛；≠实验字母 BA
+params.Y2                           = 0.015                        # 写死冻结；BA1（asof泄露）相对 BA2 专项门槛
+params.ba0_primary_demo             = invent_all_ashare_marginable  # 写死冻结主报：全 A 默认可融资买入；禁与 invent_asof_leak_margin_buy_list 双挂争主表；BA1半泄露不得升格并列主报
+```
 
 ---
 
@@ -206,17 +216,17 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔNotional| **≥ params.Y** 或 |ΔFakeMarginBuy 桶贡献| **≥ params.G** 或 |ΔNotional_(BA1?BA2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「融资买入标的名单执行鸿沟显著」。
 
-**params.Y / G / N / Y2（纸面占位建议；待预检写死；与实验字母 BA / 单字母实验 A/B/Z 无关）**
+**params.Y / G / N / Y2（写死冻结 2026-11-03；与实验字母 BA / 单字母实验 A/B/Z 无关）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 名义差显著门槛（≠实验字母 BA；≠单字母实验 A/B/Z） | **建议** `0.02`（待预检写死） |
-| params.G | 假融资腿桶相对对照差 | **建议** `0.01` |
-| params.N | 失败/废单率差门槛（≠实验字母 BA） | **建议** `0.05` |
-| params.Y2 | BA1?BA2 专项门槛 | **建议** `0.015` |
+| params.Y | 名义差显著门槛（≠实验字母 BA；≠单字母实验 A/B/Z） | **写死冻结** `0.02` |
+| params.G | 假融资腿桶相对对照差 | **写死冻结** `0.01` |
+| params.N | 失败/废单率差门槛（≠实验字母 BA） | **写死冻结** `0.05` |
+| params.Y2 | BA1?BA2 专项门槛 | **写死冻结** `0.015` |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-16` |
 | fill_time | 成交时点 | **写死** `next_open` |
-| ba0_primary_demo | 天真主报枚举 | **建议** `invent_all_ashare_marginable`（禁与 invent_asof_leak_margin_buy_list 双挂；BA1半泄露不得升格并列主报；待预检） |
+| ba0_primary_demo | 天真主报枚举 | **写死冻结** `invent_all_ashare_marginable`（禁与 invent_asof_leak_margin_buy_list 双挂；BA1半泄露不得升格并列主报） |
 
 ### 4.3 红线 v0
 
@@ -261,7 +271,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`BA`  
 - **组**：BA0 / BA1 / BA2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`margin_buy_list_honest=pit_by_effective_date`；`shortable_list_handoff=k_page`；`margin_ratio_handoff=z_page`；`short_px_handoff=ab_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_margin_buy_list_check`；`missing_list_policy=skip`；`day_freq_proxy=margin_buy_list_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 建议 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 BA；**params.N≠实验字母 BA**；亦≠单字母实验 A/B/Z；禁 null/holdout；**待预检写死**）；**`params.ba0_primary_demo` 建议 `invent_all_ashare_marginable`**（禁与 invent_asof_leak_margin_buy_list 双挂；BA1半泄露不得升格并列主报；**待预检**）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`margin_buy_list_honest=pit_by_effective_date`；`shortable_list_handoff=k_page`；`margin_ratio_handoff=z_page`；`short_px_handoff=ab_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_margin_buy_list_check`；`missing_list_policy=skip`；`day_freq_proxy=margin_buy_list_sensitivity`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 BA；**params.N≠实验字母 BA**；亦≠单字母实验 A/B/Z；禁 null/holdout；风控补丁冻结 2026-11-03）；**`params.ba0_primary_demo` 写死 `invent_all_ashare_marginable`**（禁与 invent_asof_leak_margin_buy_list 双挂；BA1半泄露不得升格并列主报；风控补丁冻结 2026-11-03）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -290,10 +300,21 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6；融资标的施行日表或日频敏感性即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**margin_buy_list_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 BA；params.N≠实验字母 BA；亦≠单字母实验 A/B/Z；待预检写死）**；**ba0_primary_demo 建议 invent_all_ashare_marginable（禁双挂；BA1半泄露不得升格并列主报；待预检）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**margin_buy_list_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死 0.02/0.01/0.05/0.015（params.Y≠实验字母 BA；params.N≠实验字母 BA；亦≠单字母实验 A/B/Z；风控补丁冻结 2026-11-03）**；**ba0_primary_demo 写死 invent_all_ashare_marginable（禁双挂；BA1半泄露不得升格并列主报；风控补丁冻结 2026-11-03）** |
+
+---
+
+## 风控预检补丁·冻结（两条已写死 · 2026-11-03）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 BA**；**`params.Y` ≠ 单字母实验 A/B/Z**；**`params.N` ≠ 实验字母 BA**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.ba0_primary_demo`**：**写死冻结** **`invent_all_ashare_marginable`**；禁与 **`invent_asof_leak_margin_buy_list`** 双挂争主表（只挂一个 primary）；**BA1 半泄露不得升格并列主报**。
+
+**与 AB/K 硬分列（保留）**：本页 = **融资买入**标的名单闸门；AB = **融券卖出价限**；K = **融券空头**名单；融资买入 ≠ 融券卖出价限 ≠ 融券空头名单；禁止捆成「两融名单一张表」或「空头价限=多头可融」；不改假设-AB；不改假设-K。
 
 ---
 
 ## 变更
+
+- 2026-11-03：风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 BA**；亦≠单字母实验 A/B/Z；**params.N≠实验字母 BA**；禁 null/holdout/跑后改口）；② `params.ba0_primary_demo=invent_all_ashare_marginable`（禁与 `invent_asof_leak_margin_buy_list` 双挂争主表；BA1半泄露不得升格并列主报）。与 AB/K 硬分列保留。参考总管派令 / 风控预检有条件通过。未改 Y/Z/AA–AZ 及其他已冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-K；不改假设-Z；不改假设-AB；不改假设-AZ；不改假设-AY；不改假设-AX；不改假设-AW；结论栏仍空；不开回测；不抢 A。
 
 - 2026-11-03：新建标准件（总管线：AZ 补丁已收后写下一纸面 BA；Y/Z/AA–AZ 补丁/正文已交不改；清单撞题规则另选「融资买入标的名单误开」；选题自 `事实与坑`；**与 A/H/B/K/Z/AB/E/M/O/N/Q/R/S/T/U/V/W/L/D/AN–AZ/Y/AA–AZ 硬分列**；**双字母 BA ≠ 单字母 A ≠ 单字母 B**；**不与 AN–AZ 重复**；**明确避开预检T旧题（证管费误抽）**；**勿占 AZ（开盘集合失败假抄前收）/AY/AX/AW**；结论栏空；不开回测；不抢 A；**勿再改 AZ/AY/AX/AW**）。
