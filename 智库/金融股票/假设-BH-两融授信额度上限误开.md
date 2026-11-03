@@ -2,11 +2,11 @@
 
 更新：2026-11-03  
 来源：总管线 / BG 补丁已收、写下一纸面 BH；清单撞题规则另选正交执行缺口（**客户融资融券授信额度 / 可用融资·融券额度上限** ≠ 开仓保证金比例 ≠ 融资买入标的名单 ≠ 转融券券源 ≠ 维持担保比例强制平仓 ≠ 担保品折算率 ≠ 单标的两融余额25pct暂停 ≠ 两融合约期限到期强制了结 ≠ 可充抵保证金证券名单）；选题自交易所融资融券细则与会员风控公开口径：会员对客户进行授信、约定融资与融券额度；客户融资买入/融券卖出占用额度，了结后释放；申报或成交不得突破当时有效授信/可用额度；额度按**合同/授信生效日与调整生效日** PIT，不得用核对日额度铺满全历史；2010-03-31 前无此通道；与假设 A（板上可成交/枯竭）/ H（退市整理；**双字母 BH ≠ 单字母 H**）/ B（历史清单「实验 B」旧位；**双字母 BH ≠ 单字母 B**）/ Z（**开仓**融资/融券保证金比例；**BH≠Z**）/ BA（**融资买入**标的名单；**BH≠BA**）/ BB（**转融券暂停后券源**；**BH≠BB**）/ BC（**维持担保比例强制平仓**；**BH≠BC**）/ BD（**担保品折算率**；**BH≠BD**）/ BE（**单标的两融余额25pct暂停**；**BH≠BE**）/ BF（**两融合约期限到期强制了结**；**BH≠BF**）/ BG（**可充抵保证金证券名单**；**BH≠BG**）/ K（融券空头名单；**BH≠K**）/ AB（融券卖出价限 / 当日平；**BH≠AB**）/ E（整手）/ AN–BG（集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/融资买入名单/转融券假无限券源/维持强平/折算率/余额25pct暂停/合约期限/可充抵名单等）/ S/T/U/V（费用层；**避开预检T旧题**）等**分列**；**新建实验 BH**  
-状态：**草稿 · 待入库预检**（结论栏空；禁止把「客户两融授信额度无限 / 可用融资·融券额度永不检查 / 用核对日授信额度铺满全历史」当诚实可开两融能力；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BG 及其他 A/D–BG 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-Z；不改假设-BA；不改假设-BB；不改假设-BC；不改假设-BD；不改假设-BE；不改假设-BF；不改假设-BG；不改假设-K；不改假设-AB；勿再改 BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
+状态：**草稿 · 预检有条件通过 · 两条已冻结待复检**（结论栏空；禁止把「客户两融授信额度无限 / 可用融资·融券额度永不检查 / 用核对日授信额度铺满全历史」当诚实可开两融能力；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BG 及其他 A/D–BG 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-Z；不改假设-BA；不改假设-BB；不改假设-BC；不改假设-BD；不改假设-BE；不改假设-BF；不改假设-BG；不改假设-K；不改假设-AB；勿再改 BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 BH。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **拟开两融是否突破客户当时有效授信/可用融资·融券额度**。**双字母 BH ≠ 单字母 A**。与假设 **B（历史实验 B 旧位）** **硬分列**：清单早期「实验 B」曾挂印花税时点+T+1 / 财务可见日 / 除权日复权价误判等，主病已迁 V/W 等页；本页**不重开**那些旧 B 题。**双字母 BH ≠ 单字母 B**。与假设 **H（退市整理期）** **硬分列**：H = 退市整理窗口被当成普通可交易日；本页 = 两融**授信额度上限闸门**；整理期可交易性 ≠ 授信额度。**双字母 BH ≠ 单字母 H**；**尤其不改假设-H**。与假设 **Z（开仓保证金比例）** **硬分列**：Z = **新开**融资/融券时的保证金**比例**数值；本页 = 客户层面**授信/可用额度上限**（名义额度闸门）；比例够 ≠ 额度未用尽。与假设 **BA（融资买入标的名单）** **硬分列**：BA = 能不能开**融资买入**腿（标的闸门）；本页 = 标的已可买时，客户**额度是否还够开**。与假设 **BB（转融券暂停后假无限券源）** **硬分列**：BB = 空头**券源可借量**（市场/通道层）；本页 = 客户**授信额度**（账户层）；券源 ≠ 授信。与假设 **BC（维持担保比例强制平仓）** **硬分列**：BC = 持仓存续期**维持担保比例**是否触发追保/强平；本页 = **新开/加仓时授信额度是否够**；维持线 ≠ 授信额度。与假设 **BD（担保品折算率）** **硬分列**：BD = 已在可充抵范围内的证券按什么**折算率**计入保证金可用；本页 = 授信额度上限；折算率算得出可用保证金 ≠ 未突破授信额度。与假设 **BE（单标的两融余额25pct暂停）** **硬分列**：BE = 市场层单标的余额/余量集中度暂停**新开**；本页 = 账户层授信额度；市场暂停 ≠ 客户额度。与假设 **BF（两融合约期限到期强制了结）** **硬分列**：BF = 已开合约的**存续期限上限与到期了结**；本页 = 开仓前额度闸门；期限 ≠ 授信。与假设 **BG（可充抵保证金证券名单）** **硬分列**：BG = **哪些证券可以充抵**（名单闸门）；本页 = 客户**能开多大名义**（额度闸门）；可充抵 ≠ 授信额度未用尽。与假设 **K / AB** **硬分列**：不重开融券名单与空头价限/当日平。与假设 AN–BG **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/融资买入名单/转融券假无限券源/维持强平/折算率/余额25pct暂停/合约期限/可充抵名单等。**明确避开预检T旧题（证管费误抽）**。**本页主结论不混。**
 
-> **字母消歧（硬）**：本页**实验字母 BH** ≠ 费用/显著性参数 **`params.Y`**（相对门槛，与 G/N/Y2 同族）≠ **`params.N`**（失败/废单率差门槛键名）≠ **单字母实验 A**（涨停可成交性）≠ **单字母实验 B**（历史实验 B 旧位）≠ **单字母实验 H**（退市整理期）≠ **单字母实验 Z**（开仓保证金比例）。全文凡写「实验 BH / 假设-BH / hypothesis_id=BH / 组 BH0·BH1·BH2」均指本实验；凡写 **`params.Y`** / **`params.N`** 均指门槛数值键，**禁止**把二者与实验字母 BH 混读或互改。亦**禁止**把实验字母 BH 与单字母 **A**、单字母 **B**、单字母 **H**、单字母 **Z**、单字母 **K**、双字母 **BA**、双字母 **BB**、双字母 **BC**、双字母 **BD**、双字母 **BE**、双字母 **BF**、双字母 **BG**、双字母 **AB**、双字母 **AZ**、双字母 **AY**、双字母 **AX**、双字母 **AW**、或 params 键名 `bh0_*` 以外的实验页混读。**双字母 BH ≠ 单字母 A ≠ 单字母 B ≠ 单字母 H ≠ 单字母 Z ≠ 双字母 BA ≠ 双字母 BB ≠ 双字母 BC ≠ 双字母 BD ≠ 双字母 BE ≠ 双字母 BF ≠ 双字母 BG**；**params.Y ≠ 实验字母 BH**；**params.N ≠ 实验字母 BH**。
+> **字母消歧（硬）**：本页**实验字母 BH** ≠ 费用/显著性参数 **`params.Y`**（相对门槛，与 G/N/Y2 同族）≠ **`params.N`**（失败/废单率差门槛键名）≠ **单字母实验 A**（涨停可成交性）≠ **单字母实验 B**（历史实验 B 旧位）≠ **单字母实验 H**（退市整理期）≠ **单字母实验 Z**（开仓保证金比例）。全文凡写「实验 BH / 假设-BH / hypothesis_id=BH / 组 BH0·BH1·BH2」均指本实验；凡写 **`params.Y`** / **`params.G`** / **`params.N`** 均指门槛数值键，**禁止**把三者与实验字母 BH 混读或互改。亦**禁止**把实验字母 BH 与单字母 **A**、单字母 **B**、单字母 **H**、单字母 **Z**、单字母 **K**、双字母 **BA**、双字母 **BB**、双字母 **BC**、双字母 **BD**、双字母 **BE**、双字母 **BF**、双字母 **BG**、双字母 **AB**、双字母 **AZ**、双字母 **AY**、双字母 **AX**、双字母 **AW**、或 params 键名 `bh0_*` 以外的实验页混读。**双字母 BH ≠ 单字母 A ≠ 单字母 B ≠ 单字母 H ≠ 单字母 Z ≠ 双字母 BA ≠ 双字母 BB ≠ 双字母 BC ≠ 双字母 BD ≠ 双字母 BE ≠ 双字母 BF ≠ 双字母 BG**；**params.Y ≠ 实验字母 BH**；**params.G ≠ 实验字母 BH**；**params.N ≠ 实验字母 BH**。
 
 ---
 
@@ -23,7 +23,7 @@
 ### 2.1 授信额度上限 ≠ 开仓保证金比例；≠ 融资买入名单；≠ 转融券券源；≠ 维持担保强平；≠ 担保品折算率；≠ 单标的余额25pct暂停；≠ 合约期限；≠ 可充抵名单；≠ 融券名单；≠ 板上枯竭；≠ 退市整理；≠ 证管费
 
 ```
-# 配置写死键（见 §7；纸面占位建议；拉数前须冻结）
+# 配置写死键（见 §7；两条已冻结待复检；终值如下）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 BH；≠ 实验字母 A；≠ 实验字母 B；≠ 实验字母 H；≠ 实验字母 Z
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 BH
 # params.asof_check_date                 写死默认 2026-10-16  # 与事实与坑「两融/保证金」核对日同向
@@ -47,7 +47,7 @@
 # params.shortable_list_handoff          写死 k_page         # 融券空头名单交 K
 # params.short_px_handoff                写死 ab_page        # 融券卖出价限/当日平交 AB
 # params.exit_period_handoff             写死 h_page         # 退市整理交 H；BH≠H
-# params.bh0_primary_demo                纸面建议 invent_unlimited_credit_quota  # 主报建议：永不检查授信/可用额度=无限；禁与 invent_asof_leak_credit_quota 双挂争主表；BH1半泄露不得升格并列主报
+# params.bh0_primary_demo                写死冻结 invent_unlimited_credit_quota  # 主报：永不检查授信/可用额度=无限；禁与 invent_asof_leak_credit_quota 双挂争主表；BH1半泄露不得升格并列主报
 # params.bh0_invent_unlimited_credit     写死 True
 # params.bh1_asof_leak_credit_quota_only 写死 True           # 半泄露：仅用核对日授信额度铺满历史
 # params.bh2_pit_credit_quota            写死 True
@@ -117,9 +117,9 @@
 # params.missing_credit_quota_policy     写死 skip
 # params.day_freq_proxy                  写死 credit_quota_eligibility_sensitivity
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  纸面建议 0.02/0.01/0.05/0.015  # params.Y≠实验字母BH；params.N≠实验字母BH；亦≠单字母实验A/B/H/Z；禁null/holdout/跑后改口；拉数前须冻结
-# params.date_start / date_end           写死主窗并待冻结
-# params.oos_split.*                     写死四日期并待冻结；禁 holdout 反调
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # params.Y≠实验字母BH；params.G≠实验字母BH；params.N≠实验字母BH；亦≠单字母实验A/B/H/Z；禁null/holdout/跑后改口
+# params.date_start / date_end           写死主窗并冻结
+# params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
 # params.fail_policy                     写死 skip
 ```
@@ -130,14 +130,14 @@
 fill_time = "next_open"
 asof_check_date = "2026-10-16"
 credit_quota_honest = "pit_by_effective_date"
-params.bh0_primary_demo = "invent_unlimited_credit_quota"  # 纸面建议；禁与 invent_asof_leak_credit_quota 双挂
+params.bh0_primary_demo = "invent_unlimited_credit_quota"  # 写死冻结；禁与 invent_asof_leak_credit_quota 双挂
 ```
 
 ### 2.2 三组对照（BH0 / BH1 / BH2）
 
 | 组 | 口径 | 说明 |
 |----|------|------|
-| BH0 天真 | `invent_unlimited_credit_quota`（单一主报建议） | 客户授信/可用融资·融券额度永不检查=无限；忽略额度占用与上限 |
+| BH0 天真 | `invent_unlimited_credit_quota`（单一主报·已冻结） | 客户授信/可用融资·融券额度永不检查=无限；忽略额度占用与上限 |
 | BH1 半泄露 | `invent_asof_leak_credit_quota` | 仅用核对日授信额度（含券商当日更高额度）铺满全历史；**不得升格并列主报** |
 | BH2 诚实 PIT | `pit_by_effective_date` | 按当日已生效授信额度−已占用；超额度拒开/记失败；缺额度字段 skip |
 
@@ -247,7 +247,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`BH`  
 - **组**：BH0 / BH1 / BH2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`credit_quota_honest=pit_by_effective_date`；`credit_quota_occupy_on=open_fill`；`credit_quota_over_policy=reject_or_fail`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_credit_quota_check`；`missing_credit_quota_policy=skip`；`day_freq_proxy=credit_quota_eligibility_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 纸面建议 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 BH**；**params.N≠实验字母 BH**；亦≠单字母实验 A/B/H/Z；禁 null/holdout/跑后改口；拉数前须冻结）；**`params.bh0_primary_demo` 纸面建议 `invent_unlimited_credit_quota`**（禁与 invent_asof_leak_credit_quota 双挂；BH1半泄露不得升格并列主报；拉数前须冻结）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`credit_quota_honest=pit_by_effective_date`；`credit_quota_occupy_on=open_fill`；`credit_quota_over_policy=reject_or_fail`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_credit_quota_check`；`missing_credit_quota_policy=skip`；`day_freq_proxy=credit_quota_eligibility_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 BH**；**params.G≠实验字母 BH**；**params.N≠实验字母 BH**；亦≠单字母实验 A/B/H/Z；禁 null/holdout/跑后改口）；**`params.bh0_primary_demo` 写死冻结 `invent_unlimited_credit_quota`**（禁与 invent_asof_leak_credit_quota 双挂；BH1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -272,32 +272,25 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|-----|
-| 文档状态 | 草稿 · 待入库预检 |
+| 文档状态 | 草稿 · 预检有条件通过 · 两条已冻结待复检 |
 | 数据 | 待接入（字段见 §6；日频拟开名义+授信额度生效日+占用代理即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**credit_quota_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 纸面建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 BH；params.N≠实验字母 BH；亦≠单字母实验 A/B/H/Z；禁 null/holdout/跑后改口；拉数前须冻结）**；**bh0_primary_demo 纸面建议 invent_unlimited_credit_quota（禁双挂 invent_asof_leak_credit_quota；BH1半泄露不得升格并列主报；拉数前须冻结）**；锚点保留 credit_quota_honest=pit_by_effective_date / credit_quota_occupy_on=open_fill / credit_quota_over_policy=reject_or_fail / margin_channel_start=2010-03-31 / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**credit_quota_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 BH；params.G≠实验字母 BH；params.N≠实验字母 BH；亦≠单字母实验 A/B/H/Z；禁 null/holdout/跑后改口）**；**bh0_primary_demo 写死冻结 invent_unlimited_credit_quota（禁双挂 invent_asof_leak_credit_quota；BH1半泄露不得升格并列主报）**；锚点保留 credit_quota_honest=pit_by_effective_date / credit_quota_occupy_on=open_fill / credit_quota_over_policy=reject_or_fail / margin_channel_start=2010-03-31 / fail_policy=skip |
 
 ---
 
-## 待预检键（交总管入库预检）
+## 风控预检补丁·冻结（两条已写死 · 2026-11-03）
 
-| 键名 | 建议值 | 备注 |
-|------|--------|------|
-| `params.Y` | `0.02` | **≠实验字母 BH**；亦≠单字母 A/B/H/Z；禁 null/holdout |
-| `params.G` | `0.01` | 同族门槛占位 |
-| `params.N` | `0.05` | **≠实验字母 BH** |
-| `params.Y2` | `0.015` | 同族次门槛 |
-| `params.bh0_primary_demo` | `invent_unlimited_credit_quota` | 禁与 `invent_asof_leak_credit_quota` 双挂；BH1 不升格主报 |
-| `params.credit_quota_honest` | `pit_by_effective_date` | 已通建议锚 |
-| `params.credit_quota_occupy_on` | `open_fill` | 已通建议锚 |
-| `params.credit_quota_over_policy` | `reject_or_fail` | 已通建议锚 |
-| `params.margin_channel_start` | `2010-03-31` | 已通建议锚 |
-| `params.asof_check_date` | `2026-10-16` | 已通建议锚 |
-| `params.fail_policy` | `skip` | 已通建议锚 |
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 BH**；**`params.G` ≠ 实验字母 BH**；**`params.N` ≠ 实验字母 BH**；**`params.Y` ≠ 单字母实验 A/B/H/Z**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.bh0_primary_demo`**：**写死冻结** **`invent_unlimited_credit_quota`**；禁与 **`invent_asof_leak_credit_quota`** 双挂争主表（只挂一个 primary）；**BH1 半泄露不得升格并列主报**。
 
----
+**授信额度锚保留（已通写死）**：`params.credit_quota_honest=pit_by_effective_date`；`params.credit_quota_occupy_on=open_fill`；`params.credit_quota_over_policy=reject_or_fail`；`params.margin_channel_start=2010-03-31`；`params.fail_policy=skip`（及正文已有 `asof_check_date=2026-10-16` / `missing_credit_quota_policy=skip` / `fill_time=next_open` 等锚点；不改口）。
+
+**与 BA/BB/BC/BD/BE/BF/BG/Z/K/AB/B/H 硬分列（保留）**：本页 = **两融授信额度上限**；Z = **开仓**保证金比例；BA = **融资买入**标的名单；BB = **转融券暂停后券源**；BC = **维持担保比例强制平仓**；BD = **担保品折算率**；BE = **单标的两融余额25pct暂停**；BF = **两融合约期限到期强制了结**；BG = **可充抵保证金证券名单**；A = **板上枯竭**；K = **融券空头名单**；AB = **融券卖出价限**；B = 历史实验 B 旧位；H = **退市整理期**；授信额度 ≠ 开仓比例 ≠ 融资可买名单 ≠ 转融券源 ≠ 维持强平 ≠ 折算率 ≠ 余额25pct暂停 ≠ 合约期限 ≠ 可充抵名单 ≠ 板上枯竭 ≠ 融券名单 ≠ 空头价限 ≠ 退市整理；**双字母 BH ≠ 单字母 A ≠ 单字母 B ≠ 单字母 H ≠ 单字母 Z ≠ 双字母 BA ≠ 双字母 BB ≠ 双字母 BC ≠ 双字母 BD ≠ 双字母 BE ≠ 双字母 BF ≠ 双字母 BG ≠ 双字母 AB ≠ 单字母 K**；**params.Y ≠ 实验字母 BH**；**params.G ≠ 实验字母 BH**；**params.N ≠ 实验字母 BH**；禁止捆成「两融一张表=额度无限」；**尤其不改假设-H**；不改假设-Z；不改假设-BA；不改假设-BB；不改假设-BC；不改假设-BD；不改假设-BE；不改假设-BF；不改假设-BG；不改假设-A；不改假设-K；不改假设-AB；不改假设-B。
 
 ## 变更
+
+- 2026-11-03：风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 BH**；**params.G≠实验字母 BH**；**params.N≠实验字母 BH**；亦≠单字母实验 A/B/H/Z；禁 null/holdout/跑后改口）；② `params.bh0_primary_demo=invent_unlimited_credit_quota`（禁与 `invent_asof_leak_credit_quota` 双挂争主表；BH1半泄露不得升格并列主报）。授信额度锚保留：`credit_quota_honest=pit_by_effective_date`；`credit_quota_occupy_on=open_fill`；`credit_quota_over_policy=reject_or_fail`；`margin_channel_start=2010-03-31`；`fail_policy=skip`。与 BA/BB/BC/BD/BE/BF/BG/Z/K/AB/B/H 硬分列保留。参考总管派令 / 风控预检有条件通过。未改 Y/Z/AA–BG 及其他已冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-Z；不改假设-BA；不改假设-BB；不改假设-BC；不改假设-BD；不改假设-BE；不改假设-BF；不改假设-BG；不改假设-K；不改假设-AB；不改假设-AZ；不改假设-AY；不改假设-AX；不改假设-AW；结论栏仍空；不开回测；不抢 A。
 
 - 2026-11-03：新建纸面草稿（总管续派：BG 补丁已收 → 写假设-BH；自立 BH，勿占 BG/BF/BE/BD/BC/BB/BA/B/H/A/Z；避开预检T；不开回测；禁实盘/荐股；**params.Y/N≠实验字母 BH**）。选题：两融授信额度上限误开（正交于 BA 融资买入名单 / BG 可充抵名单 / BD 折算率 / Z 开仓比例 / BC 维持强平 / BB 转融券源 / BE 余额25pct暂停 / BF 合约期限；**双字母 BH ≠ 单字母 B ≠ 单字母 H**；**尤其不改假设-H**）。
