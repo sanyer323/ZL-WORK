@@ -2,7 +2,7 @@
 
 更新：2026-11-03  
 来源：总管线 / BV 补丁已交（A/D–BV 纸面齐）、写下一纸面 BW；清单撞题规则另选正交执行缺口（**授信已占用/剩余额度口径吹瘦** ≠ 授信额度上限闸门 ≠ 融券提前召回 ≠ 融券券池日可借量 ≠ 强制平仓顺序与范围 ≠ 融资利率档 ≠ 融券借券费 ≠ 融资假零息 ≠ 开仓保证金比例 ≠ 担保品折算率 ≠ 可充抵名单 ≠ 除权日复权价误判板）；选题自两融会员风控公开口径：客户融资买入/融券卖出占用授信额度，了结后释放；**已占用额度怎么算**（是否计入应计利息/罚息、融券市值重估、未到账负债、在途委托占用等）按当时有效占用规则 PIT；不得默认「占用永远按本金或成本低估 / 永不计入应计与市值重估 / 用核对日更宽低占用公式铺满历史」；本页**假定授信额度天花板仍按 BH 诚实或显式旁路检查**，主病只在**占用口径吹瘦→假高剩余额度**；2010-03-31 前无此通道；**BH 正文主测「额度天花板无限/永不检查上限」**（`invent_unlimited_credit_quota`），本页主测**有天花板前提下占用公式被吹瘦**（`invent_understate_credit_usage`）→ 自立；与假设 A（板上可成交/枯竭）/ H（退市整理）/ B（历史清单「实验 B」旧位；**双字母 BW ≠ 单字母 B**）/ **W（除权日复权价误判板；双字母 BW ≠ 单字母假设-W；严禁复用 W 题面或除权板价口径）** / Z（**开仓**融资/融券保证金比例；**BW≠Z**）/ BA–BV（两融族已冻/已齐；**BW≠BA…BV**；**尤其不改 BV 正文**）/ **BH（授信额度上限；BW≠BH；尤其不改假设-BH）** / K（融券空头名单；**BW≠K**；并带过 BK≠K）/ AB（融券卖出价限；**BW≠AB**）/ BD（担保品折算率；**BW≠BD**）/ BG（可充抵名单；**BW≠BG**）/ BV（融券提前召回；**BW≠BV**；已齐亦**不改 BV**）/ BU/BT/BS/BO/BR/BQ/BP/BN/BM/BL/BE/BC/BB/BA 等**分列**；**新建实验 BW**  
-状态：**草稿 · 待预检**（结论栏空；禁止把「授信占用永远按本金低估 / 永不计入应计利息与融券市值重估 / 用核对日更宽低占用公式铺满」当诚实授信占用口径；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BV 及其他 A/D–BV 已交正文与冻结补丁；尤其不改假设-BV；尤其不改假设-W；尤其不改假设-BH；不改假设-H；不改假设-A；不改假设-B；不改假设-K；不改假设-Z；不改假设-BA–BV；不改假设-AB；勿再改 BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
+状态：**草稿 · 预检有条件通过 · 两条已冻 · 待复检**（结论栏空；禁止把「授信占用永远按本金低估 / 永不计入应计利息与融券市值重估 / 用核对日更宽低占用公式铺满」当诚实授信占用口径；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BV 及其他 A/D–BV 已交正文与冻结补丁；尤其不改假设-BV；尤其不改假设-W；尤其不改假设-BH；不改假设-H；不改假设-A；不改假设-B；不改假设-K；不改假设-Z；不改假设-BA–BV；不改假设-AB；勿再改 BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 BW（约 #80）。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **授信已占用/剩余额度怎么算**。**双字母 BW ≠ 单字母 A**。与假设 **B（历史实验 B 旧位）** **硬分列**：清单早期「实验 B」曾挂印花税时点+T+1 / 财务可见日 / 除权日复权价误判等，主病已迁 V/W 等页；本页**不重开**那些旧 B 题。**双字母 BW ≠ 单字母 B**。与假设 **W（除权日复权价误判板）** **硬分列（专节强调）**：W = 除权日用不复权/复权价误判涨跌停板与板上可成交；本页 = 信用账户**授信占用口径**；除权板价 ≠ 授信占用。**双字母 BW ≠ 单字母假设-W**；**严禁复用 W 题面或 W 口径键**。与假设 **BH（两融授信额度上限）** **硬分列**：BH = **额度天花板闸门**（永不检查上限 / `invent_unlimited_credit_quota`）；本页 = **有天花板前提下已占用怎么算**（占用吹瘦 / `invent_understate_credit_usage`）；无限额度 ≠ 假低占用；**禁止**把「额度无限（BH）」静默写成「占用已诚实」；**禁止**把「假低占用」静默写成「额度无限」；**不占** BH 的 primary_demo；**尤其不改假设-BH**。**BW≠BH**。与假设 **BV（融券提前召回）** **硬分列**：BV = 存量空头提前召回（已齐）；本页 = 授信占用口径；召回 ≠ 占用；**尤其不改假设-BV**。**BW≠BV**。与假设 **BU / BT / BS / BO / BR / BQ / BP / BN / BM / BL / BF / BC / BB / BA / BD / BG / Z / K / AB** **硬分列**：日库存 / 强平序 / 利率档 / 假零息 / 借券费 / 调出后存量 / 权益补偿 / 账户串用 / 追保禁开 / 提取 / 合约期限 / 维持线闸门 / 转融暂停 / 融资名单 / 折算率 / 可充抵 / 开仓比例 / 融券名单 / 空头价限 ≠ 授信占用公式；并**带过 BV≠V/BU/BT/BF/BC/BB/BQ/K…、BU≠U/BB/BT/K…、BT≠T/BC/BS/BO/BR/BH、BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC/BB/BO/BP/BM/BN/Q、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BM≠BC、BM≠BL、BL≠BC、BK≠K**。与假设 AN–BV **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/两融族等。**明确避开预检T旧题（证管费误抽）**。**严禁复用假设-W（除权板价）**。**本页主结论不混。**
 
@@ -38,7 +38,7 @@
 ### 2.1 授信占用口径 ≠ 授信额度上限（BH）；≠ 融券提前召回（BV）；≠ 日可借量新开（BU）；≠ 强平序（BT）；≠ 利率档（BS）；≠ 假零息（BO）；≠ 借券费（BR）；≠ 折算率（BD）；≠ 可充抵（BG）；≠ 开仓保证金比例（Z）；≠ 除权板价（W）；≠ 板上枯竭（A）；≠ 证管费（T）
 
 ```
-# 配置写死键（见 §7；待预检；建议终值如下）
+# 配置写死键（见 §7；两条已冻 · 待复检；终值如下）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 BW；≠ 实验字母 A；≠ 实验字母 B；≠ 实验字母 W；≠ 实验字母 V；≠ 实验字母 Z；≠ 实验字母 BV；≠ 实验字母 BH
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 BW
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 BW；≠ 单字母假设-N；亦≠实验字母 BN
@@ -83,7 +83,7 @@
 # params.csrc_fee_handoff                写死 t_page
 # params.handling_fee_handoff            写死 s_page
 # params.exit_period_handoff             写死 h_page
-# params.bw0_primary_demo                写死建议 invent_understate_credit_usage  # 主报：假低授信占用/假高剩余额度；禁与 invent_asof_leak_credit_usage 双挂争主表；BW1半泄露不得升格并列主报
+# params.bw0_primary_demo                写死冻结 invent_understate_credit_usage  # 主报：假低授信占用/假高剩余额度；禁与 invent_asof_leak_credit_usage 双挂争主表；BW1半泄露不得升格并列主报
 # params.bw0_invent_understate_credit_usage  写死 True
 # params.bw1_asof_leak_credit_usage_only 写死 True
 # params.bw2_pit_credit_usage            写死 True
@@ -154,21 +154,21 @@
 # params.missing_short_recall_policy     写死 skip
 # params.day_freq_proxy                  写死 short_recall_sensitivity
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  写死建议 0.02/0.01/0.05/0.015  # params.Y≠实验字母BV；params.G≠实验字母BV；params.N≠实验字母BV；亦≠单字母实验A/B/V/Z；禁null/holdout/跑后改口
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # params.Y≠实验字母BW；params.G≠实验字母BW；params.N≠实验字母BW；亦≠单字母实验A/B/W/Z；禁null/holdout/跑后改口
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
 ```
 
 ```
-params.bw0_primary_demo = "invent_understate_credit_usage"  # 单一主报建议；禁与 invent_asof_leak_credit_usage 双挂
+params.bw0_primary_demo = "invent_understate_credit_usage"  # 单一主报·已冻结；禁与 invent_asof_leak_credit_usage 双挂
 ```
 
 ### 2.2 三组对照（BW0 / BW1 / BW2）
 
 | 组 | 口径 | 说明 |
 |----|------|------|
-| BW0 天真 | `invent_understate_credit_usage`（单一主报建议） | 发明假低授信占用/假高剩余额度/永不检查占用吹瘦；禁与 invent_asof_leak_credit_usage 双挂 |
+| BW0 天真 | `invent_understate_credit_usage`（单一主报·已冻结） | 发明假低授信占用/假高剩余额度/永不检查占用吹瘦；禁与 invent_asof_leak_credit_usage 双挂 |
 | BW1 半泄露/混口径 | 全样本用 `asof_check_date` 当天更宽免占用或更长还券时限规则铺满历史 | 仅占用规则 asof 泄露；不升格并列主报 |
 | BW2 PIT | `credit_usage_honest=pit_by_effective_date` | 每个交易日按当时已生效授信占用口径规则 PIT |
 
@@ -277,9 +277,9 @@ params.diff_buckets = [
 
 ## 7. 回测配置骨架（纸面；本页不开回测）
 
-- **假设 ID**：`BV`  
+- **假设 ID**：`BW`  
 - **组**：BW0 / BW1 / BW2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`credit_usage_honest=pit_by_effective_date`；`credit_usage_scope=used_quota_incl_accrual_mtm_pending`；`credit_usage_over_policy=reject_or_fail_missing_usage_rule`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`corp_action_comp_handoff=bp_page`；`list_removal_stock_handoff=bq_page`；`short_borrow_fee_handoff=br_page`；`financing_rate_tier_handoff=bs_page`；`force_close_order_handoff=bt_page`；`daily_short_inventory_handoff=bu_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`stamp_tax_handoff=v_page`；`transfer_fee_handoff=u_page`；`csrc_fee_handoff=t_page`；`handling_fee_handoff=s_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_short_recall_check`；`missing_short_recall_policy=skip`；`day_freq_proxy=short_recall_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死建议 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 BW**；**params.G≠实验字母 BW**；**params.N≠实验字母 BW**；亦≠单字母实验 A/B/V/Z；禁 null/holdout/跑后改口）；**`params.bw0_primary_demo` 写死建议 `invent_understate_credit_usage`**（禁与 invent_asof_leak_credit_usage 双挂；BW1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`credit_usage_honest=pit_by_effective_date`；`credit_usage_scope=used_quota_incl_accrual_mtm_pending`；`credit_usage_over_policy=reject_or_fail_missing_usage_rule`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`corp_action_comp_handoff=bp_page`；`list_removal_stock_handoff=bq_page`；`short_borrow_fee_handoff=br_page`；`financing_rate_tier_handoff=bs_page`；`force_close_order_handoff=bt_page`；`daily_short_inventory_handoff=bu_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`stamp_tax_handoff=v_page`；`transfer_fee_handoff=u_page`；`csrc_fee_handoff=t_page`；`handling_fee_handoff=s_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_short_recall_check`；`missing_short_recall_policy=skip`；`day_freq_proxy=short_recall_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 BW**；**params.G≠实验字母 BW**；**params.N≠实验字母 BW**；亦≠单字母实验 A/B/W/Z；禁 null/holdout/跑后改口）；**`params.bw0_primary_demo` 写死冻结 `invent_understate_credit_usage`**（禁与 invent_asof_leak_credit_usage 双挂；BW1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -304,18 +304,18 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|-----|
-| 文档状态 | 草稿 · 待预检 |
+| 文档状态 | 草稿 · 预检有条件通过 · 两条已冻 · 待复检 |
 | 数据 | 待接入（字段见 §6；日频授信占用代理+占用规则生效日+名单PIT+期限旁路+日库存旁路即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**credit_usage_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 BW；params.G≠实验字母 BW；params.N≠实验字母 BW；亦≠单字母实验 A/B/V/Z；禁 null/holdout/跑后改口）**；**bw0_primary_demo 写死建议 invent_understate_credit_usage（禁双挂 invent_asof_leak_credit_usage；BW1半泄露不得升格并列主报）**；锚点保留 credit_usage_honest=pit_by_effective_date / credit_usage_scope=used_quota_incl_accrual_mtm_pending / credit_usage_over_policy=reject_or_fail_missing_usage_rule / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**credit_usage_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 BW；params.G≠实验字母 BW；params.N≠实验字母 BW；亦≠单字母实验 A/B/W/Z；禁 null/holdout/跑后改口）**；**bw0_primary_demo 写死冻结 invent_understate_credit_usage（禁双挂 invent_asof_leak_credit_usage；BW1半泄露不得升格并列主报）**；锚点保留 credit_usage_honest=pit_by_effective_date / credit_usage_scope=used_quota_incl_accrual_mtm_pending / credit_usage_over_policy=reject_or_fail_missing_usage_rule / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
 
 ---
 
-## 待预检键清单（草稿 · 待预检）
+## 待预检键清单（两条已冻 · 见下节）
 
-1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**待预检写死**；**params.Y≠BW**；**params.G≠BW**；**params.N≠BW**；禁 null/holdout）  
-2. `params.bw0_primary_demo` = `invent_understate_credit_usage`（**待预检写死**；禁与 `invent_asof_leak_credit_usage` 双挂；BW1不升格主报）  
+1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**已冻结**；**params.Y≠BW**；**params.G≠BW**；**params.N≠BW**；禁 null/holdout）  
+2. `params.bw0_primary_demo` = `invent_understate_credit_usage`（**已冻结**；禁与 `invent_asof_leak_credit_usage` 双挂；BW1不升格主报）  
 3. 占用锚：`credit_usage_honest=pit_by_effective_date`；`credit_usage_scope=used_quota_incl_accrual_mtm_pending`；`credit_usage_over_policy=reject_or_fail_missing_usage_rule`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`  
 4. 硬分列：≠B/V/A/Z/BA–BV/K/AB/H/W/T/S/U；**尤其 BW≠V（印花税；严禁复用假设-W）**；**尤其 BW≠BU（日库存新开≠存量占用；不改BU）**；**尤其 BW≠BF（到期≠授信占用；不改BF）**；**尤其 BW≠BT/BC（强平≠占用；不改BT/BC）**；**尤其 BW≠BB/BQ/K/BR/BO/BS/BH**；**带过 BU≠U/BB/BT/K…、BT≠T/BC/BS/BO/BR/BH、BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC/BB/BO/BP/BM/BN/Q、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BL≠BC、BK≠K**；避开预检T  
 5. `oos_split` 四日期；`diff_buckets`；全部 `merge_with_*=False`
@@ -336,8 +336,22 @@ params.diff_buckets = [
 | BP/BN/BM/BL/BE | 权益补偿/账户串用/追保禁开/提取/市场25pct | 否 | 另页主病；带过消歧链 |
 | A/B/Z/BA/BD/BG/AB/W/H/T/S/U | 板上/旧位/开仓比例/融资名单/折算/可充抵/价限/除权/退市/证管费/经手费/过户费 | 否 | 硬分列；避开预检T；不改已齐 |
 
+
+
+## 风控预检补丁·冻结（两条已写死 · 2026-11-03）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 BW**；**`params.G` ≠ 实验字母 BW**；**`params.N` ≠ 实验字母 BW**；**`params.Y` ≠ 单字母实验 A/B/W/Z**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.bw0_primary_demo`**：**写死冻结** **`invent_understate_credit_usage`**；禁与 **`invent_asof_leak_credit_usage`** 双挂争主表（只挂一个 primary）；**BW1 半泄露不得升格并列主报**。
+
+**占用锚保留（已通写死）**：`params.credit_usage_honest=pit_by_effective_date`；`params.credit_usage_scope=used_quota_incl_accrual_mtm_pending`；`params.credit_usage_over_policy=reject_or_fail_missing_usage_rule`；`params.margin_channel_start=2010-03-31`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`（及正文已有占用相关锚点；不改口）。
+
+**与 BA–BV/Z/AB/B/A/H/W/K/T/S/U 硬分列（保留）**：本页 = **两融授信占用口径误开**；W = **除权日复权价误判板**（**尤其双字母 BW ≠ 单字母假设-W**；**严禁复用假设-W**）；BH = **两融授信额度上限**（**尤其 BW≠BH**；无限额度 ≠ 假低占用；禁复用 `invent_unlimited_credit_quota`；**尤其不改假设-BH**）；BV = **融券提前召回**（**尤其 BW≠BV**；召回 ≠ 占用；**尤其不改假设-BV**）；BU = **融券券池日可借量**（**尤其 BW≠BU**）；BT = **强制平仓顺序与范围**（**尤其 BW≠BT**）；BS = **融资利率档位优惠档**（**尤其 BW≠BS**）；BO = **融资利息与逾期罚息假零息**（**尤其 BW≠BO**）；BR = **融券借券费**（**尤其 BW≠BR**）；BD = **担保品折算率**；BG = **可充抵名单**；Z = **开仓**保证金比例；A = **板上枯竭**；B = 历史实验 B 旧位；K = **融券空头名单**；H = **退市整理期**；T = **证管费**（避开预检T）；S = **经手费**；U = **过户费**；V = **印花税**；占用口径 ≠ 除权板价 ≠ 额度上限 ≠ 提前召回 ≠ 日可借量 ≠ 强平序 ≠ 利率档 ≠ 假零息 ≠ 借券费 ≠ 折算率 ≠ 可充抵 ≠ 开仓比例 ≠ 板上枯竭 ≠ 退市整理 ≠ 证管费 ≠ 经手费 ≠ 过户费 ≠ 印花税；**双字母 BW ≠ 单字母 A ≠ 单字母 B ≠ 单字母 W ≠ 单字母 K ≠ 单字母 Z ≠ 单字母 T ≠ 单字母 S ≠ 单字母 U ≠ 单字母 V ≠ 双字母 BA ≠ … ≠ 双字母 BV ≠ 双字母 BU ≠ 双字母 BT ≠ 双字母 BS ≠ 双字母 BO ≠ 双字母 BR ≠ 双字母 BH ≠ 双字母 AB ≠ 双字母 H**；**params.Y ≠ 实验字母 BW**；**params.G ≠ 实验字母 BW**；**params.N ≠ 实验字母 BW**；禁止捆成「两融一张表=假低占用」；**尤其不改假设-W**；**尤其不改假设-BH**；**尤其不改假设-BV**；**尤其不改假设-BU**；**尤其不改假设-BT**；**尤其不改假设-BS**；**尤其不改假设-BO**；**尤其不改假设-BR**；不改假设-B；不改假设-Z；不改假设-BA–BV；不改假设-A；不改假设-AB；不改假设-K；不改假设-H；不改假设-T；不改假设-S；不改假设-U。
+
+**专节保留 · 双字母 BW ≠ 单字母假设-W；且 ≠ 假设-BV / 假设-BH / 假设-BU / 假设-BT / 假设-BS / 假设-BO / 假设-BR / 假设-BD / 假设-BG / 假设-Z（硬）**：正文专节保留不删；**禁止**覆盖/混读/改写 `假设-W` / `假设-BH` / `假设-BV` / `假设-BU` / `假设-BT` / `假设-BS` / `假设-BO` / `假设-BR`。
+
 ## 变更
 
 | 日期 | 说明 |
 |------|------|
+| 2026-11-03 | 风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 BW**；**params.G≠实验字母 BW**；**params.N≠实验字母 BW**；亦≠单字母实验 A/B/W/Z；禁 null/holdout/跑后改口）；② `params.bw0_primary_demo=invent_understate_credit_usage`（禁与 `invent_asof_leak_credit_usage` 双挂争主表；BW1半泄露不得升格并列主报）。占用锚保留：`credit_usage_honest=pit_by_effective_date`；`credit_usage_scope=used_quota_incl_accrual_mtm_pending`；`credit_usage_over_policy=reject_or_fail_missing_usage_rule`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。硬分列保留：**BW≠W/BV/BU/BT/BS/BO/BR/BH**（及 ≠B/A/Z/BA–BV/AB/H/K/T/S/U/V）；**严禁复用假设-W**；参考总管派令 / 风控预检有条件通过（`预检-假设BW-20261103.md`；草稿 `9411c01`/`7b052c1` ∈ tip `34e56ac`）。未改 Y/Z/AA–BV 及其他已冻结补丁；**不改假设-W**；**不改假设-BH**；**不改假设-BV**；**不改假设-BU**；**不改假设-BT**；**不改假设-BS**；**不改假设-BO**；**不改假设-BR**；不改假设-H；不改假设-A；不改假设-B；不改假设-K；不改假设-Z；不改假设-BA–BV；不改假设-AB；结论栏仍空；不开回测；不抢 A；**未标纸面齐** |
 | 2026-11-03 | 新建纸面草稿（待预检）：主题=两融授信占用口径误开；`bw0_primary_demo`=`invent_understate_credit_usage`；Y/G/N/Y2=0.02/0.01/0.05/0.015；硬分列强调 **BW≠W/BV/BU/BT/BS/BO/BR/BH**；未开回测；未改已齐字母；未标纸面齐 |
