@@ -2,7 +2,7 @@
 
 更新：2026-11-03  
 来源：总管线 / BC 补丁已收、写下一纸面 BD；清单撞题规则另选正交执行缺口（**可充抵保证金证券折算率** ≠ 开仓保证金比例 ≠ 融资买入标的名单 ≠ 转融券券源 ≠ 维持担保比例强制平仓）；选题自交易所融资融券细则公开规则：可充抵保证金证券按市值×**折算率**计入保证金可用余额；交易所公布名单与折算率上限（上证180成分股最高不超过 **70%**、其他 A 股最高不超过 **65%**、ETF 最高不超过 **90%**、国债/货币基金/券商现金管理产品最高不超过 **95%**、其他基金与债券最高不超过 **80%**；被实施风险警示、暂停上市或进入退市整理期的 A 股、权证折算率为 **0%**；2016-12-12 起静态市盈率 ≥300 倍或为负的股票折算率下调为 **0%**）；会员公布折算率不得高于本所标准，可动态加严；本所可调整名单与折算率并公布（上交所《融资融券交易实施细则》保证金与担保物章；深市同口径上限族）；与假设 A（板上可成交/枯竭）/ H（退市整理）/ B（历史清单「实验 B」旧位；**双字母 BD ≠ 单字母 B**）/ D（次日开/收时点与停牌；**双字母 BD ≠ 单字母 D**）/ Z（**开仓**融资/融券保证金比例；**BD≠Z**）/ BA（**融资买入**标的名单；**BD≠BA**）/ BB（**转融券暂停后券源**；**BD≠BB**）/ BC（**维持担保比例强制平仓**；**BD≠BC**）/ K（融券空头名单；**BD≠K**）/ AB（融券卖出价限；**BD≠AB**）/ E（整手）/ M（盘后）/ O（大宗）/ N（收盘切日/假 GTC）/ Q（可转债）/ R（股票 ETF 假回转）/ S/T/U/V（费用层；**避开预检T旧题**）/ W（除权判板）/ L（市价通道）/ AN–BC（集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/融资买入名单/转融券假无限券源/维持强平等）/ Y（集合量计入日线；**实验字母 Y ≠ params.Y**）/ AA–BC / AC–BC 等**分列**；**新建实验 BD**  
-状态：**草稿 · 待数据 · 待跑 · 待预检**（结论栏空；禁止把「担保品折算率全按 1.0 / 用核对日折算率表铺满全历史」当诚实保证金可用余额；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BC 及其他 A/D–BC 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-Z；不改假设-BA；不改假设-BB；不改假设-BC；不改假设-K；不改假设-AB；勿再改 BC/BB/BA/AZ/AY/AX/AW**）
+状态：**草稿 · 待数据 · 待跑 · 预检有条件通过·两条已冻结待复检**（结论栏空；禁止把「担保品折算率全按 1.0 / 用核对日折算率表铺满全历史」当诚实保证金可用余额；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BC 及其他 A/D–BC 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-Z；不改假设-BA；不改假设-BB；不改假设-BC；不改假设-K；不改假设-AB；勿再改 BC/BB/BA/AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 BD。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **可充抵保证金证券折算率是否把市值诚实折成保证金可用**。**双字母 BD ≠ 单字母 A**。与假设 **B（历史实验 B 旧位）** **硬分列**：清单早期「实验 B」曾挂印花税时点+T+1 / 财务可见日 / 除权日复权价误判等，主病已迁 V/W 等页；本页**不重开**那些旧 B 题。**双字母 BD ≠ 单字母 B**。与假设 **D（成交时点与停牌）** **硬分列**：D = 次日开/收成交时点与停牌不可交易；本页 = 折算率/保证金可用；**双字母 BD ≠ 单字母 D**。与假设 **Z（开仓保证金比例）** **硬分列**：Z = **新开**融资/融券时的保证金**比例**数值（如 50%/80%/100% 切日）；本页 = 可充抵保证金证券的**折算率**与名单是否诚实计入保证金可用余额；开仓比例 ≠ 折算率。与假设 **BA（融资买入标的名单）** **硬分列**：BA = 能不能开**融资买入**腿（标的闸门）；本页 = 已持/拟充抵证券按多少折算率进保证金可用；标的可买 ≠ 折算率。与假设 **BB（转融券暂停后假无限券源）** **硬分列**：BB = 空头**券源可借量**；本页 = 担保品**折算**；券源 ≠ 折算率。与假设 **BC（维持担保比例强制平仓）** **硬分列**：BC = 持仓存续期**维持担保比例**是否触发追保/强平（交易所维持公式用证券**市值总和**，不乘本页折算率）；本页 = **开仓/加仓能力侧**保证金可用余额计算中的折算率；维持线 ≠ 折算率。与假设 **K / AB** **硬分列**：不重开融券名单与空头价限。与假设 AN–BC **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/融资买入名单/转融券假无限券源/维持强平等。**明确避开预检T旧题（证管费误抽）**。**本页主结论不混。**
 
@@ -47,7 +47,7 @@
 # params.maint_force_handoff             写死 bc_page        # 维持担保强平交 BC；BD≠BC
 # params.shortable_list_handoff          写死 k_page         # 融券空头名单交 K
 # params.short_px_handoff                写死 ab_page        # 融券卖出价限交 AB
-# params.bd0_primary_demo                待预检建议 invent_haircut_all_one  # 主报：折算率全按1.0；禁与 invent_asof_leak_haircut 双挂争主表；BD1半泄露不得升格并列主报
+# params.bd0_primary_demo                写死冻结 invent_haircut_all_one  # 主报：折算率全按1.0；禁与 invent_asof_leak_haircut 双挂争主表；BD1半泄露不得升格并列主报
 # params.bd0_invent_haircut_all_one      写死 True
 # params.bd1_asof_leak_haircut_only      写死 True           # 半泄露：仅用核对日折算率表铺满历史
 # params.bd2_pit_haircut                 写死 True
@@ -250,17 +250,17 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔNotional| **≥ params.Y** 或 |ΔFakeMarginAvail 桶贡献| **≥ params.G** 或 |ΔNotional_(BD1 vs BD2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「担保品折算率执行鸿沟显著」。
 
-**params.Y / G / N / Y2（纸面占位建议；待预检写死；与实验字母 BD / 单字母实验 A/B/D/Z 无关）**
+**params.Y / G / N / Y2（已写死冻结；与实验字母 BD / 单字母实验 A/B/D/Z 无关）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 名义差显著门槛（≠实验字母 BD；≠单字母实验 A/B/D/Z） | **占位建议** `0.02` |
-| params.G | 假可用保证金桶相对对照差 | **占位建议** `0.01` |
-| params.N | 失败/开仓失败率差门槛（≠实验字母 BD） | **占位建议** `0.05` |
-| params.Y2 | BD1 vs BD2 专项门槛 | **占位建议** `0.015` |
+| params.Y | 名义差显著门槛（≠实验字母 BD；≠单字母实验 A/B/D/Z） | **写死冻结** `0.02` |
+| params.G | 假可用保证金桶相对对照差 | **写死冻结** `0.01` |
+| params.N | 失败/开仓失败率差门槛（≠实验字母 BD） | **写死冻结** `0.05` |
+| params.Y2 | BD1 vs BD2 专项门槛 | **写死冻结** `0.015` |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-16` |
 | fill_time | 成交时点 | **写死** `next_open` |
-| bd0_primary_demo | 天真主报枚举 | **待预检建议** `invent_haircut_all_one`（禁与 invent_asof_leak_haircut 双挂；BD1半泄露不得升格并列主报） |
+| bd0_primary_demo | 天真主报枚举 | **写死冻结** `invent_haircut_all_one`（禁与 invent_asof_leak_haircut 双挂；BD1半泄露不得升格并列主报） |
 
 ### 4.3 红线 v0
 
@@ -307,7 +307,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`BD`  
 - **组**：BD0 / BD1 / BD2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`haircut_cap_sse180=0.70`；`haircut_cap_other_ashare=0.65`；`haircut_cap_etf=0.90`；`haircut_cap_mmf_treasury=0.95`；`haircut_cap_other_fund_bond=0.80`；`haircut_risk_warn_exit_warrant=0.00`；`haircut_high_pe_zero_start=2016-12-12`；`haircut_high_pe_threshold=300`；`haircut_honest=exchange_cap_pit_then_broker_stricter_bucket`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`broker_stricter_haircut_bucket=separate_sensitivity`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_collateral_haircut_check`；`missing_haircut_policy=skip`；`day_freq_proxy=collateral_haircut_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 纸面占位建议 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 BD；**params.N≠实验字母 BD**；亦≠单字母实验 A/B/D/Z；禁 null/holdout；待预检写死）；**`params.bd0_primary_demo` 待预检建议 `invent_haircut_all_one`**（禁与 invent_asof_leak_haircut 双挂；BD1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`haircut_cap_sse180=0.70`；`haircut_cap_other_ashare=0.65`；`haircut_cap_etf=0.90`；`haircut_cap_mmf_treasury=0.95`；`haircut_cap_other_fund_bond=0.80`；`haircut_risk_warn_exit_warrant=0.00`；`haircut_high_pe_zero_start=2016-12-12`；`haircut_high_pe_threshold=300`；`haircut_honest=exchange_cap_pit_then_broker_stricter_bucket`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`broker_stricter_haircut_bucket=separate_sensitivity`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_collateral_haircut_check`；`missing_haircut_policy=skip`；`day_freq_proxy=collateral_haircut_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 BD；**params.N≠实验字母 BD**；亦≠单字母实验 A/B/D/Z；禁 null/holdout/跑后改口）；**`params.bd0_primary_demo` 写死冻结 `invent_haircut_all_one`**（禁与 invent_asof_leak_haircut 双挂；BD1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -332,14 +332,27 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|----|
-| 文档状态 | 草稿 |
+| 文档状态 | 草稿 · 预检有条件通过 · 两条已冻结待复检 |
 | 数据 | 待接入（字段见 §6；日频可充抵市值 + 折算率 PIT/上限族代理即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**haircut_honest=exchange_cap_pit_then_broker_stricter_bucket 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 纸面占位建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 BD；params.N≠实验字母 BD；亦≠单字母实验 A/B/D/Z；待预检写死）**；**bd0_primary_demo 待预检建议 invent_haircut_all_one（禁双挂；BD1半泄露不得升格并列主报）**；锚点保留 haircut_cap_sse180=0.70 / other_ashare=0.65 / etf=0.90 / mmf_treasury=0.95 / other_fund_bond=0.80 / risk_warn_exit_warrant=0.00 / high_pe_zero_start=2016-12-12 / margin_channel_start=2010-03-31 |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**haircut_honest=exchange_cap_pit_then_broker_stricter_bucket 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 BD；params.N≠实验字母 BD；亦≠单字母实验 A/B/D/Z；禁 null/holdout/跑后改口）**；**bd0_primary_demo 写死冻结 invent_haircut_all_one（禁双挂 invent_asof_leak_haircut；BD1半泄露不得升格并列主报）**；锚点保留 haircut_cap_sse180=0.70 / other_ashare=0.65 / etf=0.90 / mmf_treasury=0.95 / other_fund_bond=0.80 / risk_warn_exit_warrant=0.00 / high_pe_zero_start=2016-12-12 / margin_channel_start=2010-03-31 |
+
+---
+
+## 风控预检补丁·冻结（两条已写死 · 2026-11-03）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 BD**；**`params.Y` ≠ 单字母实验 A/B/D/Z**；**`params.N` ≠ 实验字母 BD**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.bd0_primary_demo`**：**写死冻结** **`invent_haircut_all_one`**；禁与 **`invent_asof_leak_haircut`** 双挂争主表（只挂一个 primary）；**BD1 半泄露不得升格并列主报**。
+
+**折算率锚保留（已通写死）**：`params.haircut_cap_sse180=0.70`；`params.haircut_cap_other_ashare=0.65`；`params.haircut_cap_etf=0.90`；`params.haircut_cap_mmf_treasury=0.95`；`params.haircut_cap_other_fund_bond=0.80`；`params.haircut_risk_warn_exit_warrant=0.00`；`params.haircut_high_pe_zero_start=2016-12-12`；`params.margin_channel_start=2010-03-31`（及正文已有 `haircut_high_pe_threshold=300` / `haircut_honest=exchange_cap_pit_then_broker_stricter_bucket` 等锚点；不改口）。
+
+**与 Z/BA/BB/BC/A/K/AB/B/D 硬分列（保留）**：本页 = **可充抵保证金证券折算率 / 保证金可用余额**；Z = **开仓**保证金比例；BA = **融资买入**标的名单；BB = **转融券暂停后券源**；BC = **维持担保比例强制平仓**；A = **板上枯竭**；K = **融券空头名单**；AB = **融券卖出价限**；B = 历史实验 B 旧位；D = 次日开/收时点与停牌；折算率 ≠ 开仓比例 ≠ 融资可买 ≠ 转融券源 ≠ 维持强平 ≠ 板上枯竭 ≠ 融券名单 ≠ 空头价限 ≠ 成交时点；**双字母 BD ≠ 单字母 A ≠ 单字母 B ≠ 单字母 D ≠ 单字母 Z ≠ 双字母 BA ≠ 双字母 BB ≠ 双字母 BC ≠ 双字母 AB ≠ 单字母 K**；禁止捆成「两融一张表=折算率全1」；不改假设-Z；不改假设-BA；不改假设-BB；不改假设-BC；不改假设-A；不改假设-K；不改假设-AB；不改假设-B；不改假设-D。
 
 ---
 
 ## 变更
+
+- 2026-11-03：风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 BD**；亦≠单字母实验 A/B/D/Z；**params.N≠实验字母 BD**；禁 null/holdout/跑后改口）；② `params.bd0_primary_demo=invent_haircut_all_one`（禁与 `invent_asof_leak_haircut` 双挂争主表；BD1半泄露不得升格并列主报）。折算率锚保留：`haircut_cap_sse180=0.70`；`other_ashare=0.65`；`etf=0.90`；`mmf_treasury=0.95`；`other_fund_bond=0.80`；`risk_warn_exit_warrant=0.00`；`haircut_high_pe_zero_start=2016-12-12`；`margin_channel_start=2010-03-31`。与 Z/BA/BB/BC/A/K/AB/B/D 硬分列保留。参考总管派令 / 风控预检有条件通过。未改 Y/Z/AA–BC 及其他已冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-D；不改假设-Z；不改假设-BA；不改假设-BB；不改假设-BC；不改假设-K；不改假设-AB；不改假设-AZ；不改假设-AY；不改假设-AX；不改假设-AW；结论栏仍空；不开回测；不抢 A。
 
 - 2026-11-03：新建纸面草稿（总管续派：BC 补丁已收 → 写假设-BD；自立 BD，勿占 BC/BB/BA/B/D/A/Z；避开预检T；不开回测；禁实盘/荐股；params.Y/N≠实验字母 BD）。
