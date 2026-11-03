@@ -2,7 +2,7 @@
 
 更新：2026-11-04  
 来源：总管线 / A/D–CB纸面齐（tip=`e5a2c18`；复检通过后写下一纸面 CC）；清单撞题规则另选正交执行缺口（**标的从两融标的池调出后的强制了结/了结时限** ≠ 股票池当时名单/幸存者偏差 ≠ 维持担保比例分子分母 ≠ 融资合约展期/续作审批 ≠ 追保宽限期/强平通知时限 ≠ 融资提前了结手续费/违约金 ≠ 标的调出后存量假续持（能否续持） ≠ 合约期限到期强制了结 ≠ 融资买入新开名单 ≠ 板上枯竭）；选题自融资融券业务公开口径：融资买入/融券标的名单按生效日调整；**调出后存量一般须在约定期限内强制了结**（了结时限/强制平仓时点按细则/合同与会员加严）；规则按**施行日/生效日** PIT；不得默认「调出后强制了结时限可无限拖、或当日即可随意续作/无限顺延」，或用核对日更宽无限拖/随意续作时限规则铺满历史；本页**假定调出后存量层（BQ）/追保宽限层（BY）/合约期限到期层（BF）/展期审批层（CB）/维持比公式层（CA）/提前了结费层（BZ）/开仓保证金（Z）/融资名单新开（BA）诚实或显式旁路**，主病只在**两融标的调出后强制了结时点/了结时限**；2010-03-31 前无此通道；**C 正文主测「股票池当时名单/幸存者偏差」**（**双字母 CC ≠ 单字母假设-C；严禁复用 C 题面**），**CA 正文主测「维持担保比例分子分母口径」**（A/D–CA已纸面齐；**严禁改 CA**），**CB 正文主测「融资合约展期/续作审批」**（A/D–CB纸面齐；`invent_always_allow_financing_rollover`；**严禁改 CB**），**BY 正文主测「追保宽限期/强平通知时限」**（`invent_ignore_margin_call_grace_or_force_deadline`；追保宽限 ≠ 调出了结时限；**严禁改 BY**），**BZ 正文主测「融资提前了结手续费/违约金」**（**严禁改 BZ**），**BQ 正文主测「标的调出后存量假续持」**（`invent_keep_open_after_list_removal`；能否假续持 ≠ 了结时限日历；**严禁改 BQ**），**BF 正文主测「合约期限到期强制了结」**（到期日闸门 ≠ 名单调出了结时限；**严禁改 BF**），本页主测**两融标的调出强制了结时点被误开**（`invent_ignore_margin_universe_delist_force_deadline`）→ 自立；与假设 A（板上；**CC≠A**）/ H（退市整理）/ B（历史清单实验 B 旧位；**双字母 CC ≠ 单字母 B；CC≠B**）/ **C（股票池当时名单；双字母 CC ≠ 单字母假设-C；严禁复用 C；CC≠C）** / **CA（维持比分子分母；CC≠CA；公式 ≠ 调出了结时限；尤其不改假设-CA）** / **CB（融资展期审批；CC≠CB；展期审批 ≠ 调出了结时限；尤其不改假设-CB）** / Z（开仓保证金比例；**CC≠Z**）/ BA–CB（两融族已冻/在途；**CC≠BA…CB**；**尤其不改 CB/CA/BQ/BY/BZ/BF**）/ **BQ（调出后存量假续持；CC≠BQ；假续持 ≠ 了结时限；尤其不改假设-BQ）** / **BY（追保宽限期；CC≠BY；追保宽限 ≠ 调出了结时限；尤其不改假设-BY）** / **BZ（提前了结费；CC≠BZ；尤其不改假设-BZ）** / **BF（合约期限到期强制了结；CC≠BF；尤其不改假设-BF）** / BW/BV/BU/BS/BO/BR/BH/BX/BC/BT/BD/BL 等**分列**；**新建实验 CC**  
-状态：**草稿 · 待入库预检**（结论栏空；禁止把「假无限拖调出了结时限 / 用核对日无限拖或随意续作时限规则铺满」当诚实调出强制了结时点口径；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CB 及其他 A/D–CB 已交正文与冻结补丁；尤其不改假设-C；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-BQ；尤其不改假设-BY；尤其不改假设-BZ；尤其不改假设-BF；尤其不改假设-A；不改假设-H；不改假设-K；不改假设-BA–CB；不改假设-AB；勿再改 CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
+状态：**草稿 · 预检有条件通过 · 两条已冻 · 待复检**（结论栏空；禁止把「假无限拖调出了结时限 / 用核对日无限拖或随意续作时限规则铺满」当诚实调出强制了结时点口径；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**不改 Y/Z/AA–CB 及其他 A/D–CB 已交正文与冻结补丁；尤其不改假设-C；尤其不改假设-CA；尤其不改假设-CB；尤其不改假设-BQ；尤其不改假设-BY；尤其不改假设-BZ；尤其不改假设-BF；尤其不改假设-A；不改假设-H；不改假设-K；不改假设-BA–CB；不改假设-AB；勿再改 CB/CA/BZ/BY/BX/BW/BV/BU/BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 CC（约 #86）。与假设 **C（股票池当时名单/幸存者偏差）** **硬分列（专节强调）**：C = 成分/股票池 PIT 与幸存者偏差；本页 = **两融标的调出后强制了结时点/了结时限**；幸存者偏差 ≠ 调出了结时限。**双字母 CC ≠ 单字母假设-C**；**严禁复用 C 题面**；**绝不可做成 C 续篇**。与假设 **CA（维持担保比例分子分母口径）** **硬分列（专节强调）**：CA = 维持比**怎么算**；本页 = 调出后**何时必须强制了结**；公式 ≠ 了结时限；**禁止**把「分子分母已诚实（CA）」静默写成「调出了结时限已诚实」；**不占** CA 的 `invent_wrong_maint_guarantee_ratio_num_den`；**尤其不改假设-CA**。**CC≠CA**。与假设 **CB（融资合约展期/续作审批）** **硬分列（专节强调）**：CB = 合约到期前展期/续作是否须审批；本页 = 名单调出后强制了结时限；展期审批 ≠ 调出了结时限；**禁止**把「展期审批已诚实（CB）」静默写成「调出了结时限已诚实」；**不占** CB 的 `invent_always_allow_financing_rollover`；**尤其不改假设-CB**。**CC≠CB**。与假设 **BQ（标的调出后存量假续持）** **硬分列（专节强调）**：BQ = 调出后是否仍假可无限续持/展期加仓（**能否**续持）；本页 = 调出后强制了结的**时限日历**（**何时**必须了结）；假续持 ≠ 了结时限；**禁止**把「存量处理已诚实（BQ）」静默写成「了结时限已诚实」；**不占** BQ 的 `invent_keep_open_after_list_removal`；**尤其不改假设-BQ**。**CC≠BQ**。与假设 **BY（追保宽限期/强平通知时限）** **硬分列（专节强调）**：BY = 追保通知后宽限几天；本页 = **名单调出**后强制了结时限；追保宽限 ≠ 调出了结时限；**禁止**复用 BY 的 `invent_ignore_margin_call_grace_or_force_deadline` 当本页主报；**尤其不改假设-BY**。**CC≠BY**。与假设 **BZ（融资提前了结手续费/违约金）** **硬分列**：BZ = 主动提前了结费；本页 = 调出了结时限；提前了结费 ≠ 调出了结时限；**尤其不改假设-BZ**。**CC≠BZ**。与假设 **BF（两融合约期限到期强制了结）** **硬分列**：BF = **合约期限到期日**是否强制了结；本页 = **名单调出**后的强制了结时限；到期了结 ≠ 调出了结时限；**尤其不改假设-BF**。**CC≠BF**。与假设 **BA（融资买入新开名单）** **硬分列**：BA = **新开**是否在融资名单；本页 = 调出后存量了结时限；新开 ≠ 调出了结时限。**CC≠BA**。与假设 **BW / BV / BU / BS / BO / BR / BH / BX / BC / BT / BD / BL / BM / Z / K / AB** **硬分列**：占用 / 召回 / 日库存 / 利率档 / 假零息 / 借券费 / 额度 / 起息 / 闸门 / 强平序 / 折算 / 提取 / 追保禁开 / 开仓比例 / 融券名单 / 空头价限 ≠ 调出了结时限；并**带过 CB≠B/C/CA/BF/BZ…、CA≠A/C/BZ/BY…、BZ≠Z/BY/BX…、BY≠Y/BX…、BQ≠BA/K/BF/BC…、BX≠X/BW…、BW≠W/BV…、BV≠V/BU/BT…、BU≠U/BB/BT/K…、BT≠T/BC/BS/BO/BR/BH、BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BM≠BC、BM≠BL、BL≠BC、BK≠K、BH≠H**。与假设 AN–CB **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/两融族等。**明确避开预检T旧题（证管费误抽）**。**严禁复用假设-C（股票池当时名单）**。**严禁改写/续写假设-CA / 假设-CB / 假设-BQ / 假设-BY / 假设-BZ / 假设-BF**。**本页主结论不混。**
 
@@ -41,6 +41,10 @@
 ### 2.1 写死键（拉数前冻结；本页不开跑）
 
 ```
+# 配置写死键（见 §7；两条已冻 · 待复检；终值如下）
+# 【消歧】params.Y = 显著性门槛；≠ 实验字母 CC；≠ 单字母假设-C；≠ 双字母假设-CA；≠ 双字母假设-CB
+# 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 CC
+# 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 CC；≠ 单字母假设-N；亦≠实验字母 BN
 # params.fill_time                        写死 next_open
 # params.asof_check_date                 写死 2026-10-16
 # params.px_basis                        写死 unadj
@@ -89,7 +93,7 @@
 # params.csrc_fee_handoff                写死 t_page
 # params.handling_fee_handoff            写死 s_page
 # params.exit_period_handoff             写死 h_page
-# params.cc0_primary_demo                建议 invent_ignore_margin_universe_delist_force_deadline  # 主报建议：假无限拖调出了结时限；禁与 invent_asof_leak_margin_universe_delist_force_deadline 双挂争主表；CC1半泄露不得升格并列主报
+# params.cc0_primary_demo                写死冻结 invent_ignore_margin_universe_delist_force_deadline  # 主报：假无限拖调出了结时限；禁与 invent_asof_leak_margin_universe_delist_force_deadline 双挂争主表；CC1半泄露不得升格并列主报
 # params.cc0_invent_ignore_margin_universe_delist_force_deadline  建议 True
 # params.cc1_asof_leak_margin_universe_delist_force_deadline_only 建议 True
 # params.cc2_pit_delist_force_deadline   建议 True
@@ -137,7 +141,7 @@
 # params.universe_rule                   写死 sse_szse_margin_universe_delist_force_deadline_check
 # params.fail_policy                     写死 skip
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
-# params.Y / G / N / Y2                  建议 0.02/0.01/0.05/0.015  # params.Y≠实验字母CC；params.G≠实验字母CC；params.N≠实验字母CC；亦≠单字母实验C/A/B/Z；占位·待冻结；禁 null/holdout/跑后改口
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # params.Y≠实验字母CC；params.G≠实验字母CC；params.N≠实验字母CC；亦≠单字母实验C/A/B/Z；禁 null/holdout/跑后改口
 # params.date_start / date_end           写死 2019-01-01..2026-09-30
 # params.oos_split.*                     写死四日期；禁 holdout 反调
 # 拉数前冻结；禁 holdout / 事后改口 / 禁跑后改调出了结时限口径、Y/G/N/Y2、主窗/oos、cc0_primary_demo
@@ -162,7 +166,7 @@ margin_channel_start = "2010-03-31"
 delist_force_deadline_honest = "pit_by_effective_date"
 delist_force_deadline_scope = "post_delist_forced_unwind_deadline"
 delist_force_deadline_over_policy = "unwind_by_deadline_or_fail_missing_deadline_rule"
-cc0_primary_demo = "invent_ignore_margin_universe_delist_force_deadline"  # 单一主报建议；禁与 invent_asof_leak_margin_universe_delist_force_deadline 双挂
+cc0_primary_demo = "invent_ignore_margin_universe_delist_force_deadline"  # 单一主报·已冻结；禁与 invent_asof_leak_margin_universe_delist_force_deadline 双挂
 cc0_invent_ignore_margin_universe_delist_force_deadline = True
 cc1_asof_leak_margin_universe_delist_force_deadline_only = True
 cc2_pit_delist_force_deadline = True
@@ -181,7 +185,7 @@ fail_policy = "skip"
 
 | 组 | 口径 | 说明 |
 |----|------|------|
-| CC0 天真 | `invent_ignore_margin_universe_delist_force_deadline`（单一主报建议） | 发明假无限拖调出了结时限路径；禁与 invent_asof_leak_margin_universe_delist_force_deadline 双挂 |
+| CC0 天真 | `invent_ignore_margin_universe_delist_force_deadline`（单一主报·已冻结） | 发明假无限拖调出了结时限路径；禁与 invent_asof_leak_margin_universe_delist_force_deadline 双挂 |
 | CC1 半泄露·混口径 | 全样本用 `asof_check_date` 当天更宽无限拖/随意续作时限规则铺满历史 | 仅调出了结时限 asof 泄露；不升格并列主报 |
 | CC2 PIT | `delist_force_deadline_honest=pit_by_effective_date` | 每个交易日按当时已生效两融标的调出后强制了结时点/了结时限规则 PIT |
 
@@ -314,7 +318,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`CC`  
 - **组**：CC0 / CC1 / CC2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`delist_force_deadline_honest=pit_by_effective_date`；`delist_force_deadline_scope=post_delist_forced_unwind_deadline`；`delist_force_deadline_over_policy=unwind_by_deadline_or_fail_missing_deadline_rule`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`list_removal_stock_handoff=bq_page`；`margin_call_grace_handoff=by_page`；`contract_term_handoff=bf_page`；`financing_rollover_handoff=cb_page`；`maint_ratio_formula_handoff=ca_page`；`early_repay_fee_handoff=bz_page`；`universe_pool_handoff=c_page`；其余 handoff 见 §2.1；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_margin_universe_delist_force_deadline_check`；`missing_delist_force_deadline_policy=skip`；`day_freq_proxy=delist_force_deadline_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 建议 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 CC**；**params.G≠实验字母 CC**；**params.N≠实验字母 CC**；亦≠单字母实验 C/A/B/Z；占位·待冻结；禁 null/holdout/跑后改口）；**`params.cc0_primary_demo` 建议 `invent_ignore_margin_universe_delist_force_deadline`**（禁与 invent_asof_leak_margin_universe_delist_force_deadline 双挂；CC1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`delist_force_deadline_honest=pit_by_effective_date`；`delist_force_deadline_scope=post_delist_forced_unwind_deadline`；`delist_force_deadline_over_policy=unwind_by_deadline_or_fail_missing_deadline_rule`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`list_removal_stock_handoff=bq_page`；`margin_call_grace_handoff=by_page`；`contract_term_handoff=bf_page`；`financing_rollover_handoff=cb_page`；`maint_ratio_formula_handoff=ca_page`；`early_repay_fee_handoff=bz_page`；`universe_pool_handoff=c_page`；其余 handoff 见 §2.1；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_margin_universe_delist_force_deadline_check`；`missing_delist_force_deadline_policy=skip`；`day_freq_proxy=delist_force_deadline_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 CC**；**params.G≠实验字母 CC**；**params.N≠实验字母 CC**；亦≠单字母实验 C/A/B/Z；禁 null/holdout/跑后改口）；**`params.cc0_primary_demo` 写死冻结 `invent_ignore_margin_universe_delist_force_deadline`**（禁与 invent_asof_leak_margin_universe_delist_force_deadline 双挂；CC1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -339,16 +343,38 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|----|
-| 状态 | **草稿 · 待入库预检**（结论栏空；**禁止标任何纸面齐**） |
+| 状态 | **草稿 · 预检有条件通过 · 两条已冻 · 待复检**（结论栏空；**禁止标任何纸面齐**） |
 | 标准件路径 | `假设-CC-两融标的调出强制了结时点误开.md` |
 | 清单序号 | 约 #86 |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**delist_force_deadline_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 CC；params.G≠实验字母 CC；params.N≠实验字母 CC；亦≠单字母实验 C/A/B/Z；占位·待冻结；禁 null/holdout/跑后改口）**；**cc0_primary_demo 建议 invent_ignore_margin_universe_delist_force_deadline（禁双挂 invent_asof_leak_margin_universe_delist_force_deadline；CC1半泄露不得升格并列主报）**；锚点建议 delist_force_deadline_honest=pit_by_effective_date / delist_force_deadline_scope=post_delist_forced_unwind_deadline / delist_force_deadline_over_policy=unwind_by_deadline_or_fail_missing_deadline_rule / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**delist_force_deadline_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 CC；params.G≠实验字母 CC；params.N≠实验字母 CC；亦≠单字母实验 C/A/B/Z；禁 null/holdout/跑后改口）**；**cc0_primary_demo 写死冻结 invent_ignore_margin_universe_delist_force_deadline（禁双挂 invent_asof_leak_margin_universe_delist_force_deadline；CC1半泄露不得升格并列主报）**；锚点保留 delist_force_deadline_honest=pit_by_effective_date / delist_force_deadline_scope=post_delist_forced_unwind_deadline / delist_force_deadline_over_policy=unwind_by_deadline_or_fail_missing_deadline_rule / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
 | 硬分列摘要 | **CC≠C/CA/CB/BQ/BY/BZ/BF/BX/BW/BV/BU/BT/BS/BO/BR/BH/BC/BD/BL/Z/A/B**（及 ≠Y/BA–CB/K/AB/H/W/T/S/U/V/X），**严禁复用假设-C**；**尤其不改假设-C/CA/CB/BQ/BY/BZ/BF**；**params.Y≠实验字母 CC** |
 | 结论栏 | 空 |
 
 ---
 
-## 待预检键清单（草稿 · 待入库预检；未冻结）
+## 待预检键清单（两条已冻 · 见下节）
 
-1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**建议·待冻结**；**params.Y≠实验字母 CC**；**params.G≠实验字母 CC**；**params.N≠实验字母 CC**；禁 null/holdout）  
-2. `params.cc0_primary_demo` = `invent_ignore_margin_universe_delist_force_deadline`（**建议·待冻结**；禁与 `invent_asof_leak_margin_universe_delist_force_deadline` 双挂；CC1不升格主报）  
+1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**已冻结**；**params.Y≠实验字母 CC**；**params.G≠实验字母 CC**；**params.N≠实验字母 CC**；禁 null/holdout）  
+2. `params.cc0_primary_demo` = `invent_ignore_margin_universe_delist_force_deadline`（**已冻结**；禁与 `invent_asof_leak_margin_universe_delist_force_deadline` 双挂；CC1不升格主报）  
+3. 锚点（已通写死）：`delist_force_deadline_honest=pit_by_effective_date` / `delist_force_deadline_scope=post_delist_forced_unwind_deadline` / `delist_force_deadline_over_policy=unwind_by_deadline_or_fail_missing_deadline_rule` / `margin_channel_start=2010-03-31` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`
+
+
+---
+
+## 风控预检补丁·冻结（两条已写死 · 2026-11-04）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 CC**；**`params.G` ≠ 实验字母 CC**；**`params.N` ≠ 实验字母 CC**；**`params.Y` ≠ 单字母实验 C/A/B/Z**；尤重**双字母 CC ≠ 单字母假设-C**；**双字母 CC ≠ 双字母假设-CA**；**双字母 CC ≠ 双字母假设-CB**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.cc0_primary_demo`**：**写死冻结** **`invent_ignore_margin_universe_delist_force_deadline`**；禁与 **`invent_asof_leak_margin_universe_delist_force_deadline`** 双挂争主表（只挂一个 primary）；**CC1 半泄露不得升格并列主报**。
+
+**两融标的调出强制了结时点锚保留（已通写死）**：`params.delist_force_deadline_honest=pit_by_effective_date`；`params.delist_force_deadline_scope=post_delist_forced_unwind_deadline`；`params.delist_force_deadline_over_policy=unwind_by_deadline_or_fail_missing_deadline_rule`；`params.margin_channel_start=2010-03-31`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`（及正文已有调出了结时限相关锚点；不改口）。
+
+**与 C/CA/CB/BQ/BY/BZ/BF/BX/BW/BV/BU/BT/BS/BO/BR/BH/BC/BD/BL/Z/A/B 硬分列（保留）**：本页 = **两融标的调出强制了结时点/了结时限误开**；C = **股票池当时名单**（**尤其双字母 CC ≠ 单字母假设-C**；**严禁复用假设-C**）；CA = **维持担保比例分子分母口径**（**尤其 CC≠CA**；公式 ≠ 调出了结时限；**尤其不改假设-CA**）；CB = **融资合约展期/续作审批**（**尤其 CC≠CB**；展期审批 ≠ 调出了结时限；**尤其不改假设-CB**）；BQ = **标的调出后存量假续持**（**尤其 CC≠BQ**；假续持 ≠ 了结时限；**尤其不改假设-BQ**）；BY = **追保宽限期**（**尤其 CC≠BY**；**尤其不改假设-BY**）；BZ = **提前了结费**（**尤其 CC≠BZ**；**尤其不改假设-BZ**）；BF = **合约期限到期强制了结**（**尤其 CC≠BF**；到期了结 ≠ 调出了结时限；**尤其不改假设-BF**）。**双字母 CC ≠ 单字母 C ≠ 单字母 A ≠ 单字母 B ≠ 单字母 Z ≠ 单字母 K ≠ 单字母 Y ≠ 双字母 CA ≠ 双字母 CB ≠ 双字母 BQ ≠ 双字母 BY ≠ 双字母 BZ ≠ 双字母 BF ≠ 双字母 BX ≠ 双字母 BW ≠ 双字母 BV ≠ 双字母 BU ≠ 双字母 BT ≠ 双字母 BS ≠ 双字母 BO ≠ 双字母 BR ≠ 双字母 BH ≠ 双字母 BC ≠ 双字母 BD ≠ 双字母 BL**；**params.Y ≠ 实验字母 CC**；**params.G ≠ 实验字母 CC**；**params.N ≠ 实验字母 CC**；禁止捆成「两融一张表=假无限拖调出了结时限」；**尤其不改假设-C**；**尤其不改假设-CA**；**尤其不改假设-CB**；**尤其不改假设-BQ**；**尤其不改假设-BY**；**尤其不改假设-BZ**；**尤其不改假设-BF**；不改假设-A；不改假设-Z；不改假设-BA–CB；不改假设-AB；不改假设-K；不改假设-H；不改假设-Y。
+
+**专节保留 · 双字母 CC ≠ 单字母假设-C；且 ≠ 假设-CA / 假设-CB / 假设-BQ / 假设-BY / 假设-BZ / 假设-BF（硬）**：正文专节保留不删；**禁止**覆盖/混读/改写 `假设-C` / `假设-CA` / `假设-CB` / `假设-BQ` / `假设-BY` / `假设-BZ` / `假设-BF`。
+
+## 变更
+
+| 日期 | 说明 |
+|------|------|
+| 2026-11-04 | 风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 CC**；**params.G≠实验字母 CC**；**params.N≠实验字母 CC**；亦≠单字母实验 C/A/B/Z；尤重**双字母 CC ≠ 单字母假设-C**；**双字母 CC ≠ 双字母假设-CA**；**双字母 CC ≠ 双字母假设-CB**；禁 null/holdout/跑后改口）；② `params.cc0_primary_demo=invent_ignore_margin_universe_delist_force_deadline`（禁与 `invent_asof_leak_margin_universe_delist_force_deadline` 双挂争主表；CC1半泄露不得升格并列主报）。调出了结时限锚保留：`delist_force_deadline_honest=pit_by_effective_date`；`delist_force_deadline_scope=post_delist_forced_unwind_deadline`；`delist_force_deadline_over_policy=unwind_by_deadline_or_fail_missing_deadline_rule`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。硬分列保留：**CC≠C/CA/CB/BQ/BY/BZ/BF/BX/BW/BV/BU/BT/BS/BO/BR/BH/BC/BD/BL/Z…**（及 ≠A/B/Y/BA–CB/AB/H/K/T/S/U/V/W/X）；**严禁复用假设-C**；参考总管派令 / 风控预检有条件通过（`预检-假设CC-20261104.md`；草稿 `563c26b` #86；清单待补丁 `57268b1`）。未改 Y/Z/AA–CB 及其他已冻结补丁；**不改假设-C**；**不改假设-CA**；**不改假设-CB**；**不改假设-BQ**；**不改假设-BY**；**不改假设-BZ**；**不改假设-BF**；不改假设-A；不改假设-H；不改假设-K；不改假设-Y；不改假设-BA–CB；不改假设-AB；结论栏仍空；不开回测；不抢 A；**未标纸面齐** |
+| 2026-11-04 | 新建草稿·待入库预检（总管线：A/D–CB纸面齐后写 CC；选题两融标的调出强制了结时点误开；**CC≠C/CA/CB/BQ/BY/BZ/BF/BX/BW/BV/BU/BT/BS/BO/BR/BH…**；primary_demo 建议=`invent_ignore_margin_universe_delist_force_deadline`；Y/G/N/Y2 待预检；不开回测；未改 C/CA/CB/BQ/BY/BZ/BF 及其他已齐字母；**未标纸面齐**）。 |
