@@ -2,7 +2,7 @@
 
 更新：2026-11-03  
 来源：总管线 / AW 补丁已收、写下一纸面 AX；清单第 54/55 条「费用层：基金经手费；字母待派，勿占 AW」→ **自立实验 AX**；选题自 `事实与坑`「ETF / 基金经手费 ≠ 股票」公开收费表与 2021-07-19 切日；与假设 A（板上可成交/枯竭）/ H（退市整理）/ X（主板 ST）/ E（整手）/ M（盘后）/ O（大宗）/ R（股票 ETF 假回转）/ Q（可转债）/ N（收盘切日/假 GTC）/ S（**沪深 A 股**经手费现行档误铺）/ T（证管费；**避开预检T旧题**）/ U（过户费）/ V（印花税）/ W（除权判板）/ L（市价通道）/ AN–AW（集合剩单/盘后错侧/临停笼子/假队首/剩撤FOK/五档转限/空簿假成/集合三原则/收盘失败回落）/ I/F/J/G/K/P/AC–AF 等**分列**；**新建实验 AX**  
-状态：**草稿 · 待数据 · 待跑 · 待预检**（结论栏空；禁止把「A 股 0.0341‰ 套 ETF / 货币债基抽基金或股票档 / 2023-08-28 股票降 30% 写成基金也改档 / 基金大宗按股票下浮 30% / REITs 表价当已收」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AW 及其他 A/D–AW 已交正文与冻结补丁；不改假设-H；不改假设-S；不改假设-T；不改假设-R；不改假设-AW；勿再改 AW**）
+状态：**草稿 · 待数据 · 待跑 · 风控补丁两条已写死待复检（2026-11-03）**（结论栏空；禁止把「A 股 0.0341‰ 套 ETF / 货币债基抽基金或股票档 / 2023-08-28 股票降 30% 写成基金也改档 / 基金大宗按股票下浮 30% / REITs 表价当已收」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–AW 及其他 A/D–AW 已交正文与冻结补丁；不改假设-H；不改假设-S；不改假设-T；不改假设-R；不改假设-AW；勿再改 AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 第 54/55 条对齐；清单费用层缺口字母待派，本页自立实验 AX 标准件。与假设 **S（沪深 A 股竞价经手费）** **硬分列**：S = A 股三切日（2012-09-01 / 2015-08-01 / 2023-08-28）与「30%≠减半 / 已含代收禁双计」；S 已写死 `apply_ashare_fee_to_etf=False`，ETF/基金档**另页本页**。与假设 **T（证管费误抽）** **硬分列**：**明确避开预检T旧题**——T = 股票 0.02‰ 证管费是否误改档/对 ETF 误抽证管费；本页 = **交易所经手费（handling）基金档**，不是证监会对交易所的监管费。与假设 **R（股票 ETF 假回转）** **硬分列**：R = 3.1.5 当日回转名单；本页 = 经手费费率档，**回转名单 ≠ 经手费档，禁止捆**。与假设 **U/V（过户费/印花税对 ETF 误抽）** **分列**：本页不重开过户/印花。与假设 **A（板上枯竭）** **硬分列**：A = 有板日可成交；本页 = ETF/基金腿**成交成本费率**误设。双字母 **AX ≠ 单字母 A**。与假设 **X（主板 ST 涨跌幅）** **硬分列**：X = ST 板幅 PIT；本页 = 基金经手费。双字母 **AX ≠ 单字母 X**。与假设 **AW（收盘集合失败回落）** **硬分列**：AW = 收盘价失败回落链；本页 = 费用层。与假设 AN–AV **硬分列**：不重开撮合/剩单/空簿类执行鸿沟。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 基金经手费 ≠ A 股经手费；≠ 证管费；≠ ETF 回转；切日 2021-07-19 ≠ 2023-08-28
 
 ```
-# 配置写死键（见 §7；待预检键名稳、建议值如下；拉数前须冻结）
+# 配置写死键（见 §7；风控补丁两条已冻结 2026-11-03）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 AX；≠ 实验字母 A；≠ 实验字母 X
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 AX
 # params.asof_check_date                 写死默认 2026-10-30  # 与事实与坑「ETF/基金经手费」核对日同向
@@ -40,8 +40,7 @@
 # params.stock_block_discount_pct_wrong  写死 0.30          # 误用股票大宗 30%
 # params.ashare_handling_bps_current     写死 0.0341        # 仅作误套对照；≠基金档
 # params.stock_cut_20230828              写死 2023-08-28    # 股票经手费切日；基金档该日未改
-# params.ax0_primary_demo                待预检建议 invent_ashare_fee_on_etf
-#                                        # 禁与 invent_charge_money_bond_etf 双挂争主表
+# params.ax0_primary_demo                写死 invent_ashare_fee_on_etf  # 风控补丁冻结；主报：A股档套ETF/基金；禁与 invent_charge_money_bond_etf 双挂争主表；AX1半泄露不得升格并列主报
 # params.ax0_invent_ashare_on_etf        写死 True
 # params.ax1_charge_money_bond           写死 True          # 半泄露/混口径：仅货币债基误抽基金档
 # params.ax1b_fake_stock_cut_on_fund     写死 True          # 诊断：2023-08-28 假改基金档（可进分桶，不与 ax0 双挂主报）
@@ -104,8 +103,7 @@
 # params.missing_sec_type_policy         写死 skip
 # params.missing_exchange_policy         写死 skip          # 切日前须分沪/深旧档
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  待预检建议 0.02/0.01/0.05/0.015
-#                                        # params.Y≠实验字母 AX；params.N≠实验字母 AX；禁 null/holdout
+# params.Y / G / N / Y2                  写死 0.02/0.01/0.05/0.015  # 风控补丁冻结；params.Y≠实验字母 AX；params.N≠实验字母 AX；禁 null/holdout/跑后改口
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -124,7 +122,7 @@ fund_block_discount_pct = 0.50
 stock_block_discount_pct_wrong = 0.30
 ashare_handling_bps_current = 0.0341
 stock_cut_20230828 = "2023-08-28"
-ax0_primary_demo = "invent_ashare_fee_on_etf"  # 待预检；禁双挂
+ax0_primary_demo = "invent_ashare_fee_on_etf"  # 写死冻结；禁与 invent_charge_money_bond_etf 双挂；AX1半泄露不得升格并列主报
 side = "both"
 commission_includes_agency = True
 ax2_stack_if_included = False
@@ -133,11 +131,11 @@ missing_notional_policy = "skip"
 missing_sec_type_policy = "skip"
 missing_exchange_policy = "skip"
 
-# 待预检建议（键名稳；值待风控确认后冻结；禁 null/holdout）
-Y = 0.02   # 建议；相对门槛 ≠ 实验字母 AX
-G = 0.01
-N = 0.05   # 建议；失败率门槛键 params.N ≠ 实验字母 AX
-Y2 = 0.015
+# 风控补丁写死冻结（2026-11-03；禁 null/holdout/跑后改口）
+Y = 0.02   # 写死；相对门槛 ≠ 实验字母 AX
+G = 0.01   # 写死
+N = 0.05   # 写死；失败率门槛键 params.N ≠ 实验字母 AX
+Y2 = 0.015 # 写死
 
 def pct_to_bps(pct):
     """0.004% → 0.04‰"""
@@ -201,7 +199,7 @@ def handling_cost(notional, bps, side="both"):
 
 | 组 | 基金经手费口径 | 说明 |
 |----|----------------|------|
-| AX0 天真 | 按 `ax0_primary_demo` 单一主报（建议 `invent_ashare_fee_on_etf`） | 用 A 股 0.0341‰ 套 ETF/基金腿 |
+| AX0 天真 | 按 `ax0_primary_demo` 单一主报（**写死** `invent_ashare_fee_on_etf`） | 用 A 股 0.0341‰ 套 ETF/基金腿；禁与 invent_charge_money_bond_etf 双挂 |
 | AX1 半泄露/混口径 | 仅货币/债基误抽基金档；其余 PIT | 发明收费路径 |
 | AX2 PIT 诚实 | 基金档 PIT + 货币债基 0 + REITs 暂免 + 基金大宗下浮 50%；已含代收不叠 | 与公开收费表同向 |
 
@@ -209,14 +207,14 @@ def handling_cost(notional, bps, side="both"):
 
 **全部 `merge_with_*=False`（写死；含 A/X/S/T/R/U/V/AW/AN–AV/O/Q/H/E/M/N/L/I/F/G/J/K/P/W/Y/AA–AF/AG–AM）**。
 
-**待预检两条（键名稳；建议值；拉数前须冻结；禁 holdout；禁 null；禁双挂）**：
+**风控补丁两条（已写死冻结 · 2026-11-03；禁 holdout；禁 null；禁双挂；禁跑后改口）**：
 
 ```
-params.Y                            = 0.02                      # 建议；成本/净值差显著门槛；≠实验字母 AX
-params.G                            = 0.01                      # 建议；误套桶相对对照差
-params.N                            = 0.05                      # 建议；失败/废单率差门槛；≠实验字母 AX
-params.Y2                           = 0.015                     # 建议；AX1（货币债基误抽）相对 AX2 专项门槛
-params.ax0_primary_demo             = invent_ashare_fee_on_etf  # 建议主报：A股档套ETF/基金；禁与 invent_charge_money_bond_etf 双挂争主表
+params.Y                            = 0.02                      # 写死冻结；成本/净值差显著门槛；≠实验字母 AX
+params.G                            = 0.01                      # 写死冻结；误套桶相对对照差
+params.N                            = 0.05                      # 写死冻结；失败/废单率差门槛；≠实验字母 AX
+params.Y2                           = 0.015                     # 写死冻结；AX1（货币债基误抽）相对 AX2 专项门槛
+params.ax0_primary_demo             = invent_ashare_fee_on_etf  # 写死冻结主报：A股档套ETF/基金；禁与 invent_charge_money_bond_etf 双挂争主表；AX1半泄露不得升格并列主报
 ```
 
 ---
@@ -287,17 +285,17 @@ params.diff_buckets = [
 
 **相对判据（草稿）**：若 |ΔCost| 或 |ΔNet| **≥ params.Y** 或 |ΔFakeFee 桶贡献| **≥ params.G** 或 |ΔCost_(AX1−AX2)| **≥ params.Y2** 或 |ΔFail| **≥ params.N**，记「ETF/基金经手费执行鸿沟显著」。
 
-**params.Y / G / N / Y2（待预检建议；与实验字母 AX 无关）**
+**params.Y / G / N / Y2（写死冻结 2026-11-03；与实验字母 AX 无关）**
 
 | 符号 | 含义（占位） | 规则 |
 |------|--------------|------|
-| params.Y | 成本/净值差显著门槛（≠实验字母 AX） | **待预检建议** `0.02` |
-| params.G | 误套桶相对对照差 | **待预检建议** `0.01` |
-| params.N | 失败/废单率差门槛（≠实验字母 AX） | **待预检建议** `0.05` |
-| params.Y2 | AX1−AX2 专项门槛 | **待预检建议** `0.015` |
+| params.Y | 成本/净值差显著门槛（≠实验字母 AX） | **写死冻结** `0.02` |
+| params.G | 误套桶相对对照差 | **写死冻结** `0.01` |
+| params.N | 失败/废单率差门槛（≠实验字母 AX） | **写死冻结** `0.05` |
+| params.Y2 | AX1−AX2 专项门槛 | **写死冻结** `0.015` |
 | asof_check_date | 核对日锚点 | **写死默认** `2026-10-30` |
 | fill_time | 成交时点 | **写死** `next_open` |
-| ax0_primary_demo | 天真主报枚举 | **待预检建议** `invent_ashare_fee_on_etf`（禁与 invent_charge_money_bond_etf 双挂） |
+| ax0_primary_demo | 天真主报枚举 | **写死冻结** `invent_ashare_fee_on_etf`（禁与 invent_charge_money_bond_etf 双挂；AX1半泄露不得升格并列主报） |
 
 ### 4.3 红线 v0
 
@@ -342,7 +340,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`AX`  
 - **组**：AX0 / AX1 / AX2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-30`；`fund_fee_cut_20210719=2021-07-19`；`fund_handling_bps_post_20210719=0.04`；`fund_handling_pct_sse_pre=0.0045`；`fund_handling_pct_szse_pre=0.00487`；`money_bond_etf_fee_bps=0`；`reits_pilot_exempt=True`；`fund_block_discount_pct=0.50`；`ashare_fee_handoff=s_page`；`csrc_fee_handoff=t_page`；`etf_rotation_handoff=r_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_etf_fund_handling_check`；`missing_notional_policy=skip`；`missing_sec_type_policy=skip`；`missing_exchange_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 待预检建议 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 AX；**params.N≠实验字母 AX**；禁 null/holdout）；**`params.ax0_primary_demo` 待预检建议 `invent_ashare_fee_on_etf`**（禁与 invent_charge_money_bond_etf 双挂）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-30`；`fund_fee_cut_20210719=2021-07-19`；`fund_handling_bps_post_20210719=0.04`；`fund_handling_pct_sse_pre=0.0045`；`fund_handling_pct_szse_pre=0.00487`；`money_bond_etf_fee_bps=0`；`reits_pilot_exempt=True`；`fund_block_discount_pct=0.50`；`ashare_fee_handoff=s_page`；`csrc_fee_handoff=t_page`；`etf_rotation_handoff=r_page`；全部 `merge_with_*=False`（§2.3）；`universe_rule=sse_szse_etf_fund_handling_check`；`missing_notional_policy=skip`；`missing_sec_type_policy=skip`；`missing_exchange_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死 `0.02/0.01/0.05/0.015`**（params.Y≠实验字母 AX；**params.N≠实验字母 AX**；禁 null/holdout；风控补丁冻结 2026-11-03）；**`params.ax0_primary_demo` 写死 `invent_ashare_fee_on_etf`**（禁与 invent_charge_money_bond_etf 双挂；AX1半泄露不得升格并列主报；风控补丁冻结 2026-11-03）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -371,10 +369,19 @@ params.diff_buckets = [
 | 数据 | 待接入（字段见 §6） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-30；**fill_time=next_open 写死**；基金档切日/费率写死；diff_buckets 写死待冻结；**Y/G/N/Y2 待预检建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 AX；params.N≠实验字母 AX）**；**ax0_primary_demo 待预检建议 invent_ashare_fee_on_etf（禁双挂）** |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-30；**fill_time=next_open 写死**；基金档切日/费率写死；diff_buckets 写死待冻结；**Y/G/N/Y2 写死 0.02/0.01/0.05/0.015（params.Y≠实验字母 AX；params.N≠实验字母 AX；风控补丁冻结 2026-11-03）**；**ax0_primary_demo 写死 invent_ashare_fee_on_etf（禁双挂；AX1半泄露不得升格并列主报；风控补丁冻结 2026-11-03）** |
+
+---
+
+## 风控补丁两条（已写死冻结 · 2026-11-03）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 AX**；**`params.N` ≠ 实验字母 AX**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.ax0_primary_demo`**：**写死冻结** **`invent_ashare_fee_on_etf`**；禁与 **`invent_charge_money_bond_etf`** 双挂争主表（只挂一个 primary）；**AX1 半泄露不得升格并列主报**。
 
 ---
 
 ## 变更
+
+- 2026-11-03：风控补丁两条写死冻结——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 AX**；**params.N≠实验字母 AX**；禁 null/holdout/跑后改口）；② `params.ax0_primary_demo=invent_ashare_fee_on_etf`（禁与 `invent_charge_money_bond_etf` 双挂；AX1半泄露不得升格并列主报）。参考总管派令 / `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设AX-20261103.md` 有条件通过。未改 Y/Z/AA–AW 及其他已冻结补丁；不改假设-H；不改假设-A；不改假设-S；不改假设-T；不改假设-R；不改假设-U；不改假设-V；不改假设-AW；不改假设-AN–AV；结论栏仍空；不开回测；不抢 A。
 
 - 2026-11-03：新建标准件（总管线：AW 补丁已收后写下一纸面 AX；Y/Z/AA–AW 补丁/正文已交不改；清单第 54/55 条基金经手费缺口字母待派 → 自立实验 AX；选题自 `事实与坑`「ETF/基金经手费≠股票」；**与 A/H/X/E/M/O/R/Q/N/S/T/U/V/W/L/AN–AW 硬分列**；**双字母 AX ≠ 单字母 A ≠ 单字母 X**；**不与 AN–AW 重复**；**明确避开预检T旧题（证管费误抽）**；结论栏空；不开回测；不抢 A；**勿再改 AW**）。
