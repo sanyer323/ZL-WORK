@@ -23,7 +23,7 @@
 ### 2.1 担保品折算率 ≠ 开仓保证金比例；≠ 融资买入名单；≠ 转融券券源；≠ 维持担保强平；≠ 融券名单；≠ 板上枯竭；≠ 证管费
 
 ```
-# 配置写死键（见 §7；待预检；纸面占位建议如下）
+# 配置写死键（见 §7；已冻结；终值如下）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 BD；≠ 实验字母 A；≠ 实验字母 B；≠ 实验字母 D；≠ 实验字母 Z
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 BD
 # params.asof_check_date                 写死默认 2026-10-16  # 与事实与坑「两融/保证金」核对日同向
@@ -110,7 +110,7 @@
 # params.missing_haircut_policy          写死 skip
 # params.day_freq_proxy                  写死 collateral_haircut_sensitivity
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  纸面占位建议 0.02/0.01/0.05/0.015  # 待预检写死；params.Y≠实验字母BD；params.N≠实验字母BD；亦≠单字母实验A/B/D/Z；禁null/holdout/跑后改口
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # 已冻结；params.Y≠实验字母BD；params.N≠实验字母BD；亦≠单字母实验A/B/D/Z；禁null/holdout/跑后改口
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -137,7 +137,7 @@ refinance_borrow_handoff = "bb_page"
 maint_force_handoff = "bc_page"
 shortable_list_handoff = "k_page"
 short_px_handoff = "ab_page"
-bd0_primary_demo = "invent_haircut_all_one"  # 待预检建议主报；禁与 invent_asof_leak_haircut 双挂；BD1半泄露不得升格并列主报
+bd0_primary_demo = "invent_haircut_all_one"  # 已冻结主报；禁与 invent_asof_leak_haircut 双挂；BD1半泄露不得升格并列主报
 bd0_invent_haircut_all_one = True
 bd1_asof_leak_haircut_only = True
 bd2_pit_haircut = True
@@ -146,7 +146,7 @@ missing_haircut_policy = "skip"
 day_freq_proxy = "collateral_haircut_sensitivity"
 fail_policy = "skip"
 
-# 纸面占位（待预检写死冻结；禁 null/holdout/跑后改口）
+# 已冻结（写死冻结；禁 null/holdout/跑后改口）
 Y = 0.02   # 占位建议；相对门槛 ≠ 实验字母 BD；≠ 单字母实验 A/B/D/Z
 G = 0.01   # 占位建议
 N = 0.05   # 占位建议；失败/开仓失败率差门槛 ≠ 实验字母 BD
@@ -174,14 +174,14 @@ Y2 = 0.015 # 占位建议
 - **≠T**：证管费误抽（**避开预检T**）≠ 本页。  
 - **≠AN–BC**：不重开集合/失败回落/基金费价位/融资名单/转融券源/维持强平等。
 
-**待预检键（纸面占位建议；禁 holdout；禁 null；禁双挂；禁跑后改口）**：
+**已冻结键（终值；禁 holdout；禁 null；禁双挂；禁跑后改口）**：
 
 ```
 params.Y                            = 0.02                              # 占位建议；名义差显著门槛；≠实验字母 BD；≠单字母实验 A/B/D/Z
 params.G                            = 0.01                              # 占位建议；假可用保证金桶相对对照差
 params.N                            = 0.05                              # 占位建议；失败/开仓失败率差门槛；≠实验字母 BD
 params.Y2                           = 0.015                             # 占位建议；BD1（核对日折算率泄露）相对 BD2 专项门槛
-params.bd0_primary_demo             = invent_haircut_all_one            # 待预检建议主报：折算率全1；禁与 invent_asof_leak_haircut 双挂争主表；BD1半泄露不得升格并列主报
+params.bd0_primary_demo             = invent_haircut_all_one            # 已冻结主报：折算率全1；禁与 invent_asof_leak_haircut 双挂争主表；BD1半泄露不得升格并列主报
 ```
 
 ---
