@@ -2,7 +2,7 @@
 
 更新：2026-11-03  
 来源：总管线 / BO 补丁已收（复检在途）、写下一纸面 BP；清单撞题规则另选正交执行缺口（**融券未了结期间对出借方的现金红利/红股/配股等权益补偿** ≠ 融资利息与逾期罚息 ≠ 融券卖出所得用途 ≠ 融资买入卖出还债优先 ≠ 转融券券源 ≠ 融券空头名单 ≠ 融券卖出价限 ≠ 除权日复权价误判板 ≠ 开仓保证金比例 ≠ 授信额度 ≠ 账户串用 ≠ 合约期限/到期了结 ≠ 融资买入标的名单 ≠ 维持担保强平 ≠ 担保品折算率 ≠ 市场25pct暂停 ≠ 可充抵名单 ≠ 客户单票集中度 ≠ 担保品提取 ≠ 追保后禁新开）；选题自两融业务公开口径：融券卖出未了结期间，标的发生现金分红/送转红股/配股等，融券方须按合同/细则向出借方做**权益补偿**（现金补偿或等值处理）；补偿规则与除权/股权登记口径按**生效日/除权除息日** PIT，不得默认「永不补偿/零补偿」或用核对日更宽免补偿规则回放全历史；2010-03-31 前无此通道；与假设 A（板上可成交/枯竭）/ H（退市整理）/ B（历史清单「实验 B」旧位；**双字母 BP ≠ 单字母 B**）/ **P（指数点位停牌假成交权重；双字母 BP ≠ 单字母假设-P）** / Z（**开仓**融资/融券保证金比例；**BP≠Z**）/ BA–BO（两融族已冻/在途；**BP≠BA…BO**）/ **K（融券空头名单 PIT；BP≠K；并带过 BK≠K 消歧）** / AB（融券卖出价限 / 当日平；**BP≠AB**）/ W（**除权日复权价误判板**；**BP≠W**；板上价/涨跌停判定 ≠ 融券权益补偿负债）/ BO（**融资利息与逾期罚息**；**BP≠BO**；融资计息 ≠ 融券权益补偿；BO 正文已明示权益补偿另桶）/ BI（**融券卖出所得用途**；**BP≠BI**；所得怎么用 ≠ 是否欠出借方权益补偿）/ BJ（**融资卖出还债优先**；**BP≠BJ**）/ BB（**转融券券源**；**BP≠BB**）/ BF（**两融合约期限到期强制了结**；**BP≠BF**）/ BH（**授信额度**；**BP≠BH**）/ BN（**信用/普通账户串用**；**BP≠BN**；并带过 **BN≠BI/BJ/BL/BM、params.N≠BN**）/ BM（**追保后禁新开**；**BP≠BM**；并带过 **BM≠BC、BM≠BL**）/ BL（**担保品提取**；**BP≠BL**；并带过 **BL≠BC**）/ BC（**维持担保强平**；**BP≠BC**）/ E（整手）/ AN–BO（集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/两融族等）/ S/T/U/V（费用层；**避开预检T旧题**）等**分列**；**新建实验 BP**  
-状态：**草稿 · 待预检**（结论栏空；禁止把「融券永不做权益补偿/零补偿/用核对日免补偿铺满」当诚实空头成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BO 及其他 A/D–BO 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-P；不改假设-O；不改假设-N；不改假设-K；不改假设-M；不改假设-W；不改假设-Z；不改假设-BA–BO；不改假设-AB；勿再改 BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
+状态：**草稿 · 预检有条件通过 · 两条已冻结待复检**（结论栏空；禁止把「融券永不做权益补偿/零补偿/用核对日免补偿铺满」当诚实空头成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BO 及其他 A/D–BO 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-P；不改假设-O；不改假设-N；不改假设-K；不改假设-M；不改假设-W；不改假设-Z；不改假设-BA–BO；不改假设-AB；勿再改 BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 BP（约 #73）。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **融券未了结期间是否按生效日向出借方做现金红利/红股/配股权益补偿**。**双字母 BP ≠ 单字母 A**。与假设 **B（历史实验 B 旧位）** **硬分列**：清单早期「实验 B」曾挂印花税时点+T+1 / 财务可见日 / 除权日复权价误判等，主病已迁 V/W 等页；本页**不重开**那些旧 B 题。**双字母 BP ≠ 单字母 B**。与假设 **P（指数点位停牌假成交权重）** **硬分列（专节强调）**：P = 指数点位/权重在停牌日的假成交或假权重；本页 = 信用账户**融券权益补偿负债**；指数权重 ≠ 权益补偿。**双字母 BP ≠ 单字母假设-P**。与假设 **W（除权日复权价误判板）** **硬分列**：W = 除权除息后**涨跌停价/板上价**是否用错复权口径；本页 = 融券方对出借方的**补偿义务是否计提**；板价误判 ≠ 补偿义务。**BP≠W**。与假设 **K（融券空头名单 PIT）** **硬分列**：K = 当日是否在**交易所融券标的名单**内；本页 = 已开融券后遇权益事件是否补偿；名单内可空 ≠ 零补偿。**BP≠K**；并**带过**：双字母 **BK ≠ 单字母假设-K / 预检K**。与假设 **BO（融资利息与逾期罚息）** **硬分列**：BO = **融资**负债计息/逾期罚息；本页 = **融券**权益补偿；融资计息 ≠ 融券补偿；**禁止**把「融资已计息」静默写成「融券权益已补偿」。与假设 **BI（融券卖出所得用途）** **硬分列**：BI = 融券所得资金**怎么用**；本页 = 是否另欠出借方权益补偿；用途放开 ≠ 零补偿。与假设 **BJ（融资买入卖出还债优先）** **硬分列**：BJ = 融资卖出所得**优先还本**；本页 = 融券权益补偿；还本 ≠ 补偿。与假设 **BB（转融券券源）** **硬分列**：BB = 转融通/券源是否可借；本页 = 借到之后的权益事件补偿；有券 ≠ 零补偿。与假设 **AB（融券卖出价限）** **硬分列**：不重开空头价限/当日平。与假设 **BF/BH/BN/BM/BL/BC** **硬分列**：合约期限强了 / 授信 / 账户串用 / 追保禁开 / 高维持提取 / 低维持强平 ≠ 融券权益补偿；并**带过 BO≠O/BF/BJ/BH/BN、BN≠BI/BJ/BL/BM、params.N≠BN、BM≠BC、BM≠BL、BL≠BC、BK≠K**。与假设 **BA/BD/BE/BG/BK/Z** **硬分列**：融资名单 / 折算率 / 市场25pct / 可充抵名单 / 客户单票集中度 / 开仓保证金比例 ≠ 融券权益补偿。与假设 AN–BO **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/两融族等。**明确避开预检T旧题（证管费误抽）**。**本页主结论不混。**
 
@@ -41,7 +41,7 @@
 ### 2.1 融券权益补偿 ≠ 融资利息罚息；≠ 除权板价；≠ 融券所得用途；≠ 融资还债优先；≠ 转融券券源；≠ 融券名单；≠ 空头价限；≠ 开仓保证金比例；≠ 授信额度；≠ 账户串用；≠ 合约期限强了；≠ 追保禁开；≠ 担保品提取；≠ 指数停牌权重；≠ 板上枯竭；≠ 证管费
 
 ```
-# 配置写死键（见 §7；待预检冻结；建议终值如下）
+# 配置写死键（见 §7；两条已冻结待复检；终值如下）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 BP；≠ 实验字母 A；≠ 实验字母 B；≠ 实验字母 P；≠ 实验字母 Z
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 BP
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 BP；≠ 单字母假设-N（收盘机制）；亦≠实验字母 BN
@@ -75,7 +75,7 @@
 # params.short_px_handoff                写死 ab_page
 # params.index_halt_weight_handoff       写死 p_page
 # params.exit_period_handoff             写死 h_page
-# params.bp0_primary_demo                建议 invent_zero_short_corp_action_comp  # 主报：融券权益永不补偿/零补偿；禁与 invent_asof_leak_short_corp_action_comp 双挂争主表；BP1半泄露不得升格并列主报
+# params.bp0_primary_demo                写死冻结 invent_zero_short_corp_action_comp  # 主报：融券权益永不补偿/零补偿；禁与 invent_asof_leak_short_corp_action_comp 双挂争主表；BP1半泄露不得升格并列主报
 # params.bp0_invent_zero_short_corp_action_comp 写死 True
 # params.bp1_asof_leak_short_corp_action_comp_only 写死 True
 # params.bp2_pit_short_corp_action_comp  写死 True
@@ -147,7 +147,7 @@
 # params.missing_corp_action_policy      写死 skip
 # params.day_freq_proxy                  写死 short_corp_action_comp_sensitivity
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  建议 0.02/0.01/0.05/0.015  # params.Y≠实验字母BP；params.G≠实验字母BP；params.N≠实验字母BP；亦≠单字母实验A/B/P/Z；禁null/holdout/跑后改口；待预检写死冻结
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # params.Y≠实验字母BP；params.G≠实验字母BP；params.N≠实验字母BP；亦≠单字母实验A/B/P/Z；禁null/holdout/跑后改口
 # params.date_start / date_end           写死主窗并待冻结 2019-01-01..2026-09-30
 # params.oos_split.*                     写死四日期并待冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -158,7 +158,7 @@
 
 | 组 | 角色 | 行为 |
 |----|------|------|
-| **BP0** | 天真主报 | 按 `bp0_primary_demo=invent_zero_short_corp_action_comp`（单一主报·待预检冻结）：融券权益永不补偿、零现金/零红股/零配股补偿；**单一主报**；禁与半泄露双挂 |
+| **BP0** | 天真主报 | 按 `bp0_primary_demo=invent_zero_short_corp_action_comp`（单一主报·已冻结）：融券权益永不补偿、零现金/零红股/零配股补偿；**单一主报**；禁与半泄露双挂 |
 | **BP1** | 半泄露 | 仅 `invent_asof_leak_short_corp_action_comp`：全样本用核对日权益补偿规则回放；**不得升格并列主报** |
 | **BP2** | 诚实 PIT | `short_corp_action_comp_honest=pit_by_ex_or_effective_date`：按除权/生效日规则计提现金红利/红股/配股补偿；缺字段 skip |
 
@@ -249,7 +249,7 @@ params.oos_split.holdout_end    = 2026-09-30
 
 - **假设 ID**：`BP`  
 - **组**：BP0 / BP1 / BP2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`short_corp_action_comp_honest=pit_by_ex_or_effective_date`；`short_corp_action_scope=cash_div_bonus_share_rights_issue`；`short_corp_action_over_policy=accrue_or_fail_missing_event`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`index_halt_weight_handoff=p_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_short_corp_action_comp_check`；`missing_corp_action_policy=skip`；`day_freq_proxy=short_corp_action_comp_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 建议 `0.02/0.01/0.05/0.015`（待预检写死冻结）**（**params.Y≠实验字母 BP**；**params.G≠实验字母 BP**；**params.N≠实验字母 BP**；亦≠单字母实验 A/B/P/Z；禁 null/holdout/跑后改口）；**`params.bp0_primary_demo` 建议 `invent_zero_short_corp_action_comp`（待预检写死冻结）**（禁与 invent_asof_leak_short_corp_action_comp 双挂；BP1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`short_corp_action_comp_honest=pit_by_ex_or_effective_date`；`short_corp_action_scope=cash_div_bonus_share_rights_issue`；`short_corp_action_over_policy=accrue_or_fail_missing_event`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`index_halt_weight_handoff=p_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_short_corp_action_comp_check`；`missing_corp_action_policy=skip`；`day_freq_proxy=short_corp_action_comp_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 BP**；**params.G≠实验字母 BP**；**params.N≠实验字母 BP**；亦≠单字母实验 A/B/P/Z；禁 null/holdout/跑后改口）；**`params.bp0_primary_demo` 写死冻结 `invent_zero_short_corp_action_comp`**（禁与 invent_asof_leak_short_corp_action_comp 双挂；BP1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -274,22 +274,35 @@ params.oos_split.holdout_end    = 2026-09-30
 
 | 项 | 值 |
 |----|-----|
-| 文档状态 | 草稿 · 待预检 |
+| 文档状态 | 草稿 · 预检有条件通过 · 两条已冻结待复检 |
 | 数据 | 待接入（字段见 §6；日频融券空头数量+权益事件/补偿规则生效日即可起步；额度窗内日频可落点写明但不真跑） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**short_corp_action_comp_honest=pit_by_ex_or_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015（待预检写死冻结；params.Y≠实验字母 BP；params.G≠实验字母 BP；params.N≠实验字母 BP；亦≠单字母实验 A/B/P/Z；禁 null/holdout/跑后改口）**；**bp0_primary_demo 建议 invent_zero_short_corp_action_comp（待预检写死冻结；禁双挂 invent_asof_leak_short_corp_action_comp；BP1半泄露不得升格并列主报）**；锚点保留 short_corp_action_comp_honest=pit_by_ex_or_effective_date / short_corp_action_scope=cash_div_bonus_share_rights_issue / short_corp_action_over_policy=accrue_or_fail_missing_event / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**short_corp_action_comp_honest=pit_by_ex_or_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 BP；params.G≠实验字母 BP；params.N≠实验字母 BP；亦≠单字母实验 A/B/P/Z；禁 null/holdout/跑后改口）**；**bp0_primary_demo 写死冻结 invent_zero_short_corp_action_comp（禁双挂 invent_asof_leak_short_corp_action_comp；BP1半泄露不得升格并列主报）**；锚点保留 short_corp_action_comp_honest=pit_by_ex_or_effective_date / short_corp_action_scope=cash_div_bonus_share_rights_issue / short_corp_action_over_policy=accrue_or_fail_missing_event / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
 
 ---
 
-## 待预检键清单
+## 待预检键清单（两条已冻结 · 见下节）
 
-1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**建议写死冻结**；**params.Y≠BP**；**params.G≠BP**；**params.N≠BP**；禁 null/holdout）  
-2. `params.bp0_primary_demo` = `invent_zero_short_corp_action_comp`（**建议写死冻结**；禁与 `invent_asof_leak_short_corp_action_comp` 双挂；BP1不升格主报）  
+1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**已写死冻结**；**params.Y≠BP**；**params.G≠BP**；**params.N≠BP**；禁 null/holdout）  
+2. `params.bp0_primary_demo` = `invent_zero_short_corp_action_comp`（**已写死冻结**；禁与 `invent_asof_leak_short_corp_action_comp` 双挂；BP1不升格主报）  
 3. 权益补偿锚：`short_corp_action_comp_honest=pit_by_ex_or_effective_date`；`short_corp_action_scope=cash_div_bonus_share_rights_issue`；`short_corp_action_over_policy=accrue_or_fail_missing_event`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`  
 4. 硬分列：≠B/P/A/Z/BA–BO/K/AB/H/W；**尤其 BP≠P（双字母≠单字母指数停牌权重）**；**尤其 BP≠BO（融券权益补偿≠融资利息罚息）**；**尤其 BP≠W（补偿义务≠除权板价）**；**尤其 BP≠BI（补偿≠融券所得用途）**；**尤其 BP≠BJ（补偿≠还本优先）**；**尤其 BP≠BB（补偿≠转融券源）**；**带过 BO≠O/BF/BJ/BH/BN、BN≠BI/BJ/BL/BM、params.N≠BN、BM≠BC、BM≠BL、BL≠BC、BK≠K**；避开预检T  
 5. `oos_split` 四日期；`diff_buckets`；全部 `merge_with_*=False`
 
+## 风控预检补丁·冻结（两条已写死 · 2026-11-03）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 BP**；**`params.G` ≠ 实验字母 BP**；**`params.N` ≠ 实验字母 BP**；**`params.Y` ≠ 单字母实验 A/B/P/Z**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.bp0_primary_demo`**：**写死冻结** **`invent_zero_short_corp_action_comp`**；禁与 **`invent_asof_leak_short_corp_action_comp`** 双挂争主表（只挂一个 primary）；**BP1 半泄露不得升格并列主报**。
+
+**权益补偿锚保留（已通写死）**：`params.short_corp_action_comp_honest=pit_by_ex_or_effective_date`；`params.short_corp_action_scope=cash_div_bonus_share_rights_issue`；`params.short_corp_action_over_policy=accrue_or_fail_missing_event`；`params.margin_channel_start=2010-03-31`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`（及正文已有 `missing_corp_action_policy=skip` 等锚点；不改口）。
+
+**与 BA–BO/Z/AB/B/A/H/P/K/W 硬分列（保留）**：本页 = **融券权益补偿（现金红利/红股/配股）**；P = **指数点位停牌假成交权重**（**尤其双字母 BP ≠ 单字母假设-P**）；BO = **融资利息与逾期罚息**（**尤其 BP≠BO**；融券补偿 ≠ 融资计息；并**带过 BO≠O/BF/BJ/BH/BN**）；W = **除权日复权价误判板**（**尤其 BP≠W**；补偿义务 ≠ 板价）；BI = **融券卖出所得用途**（**尤其 BP≠BI**）；BJ = **融资买入卖出还债优先**（**尤其 BP≠BJ**）；BB = **转融券券源**（**尤其 BP≠BB**）；BN = **信用/普通账户隔离**（**尤其 BP≠BN**；并**带过 BN≠BI/BJ/BL/BM、params.N≠BN**）；BM = **追保通知后禁新开**（**尤其 BP≠BM**；并**带过 BM≠BC、BM≠BL**）；BL = **担保品提取/转出限制**（**尤其 BP≠BL**；并**带过 BL≠BC**）；BC = **维持担保低线追保/强制平仓**（**尤其 BP≠BC**）；BK = **客户单票集中度**（**尤其 BP≠BK**；并**带过 BK≠K**）；K = **融券空头名单**（**尤其 BP≠K**）；Z = **开仓**保证金比例；BA/BD/BE/BG/BH/BF = 融资名单/折算率/市场25pct/可充抵名单/授信/合约期限；A = **板上枯竭**；AB = **融券卖出价限**；B = 历史实验 B 旧位；H = **退市整理期**；补偿 ≠ 指数停牌权重 ≠ 融资计息 ≠ 除权板价 ≠ 所得用途 ≠ 还本优先 ≠ 转融券源 ≠ 账户隔离 ≠ 追保禁开 ≠ 高维持提取 ≠ 低维持强平 ≠ 集中度 ≠ 融券名单 ≠ 开仓比例 ≠ 板上枯竭 ≠ 空头价限 ≠ 退市整理；**双字母 BP ≠ 单字母 A ≠ 单字母 B ≠ 单字母 P ≠ 单字母 K ≠ 单字母 Z ≠ 双字母 BA ≠ … ≠ 双字母 BO ≠ 双字母 BI ≠ 双字母 BJ ≠ 双字母 BB ≠ 双字母 W ≠ 双字母 AB**；**params.Y ≠ 实验字母 BP**；**params.G ≠ 实验字母 BP**；**params.N ≠ 实验字母 BP**；禁止捆成「两融一张表=融券零补偿」；**尤其不改假设-H**；**尤其不改假设-P**；**尤其不改假设-K**；**尤其不改假设-BO**；**尤其不改假设-W**；不改假设-B；不改假设-Z；不改假设-BA–BO；不改假设-A；不改假设-AB；不改假设-BI；不改假设-BJ；不改假设-BB。
+
+**专节保留 · 双字母 BP ≠ 单字母假设-P；且 ≠ 假设-BO / 假设-W / 假设-BI；带过 BO≠O/BF/BJ/BH/BN、BN≠BI/BJ/BL/BM、params.N≠BN、BM≠BC、BM≠BL、BL≠BC、BK≠K（硬）**：正文「### 专节 · 双字母 BP ≠ 单字母假设-P；且 ≠ 假设-BO / 假设-W / 假设-BI；带过 BO≠O/BF/BJ/BH/BN、BN≠BI/BJ/BL/BM、params.N≠BN、BM≠BC、BM≠BL、BL≠BC、BK≠K」保留不删；**禁止**覆盖/混读/改写 `假设-P` / `假设-BO` / `假设-W` / `假设-BI` / `假设-BJ` / `假设-BB` / `假设-K` / `假设-BK`。
+
 ## 变更
+
+- 2026-11-03：风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 BP**；**params.G≠实验字母 BP**；**params.N≠实验字母 BP**；亦≠单字母实验 A/B/P/Z；禁 null/holdout/跑后改口）；② `params.bp0_primary_demo=invent_zero_short_corp_action_comp`（禁与 `invent_asof_leak_short_corp_action_comp` 双挂争主表；BP1半泄露不得升格并列主报）。权益补偿锚保留：`short_corp_action_comp_honest=pit_by_ex_or_effective_date`；`short_corp_action_scope=cash_div_bonus_share_rights_issue`；`short_corp_action_over_policy=accrue_or_fail_missing_event`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。与 BA–BO/Z/AB/B/A/H/P/K/W 硬分列保留；**专节保留 BP≠P / BP≠BO / BP≠W / BP≠BI / BP≠BJ / BP≠BB / 带过 BO≠O/BF/BJ/BH/BN、BN≠BI/BJ/BL/BM、params.N≠BN、BM≠BC、BM≠BL、BL≠BC、BK≠K**。参考总管派令 / 风控预检有条件通过（`预检-假设BP-20261103.md`；草稿祖先 33e2727；tip a18b070 BO 复检只读对齐）。未改 Y/Z/AA–BO 及其他已冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-P；不改假设-O；不改假设-N；不改假设-K（尤其）；不改假设-M；不改假设-W；不改假设-Z；不改假设-BA–BO；不改假设-AB；不改假设-AZ；不改假设-AY；不改假设-AX；不改假设-AW；结论栏仍空；不开回测；不抢 A。
 
 - 2026-11-03：新建纸面草稿（总管续派：BO 补丁已收 → 写假设-BP；自立 BP，勿占 BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/B/P/A/Z/K/W；避开预检T；不开回测；禁实盘/荐股；**params.Y/G/N≠实验字母 BP**；**双字母 BP ≠ 单字母 P**；**BP≠BO/W/BI/BJ/BB**；**带过 BO≠O/BF/BJ/BH/BN、BN≠BI/BJ/BL/BM、params.N≠BN、BM≠BC、BM≠BL、BL≠BC、BK≠K**）。选题：融券权益补偿（现金红利/红股/配股）误开（正交于 BO 融资计息 / W 除权板价 / BI 所得用途 / BJ 还本优先 / BB 券源 / K 名单；**承接 BO「融券费用/权益补偿另桶」分列**）。
