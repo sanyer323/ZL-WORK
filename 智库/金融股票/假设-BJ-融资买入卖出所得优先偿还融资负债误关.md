@@ -2,7 +2,7 @@
 
 更新：2026-11-03  
 来源：总管线 / BI 补丁已收、写下一纸面 BJ；清单撞题规则另选正交执行缺口（**融资买入证券卖出所得须优先偿还融资负债** ≠ 融券卖出所得资金用途限制 ≠ 开仓保证金比例 ≠ 融资买入标的名单 ≠ 转融券券源 ≠ 维持担保比例强制平仓 ≠ 担保品折算率 ≠ 单标的两融余额25pct暂停 ≠ 两融合约期限到期强制了结 ≠ 可充抵保证金证券名单 ≠ 两融授信额度上限）；选题自交易所融资融券细则公开口径：投资者卖出信用证券账户内融资买入证券所得价款，应当优先偿还该投资者的融资负债；规则按**施行日/生效日** PIT，不得用核对日更宽「卖出所得可自由用」回放全历史；2010-03-31 前无此通道；与假设 A（板上可成交/枯竭）/ H（退市整理）/ B（历史清单「实验 B」旧位；**双字母 BJ ≠ 单字母 B**）/ J（无板日临停；**双字母 BJ ≠ 单字母 J**）/ Z（**开仓**融资/融券保证金比例；**BJ≠Z**）/ BA（**融资买入**标的名单；**BJ≠BA**）/ BB（**转融券暂停后券源**；**BJ≠BB**）/ BC（**维持担保比例强制平仓**；**BJ≠BC**）/ BD（**担保品折算率**；**BJ≠BD**）/ BE（**单标的两融余额25pct暂停**；**BJ≠BE**）/ BF（**两融合约期限到期强制了结**；**BJ≠BF**）/ BG（**可充抵保证金证券名单**；**BJ≠BG**）/ BH（**两融授信额度上限**；**BJ≠BH**）/ BI（**融券卖出所得资金用途限制**；**BJ≠BI**）/ K（融券空头名单；**BJ≠K**）/ AB（融券卖出价限 / 当日平；**BJ≠AB**）/ E（整手）/ AN–BI（集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/融资买入名单/转融券假无限券源/维持强平/折算率/余额25pct暂停/合约期限/可充抵名单/授信额度/融券所得用途等）/ S/T/U/V（费用层；**避开预检T旧题**）等**分列**；**新建实验 BJ**  
-状态：**草稿 · 待风控预检**（结论栏空；禁止把「融资买入证券卖出所得=普通可用现金 / 可不优先偿还融资负债」当诚实执行能力；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BI 及其他 A/D–BI 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-J；不改假设-Z；不改假设-BA；不改假设-BB；不改假设-BC；不改假设-BD；不改假设-BE；不改假设-BF；不改假设-BG；不改假设-BH；不改假设-BI；不改假设-K；不改假设-AB；勿再改 BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
+状态：**草稿 · 预检有条件通过 · 两条已冻结待复检**（结论栏空；禁止把「融资买入证券卖出所得=普通可用现金 / 可不优先偿还融资负债」当诚实执行能力；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BI 及其他 A/D–BI 已交正文与冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-J；不改假设-Z；不改假设-BA；不改假设-BB；不改假设-BC；不改假设-BD；不改假设-BE；不改假设-BF；不改假设-BG；不改假设-BH；不改假设-BI；不改假设-K；不改假设-AB；勿再改 BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 BJ。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **融资买入证券卖出所得是否须优先偿还融资负债**。**双字母 BJ ≠ 单字母 A**。与假设 **B（历史实验 B 旧位）** **硬分列**：清单早期「实验 B」曾挂印花税时点+T+1 / 财务可见日 / 除权日复权价误判等，主病已迁 V/W 等页；本页**不重开**那些旧 B 题。**双字母 BJ ≠ 单字母 B**。与假设 **J（无板日临停）** **硬分列**：J = 无板日临停规则；本页 = 融资买入卖出所得**还债优先闸门**；临停 ≠ 还债优先。**双字母 BJ ≠ 单字母 J**。与假设 **Z（开仓保证金比例）** **硬分列**：Z = **新开**融资/融券时的保证金**比例**数值；本页 = 已开融资买入腿**卖出后价款如何分配**；比例够 ≠ 卖出所得可自由用。与假设 **BA（融资买入标的名单）** **硬分列**：BA = 能不能开**融资买入**腿（标的闸门）；本页 = 已融资买入证券**卖出所得**是否优先还债。与假设 **BI（融券卖出所得资金用途限制）** **硬分列**：BI = **融券卖出**所得资金用途（空头侧）；本页 = **融资买入证券卖出**所得优先偿还融资负债（多头侧）；融券所得用途 ≠ 融资卖出还债优先。与假设 **BB（转融券暂停后假无限券源）** **硬分列**：BB = 空头**券源可借量**；本页 = 融资卖出所得还债；券源 ≠ 还债优先。与假设 **BC（维持担保比例强制平仓）** **硬分列**：BC = 持仓存续期**维持担保比例**是否触发追保/强平；本页 = 卖出融资证券所得分配；维持线 ≠ 还债优先。与假设 **BD（担保品折算率）** **硬分列**：BD = 折算率计入保证金可用；本页 = 卖出所得还债；折算率 ≠ 还债优先。与假设 **BE（单标的两融余额25pct暂停）** **硬分列**：BE = 市场层单标的余额集中度暂停**新开**；本页 = 账户层融资卖出所得分配。与假设 **BF（两融合约期限到期强制了结）** **硬分列**：BF = 已开合约的**存续期限上限与到期了结**；本页 = 卖出所得还债；期限 ≠ 还债优先。与假设 **BG（可充抵保证金证券名单）** **硬分列**：BG = **哪些证券可以充抵**；本页 = 融资买入证券卖出所得分配。与假设 **BH（两融授信额度上限）** **硬分列**：BH = 客户**授信/可用额度**上限；本页 = 额度内已产生融资买入后的卖出所得分配；额度够 ≠ 卖出所得可自由用。与假设 **K / AB** **硬分列**：不重开融券名单与空头价限/当日平。与假设 AN–BI **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/融资买入名单/转融券假无限券源/维持强平/折算率/余额25pct暂停/合约期限/可充抵名单/授信额度/融券所得用途等。**明确避开预检T旧题（证管费误抽）**。**本页主结论不混。**
 
@@ -23,7 +23,7 @@
 ### 2.1 融资买入卖出所得还债优先 ≠ 融券所得用途；≠ 开仓保证金比例；≠ 融资买入名单；≠ 转融券券源；≠ 维持担保强平；≠ 担保品折算率；≠ 单标的余额25pct暂停；≠ 合约期限；≠ 可充抵名单；≠ 授信额度；≠ 融券名单；≠ 空头价限/当日平；≠ 无板日临停；≠ 板上枯竭；≠ 证管费
 
 ```
-# 配置写死键（见 §7；阶段0纸面建议；待风控预检后冻结）
+# 配置写死键（见 §7；两条已冻结待复检；终值如下）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 BJ；≠ 实验字母 A；≠ 实验字母 B；≠ 实验字母 J；≠ 实验字母 Z
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 BJ
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 BJ
@@ -50,7 +50,7 @@
 # params.short_px_handoff                写死 ab_page        # 融券卖出价限/当日平交 AB
 # params.halt_no_limit_handoff           写死 j_page         # 无板日临停交 J；BJ≠J
 # params.exit_period_handoff             写死 h_page         # 退市整理交 H；BJ≠H
-# params.bj0_primary_demo                建议 invent_financing_sale_proceeds_free_use  # 主报：融资买入卖出所得=普通现金可自由用/不优先还债；禁与 invent_asof_leak_financing_sale_repay 双挂争主表；BJ1半泄露不得升格并列主报
+# params.bj0_primary_demo                写死冻结 invent_financing_sale_proceeds_free_use  # 主报：融资买入卖出所得=普通现金可自由用/不优先还债；禁与 invent_asof_leak_financing_sale_repay 双挂争主表；BJ1半泄露不得升格并列主报
 # params.bj0_invent_financing_sale_free  写死 True
 # params.bj1_asof_leak_financing_sale_repay_only 写死 True   # 半泄露：仅用核对日还债优先规则铺满历史
 # params.bj2_pit_financing_sale_repay    写死 True
@@ -124,7 +124,7 @@
 # params.missing_financing_sale_repay_policy 写死 skip
 # params.day_freq_proxy                  写死 financing_sale_repay_eligibility_sensitivity
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  建议 0.02/0.01/0.05/0.015  # params.Y≠实验字母BJ；params.G≠实验字母BJ；params.N≠实验字母BJ；亦≠单字母实验A/B/J/Z；禁null/holdout/跑后改口
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # params.Y≠实验字母BJ；params.G≠实验字母BJ；params.N≠实验字母BJ；亦≠单字母实验A/B/J/Z；禁null/holdout/跑后改口
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
@@ -137,14 +137,14 @@
 fill_time = "next_open"
 asof_check_date = "2026-10-16"
 financing_sale_repay_honest = "pit_by_effective_date"
-params.bj0_primary_demo = "invent_financing_sale_proceeds_free_use"  # 单一主报建议；禁与 invent_asof_leak_financing_sale_repay 双挂
+params.bj0_primary_demo = "invent_financing_sale_proceeds_free_use"  # 写死冻结；禁与 invent_asof_leak_financing_sale_repay 双挂
 ```
 
 ### 2.2 三组对照（BJ0 / BJ1 / BJ2）
 
 | 组 | 口径 | 说明 |
 |----|------|------|
-| BJ0 天真 | `invent_financing_sale_proceeds_free_use`（单一主报建议） | 融资买入证券卖出所得=普通可用现金；可不优先偿还融资负债 |
+| BJ0 天真 | `invent_financing_sale_proceeds_free_use`（单一主报·已冻结） | 融资买入证券卖出所得=普通可用现金；可不优先偿还融资负债 |
 | BJ1 半泄露 | `invent_asof_leak_financing_sale_repay` | 仅用核对日还债优先规则（含券商当日更宽自由用途）铺满全历史；**不得升格并列主报** |
 | BJ2 诚实 PIT | `pit_by_effective_date` | 按当日已生效还债优先；未还清前自由动用拒开/记失败；缺字段 skip |
 
@@ -261,7 +261,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`BJ`  
 - **组**：BJ0 / BJ1 / BJ2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`financing_sale_repay_honest=pit_by_effective_date`；`financing_sale_repay_scope=priority_repay_financing_liability`；`financing_sale_free_use_policy=reject_or_fail`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`halt_no_limit_handoff=j_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_financing_sale_repay_check`；`missing_financing_sale_repay_policy=skip`；`day_freq_proxy=financing_sale_repay_eligibility_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 建议 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 BJ**；**params.G≠实验字母 BJ**；**params.N≠实验字母 BJ**；亦≠单字母实验 A/B/J/Z；禁 null/holdout/跑后改口；待预检后冻结）；**`params.bj0_primary_demo` 建议 `invent_financing_sale_proceeds_free_use`**（禁与 invent_asof_leak_financing_sale_repay 双挂；BJ1半泄露不得升格并列主报；待预检后冻结）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`financing_sale_repay_honest=pit_by_effective_date`；`financing_sale_repay_scope=priority_repay_financing_liability`；`financing_sale_free_use_policy=reject_or_fail`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`halt_no_limit_handoff=j_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_financing_sale_repay_check`；`missing_financing_sale_repay_policy=skip`；`day_freq_proxy=financing_sale_repay_eligibility_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 BJ**；**params.G≠实验字母 BJ**；**params.N≠实验字母 BJ**；亦≠单字母实验 A/B/J/Z；禁 null/holdout/跑后改口）；**`params.bj0_primary_demo` 写死冻结 `invent_financing_sale_proceeds_free_use`**（禁与 invent_asof_leak_financing_sale_repay 双挂；BJ1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -286,22 +286,25 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|-----|
-| 文档状态 | 草稿 · 待风控预检 |
+| 文档状态 | 草稿 · 预检有条件通过 · 两条已冻结待复检 |
 | 数据 | 待接入（字段见 §6；日频融资买入卖出名义+融资负债代理+还债优先规则生效日即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**financing_sale_repay_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 BJ；params.G≠实验字母 BJ；params.N≠实验字母 BJ；亦≠单字母实验 A/B/J/Z；禁 null/holdout/跑后改口；待预检冻结）**；**bj0_primary_demo 建议 invent_financing_sale_proceeds_free_use（禁双挂 invent_asof_leak_financing_sale_repay；BJ1半泄露不得升格并列主报；待预检冻结）**；锚点保留 financing_sale_repay_honest=pit_by_effective_date / financing_sale_repay_scope=priority_repay_financing_liability / financing_sale_free_use_policy=reject_or_fail / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**financing_sale_repay_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 BJ；params.G≠实验字母 BJ；params.N≠实验字母 BJ；亦≠单字母实验 A/B/J/Z；禁 null/holdout/跑后改口）**；**bj0_primary_demo 写死冻结 invent_financing_sale_proceeds_free_use（禁双挂 invent_asof_leak_financing_sale_repay；BJ1半泄露不得升格并列主报）**；锚点保留 financing_sale_repay_honest=pit_by_effective_date / financing_sale_repay_scope=priority_repay_financing_liability / financing_sale_free_use_policy=reject_or_fail / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
 
 ---
 
-## 待预检键清单（供总管/风控）
+## 风控预检补丁·冻结（两条已写死 · 2026-11-03）
 
-1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：建议 `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 BJ**；**`params.G` ≠ 实验字母 BJ**；**`params.N` ≠ 实验字母 BJ**；亦≠单字母实验 A/B/J/Z；禁 null / holdout 标定 / 跑后改口。  
-2. **`params.bj0_primary_demo`**：建议 **`invent_financing_sale_proceeds_free_use`**；禁与 **`invent_asof_leak_financing_sale_repay`** 双挂争主表；**BJ1 半泄露不得升格并列主报**。  
-3. **PIT/政策锚**：`financing_sale_repay_honest=pit_by_effective_date`；`financing_sale_repay_scope=priority_repay_financing_liability`；`financing_sale_free_use_policy=reject_or_fail`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`；`missing_financing_sale_repay_policy=skip`。
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 BJ**；**`params.G` ≠ 实验字母 BJ**；**`params.N` ≠ 实验字母 BJ**；**`params.Y` ≠ 单字母实验 A/B/J/Z**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.bj0_primary_demo`**：**写死冻结** **`invent_financing_sale_proceeds_free_use`**；禁与 **`invent_asof_leak_financing_sale_repay`** 双挂争主表（只挂一个 primary）；**BJ1 半泄露不得升格并列主报**。
 
-**与 BA–BI/Z/K/AB/B/J/A/H 硬分列（保留）**：本页 = **融资买入卖出所得优先偿还融资负债**；BI = **融券卖出所得资金用途**；Z = **开仓**保证金比例；BA = **融资买入**标的名单；BB = **转融券暂停后券源**；BC = **维持担保比例强制平仓**；BD = **担保品折算率**；BE = **单标的两融余额25pct暂停**；BF = **两融合约期限到期强制了结**；BG = **可充抵保证金证券名单**；BH = **两融授信额度上限**；A = **板上枯竭**；K = **融券空头名单**；AB = **融券卖出价限**；J = **无板日临停**；B = 历史实验 B 旧位；H = **退市整理期**；融资卖出还债优先 ≠ 融券所得用途 ≠ 开仓比例 ≠ 融资可买名单 ≠ 转融券源 ≠ 维持强平 ≠ 折算率 ≠ 余额25pct暂停 ≠ 合约期限 ≠ 可充抵名单 ≠ 授信额度 ≠ 板上枯竭 ≠ 融券名单 ≠ 空头价限 ≠ 无板日临停 ≠ 退市整理；**双字母 BJ ≠ 单字母 A ≠ 单字母 B ≠ 单字母 J ≠ 单字母 Z ≠ 双字母 BA–BI ≠ 双字母 AB ≠ 单字母 K**；**params.Y ≠ 实验字母 BJ**；**params.G ≠ 实验字母 BJ**；**params.N ≠ 实验字母 BJ**；禁止捆成「两融一张表=融资卖出所得随便花」；**尤其不改假设-H**；不改假设-J；不改假设-B；不改假设-Z；不改假设-BA–BI；不改假设-A；不改假设-K；不改假设-AB。
+**还债优先锚保留（已通写死）**：`params.financing_sale_repay_honest=pit_by_effective_date`；`params.financing_sale_repay_scope=priority_repay_financing_liability`；`params.financing_sale_free_use_policy=reject_or_fail`；`params.margin_channel_start=2010-03-31`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`（及正文已有 `missing_financing_sale_repay_policy=skip` 等锚点；不改口）。
+
+**与 BA–BI/Z/K/AB/B/J/A/H 硬分列（保留）**：本页 = **融资买入卖出所得优先偿还融资负债**；BI = **融券卖出所得资金用途**（**尤其 BJ≠BI**）；Z = **开仓**保证金比例；BA = **融资买入**标的名单；BB = **转融券暂停后券源**；BC = **维持担保比例强制平仓**；BD = **担保品折算率**；BE = **单标的两融余额25pct暂停**；BF = **两融合约期限到期强制了结**；BG = **可充抵保证金证券名单**；BH = **两融授信额度上限**；A = **板上枯竭**；K = **融券空头名单**；AB = **融券卖出价限**；J = **无板日临停**；B = 历史实验 B 旧位；H = **退市整理期**；融资卖出还债优先 ≠ 融券所得用途 ≠ 开仓比例 ≠ 融资可买名单 ≠ 转融券源 ≠ 维持强平 ≠ 折算率 ≠ 余额25pct暂停 ≠ 合约期限 ≠ 可充抵名单 ≠ 授信额度 ≠ 板上枯竭 ≠ 融券名单 ≠ 空头价限 ≠ 无板日临停 ≠ 退市整理；**双字母 BJ ≠ 单字母 A ≠ 单字母 B ≠ 单字母 J ≠ 单字母 Z ≠ 双字母 BA ≠ 双字母 BB ≠ 双字母 BC ≠ 双字母 BD ≠ 双字母 BE ≠ 双字母 BF ≠ 双字母 BG ≠ 双字母 BH ≠ 双字母 BI ≠ 双字母 AB ≠ 单字母 K**；**params.Y ≠ 实验字母 BJ**；**params.G ≠ 实验字母 BJ**；**params.N ≠ 实验字母 BJ**；禁止捆成「两融一张表=融资卖出所得随便花」；**尤其不改假设-H**；不改假设-J；不改假设-B；不改假设-Z；不改假设-BA–BI；不改假设-A；不改假设-K；不改假设-AB。
 
 ## 变更
+
+- 2026-11-03：风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 BJ**；**params.G≠实验字母 BJ**；**params.N≠实验字母 BJ**；亦≠单字母实验 A/B/J/Z；禁 null/holdout/跑后改口）；② `params.bj0_primary_demo=invent_financing_sale_proceeds_free_use`（禁与 `invent_asof_leak_financing_sale_repay` 双挂争主表；BJ1半泄露不得升格并列主报）。还债优先锚保留：`financing_sale_repay_honest=pit_by_effective_date`；`financing_sale_repay_scope=priority_repay_financing_liability`；`financing_sale_free_use_policy=reject_or_fail`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。与 BA–BI/Z/K/AB/B/J/A/H 硬分列保留（**尤其 BJ≠BI**）。参考总管派令 / 风控预检有条件通过。未改 Y/Z/AA–BI 及其他已冻结补丁；不改假设-H；不改假设-A；不改假设-B；不改假设-J；不改假设-Z；不改假设-BA；不改假设-BB；不改假设-BC；不改假设-BD；不改假设-BE；不改假设-BF；不改假设-BG；不改假设-BH；不改假设-BI；不改假设-K；不改假设-AB；不改假设-AZ；不改假设-AY；不改假设-AX；不改假设-AW；结论栏仍空；不开回测；不抢 A。
 
 - 2026-11-03：新建纸面草稿（总管续派：BI 补丁已收 → 写假设-BJ；自立 BJ，勿占 BI/BH/BG/BF/BE/BD/BC/BB/BA/B/J/A/Z；避开预检T；不开回测；禁实盘/荐股；**params.Y/G/N≠实验字母 BJ**）。选题：融资买入卖出所得优先偿还融资负债误关（正交于 BI 融券卖出所得用途 / BA 融资买入名单 / BH 授信额度 / Z 开仓比例 / BC 维持强平；**双字母 BJ ≠ 单字母 B ≠ 单字母 J**）。
