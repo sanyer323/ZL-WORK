@@ -2,7 +2,7 @@
 
 更新：2026-11-03  
 来源：总管线 / BT 补丁已交（复检在途）、写下一纸面 BU；清单撞题规则另选正交执行缺口（**融券券池日可借量/日频库存上限** ≠ 转融券暂停后假无限券源 ≠ 融券空头名单是否在池 ≠ 过户费现行档 ≠ 强制平仓顺序与范围 ≠ 融资利率档 ≠ 融资利息假零息 ≠ 融券借券费 ≠ 授信额度上限 ≠ 标的调出后存量续持 ≠ 融券权益补偿 ≠ 追保后禁新开 ≠ 担保品提取 ≠ 开仓保证金比例 ≠ 融资买入名单 ≠ 合约期限到期了结 ≠ 市场25pct余额暂停 ≠ 证管费）；选题自两融业务公开口径：即便标的在融券名单、转融通道未暂停，券商/出借方**当日可借库存或日可借量上限**仍按当时有效规则约束新开空头名义；日库存/日可借量按**施行日/生效日** PIT，不得默认「名单内即可任意量任意日借满 / 永不检查日库存上限 / 用核对日更宽日库存或无限库存铺满历史」；2010-03-31 前无此通道；**BB 正文主测「转融券暂停后仍假无限转融券源」**（暂停闸门），本页主测**通道正常时仍发明假无限日库存或假忽略日可借量上限** → 自立；与假设 A（板上可成交/枯竭）/ H（退市整理）/ B（历史清单「实验 B」旧位；**双字母 BU ≠ 单字母 B**）/ **U（过户费现行档误铺；双字母 BU ≠ 单字母假设-U；严禁复用 U 题面或过户费口径）** / Z（**开仓**融资/融券保证金比例；**BU≠Z**）/ BA–BT（两融族已冻/在途；**BU≠BA…BT**；**尤其不改 BT 正文**）/ **K（融券空头名单 PIT；BU≠K；并带过 BK≠K 消歧）** / AB（融券卖出价限 / 当日平；**BU≠AB**）/ BB（**转融券暂停后假无限券源**；**BU≠BB**；暂停后假无限源 ≠ 正常通道下日库存上限；**尤其不改假设-BB**）/ BT（**强制平仓顺序与范围**；**BU≠BT**；强平序 ≠ 日可借量；**尤其不改假设-BT**）/ BS（**融资利率档位优惠档**；**BU≠BS**）/ BO（**融资利息与逾期罚息假零息**；**BU≠BO**）/ BR（**融券借券费**；**BU≠BR**）/ BH（**授信额度上限**；**BU≠BH**）/ BQ（**标的调出后存量假续持**；**BU≠BQ**）/ BP（**融券权益补偿**；**BU≠BP**）/ BN（**信用/普通账户串用**；**BU≠BN**；并带过 **BN≠BI/BJ/BL/BM、params.N≠BN**）/ BM（**追保后禁新开**；**BU≠BM**；并带过 **BM≠BC、BM≠BL**）/ BL（**担保品提取**；**BU≠BL**；并带过 **BL≠BC**）/ BE（**市场25pct余额暂停**；**BU≠BE**；市场层余额占比暂停 ≠ 券商日库存上限）/ BF（**两融合约期限到期强制了结**；**BU≠BF**）/ BI（**融券卖出所得用途**；**BU≠BI**）/ BJ（**融资卖出还债优先**；**BU≠BJ**）/ BD（**担保品折算率**；**BU≠BD**）/ BG（**可充抵名单**；**BU≠BG**）/ BK（**客户单票集中度**；**BU≠BK**）/ BC（**维持担保比例强制平仓闸门**；**BU≠BC**）/ BA（**融资买入名单**；**BU≠BA**）/ W（除权板价；**BU≠W**）/ T（证管费；**避开预检T**；**BU≠T**）/ S（经手费；**BU≠S**）/ E（整手）/ AN–BT（集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/两融族等）/ V（印花税）等**分列**；**新建实验 BU**  
-状态：**草稿 · 待预检**（结论栏空；禁止把「名单内即可任意量任意日借满 / 永不检查日库存上限 / 用核对日更宽日库存或无限库存铺满」当诚实融券可借路径；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BT 及其他 A/D–BT 已交正文与冻结补丁；尤其不改假设-BT；尤其不改假设-BB；尤其不改假设-U；不改假设-H；不改假设-A；不改假设-B；不改假设-K；不改假设-W；不改假设-Z；不改假设-BA–BT；不改假设-AB；勿再改 BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
+状态：**草稿 · 预检有条件通过 · 两条已冻结待复检**（结论栏空；禁止把「名单内即可任意量任意日借满 / 永不检查日库存上限 / 用核对日更宽日库存或无限库存铺满」当诚实融券可借路径；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BT 及其他 A/D–BT 已交正文与冻结补丁；尤其不改假设-BT；尤其不改假设-BB；尤其不改假设-U；不改假设-H；不改假设-A；不改假设-B；不改假设-K；不改假设-W；不改假设-Z；不改假设-BA–BT；不改假设-AB；勿再改 BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 BU（约 #78）。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **融券券池日可借量/日频库存上限**。**双字母 BU ≠ 单字母 A**。与假设 **B（历史实验 B 旧位）** **硬分列**：清单早期「实验 B」曾挂印花税时点+T+1 / 财务可见日 / 除权日复权价误判等，主病已迁 V/W 等页；本页**不重开**那些旧 B 题。**双字母 BU ≠ 单字母 B**。与假设 **U（过户费现行档误铺）** **硬分列（专节强调）**：U = 中国结算股票交易过户费费率切片（买卖双边、2015-08-01 / 2022-04-29 切日）；本页 = 信用账户**融券日可借量/券池日库存**；过户费 ≠ 日可借量。**双字母 BU ≠ 单字母假设-U**；**严禁复用 U 题面或 U 口径键**。与假设 **BB（转融券暂停后假无限券源）** **硬分列**：BB = 2024-07-11 转融暂停后仍发明假无限转融源（暂停闸门）；本页 = **通道未暂停时**仍发明假无限日库存或假忽略日可借量上限；暂停闸门 ≠ 日库存上限；**禁止**把「暂停后仍可无限借（BB 天真组）」静默写成「日库存已诚实」；**禁止**把「日库存无限」静默写成「转融未暂停」；**不占** BB 的 primary_demo；**尤其不改假设-BB**。**BU≠BB**。与假设 **BT（强制平仓顺序与范围）** **硬分列**：BT = 强平触发后的序/范围；本页 = 日可借量；强平序 ≠ 日库存；**尤其不改假设-BT**。**BU≠BT**。与假设 **K（融券空头名单）** **硬分列**：K = 是否在融券标的名单（可空/不可空）；本页 = 名单内仍须受日库存/日可借量上限约束；名单 ∈ ≠ 日库存够；**尤其不改假设-K**；并**带过 BK≠K**。**BU≠K**。与假设 **BS / BO / BR / BH / BQ / BP / BN / BM / BL / BE / BF** **硬分列**：利率档 / 假零息 / 借券费 / 授信天花板 / 调出后存量 / 权益补偿 / 账户串用 / 追保禁开 / 高维持提取 / 市场25pct / 合约期限到期了结 ≠ 日可借量；并**带过 BT≠T/BC/BS/BO/BR/BH、BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC/BB/BO/BP/BM/BN/Q、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BM≠BC、BM≠BL、BL≠BC、BK≠K**。与假设 **AB / Z / W / BA / BD / BG / BK / BI / BJ / BC** **硬分列**：空头价限 / 开仓保证金 / 除权板价 / 融资名单 / 折算率 / 可充抵 / 客户集中度 / 融券所得用途 / 融资还债优先 / 维持线闸门 ≠ 日可借量。与假设 AN–BT **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/两融族等。**明确避开预检T旧题（证管费误抽）**。**本页主结论不混。**
 
@@ -40,7 +40,7 @@
 ### 2.1 日可借量/日库存上限 ≠ 转融暂停闸门；≠ 融券名单 ∈；≠ 过户费；≠ 强制平仓序；≠ 融资利率档；≠ 融资假零息；≠ 融券借券费；≠ 授信额度上限；≠ 市场25pct余额暂停；≠ 标的调出后存量；≠ 融券权益补偿；≠ 追保禁开；≠ 担保品提取；≠ 合约期限到期了结；≠ 板上枯竭；≠ 证管费
 
 ```
-# 配置写死键（见 §7；待预检；建议终值如下）
+# 配置写死键（见 §7；两条已冻结待复检；终值如下）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 BU；≠ 实验字母 A；≠ 实验字母 B；≠ 实验字母 U；≠ 实验字母 Z
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 BU
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 BU；≠ 单字母假设-N；亦≠实验字母 BN
@@ -81,7 +81,7 @@
 # params.csrc_fee_handoff                写死 t_page
 # params.handling_fee_handoff            写死 s_page
 # params.exit_period_handoff             写死 h_page
-# params.bu0_primary_demo                建议 invent_unlimited_daily_short_inventory  # 主报：假无限日库存；禁与 invent_asof_leak_daily_short_inventory 双挂争主表；BU1半泄露不得升格并列主报
+# params.bu0_primary_demo                写死冻结 invent_unlimited_daily_short_inventory  # 主报：假无限日库存；禁与 invent_asof_leak_daily_short_inventory 双挂争主表；BU1半泄露不得升格并列主报
 # params.bu0_invent_unlimited_daily_short_inventory 写死 True
 # params.bu1_asof_leak_daily_short_inventory_only 写死 True
 # params.bu2_pit_daily_short_inventory   写死 True
@@ -150,21 +150,21 @@
 # params.missing_daily_short_inventory_policy 写死 skip
 # params.day_freq_proxy                  写死 daily_short_inventory_sensitivity
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  建议 0.02/0.01/0.05/0.015  # params.Y≠实验字母BU；params.G≠实验字母BU；params.N≠实验字母BU；亦≠单字母实验A/B/U/Z；待预检写死；禁null/holdout/跑后改口
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # params.Y≠实验字母BU；params.G≠实验字母BU；params.N≠实验字母BU；亦≠单字母实验A/B/U/Z；禁null/holdout/跑后改口
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
 ```
 
 ```
-params.bu0_primary_demo = "invent_unlimited_daily_short_inventory"  # 单一主报建议；禁与 invent_asof_leak_daily_short_inventory 双挂
+params.bu0_primary_demo = "invent_unlimited_daily_short_inventory"  # 单一主报·已冻结；禁与 invent_asof_leak_daily_short_inventory 双挂
 ```
 
 ### 2.2 三组对照（BU0 / BU1 / BU2）
 
 | 组 | 口径 | 说明 |
 |----|------|------|
-| BU0 天真 | `invent_unlimited_daily_short_inventory`（单一主报建议） | 发明假无限日库存/永不检查日可借量上限；禁与 invent_asof_leak_daily_short_inventory 双挂 |
+| BU0 天真 | `invent_unlimited_daily_short_inventory`（单一主报·已冻结） | 发明假无限日库存/永不检查日可借量上限；禁与 invent_asof_leak_daily_short_inventory 双挂 |
 | BU1 半泄露/混口径 | 全样本用 `asof_check_date` 当天更宽日库存或无限库存规则铺满历史 | 仅日库存 asof 泄露；不升格并列主报 |
 | BU2 PIT | `daily_short_inventory_honest=pit_by_effective_date` | 每个交易日按当时已生效日库存/日可借量上限 PIT |
 
@@ -272,7 +272,7 @@ params.diff_buckets = [
 
 - **假设 ID**：`BU`  
 - **组**：BU0 / BU1 / BU2  
-- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`daily_short_inventory_honest=pit_by_effective_date`；`daily_short_inventory_scope=broker_or_lender_daily_borrowable_qty_cap`；`daily_short_inventory_over_policy=reject_or_partial_or_fail_missing_inventory`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`corp_action_comp_handoff=bp_page`；`list_removal_stock_handoff=bq_page`；`short_borrow_fee_handoff=br_page`；`financing_rate_tier_handoff=bs_page`；`force_close_order_handoff=bt_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`transfer_fee_handoff=u_page`；`csrc_fee_handoff=t_page`；`handling_fee_handoff=s_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_daily_short_inventory_check`；`missing_daily_short_inventory_policy=skip`；`day_freq_proxy=daily_short_inventory_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 建议 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 BU**；**params.G≠实验字母 BU**；**params.N≠实验字母 BU**；亦≠单字母实验 A/B/U/Z；待预检写死；禁 null/holdout/跑后改口）；**`params.bu0_primary_demo` 建议 `invent_unlimited_daily_short_inventory`**（禁与 invent_asof_leak_daily_short_inventory 双挂；BU1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
+- **写死键摘要**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`margin_channel_start=2010-03-31`；`daily_short_inventory_honest=pit_by_effective_date`；`daily_short_inventory_scope=broker_or_lender_daily_borrowable_qty_cap`；`daily_short_inventory_over_policy=reject_or_partial_or_fail_missing_inventory`；`margin_ratio_handoff=z_page`；`margin_buy_list_handoff=ba_page`；`refinance_borrow_handoff=bb_page`；`maint_force_handoff=bc_page`；`haircut_handoff=bd_page`；`balance_pause_handoff=be_page`；`contract_term_handoff=bf_page`；`collateral_list_handoff=bg_page`；`credit_quota_handoff=bh_page`；`short_proceeds_use_handoff=bi_page`；`financing_sale_repay_handoff=bj_page`；`client_conc_handoff=bk_page`；`collateral_withdraw_handoff=bl_page`；`margin_call_open_ban_handoff=bm_page`；`cross_account_handoff=bn_page`；`financing_interest_handoff=bo_page`；`corp_action_comp_handoff=bp_page`；`list_removal_stock_handoff=bq_page`；`short_borrow_fee_handoff=br_page`；`financing_rate_tier_handoff=bs_page`；`force_close_order_handoff=bt_page`；`exright_board_handoff=w_page`；`shortable_list_handoff=k_page`；`short_px_handoff=ab_page`；`transfer_fee_handoff=u_page`；`csrc_fee_handoff=t_page`；`handling_fee_handoff=s_page`；`exit_period_handoff=h_page`；全部 `merge_with_*=False`（§2.1）；`universe_rule=sse_szse_daily_short_inventory_check`；`missing_daily_short_inventory_policy=skip`；`day_freq_proxy=daily_short_inventory_sensitivity`；`fail_policy=skip`；`redline_v0_exempt_scope=position_industry_dd_only`；`diff_buckets=[...]`（§4.1）；**`params.Y/G/N/Y2` 写死冻结 `0.02/0.01/0.05/0.015`**（**params.Y≠实验字母 BU**；**params.G≠实验字母 BU**；**params.N≠实验字母 BU**；亦≠单字母实验 A/B/U/Z；禁 null/holdout/跑后改口）；**`params.bu0_primary_demo` 写死冻结 `invent_unlimited_daily_short_inventory`**（禁与 invent_asof_leak_daily_short_inventory 双挂；BU1半泄露不得升格并列主报）；`date_start/end=2019-01-01..2026-09-30`；`oos_split` 四日期写死。  
 - 字段：见 §6。  
 
 **输出期望（结论栏仍空，由回测岗填）**
@@ -297,18 +297,18 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|-----|
-| 文档状态 | 草稿 · 待预检 |
+| 文档状态 | 草稿 · 预检有条件通过 · 两条已冻结待复检 |
 | 数据 | 待接入（字段见 §6；日频可借量代理+名单PIT+通道状态+库存生效日即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**daily_short_inventory_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 BU；params.G≠实验字母 BU；params.N≠实验字母 BU；亦≠单字母实验 A/B/U/Z；待预检写死；禁 null/holdout/跑后改口）**；**bu0_primary_demo 建议 invent_unlimited_daily_short_inventory（禁双挂 invent_asof_leak_daily_short_inventory；BU1半泄露不得升格并列主报）**；锚点保留 daily_short_inventory_honest=pit_by_effective_date / daily_short_inventory_scope=broker_or_lender_daily_borrowable_qty_cap / daily_short_inventory_over_policy=reject_or_partial_or_fail_missing_inventory / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**daily_short_inventory_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 BU；params.G≠实验字母 BU；params.N≠实验字母 BU；亦≠单字母实验 A/B/U/Z；禁 null/holdout/跑后改口）**；**bu0_primary_demo 写死冻结 invent_unlimited_daily_short_inventory（禁双挂 invent_asof_leak_daily_short_inventory；BU1半泄露不得升格并列主报）**；锚点保留 daily_short_inventory_honest=pit_by_effective_date / daily_short_inventory_scope=broker_or_lender_daily_borrowable_qty_cap / daily_short_inventory_over_policy=reject_or_partial_or_fail_missing_inventory / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
 
 ---
 
-## 待预检键清单
+## 待预检键清单（两条已冻结 · 见下节）
 
-1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**待预检写死**；**params.Y≠BU**；**params.G≠BU**；**params.N≠BU**；禁 null/holdout）  
-2. `params.bu0_primary_demo` = `invent_unlimited_daily_short_inventory`（**待预检写死**；禁与 `invent_asof_leak_daily_short_inventory` 双挂；BU1不升格主报）  
+1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**已写死冻结**；**params.Y≠BU**；**params.G≠BU**；**params.N≠BU**；禁 null/holdout）  
+2. `params.bu0_primary_demo` = `invent_unlimited_daily_short_inventory`（**已写死冻结**；禁与 `invent_asof_leak_daily_short_inventory` 双挂；BU1不升格主报）  
 3. 日库存锚：`daily_short_inventory_honest=pit_by_effective_date`；`daily_short_inventory_scope=broker_or_lender_daily_borrowable_qty_cap`；`daily_short_inventory_over_policy=reject_or_partial_or_fail_missing_inventory`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`  
 4. 硬分列：≠B/U/A/Z/BA–BT/K/AB/H/W/T/S；**尤其 BU≠U（过户费；严禁复用假设-U）**；**尤其 BU≠BB（暂停闸门≠日库存；不改BB）**；**尤其 BU≠BT（强平序≠日可借量；不改BT）**；**尤其 BU≠K（名单≠日库存；不改K）**；**尤其 BU≠BS/BO/BR/BH/BQ/BP/BN/BM/BE**；**带过 BT≠T/BC/BS/BO/BR/BH、BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC/BB/BO/BP/BM/BN/Q、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BL≠BC、BK≠K**；避开预检T  
 5. `oos_split` 四日期；`diff_buckets`；全部 `merge_with_*=False`
@@ -345,6 +345,19 @@ params.diff_buckets = [
 
 **撞题检查：通过（纸面）** — 入库后对照正式清单 #78 再核一次 primary_demo 唯一性。
 
+## 风控预检补丁·冻结（两条已写死 · 2026-11-03）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 BU**；**`params.G` ≠ 实验字母 BU**；**`params.N` ≠ 实验字母 BU**；**`params.Y` ≠ 单字母实验 A/B/U/Z**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.bu0_primary_demo`**：**写死冻结** **`invent_unlimited_daily_short_inventory`**；禁与 **`invent_asof_leak_daily_short_inventory`** 双挂争主表（只挂一个 primary）；**BU1 半泄露不得升格并列主报**。
+
+**日库存锚保留（已通写死）**：`params.daily_short_inventory_honest=pit_by_effective_date`；`params.daily_short_inventory_scope=broker_or_lender_daily_borrowable_qty_cap`；`params.daily_short_inventory_over_policy=reject_or_partial_or_fail_missing_inventory`；`params.margin_channel_start=2010-03-31`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`（及正文已有 `missing_daily_short_inventory_policy=skip` 等锚点；不改口）。
+
+**与 BA–BT/Z/AB/B/A/H/U/K/W/T/S 硬分列（保留）**：本页 = **融券券池日可借量/日频库存上限误开**；U = **过户费**（**尤其双字母 BU ≠ 单字母假设-U**；**严禁复用假设-U**）；BB = **转融券暂停后假无限券源**（**尤其 BU≠BB**；暂停闸门 ≠ 日库存上限；**尤其不改假设-BB**）；BT = **强制平仓顺序与范围**（**尤其 BU≠BT**；强平序 ≠ 日可借量；**尤其不改假设-BT**）；K = **融券空头名单**（**尤其 BU≠K**；名单 ∈ ≠ 日库存够；并**带过 BK≠K**；**尤其不改假设-K**）；BS = **融资利率档位优惠档**（**尤其 BU≠BS**）；BO = **融资利息与逾期罚息假零息**（**尤其 BU≠BO**）；BR = **融券借券费**（**尤其 BU≠BR**）；BH = **授信额度上限**（**尤其 BU≠BH**）；BQ = **标的调出后存量假续持**；BP = **融券权益补偿**；BN = **信用/普通账户串用**；BM = **追保后禁新开**；BE = **市场25pct余额暂停**；AB = **融券卖出价限**；Z = **开仓**保证金比例；W = **除权板价**；A = **板上枯竭**；B = 历史实验 B 旧位；H = **退市整理期**；T = **证管费**（避开预检T）；S = **经手费**；日库存上限 ≠ 过户费 ≠ 转融暂停闸门 ≠ 强平序 ≠ 融券名单 ≠ 融资利率档 ≠ 假零息 ≠ 融券借券费 ≠ 授信天花板 ≠ 调出后存量 ≠ 权益补偿 ≠ 账户串用 ≠ 追保禁开 ≠ 市场25pct ≠ 空头价限 ≠ 开仓比例 ≠ 除权板价 ≠ 板上枯竭 ≠ 退市整理 ≠ 证管费 ≠ 经手费；**双字母 BU ≠ 单字母 A ≠ 单字母 B ≠ 单字母 U ≠ 单字母 K ≠ 单字母 Z ≠ 单字母 T ≠ 单字母 S ≠ 双字母 BA ≠ … ≠ 双字母 BT ≠ 双字母 BB ≠ 双字母 BS ≠ 双字母 BO ≠ 双字母 BR ≠ 双字母 BH ≠ 双字母 W ≠ 双字母 AB ≠ 双字母 H**；**params.Y ≠ 实验字母 BU**；**params.G ≠ 实验字母 BU**；**params.N ≠ 实验字母 BU**；禁止捆成「两融一张表=假无限日库存」；**尤其不改假设-U**；**尤其不改假设-BB**；**尤其不改假设-BT**；**尤其不改假设-K**；**尤其不改假设-BS**；**尤其不改假设-BO**；**尤其不改假设-BR**；**尤其不改假设-BH**；**尤其不改假设-H**；不改假设-B；不改假设-Z；不改假设-BA–BT；不改假设-A；不改假设-AB；不改假设-W；不改假设-T；不改假设-S。
+
+**专节保留 · 双字母 BU ≠ 单字母假设-U；且 ≠ 假设-BB / 假设-BT / 假设-BS / 假设-BO / 假设-BR / 假设-BH / 假设-BQ / 假设-BP / 假设-BN / 假设-BM / 假设-K；带过 BT≠T/BC/BS/BO/BR/BH、BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC…、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BK≠K（硬）**：正文「### 专节 · 双字母 BU ≠ 单字母假设-U；且 ≠ 假设-BB / 假设-BT / 假设-BS / 假设-BO / 假设-BR / 假设-BH / 假设-BQ / 假设-BP / 假设-BN / 假设-BM / 假设-K；带过 BT≠T/BC/BS…、BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC…、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BK≠K」保留不删；**禁止**覆盖/混读/改写 `假设-U` / `假设-BB` / `假设-BT` / `假设-K` / `假设-BS` / `假设-BO` / `假设-BR` / `假设-BH`。
+
 ## 变更
+
+- 2026-11-03：风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 BU**；**params.G≠实验字母 BU**；**params.N≠实验字母 BU**；亦≠单字母实验 A/B/U/Z；禁 null/holdout/跑后改口）；② `params.bu0_primary_demo=invent_unlimited_daily_short_inventory`（禁与 `invent_asof_leak_daily_short_inventory` 双挂争主表；BU1半泄露不得升格并列主报）。日库存锚保留：`daily_short_inventory_honest=pit_by_effective_date`；`daily_short_inventory_scope=broker_or_lender_daily_borrowable_qty_cap`；`daily_short_inventory_over_policy=reject_or_partial_or_fail_missing_inventory`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。与 BA–BT/Z/AB/B/A/H/U/K/W/T/S 硬分列保留；**专节保留 BU≠U / BU≠BB / BU≠BT / BU≠K / BU≠BS / BU≠BO / BU≠BR / BU≠BH / 带过 BT≠T/BC/BS/BO/BR/BH、BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC/BB/BO/BP/BM/BN/Q、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BK≠K**。参考总管派令 / 风控预检有条件通过（`预检-假设BU-20261103.md`；草稿 HEAD=b65020d ∈ tip 96fd195）。未改 Y/Z/AA–BT 及其他已冻结补丁；**不改假设-BT**；**不改假设-BB**；**不改假设-U**；**不改假设-K**；**不改假设-BS**；**不改假设-BO**；**不改假设-BR**；**不改假设-BH**；不改假设-H；不改假设-A；不改假设-B；不改假设-T；不改假设-W；不改假设-Z；不改假设-BA–BT；不改假设-AB；不改假设-AZ；不改假设-AY；不改假设-AX；不改假设-AW；结论栏仍空；不开回测；不抢 A；**未标纸面齐**。
 
 - 2026-11-03：新建纸面草稿（总管续派：BT 补丁已交复检在途 → 写假设-BU；自立 BU，勿占 BT/BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/B/U/A/Z/K/W/T/S；**尤重 BU≠U**；避开预检T；不开回测；禁实盘/荐股；**params.Y/G/N≠实验字母 BU**；**双字母 BU ≠ 单字母 U**；**BU≠BB/BT/K/BS/BO/BR/BH/BQ/BP/BN/BM/BE**；选题：BB 转融暂停闸门旁的**融券券池日可借量/日频库存上限误开**；`bu0_primary_demo=invent_unlimited_daily_short_inventory`；半泄露 `invent_asof_leak_daily_short_inventory` 禁双挂/升格；**不改假设-BT**；**不改假设-BB**；**不改假设-U**；**不改假设-K**；不改 Y/Z/AA–BT）。结论栏空；**未标纸面齐**。
