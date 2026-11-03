@@ -2,7 +2,7 @@
 
 更新：2026-11-03  
 来源：总管线 / BS 补丁已交（复检在途）、写下一纸面 BT；清单撞题规则另选正交执行缺口（**强制平仓触发后的平仓顺序/范围** ≠ 维持担保比例强平闸门是否误关 ≠ 融资利率档位 ≠ 融资利息假零息 ≠ 融券借券费 ≠ 授信额度上限 ≠ 标的调出后存量续持 ≠ 融券权益补偿 ≠ 追保后禁新开 ≠ 担保品提取 ≠ 开仓保证金比例 ≠ 融资买入名单 ≠ 转融券券源 ≠ 合约期限到期了结 ≠ 证管费）；选题自两融业务公开口径：维持担保比例触发追保/强制平仓后，会员/合同对**平仓标的顺序、平仓范围（全仓类 vs 仅减至恢复线）、平仓侧（担保品 / 融资买入证券 / 融券了结）**有当时有效规则；顺序与范围按**施行日/生效日** PIT，不得默认「永远按对客户最有利顺序 / 永远只平最小名义刚好恢复维持线 / 用核对日最优序或最小范围规则铺满历史」；2010-03-31 前无此通道；**BC 正文主测「永不触发强平 / 维持线闸门误关」**（强平闸门 on/off），本页主测**闸门已触发后发明假最优平仓序或假最小平仓范围** → 自立；与假设 A（板上可成交/枯竭）/ H（退市整理）/ B（历史清单「实验 B」旧位；**双字母 BT ≠ 单字母 B**）/ **T（证管费误抽；双字母 BT ≠ 单字母假设-T；严禁复用预检T题面或证管费口径）** / Z（**开仓**融资/融券保证金比例；**BT≠Z**）/ BA–BS（两融族已冻/在途；**BT≠BA…BS**；**尤其不改 BS 正文**）/ **K（融券空头名单 PIT；BT≠K；并带过 BK≠K 消歧）** / AB（融券卖出价限 / 当日平；**BT≠AB**）/ BC（**维持担保比例强制平仓误关**；**BT≠BC**；闸门 on/off ≠ 触发后顺序/范围；**尤其不改假设-BC**）/ BS（**融资利率档位优惠档**；**BT≠BS**；利率档 ≠ 强平序；**尤其不改假设-BS**）/ BO（**融资利息与逾期罚息假零息**；**BT≠BO**）/ BR（**融券借券费**；**BT≠BR**）/ BH（**授信额度上限**；**BT≠BH**）/ BQ（**标的调出后存量假续持**；**BT≠BQ**）/ BP（**融券权益补偿**；**BT≠BP**）/ BN（**信用/普通账户串用**；**BT≠BN**；并带过 **BN≠BI/BJ/BL/BM、params.N≠BN**）/ BM（**追保后禁新开**；**BT≠BM**；并带过 **BM≠BC、BM≠BL**）/ BL（**担保品提取**；**BT≠BL**；并带过 **BL≠BC**）/ BB（**转融券券源**；**BT≠BB**）/ BF（**两融合约期限到期强制了结**；**BT≠BF**；期限到 ≠ 维持线触发后的平仓序）/ BI（**融券卖出所得用途**；**BT≠BI**）/ BJ（**融资卖出还债优先**；**BT≠BJ**）/ BD（**担保品折算率**；**BT≠BD**）/ BE（**市场25pct余额暂停**；**BT≠BE**）/ BG（**可充抵名单**；**BT≠BG**）/ BK（**客户单票集中度**；**BT≠BK**）/ W（除权板价；**BT≠W**）/ E（整手）/ AN–BS（集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/两融族等）/ S/U/V（费用层；**避开预检T旧题**）等**分列**；**新建实验 BT**  
-状态：**草稿 · 待预检**（结论栏空；禁止把「强平触发后永远按对客户最有利顺序 / 永远只平最小名义刚好恢复维持线 / 用核对日最优序或最小范围铺满」当诚实强平路径；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BS 及其他 A/D–BS 已交正文与冻结补丁；尤其不改假设-BS；尤其不改假设-BC；不改假设-T；不改假设-H；不改假设-A；不改假设-B；不改假设-K；不改假设-W；不改假设-Z；不改假设-BA–BS；不改假设-AB；勿再改 BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
+状态：**草稿 · 预检有条件通过 · 两条已冻结待复检**（结论栏空；禁止把「强平触发后永远按对客户最有利顺序 / 永远只平最小名义刚好恢复维持线 / 用核对日最优序或最小范围铺满」当诚实强平路径；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改 Y/Z/AA–BS 及其他 A/D–BS 已交正文与冻结补丁；尤其不改假设-BS；尤其不改假设-BC；不改假设-T；不改假设-H；不改假设-A；不改假设-B；不改假设-K；不改假设-W；不改假设-Z；不改假设-BA–BS；不改假设-AB；勿再改 BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/AZ/AY/AX/AW**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 BT（约 #77）。与假设 **A（涨停可成交性）** **硬分列**：A = 有板日触及涨跌停后的枯竭/能否按板上价记成；本页 = **维持线已触发强制平仓后的平仓顺序与范围**。**双字母 BT ≠ 单字母 A**。与假设 **B（历史实验 B 旧位）** **硬分列**：清单早期「实验 B」曾挂印花税时点+T+1 / 财务可见日 / 除权日复权价误判等，主病已迁 V/W 等页；本页**不重开**那些旧 B 题。**双字母 BT ≠ 单字母 B**。与假设 **T（证管费误抽）** **硬分列（专节强调）**：T = 证监会监管费费率切片；本页 = 信用账户**强制平仓顺序/范围**；证管费 ≠ 强平序。**双字母 BT ≠ 单字母假设-T**；**严禁复用预检T题面或 T 口径键**。与假设 **BC（维持担保比例强制平仓误关）** **硬分列**：BC = 发明**永不检查维持线 / 永不触发强平**（闸门 on/off）；本页 = **闸门已触发后**发明假最优平仓序或假最小平仓范围；闸门 ≠ 顺序/范围；**禁止**把「未触发强平（BC 天真组）」静默写成「已按诚实顺序强平」；**禁止**把「已触发强平」静默写成「已按对客户最有利序最小范围处理」；**不占** BC 的 primary_demo；**尤其不改假设-BC**。**BT≠BC**。与假设 **BS（融资利率档位）** **硬分列**：BS = 融资利率档位/优惠档误用；本页 = 强平序/范围；利率档 ≠ 强平序；**尤其不改假设-BS**。**BT≠BS**。与假设 **BO / BR / BH / BQ / BP / BN / BM / BL / BB / BF** **硬分列**：假零息 / 借券费 / 授信天花板 / 调出后存量 / 权益补偿 / 账户串用 / 追保禁开 / 高维持提取 / 转融券源 / 合约期限到期了结 ≠ 强平触发后的顺序与范围；并**带过 BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC/BB/BO/BP/BM/BN/Q、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BM≠BC、BM≠BL、BL≠BC、BK≠K**。与假设 **K / AB / Z / W / BA / BD / BE / BG / BK / BI / BJ** **硬分列**：融券名单 / 空头价限 / 开仓保证金 / 除权板价 / 融资名单 / 折算率 / 市场25pct / 可充抵 / 客户集中度 / 融券所得用途 / 融资还债优先 ≠ 强平序。与假设 AN–BS **硬分列**：不重开集合剩单/空簿/FOK/五档转限/收盘失败/开盘失败/基金经手费/基金 tick/两融族等。**明确避开预检T旧题（证管费误抽）**。**本页主结论不混。**
 
@@ -40,7 +40,7 @@
 ### 2.1 强制平仓顺序/范围 ≠ 维持线闸门 on/off；≠ 融资利率档；≠ 融资假零息；≠ 融券借券费；≠ 授信额度上限；≠ 标的调出后存量；≠ 融券权益补偿；≠ 追保禁开；≠ 担保品提取；≠ 合约期限到期了结；≠ 板上枯竭；≠ 证管费
 
 ```
-# 配置写死键（见 §7；待预检；纸面占位建议如下）
+# 配置写死键（见 §7；两条已冻结待复检；终值如下）
 # 【消歧】params.Y = 显著性门槛；≠ 实验字母 BT；≠ 实验字母 A；≠ 实验字母 B；≠ 实验字母 T；≠ 实验字母 Z
 # 【消歧】params.G = 同族门槛/费率占位；≠ 实验字母 BT
 # 【消歧】params.N = 失败/废单率差门槛；≠ 实验字母 BT；≠ 单字母假设-N；亦≠实验字母 BN
@@ -79,7 +79,7 @@
 # params.short_px_handoff                写死 ab_page
 # params.csrc_fee_handoff                写死 t_page    # 证管费交 T；BT≠T；禁复用预检T
 # params.exit_period_handoff             写死 h_page
-# params.bt0_primary_demo                建议 invent_force_close_best_order_or_min_scope  # 主报：假最优序或假最小范围；禁与 invent_asof_leak_force_close_order_scope 双挂争主表；BT1半泄露不得升格并列主报
+# params.bt0_primary_demo                写死冻结 invent_force_close_best_order_or_min_scope  # 主报：假最优序或假最小范围；禁与 invent_asof_leak_force_close_order_scope 双挂争主表；BT1半泄露不得升格并列主报
 # params.bt0_invent_best_order_or_min_scope 写死 True
 # params.bt1_asof_leak_force_close_order_scope_only 写死 True
 # params.bt2_pit_force_close_order_scope 写死 True
@@ -146,21 +146,21 @@
 # params.missing_force_close_order_policy 写死 skip
 # params.day_freq_proxy                  写死 force_close_order_scope_sensitivity
 # params.diff_buckets                    写死默认桶名（§4.1）；拉数前冻结
-# params.Y / G / N / Y2                  建议 0.02/0.01/0.05/0.015  # params.Y≠实验字母BT；params.G≠实验字母BT；params.N≠实验字母BT；亦≠单字母实验A/B/T/Z；待预检写死；禁null/holdout/跑后改口
+# params.Y / G / N / Y2                  写死冻结 0.02/0.01/0.05/0.015  # params.Y≠实验字母BT；params.G≠实验字母BT；params.N≠实验字母BT；亦≠单字母实验A/B/T/Z；禁null/holdout/跑后改口
 # params.date_start / date_end           写死主窗并冻结
 # params.oos_split.*                     写死四日期并冻结；禁 holdout 反调
 # params.redline_v0_exempt_scope         写死 position_industry_dd_only
 ```
 
 ```
-params.bt0_primary_demo = "invent_force_close_best_order_or_min_scope"  # 单一主报建议；禁与 invent_asof_leak_force_close_order_scope 双挂
+params.bt0_primary_demo = "invent_force_close_best_order_or_min_scope"  # 单一主报·已冻结；禁与 invent_asof_leak_force_close_order_scope 双挂
 ```
 
 ### 2.2 三组对照（BT0 / BT1 / BT2）
 
 | 组 | 口径 | 说明 |
 |----|------|------|
-| BT0 天真 | `invent_force_close_best_order_or_min_scope`（单一主报建议） | 发明假最优平仓序或假最小平仓范围；禁与 invent_asof_leak_force_close_order_scope 双挂 |
+| BT0 天真 | `invent_force_close_best_order_or_min_scope`（单一主报·已冻结） | 发明假最优平仓序或假最小平仓范围；禁与 invent_asof_leak_force_close_order_scope 双挂 |
 | BT1 半泄露/混口径 | 全样本用 `asof_check_date` 当天最优序/最小范围规则铺满历史 | 仅序/范围 asof 泄露；不升格并列主报 |
 | BT2 PIT | `force_close_order_honest=pit_by_effective_date` | 每个交易日按当时已生效强制平仓顺序与范围 PIT |
 
@@ -288,18 +288,18 @@ params.diff_buckets = [
 
 | 项 | 值 |
 |----|-----|
-| 文档状态 | 草稿 · 待预检 |
+| 文档状态 | 草稿 · 预检有条件通过 · 两条已冻结待复检 |
 | 数据 | 待接入（字段见 §6；日频维持线触线+分腿名义+平仓序生效日即可起步） |
 | 回测 | 待跑（**不抢实验 A 真数队列**；不催 8765；不派回测；本页不开回测） |
 | 结论栏 | （空） |
-| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**force_close_order_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 建议 0.02/0.01/0.05/0.015（params.Y≠实验字母 BT；params.G≠实验字母 BT；params.N≠实验字母 BT；亦≠单字母实验 A/B/T/Z；待预检写死；禁 null/holdout/跑后改口）**；**bt0_primary_demo 建议 invent_force_close_best_order_or_min_scope（禁双挂 invent_asof_leak_force_close_order_scope；BT1半泄露不得升格并列主报）**；锚点保留 force_close_order_honest=pit_by_effective_date / force_close_order_scope=collateral_financed_short_priority_and_unwind_scope / force_close_order_over_policy=apply_or_fail_missing_order_rule / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
+| 风控预埋 | fail_policy=skip；**主窗 date_start/end=2019-01-01..2026-09-30 写死**；**oos_split 四日期写死+禁 holdout 反调**；红线 v0 机制豁免（**`redline_v0_exempt_scope=position_industry_dd_only`**）；asof_check_date=2026-10-16；**fill_time=next_open 写死**；**force_close_order_honest=pit_by_effective_date 写死**；diff_buckets 写死待冻结；**Y/G/N/Y2 写死冻结 0.02/0.01/0.05/0.015（params.Y≠实验字母 BT；params.G≠实验字母 BT；params.N≠实验字母 BT；亦≠单字母实验 A/B/T/Z；禁 null/holdout/跑后改口）**；**bt0_primary_demo 写死冻结 invent_force_close_best_order_or_min_scope（禁双挂 invent_asof_leak_force_close_order_scope；BT1半泄露不得升格并列主报）**；锚点保留 force_close_order_honest=pit_by_effective_date / force_close_order_scope=collateral_financed_short_priority_and_unwind_scope / force_close_order_over_policy=apply_or_fail_missing_order_rule / margin_channel_start=2010-03-31 / asof_check_date=2026-10-16 / fill_time=next_open / fail_policy=skip |
 
 ---
 
-## 待预检键清单
+## 待预检键清单（两条已冻结 · 见下节）
 
-1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（建议写死；**params.Y≠BT**；**params.G≠BT**；**params.N≠BT**；禁 null/holdout）  
-2. `params.bt0_primary_demo` = `invent_force_close_best_order_or_min_scope`（建议写死；禁与 `invent_asof_leak_force_close_order_scope` 双挂；BT1不升格主报）  
+1. `params.Y` / `params.G` / `params.N` / `params.Y2` = `0.02` / `0.01` / `0.05` / `0.015`（**已写死冻结**；**params.Y≠BT**；**params.G≠BT**；**params.N≠BT**；禁 null/holdout）  
+2. `params.bt0_primary_demo` = `invent_force_close_best_order_or_min_scope`（**已写死冻结**；禁与 `invent_asof_leak_force_close_order_scope` 双挂；BT1不升格主报）  
 3. 序/范围锚：`force_close_order_honest=pit_by_effective_date`；`force_close_order_scope=collateral_financed_short_priority_and_unwind_scope`；`force_close_order_over_policy=apply_or_fail_missing_order_rule`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`  
 4. 硬分列：≠B/T/A/Z/BA–BS/K/AB/H/W；**尤其 BT≠T（证管费；严禁复用预检T）**；**尤其 BT≠BC（闸门≠序/范围；不改BC）**；**尤其 BT≠BS（利率档≠强平序；不改BS）**；**尤其 BT≠BO/BR/BH/BQ/BP/BN/BM**；**带过 BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC/BB/BO/BP/BM/BN/Q、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BL≠BC、BK≠K**；避开预检T  
 5. `oos_split` 四日期；`diff_buckets`；全部 `merge_with_*=False`
@@ -334,6 +334,19 @@ params.diff_buckets = [
 
 **撞题检查：通过（纸面）** — 入库后对照正式清单 #77 再核一次 primary_demo 唯一性。
 
+## 风控预检补丁·冻结（两条已写死 · 2026-11-03）
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`；**`params.Y` ≠ 实验字母 BT**；**`params.G` ≠ 实验字母 BT**；**`params.N` ≠ 实验字母 BT**；**`params.Y` ≠ 单字母实验 A/B/T/Z**；禁 null / holdout 标定 / 跑后改口。  
+2. **`params.bt0_primary_demo`**：**写死冻结** **`invent_force_close_best_order_or_min_scope`**；禁与 **`invent_asof_leak_force_close_order_scope`** 双挂争主表（只挂一个 primary）；**BT1 半泄露不得升格并列主报**。
+
+**强平序锚保留（已通写死）**：`params.force_close_order_honest=pit_by_effective_date`；`params.force_close_order_scope=collateral_financed_short_priority_and_unwind_scope`；`params.force_close_order_over_policy=apply_or_fail_missing_order_rule`；`params.margin_channel_start=2010-03-31`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`（及正文已有 `missing_force_close_order_policy=skip` 等锚点；不改口）。
+
+**与 BA–BS/Z/AB/B/A/H/T/K/W 硬分列（保留）**：本页 = **强制平仓触发后的顺序与范围误开**；T = **证管费**（**尤其双字母 BT ≠ 单字母假设-T**；**严禁复用预检T**）；BC = **维持担保比例强制平仓闸门**（**尤其 BT≠BC**；闸门 on/off ≠ 触发后顺序/范围；**尤其不改假设-BC**）；BS = **融资利率档位优惠档**（**尤其 BT≠BS**；利率档 ≠ 强平序；**尤其不改假设-BS**）；BO = **融资利息与逾期罚息假零息**（**尤其 BT≠BO**）；BR = **融券借券费**（**尤其 BT≠BR**）；BH = **授信额度上限**（**尤其 BT≠BH**）；BQ = **标的调出后存量假续持**；BP = **融券权益补偿**；BN = **信用/普通账户串用**；BM = **追保后禁新开**；K = **融券空头名单**（并**带过 BK≠K**）；AB = **融券卖出价限**；Z = **开仓**保证金比例；W = **除权板价**；A = **板上枯竭**；B = 历史实验 B 旧位；H = **退市整理期**；强制平仓序/范围 ≠ 证管费 ≠ 维持线闸门 ≠ 融资利率档 ≠ 假零息 ≠ 融券借券费 ≠ 授信天花板 ≠ 调出后存量 ≠ 权益补偿 ≠ 账户串用 ≠ 追保禁开 ≠ 融券名单 ≠ 空头价限 ≠ 开仓比例 ≠ 除权板价 ≠ 板上枯竭 ≠ 退市整理；**双字母 BT ≠ 单字母 A ≠ 单字母 B ≠ 单字母 T ≠ 单字母 K ≠ 单字母 Z ≠ 双字母 BA ≠ … ≠ 双字母 BS ≠ 双字母 BC ≠ 双字母 BO ≠ 双字母 BR ≠ 双字母 BH ≠ 双字母 W ≠ 双字母 AB ≠ 双字母 H**；**params.Y ≠ 实验字母 BT**；**params.G ≠ 实验字母 BT**；**params.N ≠ 实验字母 BT**；禁止捆成「两融一张表=假最优强平」；**尤其不改假设-T**；**尤其不改假设-BC**；**尤其不改假设-BS**；**尤其不改假设-BO**；**尤其不改假设-BR**；**尤其不改假设-BH**；**尤其不改假设-K**；**尤其不改假设-H**；不改假设-B；不改假设-Z；不改假设-BA–BS；不改假设-A；不改假设-AB；不改假设-W。
+
+**专节保留 · 双字母 BT ≠ 单字母假设-T；且 ≠ 假设-BC / 假设-BS / 假设-BO / 假设-BR / 假设-BH / 假设-BQ / 假设-BP / 假设-BN / 假设-BM；带过 BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC…、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BK≠K（硬）**：正文「### 专节 · 双字母 BT ≠ 单字母假设-T；且 ≠ 假设-BC / 假设-BS / 假设-BO / 假设-BR / 假设-BH / 假设-BQ / 假设-BP / 假设-BN / 假设-BM；带过 BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC…、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BK≠K」保留不删；**禁止**覆盖/混读/改写 `假设-T` / `假设-BC` / `假设-BS` / `假设-BO` / `假设-BR` / `假设-BH` / `假设-K`。
+
 ## 变更
+
+- 2026-11-03：风控预检补丁·冻结两条写死——① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（**params.Y≠实验字母 BT**；**params.G≠实验字母 BT**；**params.N≠实验字母 BT**；亦≠单字母实验 A/B/T/Z；禁 null/holdout/跑后改口）；② `params.bt0_primary_demo=invent_force_close_best_order_or_min_scope`（禁与 `invent_asof_leak_force_close_order_scope` 双挂争主表；BT1半泄露不得升格并列主报）。强平序锚保留：`force_close_order_honest=pit_by_effective_date`；`force_close_order_scope=collateral_financed_short_priority_and_unwind_scope`；`force_close_order_over_policy=apply_or_fail_missing_order_rule`；`margin_channel_start=2010-03-31`；`asof_check_date=2026-10-16`；`fill_time=next_open`；`fail_policy=skip`。与 BA–BS/Z/AB/B/A/H/T/K/W 硬分列保留；**专节保留 BT≠T / BT≠BC / BT≠BS / BT≠BO / BT≠BR / BT≠BH / 带过 BS≠S/BO/BR/BH、BR≠R/BO/BP/BB/BQ、BQ≠BA/K/BF/BC/BB/BO/BP/BM/BN/Q、BP≠P/BO/W、BN≠BI/BJ/BL/BM、params.N≠BN、BK≠K**。参考总管派令 / 风控预检有条件通过（`预检-假设BT-20261103.md`；草稿 HEAD=dac5d89 ∈ tip 47c4ade）。未改 Y/Z/AA–BS 及其他已冻结补丁；**不改假设-BS**；**不改假设-BC**；**不改假设-BO**；**不改假设-BR**；**不改假设-BH**；不改假设-H；不改假设-A；不改假设-B；不改假设-T；不改假设-K；不改假设-W；不改假设-Z；不改假设-BA–BS；不改假设-AB；不改假设-AZ；不改假设-AY；不改假设-AX；不改假设-AW；结论栏仍空；不开回测；不抢 A；**未标纸面齐**。
 
 - 2026-11-03：新建纸面草稿（总管续派：BS 补丁已交复检在途 → 写假设-BT；自立 BT，勿占 BS/BR/BQ/BP/BO/BN/BM/BL/BK/BJ/BI/BH/BG/BF/BE/BD/BC/BB/BA/B/T/A/Z/K/W；**尤重 BT≠T**；避开预检T；不开回测；禁实盘/荐股；**params.Y/G/N≠实验字母 BT**；**双字母 BT ≠ 单字母 T**；**BT≠BC/BS/BO/BR/BH/BQ/BP/BN/BM**；选题：BC 维持线闸门旁的**强制平仓顺序与范围误开**；`bt0_primary_demo=invent_force_close_best_order_or_min_scope`；半泄露 `invent_asof_leak_force_close_order_scope` 禁双挂/升格；**不改假设-BS**；**不改假设-BC**；**不改假设-T**；不改 Y/Z/AA–BS）。结论栏空。
