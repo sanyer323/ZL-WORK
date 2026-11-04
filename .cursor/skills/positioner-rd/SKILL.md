@@ -231,3 +231,6 @@ description: 阀门定位器 / FY301 / HART 研发约定与坑。重要任务默
 ## 仿真视频成片（2026-11-01）
 - **Audience ≠ Age restriction**：工业讲解选 Not made for kids；不要再勾 18+ 年龄限制（未登录看不了，外嵌也会废）
 - 两档官方互不影响。Studio 用 Age-Restriction 筛选查有没有被平台标。细则在 `智库/视频制作/`
+## 仿真视频成片（2026-11-04）
+- **频道水印 ≠ 封面**：水印是频道级方标，叠在播放画面上；封面是单条 16:9 预览。工业讲解不要开 Entire video 水印（会盖住曲线/数字）
+- **观众投稿字幕 ≠ 自己上传 SRT**：Community Contributions 2020-09-28 已关。外发自己传 UTF-8 SRT；要别人帮忙只邀请 Subtitle Editor，不要开 Editor。细则在 `智库/视频制作/`
