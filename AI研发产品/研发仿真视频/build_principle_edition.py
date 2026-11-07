@@ -30,115 +30,147 @@ TAIL = 0.5
 STRIP_W = 420  # 右侧照片栏宽度
 MANIFEST = json.loads((PARTS / "manifest.json").read_text(encoding="utf-8"))
 BY_LABEL = {m["label"]: m for m in MANIFEST}
+FYCAL_MANIFEST_PATH = FYCAL_FIGS / "manifest.json"
 
-SEGMENTS = [
-    {
-        "id": "01",
-        "sim": "01_压电陶瓷原理.mp4",
-        "title": "压电陶瓷挡板：电 → 微小位移",
-        "parts": [],
-        "fycal_imgs": [
-            ("fig16_cleaning_piezo.png", "Fig.16 清洁中的压电陶瓷片"),
-            ("fig18_exploded_piezo.png", "Fig.18 压电底座爆炸图"),
-            ("fig14_piezo_base_labeled.png", "Fig.14 压电底座在 FYCAL 上"),
-        ],
-        # 旁白节拍：陶瓷片 → 爆炸叠装 → FYCAL 底座（相对时间 0~1）
-        "photo_beats": [0.0, 0.30, 0.58],
-        "part_note": "fycalme 实物图 + FY301ME §2.1：Piezo Vane = 喷嘴挡板",
-        "narration": (
-            "按 FY301 手册：先导级的挡板，就是这块压电陶瓷圆片。"
-            "控制电路加上电压，圆片弯曲，挡住喷嘴前方那一股小气流。"
-            "中间爆炸图是盔帽、垫圈、弹簧的叠装；旋转盔帽改变高度 h，用来标定工作点。"
-            "右图把底座接到 FYCAL，可离线加零到一百伏，单独看陶瓷动作。"
-            "电气上它像电容，稳态几乎不耗环路电流；工作电压希望靠近五十伏，正常约三十到七十伏。"
-            "这一步只做一件事：把电，变成挡板的微小机械位移。"
-        ),
-        "takeaway": "本段要点：压电片=喷嘴挡板（Piezo Vane）；调 h 定工作点；驱动约 0–100 V。",
-    },
-    {
-        "id": "02",
-        "sim": "02_喷嘴挡板先导级.mp4",
-        "title": "节流孔 + 喷嘴：先导室压力",
-        "parts": [],
-        "fycal_imgs": [
-            ("fig12_cal_on_block.png", "Fig.12 压电底座接 FYCAL 供电与气路"),
-            ("fig16_cleaning_piezo.png", "Fig.16 压电片、底座腔、O圈、垫圈"),
-        ],
-        "photo_beats": [0.0, 0.48],
-        "part_note": "FY301ME：restriction+nozzle 分压；FYCAL @20 psi → ≤2 / 5.8–6.2 / 12–13 psi",
-        "narration": (
-            "气先经过节流孔，再到喷嘴。节流孔和喷嘴组成分压回路，先导室压力就在这里形成。"
-            "挡板靠近喷嘴，先导压升高；挡板离开，先导压降低。电压升高，通常对应先导压升高。"
-            "手册用 FYCAL 单独标定底座：供气二十磅。"
-            "先零伏、一百伏、再回零伏，减小迟滞；再固定五十伏，把先导压调到五点八到六点二磅。"
-            "核对：零伏不高于两磅；一百伏约十二到十三磅。"
-            "先导压很准，但流量很小，所以必须交给下一级伺服放大。"
-        ),
-        "takeaway": "本段要点：节流孔+喷嘴+挡板 → 先导压；FYCAL 判据按 FY301ME。",
-    },
-    {
-        "id": "03",
-        "sim": "03_膜片放大与滑阀.mp4",
-        "title": "伺服级：膜片力平衡 → 滑阀",
-        "parts": ["膜片", "滑阀"],
-        "fycal_imgs": [],
-        "part_note": "FY301ME §2.1：大膜片先导室 / 小膜片滑阀室力平衡；滑阀提供更大气流",
-        "narration": (
-            "先导室有一块较大的膜片，滑阀室有一块较小的膜片。"
-            "稳态时：先导气压推大膜片的力，等于滑阀侧推小膜片的力，两力平衡。"
-            "先导压一变，平衡被打破，滑阀在套筒里上下移动，直到到达新的平衡位置。"
-            "滑阀一动，就打开大通道：把供气送到 OUT1 或 OUT2，或从排气口放掉。"
-            "直观表现是：驱动电压升高，往往一侧气室出气；电压降低，另一侧气室出气。"
-            "滑阀的作用，是把节流孔那点小流量，放大成能推动执行器的大气流。"
-            "失电安全逻辑通常是：OUT1 到零，OUT2 到供气压力，执行器回预定安全位。"
-        ),
-        "takeaway": "本段要点：先导压变化 → 膜片力再平衡 → 滑阀移位 → OUT1/OUT2。",
-    },
-    {
-        "id": "04",
-        "sim": "04_霍尔反馈与闭环.mp4",
-        "title": "霍尔反馈：实际阀位回控制回路",
-        "parts": ["霍尔传感器", "传感器外壳"],
-        "fycal_imgs": [],
-        "part_note": "FY301ME §2.2：Control 同时吃 CPU 设定与 Hall 反馈",
-        "narration": (
-            "阀门一动，磁铁跟着动。霍尔传感器装在外壳里，不接触磁铁，只读磁场，得到实际开度。"
-            "安装间隙大约二到四毫米，读数才稳。"
-            "控制电路一边接收来自 CPU 的设定开度，一边接收霍尔反馈的实际开度。"
-            "两者一比较，就去增减压电电压，阀门继续被修正，直到落到目标位置。"
-            "这就是位置闭环：不是开环给一个电压就算完。"
-        ),
-        "takeaway": "本段要点：Hall 反馈实际开度；与设定比较后回改压电电压。",
-    },
-    {
-        "id": "05",
-        "sim": "05_全系统闭环信号流.mp4",
-        "title": "全链路：电 → 气 → 机 → 再回电",
-        "parts": ["线路板", "气动组件外壳", "霍尔传感器"],
-        "fycal_imgs": [],
-        "part_note": "FY301ME 图2.2：A/D→CPU→Control/压电隔离；环路约 3.8 mA 供电定位器电路",
-        "narration": (
-            "整机按手册方框图这样走："
-            "四到二十毫安经模数转换进 CPU，CPU 给出目标开度；"
-            "控制电路结合霍尔反馈，经隔离后驱动压电挡板。"
-            "定位器电路从环路取电，正常工作约三点八毫安量级，所以稳态压电几乎不额外耗电。"
-            "气路上：节流孔喷嘴形成先导压，膜片滑阀放大到 OUT1 OUT2，推动执行器。"
-            "阀位再经霍尔回到控制电路。整条链是：电，到陶瓷位移，到先导压，到大气流，到阀位，再回电。"
-            "这就是 FY301 的工作原理。"
-        ),
-        "takeaway": "本段要点：4–20 mA→CPU→压电→先导→滑阀→阀位Hall→再校正。",
-    },
-]
+
+def fycal_path(fname: str) -> Path:
+    """Resolve FYCAL handbook images by relative filename only (no absolute host paths)."""
+    name = Path(fname).name
+    return FYCAL_FIGS / name
+
+
+def load_fycal_manifest() -> dict[str, dict]:
+    if not FYCAL_MANIFEST_PATH.exists():
+        return {}
+    rows = json.loads(FYCAL_MANIFEST_PATH.read_text(encoding="utf-8"))
+    out = {}
+    for row in rows:
+        rel = Path(str(row.get("file", ""))).name
+        if not rel:
+            continue
+        out[rel] = {**row, "file": rel}
+    return out
+
+
+def preflight_assets() -> None:
+    """Fail early if segment images or FYCAL manifest entries are missing/inconsistent."""
+    fycal_man = load_fycal_manifest()
+    missing_files: list[str] = []
+    missing_manifest: list[str] = []
+    abs_in_manifest: list[str] = []
+    weak_side: list[str] = []
+
+    if FYCAL_MANIFEST_PATH.exists():
+        raw = json.loads(FYCAL_MANIFEST_PATH.read_text(encoding="utf-8"))
+        for row in raw:
+            f = str(row.get("file", ""))
+            if Path(f).is_absolute() or ":\\" in f or f.startswith("\\\\"):
+                abs_in_manifest.append(f)
+
+    for seg in SEGMENTS:
+        for lab in seg.get("parts") or []:
+            try:
+                p = part(lab)
+            except KeyError:
+                missing_files.append(f"unknown part label: {lab}")
+                continue
+            if not p.exists():
+                missing_files.append(str(p))
+            else:
+                print("part ok:", lab, "->", p.name, flush=True)
+        for fname, _ in seg.get("fycal_imgs") or []:
+            p = fycal_path(fname)
+            if not p.exists():
+                missing_files.append(str(p))
+            else:
+                print("fycal ok:", p.name, flush=True)
+            if p.name not in fycal_man:
+                missing_manifest.append(p.name)
+        side = side_images(seg)
+        if len(side) < 2:
+            weak_side.append(seg["id"])
+        else:
+            print(
+                f"side panel ok: {seg['id']} x{len(side)} "
+                f"hud={len(seg.get('hud') or [])}",
+                flush=True,
+            )
+        if not (seg.get("hud") or []):
+            print(f"warn: segment {seg['id']} has empty hud badges", flush=True)
+
+    if abs_in_manifest:
+        raise SystemExit(
+            "FYCAL manifest still contains absolute paths; "
+            "rebuild with relative filenames only:\n  "
+            + "\n  ".join(abs_in_manifest[:5])
+        )
+    if missing_files:
+        raise SystemExit("Missing asset files:\n  " + "\n  ".join(missing_files))
+    if missing_manifest:
+        raise SystemExit(
+            "FYCAL images used by SEGMENTS but missing from manifest.json:\n  "
+            + "\n  ".join(missing_manifest)
+        )
+    if weak_side:
+        raise SystemExit(
+            "Segments need >=2 side-panel images (FYCAL or parts):\n  "
+            + ", ".join(weak_side)
+        )
+
+STORYBOARD_PATH = ROOT / "storyboard.json"
+
+
+def normalize_segment(seg: dict) -> dict:
+    """JSON storyboard → runtime segment (fycal_imgs as list[tuple])."""
+    out = dict(seg)
+    imgs = []
+    for item in out.get("fycal_imgs") or []:
+        if isinstance(item, dict):
+            imgs.append((item["file"], item.get("caption") or item["file"]))
+        elif isinstance(item, (list, tuple)) and len(item) >= 2:
+            imgs.append((str(item[0]), str(item[1])))
+        else:
+            raise ValueError(f"bad fycal_imgs item in segment {out.get('id')}: {item!r}")
+    out["fycal_imgs"] = imgs
+    out["parts"] = list(out.get("parts") or [])
+    out["hud"] = list(out.get("hud") or [])
+    out["photo_beats"] = list(out.get("photo_beats") or [])
+    return out
+
+
+def load_segments(path: Path | None = None) -> list[dict]:
+    p = path or STORYBOARD_PATH
+    if not p.exists():
+        raise FileNotFoundError(f"storyboard missing: {p}")
+    data = json.loads(p.read_text(encoding="utf-8"))
+    segs = data["segments"] if isinstance(data, dict) else data
+    if not isinstance(segs, list) or not segs:
+        raise ValueError(f"storyboard has no segments: {p}")
+    return [normalize_segment(s) for s in segs]
+
+
+SEGMENTS = load_segments()
 
 
 def font(size: int):
-    for p in (r"C:\Windows\Fonts\msyh.ttc", r"C:\Windows\Fonts\simhei.ttf"):
-        if Path(p).exists():
-            return ImageFont.truetype(p, size)
+    candidates = [
+        Path(r"C:\Windows\Fonts\msyh.ttc"),
+        Path(r"C:\Windows\Fonts\simhei.ttf"),
+        Path("/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc"),
+        Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"),
+        Path("/usr/share/fonts/truetype/wqy/wqy-microhei.ttc"),
+        Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"),
+    ]
+    for p in candidates:
+        if p.exists():
+            try:
+                return ImageFont.truetype(str(p), size)
+            except OSError:
+                continue
     return ImageFont.load_default()
 
 
-def part(label: str) -> Path:
+def part_meta(label: str) -> dict:
     m = BY_LABEL.get(label)
     if not m:
         for k, v in BY_LABEL.items():
@@ -147,7 +179,26 @@ def part(label: str) -> Path:
                 break
     if not m:
         raise KeyError(label)
-    return PARTS / m["file"]
+    return m
+
+
+def part(label: str) -> Path:
+    return PARTS / part_meta(label)["file"]
+
+
+def side_images(seg: dict) -> list[tuple[Path, str]]:
+    """Right-rail images: prefer FYCAL handbook photos, else Excel part photos."""
+    items: list[tuple[Path, str]] = []
+    for fname, cap in seg.get("fycal_imgs") or []:
+        items.append((fycal_path(fname), cap))
+    if items:
+        return items
+    for lab in seg.get("parts") or []:
+        meta = part_meta(lab)
+        no = meta.get("part_no")
+        prefix = f"#{no} " if no not in (None, "") else ""
+        items.append((part(lab), f"{prefix}{lab}"))
+    return items
 
 
 def run(cmd: list[str]) -> None:
@@ -165,11 +216,20 @@ def probe_duration(path: Path) -> float:
     return int(m.group(1)) * 3600 + int(m.group(2)) * 60 + float(m.group(3))
 
 
-def find_sim(name: str) -> Path:
-    p = OUT / name
-    if p.exists():
-        return p
-    cands = list(OUT.glob(name[:2] + "*.mp4"))
+def find_sim(name: str, prefer_blender: bool = True) -> Path:
+    """Resolve simulation clip; prefer optional Blender enhancement when present."""
+    blender_p = OUT / "blender" / name
+    plain_p = OUT / name
+    if prefer_blender and blender_p.exists() and blender_p.stat().st_size > 1000:
+        print(f"sim prefer blender: {blender_p.name}", flush=True)
+        return blender_p
+    if plain_p.exists() and plain_p.stat().st_size > 1000:
+        return plain_p
+    cands = [p for p in OUT.glob(name[:2] + "*.mp4") if p.is_file()]
+    blend_cands = [p for p in (OUT / "blender").glob(name[:2] + "*.mp4") if p.is_file()] if (OUT / "blender").exists() else []
+    if prefer_blender and blend_cands:
+        print(f"sim prefer blender: {blend_cands[0].name}", flush=True)
+        return blend_cands[0]
     if not cands:
         raise FileNotFoundError(name)
     return cands[0]
@@ -184,7 +244,7 @@ def make_callout_png(seg: dict, path: Path) -> None:
     # Prefer FYCAL handbook photos when provided
     items = []
     for fname, cap in seg.get("fycal_imgs") or []:
-        p = FYCAL_FIGS / fname
+        p = fycal_path(fname)
         if not p.exists():
             raise FileNotFoundError(p)
         items.append((p, cap))
@@ -280,24 +340,24 @@ def active_photo_index(t: float, n: int, beats: list[float] | None) -> tuple[int
 
 
 def make_animated_photo_panel(
-    fycal_imgs: list,
+    images: list[tuple[Path, str]],
     duration: float,
     out_mp4: Path,
     beats: list[float] | None = None,
+    panel_title: str = "实物图（全程）",
 ) -> None:
-    """右侧照片栏视频：三张全程可见，按旁白节拍高亮并 Ken Burns。"""
+    """右侧照片栏视频：多张全程可见，按旁白节拍高亮并 Ken Burns。"""
     n_frames = max(2, int(duration * FPS))
     imgs = []
     caps = []
-    for fname, cap in fycal_imgs:
-        im = Image.open(FYCAL_FIGS / fname).convert("RGB")
-        imgs.append(im)
+    for path, cap in images:
+        imgs.append(Image.open(path).convert("RGB"))
         caps.append(cap)
     n = len(imgs)
     panel_h = H
     panel_w = STRIP_W
     gap = 8
-    cell_h = (panel_h - 50 - gap * (n + 1)) // n
+    cell_h = (panel_h - 50 - gap * (n + 1)) // max(n, 1)
 
     cmd = [
         FF, "-y",
@@ -316,7 +376,7 @@ def make_animated_photo_panel(
 
         canvas = Image.new("RGB", (panel_w, panel_h), (15, 23, 42))
         draw = ImageDraw.Draw(canvas)
-        draw.text((10, 10), "FYCAL 实物图（全程）", font=font(14), fill=(148, 163, 184))
+        draw.text((10, 10), panel_title, font=font(14), fill=(148, 163, 184))
 
         for i, im in enumerate(imgs):
             y0 = 40 + gap + i * (cell_h + gap)
@@ -355,17 +415,60 @@ def make_animated_photo_panel(
         raise RuntimeError(err[-1500:])
 
 
+def make_hud_overlay_png(badges: list[str], path: Path) -> None:
+    """Top-left key-number chips burned onto principle shots."""
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(img)
+    x, y = 18, 18
+    for text in badges:
+        f = font(18)
+        bbox = draw.textbbox((0, 0), text, font=f)
+        tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+        pad_x, pad_y = 12, 7
+        box = [x, y, x + tw + pad_x * 2, y + th + pad_y * 2]
+        try:
+            draw.rounded_rectangle(box, radius=8, fill=(15, 23, 42, 210), outline=(79, 195, 247, 255), width=2)
+        except AttributeError:
+            draw.rectangle(box, fill=(15, 23, 42, 210), outline=(79, 195, 247, 255), width=2)
+        draw.text((x + pad_x, y + pad_y - 1), text, font=f, fill=(232, 238, 247, 255))
+        y = box[3] + 8
+    img.save(path)
+
+
+def burn_hud(src_mp4: Path, dst_mp4: Path, badges: list[str], duration: float) -> None:
+    if not badges:
+        if src_mp4.resolve() != dst_mp4.resolve():
+            run([FF, "-y", "-i", str(src_mp4), "-c", "copy", str(dst_mp4)])
+        return
+    overlay = BUILD / (dst_mp4.stem + "_hud.png")
+    make_hud_overlay_png(badges, overlay)
+    run(
+        [
+            FF, "-y",
+            "-i", str(src_mp4),
+            "-i", str(overlay),
+            "-filter_complex", "overlay=0:0",
+            "-t", f"{duration:.3f}",
+            "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "fast",
+            str(dst_mp4),
+        ]
+    )
+
+
 def compose_sim_with_photos(
     sim_mp4: Path,
-    fycal_imgs: list,
+    images: list[tuple[Path, str]],
     duration: float,
     out_mp4: Path,
     beats: list[float] | None = None,
+    panel_title: str = "实物图（全程）",
+    badges: list[str] | None = None,
 ) -> None:
-    """左侧原理动画 + 右侧全程可见、会动的 FYCAL 照片栏。"""
+    """左侧原理动画 + 右侧全程可见、会动的实物照片栏 + 关键数角标。"""
     panel = BUILD / (out_mp4.stem + "_panel.mp4")
+    stacked = BUILD / (out_mp4.stem + "_stacked.mp4")
     print(f"  photo panel {duration:.1f}s ...", flush=True)
-    make_animated_photo_panel(fycal_imgs, duration, panel, beats=beats)
+    make_animated_photo_panel(images, duration, panel, beats=beats, panel_title=panel_title)
     main_w = W - STRIP_W
     run(
         [
@@ -380,9 +483,10 @@ def compose_sim_with_photos(
             "-map", "[v]",
             "-t", f"{duration:.3f}",
             "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "fast",
-            str(out_mp4),
+            str(stacked),
         ]
     )
+    burn_hud(stacked, out_mp4, badges or [], duration)
 
 
 def sapi_wav(text: str, wav: Path, rate: int = -2) -> float:
@@ -448,13 +552,7 @@ def split_cues(text: str, t0: float, t1: float):
 
 
 def main():
-    for seg in SEGMENTS:
-        for lab in seg.get("parts") or []:
-            print("part ok:", lab, "->", part(lab).name, flush=True)
-        for fname, _ in seg.get("fycal_imgs") or []:
-            p = FYCAL_FIGS / fname
-            assert p.exists(), p
-            print("fycal ok:", fname, flush=True)
+    preflight_assets()
 
     video_parts, audio_parts, timeline, narr_blocks = [], [], [], []
     t_cursor = 0.0
@@ -479,15 +577,19 @@ def main():
         take_mp4 = BUILD / f"take_{i}.mp4"
 
         stretch_sim(find_sim(seg["sim"]), sim_raw, narr_use)
-        has_fycal = bool(seg.get("fycal_imgs"))
-        if has_fycal:
-            # 讲解全程：左原理 + 右三张会动的实物图（不再切走）
+        side = side_images(seg)
+        badges = list(seg.get("hud") or [])
+        has_side = len(side) >= 2
+        if has_side:
+            # 讲解全程：左原理 + 右实物栏（FYCAL 或 Excel 零件）+ 关键数角标
             compose_sim_with_photos(
                 sim_raw,
-                seg["fycal_imgs"],
+                side,
                 narr_use,
                 sim_mp4,
                 beats=seg.get("photo_beats"),
+                panel_title=seg.get("panel_title") or "实物图（全程）",
+                badges=badges,
             )
             # 开场用同一套图短指认（可选，缩短以免重复感）
             make_callout_png(seg, call_png)
@@ -496,8 +598,9 @@ def main():
         else:
             make_callout_png(seg, call_png)
             png_to_video(call_png, call_mp4, CALL_DUR)
-            # copy stretched sim to full width
-            run([FF, "-y", "-i", str(sim_raw), "-c", "copy", str(sim_mp4)])
+            full = BUILD / f"simfull_{i}.mp4"
+            run([FF, "-y", "-i", str(sim_raw), "-c", "copy", str(full)])
+            burn_hud(full, sim_mp4, badges, narr_use)
             call_dur_i = CALL_DUR
 
         png_to_video(take_png, take_mp4, take_use)
@@ -521,7 +624,11 @@ def main():
             f"[{srt_ts(t_call1)} - {srt_ts(t_sim1)}] {seg['title']}\n{seg['narration']}\n{seg['takeaway']}\n"
         )
         t_cursor = t_end
-        print(f"  narr={narr_dur:.1f}s take={take_dur:.1f}s fycal_pip={has_fycal}", flush=True)
+        print(
+            f"  narr={narr_dur:.1f}s take={take_dur:.1f}s "
+            f"side_panel={has_side} hud={len(badges)}",
+            flush=True,
+        )
 
     narr_path = ROOT / "旁白文案_原理讲解版.txt"
     narr_path.write_text("\n".join(narr_blocks), encoding="utf-8")
