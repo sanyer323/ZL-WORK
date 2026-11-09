@@ -2,7 +2,7 @@
 
 更新：2026-11-09  
 来源：总管线 / 默认分支 HEAD `48ffa7ee` 上清单 #116=DG 已收口（A/D–DG纸面齐已合入该 tip；**不改假设-DG 正文**，亦不改已齐 A–DG / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-T / 假设-S / 假设-AX / 假设-AC / 假设-R / 假设-H 及其他已存在假设页；**不重开假设-T**）后写下一草稿 DH；清单 #116=DG，本页占用 **#117=DH**；选题是佣金侧「已含代收费仍再外加经手费」的双计机制；假设-S 只收经手费切日，假设-T 只收证管费，假设-AX 只收基金档，假设-DG 只收北交所档；**新建实验 DH**；**方向2/3本轮不另立**  
-状态：**预检有条件通过·三条已冻·待复检**（结论栏空；禁止把「佣金已含代收费/经手费时仍再外加经手费，或缺『佣金是否已含代收费』标志时仍硬加」当诚实成本；**禁止冻死具体佣金‰**（因券商而异；只冻「不得双计」机制）；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**未标纸面齐**；**禁止标纸面齐**；**不改已齐 A–DG / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF**；尤其不改假设-S / 假设-T / 假设-AX / 假设-DG / 假设-DF / 假设-DE / 假设-DD / 假设-DC / 假设-DB / 假设-DA / 假设-AC / 假设-D / 假设-H；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**）
+状态：**A/D–DH纸面齐（预检有条件通过·三条已冻）**（结论栏空；禁止把「佣金已含代收费/经手费时仍再外加经手费，或缺『佣金是否已含代收费』标志时仍硬加」当诚实成本；**禁止冻死具体佣金‰**（因券商而异；只冻「不得双计」机制）；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改已齐 A–DG / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF**；尤其不改假设-S / 假设-T / 假设-AX / 假设-DG / 假设-DF / 假设-DE / 假设-DD / 假设-DC / 假设-DB / 假设-DA / 假设-AC / 假设-D / 假设-H；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前本序号挂实验 DH（#117）。一句话误开：回测在佣金已含代收费/经手费时仍再外加经手费（gross+handling 双计），或在缺「佣金是否已含代收费」标志时仍硬加，系统性改写成本（相对诚实锚偏误）；未含才可分列加。
 
@@ -224,7 +224,7 @@
 
 ## 8. 结论
 
-（空；预检有条件通过·三条已冻·待复检；复检通过前不得标纸面齐；**禁止标纸面齐**；**未标纸面齐**；**禁止冻死具体佣金‰**。）
+（空；**A/D–DH纸面齐（预检有条件通过·三条已冻）**；**禁止冻死具体佣金‰**。）
 
 ---
 
@@ -240,11 +240,12 @@
 
 **硬分列保住**：DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠S≠AX≠AC≠T≠U≠V≠Q≠R≠A≠D≠H；**双字母 DH ≠ 单字母假设-D / 假设-H / 假设-T**；**params.Y / params.G / params.N ≠ 实验字母 DH ≠ 单字母 D/H**；**尤重 params.G 的 0.01 ≠ 任何佣金‰ ≠ 任何经手费‰**；不抢 A；不改已齐 A–DG / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF 正文；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**禁升格 S切日 / T证管费进 dh0**；**禁冻死具体佣金‰**。
 
-**状态**：预检有条件通过·三条已冻·待复检；**禁止标任何纸面齐**；**未标纸面齐**；**禁止标纸面齐**；本页不开回测/真数/实盘。
+**状态**：**A/D–DH纸面齐（预检有条件通过·三条已冻）**；本页不开回测/真数/实盘。
 
 ## 变更
 
 | 日期 | 变更 |
 |------|------|
+| 2026-11-09 | 复检/纸面齐——**A/D–DH纸面齐（预检有条件通过·三条已冻）**。复检稿 `experiments/backtest/A_limit_up_fill/risk_notes/复检-假设DH-20261109.md` 原样落入，SHA256=`c025662956d24d996589b517597c07b3a912e4f3eea0eb1bf3d32e68a4f8ff23`；三冻 tip=`494b623` / `494b623328f61b0fd8e4fa68154c01419bb2ace5`。只改状态标签；未改写已冻三条/六键数值与机制；不改已齐 A–DG / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG；不改 #110–#116；不重开假设-T；不重开假设-AC；不重开假设-R；禁冻死具体佣金‰；不开回测/真数/实盘。 |
 | 2026-11-09 | 风控预检补丁·冻结三条写死——依据 `预检-假设DH-20261109.md`（SHA256=`e0ade7b4b07d2685d9da1d97585f7e597a780c2c17ba1493ed5b9fe3afa09863`；结论=有条件通过；tip基=`14c977ad` / `14c977ad8a0729b5109ac712c9c5c34c27fc603b`；分支起点 HEAD=`e912622c` / `e912622c119ed4c10663a182cd40f3e9265a9ed7`）条件 1–3。① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（相对门槛覆盖成本差 / ΔCommissionHandling / 净收益差 / DH1−DH2；**params.Y/G/N ≠ 实验字母 DH ≠ 单字母 D/H**；**勿把 params.G 读成实验字母 DH，亦勿把单字母假设-D / 假设-H 读成双字母 DH**；**尤重 params.G 的 0.01 ≠ 任何佣金‰ ≠ 任何经手费‰（量纲与语义不同）**；禁 null；禁 holdout/OOS 标定；**禁止把这四个数读成佣金‰**；**禁冻死具体佣金‰**）；② `params.dh0_primary_demo=invent_double_count_handling_on_gross_commission`（写死冻结单一主报，单挂；禁与 `invent_asof_leak_commission_handling_double` 双挂；DH1 不升格；诊断桶 `gross_plus_handling` / `net_commission_switch_inverted` / `vs_S_handling_tier` / `vs_T_csrc_in_commission` / `freeze_commission_bps_forbidden` / `missing_commission_inclusion_flag_not_skip` 不升格；**禁升格 S切日 / T证管费进 dh0**，只作对照/旁路，不得升格进 dh0 或另挂主报）；③ 锚六键写死 `commission_handling_honest=pit_no_double_count_gross_plus_handling` / `commission_handling_scope=gross_includes_exchange_fee_no_readd` / `commission_handling_over_policy=skip_if_commission_inclusion_flag_missing` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`（只冻「不得双计」机制：缺「佣金是否已含代收费」标志 → skip；已含则不得再加经手费；未含才可分列加；**禁止冻死具体佣金‰**）。状态=预检有条件通过·三条已冻·待复检；**未标纸面齐**；**禁止标纸面齐**；不改已齐 A–DG / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF；不重开假设-T；不重开假设-AC；不重开假设-R；不开回测/真数/实盘。基于 tip=`14c977ad`。 |
 | 2026-11-09 | 新建纸面草稿（**本草稿首次入库**；佣金已含代收费再外加经手费双计；`dh0_primary_demo` 建议 `invent_double_count_handling_on_gross_commission`，单一主报，禁与 `invent_asof_leak_commission_handling_double` 双挂，DH1 不升格；诊断桶 `gross_plus_handling` / `net_commission_switch_inverted` / `vs_S_handling_tier` / `vs_T_csrc_in_commission` / `freeze_commission_bps_forbidden` 不升格；Y/G/N/Y2 占位 `0.02/0.01/0.05/0.015`，**params.Y/G/N ≠ 实验字母 DH ≠ 单字母 D/H**，且 **params.G 的 0.01 ≠ 任何佣金‰ / 经手费‰**；锚建议 `commission_handling_honest=pit_no_double_count_gross_plus_handling` / scope=`gross_includes_exchange_fee_no_readd` / over_policy=`skip_if_commission_inclusion_flag_missing`；asof 建议 `2026-10-16`；fill_time 建议 `next_open`；fail 建议 `skip`；口径：缺标志则 skip，已含则不得再加经手费，未含才可分列加；**禁止冻死具体佣金‰**；handoff：`ashare_fee_handoff=s_page`，`csrc_fee_handoff=t_page`，`fund_fee_handoff=ax_page`，`bse_fee_handoff=dg_page`；`merge_with_S/T/AX/DG/DF/DE/DD/DC/DB/DA/AC/U/V/Q/R/A/D=False`；**DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠S≠AX≠AC≠T≠U≠V≠Q≠R≠A≠D**；**双字母 DH ≠ 单字母假设-D / 假设-H**；双计机制 ≠ S 切日 ≠ DG 北交所档 ≠ T 证管费 ≠ AX 基金档，不改 S/T/AX/DG；可交换/证管/过户/印花/经手/场内基金过户 ≠ 本机制，不改 DF/DE/DD/DC/DB/DA；**方向2/3本轮不另立**；状态=草稿·待入库预检；**三条尚未冻**；**未标纸面齐**；**禁止标纸面齐**；不改已齐 A–DG / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF 及其他已存在假设页；不重开假设-T；不写下一字母；不开真数/回测/实盘）。基 tip=`48ffa7ee`（A/D–DG纸面齐已合，全长 `48ffa7ee45f82fb36b597f2ea898e6bbea790c71`；不改该 tip 上的 #110–#116，亦不改「可复现实验条目（2026-11-09 · DC / DF）」原文） |
