@@ -2,7 +2,7 @@
 
 更新：2026-11-09  
 来源：总管线 / 默认分支 HEAD `ec654b33` 上清单 #117=DH 已收口（A/D–DH纸面齐已合入该 tip；**不改假设-DH 正文**，亦不改已齐 A–DH / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-T / 假设-S / 假设-AX / 假设-O / 假设-AC / 假设-R / 假设-I 及其他已存在假设页；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**）后写下一草稿 DI；清单 #117=DH，本页占用 **#118=DI**；选题是股票大宗经手费相对竞价标准的下浮被忽略、按竞价全额抽；假设-S 只收竞价经手费切日（其「降幅 30%」≠ 本页「大宗折扣 30%」），假设-AX 只收基金档（基金大宗下浮 50%），假设-O 只收大宗通道，假设-DH 只收佣金双计，假设-DG 只收北交所档；**新建实验 DI**；不写下一字母；不预留下一号  
-状态：**预检有条件通过·三条已冻·待复检**（结论栏空；禁止把「股票大宗经手费按竞价全额抽、从而忽略大宗相对竞价标准下浮 30%」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**未标纸面齐**；**禁止标纸面齐**；**不改已齐 A–DH / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG**；尤其不改假设-S / 假设-AX / 假设-O / 假设-DH / 假设-DG / 假设-DF / 假设-DE / 假设-DD / 假设-DC / 假设-DB / 假设-DA / 假设-T / 假设-AC / 假设-R / 假设-D / 假设-I；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**）
+状态：**A/D–DI纸面齐（预检有条件通过·三条已冻）**（结论栏空；禁止把「股票大宗经手费按竞价全额抽、从而忽略大宗相对竞价标准下浮 30%」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改已齐 A–DH / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG**；尤其不改假设-S / 假设-AX / 假设-O / 假设-DH / 假设-DG / 假设-DF / 假设-DE / 假设-DD / 假设-DC / 假设-DB / 假设-DA / 假设-T / 假设-AC / 假设-R / 假设-D / 假设-I；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前本序号挂实验 DI（#118）。一句话误开：回测把股票大宗经手费按竞价全额抽（忽略大宗相对竞价标准下浮 30%），或缺成交类型 / 官方‰仍不 skip，系统性改写大宗腿成本（相对诚实锚偏误）。
 
@@ -235,7 +235,7 @@
 
 ## 8. 结论
 
-（空；预检有条件通过·三条已冻·待复检；复检通过前不得标纸面齐；**禁止标纸面齐**；**未标纸面齐**。）
+（空；**A/D–DI纸面齐（预检有条件通过·三条已冻）**。）
 
 ## 风控预检补丁·冻结（三条已写死 · 2026-11-09）
 
@@ -249,11 +249,12 @@
 
 **硬分列保住**：DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠S≠AX≠O≠AC≠T≠U≠V≠Q≠R≠A≠D≠I；**双字母 DI ≠ 单字母假设-D / 假设-I / 假设-T**；**params.Y / params.G / params.N ≠ 实验字母 DI ≠ 单字母 D/I**；**尤重 params.G 的 0.01 ≠ 大宗 0.002387% ≠ 竞价 0.0341‰**；**股票大宗折扣 ≠ S切日 ≠ AX基金大宗50% ≠ O通道 ≠ DH双计**；不抢 A；不改已齐 A–DH / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG 正文；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**禁把 S「降幅 30%」与大宗折扣 30% 合成/混读升格进 di0**。
 
-**状态**：预检有条件通过·三条已冻·待复检；**禁止标任何纸面齐**；**未标纸面齐**；**禁止标纸面齐**；本页不开回测/真数/实盘。
+**状态**：**A/D–DI纸面齐（预检有条件通过·三条已冻）**；本页不开回测/真数/实盘。
 
 ## 变更
 
 | 日期 | 变更 |
 |------|------|
+| 2026-11-09 | 复检/纸面齐——**A/D–DI纸面齐（预检有条件通过·三条已冻）**。复检稿 `experiments/backtest/A_limit_up_fill/risk_notes/复检-假设DI-20261109.md` 原样落入，SHA256=`34786f34641dce4e5f42a454f683872ef56db15200a51cb02b6e4ad8e23f2097`；三冻 tip=`bfff8e4` / `bfff8e4c768fe0c4f4618868f33a904064b29c94`。只改状态标签；未改写已冻三条/六键数值与机制；不改已齐 A–DH / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH；不改 #110–#117；不重开假设-T；不重开假设-AC；不重开假设-R；禁把 S「降幅 30%」与大宗折扣 30% 合成/混读升格进 di0；不开回测/真数/实盘。 |
 | 2026-11-09 | 风控预检补丁·冻结三条写死——依据 `预检-假设DI-20261109.md`（SHA256=`f6cbdcfb7dd1b0707ce62d016c5b4e7bf29f245b0d067aee51095993106b6271`；结论=有条件通过；tip基=`e5872ea` / `e5872eae87ea277d4c263c42ef7de1cb6d13cd9c`；分支起点 HEAD=`3b1452f8` / `3b1452f87c5dcd46d8b57a7d7d5dd16c35dc76df`）条件 1–3。① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（相对门槛覆盖成本差 / ΔStockBlockHandling / 净收益差 / DI1−DI2；**params.Y/G/N ≠ 实验字母 DI ≠ 单字母 D/I**；**勿把 params.G 读成实验字母 DI，亦勿把单字母假设-D / 假设-I 读成双字母 DI**；**尤重 params.G 的 0.01 ≠ 大宗 0.002387% ≠ 竞价 0.0341‰（量纲与语义不同）**；禁 null；禁 holdout/OOS 标定；禁止把这四个数读成费率）；② `params.di0_primary_demo=invent_full_handling_fee_on_stock_block`（写死冻结单一主报，单挂；禁与 `invent_asof_leak_stock_block_handling` 双挂；DI1 不升格；诊断桶 `ignore_30pct_block_discount` / `copy_auction_tier_onto_block` / `confuse_S_cut30_with_block_discount30` / `vs_S_auction_handling` / `vs_AX_fund_block_50` / `vs_O_block_channel` 不升格；**禁把 S「降幅 30%」与大宗折扣 30% 合成/混读升格进 di0**，只作对照/旁路，不得升格进 di0 或另挂主报）；③ 锚六键写死 `stock_block_handling_honest=pit_auction_minus_30pct_not_full` / `stock_block_handling_scope=sse_szse_ashare_block_apart_from_auction` / `stock_block_handling_over_policy=skip_if_trade_type_or_official_bps_missing` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`（缺成交类型或官方‰ → skip；大宗按竞价标准下浮 30%→现行 0.002387% 双向；禁止把核对日 0.002387% 铺满全历史）。状态=预检有条件通过·三条已冻·待复检；**未标纸面齐**；**禁止标纸面齐**；不改已齐 A–DH / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG；不重开假设-T；不重开假设-AC；不重开假设-R；不开回测/真数/实盘。基于 tip=`e5872ea`。 |
 | 2026-11-09 | 新建纸面草稿（**本草稿首次入库**；股票大宗经手下浮误忽略；`di0_primary_demo` 建议 `invent_full_handling_fee_on_stock_block`，单一主报，单挂，禁与 `invent_asof_leak_stock_block_handling` 双挂，DI1 不升格；诊断桶 `ignore_30pct_block_discount` / `copy_auction_tier_onto_block` / `confuse_S_cut30_with_block_discount30` / `vs_S_auction_handling` / `vs_AX_fund_block_50` / `vs_O_block_channel` 不升格；**尤重 S 的「降幅 30%」≠ 本页「大宗折扣 30%」，禁止合成/混读升格进 di0**；Y/G/N/Y2 占位 `0.02/0.01/0.05/0.015`，**params.Y/G/N ≠ 实验字母 DI ≠ 单字母 D/I**，且 **params.G 的 0.01 ≠ 大宗 0.002387% ≠ 竞价 0.0341‰**；锚建议 `stock_block_handling_honest=pit_auction_minus_30pct_not_full` / scope=`sse_szse_ashare_block_apart_from_auction` / over_policy=`skip_if_trade_type_or_official_bps_missing`；asof 建议 `2026-10-16`；fill_time 建议 `next_open`；fail 建议 `skip`；口径：缺成交类型或官方‰则 skip；大宗按竞价标准下浮 30%→现行 0.002387% 双向（**草稿方向，尚未冻，不要写成已冻**）；handoff：`ashare_fee_handoff=s_page`，`fund_block_fee_handoff=ax_page`，`block_channel_handoff=o_page`，`commission_double_handoff=dh_page`，`bse_fee_handoff=dg_page`；`merge_with_S/AX/O/DH/DG/DF/DE/DD/DC/DB/DA/AC/T/U/V/Q/R/A/D/I=False`；**DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠S≠AX≠O≠AC≠T≠U≠V≠Q≠R≠A≠D**；**双字母 DI ≠ 单字母假设-D / 假设-I**；**股票大宗折扣 ≠ S切日 ≠ AX基金大宗50% ≠ O通道 ≠ DH双计**；状态=草稿·待入库预检；**三条尚未冻**；**未标纸面齐**；**禁止标纸面齐**；不改已齐 A–DH / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG 及其他已存在假设页；不重开假设-T；不重开假设-AC；不重开假设-R；不写下一字母；不预留下一号；不开真数/回测/实盘）。基 tip=`ec654b33`（A/D–DH纸面齐已合，全长 `ec654b336d9a0e638046826779ad261143bca1ae`；不改该 tip 上的 #110–#117，亦不改「可复现实验条目（2026-11-09 · DC / DF）」原文） |
