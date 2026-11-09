@@ -2,7 +2,7 @@
 
 更新：2026-11-16  
 来源：总管线 / 默认分支 HEAD `6d1a93d2` 上清单 #123=DN 已收口（A/D–DN纸面齐已合入该 tip；全长 `6d1a93d22d03dfeccb1807506904666b07d88b79`；**不改已冻 A–DN / DA–DM**；**不改假设-DN 正文**，亦不改已齐假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI / 假设-DJ / 假设-DK / 假设-DL / 假设-DM / 假设-S / 假设-AX / 假设-T / 假设-U / 假设-V / 假设-AC / 假设-Q / 假设-R / 假设-A / 假设-D / 假设-O / 假设-N 及其他已存在假设页；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-U**；**不重开假设-O**；**不重开假设-DI**；**不重开假设-V**；**不重开假设-DF**；**不重开假设-DB**；**不重开假设-S**；**不重开假设-DD**；**不重开假设-DL**；**不重开假设-DM**；**不重开假设-DN**；**不重开假设-DA**）后写下一草稿 DO；清单 #123=DN，本页占用 **#124=DO**；选题是沪市可转债**回售**经手费暂免窗被忽略，把现货档 0.004% 铺到回售腿；假设-DB 只收可转债**现货**经手费（现货 ≠ 回售），假设-DF 只收可交换债现货经手费沪深分列，假设-DM 只收可交换债换股经手费，假设-S 只收股票经手费切日，假设-DI 只收股票大宗经手下浮，假设-DN 只收可交换债换股过户费；**新建实验 DO**；不写下一字母；不预留 #125  
-状态：**预检有条件通过·三条已冻·待复检**（结论栏空；**禁止标纸面齐**；**未标纸面齐**；**不写 A/D–DO纸面齐**；禁止把「忽略回售暂免、把现货档 0.004% 铺到回售」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改已冻 A–DN / DA–DM**；尤其不改假设-DB / 假设-DF / 假设-DM / 假设-S / 假设-DI / 假设-DN / 假设-DL / 假设-T / 假设-AC / 假设-R / 假设-U / 假设-O / 假设-V / 假设-DD / 假设-DA / 假设-D；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-U**；**不重开假设-O**；**不重开假设-DI**；**不重开假设-V**；**不重开假设-DF**；**不重开假设-DB**；**不重开假设-S**；**不重开假设-DD**；**不重开假设-DL**；**不重开假设-DM**；**不重开假设-DN**；**不重开假设-DA**）
+状态：**A/D–DO纸面齐（预检有条件通过·三条已冻）**（结论栏空；禁止把「忽略回售暂免、把现货档 0.004% 铺到回售」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改已冻 A–DN / DA–DM**；尤其不改假设-DB / 假设-DF / 假设-DM / 假设-S / 假设-DI / 假设-DN / 假设-DL / 假设-T / 假设-AC / 假设-R / 假设-U / 假设-O / 假设-V / 假设-DD / 假设-DA / 假设-D；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-U**；**不重开假设-O**；**不重开假设-DI**；**不重开假设-V**；**不重开假设-DF**；**不重开假设-DB**；**不重开假设-S**；**不重开假设-DD**；**不重开假设-DL**；**不重开假设-DM**；**不重开假设-DN**；**不重开假设-DA**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前本序号挂实验 DO（#124）。一句话误开：回测忽略沪市可转债**回售**经手费暂免窗，把现货档 0.004% 铺到回售腿，或与 DB现货经手 / DF/DM可交换经手 / S股票经手 / DI大宗经手 混读，或缺 venue/业务类型/官方‰仍不 skip，系统性改写回售腿成本。
 
@@ -42,7 +42,7 @@
 | 文档 | 清单实验 DB / DF / DM / S / DI / DN / DL / DK / DJ / DH / DG / DE / DD / DC / DA / AX / T / U / V / AC / Q / R / O / A / D（**只读；禁止改写**） | `假设-DO-可转债回售经手费暂免误忽略.md`（新建） |
 | 预检键 | 实验字母 DB / DF / DM / S / DI / DN / DL / DK / DJ / DH / DG / DE / DD / DC / DA / AX / T / U / V / AC / Q / R / O / A / D / Y / G / N | 实验字母 **DO** / `do0_primary_demo`；**不得**占用或改写预检 DB/DF/DM/S/DI/DN/DL/DK/DJ/DH/DG/DE/DD/DC/DA/AX/T/U/V/AC/Q/R/O/A/D/Y/G/N |
 
-**禁止**：把 DO 写成「DB / DF / DM / S / DI / DN / DL / DK / DJ / DH / DG / DE / DD / DC / DA / AX / T / U / V / AC / Q / R / O / A / D 的续篇」；把「现货经手已诚实（DB）/ 可交换现货经手已分列（DF）/ 换股经手已分列（DM）/ 股票经手切日已诚实（S）/ 大宗经手下浮已诚实（DI）/ 换股过户已分列（DN）」写成「可转债回售经手费暂免已诚实」；把实验字母 DO 与单字母 D/O 或 params.Y/G/N 混读；**尤重勿把单字母假设-D / 假设-O 读成双字母 DO**；**尤重勿把 `params.G` 读成实验字母 DO**；**尤重 `params.G` 的 0.01 ≠ 转债现货经手 0.04‰ ≠ 回售暂免（量纲与语义不同）**；**禁把占位读成 0.004%/0.04‰/暂免**；**尤重 DB 可转债现货经手费 ≠ 本页回售经手费暂免（现货≠回售），禁止合成/混读升格进 `do0`**；**尤重 DF/DM 可交换现货/换股经手 ≠ 本页转债回售，禁止合成/混读升格进 `do0`**；**尤重 S 股票经手切日 ≠ 本页回售另档，禁止合成/混读升格进 `do0`**；**尤重 DI 大宗经手下浮 ≠ 本页回售暂免，禁止合成/混读升格进 `do0`**；把 `invent_asof_leak_cb_put_handling` 升格进 `do0` 或与主报双挂；把诊断桶 `ignore_sse_put_waiver_window` / `copy_spot_004_onto_put` / `merge_sse_szse_put_handling` / `confuse_DB_spot_with_put` / `vs_DB_cb_spot_handling` / `vs_DF_exch_spot_handling` / `vs_DM_exch_conversion_handling` / `vs_S_stock_handling` / `vs_DI_block_handling` / `missing_venue_or_biz_type_not_skip` 升格进 `do0`；把现货档 0.004% 铺到回售；沪深回售经手合成一句。本页主键只用 `do0` / `do1` / `do2` 与 `cb_put_handling_*`。不写下一字母。不预留 #125。**纸面齐惯例**：以后若落复检稿要标纸面齐，须同步升假设正文页头、结论、尾状态（对照 DK/DL/DM/DN；勿再只改清单）。**当前禁止标纸面齐**。**不写 A/D–DO纸面齐**。
+**禁止**：把 DO 写成「DB / DF / DM / S / DI / DN / DL / DK / DJ / DH / DG / DE / DD / DC / DA / AX / T / U / V / AC / Q / R / O / A / D 的续篇」；把「现货经手已诚实（DB）/ 可交换现货经手已分列（DF）/ 换股经手已分列（DM）/ 股票经手切日已诚实（S）/ 大宗经手下浮已诚实（DI）/ 换股过户已分列（DN）」写成「可转债回售经手费暂免已诚实」；把实验字母 DO 与单字母 D/O 或 params.Y/G/N 混读；**尤重勿把单字母假设-D / 假设-O 读成双字母 DO**；**尤重勿把 `params.G` 读成实验字母 DO**；**尤重 `params.G` 的 0.01 ≠ 转债现货经手 0.04‰ ≠ 回售暂免（量纲与语义不同）**；**禁把占位读成 0.004%/0.04‰/暂免**；**尤重 DB 可转债现货经手费 ≠ 本页回售经手费暂免（现货≠回售），禁止合成/混读升格进 `do0`**；**尤重 DF/DM 可交换现货/换股经手 ≠ 本页转债回售，禁止合成/混读升格进 `do0`**；**尤重 S 股票经手切日 ≠ 本页回售另档，禁止合成/混读升格进 `do0`**；**尤重 DI 大宗经手下浮 ≠ 本页回售暂免，禁止合成/混读升格进 `do0`**；把 `invent_asof_leak_cb_put_handling` 升格进 `do0` 或与主报双挂；把诊断桶 `ignore_sse_put_waiver_window` / `copy_spot_004_onto_put` / `merge_sse_szse_put_handling` / `confuse_DB_spot_with_put` / `vs_DB_cb_spot_handling` / `vs_DF_exch_spot_handling` / `vs_DM_exch_conversion_handling` / `vs_S_stock_handling` / `vs_DI_block_handling` / `missing_venue_or_biz_type_not_skip` 升格进 `do0`；把现货档 0.004% 铺到回售；沪深回售经手合成一句。本页主键只用 `do0` / `do1` / `do2` 与 `cb_put_handling_*`。不写下一字母。不预留 #125。**纸面齐惯例**：以后若落复检稿要标纸面齐，须同步升假设正文页头、结论、尾状态（对照 DK/DL/DM/DN；勿再只改清单）。
 
 ---
 
@@ -61,7 +61,7 @@
 ### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 · do0 与锚 **三条已冻**）
 
 ```
-# 配置写死键（见 §7 与文末风控预检补丁；预检有条件通过·三条已冻·待复检；下列三冻已写死冻结；禁止标纸面齐；不写 A/D–DO纸面齐）
+# 配置写死键（见 §7 与文末风控预检补丁；预检有条件通过·三条已冻·待复检；下列三冻已写死冻结）
 # 【消歧】params.Y = 显著性门槛；写死冻结 0.02；**≠ 实验字母 DO ≠ 单字母假设-D / 假设-O**；勿把 params.Y 读成实验字母 DO
 # 【消歧】params.G = 同族门槛；写死冻结 0.01；**≠ 实验字母 DO ≠ 单字母 D/O**
 # 【消歧】尤重：params.G 的 0.01 ≠ 转债现货经手 0.04‰ ≠ 回售暂免（量纲与语义不同：无量纲相对门槛 ≠ 现货经手费率‰ ≠ 回售暂免）
@@ -259,7 +259,7 @@
 - 实验字母 DO 与单字母 D/O 或 params.Y/G/N 混读。
 - 把回售能不能成交（CR）写成回售经手费已经诚实。
 - 改 DB / DF / DM / S / DI / DN / DL / DK / DJ / DH / DG / DE / DD / DC / DA / AX / T / U / V / AC / Q / R / O / A / D 正文；重开假设-T；重开假设-AC；重开假设-R；重开假设-U；重开假设-O；重开假设-DI；重开假设-V；重开假设-DF；重开假设-DB；重开假设-S；重开假设-DD；重开假设-DL；重开假设-DM；重开假设-DN；重开假设-DA；抢 A 真数队列；标纸面齐；写成 A/D–DO纸面齐；开真数/回测/实盘；用复权价当费用基数；结论写成「回售费更低所以能买」。
-- **纸面齐惯例**：以后若落复检稿要标纸面齐，须同步升假设正文页头、结论、尾状态（对照 DK/DL/DM/DN；勿再只改清单）。**当前禁止标纸面齐**。**不写 A/D–DO纸面齐**。
+- **纸面齐惯例**：以后若落复检稿要标纸面齐，须同步升假设正文页头、结论、尾状态（对照 DK/DL/DM/DN；勿再只改清单）。
 
 ---
 
@@ -280,13 +280,13 @@
 - **写死键摘要（三条已冻）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`fail_policy=skip`；`cb_put_handling_honest=pit_sse_put_waived_spot_still_charged`（沪市核对日回售在暂免窗内按表暂免、现货仍收 0.004%，禁止把现货档铺到回售；深市缺官方回售另档‰则 skip；**禁止把暂免或 0.004% 写成全历史唯一费率**）；`cb_put_handling_scope=sse_put_waiver_20220701_20261231_szse_listed_apart`（沪市回售暂免窗与深市分列；方向名，不是已冻费率）；`cb_put_handling_over_policy=skip_if_venue_or_biz_type_or_official_bps_missing`（缺 venue/业务类型或官方‰则 skip）；`do0_primary_demo=invent_full_handling_fee_on_cb_put`（**写死冻结**单一主报，单挂；禁与 `invent_asof_leak_cb_put_handling` 双挂；DO1 不升格；诊断桶不升格主报；**禁把 DB 现货经手、DF 可交换现货经手、DM 换股经手、S 股票经手切日、DI 大宗经手下浮合成进 `do0`**，只作对照/旁路，不得升格进 `do0` 或另挂主报）；`cb_handling_fee_handoff=db_page`；`exch_spot_handling_handoff=df_page`；`exch_conversion_handling_handoff=dm_page`；`ashare_fee_handoff=s_page`；`stock_block_handling_handoff=di_page`；`merge_with_DN/DM/DL/DK/DJ/DI/DH/DG/DF/DE/DD/DC/DB/DA/S/AX/T/U/V/AC/Q/R/O/A/D=False`。
 - `params.Y/G/N/Y2` **写死冻结** `0.02/0.01/0.05/0.015`（相对门槛，不是费率表：成本差 / 误套截 ΔCbPutHandling / 净收益差 / DO1−DO2；**尤重 params.G 的 0.01 ≠ 转债现货经手 0.04‰ ≠ 回售暂免（量纲与语义不同）**；**禁把占位读成 0.004%/0.04‰/暂免**；**params.Y/G/N ≠ 实验字母 DO ≠ 单字母 D/O**；**勿把 params.G 读成实验字母 DO，亦勿把单字母假设-D / 假设-O 读成双字母 DO**；禁 null；禁 holdout/OOS 标定；勿改他页已有数值；禁止把这四个数读成回售经手费率或现货档）。
 - oos_split 四日期建议占位；禁 holdout 反调。不写下一字母。不预留 #125。
-- **本页不开回测**；不拉真数；不做实盘；不催 8765。本草稿基 tip=`6d1a93d2`（A/D–DN纸面齐已合，全长 `6d1a93d22d03dfeccb1807506904666b07d88b79`）；三冻补丁基 tip=`875ba8be` / `875ba8be8bde4768257475f09246d141b1dbc662`；分支起点 HEAD=`3470b2d6` / `3470b2d6cb9064bc3fbeb84c45e4de26d6f59de6`。**不改已冻 A–DN / DA–DM**。状态=**预检有条件通过·三条已冻·待复检**。**禁止标纸面齐**。**未标纸面齐**。**不写 A/D–DO纸面齐**。
+- **本页不开回测**；不拉真数；不做实盘；不催 8765。本草稿基 tip=`6d1a93d2`（A/D–DN纸面齐已合，全长 `6d1a93d22d03dfeccb1807506904666b07d88b79`）；三冻补丁基 tip=`875ba8be` / `875ba8be8bde4768257475f09246d141b1dbc662`；分支起点 HEAD=`3470b2d6` / `3470b2d6cb9064bc3fbeb84c45e4de26d6f59de6`。**不改已冻 A–DN / DA–DM**。状态=**A/D–DO纸面齐（预检有条件通过·三条已冻）**。
 
 ---
 
 ## 8. 结论
 
-（空；**预检有条件通过·三条已冻·待复检**。**禁止标纸面齐**。**未标纸面齐**。**不写 A/D–DO纸面齐**。）
+（空；**A/D–DO纸面齐（预检有条件通过·三条已冻）**。）
 
 ---
 
@@ -302,11 +302,12 @@
 
 **硬分列保住**：DO≠DN≠DM≠DL≠DK≠DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠S≠AX≠T≠U≠V≠AC≠Q≠R≠O≠A≠D；**双字母 DO ≠ 单字母假设-D / 假设-O**；**params.Y / params.G / params.N ≠ 实验字母 DO ≠ 单字母 D/O**；**尤重 params.G 的 0.01 ≠ 转债现货经手 0.04‰ ≠ 回售暂免**；**禁把占位读成 0.004%/0.04‰/暂免**；**可转债回售经手费暂免误忽略 ≠ DB转债现货经手 ≠ DF可交换现货经手 ≠ DM换股经手 ≠ S股票经手切日 ≠ DI大宗经手下浮 ≠ DN换股过户**；不抢 A；不改已齐/已冻 DA～DN 及 A–DN 正文；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-U**；**不重开假设-O**；**不重开假设-DI**；**不重开假设-V**；**不重开假设-DF**；**不重开假设-DB**；**不重开假设-S**；**不重开假设-DD**；**不重开假设-DL**；**不重开假设-DM**；**不重开假设-DN**；**不重开假设-DA**；**禁把 DB转债现货经手 / DF可交换现货经手 / DM换股经手 / S股票经手切日 / DI大宗经手下浮 合成/混读升格进 do0**。
 
-**状态**：**预检有条件通过·三条已冻·待复检**；**禁止标纸面齐**；**未标纸面齐**；**不写 A/D–DO纸面齐**；本页不开回测/真数/实盘。
+**状态**：**A/D–DO纸面齐（预检有条件通过·三条已冻）**；本页不开回测/真数/实盘。
 
 ## 变更
 
 | 日期 | 变更 |
 |------|------|
+| 2026-11-10 | 复检/纸面齐——**A/D–DO纸面齐（预检有条件通过·三条已冻）**。复检稿 `experiments/backtest/A_limit_up_fill/risk_notes/复检-假设DO-20261110.md` 原样落入，SHA256=`6dece7ce9e117024af600532cd754ef7b77c37d5a2979236dd73a3880ff18cce`；三冻 tip=`77af2ee7` / `77af2ee7a61c239c8375f7721b8ef3a2f206865a`。只改状态标签；未改写已冻三条/六键；不改已齐 A–DN；不改 #110–#123；不重开 DB/DF/DM/S/DI/T/AC/R；不开回测/真数/实盘。 |
 | 2026-11-16 | 风控预检补丁·冻结三条写死——依据 `预检-假设DO-20261110.md`（SHA256=`04e93a04782af8e25bdbff0b7d7e71d761116cd0fe0ade9d99d3a95f96d1bb37`；结论=有条件通过；tip基=`875ba8be` / `875ba8be8bde4768257475f09246d141b1dbc662`；分支起点 HEAD=`3470b2d6` / `3470b2d6cb9064bc3fbeb84c45e4de26d6f59de6`）条件 1–3。① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（相对门槛覆盖成本差 / ΔCbPutHandling / 净收益差 / DO1−DO2；**params.Y/G/N ≠ 实验字母 DO ≠ 单字母 D/O**；**勿把 params.G 读成实验字母 DO，亦勿把单字母假设-D / 假设-O 读成双字母 DO**；**尤重 params.G 的 0.01 ≠ 转债现货经手 0.04‰ ≠ 回售暂免（量纲与语义不同）**；**禁把占位读成 0.004%/0.04‰/暂免**；禁 null；禁 holdout/OOS 标定；禁止把这四个数读成回售经手费率或现货档）；② `params.do0_primary_demo=invent_full_handling_fee_on_cb_put`（写死冻结单一主报，单挂；禁与 `invent_asof_leak_cb_put_handling` 双挂；DO1 不升格；诊断桶 `ignore_sse_put_waiver_window` / `copy_spot_004_onto_put` / `merge_sse_szse_put_handling` / `confuse_DB_spot_with_put` / `vs_DB_cb_spot_handling` / `vs_DF_exch_spot_handling` / `vs_DM_exch_conversion_handling` / `vs_S_stock_handling` / `vs_DI_block_handling` / `missing_venue_or_biz_type_not_skip` 不升格；**禁把 DB转债现货经手 / DF可交换现货经手 / DM换股经手 / S股票经手切日 / DI大宗经手下浮 合成/混读升格进 do0**，只作对照/旁路，不得升格进 do0 或另挂主报；现货≠回售）；③ 锚六键写死 `cb_put_handling_honest=pit_sse_put_waived_spot_still_charged` / `cb_put_handling_scope=sse_put_waiver_20220701_20261231_szse_listed_apart` / `cb_put_handling_over_policy=skip_if_venue_or_biz_type_or_official_bps_missing` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`（缺 venue/业务类型或官方‰ → skip；沪市核对日回售在暂免窗内按表暂免、现货仍收 0.004%，禁止把现货档铺到回售；深市缺官方回售另档‰ → skip）。状态=预检有条件通过·三条已冻·待复检；**未标纸面齐**；**禁止标纸面齐**；**不写 A/D–DO纸面齐**；不改已齐/已冻 DA～DN 及 A–DN；不改假设-DA～假设-DN；不重开假设-T；不重开假设-AC；不重开假设-R；不重开假设-U；不重开假设-O；不重开假设-DI；不重开假设-V；不重开假设-DF；不重开假设-DB；不重开假设-S；不重开假设-DD；不重开假设-DL；不重开假设-DM；不重开假设-DN；不重开假设-DA；不开回测/真数/实盘。基于 tip=`875ba8be`。 |
 | 2026-11-16 | 新建纸面草稿（首次入库）；状态=草稿·待入库预检；三条尚未冻；禁止标纸面齐。可转债回售经手费暂免误忽略；`do0_primary_demo` 建议 `invent_full_handling_fee_on_cb_put`，单一主报，单挂，禁与 `invent_asof_leak_cb_put_handling` 双挂，DO1 不升格；诊断桶 `ignore_sse_put_waiver_window` / `copy_spot_004_onto_put` / `merge_sse_szse_put_handling` / `confuse_DB_spot_with_put` / `vs_DB_cb_spot_handling` / `vs_DF_exch_spot_handling` / `vs_DM_exch_conversion_handling` / `vs_S_stock_handling` / `vs_DI_block_handling` / `missing_venue_or_biz_type_not_skip` 不升格；**尤重 DB 可转债现货经手费 ≠ 本页回售经手费暂免（现货≠回售），禁止合成/混读升格进 do0**；**尤重 DF/DM 可交换现货/换股经手 ≠ 本页转债回售，禁止合成进 do0**；**尤重 S 股票经手切日 ≠ 本页回售另档，禁止合成进 do0**；**尤重 DI 大宗经手下浮 ≠ 本页回售暂免，禁止合成进 do0**；Y/G/N/Y2 占位 `0.02/0.01/0.05/0.015`，**尚未冻，不要写成已冻**，**params.Y/G/N ≠ 实验字母 DO ≠ 单字母 D/O**，且 **params.G 的 0.01 ≠ 转债现货经手 0.04‰ ≠ 回售暂免**，**禁把占位读成 0.004%/0.04‰/暂免**；锚建议、未冻：`cb_put_handling_honest=pit_sse_put_waived_spot_still_charged` / scope=`sse_put_waiver_20220701_20261231_szse_listed_apart` / over_policy=`skip_if_venue_or_biz_type_or_official_bps_missing` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`；口径：缺 venue/业务类型或官方‰则 skip；沪市核对日回售在暂免窗内按表暂免、现货仍收 0.004%，禁止把现货档铺到回售；深市缺官方回售另档‰则 skip（**草稿方向，尚未冻，不要写成已冻**）；handoff：`cb_handling_fee_handoff=db_page`，`exch_spot_handling_handoff=df_page`，`exch_conversion_handling_handoff=dm_page`，`ashare_fee_handoff=s_page`，`stock_block_handling_handoff=di_page`；`merge_with_DN/DM/DL/DK/DJ/DI/DH/DG/DF/DE/DD/DC/DB/DA/S/AX/T/U/V/AC/Q/R/O/A/D=False`；**DO≠DN≠DM≠DL≠DK≠DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠S≠AX≠T≠U≠V≠AC≠Q≠R≠O≠A≠D**；**双字母 DO ≠ 单字母假设-D / 假设-O**；**可转债回售经手费暂免误忽略 ≠ DB转债现货经手 ≠ DM换股经手 ≠ DN换股过户**；**未标纸面齐**；**不写 A/D–DO纸面齐**；**纸面齐惯例**：落复检稿标纸面齐时须同步升假设正文页头/结论/尾状态（对照 DK/DL/DM/DN；勿再只改清单）——当前草稿阶段禁止标纸面齐；结论栏空；不改已冻 A–DN / DA–DM；不改已齐假设-DA～假设-DN；不重开假设-T；不重开假设-AC；不重开假设-R；不重开假设-U；不重开假设-O；不重开假设-DI；不重开假设-V；不重开假设-DF；不重开假设-DB；不重开假设-S；不重开假设-DD；不重开假设-DL；不重开假设-DM；不重开假设-DN；不重开假设-DA；不写下一字母；不预留 #125；不开真数/回测/实盘。基 tip=`6d1a93d2`（A/D–DN纸面齐已合，全长 `6d1a93d22d03dfeccb1807506904666b07d88b79`；不改该 tip 上的 #110–#123，亦不改「可复现实验条目（2026-11-09 · DC / DF）」原文）。 |
