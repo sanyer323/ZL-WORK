@@ -2,11 +2,11 @@
 
 更新：2026-11-13  
 来源：总管线 / 默认分支 HEAD `f4c3759` 上清单 #122=DM 已收口（A/D–DM纸面齐已合入该 tip；全长 `f4c37594f744c66552ce085858e54aff535f7c7a`；**不改已冻 A–DM / DA–DL**；**不改假设-DM 正文**，亦不改已齐假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI / 假设-DJ / 假设-DK / 假设-DL / 假设-S / 假设-AX / 假设-T / 假设-U / 假设-V / 假设-AC / 假设-Q / 假设-R / 假设-A / 假设-D / 假设-N / 假设-O 及其他已存在假设页；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-U**；**不重开假设-O**；**不重开假设-DI**；**不重开假设-V**；**不重开假设-DF**；**不重开假设-DB**；**不重开假设-S**；**不重开假设-DD**；**不重开假设-DL**；**不重开假设-DM**）后写下一草稿 DN；清单 #122=DM，本页占用 **#123=DN**；选题是可交换债**换股过户费**被误套成现货成交金额档、免费 0，或沪深合成一句；假设-DM 只收可交换债**换股经手费**（经手 ≠ 过户），假设-DD 只收可转债现货过户费，假设-DA 只收场内基金过户（含申赎篮子面值），假设-U 只收股票过户费切日，假设-DL 只收股票综合协议过户费下浮；**新建实验 DN**；不写下一字母；不预留 #124  
-状态：**草稿·待入库预检**（结论栏空；**三条尚未冻**；**未标纸面齐**；**禁止标纸面齐**；**不写 A/D–DN纸面齐**；禁止把「可交换债换股过户费按现货成交金额档抽、写成免费 0、或沪深合成一句」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改已冻 A–DM / DA–DL**；尤其不改假设-DM / 假设-DD / 假设-DA / 假设-U / 假设-DL / 假设-DK / 假设-T / 假设-AC / 假设-R / 假设-O / 假设-DI / 假设-V / 假设-DF / 假设-DB / 假设-S / 假设-D / 假设-N；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-U**；**不重开假设-O**；**不重开假设-DI**；**不重开假设-V**；**不重开假设-DF**；**不重开假设-DB**；**不重开假设-S**；**不重开假设-DD**；**不重开假设-DL**；**不重开假设-DM**）
+状态：**预检有条件通过·三条已冻·待复检**（结论栏空；**未标纸面齐**；**禁止标纸面齐**；**不写 A/D–DN纸面齐**；禁止把「可交换债换股过户费按现货成交金额档抽、写成免费 0、或沪深合成一句」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改已冻 A–DM / DA–DL**；尤其不改假设-DM / 假设-DD / 假设-DA / 假设-U / 假设-DL / 假设-DK / 假设-T / 假设-AC / 假设-R / 假设-O / 假设-DI / 假设-V / 假设-DF / 假设-DB / 假设-S / 假设-D / 假设-N；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-U**；**不重开假设-O**；**不重开假设-DI**；**不重开假设-V**；**不重开假设-DF**；**不重开假设-DB**；**不重开假设-S**；**不重开假设-DD**；**不重开假设-DL**；**不重开假设-DM**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前本序号挂实验 DN（#123）。一句话误开：回测把可交换债**换股过户费**误套成现货成交金额档 / 免费 0 / 沪深合成一句 / 或与 DM经手、DD转债过户、DA篮子面值、U股票过户、DL综合协议过户混读，或缺 venue/业务类型/官方‰仍不 skip，系统性改写换股腿过户成本。
 
-> **字母消歧（硬）**：本页**实验字母 DN** ≠ 费用/显著性参数 **`params.Y`**（相对门槛，与 G/N/Y2 同族；占位 0.02；**尚未冻，不要写成已冻**；**params.Y ≠ 实验字母 DN**；**勿把 `params.Y` 读成实验字母 DN**）≠ **`params.G`**（同族门槛，占位 0.01；**尚未冻，不要写成已冻**；**params.G ≠ 实验字母 DN**；**尤重：`params.G` 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰**——量纲与语义都不同：`params.G=0.01` 是无量纲相对门槛，不是沪市换股过户费率，也不是深市换股面值费率；**禁把占位读成 0.01‰/0.5‰/0.007‰**）≠ **`params.N`**（失败/废单率差门槛；占位 0.05；**尚未冻，不要写成已冻**；**params.N ≠ 实验字母 DN**；**params.N ≠ 单字母假设-N**）≠ **单字母实验 D**（成交时点与停牌；**双字母 DN ≠ 单字母假设-D；严禁复用假设-D**）≠ **单字母实验 N**（收盘机制与假 GTC；**双字母 DN ≠ 单字母假设-N；严禁复用假设-N**）≠ **单字母实验 A**（板上枯竭/涨停可成交；**双字母 DN ≠ 单字母假设-A**）≠ 双字母 **DM**（可交换债换股经手费误套现货）≠ **DL**（股票综合协议过户费下浮）≠ **DK**（场内基金印花税）≠ **DJ**（场内基金证管费）≠ **DI**（股票大宗经手下浮）≠ **DH**（佣金双计）≠ **DG**（北交所经手费）≠ **DF**（可交换债现货经手费沪深合成）≠ **DE**（可转债证管费）≠ **DD**（可转债过户费）≠ **DC**（可转债印花税）≠ **DB**（可转债现货经手费）≠ **DA**（场内基金过户费）≠ **S**（沪深股票竞价经手费切日）≠ **AX**（基金经手费）≠ **T**（股票证管费）≠ **U**（股票过户费）≠ **V**（股票印花税）≠ **AC**（北交所涨跌幅与盘后）≠ **Q**（可转债规则混用）≠ **R**（股票 ETF 回转）≠ **O**（大宗通道）。**DN≠DM≠DL≠DK≠DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠S≠AX≠T≠U≠V≠AC≠Q≠R≠O≠A≠D**。**双字母 DN ≠ 单字母 D/N**。**params.Y/G/N ≠ 实验字母 DN；亦 ≠ 单字母 D/N**。**勿把 `params.G` 读成实验字母 DN，亦勿把单字母假设-D / 假设-N 读成双字母 DN**。**尤重：`params.G` 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰**。**禁把占位读成 0.01‰/0.5‰/0.007‰**。**可交换债换股过户费误套 ≠ DM换股经手 ≠ DD转债现货过户 ≠ DA基金篮子过户 ≠ U股票过户切日 ≠ DL综合协议过户**。**尤重：DM 换股经手费 ≠ 本页换股过户费（经手≠过户）——禁止合成/混读升格进 `dn0`**。**尤重：DD 转债现货过户 ≠ 本页可交换换股过户——禁止合成/混读升格进 `dn0`**。**尤重：DA 篮子面值 0.5‰ ≠ 本页深市换股面值 0.5‰——禁止因同数字混读升格进 `dn0`**。**尤重：U 股票过户切日 ≠ 本页换股过户——禁止合成/混读升格进 `dn0`**。**尤重：DL 综合协议过户下浮 ≠ 本页换股过户——禁止合成/混读升格进 `dn0`**。
+> **字母消歧（硬）**：本页**实验字母 DN** ≠ 费用/显著性参数 **`params.Y`**（相对门槛，与 G/N/Y2 同族；写死冻结 0.02；**params.Y ≠ 实验字母 DN**；**勿把 `params.Y` 读成实验字母 DN**）≠ **`params.G`**（同族门槛，写死冻结 0.01；**params.G ≠ 实验字母 DN**；**尤重：`params.G` 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰**——量纲与语义都不同：`params.G=0.01` 是无量纲相对门槛，不是沪市换股过户费率，也不是深市换股面值费率；**禁把占位读成 0.01‰/0.5‰/0.007‰**）≠ **`params.N`**（失败/废单率差门槛；写死冻结 0.05；**params.N ≠ 实验字母 DN**；**params.N ≠ 单字母假设-N**）≠ **单字母实验 D**（成交时点与停牌；**双字母 DN ≠ 单字母假设-D；严禁复用假设-D**）≠ **单字母实验 N**（收盘机制与假 GTC；**双字母 DN ≠ 单字母假设-N；严禁复用假设-N**）≠ **单字母实验 A**（板上枯竭/涨停可成交；**双字母 DN ≠ 单字母假设-A**）≠ 双字母 **DM**（可交换债换股经手费误套现货）≠ **DL**（股票综合协议过户费下浮）≠ **DK**（场内基金印花税）≠ **DJ**（场内基金证管费）≠ **DI**（股票大宗经手下浮）≠ **DH**（佣金双计）≠ **DG**（北交所经手费）≠ **DF**（可交换债现货经手费沪深合成）≠ **DE**（可转债证管费）≠ **DD**（可转债过户费）≠ **DC**（可转债印花税）≠ **DB**（可转债现货经手费）≠ **DA**（场内基金过户费）≠ **S**（沪深股票竞价经手费切日）≠ **AX**（基金经手费）≠ **T**（股票证管费）≠ **U**（股票过户费）≠ **V**（股票印花税）≠ **AC**（北交所涨跌幅与盘后）≠ **Q**（可转债规则混用）≠ **R**（股票 ETF 回转）≠ **O**（大宗通道）。**DN≠DM≠DL≠DK≠DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠S≠AX≠T≠U≠V≠AC≠Q≠R≠O≠A≠D**。**双字母 DN ≠ 单字母 D/N**。**params.Y/G/N ≠ 实验字母 DN；亦 ≠ 单字母 D/N**。**勿把 `params.G` 读成实验字母 DN，亦勿把单字母假设-D / 假设-N 读成双字母 DN**。**尤重：`params.G` 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰**。**禁把占位读成 0.01‰/0.5‰/0.007‰**。**可交换债换股过户费误套 ≠ DM换股经手 ≠ DD转债现货过户 ≠ DA基金篮子过户 ≠ U股票过户切日 ≠ DL综合协议过户**。**尤重：DM 换股经手费 ≠ 本页换股过户费（经手≠过户）——禁止合成/混读升格进 `dn0`**。**尤重：DD 转债现货过户 ≠ 本页可交换换股过户——禁止合成/混读升格进 `dn0`**。**尤重：DA 篮子面值 0.5‰ ≠ 本页深市换股面值 0.5‰——禁止因同数字混读升格进 `dn0`**。**尤重：U 股票过户切日 ≠ 本页换股过户——禁止合成/混读升格进 `dn0`**。**尤重：DL 综合协议过户下浮 ≠ 本页换股过户——禁止合成/混读升格进 `dn0`**。
 
 ### 专节 · 双字母 DN ≠ 单字母假设-D / 假设-N；且 ≠ 假设-DM / 假设-DD / 假设-DA / 假设-U / 假设-DL（硬）
 
@@ -37,11 +37,11 @@
 | 题面 A | **涨停可成交 / 板上枯竭**（真数队列） | 容量门槛 ≠ 换股过户费。**DN≠A**；**不抢 A 真数队列**；**不改 A** |
 | 题面 D | **成交时点与停牌** | 何时成交 ≠ 换股过户费抽在哪一档。**双字母 DN ≠ 单字母假设-D**；**严禁复用假设-D**；**DN≠D**；**不改 D** |
 | 题面 N | **收盘机制与假 GTC** | 收盘怎么产生 ≠ 换股过户费。**双字母 DN ≠ 单字母假设-N**；**严禁复用假设-N**；**不改 N**；`close_mech_handoff=n_page` |
-| 主演示 | （各页自有；本页不引用覆盖） | `invent_wrong_transfer_on_exchangeable_conversion`（**建议**单一主报，单挂；**尚未冻，不要写成已冻**；禁与半泄露键 `invent_asof_leak_exchangeable_conversion_transfer` 双挂；DN1 不升格；`merge_sse_szse_conversion_transfer` / `copy_ashare_001_onto_szse_conversion` / `copy_par_05_onto_sse_conversion` / `invent_free_zero_conversion_transfer` / `confuse_DM_conversion_handling_with_transfer` / `vs_DM_exch_conversion_handling` / `vs_DD_cb_transfer` / `vs_DA_etf_basket_par` / `vs_U_stock_transfer` / `vs_DL_agreement_transfer` / `missing_venue_or_biz_type_not_skip` 只作诊断对照，不升格主报；**尤重禁止把 DM 换股经手、DD 转债现货过户、DA 篮子面值、U 股票过户切日、DL 综合协议过户下浮合成进 `dn0`**） |
+| 主演示 | （各页自有；本页不引用覆盖） | `invent_wrong_transfer_on_exchangeable_conversion`（**写死冻结**单一主报，单挂写死；禁与半泄露键 `invent_asof_leak_exchangeable_conversion_transfer` 双挂；DN1 不升格；`merge_sse_szse_conversion_transfer` / `copy_ashare_001_onto_szse_conversion` / `copy_par_05_onto_sse_conversion` / `invent_free_zero_conversion_transfer` / `confuse_DM_conversion_handling_with_transfer` / `vs_DM_exch_conversion_handling` / `vs_DD_cb_transfer` / `vs_DA_etf_basket_par` / `vs_U_stock_transfer` / `vs_DL_agreement_transfer` / `missing_venue_or_biz_type_not_skip` 只作诊断对照，不升格主报；**尤重禁止把 DM 换股经手、DD 转债现货过户、DA 篮子面值、U 股票过户切日、DL 综合协议过户下浮合成进 `dn0`**） |
 | 文档 | 清单实验 DM / DL / DK / DJ / DI / DH / DG / DF / DE / DD / DC / DB / DA / S / AX / T / U / V / AC / Q / R / O / A / D / N（**只读；禁止改写**） | `假设-DN-可交换债换股过户费误套.md`（新建） |
 | 预检键 | 实验字母 DM / DL / DK / DJ / DI / DH / DG / DF / DE / DD / DC / DB / DA / S / AX / T / U / V / AC / Q / R / O / A / D / N / Y / G / N | 实验字母 **DN** / `dn0_primary_demo`；**不得**占用或改写预检 DM/DL/DK/DJ/DI/DH/DG/DF/DE/DD/DC/DB/DA/S/AX/T/U/V/AC/Q/R/O/A/D/N |
 
-**禁止**：把 DN 写成「DM / DL / DK / DJ / DI / DH / DG / DF / DE / DD / DC / DB / DA / S / AX / T / U / V / AC / Q / R / O / A / D / N 的续篇」；把「换股经手已分列（DM）/ 转债现货过户已诚实（DD）/ 基金篮子面值已诚实（DA）/ 股票过户切日已诚实（U）/ 综合协议过户下浮已诚实（DL）」写成「可交换债换股过户费已诚实」；把实验字母 DN 与单字母 D/N 或 params.Y/G/N 混读；**尤重勿把单字母假设-D / 假设-N 读成双字母 DN**；**尤重勿把 `params.G` 读成实验字母 DN**；**尤重 `params.G` 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰（量纲与语义不同）**；**禁把占位读成 0.01‰/0.5‰/0.007‰**；**尤重 DM 换股经手费 ≠ 本页换股过户费（经手≠过户），禁止合成/混读升格进 `dn0`**；**尤重 DD 转债现货过户 ≠ 本页可交换换股过户，禁止合成/混读升格进 `dn0`**；**尤重 DA 篮子面值 0.5‰ ≠ 本页深市换股面值 0.5‰，禁止因同数字混读升格进 `dn0`**；**尤重 U 股票过户切日 ≠ 本页换股过户，禁止合成/混读升格进 `dn0`**；**尤重 DL 综合协议过户下浮 ≠ 本页换股过户，禁止合成/混读升格进 `dn0`**；把 `invent_asof_leak_exchangeable_conversion_transfer` 升格进 `dn0` 或与主报双挂；把诊断桶 `merge_sse_szse_conversion_transfer` / `copy_ashare_001_onto_szse_conversion` / `copy_par_05_onto_sse_conversion` / `invent_free_zero_conversion_transfer` / `confuse_DM_conversion_handling_with_transfer` / `vs_DM_exch_conversion_handling` / `vs_DD_cb_transfer` / `vs_DA_etf_basket_par` / `vs_U_stock_transfer` / `vs_DL_agreement_transfer` / `missing_venue_or_biz_type_not_skip` 升格进 `dn0`；沪深合成一句；发明免费 0。本页主键只用 `dn0` / `dn1` / `dn2` 与 `exch_conversion_transfer_*`。不写下一字母。不预留 #124。**纸面齐惯例**：以后若落复检稿要标纸面齐，须同步升假设正文页头、结论、尾状态（对照 DK/DL/DM；勿再只改清单）。**当前草稿阶段禁止标纸面齐**。
+**禁止**：把 DN 写成「DM / DL / DK / DJ / DI / DH / DG / DF / DE / DD / DC / DB / DA / S / AX / T / U / V / AC / Q / R / O / A / D / N 的续篇」；把「换股经手已分列（DM）/ 转债现货过户已诚实（DD）/ 基金篮子面值已诚实（DA）/ 股票过户切日已诚实（U）/ 综合协议过户下浮已诚实（DL）」写成「可交换债换股过户费已诚实」；把实验字母 DN 与单字母 D/N 或 params.Y/G/N 混读；**尤重勿把单字母假设-D / 假设-N 读成双字母 DN**；**尤重勿把 `params.G` 读成实验字母 DN**；**尤重 `params.G` 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰（量纲与语义不同）**；**禁把占位读成 0.01‰/0.5‰/0.007‰**；**尤重 DM 换股经手费 ≠ 本页换股过户费（经手≠过户），禁止合成/混读升格进 `dn0`**；**尤重 DD 转债现货过户 ≠ 本页可交换换股过户，禁止合成/混读升格进 `dn0`**；**尤重 DA 篮子面值 0.5‰ ≠ 本页深市换股面值 0.5‰，禁止因同数字混读升格进 `dn0`**；**尤重 U 股票过户切日 ≠ 本页换股过户，禁止合成/混读升格进 `dn0`**；**尤重 DL 综合协议过户下浮 ≠ 本页换股过户，禁止合成/混读升格进 `dn0`**；把 `invent_asof_leak_exchangeable_conversion_transfer` 升格进 `dn0` 或与主报双挂；把诊断桶 `merge_sse_szse_conversion_transfer` / `copy_ashare_001_onto_szse_conversion` / `copy_par_05_onto_sse_conversion` / `invent_free_zero_conversion_transfer` / `confuse_DM_conversion_handling_with_transfer` / `vs_DM_exch_conversion_handling` / `vs_DD_cb_transfer` / `vs_DA_etf_basket_par` / `vs_U_stock_transfer` / `vs_DL_agreement_transfer` / `missing_venue_or_biz_type_not_skip` 升格进 `dn0`；沪深合成一句；发明免费 0。本页主键只用 `dn0` / `dn1` / `dn2` 与 `exch_conversion_transfer_*`。不写下一字母。不预留 #124。**纸面齐惯例**：以后若落复检稿要标纸面齐，须同步升假设正文页头、结论、尾状态（对照 DK/DL/DM；勿再只改清单）。**待复检阶段禁止标纸面齐**。
 
 ---
 
@@ -49,7 +49,7 @@
 
 同一信号、同一未复权成交金额下，回测把可交换债**换股过户费**误套成现货成交金额档 / 免费 0 / 沪深合成一句，或与 DM 经手、DD 转债过户、DA 篮子面值、U 股票过户、DL 综合协议过户混读，或缺 venue/业务类型/官方‰仍不 skip，相对「缺 venue/业务类型或官方‰则 skip；沪市核对日换股过户 0.01‰、深市面值 0.5‰，禁止合成一句；禁止静默套现货成交金额档或发明免费 0」的诚实组，会**系统性改写换股腿过户成本**——相对诚实锚偏误。
 
-核对日方向（随锚建议；**尚未冻，不要写成已冻**；禁止把 0.01‰ 或 0.5‰ 写成全历史唯一费率，也禁止沪深合成一句）：沪市换股过户与深市换股过户分开列。核对日方向是沪市换股过户按成交金额 0.01‰，深市换股过户按股票过户面值 0.5‰。这不是把两所合成一个数，也不是把现货成交金额档或「免费 0」铺到换股腿。缺 venue、业务类型或官方‰则 skip。这不是把 0.01‰、0.5‰ 或 0.007‰ 冻成全历史唯一费率，也不是把 `params.G` 的 0.01 读成沪市换股过户 0.01‰。**禁把占位读成 0.01‰/0.5‰/0.007‰**。**`params.G` 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰**。
+核对日方向（随锚写死；禁止把 0.01‰ 或 0.5‰ 写成全历史唯一费率，也禁止沪深合成一句）：沪市换股过户与深市换股过户分开列。核对日方向是沪市换股过户按成交金额 0.01‰，深市换股过户按股票过户面值 0.5‰。这不是把两所合成一个数，也不是把现货成交金额档或「免费 0」铺到换股腿。缺 venue、业务类型或官方‰则 skip。这不是把 0.01‰、0.5‰ 或 0.007‰ 冻成全历史唯一费率，也不是把 `params.G` 的 0.01 读成沪市换股过户 0.01‰。**禁把占位读成 0.01‰/0.5‰/0.007‰**。**`params.G` 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰**。
 
 证伪方向：若天真组 / 半泄露组相对诚实组的成本差、误套截在标定噪声带内可忽略，且「沪深合成一句 / 把股票 0.01‰ 抄到深市换股 / 把面值 0.5‰ 抄到沪市换股 / 发明免费 0 / 把 DM 经手混进过户 / 核对日泄露 / vs DM·DD·DA·U·DL」分桶不改变结论，则本假设在该样本与开关设定下不成立。
 
@@ -57,39 +57,39 @@
 
 ## 2. 口径与可检验设计（纸面骨架）
 
-### 2.1 写死键占位（拉数前再冻；本页不开跑；Y/G/N/Y2 · dn0 与锚 **三条尚未冻**）
+### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 · dn0 与锚 **三条已冻**）
 
 ```
-# 配置写死键占位（见 §7；状态=草稿·待入库预检；下列三条尚未冻，不要写成已冻）
-# 【消歧】params.Y = 显著性门槛；占位 0.02；**尚未冻，不要写成已冻**；**≠ 实验字母 DN ≠ 单字母假设-D / 假设-N**；勿把 params.Y 读成实验字母 DN
-# 【消歧】params.G = 同族门槛；占位 0.01；**尚未冻，不要写成已冻**；**≠ 实验字母 DN ≠ 单字母 D/N**
+# 配置写死键（见 §7 与文末风控预检补丁；预检有条件通过·三条已冻·待复检；下列三冻已写死冻结）
+# 【消歧】params.Y = 显著性门槛；写死冻结 0.02；**≠ 实验字母 DN ≠ 单字母假设-D / 假设-N**；勿把 params.Y 读成实验字母 DN
+# 【消歧】params.G = 同族门槛；写死冻结 0.01；**≠ 实验字母 DN ≠ 单字母 D/N**
 # 【消歧】尤重：params.G 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰（量纲与语义不同：无量纲相对门槛 ≠ 过户费率‰）
 # 【消歧】禁把占位 0.02/0.01/0.05/0.015 读成 0.01‰/0.5‰/0.007‰（这些是会被误套的过户口径或 DL 下浮数，不是本页门槛，也不是本页要冻的费率）
-# 【消歧】params.N = 失败/废单率差门槛；占位 0.05；**尚未冻，不要写成已冻**；**≠ 实验字母 DN ≠ 单字母假设-N**
-# params.Y2                               占位 0.015；**尚未冻，不要写成已冻**
-# params.Y / G / N / Y2                   占位 0.02/0.01/0.05/0.015（相对门槛：成本差 / 误套截 ΔExchConversionTransfer / 净收益差 / DN1−DN2；**params.Y/G/N ≠ 实验字母 DN ≠ 单字母假设-D / 假设-N**；**尤重 params.G 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰**；**禁把占位读成 0.01‰/0.5‰/0.007‰**；**三条尚未冻，不要写成已冻**；禁 null；禁 holdout/OOS 标定；勿改他页已有数值；禁止把这四个数读成换股过户费率）
-# params.fill_time                        建议 next_open（锚六键之一；建议，未冻）
-# params.asof_check_date                  建议 2026-10-16（锚六键之一；建议，未冻）
+# 【消歧】params.N = 失败/废单率差门槛；写死冻结 0.05；**≠ 实验字母 DN ≠ 单字母假设-N**
+# params.Y2                               写死冻结 0.015
+# params.Y / G / N / Y2                   写死冻结 0.02/0.01/0.05/0.015（相对门槛：成本差 / 误套截 ΔExchConversionTransfer / 净收益差 / DN1−DN2；**params.Y/G/N ≠ 实验字母 DN ≠ 单字母假设-D / 假设-N**；**尤重 params.G 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰**；**禁把占位读成 0.01‰/0.5‰/0.007‰**；禁 null；禁 holdout/OOS 标定；勿改他页已有数值；禁止把这四个数读成换股过户费率）
+# params.fill_time                        写死冻结 next_open
+# params.asof_check_date                  写死冻结 2026-10-16
 # params.px_basis                         建议 unadj
-# params.fail_policy                      建议 skip（锚六键之一；建议，未冻）
-# params.exch_conversion_transfer_honest  建议 pit_sse_szse_conversion_transfer_listed_apart
-#   诚实锚方向（建议，未冻；三条尚未冻，不要写成已冻；禁止把 0.01‰ 或 0.5‰ 写成全历史唯一费率；禁止沪深合成一句）：
+# params.fail_policy                      写死冻结 skip
+# params.exch_conversion_transfer_honest  写死冻结 pit_sse_szse_conversion_transfer_listed_apart
+#   诚实锚方向（已写死冻结；禁止把 0.01‰ 或 0.5‰ 写成全历史唯一费率；禁止沪深合成一句）：
 #   沪市换股过户与深市换股过户分列
 #   沪市核对日换股过户 0.01‰（成交金额），深市换股过户按面值 0.5‰
 #   禁止静默套现货成交金额档
 #   禁止发明免费 0
 #   缺 venue、业务类型或官方‰ → skip
-#   枚举仅建议，未冻
+#   枚举已写死冻结
 #   不把 DM 的换股经手费写成换股过户诚实锚（经手≠过户）
 #   不把 DD 的转债现货过户写成可交换换股过户诚实锚
 #   不把 DA 的篮子面值 0.5‰ 写成深市换股面值诚实锚（同数字也要分列）
 #   不把 U 的股票过户切日写成换股过户
 #   不把 DL 的综合协议过户下浮写成换股过户
-# params.exch_conversion_transfer_scope   建议 sse_001_amount_vs_szse_par_05_not_merged
+# params.exch_conversion_transfer_scope   写死冻结 sse_001_amount_vs_szse_par_05_not_merged
 #   方向名：沪市成交金额 0.01‰ 与深市面值 0.5‰ 分列，不合成一句
 #   这不是把 0.01‰ 或 0.5‰ 冻成全历史费率
 #   可交换债换股过户费误套 ≠ DM换股经手 ≠ DD转债现货过户 ≠ DA基金篮子过户 ≠ U股票过户切日 ≠ DL综合协议过户
-# params.exch_conversion_transfer_over_policy 建议 skip_if_venue_or_biz_type_or_official_bps_missing
+# params.exch_conversion_transfer_over_policy 写死冻结 skip_if_venue_or_biz_type_or_official_bps_missing
 #   缺 venue、业务类型或官方‰则 skip；禁在缺字段时仍按现货成交金额档、免费 0 或沪深合成一句把换股腿填上
 # params.exch_conversion_handling_handoff 建议 dm_page
 #   消费 DM 的可交换债换股经手费，或显式旁路；换股经手 ≠ 换股过户；经手≠过户；不重开假设-DM；不改 DM
@@ -145,9 +145,8 @@
 # params.close_mech_handoff               建议 n_page
 #   收盘机制交 N；双字母 DN ≠ 单字母假设-N；不改 N
 # params.exch_conversion_transfer_handoff 建议 self
-# params.dn0_primary_demo                 建议 invent_wrong_transfer_on_exchangeable_conversion
-#   单一主报，单挂；禁与 invent_asof_leak_exchangeable_conversion_transfer 双挂；DN1 不升格；诊断桶不升格
-#   **尚未冻，不要写成已冻**
+# params.dn0_primary_demo                 写死冻结 invent_wrong_transfer_on_exchangeable_conversion
+#   单一主报写死，单挂；禁与 invent_asof_leak_exchangeable_conversion_transfer 双挂；DN1 不升格；诊断桶不升格
 #   半泄露名 invent_asof_leak_exchangeable_conversion_transfer 只作对照，不得升格进 dn0，不得双挂
 #   诊断桶 merge_sse_szse_conversion_transfer / copy_ashare_001_onto_szse_conversion / copy_par_05_onto_sse_conversion / invent_free_zero_conversion_transfer / confuse_DM_conversion_handling_with_transfer / vs_DM_exch_conversion_handling / vs_DD_cb_transfer / vs_DA_etf_basket_par / vs_U_stock_transfer / vs_DL_agreement_transfer / missing_venue_or_biz_type_not_skip 不得升格进 dn0
 #   尤重：禁止把 DM 换股经手费与本页换股过户费合成/混读后写进 dn0（经手≠过户）
@@ -196,19 +195,19 @@
 
 | 组 | 角色 | 口径 |
 |----|------|------|
-| DN0 | 天真 / 换股过户费误套 | 按 `dn0_primary_demo` **建议**单一主报 `invent_wrong_transfer_on_exchangeable_conversion`（单挂；**尚未冻，不要写成已冻**）：可交换债换股过户费按现货成交金额档抽、写成免费 0，或沪深合成一句。**禁**与 `invent_asof_leak_exchangeable_conversion_transfer` 双挂主报。**禁把 DM 换股经手、DD 转债现货过户、DA 篮子面值、U 股票过户切日、DL 综合协议过户下浮合成进 `dn0`**（只作对照/旁路，不得升格进 `dn0` 或另挂主报） |
-| DN1 | 半泄露 | 仅核对日把「沪市换股过户 0.01‰」或「深市面值 0.5‰」铺到全历史、铺到另一所，或把沪深合成一句（`invent_asof_leak_exchangeable_conversion_transfer`）；**不得升格并列主报**，也不得写进 `dn0`，不得双挂 |
-| DN2 | 诚实 / 沪深换股过户分列 | `exch_conversion_transfer_honest=pit_sse_szse_conversion_transfer_listed_apart`（**建议，未冻**）：缺 venue/业务类型或官方‰则 skip；沪市核对日换股过户 0.01‰、深市面值 0.5‰，禁止合成一句；禁止静默套现货成交金额档或发明免费 0。换股经手只消费 DM，转债现货过户只消费 DD，基金篮子过户只消费 DA，股票过户切日只消费 U，综合协议过户下浮只消费 DL，或显式旁路 |
+| DN0 | 天真 / 换股过户费误套 | 按 `dn0_primary_demo` **写死冻结**单一主报 `invent_wrong_transfer_on_exchangeable_conversion`（单挂写死）：可交换债换股过户费按现货成交金额档抽、写成免费 0，或沪深合成一句。**禁**与 `invent_asof_leak_exchangeable_conversion_transfer` 双挂主报。**禁把 DM 换股经手、DD 转债现货过户、DA 篮子面值、U 股票过户切日、DL 综合协议过户下浮合成进 `dn0`**（只作对照/旁路，不得升格进 `dn0` 或另挂主报） |
+| DN1 | 半泄露 | 仅核对日把「沪市换股过户 0.01‰」或「深市面值 0.5‰」铺到全历史、铺到另一所，或把沪深合成一句（`invent_asof_leak_exchangeable_conversion_transfer`）；**不得升格并列主报**，也不得写进 `dn0`（写死冻结：DN1 不升格），不得双挂 |
+| DN2 | 诚实 / 沪深换股过户分列 | `exch_conversion_transfer_honest=pit_sse_szse_conversion_transfer_listed_apart`（写死冻结）：缺 venue/业务类型或官方‰则 skip；沪市核对日换股过户 0.01‰、深市面值 0.5‰，禁止合成一句；禁止静默套现货成交金额档或发明免费 0。换股经手只消费 DM，转债现货过户只消费 DD，基金篮子过户只消费 DA，股票过户切日只消费 U，综合协议过户下浮只消费 DL，或显式旁路 |
 
 把沪深合成一句、把股票成交金额 0.01‰ 抄到深市换股、把面值 0.5‰ 抄到沪市换股、发明免费 0、把 DM 的换股经手混进过户、把 DD 的转债现货过户混进换股、把 DA 的篮子面值 0.5‰ 因同数字混进深市换股、把 U 的股票过户切日混进换股、把 DL 的综合协议下浮混进换股，以及相对这些页的对照截（`merge_sse_szse_conversion_transfer` / `copy_ashare_001_onto_szse_conversion` / `copy_par_05_onto_sse_conversion` / `invent_free_zero_conversion_transfer` / `confuse_DM_conversion_handling_with_transfer` / `vs_DM_exch_conversion_handling` / `vs_DD_cb_transfer` / `vs_DA_etf_basket_par` / `vs_U_stock_transfer` / `vs_DL_agreement_transfer` / `missing_venue_or_biz_type_not_skip`），放进 §4.1 分桶，**只作诊断桶，不得升格为第二个主报**，也不得改写 `dn0_primary_demo`。`vs_DM_exch_conversion_handling` 只标记「有人把 DM 的换股经手和本页换股过户合成/混读」，**不得升格进 `dn0`**。`vs_DD_cb_transfer` 只标记转债现货过户对照，**不得升格进 `dn0`**。`vs_DA_etf_basket_par` 只标记「有人因同是 0.5‰ 把 DA 篮子面值和深市换股面值混读」，**不得升格进 `dn0`**。`vs_U_stock_transfer` 只标记股票过户切日对照，**不得升格进 `dn0`**。`vs_DL_agreement_transfer` 只标记综合协议过户下浮对照，**不得升格进 `dn0`**。DM 的经手、DD 的转债过户、DA 的篮子、U 的股票切日、DL 的协议下浮只作对照/旁路。
 
 ### 2.3 费用窗可落点（写明但不真跑）
 
-主窗建议占位、待预检，起止日仍空着。asof **建议** `2026-10-16`；fill_time **建议** `next_open`；fail **建议** `skip`。诚实锚六键与 Y/G/N/Y2、`dn0_primary_demo` 同属三条，**尚未冻，不要写成已冻**。机制红线只有一句：缺 venue/业务类型或官方‰则 skip；沪市核对日换股过户 0.01‰、深市面值 0.5‰，禁止合成一句；禁止静默套现货成交金额档或发明免费 0。方向随锚建议：**不要把核对日 0.01‰ 或 0.5‰ 铺满全历史，也不要沪深合成一句**。`事实与坑` 2026-11-09 已写：沪市表 A 股与可交换换股都见 0.01‰，深市可交换债券换股按股票过户面值 0.5‰，可转债现货不在该成交金额栏；基金申赎篮子面值 0.5‰ 是另一笔。那些数字留在各自已齐页里，本页不重开 DM / DD / DA / U / DL。`params.G` 的 0.01 是无量纲相对门槛，不是沪市换股过户 0.01‰，也不是深市面值 0.5‰。**禁把占位读成 0.01‰/0.5‰/0.007‰**。缺 venue、业务类型或官方‰则 skip，不用现货成交金额档、免费 0、自造‰或把占位 0.01 当成费率把换股腿填上。本页**不开回测**；不拉真数；不做实盘。
+主窗建议占位、待预检，起止日仍空着。asof **写死冻结** `2026-10-16`；fill_time **写死冻结** `next_open`；fail **写死冻结** `skip`。诚实锚六键与 Y/G/N/Y2、`dn0_primary_demo` 同属三条，**已写死冻结**。机制红线只有一句：缺 venue/业务类型或官方‰则 skip；沪市核对日换股过户 0.01‰、深市面值 0.5‰，禁止合成一句；禁止静默套现货成交金额档或发明免费 0。方向随锚写死：**不要把核对日 0.01‰ 或 0.5‰ 铺满全历史，也不要沪深合成一句**。`事实与坑` 2026-11-09 已写：沪市表 A 股与可交换换股都见 0.01‰，深市可交换债券换股按股票过户面值 0.5‰，可转债现货不在该成交金额栏；基金申赎篮子面值 0.5‰ 是另一笔。那些数字留在各自已齐页里，本页不重开 DM / DD / DA / U / DL。`params.G` 的 0.01 是无量纲相对门槛，不是沪市换股过户 0.01‰，也不是深市面值 0.5‰。**禁把占位读成 0.01‰/0.5‰/0.007‰**。缺 venue、业务类型或官方‰则 skip，不用现货成交金额档、免费 0、自造‰或把占位 0.01 当成费率把换股腿填上。本页**不开回测**；不拉真数；不做实盘。
 
 ### 2.4 oos_split（建议四日期；拉数前再定；禁 holdout 反调）
 
-建议四日期占位（待预检；禁 holdout 反调 `dn0_primary_demo` / `params.Y`·G·N·Y2 / 沪深换股过户开关 / 桶 / 是否把 0.01‰ 或 0.5‰ 铺到全历史或合成一句）。本页不开跑。三条尚未冻。
+建议四日期占位（待预检；禁 holdout 反调 `dn0_primary_demo` / `params.Y`·G·N·Y2 / 沪深换股过户开关 / 桶 / 是否把 0.01‰ 或 0.5‰ 铺到全历史或合成一句）。本页不开跑。
 
 ---
 
@@ -216,23 +215,23 @@
 
 ### 3.1 成功（假设成立方向）
 
-天真组（DN0）/ 半泄露组（DN1）相对诚实组（DN2）的成本差、误套截**显著且集中在换股过户费被套成现货成交金额档、免费 0 或沪深合成一句的桶**；分桶「沪深合成 / 股票 0.01‰ 抄到深市换股 / 面值 0.5‰ 抄到沪市换股 / 免费 0 / DM 经手混进过户 / 核对日泄露 / vs DM·DD·DA·U·DL」不改变主结论方向。方向是相对诚实锚偏误。成功不依赖把 0.01‰ 或 0.5‰ 冻成全历史唯一费率，也不把 `params.G` 的 0.01 读成沪市换股过户。三条尚未冻。
+天真组（DN0）/ 半泄露组（DN1）相对诚实组（DN2）的成本差、误套截**显著且集中在换股过户费被套成现货成交金额档、免费 0 或沪深合成一句的桶**；分桶「沪深合成 / 股票 0.01‰ 抄到深市换股 / 面值 0.5‰ 抄到沪市换股 / 免费 0 / DM 经手混进过户 / 核对日泄露 / vs DM·DD·DA·U·DL」不改变主结论方向。方向是相对诚实锚偏误。成功不依赖把 0.01‰ 或 0.5‰ 冻成全历史唯一费率，也不把 `params.G` 的 0.01 读成沪市换股过户。
 
 ### 3.2 失败（假设不成立 / 设计失效）
 
-差异落在噪声带内；或主差被 DM 的换股经手、DD 的转债现货过户、DA 的基金篮子过户、U 的股票过户切日、DL 的综合协议过户下浮、DK 的基金印花税、DJ 的基金证管费、DI 的大宗经手下浮、DH 的佣金双计、DG 的北交所档、DF 的可交换现货经手、DE 的转债证管费、DC 的转债印花税、DB 的转债现货经手、S 的股票经手切日、AX 的基金经手费、T 的股票证管费、V 的股票印花税、AC 的北交所涨跌幅与盘后、Q 的回转与涨跌幅、R 的股票 ETF 回转、O 的大宗通道、A 的板上容量、D 的成交时点、N 的收盘机制解释；或 `dn0_primary_demo` 与 `invent_asof_leak_exchangeable_conversion_transfer` 双挂；或 DN1 升格并列主报；或 `merge_sse_szse_conversion_transfer` / `copy_ashare_001_onto_szse_conversion` / `copy_par_05_onto_sse_conversion` / `invent_free_zero_conversion_transfer` / `confuse_DM_conversion_handling_with_transfer` / `vs_DM_exch_conversion_handling` / `vs_DD_cb_transfer` / `vs_DA_etf_basket_par` / `vs_U_stock_transfer` / `vs_DL_agreement_transfer` / `missing_venue_or_biz_type_not_skip` 诊断桶升格主报；或把 DM 经手、DD 转债过户、DA 篮子面值、U 股票过户、DL 协议过户合成进 `dn0`；或实验字母 DN 与单字母 D/N 或 params.Y/G/N 混读；或把 `params.G` 的 0.01 读成沪市换股过户 0.01‰；或把占位读成 0.01‰/0.5‰/0.007‰；或把核对日 0.01‰ / 0.5‰ 写成已冻并铺满全历史或沪深合成一句；或缺 venue / 业务类型 / 官方‰仍按现货成交金额档或免费 0 把换股腿填上；或重开假设-T / 假设-AC / 假设-R / 假设-U / 假设-O / 假设-DI / 假设-V / 假设-DF / 假设-DB / 假设-S / 假设-DD / 假设-DL / 假设-DM；或把三条写成已冻；或标纸面齐；或写成 A/D–DN纸面齐。
+差异落在噪声带内；或主差被 DM 的换股经手、DD 的转债现货过户、DA 的基金篮子过户、U 的股票过户切日、DL 的综合协议过户下浮、DK 的基金印花税、DJ 的基金证管费、DI 的大宗经手下浮、DH 的佣金双计、DG 的北交所档、DF 的可交换现货经手、DE 的转债证管费、DC 的转债印花税、DB 的转债现货经手、S 的股票经手切日、AX 的基金经手费、T 的股票证管费、V 的股票印花税、AC 的北交所涨跌幅与盘后、Q 的回转与涨跌幅、R 的股票 ETF 回转、O 的大宗通道、A 的板上容量、D 的成交时点、N 的收盘机制解释；或 `dn0_primary_demo` 与 `invent_asof_leak_exchangeable_conversion_transfer` 双挂；或 DN1 升格并列主报；或 `merge_sse_szse_conversion_transfer` / `copy_ashare_001_onto_szse_conversion` / `copy_par_05_onto_sse_conversion` / `invent_free_zero_conversion_transfer` / `confuse_DM_conversion_handling_with_transfer` / `vs_DM_exch_conversion_handling` / `vs_DD_cb_transfer` / `vs_DA_etf_basket_par` / `vs_U_stock_transfer` / `vs_DL_agreement_transfer` / `missing_venue_or_biz_type_not_skip` 诊断桶升格主报；或把 DM 经手、DD 转债过户、DA 篮子面值、U 股票过户、DL 协议过户合成进 `dn0`；或实验字母 DN 与单字母 D/N 或 params.Y/G/N 混读；或把 `params.G` 的 0.01 读成沪市换股过户 0.01‰；或把占位读成 0.01‰/0.5‰/0.007‰；或把核对日 0.01‰ / 0.5‰ 写成已冻并铺满全历史或沪深合成一句；或缺 venue / 业务类型 / 官方‰仍按现货成交金额档或免费 0 把换股腿填上；或重开假设-T / 假设-AC / 假设-R / 假设-U / 假设-O / 假设-DI / 假设-V / 假设-DF / 假设-DB / 假设-S / 假设-DD / 假设-DL / 假设-DM；或标纸面齐；或写成 A/D–DN纸面齐。
 
 ---
 
 ## 4. 检验设计（纸面）
 
-同一信号、同一未复权金额，对照 DN0/DN1/DN2。换股经手走 DM 或显式旁路，不在本页改 DM，也不把 DM 的经手升成主报。转债现货过户走 DD，基金篮子过户走 DA，股票过户切日走 U，综合协议过户下浮走 DL，都不改。报告成本差、误套截。不把 0.01‰ 或 0.5‰ 标成已冻的换股过户费率，也不把 `params.G` 的 0.01 读成沪市换股过户。三条尚未冻。
+同一信号、同一未复权金额，对照 DN0/DN1/DN2。换股经手走 DM 或显式旁路，不在本页改 DM，也不把 DM 的经手升成主报。转债现货过户走 DD，基金篮子过户走 DA，股票过户切日走 U，综合协议过户下浮走 DL，都不改。报告成本差、误套截。不把 0.01‰ 或 0.5‰ 标成已冻的换股过户费率，也不把 `params.G` 的 0.01 读成沪市换股过户。
 
 ### 4.1 分桶（须报；`params.diff_buckets` 建议默认名；拉数前再定；禁 holdout 改桶）
 
-建议默认桶名（待预检；**尚未冻**）：`invent_wrong_transfer_on_exchangeable_conversion` / `invent_asof_leak_exchangeable_conversion_transfer` / `merge_sse_szse_conversion_transfer` / `copy_ashare_001_onto_szse_conversion` / `copy_par_05_onto_sse_conversion` / `invent_free_zero_conversion_transfer` / `confuse_DM_conversion_handling_with_transfer` / `vs_DM_exch_conversion_handling` / `vs_DD_cb_transfer` / `vs_DA_etf_basket_par` / `vs_U_stock_transfer` / `vs_DL_agreement_transfer` / `missing_venue_or_biz_type_not_skip`
+建议默认桶名（待预检）：`invent_wrong_transfer_on_exchangeable_conversion` / `invent_asof_leak_exchangeable_conversion_transfer` / `merge_sse_szse_conversion_transfer` / `copy_ashare_001_onto_szse_conversion` / `copy_par_05_onto_sse_conversion` / `invent_free_zero_conversion_transfer` / `confuse_DM_conversion_handling_with_transfer` / `vs_DM_exch_conversion_handling` / `vs_DD_cb_transfer` / `vs_DA_etf_basket_par` / `vs_U_stock_transfer` / `vs_DL_agreement_transfer` / `missing_venue_or_biz_type_not_skip`
 
-`merge_sse_szse_conversion_transfer`、`copy_ashare_001_onto_szse_conversion`、`copy_par_05_onto_sse_conversion`、`invent_free_zero_conversion_transfer`、`confuse_DM_conversion_handling_with_transfer`、`vs_DM_exch_conversion_handling`、`vs_DD_cb_transfer`、`vs_DA_etf_basket_par`、`vs_U_stock_transfer`、`vs_DL_agreement_transfer`、`missing_venue_or_biz_type_not_skip` 只作诊断桶：它们不是 `dn0`，也不是 DN1，**不得升格主报**。`vs_DM_exch_conversion_handling` 没有对应的「DM 换股经手 + 换股过户」合成主报。DM 的换股经手只作诊断，**不得与换股过户合成后升格进 `dn0`**。DD 的转债现货过户只作诊断，**不得升格进 `dn0`**。DA 的篮子面值 0.5‰ 只作诊断，**不得因同数字升格进 `dn0`**。U 的股票过户切日只作诊断，**不得升格进 `dn0`**。DL 的综合协议过户下浮只作诊断，**不得升格进 `dn0`**。沪深合成一句、把 0.01‰ 抄到深市、把 0.5‰ 抄到沪市、发明免费 0，都只作诊断，**不得升格进 `dn0`**。`invent_asof_leak_exchangeable_conversion_transfer` 只服务 DN1，**不得升格进 `dn0`，不得双挂**。`invent_wrong_transfer_on_exchangeable_conversion` 才是建议中的单一主报名（**尚未冻，不要写成已冻**）。
+`merge_sse_szse_conversion_transfer`、`copy_ashare_001_onto_szse_conversion`、`copy_par_05_onto_sse_conversion`、`invent_free_zero_conversion_transfer`、`confuse_DM_conversion_handling_with_transfer`、`vs_DM_exch_conversion_handling`、`vs_DD_cb_transfer`、`vs_DA_etf_basket_par`、`vs_U_stock_transfer`、`vs_DL_agreement_transfer`、`missing_venue_or_biz_type_not_skip` 只作诊断桶：它们不是 `dn0`，也不是 DN1，**不得升格主报**。`vs_DM_exch_conversion_handling` 没有对应的「DM 换股经手 + 换股过户」合成主报。DM 的换股经手只作诊断，**不得与换股过户合成后升格进 `dn0`**。DD 的转债现货过户只作诊断，**不得升格进 `dn0`**。DA 的篮子面值 0.5‰ 只作诊断，**不得因同数字升格进 `dn0`**。U 的股票过户切日只作诊断，**不得升格进 `dn0`**。DL 的综合协议过户下浮只作诊断，**不得升格进 `dn0`**。沪深合成一句、把 0.01‰ 抄到深市、把 0.5‰ 抄到沪市、发明免费 0，都只作诊断，**不得升格进 `dn0`**。`invent_asof_leak_exchangeable_conversion_transfer` 只服务 DN1，**不得升格进 `dn0`，不得双挂**。`invent_wrong_transfer_on_exchangeable_conversion` 才是写死冻结的单一主报名。
 
 ---
 
@@ -242,7 +241,7 @@
 - 把 `params.G` 的 0.01 当成沪市换股过户 0.01‰。**尤重：`params.G` 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰**。
 - 把占位 `0.02/0.01/0.05/0.015` 读成 0.01‰/0.5‰/0.007‰。**禁把占位读成 0.01‰/0.5‰/0.007‰**。
 - 缺 venue、业务类型或官方‰仍不 skip，并用现货成交金额档、免费 0、自造‰或占位 0.01 把换股腿填上。
-- 把核对日「沪市 0.01‰、深市面值 0.5‰」写成全历史唯一费率，并铺满全历史，或合成一句。方向是两所分列，不是全历史已冻费率。锚六键仍是建议，未冻。
+- 把核对日「沪市 0.01‰、深市面值 0.5‰」写成全历史唯一费率，并铺满全历史，或合成一句。方向是两所分列，不是全历史已冻费率。锚六键已写死冻结。
 - 深市换股没有官方‰仍硬填一档（含把股票 0.01‰、篮子 0.5‰ 或免费 0 抄成深市换股）。
 - 把「换股经手已分列（DM）/ 转债现货过户已诚实（DD）/ 基金篮子面值已诚实（DA）/ 股票过户切日已诚实（U）/ 综合协议过户下浮已诚实（DL）」写成「可交换债换股过户费已诚实」。不改 DM / DD / DA / U / DL。
 - 把 DM 的换股经手费和本页换股过户费合成或混读后升格进 `dn0`。诊断桶 `vs_DM_exch_conversion_handling` / `confuse_DM_conversion_handling_with_transfer` 只作对照。经手≠过户。
@@ -255,8 +254,8 @@
 - 缺 venue 或业务类型仍不 skip，并升格进 `dn0`。诊断桶 `missing_venue_or_biz_type_not_skip` 只作对照。
 - `dn0_primary_demo` 与 `invent_asof_leak_exchangeable_conversion_transfer` 双挂主报；DN1 升格并列主报；诊断桶升格为第二个主报。
 - 实验字母 DN 与单字母 D/N 或 params.Y/G/N 混读。
-- 改 DM / DL / DK / DJ / DI / DH / DG / DF / DE / DD / DC / DB / DA / S / AX / T / U / V / AC / Q / R / O / A / D / N 正文；重开假设-T；重开假设-AC；重开假设-R；重开假设-U；重开假设-O；重开假设-DI；重开假设-V；重开假设-DF；重开假设-DB；重开假设-S；重开假设-DD；重开假设-DL；重开假设-DM；抢 A 真数队列；标纸面齐；写成 A/D–DN纸面齐；把三条写成已冻；开真数/回测/实盘；用复权价当费用基数；结论写成「换股过户更低所以能买」。
-- **纸面齐惯例**：以后若落复检稿要标纸面齐，须同步升假设正文页头、结论、尾状态（对照 DK/DL/DM；勿再只改清单）。**当前草稿阶段禁止标纸面齐**。
+- 改 DM / DL / DK / DJ / DI / DH / DG / DF / DE / DD / DC / DB / DA / S / AX / T / U / V / AC / Q / R / O / A / D / N 正文；重开假设-T；重开假设-AC；重开假设-R；重开假设-U；重开假设-O；重开假设-DI；重开假设-V；重开假设-DF；重开假设-DB；重开假设-S；重开假设-DD；重开假设-DL；重开假设-DM；抢 A 真数队列；标纸面齐；写成 A/D–DN纸面齐；开真数/回测/实盘；用复权价当费用基数；结论写成「换股过户更低所以能买」。
+- **纸面齐惯例**：以后若落复检稿要标纸面齐，须同步升假设正文页头、结论、尾状态（对照 DK/DL/DM；勿再只改清单）。**待复检阶段禁止标纸面齐**。
 
 ---
 
@@ -265,29 +264,44 @@
 - 标的代码、未复权成交金额、交易日、**交易所 venue**（沪/深）、**业务类型**（可交换债换股 / 可交换债现货 / 可转债现货 / 股票过户 / 基金申赎篮子 / 综合协议；仅用于把腿分回 DM、DD、DA、U、DL 或本页）、**官方换股过户‰是否在册**（缺则 skip，不发明数，也不填免费 0）。
 - 深市换股若走面值档，还要面值或过户面额；没有官方口径就 skip，不拿成交金额代替面值。
 - 证券类别只用于把腿分回 DM / DD / DA / U / DL 等旁路页，不在本页改那些页。
-- 没有 venue、业务类型或官方‰时，按建议的 `exch_conversion_transfer_over_policy=skip_if_venue_or_biz_type_or_official_bps_missing` skip，不得按现货成交金额档或免费 0 把换股腿填上，也不得用核对日 0.01‰ 或 0.5‰ 把腿填满全历史，或把两所合成一句。
+- 没有 venue、业务类型或官方‰时，按写死冻结的 `exch_conversion_transfer_over_policy=skip_if_venue_or_biz_type_or_official_bps_missing` skip，不得按现货成交金额档或免费 0 把换股腿填上，也不得用核对日 0.01‰ 或 0.5‰ 把腿填满全历史，或把两所合成一句。
 - 旁路消费：DM 的换股经手费、DD 的转债现货过户费、DA 的场内基金过户费（含篮子面值）、U 的股票过户费切日、DL 的综合协议过户费下浮、DK 的基金印花税、DJ 的基金证管费、DI 的大宗经手下浮、DH 的佣金双计、DG 的北交所经手费、DF 的可交换现货经手费、DE 的转债证管费、DC 的转债印花税、DB 的转债现货经手费、S 的股票经手切日、AX 的基金经手费、T 的股票证管费、V 的股票印花税、AC 的北交所涨跌幅与盘后、Q 的转债规则、R 的股票 ETF 回转、O 的大宗通道、N 的收盘机制之诚实结果或显式旁路（见 §2.1 handoff）。**本页不改写这些页。** DM 的换股经手、DD 的转债过户、DA 的篮子面值、U 的股票切日、DL 的协议下浮不收到本页主报。
-- 未复权价；asof **建议** `2026-10-16`（未冻）。核对日方向「沪市换股过户 0.01‰、深市面值 0.5‰、禁止合成一句」是建议中的机制方向，不是已冻全历史费率。
+- 未复权价；asof **写死冻结** `2026-10-16`。核对日方向「沪市换股过户 0.01‰、深市面值 0.5‰、禁止合成一句」是写死冻结的机制方向，不是已冻全历史费率。
 
 ---
 
 ## 7. 回测配置骨架（纸面；本页不开回测）
 
-- **写死键占位摘要（三条尚未冻）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`fail_policy=skip`；`exch_conversion_transfer_honest=pit_sse_szse_conversion_transfer_listed_apart`（沪市核对日换股过户 0.01‰、深市面值 0.5‰，禁止合成一句；禁止静默套现货成交金额档或发明免费 0；**禁止把 0.01‰ 或 0.5‰ 写成全历史唯一费率**；**建议，未冻**）；`exch_conversion_transfer_scope=sse_001_amount_vs_szse_par_05_not_merged`（沪市成交金额与深市面值分列；方向名，不是已冻费率）；`exch_conversion_transfer_over_policy=skip_if_venue_or_biz_type_or_official_bps_missing`（缺 venue/业务类型或官方‰则 skip）；`dn0_primary_demo=invent_wrong_transfer_on_exchangeable_conversion`（**建议**单一主报，单挂；禁与 `invent_asof_leak_exchangeable_conversion_transfer` 双挂；DN1 不升格；诊断桶不升格主报；**禁把 DM 换股经手、DD 转债现货过户、DA 篮子面值、U 股票过户切日、DL 综合协议过户下浮合成进 `dn0`**，只作对照/旁路，不得升格进 `dn0` 或另挂主报；**尚未冻，不要写成已冻**）；`exch_conversion_handling_handoff=dm_page`；`cb_transfer_fee_handoff=dd_page`；`stock_transfer_fee_handoff=u_page`；`etf_transfer_fee_handoff=da_page`；`agreement_transfer_handoff=dl_page`；`merge_with_DM/DL/DK/DJ/DI/DH/DG/DF/DE/DD/DC/DB/DA/S/AX/T/U/V/AC/Q/R/O/A/D/N=False`。
-- `params.Y/G/N/Y2` **占位** `0.02/0.01/0.05/0.015`（相对门槛，不是费率表：成本差 / 误套截 ΔExchConversionTransfer / 净收益差 / DN1−DN2；**尤重 params.G 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰（量纲与语义不同）**；**禁把占位读成 0.01‰/0.5‰/0.007‰**；**params.Y/G/N ≠ 实验字母 DN ≠ 单字母 D/N**；**勿把 params.G 读成实验字母 DN，亦勿把单字母假设-D / 假设-N 读成双字母 DN**；**尚未冻，不要写成已冻**；禁 null；禁 holdout/OOS 标定；勿改他页已有数值；禁止把这四个数读成换股过户费率）。
+- **写死键摘要（三条已冻）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`fail_policy=skip`；`exch_conversion_transfer_honest=pit_sse_szse_conversion_transfer_listed_apart`（沪市核对日换股过户 0.01‰、深市面值 0.5‰，禁止合成一句；禁止静默套现货成交金额档或发明免费 0；**禁止把 0.01‰ 或 0.5‰ 写成全历史唯一费率**）；`exch_conversion_transfer_scope=sse_001_amount_vs_szse_par_05_not_merged`（沪市成交金额与深市面值分列；方向名，不是已冻费率）；`exch_conversion_transfer_over_policy=skip_if_venue_or_biz_type_or_official_bps_missing`（缺 venue/业务类型或官方‰则 skip）；`dn0_primary_demo=invent_wrong_transfer_on_exchangeable_conversion`（**写死冻结**单一主报，单挂；禁与 `invent_asof_leak_exchangeable_conversion_transfer` 双挂；DN1 不升格；诊断桶不升格主报；**禁把 DM 换股经手、DD 转债现货过户、DA 篮子面值、U 股票过户切日、DL 综合协议过户下浮合成进 `dn0`**，只作对照/旁路，不得升格进 `dn0` 或另挂主报）；`exch_conversion_handling_handoff=dm_page`；`cb_transfer_fee_handoff=dd_page`；`stock_transfer_fee_handoff=u_page`；`etf_transfer_fee_handoff=da_page`；`agreement_transfer_handoff=dl_page`；`merge_with_DM/DL/DK/DJ/DI/DH/DG/DF/DE/DD/DC/DB/DA/S/AX/T/U/V/AC/Q/R/O/A/D/N=False`。
+- `params.Y/G/N/Y2` **写死冻结** `0.02/0.01/0.05/0.015`（相对门槛，不是费率表：成本差 / 误套截 ΔExchConversionTransfer / 净收益差 / DN1−DN2；**尤重 params.G 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰（量纲与语义不同）**；**禁把占位读成 0.01‰/0.5‰/0.007‰**；**params.Y/G/N ≠ 实验字母 DN ≠ 单字母 D/N**；**勿把 params.G 读成实验字母 DN，亦勿把单字母假设-D / 假设-N 读成双字母 DN**；禁 null；禁 holdout/OOS 标定；勿改他页已有数值；禁止把这四个数读成换股过户费率）。
 - oos_split 四日期建议占位；禁 holdout 反调。不写下一字母。不预留 #124。
-- **本页不开回测**；不拉真数；不做实盘；不催 8765。本草稿基 tip=`f4c3759`（A/D–DM纸面齐已合，全长 `f4c37594f744c66552ce085858e54aff535f7c7a`）。**不改已冻 A–DM / DA–DL**。状态=草稿·待入库预检。三条尚未冻。禁止标纸面齐。未标纸面齐。不写 A/D–DN纸面齐。
+- **本页不开回测**；不拉真数；不做实盘；不催 8765。本草稿基 tip=`f4c3759`（A/D–DM纸面齐已合，全长 `f4c37594f744c66552ce085858e54aff535f7c7a`）；三冻补丁基 tip=`f3dcc30b` / `f3dcc30b7fdbc5769ab3f6d3d24893cc04bb602f`；分支起点 HEAD=`d2adf09a` / `d2adf09aa66aa01e62e525ceb582d3065c445259`。**不改已冻 A–DM / DA–DL**。状态=**预检有条件通过·三条已冻·待复检**。禁止标纸面齐。未标纸面齐。不写 A/D–DN纸面齐。
 
 ---
 
 ## 8. 结论
 
-（空）
+（空；**预检有条件通过·三条已冻·待复检**。）
 
 ---
+
+## 风控预检补丁·冻结（三条已写死 · 2026-11-13）
+
+依据风控稿 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设DN-20261110.md`（原样落入，不改结论；SHA256=`d462426960534fd8e61a0fbc5c2a929d70ad896554b9dd3c60808aae722dec95`；预检 2026-11-10；**结论：有条件通过**；tip基=`f3dcc30b` / `f3dcc30b7fdbc5769ab3f6d3d24893cc04bb602f`；本补丁分支起点 HEAD=`d2adf09a` / `d2adf09aa66aa01e62e525ceb582d3065c445259`）。按该稿条件 1–3 升格，不标纸面齐。
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`。相对门槛用于成本差、误套截 ΔExchConversionTransfer、净收益差、DN1−DN2 专项。**`params.Y` ≠ 实验字母 DN**；**`params.G` ≠ 实验字母 DN**；**`params.N` ≠ 实验字母 DN**；亦 ≠ 单字母假设-D / 假设-N。**勿把 `params.G` 读成实验字母 DN，亦勿把单字母假设-D / 假设-N 读成双字母 DN**。**尤重：`params.G` 的 `0.01` ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰**（**params.G 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰**）。二者量纲与语义都不同：`params.G=0.01` 是无量纲相对门槛，不是沪市换股过户费率，也不是深市换股面值费率。**禁把占位读成 0.01‰/0.5‰/0.007‰**。禁止互读、禁止把门槛改写成费率。禁 null 开工；禁 holdout/OOS 标定或跑后因显著性改口；**勿改他字母已冻 Y/G/N/Y2**。
+
+2. **`params.dn0_primary_demo`**：**写死冻结** **`invent_wrong_transfer_on_exchangeable_conversion`**（单一主报，单挂写死）。**禁止**与 **`invent_asof_leak_exchangeable_conversion_transfer`** 双挂争主表；**禁止**跑后因分桶显著性改口主报。DN1 核对日把「沪市换股过户 0.01‰」或「深市面值 0.5‰」铺到全历史、铺到另一所，或把沪深合成一句只作半泄露对照，**不得升格与 dn0 并列主报**，也不得把 `invent_asof_leak_exchangeable_conversion_transfer` 写进 `dn0`。`merge_sse_szse_conversion_transfer` / `copy_ashare_001_onto_szse_conversion` / `copy_par_05_onto_sse_conversion` / `invent_free_zero_conversion_transfer` / `confuse_DM_conversion_handling_with_transfer` / `vs_DM_exch_conversion_handling` / `vs_DD_cb_transfer` / `vs_DA_etf_basket_par` / `vs_U_stock_transfer` / `vs_DL_agreement_transfer` / `missing_venue_or_biz_type_not_skip` **只作诊断桶，不得升格主报**。DN1 / 诊断桶 **不升格**。**禁把 DM换股经手 / DD转债现货过户 / DA篮子面值 / U股票过户切日 / DL综合协议过户 合成/混读升格进 `dn0`**：这些只作对照/旁路，**不得升格进 `dn0`，不得另挂主报**。经手≠过户。同数字 0.5‰ 也不混读。
+
+3. **可交换债换股过户费诚实锚六键升格写死（不可再写「建议」）**：`params.exch_conversion_transfer_honest=pit_sse_szse_conversion_transfer_listed_apart`；`params.exch_conversion_transfer_scope=sse_001_amount_vs_szse_par_05_not_merged`；`params.exch_conversion_transfer_over_policy=skip_if_venue_or_biz_type_or_official_bps_missing`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`。缺 venue/业务类型或官方‰ → skip；沪市核对日换股过户 0.01‰、深市面值 0.5‰，禁止合成一句；禁止静默套现货成交金额档或发明免费 0。禁止把核对日 0.01‰ 或 0.5‰ 铺满全历史。禁止跑后改锚，或用现货成交金额档 / 免费 0 / 沪深合成一句 / 核对日现行费率 / 发明‰ / 缺 venue/业务类型或官方‰仍硬填 / 把 DM换股经手、DD转债现货过户、DA篮子面值、U股票过户切日或 DL综合协议过户升格进 dn0 冒充诚实 PIT。**禁把占位读成 0.01‰/0.5‰/0.007‰**。**禁把 params.G 的 0.01 读成沪市换股过户 0.01‰**。**经手≠过户**。
+
+**硬分列保住**：DN≠DM≠DL≠DK≠DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠S≠AX≠T≠U≠V≠AC≠Q≠R≠O≠A≠D≠N；**双字母 DN ≠ 单字母假设-D / 假设-N**；**params.Y / params.G / params.N ≠ 实验字母 DN ≠ 单字母 D/N**；**尤重 params.G 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰**；**禁把占位读成 0.01‰/0.5‰/0.007‰**；**可交换债换股过户费误套 ≠ DM换股经手 ≠ DD转债现货过户 ≠ DA基金篮子过户 ≠ U股票过户切日 ≠ DL综合协议过户**；不抢 A；不改已齐/已冻 DA～DM 及 A–DM 正文；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-U**；**不重开假设-O**；**不重开假设-DI**；**不重开假设-V**；**不重开假设-DF**；**不重开假设-DB**；**不重开假设-S**；**不重开假设-DD**；**不重开假设-DL**；**不重开假设-DM**；**不重开假设-DA**；**禁把 DM换股经手 / DD转债现货过户 / DA篮子面值 / U股票过户切日 / DL综合协议过户 合成/混读升格进 dn0**。
+
+**状态**：**预检有条件通过·三条已冻·待复检**；**禁止标纸面齐**；**未标纸面齐**；**不写 A/D–DN纸面齐**；本页不开回测/真数/实盘。
 
 ## 变更
 
 | 日期 | 变更 |
 |------|------|
+| 2026-11-13 | 风控预检补丁·冻结三条写死——依据 `预检-假设DN-20261110.md`（SHA256=`d462426960534fd8e61a0fbc5c2a929d70ad896554b9dd3c60808aae722dec95`；结论=有条件通过；tip基=`f3dcc30b` / `f3dcc30b7fdbc5769ab3f6d3d24893cc04bb602f`；分支起点 HEAD=`d2adf09a` / `d2adf09aa66aa01e62e525ceb582d3065c445259`）条件 1–3。① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（相对门槛覆盖成本差 / ΔExchConversionTransfer / 净收益差 / DN1−DN2；**params.Y/G/N ≠ 实验字母 DN ≠ 单字母 D/N**；**勿把 params.G 读成实验字母 DN，亦勿把单字母假设-D / 假设-N 读成双字母 DN**；**尤重 params.G 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰（量纲与语义不同）**；**禁把占位读成 0.01‰/0.5‰/0.007‰**；禁 null；禁 holdout/OOS 标定；禁止把这四个数读成换股过户费率）；② `params.dn0_primary_demo=invent_wrong_transfer_on_exchangeable_conversion`（写死冻结单一主报，单挂；禁与 `invent_asof_leak_exchangeable_conversion_transfer` 双挂；DN1 不升格；诊断桶 `merge_sse_szse_conversion_transfer` / `copy_ashare_001_onto_szse_conversion` / `copy_par_05_onto_sse_conversion` / `invent_free_zero_conversion_transfer` / `confuse_DM_conversion_handling_with_transfer` / `vs_DM_exch_conversion_handling` / `vs_DD_cb_transfer` / `vs_DA_etf_basket_par` / `vs_U_stock_transfer` / `vs_DL_agreement_transfer` / `missing_venue_or_biz_type_not_skip` 不升格；**禁把 DM换股经手 / DD转债现货过户 / DA篮子面值 / U股票过户切日 / DL综合协议过户 合成/混读升格进 dn0**，只作对照/旁路，不得升格进 dn0 或另挂主报；经手≠过户；同数字 0.5‰ 也不混读）；③ 锚六键写死 `exch_conversion_transfer_honest=pit_sse_szse_conversion_transfer_listed_apart` / `exch_conversion_transfer_scope=sse_001_amount_vs_szse_par_05_not_merged` / `exch_conversion_transfer_over_policy=skip_if_venue_or_biz_type_or_official_bps_missing` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`（缺 venue/业务类型或官方‰ → skip；沪市核对日换股过户 0.01‰、深市面值 0.5‰，禁止合成一句；禁止静默套现货成交金额档或发明免费 0）。状态=预检有条件通过·三条已冻·待复检；**未标纸面齐**；**禁止标纸面齐**；**不写 A/D–DN纸面齐**；不改已齐/已冻 DA～DM 及 A–DM；不改假设-DA～假设-DM；不重开假设-T；不重开假设-AC；不重开假设-R；不重开假设-U；不重开假设-O；不重开假设-DI；不重开假设-V；不重开假设-DF；不重开假设-DB；不重开假设-S；不重开假设-DD；不重开假设-DL；不重开假设-DM；不重开假设-DA；不开回测/真数/实盘。基于 tip=`f3dcc30b`。 |
 | 2026-11-13 | 新建纸面草稿（首次入库）；状态=草稿·待入库预检；三条尚未冻；禁止标纸面齐。可交换债换股过户费误套；`dn0_primary_demo` 建议 `invent_wrong_transfer_on_exchangeable_conversion`，单一主报，单挂，禁与 `invent_asof_leak_exchangeable_conversion_transfer` 双挂，DN1 不升格；诊断桶 `merge_sse_szse_conversion_transfer` / `copy_ashare_001_onto_szse_conversion` / `copy_par_05_onto_sse_conversion` / `invent_free_zero_conversion_transfer` / `confuse_DM_conversion_handling_with_transfer` / `vs_DM_exch_conversion_handling` / `vs_DD_cb_transfer` / `vs_DA_etf_basket_par` / `vs_U_stock_transfer` / `vs_DL_agreement_transfer` / `missing_venue_or_biz_type_not_skip` 不升格；**尤重 DM 换股经手费 ≠ 本页换股过户费（经手≠过户），禁止合成/混读升格进 dn0**；**尤重 DD 转债现货过户 ≠ 本页可交换换股过户，禁止合成进 dn0**；**尤重 DA 篮子面值 0.5‰ ≠ 本页深市换股面值 0.5‰，禁止因同数字混读进 dn0**；**尤重 U 股票过户切日 ≠ 本页换股过户，禁止合成进 dn0**；**尤重 DL 综合协议过户下浮 ≠ 本页换股过户，禁止合成进 dn0**；Y/G/N/Y2 占位 `0.02/0.01/0.05/0.015`，**尚未冻，不要写成已冻**，**params.Y/G/N ≠ 实验字母 DN ≠ 单字母 D/N**，且 **params.G 的 0.01 ≠ 沪市换股过户 0.01‰ ≠ 深市面值 0.5‰**，**禁把占位读成 0.01‰/0.5‰/0.007‰**；锚建议、未冻：`exch_conversion_transfer_honest=pit_sse_szse_conversion_transfer_listed_apart` / scope=`sse_001_amount_vs_szse_par_05_not_merged` / over_policy=`skip_if_venue_or_biz_type_or_official_bps_missing` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`；口径：缺 venue/业务类型或官方‰则 skip；沪市核对日换股过户 0.01‰、深市面值 0.5‰，禁止合成一句；禁止静默套现货成交金额档或发明免费 0（**草稿方向，尚未冻，不要写成已冻**）；handoff：`exch_conversion_handling_handoff=dm_page`，`cb_transfer_fee_handoff=dd_page`，`stock_transfer_fee_handoff=u_page`，`etf_transfer_fee_handoff=da_page`，`agreement_transfer_handoff=dl_page`；`merge_with_DM/DL/DK/DJ/DI/DH/DG/DF/DE/DD/DC/DB/DA/S/AX/T/U/V/AC/Q/R/O/A/D/N=False`；**DN≠DM≠DL≠DK≠DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠S≠AX≠T≠U≠V≠AC≠Q≠R≠O≠A≠D**；**双字母 DN ≠ 单字母假设-D / 假设-N**；**可交换债换股过户费误套 ≠ DM换股经手 ≠ DD转债现货过户 ≠ DA基金篮子过户 ≠ U股票过户切日 ≠ DL综合协议过户**；**未标纸面齐**；**不写 A/D–DN纸面齐**；**纸面齐惯例**：落复检稿标纸面齐时须同步升假设正文页头/结论/尾状态（对照 DK/DL/DM；勿再只改清单）——当前草稿阶段禁止标纸面齐；结论栏空；不改已冻 A–DM / DA–DL；不改已齐假设-DA～假设-DM；不重开假设-T；不重开假设-AC；不重开假设-R；不重开假设-U；不重开假设-O；不重开假设-DI；不重开假设-V；不重开假设-DF；不重开假设-DB；不重开假设-S；不重开假设-DD；不重开假设-DL；不重开假设-DM；不写下一字母；不预留 #124；不开真数/回测/实盘。基 tip=`f4c3759`（A/D–DM纸面齐已合，全长 `f4c37594f744c66552ce085858e54aff535f7c7a`；不改该 tip 上的 #110–#122，亦不改「可复现实验条目（2026-11-09 · DC / DF）」原文）。 |
