@@ -2,11 +2,11 @@
 
 更新：2026-11-09  
 来源：总管线 / 默认分支 HEAD `a54e96a` 上清单 #110=DA 已标 A/D–DA纸面齐（**不改 DA 正文**，亦不改已冻 A–CZ）后写下一纸面 DB；清单 #110=DA，下一未占号 **#111=DB**（与 2026-11-06 预留一致）；选题自 `事实与坑` 2026-11-06「可转债经手费是 0.04‰，不是 A 股 0.0341‰；切日沪深也不一样」与清单预留段；**新建实验 DB**  
-状态：**草稿 · 待入库预检**（结论栏空；**三条尚未冻**；禁止把「可转债腿套 A 股经手费 0.0341‰」或「2023-08-28 股票降 30% / 普通债券暂免抄到上市公司转债现货」或「沪市切日前用 0.04‰」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**未标纸面齐**；**不改已冻 A–DA**；尤其不改假设-S / 假设-AX / 假设-DA / 假设-Q / 假设-A / 假设-U）
+状态：**预检有条件通过 · 三条已冻 · 待复检**（结论栏空；禁止把「可转债腿套 A 股经手费 0.0341‰」或「2023-08-28 股票降 30% / 普通债券暂免抄到上市公司转债现货」或「沪市切日前用 0.04‰」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**未标纸面齐**；**禁止标 A/D–DB 纸面齐**；**不改已冻 A–DA**；尤其不改假设-S / 假设-AX / 假设-DA / 假设-Q / 假设-A / 假设-U）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前下一序号挂实验 DB（#111）。一句话误开：回测对可转债腿误套 A 股经手费 0.0341‰，或把 2023-08-28 股票降 30%/普通债券暂免抄到上市公司转债现货，或沪市切日前误用 0.04‰，系统性改写转债腿成本。
 
-> **字母消歧（硬）**：本页**实验字母 DB** ≠ 费用/显著性参数 **`params.Y`**（相对门槛，与 G/N/Y2 同族；**params.Y ≠ 实验字母 DB**）≠ **`params.G`**（同族门槛占位，建议 0.01；**这个 0.01 不是费率**——不是转债 0.04‰，也不是 A 股 0.0341‰，更不是沪市切日前的 0.0001%；**params.G ≠ 实验字母 DB**）≠ **`params.N`**（失败/废单率差门槛；**params.N ≠ 实验字母 DB**）≠ **单字母实验 B**（除权日用复权价误判涨停，清单实验 B 旧位；**双字母 DB ≠ 单字母假设-B；严禁复用假设-B**）≠ **单字母实验 A**（板上枯竭/涨停可成交；**双字母 DB ≠ 单字母假设-A；严禁复用假设-A**）≠ **单字母实验 S**（沪深 A 股经手费三切日；**双字母 DB ≠ 单字母假设-S；严禁复用假设-S**）≠ 双字母 **AX**（基金经手费）≠ **DA**（场内基金过户费）≠ **Q**（可转债规则混用）≠ **U**（股票过户费）≠ **CZ**（存托凭证可成交；本页不引用其主键）。**DB≠S≠AX≠DA≠Q≠A≠B≠U≠CZ**。**params.Y/G/N ≠ 实验字母 DB；亦 ≠ 单字母 B/A/S**。
+> **字母消歧（硬）**：本页**实验字母 DB** ≠ 费用/显著性参数 **`params.Y`**（相对门槛，与 G/N/Y2 同族；写死冻结 0.02；**params.Y ≠ 实验字母 DB**；**勿把 `params.Y` 读成实验字母 DB**）≠ **`params.G`**（同族门槛，写死冻结 0.01；**尤重：这个 0.01 不是费率**——`params.G` 的 0.01 ≠ 转债经手费 0.04‰ ≠ A 股 0.0341‰，更不是沪市切日前的 0.0001%；量纲与语义都不同：`params.G=0.01` 是无量纲相对门槛，0.04‰ / 0.0341‰ 是费率；**params.G ≠ 实验字母 DB**）≠ **`params.N`**（失败/废单率差门槛；写死冻结 0.05；**params.N ≠ 实验字母 DB**）≠ **单字母实验 B**（除权日用复权价误判涨停，清单实验 B 旧位；**双字母 DB ≠ 单字母假设-B；严禁复用假设-B**）≠ **单字母实验 A**（板上枯竭/涨停可成交；**双字母 DB ≠ 单字母假设-A；严禁复用假设-A**）≠ **单字母实验 S**（沪深 A 股经手费三切日；**双字母 DB ≠ 单字母假设-S；严禁复用假设-S**）≠ 双字母 **AX**（基金经手费）≠ **DA**（场内基金过户费）≠ **Q**（可转债规则混用）≠ **U**（股票过户费）≠ **CZ**（存托凭证可成交；本页不引用其主键）。**DB≠S≠AX≠DA≠Q≠A≠B≠U≠CZ**。**params.Y/G/N ≠ 实验字母 DB；亦 ≠ 单字母 B/A/S**。**勿把 `params.Y` 读成实验字母 DB，亦勿把单字母假设-B / 假设-A / 假设-S 读成双字母 DB**。**尤重：`params.G` 的 0.01 ≠ 转债经手费 0.04‰ ≠ A 股 0.0341‰**。
 
 ### 专节 · 双字母 DB ≠ 单字母假设-B / 假设-A / 假设-S；且 ≠ 假设-AX / 假设-DA / 假设-Q（硬）
 
@@ -19,11 +19,11 @@
 | 题面 A | **涨停可成交 / 板上枯竭**（真数队列） | 容量门槛 ≠ 转债腿经手费。**双字母 DB ≠ 单字母假设-A**；**严禁复用假设-A**；**不抢 A 真数队列**；**DB≠A**；**不改 A**；`board_capacity_handoff=a_page` |
 | 题面 B | **除权日用复权价误判涨停**（清单实验 B 旧位） | 复权价判板 ≠ 经手费档。**双字母 DB ≠ 单字母假设-B**；**严禁复用假设-B**；**DB≠B**；**不改 B**；`ex_rights_limit_handoff=b_page` |
 | 题面 U | **股票过户费切日** | 过户 ≠ 经手。**DB≠U**；**不改 U**；不把「股票过户已诚实」写成「转债经手费已诚实」 |
-| 主演示 | （各页自有；本页不引用覆盖） | `invent_ashare_fee_on_convertible_bond`（**建议**单一主报；尚未冻；禁与 `invent_asof_leak_cb_handling_fee` 双挂；DB1 不升格） |
+| 主演示 | （各页自有；本页不引用覆盖） | `invent_ashare_fee_on_convertible_bond`（**写死冻结**单一主报；禁与 `invent_asof_leak_cb_handling_fee` 双挂；DB1 不升格；`stock_cut_20230828_copied_onto_cb` / `ordinary_bond_waiver_on_listed_cb_spot` / `sse_szse_exchangeable_merged` 只作诊断桶，不升格主报） |
 | 文档 | 清单实验 S / AX / DA / Q / A / B / U（**只读；禁止改写**） | `假设-DB-可转债经手费误套.md`（新建） |
 | 预检键 | 实验字母 S / AX / DA / Q / A / B / U / Y / G / N | 实验字母 **DB** / `db0_primary_demo`；**不得**占用或改写预检 S/AX/DA/Q/A/B/U |
 
-**禁止**：把 DB 写成「S / AX / DA / Q / A / B / U 的续篇」；把「A 股经手费已诚实（S）/ 基金经手费已诚实（AX）/ 基金过户费已诚实（DA）/ 转债规则已诚实（Q）/ 板上已诚实（A）/ 除权判板已诚实（B）/ 股票过户已诚实（U）」写成「转债经手费已诚实」；把实验字母 DB 与单字母 B/A/S 或 params.Y/G/N 混读；**尤重勿把单字母假设-S / 假设-B / 假设-A 读成双字母 DB**。本页主键只用 `db0` / `db1` / `db2` 与 `cb_handling_fee_*`。
+**禁止**：把 DB 写成「S / AX / DA / Q / A / B / U 的续篇」；把「A 股经手费已诚实（S）/ 基金经手费已诚实（AX）/ 基金过户费已诚实（DA）/ 转债规则已诚实（Q）/ 板上已诚实（A）/ 除权判板已诚实（B）/ 股票过户已诚实（U）」写成「转债经手费已诚实」；把实验字母 DB 与单字母 B/A/S 或 params.Y/G/N 混读；**尤重勿把单字母假设-S / 假设-B / 假设-A 读成双字母 DB**；**尤重勿把 `params.Y` 读成实验字母 DB**；**尤重 `params.G` 的 0.01 ≠ 转债经手费 0.04‰ ≠ A 股 0.0341‰（量纲与语义不同）**。本页主键只用 `db0` / `db1` / `db2` 与 `cb_handling_fee_*`。
 
 ---
 
@@ -37,28 +37,28 @@
 
 ## 2. 口径与可检验设计（纸面骨架）
 
-### 2.1 写死键（拉数前才冻结；本草稿三条尚未冻；下列均为建议占位）
+### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 · db0 与锚 **三条已冻**）
 
 ```
-# 配置写死键（见文末变更；草稿·待入库预检；值均建议占位，尚未冻）
-# 【消歧】params.Y = 显著性门槛；建议占位 0.02；**≠ 实验字母 DB ≠ 单字母假设-B ≠ 单字母假设-A ≠ 单字母假设-S**
-# 【消歧】params.G = 同族门槛占位；建议占位 0.01；**这个 0.01 不是费率**（不是 0.04‰，不是 0.0341‰，不是 0.0001%）；**≠ 实验字母 DB ≠ 单字母 B/A/S**
-# 【消歧】params.N = 失败/废单率差门槛；建议占位 0.05；**≠ 实验字母 DB ≠ 单字母 B/A/S**
-# params.Y2 建议占位 0.015
-# params.Y / G / N / Y2               建议占位 0.02/0.01/0.05/0.015（相对门槛：成本差 / 误套 A 股档截 / 沪市切日前误用截 / DB1−DB2；禁 null；禁 holdout/OOS 标定；勿改已冻他字母数值；**尚未冻**）
-# params.fill_time                    建议 next_open
-# params.asof_check_date              建议 2026-10-16
+# 配置写死键（见 §7 与文末风控预检补丁；预检有条件通过 · 三条已冻 · 待复检；下列三冻已写死冻结）
+# 【消歧】params.Y = 显著性门槛；写死冻结 0.02；**≠ 实验字母 DB ≠ 单字母假设-B ≠ 单字母假设-A ≠ 单字母假设-S**；勿把 params.Y 读成实验字母 DB
+# 【消歧】params.G = 同族门槛；写死冻结 0.01；**尤重：这个 0.01 ≠ 转债经手费 0.04‰ ≠ A 股 0.0341‰**（量纲与语义不同：无量纲相对门槛 ≠ 费率‰；亦 ≠ 沪市切日前 0.0001%）；**≠ 实验字母 DB ≠ 单字母 B/A/S**
+# 【消歧】params.N = 失败/废单率差门槛；写死冻结 0.05；**≠ 实验字母 DB ≠ 单字母 B/A/S**
+# params.Y2 写死冻结 0.015
+# params.Y / G / N / Y2               写死冻结 0.02/0.01/0.05/0.015（相对门槛：成本差 / 误套 A 股档截 ΔFakeAshareTier / 沪市切日前误用截 ΔSsePreCutMisapply / 净收益差 / DB1−DB2；**params.Y/G/N ≠ 实验字母 DB ≠ 单字母假设-B / 假设-A / 假设-S**；**尤重 params.G 的 0.01 ≠ 转债经手费 0.04‰ ≠ A 股 0.0341‰**；禁 null；禁 holdout/OOS 标定；勿改已冻他字母数值）
+# params.fill_time                    写死冻结 next_open
+# params.asof_check_date              写死冻结 2026-10-16
 # params.px_basis                     建议 unadj
-# params.fail_policy                  建议 skip
-# params.cb_handling_fee_honest       建议 pit_listed_cb_spot_not_ashare_tier
+# params.fail_policy                  写死冻结 skip
+# params.cb_handling_fee_honest       写死冻结 pit_listed_cb_spot_not_ashare_tier
 #   上市公司可转债现货不套 A 股 0.0341‰；2023-08-28 不改转债；普通债券暂免不含该现货
-# params.cb_handling_fee_scope        建议 sse_20220801_cut_szse_keep_listed_spot_not_waived
+# params.cb_handling_fee_scope        写死冻结 sse_20220801_cut_szse_keep_listed_spot_not_waived
 #   沪市 2022-08-01 前：0.0001% 双向 + 单笔帽 100 元；该日及之后：0.004% 双向、无这笔帽
 #   深市不抄沪市切日，继续按 0.04‰；不发明深市更早首次生效日
-# params.cb_handling_fee_exchangeable 建议 sse_szse_listed_apart
+# params.cb_handling_fee_exchangeable 写死冻结 sse_szse_listed_apart
 #   沪市可交换债与转债分列（核对日可走债券暂免档）；深市可交换与可转债同 0.04‰
 #   沪深可交换债勿合成一句
-# params.cb_handling_fee_over_policy  建议 skip_if_official_cb_handling_bps_missing
+# params.cb_handling_fee_over_policy  写死冻结 skip_if_official_cb_handling_bps_missing
 # params.cb_handling_fee_spot_bps     建议 0.04
 #   单位 ‰，双边；0.04‰ = 0.004%。沪深上市公司可转债现货竞价核对日档。建议占位，尚未冻
 # params.cb_handling_fee_sse_pre_cut_pct 建议 0.0001
@@ -87,8 +87,8 @@
 # params.board_capacity_handoff       建议 a_page
 # params.ex_rights_limit_handoff      建议 b_page
 # params.cb_handling_fee_handoff      建议 self
-# params.db0_primary_demo             建议 invent_ashare_fee_on_convertible_bond
-#   单一主报；禁与 invent_asof_leak_cb_handling_fee 双挂；尚未冻
+# params.db0_primary_demo             写死冻结 invent_ashare_fee_on_convertible_bond
+#   单一主报；禁与 invent_asof_leak_cb_handling_fee 双挂；DB1 不升格；诊断桶不升格主报
 # params.db0_invent_ashare_fee_on_convertible_bond 建议 True
 # params.db1_asof_leak_cb_handling_fee_only 建议 True
 #   半泄露对照；DB1 不升格并列主报
@@ -111,19 +111,19 @@
 
 | 组 | 角色 | 口径 |
 |----|------|------|
-| DB0 | 天真 / 误套 A 股档 | 按 `db0_primary_demo` **建议**单一主报 `invent_ashare_fee_on_convertible_bond`：可转债腿按 A 股经手费 0.0341‰ 抽（**禁**与 `invent_asof_leak_cb_handling_fee` 双挂主报） |
-| DB1 | 半泄露 | 仅核对日 0.04‰ 铺满全历史，含沪市 2022-08-01 前；**不得升格并列主报** |
-| DB2 | 诚实 / PIT | `cb_handling_fee_honest=pit_listed_cb_spot_not_ashare_tier`（建议）：上市公司可转债现货按当时档；沪市 2022-08-01 切片；深市不抄该切日；2023-08-28 不改转债；普通债券暂免不含现货；回售与非上市公司转债按表暂免；可交换债沪深分列。A 股经手费只消费 S，基金经手费只消费 AX，转债规则只消费 Q，基金过户费只消费 DA，或显式旁路 |
+| DB0 | 天真 / 误套 A 股档 | 按 `db0_primary_demo` **写死冻结**单一主报 `invent_ashare_fee_on_convertible_bond`：可转债腿按 A 股经手费 0.0341‰ 抽（**禁**与 `invent_asof_leak_cb_handling_fee` 双挂主报） |
+| DB1 | 半泄露 | 仅核对日 0.04‰ 铺满全历史，含沪市 2022-08-01 前；**不得升格并列主报**（写死冻结：DB1 不升格） |
+| DB2 | 诚实 / PIT | `cb_handling_fee_honest=pit_listed_cb_spot_not_ashare_tier`（写死冻结）：上市公司可转债现货按当时档；沪市 2022-08-01 切片；深市不抄该切日；2023-08-28 不改转债；普通债券暂免不含现货；回售与非上市公司转债按表暂免；可交换债沪深分列。A 股经手费只消费 S，基金经手费只消费 AX，转债规则只消费 Q，基金过户费只消费 DA，或显式旁路 |
 
-把 2023-08-28 股票降 30% 抄到转债、或把普通债券暂免铺到上市公司转债现货，放进 §4.1 分桶，**不得升格为第二个主报**，也不得改写 `db0_primary_demo`。清单预留段里的四组叙述保留在旧行，本页不改那两行；误切不另升主报，泄露就是 DB1。
+把 2023-08-28 股票降 30% 抄到转债、或把普通债券暂免铺到上市公司转债现货，放进 §4.1 分桶，**只作诊断桶，不得升格为第二个主报**，也不得改写 `db0_primary_demo`。`sse_szse_exchangeable_merged` 同样只作诊断桶，不得升格主报。清单预留段里的四组叙述保留在旧行，本页不改那两行；误切不另升主报，泄露就是 DB1。
 
 ### 2.3 费用窗可落点（写明但不真跑）
 
-主窗建议占位、待预检，不在本草稿写死起止日。asof **建议** `2026-10-16`；fill_time **建议** `next_open`；fail **建议** `skip`。收费表引用见 `事实与坑` 2026-11-06（两所 2026 年 1 月表；沪市切日文本是上证发〔2022〕118 号）。表的版本日期不是 `asof_check_date`。118 号自 2023-08-28 废止，是并进收费指引，不是改回 0.0001%，也不是转债跟着股票降 30%。本页**不开回测**；不拉真数；不做实盘。
+主窗建议占位、待预检，不在本草稿写死起止日。asof **写死冻结** `2026-10-16`；fill_time **写死冻结** `next_open`；fail **写死冻结** `skip`。收费表引用见 `事实与坑` 2026-11-06（两所 2026 年 1 月表；沪市切日文本是上证发〔2022〕118 号）。表的版本日期不是 `asof_check_date`。118 号自 2023-08-28 废止，是并进收费指引，不是改回 0.0001%，也不是转债跟着股票降 30%。本页**不开回测**；不拉真数；不做实盘。
 
 ### 2.4 oos_split（建议四日期；拉数前冻结；禁 holdout 反调）
 
-建议四日期占位（待预检；禁 holdout 反调）。本页不开跑。
+建议四日期占位（待预检；禁 holdout 反调 `db0_primary_demo` / `params.Y`·G·N·Y2 / 混口径开关 / 桶）。本页不开跑。
 
 ---
 
@@ -135,7 +135,7 @@
 
 ### 3.2 失败（假设不成立 / 设计失效）
 
-差异落在噪声带内；或主差被 S 的 A 股三切日、AX 的基金经手费、DA 的基金过户费、Q 的回转与涨跌幅、A 的板上容量、B 的除权判板解释；或 `db0_primary_demo` 与 `invent_asof_leak_cb_handling_fee` 双挂；或 DB1 升格并列主报；或实验字母 DB 与单字母 B/A/S 或 params.Y/G/N 混读。
+差异落在噪声带内；或主差被 S 的 A 股三切日、AX 的基金经手费、DA 的基金过户费、Q 的回转与涨跌幅、A 的板上容量、B 的除权判板解释；或 `db0_primary_demo` 与 `invent_asof_leak_cb_handling_fee` 双挂；或 DB1 升格并列主报；或 `stock_cut_20230828_copied_onto_cb` / `ordinary_bond_waiver_on_listed_cb_spot` / `sse_szse_exchangeable_merged` 诊断桶升格主报；或实验字母 DB 与单字母 B/A/S 或 params.Y/G/N 混读；或把 `params.G=0.01` 读成转债经手费 0.04‰ 或 A 股 0.0341‰。
 
 ---
 
@@ -147,13 +147,13 @@
 
 建议默认桶名（待预检）：`invent_ashare_fee_on_convertible_bond` / `invent_asof_leak_cb_handling_fee` / `stock_cut_20230828_copied_onto_cb` / `ordinary_bond_waiver_on_listed_cb_spot` / `sse_szse_exchangeable_merged` / `vs_S_ashare_fee` / `vs_AX_fund_fee` / `vs_DA_fund_transfer` / `vs_Q_cb_rule` / `vs_A_board_capacity` / `vs_B_ex_rights_limit` / `vs_U_stock_transfer_fee`
 
-`stock_cut_20230828_copied_onto_cb` 与 `ordinary_bond_waiver_on_listed_cb_spot` 只作诊断桶：现货仍不套 0.0341‰，但把股票降档或普通债券暂免抄到上市公司转债现货。它们不是 `db0`，也不是 DB1。`sse_szse_exchangeable_merged` 只诊断「沪深可交换债被合成一句」，不升格主报。
+`stock_cut_20230828_copied_onto_cb` 与 `ordinary_bond_waiver_on_listed_cb_spot` 只作诊断桶：现货仍不套 0.0341‰，但把股票降档或普通债券暂免抄到上市公司转债现货。它们不是 `db0`，也不是 DB1，**不得升格主报**。`sse_szse_exchangeable_merged` 只诊断「沪深可交换债被合成一句」，**不得升格主报**。
 
 ---
 
 ## 5. 预期失效条件（设计失效 / 结论无效）
 
-- 用 A 股 0.0341‰ 当转债诚实档，或把 `params.G=0.01` 当成 0.04‰ / 0.0341‰ / 0.0001%。
+- 用 A 股 0.0341‰ 当转债诚实档，或把 `params.G=0.01` 当成转债经手费 0.04‰ / A 股 0.0341‰ / 沪市切日前 0.0001%。**尤重：`params.G` 的 0.01 ≠ 转债经手费 0.04‰ ≠ A 股 0.0341‰**。
 - 把 0.0001% 写成 0.0001‰，或把 0.004% 与 0.04‰ 当成两个不同的数。
 - 把 2023-08-28 股票降 30% 写成转债也降了档；把 118 号废止理解成改回 0.0001%。
 - 把普通债券暂免（2022-07-01～2026-12-31）铺到上市公司可转债现货。回售、非上市公司转债按表暂免，不能反过来证明现货免费。
@@ -162,8 +162,8 @@
 - 把北交所转债套成沪深 0.04‰（本页未核，缺则 skip，不发明 0）。
 - 把转债过户费、证管费、印花税发明成 0 或套股票档。代收税费表这三栏都不写可转债；本页不展开，也不派下一字母。
 - 把「A 股经手费已诚实（S）/ 基金经手费已诚实（AX）/ 基金过户费已诚实（DA）/ 转债规则已诚实（Q）」写成「转债经手费已诚实」。Q 的 2022-08-01 板幅切日不能代替本页经手费切日。
-- `db0_primary_demo` 与 `invent_asof_leak_cb_handling_fee` 双挂主报；DB1 升格并列主报；诊断桶升格为第二个主报。
-- 实验字母 DB 与单字母 B/A/S 或 params.Y/G/N 混读。
+- `db0_primary_demo` 与 `invent_asof_leak_cb_handling_fee` 双挂主报；DB1 升格并列主报；诊断桶（`stock_cut_20230828_copied_onto_cb` / `ordinary_bond_waiver_on_listed_cb_spot` / `sse_szse_exchangeable_merged`）升格为第二个主报。
+- 实验字母 DB 与单字母 B/A/S 或 params.Y/G/N 混读；把 `params.G=0.01` 读成转债经手费 0.04‰ 或 A 股 0.0341‰。
 - 改 S / AX / DA / Q / A / B / U 正文；抢 A 真数队列；标纸面齐；开真数/回测/实盘；用复权价当经手费基数；结论写成「这类转债费更低所以能买」。
 
 ---
@@ -174,26 +174,42 @@
 - 品种：上市公司可转债现货 / 上市公司可转债回售 / 非上市公司转债 / 可交换债。没有这列时，不得把暂免或现货档互相填上。
 - 官方经手费档与切日：缺则 skip，禁止用 0.0341‰ 或静默 0 补齐。
 - 旁路消费：S 的 A 股经手费、AX 的基金经手费、Q 的转债规则、DA 的场内基金过户费、A 的板上、B 的除权判板、U 的股票过户之诚实结果或显式旁路（见 §2.1 handoff）。**本页不改写这些页。**
+- 未复权价；asof **写死冻结** `2026-10-16`。
 
 ---
 
 ## 7. 回测配置骨架（纸面；本页不开回测）
 
-- **建议键摘要（三条尚未冻）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`fail_policy=skip`；`cb_handling_fee_honest=pit_listed_cb_spot_not_ashare_tier`；`cb_handling_fee_scope=sse_20220801_cut_szse_keep_listed_spot_not_waived`；`cb_handling_fee_exchangeable=sse_szse_listed_apart`；`cb_handling_fee_over_policy=skip_if_official_cb_handling_bps_missing`；`db0_primary_demo=invent_ashare_fee_on_convertible_bond`（建议单一主报；禁与 `invent_asof_leak_cb_handling_fee` 双挂；DB1 不升格）；`ashare_fee_handoff=s_page`；`fund_fee_handoff=ax_page`；`cb_rule_handoff=q_page`；`etf_transfer_fee_handoff=da_page`；`merge_with_S/AX/DA/Q/A/B/U/CZ=False`。
-- `params.Y/G/N/Y2` **建议占位** `0.02/0.01/0.05/0.015`（相对门槛，不是费率表；**params.G 的 0.01 ≠ 0.04‰ ≠ 0.0341‰**；**params.Y/G/N ≠ 实验字母 DB ≠ 单字母 B/A/S**；禁 null；禁 holdout；勿改已冻他字母数值）。
+- **写死键摘要（三条已冻）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`fail_policy=skip`；`cb_handling_fee_honest=pit_listed_cb_spot_not_ashare_tier`；`cb_handling_fee_scope=sse_20220801_cut_szse_keep_listed_spot_not_waived`；`cb_handling_fee_exchangeable=sse_szse_listed_apart`；`cb_handling_fee_over_policy=skip_if_official_cb_handling_bps_missing`；`db0_primary_demo=invent_ashare_fee_on_convertible_bond`（**写死冻结**单一主报；禁与 `invent_asof_leak_cb_handling_fee` 双挂；DB1 不升格；诊断桶不升格主报）；`ashare_fee_handoff=s_page`；`fund_fee_handoff=ax_page`；`cb_rule_handoff=q_page`；`etf_transfer_fee_handoff=da_page`；`merge_with_S/AX/DA/Q/A/B/U/CZ=False`。
+- `params.Y/G/N/Y2` **写死冻结** `0.02/0.01/0.05/0.015`（相对门槛，不是费率表：成本差 / 误套 A 股档截 ΔFakeAshareTier / 沪市切日前误用截 ΔSsePreCutMisapply / 净收益差 / DB1−DB2；**尤重 params.G 的 0.01 ≠ 转债经手费 0.04‰ ≠ A 股 0.0341‰（量纲与语义不同）**；**params.Y/G/N ≠ 实验字母 DB ≠ 单字母 B/A/S**；**勿把 params.Y 读成实验字母 DB，亦勿把单字母假设-B / 假设-A / 假设-S 读成双字母 DB**；禁 null；禁 holdout/OOS 标定；勿改已冻他字母数值）。
 - oos_split 四日期建议占位；禁 holdout 反调。
-- **本页不开回测**；不拉真数；不做实盘；不催 8765。变更基 tip 见文末，用本次提交前 HEAD `a54e96a`。
+- **本页不开回测**；不拉真数；不做实盘；不催 8765。草稿行基 tip=`a54e96a`；三冻补丁对照预检 tip=`60b7548`；本补丁分支起点 HEAD=`b30d6e2`。
 
 ---
 
 ## 8. 结论
 
-（空。状态=草稿 · 待入库预检；三条尚未冻；入库预检通过前不得把建议占位改写成已冻，也不得标纸面齐。）
+（空；预检有条件通过 · 三条已冻 · 待复检；复检通过前不得标纸面齐；本页作者不得标 A/D–DB 纸面齐。）
 
 ---
+
+## 风控预检补丁·冻结（三条已写死 · 2026-11-09）
+
+依据风控稿 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设DB-20261109.md`（原样落入，不改结论；SHA256=`1e1868f2b6ae386b59bc07208b96b70707b732b8437a3ddf3dd936a028d91799`；预检 2026-11-09；**结论：有条件通过**；tip基=`60b7548` / `60b75489ce7cb812a032ac172f5860143652731f`；本补丁分支起点 HEAD=`b30d6e2` / `b30d6e2658c0e2e54521f4f18fe8e4a3d2c2b40b`）。按该稿条件 1–3 升格，不标纸面齐。
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`。相对门槛用于成本差、误套 A 股档截 ΔFakeAshareTier、沪市切日前误用截 ΔSsePreCutMisapply、净收益差、DB1−DB2 专项。**`params.Y` ≠ 实验字母 DB**；**`params.G` ≠ 实验字母 DB**；**`params.N` ≠ 实验字母 DB**；亦 ≠ 单字母假设-B / 假设-A / 假设-S。**勿把 `params.Y` 读成实验字母 DB，亦勿把单字母假设-B / 假设-A / 假设-S 读成双字母 DB**。**尤重：`params.G` 的 `0.01` ≠ 转债经手费 `0.04‰` ≠ A 股 `0.0341‰`**。三者量纲与语义都不同：`params.G=0.01` 是无量纲相对门槛，转债经手费 `0.04‰` 与 A 股 `0.0341‰` 是费率，禁止互读、禁止把门槛改写成费率。禁 null 开工；禁 holdout/OOS 标定或跑后因显著性改口；**勿改他字母已冻 Y/G/N/Y2**。
+
+2. **`params.db0_primary_demo`**：**写死冻结** **`invent_ashare_fee_on_convertible_bond`**（单一主报）。**禁止**与 **`invent_asof_leak_cb_handling_fee`** 双挂争主表；**禁止**跑后因分桶显著性改口主报。DB1 核对日 0.04‰ 铺满全历史只作半泄露对照，**不得升格与 db0 并列主报**。`stock_cut_20230828_copied_onto_cb` / `ordinary_bond_waiver_on_listed_cb_spot` / `sse_szse_exchangeable_merged` **只作诊断桶，不得升格主报**。
+
+3. **可转债经手费诚实锚七键升格写死（不可再写「建议」；键名前缀按本页既有 `cb_handling_fee_*`，对照 CZ 的 `cdr_fill_*` 与 DA 的 `etf_transfer_fee_*`）**：`params.cb_handling_fee_honest=pit_listed_cb_spot_not_ashare_tier`；`params.cb_handling_fee_scope=sse_20220801_cut_szse_keep_listed_spot_not_waived`；`params.cb_handling_fee_exchangeable=sse_szse_listed_apart`；`params.cb_handling_fee_over_policy=skip_if_official_cb_handling_bps_missing`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`。禁止跑后改锚，或用 A 股 0.0341‰ / 核对日 0.04‰ 铺满全历史冒充诚实 PIT。
+
+**硬分列保住**：DB≠S≠AX≠DA≠Q≠A≠B≠U≠CZ；**双字母 DB ≠ 单字母假设-B / 假设-A / 假设-S**；**params.Y / params.G / params.N ≠ 实验字母 DB**；**尤重 params.G 的 0.01 ≠ 转债经手费 0.04‰ ≠ A 股 0.0341‰**；不抢 A；不改已冻 A–DA 正文。
+
+**状态**：预检有条件通过 · 三条已冻 · 待复检；**禁止标任何纸面齐**；**未标 A/D–DB 纸面齐**；本页不开回测/真数/实盘。
 
 ## 变更
 
 | 日期 | 变更 |
 |------|------|
+| 2026-11-09 | 风控预检补丁·冻结三条写死——依据 `预检-假设DB-20261109.md`（SHA256=`1e1868f2b6ae386b59bc07208b96b70707b732b8437a3ddf3dd936a028d91799`；结论=有条件通过；tip基=`60b7548` / `60b75489ce7cb812a032ac172f5860143652731f`；分支起点 HEAD=`b30d6e2` / `b30d6e2658c0e2e54521f4f18fe8e4a3d2c2b40b`）条件 1–3。① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（相对门槛覆盖成本差 / ΔFakeAshareTier / ΔSsePreCutMisapply / 净收益差 / DB1−DB2；**params.Y/G/N ≠ 实验字母 DB ≠ 单字母假设-B / 假设-A / 假设-S**；**勿把 params.Y 读成实验字母 DB，亦勿把单字母假设-B / 假设-A / 假设-S 读成双字母 DB**；**尤重 params.G 的 0.01 ≠ 转债经手费 0.04‰ ≠ A 股 0.0341‰（量纲与语义不同）**；禁 null；禁 holdout/OOS 标定）；② `params.db0_primary_demo=invent_ashare_fee_on_convertible_bond`（写死冻结单一主报；禁与 `invent_asof_leak_cb_handling_fee` 双挂；DB1 不升格；诊断桶不升格主报）；③ 锚七键写死 `cb_handling_fee_honest=pit_listed_cb_spot_not_ashare_tier` / `cb_handling_fee_scope=sse_20220801_cut_szse_keep_listed_spot_not_waived` / `cb_handling_fee_exchangeable=sse_szse_listed_apart` / `cb_handling_fee_over_policy=skip_if_official_cb_handling_bps_missing` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`。状态=预检有条件通过·三条已冻·待复检；**未标纸面齐**；**禁止标 A/D–DB 纸面齐**；不改已冻 A–DA；不开回测/真数/实盘。基于 tip=`60b7548`。 |
 | 2026-11-09 | 新建纸面草稿（**本草稿首次入库**；可转债经手费误套；`db0_primary_demo` 建议 `invent_ashare_fee_on_convertible_bond`，单一主报，禁与 `invent_asof_leak_cb_handling_fee` 双挂，DB1 不升格；Y/G/N/Y2 建议占位 `0.02/0.01/0.05/0.015`，**params.Y/G/N ≠ 实验字母 DB ≠ 单字母 B/A/S**，且 params.G 的 0.01 不是 0.04‰ 也不是 0.0341‰；锚建议 `cb_handling_fee_honest=pit_listed_cb_spot_not_ashare_tier` / scope=`sse_20220801_cut_szse_keep_listed_spot_not_waived` / exchangeable=`sse_szse_listed_apart` / over_policy=`skip_if_official_cb_handling_bps_missing`；asof 建议 `2026-10-16`；fill_time 建议 `next_open`；fail 建议 `skip`；handoff：`ashare_fee_handoff=s_page`，`fund_fee_handoff=ax_page`，`cb_rule_handoff=q_page`，`etf_transfer_fee_handoff=da_page`；`merge_with_S/AX/DA/Q/A/B/U/CZ=False`；**DB≠S≠AX≠DA≠Q≠A≠B≠U≠CZ**；**双字母 DB ≠ 单字母假设-B / 假设-A / 假设-S；严禁复用假设-S**；状态=草稿·待入库预检；**三条尚未冻**；**未标纸面齐**；不改已冻 A–DA；不写下一字母；不开真数/回测/实盘）。基 tip=`a54e96a`（本次提交前 HEAD `a54e96a91df7f1a7eafc41af8972ded8659cde0a`） |
