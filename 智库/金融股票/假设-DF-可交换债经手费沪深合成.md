@@ -1,12 +1,12 @@
 # 假设-DF · 可交换债经手费沪深合成（成本诚信）
 
 更新：2026-11-09  
-来源：总管线 / 默认分支 HEAD `e517506` 上清单 #114=DE 已收口（A/D–DE 已收口合入；**不改假设-DE 正文**，亦不改已齐 A–DE / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-T 及其他已存在假设页；**不重开假设-T**）后写下一草稿 DF；清单 #114=DE，本页占用 **#115=DF**；选题自 `事实与坑` 2026-11-06「沪市可交换债在债券现券暂免名单、深市可交换债与可转债同档 0.04‰，沪深可交换债不要合成一句」（DB 只把这件事留在诊断桶）；**新建实验 DF**  
-状态：**草稿·待入库预检**（结论栏空；禁止把「沪市可交换债（债券现券暂免）与深市可交换债（0.04‰）合成一句/一个费率、或静默套 A 股经手费档、或缺 venue/sec_type 仍不 skip」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**三条尚未冻**；**禁止标纸面齐**；**未标纸面齐**；**不改已齐 A–DE / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE**；尤其不改假设-DB / 假设-S / 假设-AX / 假设-DE / 假设-DD / 假设-DC / 假设-T / 假设-D / 假设-F；**不重开假设-T**）
+来源：总管线 / 默认分支 HEAD `e517506` 上清单 #114=DE 已收口（A/D–DE 已收口合入；**不改假设-DE 正文**，亦不改已齐 A–DE / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-T 及其他已存在假设页；**不重开假设-T**）后写下一纸面 DF；清单 #114=DE，本页占用 **#115=DF**；选题自 `事实与坑` 2026-11-06「沪市可交换债在债券现券暂免名单、深市可交换债与可转债同档 0.04‰，沪深可交换债不要合成一句」（DB 只把这件事留在诊断桶）；**新建实验 DF**  
+状态：**预检有条件通过·三条已冻·待复检**（结论栏空；禁止把「沪市可交换债（债券现券暂免）与深市可交换债（0.04‰）合成一句/一个费率、或静默套 A 股经手费档、或缺 venue/sec_type 仍不 skip」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**禁止标任何纸面齐**；**未标纸面齐**；**禁止标纸面齐**；**禁止标 A/D–DF纸面齐**；**不改已齐 A–DE / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE**；尤其不改假设-DB / 假设-S / 假设-AX / 假设-DE / 假设-DD / 假设-DC / 假设-T / 假设-D / 假设-F；**不重开假设-T**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前本序号挂实验 DF（#115）。一句话误开：回测把沪市可交换债（债券现券暂免）与深市可交换债（0.04‰）合成一句/一个费率，或静默套 A 股经手费档、或缺 venue/sec_type 仍不 skip，系统性改写可交换债腿成本（相对诚实锚偏误）。
 
-> **字母消歧（硬）**：本页**实验字母 DF** ≠ 费用/显著性参数 **`params.Y`**（相对门槛，与 G/N/Y2 同族；占位 0.02；**params.Y ≠ 实验字母 DF**；**勿把 `params.Y` 读成实验字母 DF**）≠ **`params.G`**（同族门槛，占位 0.01；**params.G ≠ 实验字母 DF**；**尤重：`params.G` 的 0.01 ≠ 深市可交换 0.04‰ ≠ A股 0.0341‰**——量纲与语义都不同：`params.G=0.01` 是无量纲相对门槛，0.04‰ 是深市可交换债经手费率，0.0341‰ 是 A 股经手费率）≠ **`params.N`**（失败/废单率差门槛；占位 0.05；**params.N ≠ 实验字母 DF**）≠ **单字母实验 D**（成交时点与停牌；**双字母 DF ≠ 单字母假设-D；严禁复用假设-D**）≠ **单字母实验 F**（涨跌停价取整；**双字母 DF ≠ 单字母假设-F；严禁复用假设-F**）≠ **单字母实验 A**（板上枯竭/涨停可成交；**双字母 DF ≠ 单字母假设-A**）≠ **单字母实验 T**（证管费主报股票；**双字母 DF ≠ 单字母假设-T；严禁复用假设-T；不重开假设-T**）≠ 双字母 **DB**（可转债经手费）≠ **DE**（可转债证管费）≠ **DD**（可转债过户费）≠ **DC**（可转债印花税）≠ **DA**（场内基金过户费）≠ **S**（股票经手费）≠ **AX**（基金经手费）≠ **U**（股票过户费）≠ **V**（股票印花税）≠ **Q**（可转债规则混用）。**DF≠DB≠DE≠DD≠DC≠DA≠S≠AX≠T≠U≠V≠Q≠A≠D**。**双字母 DF ≠ 单字母 D/F**。**params.Y/G/N ≠ 实验字母 DF；亦 ≠ 单字母 D/F**。**勿把 `params.G` 读成实验字母 DF，亦勿把单字母假设-D / 假设-F 读成双字母 DF**。**尤重：`params.G` 的 0.01 ≠ 深市可交换 0.04‰ ≠ A股 0.0341‰**。
+> **字母消歧（硬）**：本页**实验字母 DF** ≠ 费用/显著性参数 **`params.Y`**（相对门槛，与 G/N/Y2 同族；写死冻结 0.02；**params.Y ≠ 实验字母 DF**；**勿把 `params.Y` 读成实验字母 DF**）≠ **`params.G`**（同族门槛，写死冻结 0.01；**params.G ≠ 实验字母 DF**；**尤重：`params.G` 的 0.01 ≠ 深市可交换 0.04‰ ≠ A股 0.0341‰**——量纲与语义都不同：`params.G=0.01` 是无量纲相对门槛，0.04‰ 是深市可交换债经手费率，0.0341‰ 是 A 股经手费率）≠ **`params.N`**（失败/废单率差门槛；写死冻结 0.05；**params.N ≠ 实验字母 DF**）≠ **单字母实验 D**（成交时点与停牌；**双字母 DF ≠ 单字母假设-D；严禁复用假设-D**）≠ **单字母实验 F**（涨跌停价取整；**双字母 DF ≠ 单字母假设-F；严禁复用假设-F**）≠ **单字母实验 A**（板上枯竭/涨停可成交；**双字母 DF ≠ 单字母假设-A**）≠ **单字母实验 T**（证管费主报股票；**双字母 DF ≠ 单字母假设-T；严禁复用假设-T；不重开假设-T**）≠ 双字母 **DB**（可转债经手费）≠ **DE**（可转债证管费）≠ **DD**（可转债过户费）≠ **DC**（可转债印花税）≠ **DA**（场内基金过户费）≠ **S**（股票经手费）≠ **AX**（基金经手费）≠ **U**（股票过户费）≠ **V**（股票印花税）≠ **Q**（可转债规则混用）。**DF≠DB≠DE≠DD≠DC≠DA≠S≠AX≠T≠U≠V≠Q≠A≠D**。**双字母 DF ≠ 单字母 D/F**。**params.Y/G/N ≠ 实验字母 DF；亦 ≠ 单字母 D/F**。**勿把 `params.G` 读成实验字母 DF，亦勿把单字母假设-D / 假设-F 读成双字母 DF**。**尤重：`params.G` 的 0.01 ≠ 深市可交换 0.04‰ ≠ A股 0.0341‰**。
 
 ### 专节 · 双字母 DF ≠ 单字母假设-D / 假设-F；且 ≠ 假设-DB / 假设-S / 假设-AX / 假设-DE / 假设-DD / 假设-DC（硬）
 
@@ -26,7 +26,7 @@
 | 题面 A | **涨停可成交 / 板上枯竭**（真数队列） | 容量门槛 ≠ 可交换债腿经手费。**DF≠A**；**不抢 A 真数队列**；**不改 A** |
 | 题面 D | **成交时点与停牌** | 何时成交 ≠ 可交换债经手费抽在哪一档。**双字母 DF ≠ 单字母假设-D**；**严禁复用假设-D**；**DF≠D**；**不改 D** |
 | 题面 F | **涨跌停价取整** | 取整到分 ≠ 可交换债经手费。**双字母 DF ≠ 单字母假设-F**；**严禁复用假设-F**；**DF≠F**；**不改 F** |
-| 主演示 | （各页自有；本页不引用覆盖） | `invent_sse_szse_exchangeable_fee_merged`（**建议**单一主报，**尚未冻**；禁与 `invent_asof_leak_exchangeable_fee` 双挂；DF1 不升格；`vs_DB_cb_handling` / `vs_S_stock_handling` / `sse_szse_exchangeable_merged` 只作诊断对照，不升格主报；**禁把 DB 的 `sse_szse_exchangeable_merged` 升格进 `df0` 或作另挂主报**） |
+| 主演示 | （各页自有；本页不引用覆盖） | `invent_sse_szse_exchangeable_fee_merged`（**写死冻结**单一主报；禁与 `invent_asof_leak_exchangeable_fee` 双挂；DF1 不升格；`vs_DB_cb_handling` / `vs_S_stock_handling` / `sse_szse_exchangeable_merged` 只作诊断桶，不升格主报；**禁把 DB 的 `sse_szse_exchangeable_merged` 升格进 `df0` 或作另挂主报**） |
 | 文档 | 清单实验 DB / S / AX / DE / DD / DC / DA / T / U / V / Q / A / D / F（**只读；禁止改写**） | `假设-DF-可交换债经手费沪深合成.md`（新建） |
 | 预检键 | 实验字母 DB / S / AX / DE / DD / DC / DA / T / U / V / Q / A / D / F / Y / G / N | 实验字母 **DF** / `df0_primary_demo`；**不得**占用或改写预检 DB/S/AX/DE/DD/DC/DA/T/U/V/Q/A/D/F |
 
@@ -44,31 +44,31 @@
 
 ## 2. 口径与可检验设计（纸面骨架）
 
-### 2.1 建议键（标准件占位；拉数前再定；本页不开跑；Y/G/N/Y2 · df0 与锚 **三条尚未冻**）
+### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 · df0 与锚 **三条已冻**）
 
 ```
-# 配置建议键（见 §7；草稿·待入库预检；下列三条都是占位，尚未冻）
-# 【消歧】params.Y = 显著性门槛；占位 0.02；**≠ 实验字母 DF ≠ 单字母假设-D / 假设-F**；勿把 params.Y 读成实验字母 DF
-# 【消歧】params.G = 同族门槛；占位 0.01；**≠ 实验字母 DF ≠ 单字母 D/F**
+# 配置写死键（见 §7 与文末风控预检补丁；预检有条件通过·三条已冻·待复检；下列三冻已写死冻结）
+# 【消歧】params.Y = 显著性门槛；写死冻结 0.02；**≠ 实验字母 DF ≠ 单字母假设-D / 假设-F**；勿把 params.Y 读成实验字母 DF
+# 【消歧】params.G = 同族门槛；写死冻结 0.01；**≠ 实验字母 DF ≠ 单字母 D/F**
 # 【消歧】尤重：params.G 的 0.01 ≠ 深市可交换 0.04‰ ≠ A股 0.0341‰（量纲与语义不同：无量纲相对门槛 ≠ 经手费率‰）
-# 【消歧】params.N = 失败/废单率差门槛；占位 0.05；**≠ 实验字母 DF ≠ 单字母 D/F**
-# params.Y2 占位 0.015
-# params.Y / G / N / Y2               占位 0.02/0.01/0.05/0.015（相对门槛：成本差 / 沪深合成截 ΔMergeExchFee / 净收益差 / DF1−DF2；**params.Y/G/N ≠ 实验字母 DF ≠ 单字母假设-D / 假设-F**；**尤重 params.G 的 0.01 ≠ 深市可交换 0.04‰ ≠ A股 0.0341‰**；占位，尚未冻；禁 null；禁 holdout/OOS 标定；勿改他页已有数值）
-# params.fill_time                    建议 next_open
-# params.asof_check_date              建议 2026-10-16
+# 【消歧】params.N = 失败/废单率差门槛；写死冻结 0.05；**≠ 实验字母 DF ≠ 单字母 D/F**
+# params.Y2 写死冻结 0.015
+# params.Y / G / N / Y2               写死冻结 0.02/0.01/0.05/0.015（相对门槛：成本差 / 沪深合成截 ΔMergeExchFee / 净收益差 / DF1−DF2；**params.Y/G/N ≠ 实验字母 DF ≠ 单字母假设-D / 假设-F**；**尤重 params.G 的 0.01 ≠ 深市可交换 0.04‰ ≠ A股 0.0341‰**；禁 null；禁 holdout/OOS 标定；勿改他页已有数值）
+# params.fill_time                    写死冻结 next_open
+# params.asof_check_date              写死冻结 2026-10-16
 # params.px_basis                     建议 unadj
-# params.fail_policy                  建议 skip
-# params.exch_handling_fee_honest     建议 pit_sse_szse_listed_apart
+# params.fail_policy                  写死冻结 skip
+# params.exch_handling_fee_honest     写死冻结 pit_sse_szse_listed_apart
 #   诚实锚方向：沪深分列，勿合成一句
 #   沪市可交换债按债券现券暂免；深市可交换债 0.04‰
 #   缺 venue 或 sec_type → skip；禁静默套 A 股经手费档
-#   枚举是建议，尚未冻
+#   枚举已写死冻结
 #   不把 DB 的可转债经手费诚实档抄成可交换债诚实锚
 #   不把 S 的 A 股 0.0341‰ 写成可交换债诚实档
-# params.exch_handling_fee_scope      建议 sse_bond_waiver_vs_szse_004_not_merged
+# params.exch_handling_fee_scope      写死冻结 sse_bond_waiver_vs_szse_004_not_merged
 #   沪市可交换按债券现券暂免、深市 0.04‰，禁止合成一句
 #   可交换债经手费 ≠ 可转债经手费（DB）≠ 股票经手费（S）≠ 基金经手费（AX）≠ 证管费（DE）≠ 过户费（DD）≠ 印花税（DC）
-# params.exch_handling_fee_over_policy 建议 skip_if_venue_or_sec_type_missing
+# params.exch_handling_fee_over_policy 写死冻结 skip_if_venue_or_sec_type_missing
 #   缺 venue 或 sec_type 则 skip；禁合成一句后照填；禁静默套 A 股档
 # params.cb_handling_fee_handoff      建议 db_page
 #   消费 DB 的可转债经手费，或显式旁路；DB 主报转债腿；本页专测可交换债
@@ -97,8 +97,8 @@
 # params.price_round_handoff          建议 f_page
 #   涨跌停价取整交 F；双字母 DF ≠ 单字母假设-F；不改 F
 # params.exch_handling_fee_handoff    建议 self
-# params.df0_primary_demo             建议 invent_sse_szse_exchangeable_fee_merged
-#   单一主报占位；禁与 invent_asof_leak_exchangeable_fee 双挂；DF1 不升格；诊断桶不升格；尚未冻
+# params.df0_primary_demo             写死冻结 invent_sse_szse_exchangeable_fee_merged
+#   单一主报写死，单挂；禁与 invent_asof_leak_exchangeable_fee 双挂；DF1 不升格；诊断桶不升格
 #   半泄露名 invent_asof_leak_exchangeable_fee 只作对照，不得升格进 df0
 #   禁把 DB 的 sse_szse_exchangeable_merged 升格进 df0 或作另挂主报
 # params.df0_invent_sse_szse_exchangeable_fee_merged 建议 True
@@ -130,15 +130,15 @@
 
 | 组 | 角色 | 口径 |
 |----|------|------|
-| DF0 | 天真 / 沪深合成一句 | 按 `df0_primary_demo` **建议**单一主报 `invent_sse_szse_exchangeable_fee_merged`（尚未冻）：把沪市可交换债（债券现券暂免）与深市可交换债（0.04‰）合成一句/一个费率。**禁**与 `invent_asof_leak_exchangeable_fee` 双挂主报。**禁**把 DB 的 `sse_szse_exchangeable_merged` 升格作另挂主报或写进 `df0` |
-| DF1 | 半泄露 | 仅核对日把可交换债经手费现行口径铺到全历史（建议名 `invent_asof_leak_exchangeable_fee`，仅对照、不进 `df0`）；**不得升格并列主报**，也不得写进 `df0` |
-| DF2 | 诚实 / 沪深分列 | `exch_handling_fee_honest=pit_sse_szse_listed_apart`（建议，尚未冻）：沪市可交换按债券现券暂免、深市 0.04‰，禁止合成一句。缺 venue 或 sec_type → skip。禁静默套 A 股经手费档。转债经手费只消费 DB，股票经手费只消费 S，基金经手费只消费 AX，转债规则只消费 Q，转债印花税只消费 DC，转债过户费只消费 DD，转债证管费只消费 DE，或显式旁路 |
+| DF0 | 天真 / 沪深合成一句 | 按 `df0_primary_demo` **写死冻结**单一主报 `invent_sse_szse_exchangeable_fee_merged`：把沪市可交换债（债券现券暂免）与深市可交换债（0.04‰）合成一句/一个费率。**禁**与 `invent_asof_leak_exchangeable_fee` 双挂主报。**禁**把 DB 的 `sse_szse_exchangeable_merged` 升格作另挂主报或写进 `df0` |
+| DF1 | 半泄露 | 仅核对日把可交换债经手费现行口径铺到全历史（`invent_asof_leak_exchangeable_fee`）；**不得升格并列主报**，也不得写进 `df0`（写死冻结：DF1 不升格） |
+| DF2 | 诚实 / 沪深分列 | `exch_handling_fee_honest=pit_sse_szse_listed_apart`（写死冻结）：沪市可交换按债券现券暂免、深市 0.04‰，禁止合成一句。缺 venue 或 sec_type → skip。禁静默套 A 股经手费档。转债经手费只消费 DB，股票经手费只消费 S，基金经手费只消费 AX，转债规则只消费 Q，转债印花税只消费 DC，转债过户费只消费 DD，转债证管费只消费 DE，或显式旁路 |
 
 静默套 A 股经手费档、缺 venue/sec_type 仍不 skip，以及相对 DB / S 的对照截（`vs_DB_cb_handling` / `vs_S_stock_handling`），放进 §4.1 分桶，**只作诊断桶，不得升格为第二个主报**，也不得改写 `df0_primary_demo`。DB 页上的 `sse_szse_exchangeable_merged` 只作对照/旁路：**不得升格进 `df0`，不得作另挂主报**。AX / DE / DD / DC 的对照桶同样只作诊断。
 
 ### 2.3 费用窗可落点（写明但不真跑）
 
-主窗建议占位、待预检，起止日仍空着。asof **建议** `2026-10-16`；fill_time **建议** `next_open`；fail **建议** `skip`。以上与诚实锚同属三条里的锚，**尚未冻**。深市可交换债 0.04‰、沪市可交换债走债券现券暂免，是 `事实与坑` 2026-11-06 已写下、并由假设-DB 留在诊断桶的方向；本页只把它收成可交换债专测，不改 DB，也不把两档合成一句当诚实锚。A 股 0.0341‰ 留在 S，只当作「被静默套到可交换债腿」的对照，不改 S。转债经手费留在 DB，证管费留在 DE，过户费留在 DD，印花税留在 DC，基金经手费留在 AX，都不改。`params.G` 的 0.01 是无量纲相对门槛，不是 0.04‰，也不是 0.0341‰。缺 venue 或 sec_type 则 skip，不用合成费率、A 股档或 0 把腿填上。本页**不开回测**；不拉真数；不做实盘。
+主窗建议占位、待预检，起止日仍空着。asof **写死冻结** `2026-10-16`；fill_time **写死冻结** `next_open`；fail **写死冻结** `skip`。诚实锚六键与 Y/G/N/Y2、`df0_primary_demo` 同属三条，**已写死冻结**。深市可交换债 0.04‰、沪市可交换债走债券现券暂免，是 `事实与坑` 2026-11-06 已写下、并由假设-DB 留在诊断桶的方向；本页只把它收成可交换债专测，不改 DB，也不把两档合成一句当诚实锚。A 股 0.0341‰ 留在 S，只当作「被静默套到可交换债腿」的对照，不改 S。转债经手费留在 DB，证管费留在 DE，过户费留在 DD，印花税留在 DC，基金经手费留在 AX，都不改。`params.G` 的 0.01 是无量纲相对门槛，不是 0.04‰，也不是 0.0341‰。缺 venue 或 sec_type 则 skip，不用合成费率、A 股档或 0 把腿填上。本页**不开回测**；不拉真数；不做实盘。
 
 ### 2.4 oos_split（建议四日期；拉数前再定；禁 holdout 反调）
 
@@ -188,27 +188,44 @@
 ## 6. 数据需求（字段级；不依赖聚宽真数）
 
 - 标的代码、venue（沪/深）、证券类别（可交换债 / 可转债现货 / 股票 / 场内基金）、未复权成交金额、交易日。
-- 没有 venue，或没有 sec_type 时，按 `exch_handling_fee_over_policy` 建议 skip，不得合成一句费率，也不得套 A 股 0.0341‰。
+- 没有 venue，或没有 sec_type 时，按写死冻结的 `exch_handling_fee_over_policy=skip_if_venue_or_sec_type_missing` skip，不得合成一句费率，也不得套 A 股 0.0341‰。
 - 旁路消费：DB 的转债经手费、S 的股票经手费、AX 的基金经手费、Q 的转债规则、DC 的转债印花税、DD 的转债过户费、DE 的转债证管费、DA 的场内基金过户费、T 的股票证管费、U 的股票过户费、V 的股票印花税之诚实结果或显式旁路（见 §2.1 handoff）。**本页不改写这些页。** DB 的 `sse_szse_exchangeable_merged` 不收到本页主报。
-- 未复权价；asof **建议** `2026-10-16`（尚未冻）。
+- 未复权价；asof **写死冻结** `2026-10-16`。
 
 ---
 
 ## 7. 回测配置骨架（纸面；本页不开回测）
 
-- **建议键摘要（三条尚未冻）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`fail_policy=skip`；`exch_handling_fee_honest=pit_sse_szse_listed_apart`（沪深分列，勿合成一句）；`exch_handling_fee_scope=sse_bond_waiver_vs_szse_004_not_merged`（沪市可交换按债券现券暂免、深市 0.04‰，禁止合成一句）；`exch_handling_fee_over_policy=skip_if_venue_or_sec_type_missing`（缺 venue/sec_type 则 skip）；`df0_primary_demo=invent_sse_szse_exchangeable_fee_merged`（**建议**单一主报；禁与 `invent_asof_leak_exchangeable_fee` 双挂；DF1 不升格；诊断桶不升格主报；禁把 DB 的 `sse_szse_exchangeable_merged` 升格进 `df0` 或作另挂主报）；`cb_handling_fee_handoff=db_page`；`fee_tier_handoff=s_page`；`fund_fee_handoff=ax_page`；`cb_rule_handoff=q_page`；`cb_stamp_handoff=dc_page`；`cb_transfer_fee_handoff=dd_page`；`cb_csrc_fee_handoff=de_page`；`merge_with_DB/S/AX/Q/DC/DD/DE/DA/T/U/V/A/D=False`（另 `merge_with_F=False`）。
-- `params.Y/G/N/Y2` **占位** `0.02/0.01/0.05/0.015`（相对门槛，不是费率表：成本差 / 沪深合成截 ΔMergeExchFee / 净收益差 / DF1−DF2；**尤重 params.G 的 0.01 ≠ 深市可交换 0.04‰ ≠ A股 0.0341‰（量纲与语义不同）**；**params.Y/G/N ≠ 实验字母 DF ≠ 单字母 D/F**；**勿把 params.G 读成实验字母 DF，亦勿把单字母假设-D / 假设-F 读成双字母 DF**；占位，尚未冻；禁 null；禁 holdout/OOS 标定；勿改他页已有数值）。
+- **写死键摘要（三条已冻）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`fail_policy=skip`；`exch_handling_fee_honest=pit_sse_szse_listed_apart`（沪深分列，勿合成一句）；`exch_handling_fee_scope=sse_bond_waiver_vs_szse_004_not_merged`（沪市可交换按债券现券暂免、深市 0.04‰，禁止合成一句）；`exch_handling_fee_over_policy=skip_if_venue_or_sec_type_missing`（缺 venue/sec_type 则 skip）；`df0_primary_demo=invent_sse_szse_exchangeable_fee_merged`（**写死冻结**单一主报，单挂；禁与 `invent_asof_leak_exchangeable_fee` 双挂；DF1 不升格；诊断桶不升格主报；禁把 DB 的 `sse_szse_exchangeable_merged` 升格进 `df0` 或作另挂主报）；`cb_handling_fee_handoff=db_page`；`fee_tier_handoff=s_page`；`fund_fee_handoff=ax_page`；`cb_rule_handoff=q_page`；`cb_stamp_handoff=dc_page`；`cb_transfer_fee_handoff=dd_page`；`cb_csrc_fee_handoff=de_page`；`merge_with_DB/S/AX/Q/DC/DD/DE/DA/T/U/V/A/D=False`（另 `merge_with_F=False`）。
+- `params.Y/G/N/Y2` **写死冻结** `0.02/0.01/0.05/0.015`（相对门槛，不是费率表：成本差 / 沪深合成截 ΔMergeExchFee / 净收益差 / DF1−DF2；**尤重 params.G 的 0.01 ≠ 深市可交换 0.04‰ ≠ A股 0.0341‰（量纲与语义不同）**；**params.Y/G/N ≠ 实验字母 DF ≠ 单字母 D/F**；**勿把 params.G 读成实验字母 DF，亦勿把单字母假设-D / 假设-F 读成双字母 DF**；禁 null；禁 holdout/OOS 标定；勿改他页已有数值）。
 - oos_split 四日期建议占位；禁 holdout 反调。
-- **本页不开回测**；不拉真数；不做实盘；不催 8765。本草稿基 tip=`e517506`。
+- **本页不开回测**；不拉真数；不做实盘；不催 8765。本草稿基 tip=`e517506`；三冻补丁基 tip=`2c28575`；分支起点 HEAD=`7f9fc374`。
 
 ---
 
 ## 8. 结论
 
-（空；草稿·待入库预检；三条尚未冻；未标纸面齐；禁止标纸面齐。）
+（空；预检有条件通过·三条已冻·待复检；复检通过前不得标纸面齐；**禁止标纸面齐**；**禁止标 A/D–DF纸面齐**。）
+
+---
+
+## 风控预检补丁·冻结（三条已写死 · 2026-11-09）
+
+依据风控稿 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设DF-20261109.md`（原样落入，不改结论；SHA256=`8d9009230ef9d6fb69f8baaf1ddca3f2e85bf61cc74bb5824debc3e706fec88c`；预检 2026-11-09；**结论：有条件通过**；tip基=`2c28575` / `2c2857592c6836a0b3d5348a9bd7f1bcb63a9abe`；本补丁分支起点 HEAD=`7f9fc374` / `7f9fc37422344ee1058036782ee3fcbc321701ae`）。按该稿条件 1–3 升格，不标纸面齐。
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`。相对门槛用于成本差、沪深合成截 ΔMergeExchFee、净收益差、DF1−DF2 专项。**`params.Y` ≠ 实验字母 DF**；**`params.G` ≠ 实验字母 DF**；**`params.N` ≠ 实验字母 DF**；亦 ≠ 单字母假设-D / 假设-F。**勿把 `params.G` 读成实验字母 DF，亦勿把单字母假设-D / 假设-F 读成双字母 DF**。**尤重：`params.G` 的 `0.01` ≠ 深市可交换 `0.04‰` ≠ A股 `0.0341‰`**（**params.G 的 0.01 ≠ 深市可交换 0.04‰ ≠ A股 0.0341‰**）。三者量纲与语义都不同：`params.G=0.01` 是无量纲相对门槛，0.04‰ 是深市可交换债经手费率，0.0341‰ 是 A 股经手费率，禁止互读、禁止把门槛改写成费率。禁 null 开工；禁 holdout/OOS 标定或跑后因显著性改口；**勿改他字母已冻 Y/G/N/Y2**。
+
+2. **`params.df0_primary_demo`**：**写死冻结** **`invent_sse_szse_exchangeable_fee_merged`**（单一主报，单挂写死）。**禁止**与 **`invent_asof_leak_exchangeable_fee`** 双挂争主表；**禁止**跑后因分桶显著性改口主报。DF1 核对日把可交换债经手费现行口径铺到全历史只作半泄露对照，**不得升格与 df0 并列主报**，也不得把 `invent_asof_leak_exchangeable_fee` 写进 `df0`。`vs_DB_cb_handling` / `vs_S_stock_handling` / `sse_szse_exchangeable_merged` / `silent_ashare_handling_on_exchangeable` / `missing_venue_or_sec_type_not_skip` **只作诊断桶，不得升格主报**。DF1 / 诊断桶（如 `vs_DB_cb_handling` / `vs_S_stock_handling` / `sse_szse_exchangeable_merged`）**不升格**。**禁升格 DB 诊断桶 `sse_szse_exchangeable_merged`**：该名只作对照/旁路，**不得升格进 `df0`，不得作另挂主报**（与主报全名 `invent_sse_szse_exchangeable_fee_merged` 不是同一个键）。
+
+3. **可交换债经手费诚实锚六键升格写死（不可再写「建议」）**：`params.exch_handling_fee_honest=pit_sse_szse_listed_apart`；`params.exch_handling_fee_scope=sse_bond_waiver_vs_szse_004_not_merged`；`params.exch_handling_fee_over_policy=skip_if_venue_or_sec_type_missing`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`。沪市可交换按债券现券暂免、深市 0.04‰，**禁止合成一句**；缺 venue 或 sec_type → skip；禁静默套 A 股经手费档。禁止跑后改锚，或用合成一句费率 / 核对日现行口径 / A 股 0.0341‰ / 发明 0 铺满可交换债全历史冒充诚实 PIT。
+
+**硬分列保住**：DF≠DB≠DE≠DD≠DC≠DA≠S≠AX≠T≠U≠V≠Q≠A≠D≠F；**双字母 DF ≠ 单字母假设-D / 假设-F / 假设-T**；**params.Y / params.G / params.N ≠ 实验字母 DF ≠ 单字母 D/F**；**尤重 params.G 的 0.01 ≠ 深市可交换 0.04‰ ≠ A股 0.0341‰**；不抢 A；不改已齐 A–DE / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE 正文；**不重开假设-T**；**禁升格 DB 诊断桶 `sse_szse_exchangeable_merged`**。
+
+**状态**：预检有条件通过·三条已冻·待复检；**禁止标任何纸面齐**；**未标纸面齐**；**禁止标纸面齐**；**禁止标 A/D–DF纸面齐**；本页不开回测/真数/实盘。
 
 ## 变更
 
 | 日期 | 变更 |
 |------|------|
+| 2026-11-09 | 风控预检补丁·冻结三条写死——依据 `预检-假设DF-20261109.md`（SHA256=`8d9009230ef9d6fb69f8baaf1ddca3f2e85bf61cc74bb5824debc3e706fec88c`；结论=有条件通过；tip基=`2c28575` / `2c2857592c6836a0b3d5348a9bd7f1bcb63a9abe`；分支起点 HEAD=`7f9fc374` / `7f9fc37422344ee1058036782ee3fcbc321701ae`）条件 1–3。① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（相对门槛覆盖成本差 / ΔMergeExchFee / 净收益差 / DF1−DF2；**params.Y/G/N ≠ 实验字母 DF ≠ 单字母 D/F**；**勿把 params.G 读成实验字母 DF，亦勿把单字母假设-D / 假设-F 读成双字母 DF**；**尤重 params.G 的 0.01 ≠ 深市可交换 0.04‰ ≠ A股 0.0341‰（量纲与语义不同）**；禁 null；禁 holdout/OOS 标定）；② `params.df0_primary_demo=invent_sse_szse_exchangeable_fee_merged`（写死冻结单一主报，单挂；禁与 `invent_asof_leak_exchangeable_fee` 双挂；DF1 不升格；诊断桶 `vs_DB_cb_handling` / `vs_S_stock_handling` / `sse_szse_exchangeable_merged` 不升格；**禁升格 DB 诊断桶 `sse_szse_exchangeable_merged`**，不得升格进 df0 或作另挂主报）；③ 锚六键写死 `exch_handling_fee_honest=pit_sse_szse_listed_apart` / `exch_handling_fee_scope=sse_bond_waiver_vs_szse_004_not_merged` / `exch_handling_fee_over_policy=skip_if_venue_or_sec_type_missing` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`（沪市可交换按债券现券暂免、深市 0.04‰，禁止合成一句；缺 venue/sec_type → skip）。状态=预检有条件通过·三条已冻·待复检；**未标纸面齐**；**禁止标纸面齐**；**禁止标 A/D–DF纸面齐**；不改已齐 A–DE / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE；不重开假设-T；不开回测/真数/实盘。基于 tip=`2c28575`。 |
 | 2026-11-09 | 新建纸面草稿（**本草稿首次入库**；可交换债经手费沪深合成；`df0_primary_demo` 建议 `invent_sse_szse_exchangeable_fee_merged`，单一主报，禁与 `invent_asof_leak_exchangeable_fee` 双挂，DF1 不升格；诊断桶 `vs_DB_cb_handling` / `vs_S_stock_handling` / `sse_szse_exchangeable_merged` 不升格；**禁把 DB 的 `sse_szse_exchangeable_merged` 升格进 df0 或作另挂主报**；Y/G/N/Y2 占位 `0.02/0.01/0.05/0.015`，**params.Y/G/N ≠ 实验字母 DF ≠ 单字母 D/F**，且 **params.G 的 0.01 ≠ 深市可交换 0.04‰ ≠ A股 0.0341‰**；锚建议 `exch_handling_fee_honest=pit_sse_szse_listed_apart` / scope=`sse_bond_waiver_vs_szse_004_not_merged` / over_policy=`skip_if_venue_or_sec_type_missing`；asof 建议 `2026-10-16`；fill_time 建议 `next_open`；fail 建议 `skip`；handoff：`cb_handling_fee_handoff=db_page`，`fee_tier_handoff=s_page`，`fund_fee_handoff=ax_page`，`cb_rule_handoff=q_page`，`cb_stamp_handoff=dc_page`，`cb_transfer_fee_handoff=dd_page`，`cb_csrc_fee_handoff=de_page`；`merge_with_DB/S/AX/Q/DC/DD/DE/DA/T/U/V/A/D=False`；**DF≠DB≠DE≠DD≠DC≠DA≠S≠AX≠T≠U≠V≠Q≠A≠D**；**双字母 DF ≠ 单字母假设-D / 假设-F**；vs DB：DB 主报可转债经手费，本页专测可交换债沪深合成误开，不改 DB；vs S/AX：股票/基金经手费族 ≠ 可交换债沪深分列，不改 S/AX；vs DE/DD/DC：证管费/过户费/印花税 ≠ 经手费合成，不改 DE/DD/DC；状态=草稿·待入库预检；**三条尚未冻**；**未标纸面齐**；**禁止标纸面齐**；不改已齐 A–DE / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE 及其他已存在假设页；不重开假设-T；不写下一字母；不开真数/回测/实盘）。基 tip=`e517506`（本次提交前 HEAD `e517506173c3561f3af5c0c24db83b35eb548ff1`） |
