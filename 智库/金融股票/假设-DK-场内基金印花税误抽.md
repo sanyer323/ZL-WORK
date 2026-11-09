@@ -2,7 +2,7 @@
 
 更新：2026-11-09  
 来源：总管线 / 默认分支 HEAD `4cf0270` 上清单 #119=DJ 已收口（A/D–DJ纸面齐已合入该 tip；**不改假设-DJ 正文**，亦不改已齐 A–DJ / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI / 假设-V / 假设-T / 假设-S / 假设-AX / 假设-AC / 假设-R / 假设-K 及其他已存在假设页；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-V**）后写下一草稿 DK；清单 #119=DJ，本页占用 **#120=DK**；选题是场内基金（ETF / 封闭式 / LOF / 债券基金）被发明印花税；假设-V 只收股票印花税切日（其切日 ≠ 本页「对基金/ETF 发明印花税」），假设-DC 只收可转债印花税，假设-DJ 只收场内基金证管费，假设-AX 只收基金经手费，假设-DA 只收场内基金过户费；**新建实验 DK**；不写下一字母；不预留 #121  
-状态：**预检有条件通过·三条已冻·待复检**（结论栏空；禁止把「对场内基金/ETF 发明印花税」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**三条已冻**；**禁止标纸面齐**；**未标纸面齐**；**不写 A/D–DK纸面齐**；**禁止标任何纸面齐**；**不改已齐 A–DJ / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI**；尤其不改假设-V / 假设-DC / 假设-DJ / 假设-AX / 假设-DA / 假设-T / 假设-AC / 假设-R / 假设-D / 假设-K；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-V**）
+状态：**A/D–DK纸面齐（预检有条件通过·三条已冻）**（结论栏空；禁止把「对场内基金/ETF 发明印花税」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改已齐 A–DJ / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI**；尤其不改假设-V / 假设-DC / 假设-DJ / 假设-AX / 假设-DA / 假设-T / 假设-AC / 假设-R / 假设-D / 假设-K；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-V**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前本序号挂实验 DK（#120）。一句话误开：回测对场内基金/ETF 发明印花税，或缺证券类别 / 买卖方向仍不 skip，系统性改写基金腿成本（相对诚实锚偏误）。
 
@@ -247,7 +247,7 @@
 
 ## 8. 结论
 
-（空；预检有条件通过·三条已冻·待复检；复检通过前不得标纸面齐；**禁止标纸面齐**；**未标纸面齐**；**不写 A/D–DK纸面齐**。）
+（空；**A/D–DK纸面齐（预检有条件通过·三条已冻）**。）
 
 ---
 
@@ -263,11 +263,12 @@
 
 **硬分列保住**：DK≠DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠V≠T≠AX≠S≠AC≠U≠Q≠R≠A≠D≠K；**双字母 DK ≠ 单字母假设-D / 假设-K / 假设-V**；**params.Y / params.G / params.N ≠ 实验字母 DK ≠ 单字母 D/K**；**尤重 params.Y 的 0.02 ≠ 印花税率‰**；**禁把占位读成 1‰/0.5‰**；**场内基金印花税误抽 ≠ V股票印花 ≠ DC转债印花 ≠ DJ基金证管 ≠ AX经手 ≠ DA过户**；不抢 A；不改已齐 A–DJ / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI 正文；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-V**；**禁把 V 股票印花切日 / DC 转债印花 / DJ 基金证管 合成/混读升格进 dk0**。
 
-**状态**：**预检有条件通过·三条已冻·待复检**；**禁止标任何纸面齐**；**未标纸面齐**；**禁止标纸面齐**；**不写 A/D–DK纸面齐**；本页不开回测/真数/实盘。
+**状态**：**A/D–DK纸面齐（预检有条件通过·三条已冻）**；本页不开回测/真数/实盘。
 
 ## 变更
 
 | 日期 | 变更 |
 |------|------|
+| 2026-11-09 | 复检/纸面齐——**A/D–DK纸面齐（预检有条件通过·三条已冻）**。复检稿 `experiments/backtest/A_limit_up_fill/risk_notes/复检-假设DK-20261109.md` 原样落入，SHA256=`5090c747b66b3c4a04e4af3332e88e699b756412305faa0d0a5f27a016643bdd`；三冻 tip=`1987d4f` / `1987d4f2aab9cac14b8da0d78dbfe6d0377f4c4d`。只改状态标签；未改写已冻三条/六键数值与机制；不改已齐 A–DJ / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI；不改 #110–#119；不重开假设-T；不重开假设-AC；不重开假设-R；不重开假设-V；禁把 V 股票印花切日 / DC 转债印花 / DJ 基金证管 合成/混读升格进 dk0；不开回测/真数/实盘。 |
 | 2026-11-09 | 风控预检补丁·冻结三条写死——依据 `预检-假设DK-20261109.md`（SHA256=`097f2657181e2fa32abb685b030d7146590f25791b394ffc1c4768206085fa93`；结论=有条件通过；tip基=`bb630833` / `bb630833b9e4dee79cb7e1611b00b8dca035ae42`；分支起点 HEAD=`6dd74a57` / `6dd74a57980b93f25c9f1f21f42ea71e664d5a8a`）条件 1–3。① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（相对门槛覆盖成本差 / ΔFundStamp / 净收益差 / DK1−DK2；**params.Y/G/N ≠ 实验字母 DK ≠ 单字母 D/K**；**勿把 params.Y 读成实验字母 DK，亦勿把单字母假设-D / 假设-K 读成双字母 DK**；**尤重 params.Y 的 0.02 ≠ 印花税率‰（量纲与语义不同）**；**禁把占位读成 1‰/0.5‰**；禁 null；禁 holdout/OOS 标定；禁止把这四个数读成印花税率‰）；② `params.dk0_primary_demo=invent_stamp_tax_on_fund`（写死冻结单一主报，单挂；禁与 `invent_asof_leak_fund_stamp` 双挂；DK1 不升格；诊断桶 `bilateral_stamp_on_etf` / `stock_cut_20230828_copied_onto_fund_stamp` / `charge_bond_fund_as_stock_stamp` / `vs_V_stock_stamp` / `vs_DC_cb_stamp` / `vs_DJ_fund_csrc` / `vs_DA_etf_transfer` / `vs_AX_fund_handling` 不升格；**禁把 V 股票印花切日 / DC 转债印花 / DJ 基金证管 合成/混读升格进 dk0**，只作对照/旁路，不得升格进 dk0 或另挂主报）；③ 锚六键写死 `fund_stamp_honest=pit_fund_out_of_stamp_tax_scope` / `fund_stamp_scope=etf_closed_lof_bond_fund_not_stock_cdr` / `fund_stamp_over_policy=skip_if_sec_type_or_side_missing` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`（缺证券类型或买卖方向 → skip；基金/ETF 不在印花税税目内；禁止把核对日「不在税目内」或 V 的 1‰/0.5‰ 铺满全历史）。状态=预检有条件通过·三条已冻·待复检；**未标纸面齐**；**禁止标纸面齐**；**不写 A/D–DK纸面齐**；不改已齐 A–DJ / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI；不重开假设-T；不重开假设-AC；不重开假设-R；不重开假设-V；不开回测/真数/实盘。基于 tip=`bb630833`。 |
 | 2026-11-09 | 新建纸面草稿（**本草稿首次入库**；场内基金印花税误抽；`dk0_primary_demo` 建议 `invent_stamp_tax_on_fund`，单一主报，单挂，禁与 `invent_asof_leak_fund_stamp` 双挂，DK1 不升格；诊断桶 `bilateral_stamp_on_etf` / `stock_cut_20230828_copied_onto_fund_stamp` / `charge_bond_fund_as_stock_stamp` / `vs_V_stock_stamp` / `vs_DC_cb_stamp` / `vs_DJ_fund_csrc` / `vs_DA_etf_transfer` / `vs_AX_fund_handling` 不升格；**尤重 V 的股票印花税切日 ≠ 本页「对基金/ETF 发明印花税」，禁止合成/混读升格进 dk0**；**尤重 DC 可转债印花税 ≠ 本页基金/ETF 印花税，禁止合成进 dk0**；**尤重 DJ 基金证管费 ≠ 本页基金印花税，禁止合成进 dk0**；Y/G/N/Y2 占位 `0.02/0.01/0.05/0.015`，**params.Y/G/N ≠ 实验字母 DK ≠ 单字母 D/K**，且 **params.Y 的 0.02 ≠ 印花税率‰**，**禁把占位读成 1‰/0.5‰**；锚建议 `fund_stamp_honest=pit_fund_out_of_stamp_tax_scope` / scope=`etf_closed_lof_bond_fund_not_stock_cdr` / over_policy=`skip_if_sec_type_or_side_missing`；asof 建议 `2026-10-16`；fill_time 建议 `next_open`；fail 建议 `skip`；口径：缺证券类别或买卖方向则 skip；基金/ETF 不在印花税税目内（**草稿方向，尚未冻，不要写成已冻**）；handoff：`stock_stamp_handoff=v_page`，`cb_stamp_handoff=dc_page`，`fund_csrc_fee_handoff=dj_page`，`etf_transfer_fee_handoff=da_page`，`fund_handling_fee_handoff=ax_page`；`merge_with_DJ/DI/DH/DG/DF/DE/DD/DC/DB/DA/V/T/AX/S/AC/U/Q/R/A/D/K=False`；**DK≠DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠V≠T≠AX≠S≠AC≠U≠Q≠R≠A≠D**；**双字母 DK ≠ 单字母假设-D / 假设-K**；**场内基金印花税误抽 ≠ V股票印花 ≠ DC转债印花 ≠ DJ基金证管 ≠ AX经手 ≠ DA过户**；状态=草稿·待入库预检；**三条尚未冻**；**未标纸面齐**；**禁止标纸面齐**；**不写 A/D–DK纸面齐**；不改已齐 A–DJ / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI 及其他已存在假设页；不重开假设-T；不重开假设-AC；不重开假设-R；不重开假设-V；不写下一字母；不预留 #121；不开真数/回测/实盘）。基 tip=`4cf0270`（A/D–DJ纸面齐已合，全长 `4cf0270398e81949ca65f0cd9ada355bb402f983`；不改该 tip 上的 #110–#119，亦不改「可复现实验条目（2026-11-09 · DC / DF）」原文） |
