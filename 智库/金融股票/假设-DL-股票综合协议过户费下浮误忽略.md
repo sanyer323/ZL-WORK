@@ -2,7 +2,7 @@
 
 更新：2026-11-09  
 来源：总管线 / 默认分支 HEAD `6bdc1c2` 上清单 #120=DK 已收口（A/D–DK纸面齐已合入该 tip；**不改假设-DK 正文**，亦不改已齐 A–DK / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI / 假设-DJ / 假设-U / 假设-O / 假设-T / 假设-V / 假设-S / 假设-AX / 假设-AC / 假设-R / 假设-L 及其他已存在假设页；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-U**；**不重开假设-O**；**不重开假设-V**）后写下一草稿 DL；清单 #120=DK，本页占用 **#121=DL**；选题是股票综合协议过户费相对竞价过户标准的再下浮被忽略、按竞价全额抽；假设-U 只收股票过户费切日（其切日 ≠ 本页「综合协议再下浮 30%」），假设-DI 只收股票大宗经手下浮（经手 ≠ 过户），假设-O 只收大宗通道（通道 ≠ 本页费率），假设-DA 只收场内基金过户费；**新建实验 DL**；不写下一字母；不预留 #122  
-状态：**预检有条件通过·三条已冻·待复检**（结论栏空；禁止把「股票综合协议过户费按竞价全额抽、从而忽略综合协议相对竞价过户标准再下浮 30%」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**三条已冻**；**禁止标纸面齐**；**未标纸面齐**；**不写 A/D–DL纸面齐**；**禁止标任何纸面齐**；**不改已齐 A–DK / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI / 假设-DJ**；尤其不改假设-U / 假设-DI / 假设-O / 假设-DA / 假设-DK / 假设-T / 假设-AC / 假设-R / 假设-V / 假设-D / 假设-L；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-U**；**不重开假设-O**；**不重开假设-V**）
+状态：**A/D–DL纸面齐（预检有条件通过·三条已冻）**（结论栏空；禁止把「股票综合协议过户费按竞价全额抽、从而忽略综合协议相对竞价过户标准再下浮 30%」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改已齐 A–DK / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI / 假设-DJ**；尤其不改假设-U / 假设-DI / 假设-O / 假设-DA / 假设-DK / 假设-T / 假设-AC / 假设-R / 假设-V / 假设-D / 假设-L；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-U**；**不重开假设-O**；**不重开假设-V**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前本序号挂实验 DL（#121）。一句话误开：回测把股票综合协议过户费按竞价全额抽（忽略综合协议相对竞价过户标准再下浮 30%），或缺成交类型 / 官方‰仍不 skip，系统性改写综合协议腿成本（相对诚实锚偏误）。
 
@@ -258,7 +258,7 @@
 
 ## 8. 结论
 
-（空；预检有条件通过·三条已冻·待复检；复检通过前不得标纸面齐；**禁止标纸面齐**；**未标纸面齐**；**不写 A/D–DL纸面齐**。）
+（空；**A/D–DL纸面齐（预检有条件通过·三条已冻）**。）
 
 ---
 
@@ -274,11 +274,12 @@
 
 **硬分列保住**：DL≠DK≠DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠U≠O≠T≠V≠AX≠S≠AC≠Q≠R≠A≠D≠L；**双字母 DL ≠ 单字母假设-D / 假设-L / 假设-U / 假设-O**；**params.Y / params.G / params.N ≠ 实验字母 DL ≠ 单字母 D/L**；**尤重 params.G 的 0.01 ≠ 过户费 0.01‰ ≠ 0.007‰**；**禁把占位读成 0.01‰/0.007‰**；**股票综合协议过户费下浮误忽略 ≠ U股票过户切日 ≠ DI大宗经手下浮 ≠ O大宗通道 ≠ DA基金过户**；不抢 A；不改已齐 A–DK / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI / 假设-DJ 正文；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**不重开假设-U**；**不重开假设-O**；**不重开假设-DI**；**不重开假设-V**；**禁把 U 股票过户切日 / DI 大宗经手下浮 / O 大宗通道 合成/混读升格进 dl0**。
 
-**状态**：**预检有条件通过·三条已冻·待复检**；**禁止标任何纸面齐**；**未标纸面齐**；**禁止标纸面齐**；**不写 A/D–DL纸面齐**；本页不开回测/真数/实盘。
+**状态**：**A/D–DL纸面齐（预检有条件通过·三条已冻）**；本页不开回测/真数/实盘。
 
 ## 变更
 
 | 日期 | 变更 |
 |------|------|
+| 2026-11-09 | 复检/纸面齐——**A/D–DL纸面齐（预检有条件通过·三条已冻）**。复检稿 `experiments/backtest/A_limit_up_fill/risk_notes/复检-假设DL-20261109.md` 原样落入，SHA256=`2595ece6ba632795fde35d15c6ccbcaebd99c75edc60e77002b1d6dbf66c374f`；三冻 tip=`08c50d4` / `08c50d4569399d81ee2ece60c6c5443223d88007`。只改状态标签；未改写已冻三条/六键数值与机制；不改已齐 A–DK；不改 #110–#120；不重开假设-T/AC/R/U/O/DI/V；禁把 U 股票过户切日 / DI 大宗经手下浮 / O 大宗通道 混读升格进 dl0；不开回测/真数/实盘。 |
 | 2026-11-09 | 风控预检补丁·冻结三条写死——依据 `预检-假设DL-20261109.md`（SHA256=`154fd9a590c8e8a1fba50e1f9eb1aae5c6bdfe6d4cfe51371e7967693b658660`；结论=有条件通过；tip基=`67d37966` / `67d37966d2f72dbb82bd39d1bcb8a22d11dbd167`；分支起点 HEAD=`0980e7dc` / `0980e7dcd6b7126ff0d0b3fc27d53a99457e0918`）条件 1–3。① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（相对门槛覆盖成本差 / ΔAgreementTransfer / 净收益差 / DL1−DL2；**params.Y/G/N ≠ 实验字母 DL ≠ 单字母 D/L**；**勿把 params.G 读成实验字母 DL，亦勿把单字母假设-D / 假设-L 读成双字母 DL**；**尤重 params.G 的 0.01 ≠ 过户费 0.01‰ ≠ 0.007‰（量纲与语义不同）**；**禁把占位读成 0.01‰/0.007‰**；禁 null；禁 holdout/OOS 标定；禁止把这四个数读成过户费率‰）；② `params.dl0_primary_demo=invent_full_transfer_fee_on_ashare_agreement`（写死冻结单一主报，单挂；禁与 `invent_asof_leak_ashare_agreement_transfer` 双挂；DL1 不升格；诊断桶 `ignore_30pct_agreement_transfer_discount` / `copy_auction_transfer_tier_onto_agreement` / `confuse_DI_block_handling_discount_with_agreement_transfer` / `confuse_U_cut_with_agreement_discount` / `vs_U_stock_transfer` / `vs_DI_stock_block_handling` / `vs_O_block_channel` / `vs_DA_etf_transfer` 不升格；**禁把 U 股票过户切日 / DI 大宗经手下浮 / O 大宗通道 合成/混读升格进 dl0**，只作对照/旁路，不得升格进 dl0 或另挂主报；经手≠过户）；③ 锚六键写死 `agreement_transfer_honest=pit_auction_minus_30pct_not_full` / `agreement_transfer_scope=ashare_comprehensive_agreement_apart_from_auction` / `agreement_transfer_over_policy=skip_if_trade_type_or_official_bps_missing` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`（缺成交类型或官方‰ → skip；综合协议相对竞价过户标准再下浮 30%，禁止静默按全额 0.01‰；禁止把核对日「再下浮 30%」或 0.01‰/0.007‰ 铺满全历史）。状态=预检有条件通过·三条已冻·待复检；**未标纸面齐**；**禁止标纸面齐**；**不写 A/D–DL纸面齐**；不改已齐 A–DK / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI / 假设-DJ；不重开假设-T；不重开假设-AC；不重开假设-R；不重开假设-U；不重开假设-O；不重开假设-DI；不重开假设-V；不开回测/真数/实盘。基于 tip=`67d37966`。 |
 | 2026-11-09 | 新建纸面草稿（**本草稿首次入库**；股票综合协议过户费下浮误忽略；`dl0_primary_demo` 建议 `invent_full_transfer_fee_on_ashare_agreement`，单一主报，单挂，禁与 `invent_asof_leak_ashare_agreement_transfer` 双挂，DL1 不升格；诊断桶 `ignore_30pct_agreement_transfer_discount` / `copy_auction_transfer_tier_onto_agreement` / `confuse_DI_block_handling_discount_with_agreement_transfer` / `confuse_U_cut_with_agreement_discount` / `vs_U_stock_transfer` / `vs_DI_stock_block_handling` / `vs_O_block_channel` / `vs_DA_etf_transfer` 不升格；**尤重 U 的股票过户费切日 ≠ 本页「综合协议再下浮 30%」，禁止合成/混读升格进 dl0**；**尤重 DI 股票大宗经手下浮 ≠ 本页过户费下浮（经手≠过户），禁止合成进 dl0**；**尤重 O 大宗通道 ≠ 本页费率，禁止合成进 dl0**；Y/G/N/Y2 占位 `0.02/0.01/0.05/0.015`，**params.Y/G/N ≠ 实验字母 DL ≠ 单字母 D/L**，且 **params.G 的 0.01 ≠ 过户费 0.01‰ ≠ 0.007‰**，**禁把占位读成 0.01‰/0.007‰**；锚建议 `agreement_transfer_honest=pit_auction_minus_30pct_not_full` / scope=`ashare_comprehensive_agreement_apart_from_auction` / over_policy=`skip_if_trade_type_or_official_bps_missing`；asof 建议 `2026-10-16`；fill_time 建议 `next_open`；fail 建议 `skip`；口径：缺成交类型或官方‰则 skip；综合协议相对竞价过户标准再下浮 30%，禁止静默按全额 0.01‰（**草稿方向，尚未冻，不要写成已冻**）；handoff：`stock_transfer_fee_handoff=u_page`，`stock_block_handling_handoff=di_page`，`block_channel_handoff=o_page`，`etf_transfer_fee_handoff=da_page`；`merge_with_DK/DJ/DI/DH/DG/DF/DE/DD/DC/DB/DA/U/O/T/V/AX/S/AC/Q/R/A/D/L=False`；**DL≠DK≠DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠U≠O≠T≠V≠AX≠S≠AC≠Q≠R≠A≠D**；**双字母 DL ≠ 单字母假设-D / 假设-L**；**股票综合协议过户费下浮误忽略 ≠ U股票过户切日 ≠ DI大宗经手下浮 ≠ O大宗通道 ≠ DA基金过户**；状态=草稿·待入库预检；**三条尚未冻**；**未标纸面齐**；**禁止标纸面齐**；**不写 A/D–DL纸面齐**；不改已齐 A–DK / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI / 假设-DJ 及其他已存在假设页；不重开假设-T；不重开假设-AC；不重开假设-R；不重开假设-U；不重开假设-O；不重开假设-V；不写下一字母；不预留 #122；不开真数/回测/实盘）。基 tip=`6bdc1c2`（A/D–DK纸面齐已合，全长 `6bdc1c2e7298bd06b4cc11a063866a42ae6ffca4`；不改该 tip 上的 #110–#120，亦不改「可复现实验条目（2026-11-09 · DC / DF）」原文） |
