@@ -2,7 +2,7 @@
 
 更新：2026-11-09  
 来源：总管线 / 默认分支 HEAD `5bf9b20` 上清单 #118=DI 已收口（A/D–DI纸面齐已合入该 tip；**不改假设-DI 正文**，亦不改已齐 A–DI / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-T / 假设-S / 假设-AX / 假设-AC / 假设-R / 假设-J 及其他已存在假设页；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**）后写下一草稿 DJ；清单 #118=DI，本页占用 **#119=DJ**；选题是场内基金（ETF / 封闭式 / LOF）被误套或发明股票证管费；假设-T 只收股票证管费切日（其切日 ≠ 本页「对基金/ETF 发明证管费」），假设-DE 只收可转债证管费，假设-AX 只收基金经手费，假设-DA 只收场内基金过户费，假设-DI 只收股票大宗经手下浮，假设-S 只收股票竞价经手费切日；**新建实验 DJ**；不写下一字母；不预留 #120  
-状态：**预检有条件通过·三条已冻·待复检**（结论栏空；禁止把「对场内基金/ETF 发明或误套股票证管费」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**三条已冻**；**禁止标纸面齐**；**未标纸面齐**；**不写 A/D–DJ纸面齐**；**禁止标任何纸面齐**；**不改已齐 A–DI / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH**；尤其不改假设-T / 假设-DE / 假设-AX / 假设-DA / 假设-DI / 假设-S / 假设-AC / 假设-R / 假设-D / 假设-J；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**）
+状态：**A/D–DJ纸面齐（预检有条件通过·三条已冻）**（结论栏空；禁止把「对场内基金/ETF 发明或误套股票证管费」当诚实成本；不抢实验 A 真数队列；本页不开回测；不催 8765；**不改已齐 A–DI / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH**；尤其不改假设-T / 假设-DE / 假设-AX / 假设-DA / 假设-DI / 假设-S / 假设-AC / 假设-R / 假设-D / 假设-J；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前本序号挂实验 DJ（#119）。一句话误开：回测对场内基金/ETF 发明或误套股票证管费，或缺证券类别 / 官方证管费栏仍不 skip，系统性改写基金腿成本（相对诚实锚偏误）。
 
@@ -239,7 +239,7 @@
 
 ## 8. 结论
 
-（空；预检有条件通过·三条已冻·待复检；复检通过前不得标纸面齐；**禁止标纸面齐**；**未标纸面齐**；**不写 A/D–DJ纸面齐**。）
+（空；**A/D–DJ纸面齐（预检有条件通过·三条已冻）**。）
 
 ---
 
@@ -255,11 +255,12 @@
 
 **硬分列保住**：DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠T≠AX≠S≠AC≠U≠V≠Q≠R≠A≠D≠J；**双字母 DJ ≠ 单字母假设-D / 假设-J / 假设-T**；**params.Y / params.G / params.N ≠ 实验字母 DJ ≠ 单字母 D/J**；**尤重 params.Y 的 0.02 ≠ 证管费 0.02‰**；**场内基金证管费误套 ≠ T股票证管 ≠ DE转债证管 ≠ AX基金经手 ≠ DA过户 ≠ DI大宗折扣**；不抢 A；不改已齐 A–DI / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH 正文；**不重开假设-T**；**不重开假设-AC**；**不重开假设-R**；**禁把 T 股票证管切日 / DE 转债证管 合成/混读升格进 dj0**。
 
-**状态**：**预检有条件通过·三条已冻·待复检**；**禁止标任何纸面齐**；**未标纸面齐**；**禁止标纸面齐**；**不写 A/D–DJ纸面齐**；本页不开回测/真数/实盘。
+**状态**：**A/D–DJ纸面齐（预检有条件通过·三条已冻）**；本页不开回测/真数/实盘。
 
 ## 变更
 
 | 日期 | 变更 |
 |------|------|
+| 2026-11-09 | 复检/纸面齐——**A/D–DJ纸面齐（预检有条件通过·三条已冻）**。复检稿 `experiments/backtest/A_limit_up_fill/risk_notes/复检-假设DJ-20261109.md` 原样落入，SHA256=`b9b3812f07da27e7d5ef5af892dc632e113d59a55f14908621c46391790e95df`；三冻 tip=`b1c38d3` / `b1c38d3dba4535d746b31dbdb39686f60e9eee53`。只改状态标签；未改写已冻三条/六键数值与机制；不改已齐 A–DI / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH；不改 #110–#118；不重开假设-T；不重开假设-AC；不重开假设-R；禁把 T 股票证管切日 / DE 转债证管 合成/混读升格进 dj0；不开回测/真数/实盘。 |
 | 2026-11-09 | 风控预检补丁·冻结三条写死——依据 `预检-假设DJ-20261109.md`（SHA256=`75ed3efb4e8beeaa4860bfd1b4c1ca8953e0039d8dcfd818c11715d480f13474`；结论=有条件通过；tip基=`474421ea` / `474421ea046af22b6138602ae83630ffbdb804ec`；分支起点 HEAD=`5a3f313d` / `5a3f313d2cc33121515ac68566af84c44e7dbfa6`）条件 1–3。① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（相对门槛覆盖成本差 / ΔFundCsrcFee / 净收益差 / DJ1−DJ2；**params.Y/G/N ≠ 实验字母 DJ ≠ 单字母 D/J**；**勿把 params.Y 读成实验字母 DJ，亦勿把单字母假设-D / 假设-J 读成双字母 DJ**；**尤重 params.Y 的 0.02 ≠ 证管费 0.02‰（量纲与语义不同）**；禁 null；禁 holdout/OOS 标定；禁止把这四个数读成证管费率‰）；② `params.dj0_primary_demo=invent_ashare_csrc_fee_on_fund`（写死冻结单一主报，单挂；禁与 `invent_asof_leak_fund_csrc_fee` 双挂；DJ1 不升格；诊断桶 `charge_etf_as_stock_csrc` / `charge_bond_as_stock_csrc` / `copy_20230828_handling_cut_onto_csrc` / `vs_T_stock_csrc` / `vs_DE_cb_csrc` / `vs_AX_fund_handling` / `vs_DA_etf_transfer` 不升格；**禁把 T 股票证管切日 / DE 转债证管 合成/混读升格进 dj0**，只作对照/旁路，不得升格进 dj0 或另挂主报）；③ 锚六键写死 `fund_csrc_fee_honest=pit_fund_bond_exempt_not_stock_tier` / `fund_csrc_fee_scope=etf_closed_lof_bond_apart_from_ashare_csrc` / `fund_csrc_fee_over_policy=skip_if_sec_type_or_official_csrc_row_missing` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`（缺证券类型或官方证管行 → skip；基金/债券依法免收；禁止把核对日免收或股票 0.02‰ 铺满全历史）。状态=预检有条件通过·三条已冻·待复检；**未标纸面齐**；**禁止标纸面齐**；**不写 A/D–DJ纸面齐**；不改已齐 A–DI / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH；不重开假设-T；不重开假设-AC；不重开假设-R；不开回测/真数/实盘。基于 tip=`474421ea`。 |
 | 2026-11-09 | 新建纸面草稿（**本草稿首次入库**；场内基金证管费误套股票；`dj0_primary_demo` 建议 `invent_ashare_csrc_fee_on_fund`，单一主报，单挂，禁与 `invent_asof_leak_fund_csrc_fee` 双挂，DJ1 不升格；诊断桶 `charge_etf_as_stock_csrc` / `charge_bond_as_stock_csrc` / `copy_20230828_handling_cut_onto_csrc` / `vs_T_stock_csrc` / `vs_DE_cb_csrc` / `vs_AX_fund_handling` / `vs_DA_etf_transfer` 不升格；**尤重 T 的股票证管费切日 ≠ 本页「对基金/ETF 发明证管费」，禁止合成/混读升格进 dj0**；**尤重 DE 可转债证管费 ≠ 本页基金/ETF 证管费，禁止合成进 dj0**；Y/G/N/Y2 占位 `0.02/0.01/0.05/0.015`，**params.Y/G/N ≠ 实验字母 DJ ≠ 单字母 D/J**，且 **params.Y 的 0.02 ≠ 证管费 0.02‰**；锚建议 `fund_csrc_fee_honest=pit_fund_bond_exempt_not_stock_tier` / scope=`etf_closed_lof_bond_apart_from_ashare_csrc` / over_policy=`skip_if_sec_type_or_official_csrc_row_missing`；asof 建议 `2026-10-16`；fill_time 建议 `next_open`；fail 建议 `skip`；口径：缺证券类别或官方证管费栏则 skip；基金/债券依法免收、不套股票档（**草稿方向，尚未冻，不要写成已冻**）；handoff：`stock_csrc_fee_handoff=t_page`，`cb_csrc_fee_handoff=de_page`，`fund_handling_fee_handoff=ax_page`，`etf_transfer_fee_handoff=da_page`，`ashare_fee_handoff=s_page`；`merge_with_DI/DH/DG/DF/DE/DD/DC/DB/DA/T/AX/S/AC/U/V/Q/R/A/D/J=False`；**DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠T≠AX≠S≠AC≠U≠V≠Q≠R≠A≠D**；**双字母 DJ ≠ 单字母假设-D / 假设-J**；**场内基金证管费误套 ≠ T股票证管 ≠ DE转债证管 ≠ AX基金经手 ≠ DA过户 ≠ DI大宗折扣**；状态=草稿·待入库预检；**三条尚未冻**；**未标纸面齐**；**禁止标纸面齐**；**不写 A/D–DJ纸面齐**；不改已齐 A–DI / 假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH 及其他已存在假设页；不重开假设-T；不重开假设-AC；不重开假设-R；不写下一字母；不预留 #120；不开真数/回测/实盘）。基 tip=`5bf9b20`（A/D–DI纸面齐已合，全长 `5bf9b20eedc214525a8d0053c5147cc3add03d56`；不改该 tip 上的 #110–#118，亦不改「可复现实验条目（2026-11-09 · DC / DF）」原文） |
