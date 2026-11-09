@@ -2,11 +2,11 @@
 
 更新：2026-11-24  
 来源：总管线 / 基 tip=`50946c09` / 全长 `50946c09b6160e4ade9bfed886e5dbb954f84358`（A/D–DQ纸面齐已合）；**不改已冻 A–DQ / DA–DQ**；**不改假设-DQ 正文**，亦不改已齐假设-DA / 假设-DB / 假设-DC / 假设-DD / 假设-DE / 假设-DF / 假设-DG / 假设-DH / 假设-DI / 假设-DJ / 假设-DK / 假设-DL / 假设-DM / 假设-DN / 假设-DO / 假设-DP / 假设-DQ / 假设-S / 假设-AX / 假设-T / 假设-U / 假设-V / 假设-AC / 假设-Q / 假设-R / 假设-O / 假设-M / 假设-A / 假设-D 及其他已存在假设页（含假设-CH / 假设-CL / 假设-CR / 假设-BR / 假设-DO）；**不重开假设-T**；**不重开假设-R**；**不重开假设-Q**；**不重开假设-M**；**不重开假设-O**；**不重开假设-DO**；**不重开假设-DQ**；**不重开假设-AC**；**不重开假设-U**；**不重开假设-DI**；**不重开假设-V**；**不重开假设-DF**；**不重开假设-DB**；**不重开假设-S**；**不重开假设-DD**；**不重开假设-DL**；**不重开假设-DM**；**不重开假设-DN**；**不重开假设-DP**；**不重开假设-DC**；**不重开假设-DK**；**不重开假设-DA**；**不重开假设-AX**）后写下一草稿 DR；清单 #126=DQ，本页占用 **#127=DR**；选题是回测把**可转债盘后定价**误套成**股票盘后固定价格**（股票盘后固定价格=收盘价、时间优先；深市可转债盘后定价允许收盘价或匹配 VWAP；二者禁止合成一句）；假设-M 只收股票盘后通道是否存在、竞价剩单会不会自动进盘后，假设-CH 只收股票盘后固定价格可成交性，假设-CL 只收可转债盘后定价可成交性，假设-Q 只收可转债连续竞价规则混用，假设-O 只收大宗三通道，假设-R 只收股票 ETF 假 T+0，假设-DO 只收可转债回售处理，假设-CR 只收认沽/认购行权成交；**新建实验 DR**；不写下一字母；不预留 #128  
-状态：**草稿·待入库预检**（结论栏空；**三条尚未冻**；**禁止标纸面齐**；**未标纸面齐**；**不写 A/D–DR纸面齐**；禁止把「转债盘后定价=股票盘后固定价格、只按收盘价时间优先」当诚实成交规则；不抢实验 A 真数队列；不抢实验 R；本页不开回测；不催 8765；**不改已冻 A–DQ / DA–DQ**；尤其不改假设-M / 假设-CH / 假设-CL / 假设-Q / 假设-O / 假设-R / 假设-DO / 假设-CR / 假设-BR / 假设-DQ / 假设-T / 假设-D；**不重开假设-T**；**不重开假设-R**；**不重开假设-Q**；**不重开假设-M**；**不重开假设-O**；**不重开假设-DO**；**不重开假设-DQ**；**不重开假设-AC**；**不重开假设-U**；**不重开假设-DI**；**不重开假设-V**；**不重开假设-DF**；**不重开假设-DB**；**不重开假设-S**；**不重开假设-DD**；**不重开假设-DL**；**不重开假设-DM**；**不重开假设-DN**；**不重开假设-DP**；**不重开假设-DC**；**不重开假设-DK**；**不重开假设-DA**；**不重开假设-AX**）
+状态：**预检有条件通过·三条已冻·待复检**（结论栏空；**禁止标纸面齐**；**未标纸面齐**；**不写 A/D–DR纸面齐**；禁止把「转债盘后定价=股票盘后固定价格、只按收盘价时间优先」当诚实成交规则；不抢实验 A 真数队列；不抢实验 R；本页不开回测；不催 8765；**不改已冻 A–DQ / DA–DQ**；尤其不改假设-M / 假设-CH / 假设-CL / 假设-Q / 假设-O / 假设-R / 假设-DO / 假设-CR / 假设-BR / 假设-DQ / 假设-T / 假设-D；**不重开假设-T**；**不重开假设-R**；**不重开假设-Q**；**不重开假设-M**；**不重开假设-O**；**不重开假设-DO**；**不重开假设-DQ**；**不重开假设-AC**；**不重开假设-U**；**不重开假设-DI**；**不重开假设-V**；**不重开假设-DF**；**不重开假设-DB**；**不重开假设-S**；**不重开假设-DD**；**不重开假设-DL**；**不重开假设-DM**；**不重开假设-DN**；**不重开假设-DP**；**不重开假设-DC**；**不重开假设-DK**；**不重开假设-DA**；**不重开假设-AX**）
 
 > 增量笔记。不荐股、不写买卖标的/仓位、不依赖聚宽真数、不跑回测结论。与 `口径.md` / `事实与坑.md` / `清单与配方.md` 对齐；清单开跑前本序号挂实验 DR（#127）。一句话误开：回测把可转债盘后定价误套股票盘后固定价格，砍掉深市匹配 VWAP，把沪市股票盘后抄到转债，或与深市盘后定价大宗合成一句，或与 R股票ETF假T+0 / Q可转债连续竞价规则 / M股票盘后通道 / CH股票盘后可成交性 / CL可转债盘后定价可成交性 / O大宗三通道 混读，或缺 venue/业务类型/官方规则仍不 skip，系统性改写可转债盘后定价通道身份。**禁与 R/Q/M/CH/CL/O 混读**。
 
-> **字母消歧（硬）**：本页**实验字母 DR** ≠ 费用/显著性参数 **`params.Y`**（相对门槛，与 G/N/Y2 同族；占位 0.02；**尚未冻，不要写成已冻**；**params.Y ≠ 实验字母 DR**；**勿把 `params.Y` 读成实验字母 DR**；**params 相对门槛 ≠ 官方定价规则**）≠ **`params.G`**（同族门槛，占位 0.01；**尚未冻，不要写成已冻**；**params.G ≠ 实验字母 DR**；**尤重：`params.G` 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口**——量纲与语义都不同：`params.G=0.01` 是无量纲相对门槛，不是收盘价，不是匹配 VWAP，也不是 15:05 撮合窗口；**禁把占位读成收盘价/VWAP/15:05 窗口**；**params 相对门槛 ≠ 官方定价规则**）≠ **`params.N`**（失败/废单率差门槛；占位 0.05；**尚未冻，不要写成已冻**；**params.N ≠ 实验字母 DR**；**params.N ≠ 单字母假设-N**）≠ **单字母实验 D**（成交时点与停牌；**双字母 DR ≠ 单字母假设-D；严禁复用假设-D**）≠ **单字母实验 R**（股票 ETF 假 T+0 / 股票ETF假回转；**双字母 DR ≠ 单字母假设-R；严禁复用假设-R**；**实验 R 不抢、不重开、不混读升格进 `dr0`**；组名 DR0/DR1/DR2 是本页三组对照，≠ 单字母实验 R）≠ **假设-BR**（融券借券费/融出费率计提；**双字母 DR ≠ 假设-BR；严禁复用假设-BR**）≠ **单字母实验 Q**（可转债连续竞价规则混用；**双字母 DR ≠ 单字母假设-Q；严禁复用假设-Q**；**Q 可转债连续竞价规则 ≠ 本页盘后定价通道身份**）≠ **单字母实验 A**（板上枯竭/涨停可成交；**双字母 DR ≠ 单字母假设-A**）≠ **单字母实验 M**（股票盘后通道；**M 股票盘后通道 ≠ 本页转债盘后定价≠股票盘后固定价格**）≠ **单字母实验 O**（大宗三通道；**O 大宗三通道 ≠ 本页**）≠ 双字母 **CH**（股票盘后固定价格可成交性；**CH 可成交性 ≠ 本页通道误套**）≠ **CL**（可转债盘后定价可成交性；**CL 可成交性 ≠ 本页通道误套**）≠ **CR**（认沽/认购行权成交；**CR 认沽/认购行权成交 ≠ 本页**）≠ **DO**（可转债回售处理；**DO 可转债回售处理 ≠ 本页盘后定价误套**）≠ **DQ**（ETF 申赎组合证券过户费误套）≠ **DP**（可交换债换股印花税误漏）≠ **DN**（可交换债换股过户费误套）≠ **DM**（可交换债换股经手费误套现货）≠ **DL**（股票综合协议过户费下浮）≠ **DK**（场内基金印花税误抽）≠ **DJ**（场内基金证管费）≠ **DI**（股票大宗经手下浮）≠ **DH**（佣金双计）≠ **DG**（北交所经手费）≠ **DF**（可交换债现货经手费沪深合成）≠ **DE**（可转债证管费）≠ **DD**（可转债过户费）≠ **DC**（可转债现货印花税误抽）≠ **DB**（可转债现货经手费）≠ **DA**（场内基金二级过户费）≠ **S**（沪深股票竞价经手费切日）≠ **AX**（基金经手费）≠ **T**（股票证管费）≠ **U**（股票过户费）≠ **V**（股票印花税切日）≠ **AC**（北交所涨跌幅与盘后）。**DR≠DQ≠DP≠DO≠DN≠DM≠DL≠DK≠DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠S≠AX≠T≠U≠V≠AC≠Q≠R≠O≠M≠CH≠CL≠CR≠BR≠A≠D**。**双字母 DR ≠ 单字母 D/R**。**双字母 DR ≠ 单字母假设-D / 假设-R ≠ 假设-BR**。**params.Y/G/N ≠ 实验字母 DR；亦 ≠ 单字母 D/R**。**勿把 `params.G` 读成实验字母 DR，亦勿把单字母假设-D / 假设-R 读成双字母 DR，亦勿把假设-BR 读成双字母 DR**。**尤重：`params.G` 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口**。**禁把占位读成收盘价/VWAP/15:05 窗口**。**params 相对门槛 ≠ 官方定价规则**。**可转债盘后定价误套股票盘后固定价格 ≠ M股票盘后通道 ≠ CH股票盘后可成交性 ≠ CL可转债盘后定价可成交性 ≠ Q可转债连续竞价规则 ≠ O大宗三通道 ≠ R股票ETF假T+0**。**尤重：实验 R（股票 ETF 假 T+0）不抢、不重开、不混读升格进 `dr0`**。**尤重：Q 可转债连续竞价规则 ≠ 本页盘后定价通道身份——禁止合成/混读升格进 `dr0`**。**尤重：M/CH 股票盘后通道/可成交性 ≠ 本页转债盘后定价≠股票盘后固定价格——禁止合成/混读升格进 `dr0`**。**尤重：CL 可转债盘后定价可成交性 ≠ 本页通道误套——禁止合成/混读升格进 `dr0`**。**尤重：O 大宗三通道 ≠ 本页——禁止合成/混读升格进 `dr0`**。**尤重：DO 可转债回售处理 ≠ 本页盘后定价误套——禁止合成/混读升格进 `dr0`**。**尤重：CR 认沽/认购行权成交 ≠ 本页——禁止合成/混读升格进 `dr0`**。**尤重：双字母 DR ≠ 单字母假设-D / 假设-R ≠ 假设-BR**。**禁与 R/Q/M/CH/CL/O 混读**。
+> **字母消歧（硬）**：本页**实验字母 DR** ≠ 费用/显著性参数 **`params.Y`**（相对门槛，与 G/N/Y2 同族；写死冻结 0.02；**params.Y ≠ 实验字母 DR**；**勿把 `params.Y` 读成实验字母 DR**；**params 相对门槛 ≠ 官方定价规则**）≠ **`params.G`**（同族门槛，写死冻结 0.01；**params.G ≠ 实验字母 DR**；**尤重：`params.G` 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口**——量纲与语义都不同：`params.G=0.01` 是无量纲相对门槛，不是收盘价，不是匹配 VWAP，也不是 15:05 撮合窗口；**禁把占位读成收盘价/VWAP/15:05 窗口**；**params 相对门槛 ≠ 官方定价规则**）≠ **`params.N`**（失败/废单率差门槛；写死冻结 0.05；**params.N ≠ 实验字母 DR**；**params.N ≠ 单字母假设-N**）≠ **单字母实验 D**（成交时点与停牌；**双字母 DR ≠ 单字母假设-D；严禁复用假设-D**）≠ **单字母实验 R**（股票 ETF 假 T+0 / 股票ETF假回转；**双字母 DR ≠ 单字母假设-R；严禁复用假设-R**；**实验 R 不抢、不重开、不混读升格进 `dr0`**；组名 DR0/DR1/DR2 是本页三组对照，≠ 单字母实验 R）≠ **假设-BR**（融券借券费/融出费率计提；**双字母 DR ≠ 假设-BR；严禁复用假设-BR**）≠ **单字母实验 Q**（可转债连续竞价规则混用；**双字母 DR ≠ 单字母假设-Q；严禁复用假设-Q**；**Q 可转债连续竞价规则 ≠ 本页盘后定价通道身份**）≠ **单字母实验 A**（板上枯竭/涨停可成交；**双字母 DR ≠ 单字母假设-A**）≠ **单字母实验 M**（股票盘后通道；**M 股票盘后通道 ≠ 本页转债盘后定价≠股票盘后固定价格**）≠ **单字母实验 O**（大宗三通道；**O 大宗三通道 ≠ 本页**）≠ 双字母 **CH**（股票盘后固定价格可成交性；**CH 可成交性 ≠ 本页通道误套**）≠ **CL**（可转债盘后定价可成交性；**CL 可成交性 ≠ 本页通道误套**）≠ **CR**（认沽/认购行权成交；**CR 认沽/认购行权成交 ≠ 本页**）≠ **DO**（可转债回售处理；**DO 可转债回售处理 ≠ 本页盘后定价误套**）≠ **DQ**（ETF 申赎组合证券过户费误套）≠ **DP**（可交换债换股印花税误漏）≠ **DN**（可交换债换股过户费误套）≠ **DM**（可交换债换股经手费误套现货）≠ **DL**（股票综合协议过户费下浮）≠ **DK**（场内基金印花税误抽）≠ **DJ**（场内基金证管费）≠ **DI**（股票大宗经手下浮）≠ **DH**（佣金双计）≠ **DG**（北交所经手费）≠ **DF**（可交换债现货经手费沪深合成）≠ **DE**（可转债证管费）≠ **DD**（可转债过户费）≠ **DC**（可转债现货印花税误抽）≠ **DB**（可转债现货经手费）≠ **DA**（场内基金二级过户费）≠ **S**（沪深股票竞价经手费切日）≠ **AX**（基金经手费）≠ **T**（股票证管费）≠ **U**（股票过户费）≠ **V**（股票印花税切日）≠ **AC**（北交所涨跌幅与盘后）。**DR≠DQ≠DP≠DO≠DN≠DM≠DL≠DK≠DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠S≠AX≠T≠U≠V≠AC≠Q≠R≠O≠M≠CH≠CL≠CR≠BR≠A≠D**。**双字母 DR ≠ 单字母 D/R**。**双字母 DR ≠ 单字母假设-D / 假设-R ≠ 假设-BR**。**params.Y/G/N ≠ 实验字母 DR；亦 ≠ 单字母 D/R**。**勿把 `params.G` 读成实验字母 DR，亦勿把单字母假设-D / 假设-R 读成双字母 DR，亦勿把假设-BR 读成双字母 DR**。**尤重：`params.G` 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口**。**禁把占位读成收盘价/VWAP/15:05 窗口**。**params 相对门槛 ≠ 官方定价规则**。**可转债盘后定价误套股票盘后固定价格 ≠ M股票盘后通道 ≠ CH股票盘后可成交性 ≠ CL可转债盘后定价可成交性 ≠ Q可转债连续竞价规则 ≠ O大宗三通道 ≠ R股票ETF假T+0**。**尤重：实验 R（股票 ETF 假 T+0）不抢、不重开、不混读升格进 `dr0`**。**尤重：Q 可转债连续竞价规则 ≠ 本页盘后定价通道身份——禁止合成/混读升格进 `dr0`**。**尤重：M/CH 股票盘后通道/可成交性 ≠ 本页转债盘后定价≠股票盘后固定价格——禁止合成/混读升格进 `dr0`**。**尤重：CL 可转债盘后定价可成交性 ≠ 本页通道误套——禁止合成/混读升格进 `dr0`**。**尤重：O 大宗三通道 ≠ 本页——禁止合成/混读升格进 `dr0`**。**尤重：DO 可转债回售处理 ≠ 本页盘后定价误套——禁止合成/混读升格进 `dr0`**。**尤重：CR 认沽/认购行权成交 ≠ 本页——禁止合成/混读升格进 `dr0`**。**尤重：双字母 DR ≠ 单字母假设-D / 假设-R ≠ 假设-BR**。**禁与 R/Q/M/CH/CL/O 混读**。
 
 ### 专节 · 双字母 DR ≠ 单字母假设-D / 假设-R；且 ≠ 假设-BR / 假设-M / 假设-CH / 假设-CL / 假设-Q / 假设-O / 假设-DO / 假设-CR（硬）
 
@@ -45,11 +45,11 @@
 | 题面 V | **股票印花税切日** | 股票印花切日 ≠ 本机制。**DR≠V**；**不重开假设-V**；**不改 V** |
 | 题面 AC | **北交所涨跌幅与盘后** | 北交所涨跌幅、盘后 ≠ 本页转债盘后定价通道身份。**DR≠AC**；**不重开假设-AC**；**不改 AC** |
 | 题面 A | **涨停可成交 / 板上枯竭**（真数队列） | 容量门槛 ≠ 盘后定价通道身份。**DR≠A**；**不抢 A 真数队列**；**不改 A** |
-| 主演示 | （各页自有；本页不引用覆盖） | `invent_stock_aft_as_cb_pricing`（**建议**单一主报，单挂；**尚未冻，不要写成已冻**；禁与半泄露键 `invent_asof_leak_cb_aft_pricing` 双挂；DR1 不升格；`merge_stock_aft_with_cb_aft` / `drop_vwap_leg_on_szse_cb_aft` / `copy_sse_stock_aft_onto_cb` / `confuse_with_szse_block_aft_pricing` / `vs_M_stock_aft_channel` / `vs_CH_stock_aft_fill` / `vs_CL_cb_aft_fill` / `vs_Q_cb_continuous_rules` / `vs_O_block_channels` / `vs_R_etf_t0` / `vs_CR_put_call_exercise_fill` / `vs_DO_cb_put_handling` / `missing_venue_or_biz_type_not_skip` 只作诊断对照，不升格主报；**尤重禁止把 R / Q / M / CH / CL / O 混读升格进 `dr0`**；**禁与 R/Q/M/CH/CL/O 混读**） |
+| 主演示 | （各页自有；本页不引用覆盖） | `invent_stock_aft_as_cb_pricing`（**写死冻结**单一主报，单挂写死；禁与半泄露键 `invent_asof_leak_cb_aft_pricing` 双挂；DR1 不升格；`merge_stock_aft_with_cb_aft` / `drop_vwap_leg_on_szse_cb_aft` / `copy_sse_stock_aft_onto_cb` / `confuse_with_szse_block_aft_pricing` / `vs_M_stock_aft_channel` / `vs_CH_stock_aft_fill` / `vs_CL_cb_aft_fill` / `vs_Q_cb_continuous_rules` / `vs_O_block_channels` / `vs_R_etf_t0` / `vs_CR_put_call_exercise_fill` / `vs_DO_cb_put_handling` / `missing_venue_or_biz_type_not_skip` 只作诊断对照，不升格主报；**尤重禁止把 R / Q / M / CH / CL / O 混读升格进 `dr0`**；**禁与 R/Q/M/CH/CL/O 混读**） |
 | 文档 | 清单实验 R / Q / M / CH / CL / O / DO / CR / BR / DQ / DP / DN / DM / DL / DK / DJ / DI / DH / DG / DF / DE / DD / DC / DB / DA / S / AX / T / U / V / AC / A / D（**只读；禁止改写**） | `假设-DR-可转债盘后定价误套股票盘后固定价格.md`（新建） |
 | 预检键 | 实验字母 R / Q / M / O / DO / DQ / DP / DN / DM / DL / DK / DJ / DI / DH / DG / DF / DE / DD / DC / DB / DA / S / AX / T / U / V / AC / A / D / Y / G / N，以及已存在 CH / CL / CR / BR | 实验字母 **DR** / `dr0_primary_demo`；**不得**占用或改写预检 R/Q/M/O/DO/DQ/DP/DN/DM/DL/DK/DJ/DI/DH/DG/DF/DE/DD/DC/DB/DA/S/AX/T/U/V/AC/A/D/Y/G/N，亦不得改写 CH/CL/CR/BR |
 
-**禁止**：把 DR 写成「R / Q / M / CH / CL / O / DO / CR / BR / DQ / D / A 的续篇」；把「股票盘后通道已分列（M）/ 股票盘后可成交已分列（CH）/ 转债盘后可成交已分列（CL）/ 转债连续竞价规则已分列（Q）/ 大宗三通道已分列（O）/ 股票 ETF 回转已分列（R）」写成「可转债盘后定价通道身份已诚实」；把实验字母 DR 与单字母 D/R 或 params.Y/G/N 或假设-BR 混读；**尤重勿把单字母假设-D / 假设-R 读成双字母 DR**；**尤重勿把假设-BR 读成双字母 DR**；**尤重勿把 `params.G` 读成实验字母 DR**；**尤重 `params.G` 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口（量纲与语义不同）**；**禁把占位读成收盘价/VWAP/15:05 窗口**；**params 相对门槛 ≠ 官方定价规则**；**尤重实验 R（股票 ETF 假 T+0）不抢、不重开、不混读升格进 `dr0`**；**尤重 Q 可转债连续竞价规则 ≠ 本页盘后定价通道身份，禁止合成/混读升格进 `dr0`**；**尤重 M/CH 股票盘后通道/可成交性 ≠ 本页转债盘后定价≠股票盘后固定价格，禁止合成/混读升格进 `dr0`**；**尤重 CL 可转债盘后定价可成交性 ≠ 本页通道误套，禁止合成/混读升格进 `dr0`**；**尤重 O 大宗三通道 ≠ 本页，禁止合成/混读升格进 `dr0`**；**尤重 DO 可转债回售处理 ≠ 本页盘后定价误套，禁止合成/混读升格进 `dr0`**；**尤重 CR 认沽/认购行权成交 ≠ 本页，禁止合成/混读升格进 `dr0`**；**禁与 R/Q/M/CH/CL/O 混读**；把 `invent_asof_leak_cb_aft_pricing` 升格进 `dr0` 或与主报双挂；把诊断桶 `merge_stock_aft_with_cb_aft` / `drop_vwap_leg_on_szse_cb_aft` / `copy_sse_stock_aft_onto_cb` / `confuse_with_szse_block_aft_pricing` / `vs_M_stock_aft_channel` / `vs_CH_stock_aft_fill` / `vs_CL_cb_aft_fill` / `vs_Q_cb_continuous_rules` / `vs_O_block_channels` / `vs_R_etf_t0` / `vs_CR_put_call_exercise_fill` / `vs_DO_cb_put_handling` / `missing_venue_or_biz_type_not_skip` 升格进 `dr0`；把股票盘后固定价格和深市可转债盘后定价合成一句；砍掉深市匹配 VWAP；把沪市股票盘后抄到转债；沪深合成一句；缺官方规则仍硬填。本页主键只用 `dr0` / `dr1` / `dr2` 与 `cb_aft_pricing_*`。不写下一字母。不预留 #128。**纸面齐惯例**：落复检稿标纸面齐时须同步升假设正文页头/结论/尾状态（对照 DK/DL/DM/DN/DO/DP/DQ；勿再只改清单）——**当前草稿阶段禁止标纸面齐**。
+**禁止**：把 DR 写成「R / Q / M / CH / CL / O / DO / CR / BR / DQ / D / A 的续篇」；把「股票盘后通道已分列（M）/ 股票盘后可成交已分列（CH）/ 转债盘后可成交已分列（CL）/ 转债连续竞价规则已分列（Q）/ 大宗三通道已分列（O）/ 股票 ETF 回转已分列（R）」写成「可转债盘后定价通道身份已诚实」；把实验字母 DR 与单字母 D/R 或 params.Y/G/N 或假设-BR 混读；**尤重勿把单字母假设-D / 假设-R 读成双字母 DR**；**尤重勿把假设-BR 读成双字母 DR**；**尤重勿把 `params.G` 读成实验字母 DR**；**尤重 `params.G` 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口（量纲与语义不同）**；**禁把占位读成收盘价/VWAP/15:05 窗口**；**params 相对门槛 ≠ 官方定价规则**；**尤重实验 R（股票 ETF 假 T+0）不抢、不重开、不混读升格进 `dr0`**；**尤重 Q 可转债连续竞价规则 ≠ 本页盘后定价通道身份，禁止合成/混读升格进 `dr0`**；**尤重 M/CH 股票盘后通道/可成交性 ≠ 本页转债盘后定价≠股票盘后固定价格，禁止合成/混读升格进 `dr0`**；**尤重 CL 可转债盘后定价可成交性 ≠ 本页通道误套，禁止合成/混读升格进 `dr0`**；**尤重 O 大宗三通道 ≠ 本页，禁止合成/混读升格进 `dr0`**；**尤重 DO 可转债回售处理 ≠ 本页盘后定价误套，禁止合成/混读升格进 `dr0`**；**尤重 CR 认沽/认购行权成交 ≠ 本页，禁止合成/混读升格进 `dr0`**；**禁与 R/Q/M/CH/CL/O 混读**；把 `invent_asof_leak_cb_aft_pricing` 升格进 `dr0` 或与主报双挂；把诊断桶 `merge_stock_aft_with_cb_aft` / `drop_vwap_leg_on_szse_cb_aft` / `copy_sse_stock_aft_onto_cb` / `confuse_with_szse_block_aft_pricing` / `vs_M_stock_aft_channel` / `vs_CH_stock_aft_fill` / `vs_CL_cb_aft_fill` / `vs_Q_cb_continuous_rules` / `vs_O_block_channels` / `vs_R_etf_t0` / `vs_CR_put_call_exercise_fill` / `vs_DO_cb_put_handling` / `missing_venue_or_biz_type_not_skip` 升格进 `dr0`；把股票盘后固定价格和深市可转债盘后定价合成一句；砍掉深市匹配 VWAP；把沪市股票盘后抄到转债；沪深合成一句；缺官方规则仍硬填。本页主键只用 `dr0` / `dr1` / `dr2` 与 `cb_aft_pricing_*`。不写下一字母。不预留 #128。**纸面齐惯例**：以后若落复检稿要标纸面齐，须同步升假设正文页头、结论、尾状态（对照 DK/DL/DM/DN/DO/DP/DQ；勿再只改清单）。**当前禁止标纸面齐**。**不写 A/D–DR纸面齐**。
 
 ---
 
@@ -57,7 +57,7 @@
 
 同一信号、同一未复权价下，回测把**可转债盘后定价**误套成**股票盘后固定价格**（只按收盘价、时间优先），或砍掉深市匹配 VWAP，或把沪市股票盘后抄到转债，或与深市盘后定价大宗合成一句，或与 R股票ETF假T+0 / Q可转债连续竞价规则 / M股票盘后通道 / CH股票盘后可成交性 / CL可转债盘后定价可成交性 / O大宗三通道 混读，或缺 venue/业务类型/官方规则仍不 skip，相对「缺 venue/业务类型或官方规则则 skip；股票盘后固定价格=收盘价、时间优先；深市可转债盘后定价允许收盘价或匹配 VWAP，禁止与股票盘后固定价格合成一句；沪市可转债若缺官方盘后定价另档规则则 skip，禁止沪深合成」的诚实组，会**系统性改写可转债盘后定价通道身份**——相对诚实锚偏误。
 
-核对日方向（随锚建议；**尚未冻，不要写成已冻**；禁止把收盘价、匹配 VWAP 或 15:05 窗口写成占位门槛，也禁止沪深合成一句）：两条通道分开写。`事实与坑` 2026-10-19 已写股票盘后固定价格按当日收盘价、时间优先。`事实与坑` 2026-10-26 的坑是：把深市可转债盘后定价（收盘价或匹配 VWAP）和股票盘后固定价格合成一句。`事实与坑` 2026-10-23 已把深市盘后定价大宗另列为大宗通道，留给 O。沪市可转债若缺官方盘后定价另档规则，本页 skip，不拿深市规则或股票盘后固定价格去填。那些「通道在不在」留在 M，「股票盘后能不能全额成交」留在 CH，「转债盘后能不能全额成交」留在 CL，「连续竞价规则混用」留在 Q，「大宗三通道」留在 O，「股票 ETF 假 T+0」留在 R。**禁把占位读成收盘价/VWAP/15:05 窗口**。**`params.G` 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口**。**params 相对门槛 ≠ 官方定价规则**。**禁与 R/Q/M/CH/CL/O 混读**。
+核对日方向（随锚写死；禁止把收盘价、匹配 VWAP 或 15:05 窗口写成占位门槛，也禁止沪深合成一句）：两条通道分开写。`事实与坑` 2026-10-19 已写股票盘后固定价格按当日收盘价、时间优先。`事实与坑` 2026-10-26 的坑是：把深市可转债盘后定价（收盘价或匹配 VWAP）和股票盘后固定价格合成一句。`事实与坑` 2026-10-23 已把深市盘后定价大宗另列为大宗通道，留给 O。沪市可转债若缺官方盘后定价另档规则，本页 skip，不拿深市规则或股票盘后固定价格去填。那些「通道在不在」留在 M，「股票盘后能不能全额成交」留在 CH，「转债盘后能不能全额成交」留在 CL，「连续竞价规则混用」留在 Q，「大宗三通道」留在 O，「股票 ETF 假 T+0」留在 R。**禁把占位读成收盘价/VWAP/15:05 窗口**。**`params.G` 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口**。**params 相对门槛 ≠ 官方定价规则**。**禁与 R/Q/M/CH/CL/O 混读**。
 
 证伪方向：若天真组 / 半泄露组相对诚实组的通道误套截在标定噪声带内可忽略，且「合成一句 / 砍掉 VWAP / 抄沪市股票盘后 / 混成大宗盘后定价 / 核对日泄露 / vs R·Q·M·CH·CL·O」分桶不改变结论，则本假设在该样本与开关设定下不成立。
 
@@ -65,24 +65,24 @@
 
 ## 2. 口径与可检验设计（纸面骨架）
 
-### 2.1 键占位（拉数前才冻结；本页不开跑；Y/G/N/Y2 · dr0 与锚 **三条尚未冻**）
+### 2.1 写死键（拉数前冻结；本页不开跑；Y/G/N/Y2 · dr0 与锚 **三条已冻**）
 
 ```
-# 配置键占位（见 §7；本页是草稿·待入库预检；下列三条尚未冻，不要写成已冻）
-# 【消歧】params.Y = 显著性门槛；占位 0.02；尚未冻；**≠ 实验字母 DR ≠ 单字母假设-D / 假设-R**；勿把 params.Y 读成实验字母 DR
-# 【消歧】params.G = 同族门槛；占位 0.01；尚未冻；**≠ 实验字母 DR ≠ 单字母 D/R**
+# 配置写死键（见 §7 与文末风控预检补丁；预检有条件通过·三条已冻·待复检；下列三冻已写死冻结；禁止标纸面齐；不写 A/D–DR纸面齐）
+# 【消歧】params.Y = 显著性门槛；写死冻结 0.02；**≠ 实验字母 DR ≠ 单字母假设-D / 假设-R**；勿把 params.Y 读成实验字母 DR
+# 【消歧】params.G = 同族门槛；写死冻结 0.01；**≠ 实验字母 DR ≠ 单字母 D/R**
 # 【消歧】尤重：params.G 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口（量纲与语义不同：无量纲相对门槛 ≠ 官方定价规则）
 # 【消歧】禁把占位 0.02/0.01/0.05/0.015 读成收盘价/VWAP/15:05 窗口
 # 【消歧】params 相对门槛 ≠ 官方定价规则
-# 【消歧】params.N = 失败/废单率差门槛；占位 0.05；尚未冻；**≠ 实验字母 DR ≠ 单字母假设-N**
-# params.Y2                               占位 0.015；尚未冻，不要写成已冻
-# params.Y / G / N / Y2                   占位 0.02/0.01/0.05/0.015（相对门槛：通道误套截 ΔCbAftPricing / 净差异 / DR1−DR2；**尚未冻，不要写成已冻**；**params.Y/G/N ≠ 实验字母 DR ≠ 单字母假设-D / 假设-R**；**尤重 params.G 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口**；**禁把占位读成收盘价/VWAP/15:05 窗口**；**params 相对门槛 ≠ 官方定价规则**；禁 null；禁 holdout/OOS 标定；勿改他页已有数值）
-# params.fill_time                        建议 next_open；尚未冻，不要写成已冻
-# params.asof_check_date                  建议 2026-10-16；尚未冻，不要写成已冻
+# 【消歧】params.N = 失败/废单率差门槛；写死冻结 0.05；**≠ 实验字母 DR ≠ 单字母假设-N**
+# params.Y2                               写死冻结 0.015
+# params.Y / G / N / Y2                   写死冻结 0.02/0.01/0.05/0.015（相对门槛：通道误套截 ΔCbAftPricing / 净差异 / DR1−DR2；**params.Y/G/N ≠ 实验字母 DR ≠ 单字母假设-D / 假设-R**；**尤重 params.G 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口**；**禁把占位读成收盘价/VWAP/15:05 窗口**；**params 相对门槛 ≠ 官方定价规则**；禁 null；禁 holdout/OOS 标定；勿改他页已有数值）
+# params.fill_time                        写死冻结 next_open
+# params.asof_check_date                  写死冻结 2026-10-16
 # params.px_basis                         建议 unadj
-# params.fail_policy                      建议 skip；尚未冻，不要写成已冻
-# params.cb_aft_pricing_honest            建议 pit_szse_cb_aft_close_or_vwap_not_stock_aft_close_only；尚未冻，不要写成已冻
-#   诚实锚方向（建议，未冻）：
+# params.fail_policy                      写死冻结 skip
+# params.cb_aft_pricing_honest            写死冻结 pit_szse_cb_aft_close_or_vwap_not_stock_aft_close_only
+#   诚实锚方向（已写死冻结）：
 #   缺 venue、业务类型或官方规则 → skip
 #   股票盘后固定价格 = 收盘价、时间优先（这条身份留在股票盘后，不套到转债）
 #   深市可转债盘后定价允许收盘价或匹配 VWAP
@@ -90,13 +90,13 @@
 #   沪市可转债若缺官方盘后定价另档规则则 skip
 #   禁止沪深合成
 #   禁止把占位 0.02/0.01/0.05/0.015 读成收盘价、VWAP 或 15:05 窗口
-#   枚举只是建议，尚未冻
+#   枚举已写死冻结
 #   不把 M 的通道存在、CH 的可成交、CL 的可成交、Q 的连续竞价规则、O 的大宗三通道、R 的假 T+0 写成转债盘后定价诚实锚
-# params.cb_aft_pricing_scope             建议 cb_aft_pricing_vs_stock_aft_fixed_listed_apart；尚未冻，不要写成已冻
+# params.cb_aft_pricing_scope             写死冻结 cb_aft_pricing_vs_stock_aft_fixed_listed_apart
 #   方向名：可转债盘后定价与股票盘后固定价格分列
 #   这不是把收盘价、VWAP 或 15:05 窗口冻成门槛
 #   可转债盘后定价 ≠ 股票盘后固定价格 ≠ 深市盘后定价大宗
-# params.cb_aft_pricing_over_policy       建议 skip_if_venue_or_biz_type_or_official_rule_missing；尚未冻，不要写成已冻
+# params.cb_aft_pricing_over_policy       写死冻结 skip_if_venue_or_biz_type_or_official_rule_missing
 #   缺 venue、业务类型或官方规则则 skip；禁在缺字段时仍按股票收盘价时间优先把转债盘后腿填上
 # params.stock_aft_channel_handoff        建议 m_page
 #   消费 M 的股票盘后通道，或显式旁路；通道存在 ≠ 本页通道误套；不重开假设-M；不改 M
@@ -123,8 +123,8 @@
 #   成交时点与停牌交 D；双字母 DR ≠ 单字母假设-D；不改 D
 # params.board_capacity_handoff           建议 a_page
 #   板上容量交 A；不抢 A 真数队列；不改 A
-# params.dr0_primary_demo                 建议 invent_stock_aft_as_cb_pricing；尚未冻，不要写成已冻
-#   单一主报，单挂；禁与 invent_asof_leak_cb_aft_pricing 双挂；DR1 不升格；诊断桶不升格
+# params.dr0_primary_demo                 写死冻结 invent_stock_aft_as_cb_pricing
+#   单一主报写死，单挂；禁与 invent_asof_leak_cb_aft_pricing 双挂；DR1 不升格；诊断桶不升格
 #   半泄露名 invent_asof_leak_cb_aft_pricing 只作对照，不得升格进 dr0，不得双挂
 #   诊断桶 merge_stock_aft_with_cb_aft / drop_vwap_leg_on_szse_cb_aft / copy_sse_stock_aft_onto_cb / confuse_with_szse_block_aft_pricing / vs_M_stock_aft_channel / vs_CH_stock_aft_fill / vs_CL_cb_aft_fill / vs_Q_cb_continuous_rules / vs_O_block_channels / vs_R_etf_t0 / vs_CR_put_call_exercise_fill / vs_DO_cb_put_handling / missing_venue_or_biz_type_not_skip 不得升格进 dr0
 #   尤重：实验 R（股票 ETF 假 T+0）不抢、不重开、不混读升格进 dr0
@@ -186,19 +186,19 @@
 
 | 组 | 角色 | 口径 |
 |----|------|------|
-| DR0 | 天真 / 可转债盘后定价误套股票盘后固定价格 | 按 `dr0_primary_demo` **建议**单一主报 `invent_stock_aft_as_cb_pricing`（单挂；**尚未冻，不要写成已冻**）：把可转债盘后定价套成股票盘后固定价格（只按收盘价时间优先、砍掉深市 VWAP、抄沪市股票盘后、或混成大宗盘后定价）。**禁**与 `invent_asof_leak_cb_aft_pricing` 双挂主报。**禁把 R / Q / M / CH / CL / O 合成进 `dr0`**（只作对照/旁路，不得升格进 `dr0` 或另挂主报）。**禁与 R/Q/M/CH/CL/O 混读** |
-| DR1 | 半泄露 | 仅核对日把「深市收盘价或匹配 VWAP、股票盘后只按收盘价、沪市缺规则则 skip」铺到全历史、铺到沪市缺规则的转债、或把股票盘后固定价格铺成转债唯一规则（`invent_asof_leak_cb_aft_pricing`）；**不得升格并列主报**，也不得写进 `dr0`（建议：DR1 不升格），不得双挂 |
-| DR2 | 诚实 / 转债盘后定价与股票盘后固定价格分列 | `cb_aft_pricing_honest=pit_szse_cb_aft_close_or_vwap_not_stock_aft_close_only`（建议，**尚未冻**）：缺 venue/业务类型或官方规则则 skip；股票盘后固定价格=收盘价、时间优先；深市可转债盘后定价允许收盘价或匹配 VWAP，禁止与股票盘后固定价格合成一句；沪市可转债若缺官方盘后定价另档规则则 skip，禁止沪深合成。股票盘后通道只消费 M，股票盘后可成交只消费 CH，转债盘后可成交只消费 CL，连续竞价规则只消费 Q，大宗三通道只消费 O，股票 ETF 假 T+0 只消费 R，回售处理只消费 DO，或显式旁路 |
+| DR0 | 天真 / 可转债盘后定价误套股票盘后固定价格 | 按 `dr0_primary_demo` **写死冻结**单一主报 `invent_stock_aft_as_cb_pricing`（单挂写死）：把可转债盘后定价套成股票盘后固定价格（只按收盘价时间优先、砍掉深市 VWAP、抄沪市股票盘后、或混成大宗盘后定价）。**禁**与 `invent_asof_leak_cb_aft_pricing` 双挂主报。**禁把 R / Q / M / CH / CL / O 合成进 `dr0`**（只作对照/旁路，不得升格进 `dr0` 或另挂主报）。**禁与 R/Q/M/CH/CL/O 混读** |
+| DR1 | 半泄露 | 仅核对日把「深市收盘价或匹配 VWAP、股票盘后只按收盘价、沪市缺规则则 skip」铺到全历史、铺到沪市缺规则的转债、或把股票盘后固定价格铺成转债唯一规则（`invent_asof_leak_cb_aft_pricing`）；**不得升格并列主报**，也不得写进 `dr0`（写死冻结：DR1 不升格），不得双挂 |
+| DR2 | 诚实 / 转债盘后定价与股票盘后固定价格分列 | `cb_aft_pricing_honest=pit_szse_cb_aft_close_or_vwap_not_stock_aft_close_only`（写死冻结）：缺 venue/业务类型或官方规则则 skip；股票盘后固定价格=收盘价、时间优先；深市可转债盘后定价允许收盘价或匹配 VWAP，禁止与股票盘后固定价格合成一句；沪市可转债若缺官方盘后定价另档规则则 skip，禁止沪深合成。股票盘后通道只消费 M，股票盘后可成交只消费 CH，转债盘后可成交只消费 CL，连续竞价规则只消费 Q，大宗三通道只消费 O，股票 ETF 假 T+0 只消费 R，回售处理只消费 DO，或显式旁路 |
 
 把两条通道合成一句、砍掉深市 VWAP、抄沪市股票盘后、混成深市盘后定价大宗、把 R/Q/M/CH/CL/O 混进本页，以及相对这些页的对照截（`merge_stock_aft_with_cb_aft` / `drop_vwap_leg_on_szse_cb_aft` / `copy_sse_stock_aft_onto_cb` / `confuse_with_szse_block_aft_pricing` / `vs_M_stock_aft_channel` / `vs_CH_stock_aft_fill` / `vs_CL_cb_aft_fill` / `vs_Q_cb_continuous_rules` / `vs_O_block_channels` / `vs_R_etf_t0` / `vs_CR_put_call_exercise_fill` / `vs_DO_cb_put_handling` / `missing_venue_or_biz_type_not_skip`），放进 §4.1 分桶，**只作诊断桶，不得升格为第二个主报**，也不得改写 `dr0_primary_demo`。`vs_R_etf_t0` 只标记「有人把实验 R 和本页混读」，**不得升格进 `dr0`**。`vs_Q_cb_continuous_rules` 只标记连续竞价规则对照，**不得升格进 `dr0`**。`vs_M_stock_aft_channel` 与 `vs_CH_stock_aft_fill` 只标记股票盘后通道/可成交对照，**不得升格进 `dr0`**。`vs_CL_cb_aft_fill` 只标记转债盘后可成交对照，**不得升格进 `dr0`**。`vs_O_block_channels` 只标记大宗三通道对照，**不得升格进 `dr0`**。`vs_DO_cb_put_handling` 与 `vs_CR_put_call_exercise_fill` 同样只作对照。M 的通道、CH 的可成交、CL 的可成交、Q 的连续竞价规则、O 的大宗、R 的假 T+0 只作对照/旁路。
 
 ### 2.3 成交规则窗可落点（写明但不真跑）
 
-主窗建议占位、待预检，起止日仍空着。asof **建议** `2026-10-16`；fill_time **建议** `next_open`；fail **建议** `skip`。诚实锚六键与 Y/G/N/Y2、`dr0_primary_demo` 同属三条，**尚未冻，不要写成已冻**。机制红线只有一句：缺 venue/业务类型或官方规则则 skip；股票盘后固定价格=收盘价、时间优先；深市可转债盘后定价允许收盘价或匹配 VWAP，禁止与股票盘后固定价格合成一句；沪市可转债若缺官方盘后定价另档规则则 skip，禁止沪深合成。方向随锚建议：**不要把核对日规则铺满全历史，也不要把股票盘后固定价格写成转债唯一规则，也不要沪深合成**。范围名 `cb_aft_pricing_vs_stock_aft_fixed_listed_apart` 只标方向：本页只看可转债盘后定价有没有被套成股票盘后固定价格。通道在不在留给 M，能不能成交留给 CH 和 CL，连续竞价规则留给 Q，大宗三通道留给 O，股票 ETF 假 T+0 留给 R。`params.G` 的 0.01 是无量纲相对门槛，不是收盘价，不是匹配 VWAP，也不是 15:05 窗口。**禁把占位读成收盘价/VWAP/15:05 窗口**。**params 相对门槛 ≠ 官方定价规则**。缺 venue、业务类型或官方规则则 skip，不用股票收盘价时间优先、占位 0.01 或深市规则把沪市缺规则的转债腿填上。本页**不开回测**；不拉真数；不做实盘。
+主窗建议占位、待预检，起止日仍空着。asof **写死冻结** `2026-10-16`；fill_time **写死冻结** `next_open`；fail **写死冻结** `skip`。诚实锚六键与 Y/G/N/Y2、`dr0_primary_demo` 同属三条，**已写死冻结**。机制红线只有一句：缺 venue/业务类型或官方规则则 skip；股票盘后固定价格=收盘价、时间优先；深市可转债盘后定价允许收盘价或匹配 VWAP，禁止与股票盘后固定价格合成一句；沪市可转债若缺官方盘后定价另档规则则 skip，禁止沪深合成。方向随锚写死：**不要把核对日规则铺满全历史，也不要把股票盘后固定价格写成转债唯一规则，也不要沪深合成**。范围名 `cb_aft_pricing_vs_stock_aft_fixed_listed_apart` 只标方向：本页只看可转债盘后定价有没有被套成股票盘后固定价格。通道在不在留给 M，能不能成交留给 CH 和 CL，连续竞价规则留给 Q，大宗三通道留给 O，股票 ETF 假 T+0 留给 R。`params.G` 的 0.01 是无量纲相对门槛，不是收盘价，不是匹配 VWAP，也不是 15:05 窗口。**禁把占位读成收盘价/VWAP/15:05 窗口**。**params 相对门槛 ≠ 官方定价规则**。缺 venue、业务类型或官方规则则 skip，不用股票收盘价时间优先、占位 0.01 或深市规则把沪市缺规则的转债腿填上。本页**不开回测**；不拉真数；不做实盘。
 
 ### 2.4 oos_split（建议四日期；拉数前再定；禁 holdout 反调）
 
-建议四日期占位（待预检；禁 holdout 反调 `dr0_primary_demo` / `params.Y`·G·N·Y2 / 盘后定价开关 / 桶 / 是否把收盘价、VWAP 或 15:05 窗口铺到全历史、或合成沪深、或把占位读成官方定价规则）。本页不开跑。三条都还没冻。
+建议四日期占位（待预检；禁 holdout 反调 `dr0_primary_demo` / `params.Y`·G·N·Y2 / 盘后定价开关 / 桶 / 是否把收盘价、VWAP 或 15:05 窗口铺到全历史、或合成沪深、或把占位读成官方定价规则）。本页不开跑。
 
 ---
 
@@ -210,7 +210,7 @@
 
 ### 3.2 失败（假设不成立 / 设计失效）
 
-差异落在噪声带内；或主差被 M 的股票盘后通道、CH 的股票盘后可成交、CL 的转债盘后可成交、Q 的连续竞价规则、O 的大宗三通道、R 的股票 ETF 假 T+0、DO 的回售处理、CR 的行权成交、BR 的借券费、DQ 的篮子过户、DP 的换股印花、DN 的换股过户、DM 的换股经手、DL 的综合协议过户、DK 的基金印花、DJ 的基金证管费、DI 的大宗经手、DH 的佣金双计、DG 的北交所档、DF 的可交换现货经手、DE 的转债证管费、DD 的转债过户、DC 的转债印花、DB 的转债现货经手、DA 的二级过户、S 的股票经手、AX 的基金经手、T 的股票证管费、U 的股票过户、V 的股票印花、AC 的北交所涨跌幅与盘后、A 的板上容量、D 的成交时点解释；或 `dr0_primary_demo` 与 `invent_asof_leak_cb_aft_pricing` 双挂；或 DR1 升格并列主报；或 `merge_stock_aft_with_cb_aft` / `drop_vwap_leg_on_szse_cb_aft` / `copy_sse_stock_aft_onto_cb` / `confuse_with_szse_block_aft_pricing` / `vs_M_stock_aft_channel` / `vs_CH_stock_aft_fill` / `vs_CL_cb_aft_fill` / `vs_Q_cb_continuous_rules` / `vs_O_block_channels` / `vs_R_etf_t0` / `vs_CR_put_call_exercise_fill` / `vs_DO_cb_put_handling` / `missing_venue_or_biz_type_not_skip` 诊断桶升格主报；或把 R / Q / M / CH / CL / O 合成进 `dr0`；或实验字母 DR 与单字母 D/R 或 params.Y/G/N 或假设-BR 混读；或把 `params.G` 的 0.01 读成收盘价、匹配 VWAP 或 15:05 窗口；或把占位读成收盘价/VWAP/15:05 窗口；或把核对日规则写成已冻并铺满全历史；或缺 venue / 业务类型 / 官方规则仍不 skip；或沪深合成一句；或重开假设-T / 假设-R / 假设-Q / 假设-M / 假设-O / 假设-DO / 假设-DQ；或标纸面齐；或写成 A/D–DR纸面齐；或把三条写成已冻。
+差异落在噪声带内；或主差被 M 的股票盘后通道、CH 的股票盘后可成交、CL 的转债盘后可成交、Q 的连续竞价规则、O 的大宗三通道、R 的股票 ETF 假 T+0、DO 的回售处理、CR 的行权成交、BR 的借券费、DQ 的篮子过户、DP 的换股印花、DN 的换股过户、DM 的换股经手、DL 的综合协议过户、DK 的基金印花、DJ 的基金证管费、DI 的大宗经手、DH 的佣金双计、DG 的北交所档、DF 的可交换现货经手、DE 的转债证管费、DD 的转债过户、DC 的转债印花、DB 的转债现货经手、DA 的二级过户、S 的股票经手、AX 的基金经手、T 的股票证管费、U 的股票过户、V 的股票印花、AC 的北交所涨跌幅与盘后、A 的板上容量、D 的成交时点解释；或 `dr0_primary_demo` 与 `invent_asof_leak_cb_aft_pricing` 双挂；或 DR1 升格并列主报；或 `merge_stock_aft_with_cb_aft` / `drop_vwap_leg_on_szse_cb_aft` / `copy_sse_stock_aft_onto_cb` / `confuse_with_szse_block_aft_pricing` / `vs_M_stock_aft_channel` / `vs_CH_stock_aft_fill` / `vs_CL_cb_aft_fill` / `vs_Q_cb_continuous_rules` / `vs_O_block_channels` / `vs_R_etf_t0` / `vs_CR_put_call_exercise_fill` / `vs_DO_cb_put_handling` / `missing_venue_or_biz_type_not_skip` 诊断桶升格主报；或把 R / Q / M / CH / CL / O 合成进 `dr0`；或实验字母 DR 与单字母 D/R 或 params.Y/G/N 或假设-BR 混读；或把 `params.G` 的 0.01 读成收盘价、匹配 VWAP 或 15:05 窗口；或把占位读成收盘价/VWAP/15:05 窗口；或把核对日规则写成已冻并铺满全历史；或缺 venue / 业务类型 / 官方规则仍不 skip；或沪深合成一句；或重开假设-T / 假设-R / 假设-Q / 假设-M / 假设-O / 假设-DO / 假设-DQ；或标纸面齐；或写成 A/D–DR纸面齐。
 
 ---
 
@@ -222,7 +222,7 @@
 
 建议默认桶名（待预检）：`invent_stock_aft_as_cb_pricing` / `invent_asof_leak_cb_aft_pricing` / `merge_stock_aft_with_cb_aft` / `drop_vwap_leg_on_szse_cb_aft` / `copy_sse_stock_aft_onto_cb` / `confuse_with_szse_block_aft_pricing` / `vs_M_stock_aft_channel` / `vs_CH_stock_aft_fill` / `vs_CL_cb_aft_fill` / `vs_Q_cb_continuous_rules` / `vs_O_block_channels` / `vs_R_etf_t0` / `vs_CR_put_call_exercise_fill` / `vs_DO_cb_put_handling` / `missing_venue_or_biz_type_not_skip`
 
-`merge_stock_aft_with_cb_aft`、`drop_vwap_leg_on_szse_cb_aft`、`copy_sse_stock_aft_onto_cb`、`confuse_with_szse_block_aft_pricing`、`vs_M_stock_aft_channel`、`vs_CH_stock_aft_fill`、`vs_CL_cb_aft_fill`、`vs_Q_cb_continuous_rules`、`vs_O_block_channels`、`vs_R_etf_t0`、`vs_CR_put_call_exercise_fill`、`vs_DO_cb_put_handling`、`missing_venue_or_biz_type_not_skip` 只作诊断桶：它们不是 `dr0`，也不是 DR1，**不得升格主报**。`vs_R_etf_t0` 没有对应的「假 T+0 + 盘后定价误套」合成主报。实验 R 只作诊断，**不得升格进 `dr0`**。Q 的连续竞价规则只作诊断，**不得升格进 `dr0`**。M 的通道与 CH 的可成交只作诊断，**不得升格进 `dr0`**。CL 的可成交只作诊断，**不得升格进 `dr0`**。O 的大宗三通道只作诊断，**不得升格进 `dr0`**。合成一句、砍掉 VWAP、抄沪市股票盘后、混成大宗盘后定价、缺字段仍不 skip，都只作诊断，**不得升格进 `dr0`**。`invent_asof_leak_cb_aft_pricing` 只服务 DR1，**不得升格进 `dr0`，不得双挂**。`invent_stock_aft_as_cb_pricing` 才是建议的单一主报名，**尚未冻**。
+`merge_stock_aft_with_cb_aft`、`drop_vwap_leg_on_szse_cb_aft`、`copy_sse_stock_aft_onto_cb`、`confuse_with_szse_block_aft_pricing`、`vs_M_stock_aft_channel`、`vs_CH_stock_aft_fill`、`vs_CL_cb_aft_fill`、`vs_Q_cb_continuous_rules`、`vs_O_block_channels`、`vs_R_etf_t0`、`vs_CR_put_call_exercise_fill`、`vs_DO_cb_put_handling`、`missing_venue_or_biz_type_not_skip` 只作诊断桶：它们不是 `dr0`，也不是 DR1，**不得升格主报**。`vs_R_etf_t0` 没有对应的「假 T+0 + 盘后定价误套」合成主报。实验 R 只作诊断，**不得升格进 `dr0`**。Q 的连续竞价规则只作诊断，**不得升格进 `dr0`**。M 的通道与 CH 的可成交只作诊断，**不得升格进 `dr0`**。CL 的可成交只作诊断，**不得升格进 `dr0`**。O 的大宗三通道只作诊断，**不得升格进 `dr0`**。合成一句、砍掉 VWAP、抄沪市股票盘后、混成大宗盘后定价、缺字段仍不 skip，都只作诊断，**不得升格进 `dr0`**。`invent_asof_leak_cb_aft_pricing` 只服务 DR1，**不得升格进 `dr0`，不得双挂**。`invent_stock_aft_as_cb_pricing` 才是写死冻结的单一主报名。
 
 ---
 
@@ -232,7 +232,7 @@
 - 把 `params.G` 的 0.01 当成收盘价、匹配 VWAP 或 15:05 窗口。**尤重：`params.G` 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口**。
 - 把占位 `0.02/0.01/0.05/0.015` 读成收盘价/VWAP/15:05 窗口。**禁把占位读成收盘价/VWAP/15:05 窗口**。**params 相对门槛 ≠ 官方定价规则**。
 - 缺 venue、业务类型或官方规则仍不 skip，并用股票收盘价时间优先或占位 0.01 把转债盘后腿填上。
-- 把核对日「深市收盘价或匹配 VWAP」写成全历史唯一规则，并铺满全历史，或沪深合成一句，或把股票盘后固定价格写成转债唯一规则。锚六键仍是建议，**尚未冻**。
+- 把核对日「深市收盘价或匹配 VWAP」写成全历史唯一规则，并铺满全历史，或沪深合成一句，或把股票盘后固定价格写成转债唯一规则。锚六键已写死冻结。
 - 把「股票盘后通道已分列（M）/ 股票盘后可成交已分列（CH）/ 转债盘后可成交已分列（CL）/ 连续竞价规则已分列（Q）/ 大宗三通道已分列（O）/ 股票 ETF 回转已分列（R）」写成「可转债盘后定价通道身份已诚实」。不改 M / CH / CL / Q / O / R。
 - 把实验 R（股票 ETF 假 T+0）和本页合成或混读后升格进 `dr0`。诊断桶 `vs_R_etf_t0` 只作对照。不抢、不重开假设-R。
 - 把 Q 可转债连续竞价规则和本页盘后定价通道身份合成或混读后升格进 `dr0`。诊断桶 `vs_Q_cb_continuous_rules` 只作对照。
@@ -245,8 +245,8 @@
 - 缺 venue 或业务类型仍不 skip，并升格进 `dr0`。诊断桶 `missing_venue_or_biz_type_not_skip` 只作对照。
 - `dr0_primary_demo` 与 `invent_asof_leak_cb_aft_pricing` 双挂主报；DR1 升格并列主报；诊断桶升格为第二个主报。
 - 实验字母 DR 与单字母 D/R 或 params.Y/G/N 或假设-BR 混读。**双字母 DR ≠ 单字母假设-D / 假设-R ≠ 假设-BR**。
-- 改 R / Q / M / CH / CL / O / DO / CR / BR / DQ / DP / DN / DM / DL / DK / DJ / DI / DH / DG / DF / DE / DD / DC / DB / DA / S / AX / T / U / V / AC / A / D 正文；重开假设-T；重开假设-R；重开假设-Q；重开假设-M；重开假设-O；重开假设-DO；重开假设-DQ；抢 A 真数队列；抢实验 R；标纸面齐；写成 A/D–DR纸面齐；把三条写成已冻；开真数/回测/实盘；用复权价当盘后定价基准；结论写成「转债盘后更好成交所以能买」。
-- **纸面齐惯例**：落复检稿标纸面齐时须同步升假设正文页头/结论/尾状态（对照 DK/DL/DM/DN/DO/DP/DQ；勿再只改清单）——**当前草稿阶段禁止标纸面齐**。
+- 改 R / Q / M / CH / CL / O / DO / CR / BR / DQ / DP / DN / DM / DL / DK / DJ / DI / DH / DG / DF / DE / DD / DC / DB / DA / S / AX / T / U / V / AC / A / D 正文；重开假设-T；重开假设-R；重开假设-Q；重开假设-M；重开假设-O；重开假设-DO；重开假设-DQ；抢 A 真数队列；抢实验 R；标纸面齐；写成 A/D–DR纸面齐；开真数/回测/实盘；用复权价当盘后定价基准；结论写成「转债盘后更好成交所以能买」。
+- **纸面齐惯例**：以后若落复检稿要标纸面齐，须同步升假设正文页头、结论、尾状态（对照 DK/DL/DM/DN/DO/DP/DQ；勿再只改清单）。**当前禁止标纸面齐**。**不写 A/D–DR纸面齐**。
 
 ---
 
@@ -256,29 +256,44 @@
 - 股票盘后固定价格若要「收盘价、时间优先」这句，只消费 M/CH 已有口径，不在本页重开 M 或 CH，也不把股票业务类型换成可转债盘后定价。
 - 转债盘后「能不能成交」只消费 CL，不把可成交性误开收进本页主报。
 - 证券类别只用于把腿分回旁路页，不在本页改那些页。
-- 没有 venue、业务类型或官方规则时，按建议的 `cb_aft_pricing_over_policy=skip_if_venue_or_biz_type_or_official_rule_missing` skip，不得按股票收盘价时间优先把转债盘后腿填上，也不得按占位 0.01 或深市规则把沪市缺规则的腿填上。
+- 没有 venue、业务类型或官方规则时，按写死冻结的 `cb_aft_pricing_over_policy=skip_if_venue_or_biz_type_or_official_rule_missing` skip，不得按股票收盘价时间优先把转债盘后腿填上，也不得按占位 0.01 或深市规则把沪市缺规则的腿填上。
 - 旁路消费：M 的股票盘后通道、CH 的股票盘后可成交、CL 的转债盘后可成交、Q 的连续竞价规则、O 的大宗三通道、R 的股票 ETF 假 T+0、DO 的回售处理、CR 的行权成交、D 的成交时点之诚实结果或显式旁路（见 §2.1 handoff）。**本页不改写这些页。** 这些页的主报不收到本页 `dr0`。
-- 未复权价；asof **建议** `2026-10-16`，**尚未冻**。核对日方向「深市允许收盘价或匹配 VWAP、股票盘后固定价格只按收盘价时间优先、沪市缺规则则 skip、禁止沪深合成」是建议的机制方向，不是已冻的全历史规则，也不是占位门槛。
+- 未复权价；asof **写死冻结** `2026-10-16`。核对日方向「深市允许收盘价或匹配 VWAP、股票盘后固定价格只按收盘价时间优先、沪市缺规则则 skip、禁止沪深合成」是写死冻结的机制方向，不是已冻的全历史规则，也不是占位门槛。
 
 ---
 
 ## 7. 回测配置骨架（纸面；本页不开回测）
 
-- **占位键摘要（三条尚未冻）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`fail_policy=skip`；`cb_aft_pricing_honest=pit_szse_cb_aft_close_or_vwap_not_stock_aft_close_only`（缺 venue/业务类型或官方规则则 skip；股票盘后固定价格=收盘价、时间优先；深市可转债盘后定价允许收盘价或匹配 VWAP，禁止与股票盘后固定价格合成一句；沪市可转债若缺官方盘后定价另档规则则 skip，禁止沪深合成；**尚未冻**）；`cb_aft_pricing_scope=cb_aft_pricing_vs_stock_aft_fixed_listed_apart`（转债盘后定价与股票盘后固定价格分列；方向名，不是已冻规则）；`cb_aft_pricing_over_policy=skip_if_venue_or_biz_type_or_official_rule_missing`（缺 venue/业务类型或官方规则则 skip）；`dr0_primary_demo=invent_stock_aft_as_cb_pricing`（**建议**单一主报，单挂；**尚未冻**；禁与 `invent_asof_leak_cb_aft_pricing` 双挂；DR1 不升格；诊断桶不升格主报；**禁把 R / Q / M / CH / CL / O 合成进 `dr0`**，只作对照/旁路，不得升格进 `dr0` 或另挂主报；**禁与 R/Q/M/CH/CL/O 混读**）；`stock_aft_channel_handoff=m_page`；`stock_aft_fill_handoff=ch_page`；`cb_aft_fill_handoff=cl_page`；`cb_continuous_rules_handoff=q_page`；`block_channel_handoff=o_page`；`etf_t0_handoff=r_page`；`cb_put_handling_handoff=do_page`；`merge_with_DQ/DP/DO/DN/DM/DL/DK/DJ/DI/DH/DG/DF/DE/DD/DC/DB/DA/S/AX/T/U/V/AC/Q/R/O/M/CH/CL/CR/BR/A/D=False`。
-- `params.Y/G/N/Y2` **占位** `0.02/0.01/0.05/0.015`（相对门槛，不是官方定价规则：通道误套截 ΔCbAftPricing / 净差异 / DR1−DR2；**尚未冻，不要写成已冻**；**尤重 params.G 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口（量纲与语义不同）**；**禁把占位读成收盘价/VWAP/15:05 窗口**；**params 相对门槛 ≠ 官方定价规则**；**params.Y/G/N ≠ 实验字母 DR ≠ 单字母 D/R**；**勿把 params.G 读成实验字母 DR，亦勿把单字母假设-D / 假设-R 读成双字母 DR，亦勿把假设-BR 读成双字母 DR**；禁 null；禁 holdout/OOS 标定；勿改他页已有数值）。
+- **写死键摘要（三条已冻）**：`fill_time=next_open`；`asof_check_date=2026-10-16`；`fail_policy=skip`；`cb_aft_pricing_honest=pit_szse_cb_aft_close_or_vwap_not_stock_aft_close_only`（缺 venue/业务类型或官方规则则 skip；股票盘后固定价格=收盘价、时间优先；深市可转债盘后定价允许收盘价或匹配 VWAP，禁止与股票盘后固定价格合成一句；沪市可转债若缺官方盘后定价另档规则则 skip，禁止沪深合成）；`cb_aft_pricing_scope=cb_aft_pricing_vs_stock_aft_fixed_listed_apart`（转债盘后定价与股票盘后固定价格分列；方向名，不是已冻规则）；`cb_aft_pricing_over_policy=skip_if_venue_or_biz_type_or_official_rule_missing`（缺 venue/业务类型或官方规则则 skip）；`dr0_primary_demo=invent_stock_aft_as_cb_pricing`（**写死冻结**单一主报，单挂；禁与 `invent_asof_leak_cb_aft_pricing` 双挂；DR1 不升格；诊断桶不升格主报；**禁把 R / Q / M / CH / CL / O 合成进 `dr0`**，只作对照/旁路，不得升格进 `dr0` 或另挂主报；**禁与 R/Q/M/CH/CL/O 混读**）；`stock_aft_channel_handoff=m_page`；`stock_aft_fill_handoff=ch_page`；`cb_aft_fill_handoff=cl_page`；`cb_continuous_rules_handoff=q_page`；`block_channel_handoff=o_page`；`etf_t0_handoff=r_page`；`cb_put_handling_handoff=do_page`；`merge_with_DQ/DP/DO/DN/DM/DL/DK/DJ/DI/DH/DG/DF/DE/DD/DC/DB/DA/S/AX/T/U/V/AC/Q/R/O/M/CH/CL/CR/BR/A/D=False`。
+- `params.Y/G/N/Y2` **写死冻结** `0.02/0.01/0.05/0.015`（相对门槛，不是官方定价规则：通道误套截 ΔCbAftPricing / 净差异 / DR1−DR2；**尤重 params.G 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口（量纲与语义不同）**；**禁把占位读成收盘价/VWAP/15:05 窗口**；**params 相对门槛 ≠ 官方定价规则**；**params.Y/G/N ≠ 实验字母 DR ≠ 单字母 D/R**；**勿把 params.G 读成实验字母 DR，亦勿把单字母假设-D / 假设-R 读成双字母 DR，亦勿把假设-BR 读成双字母 DR**；禁 null；禁 holdout/OOS 标定；勿改他页已有数值）。
 - oos_split 四日期建议占位；禁 holdout 反调。不写下一字母。不预留 #128。
-- **本页不开回测**；不拉真数；不做实盘；不催 8765。本草稿基 tip=`50946c09`（A/D–DQ纸面齐已合，全长 `50946c09b6160e4ade9bfed886e5dbb954f84358`）。**不改已冻 A–DQ / DA–DQ**。状态=**草稿·待入库预检**。**三条尚未冻**。**禁止标纸面齐**。**未标纸面齐**。**不写 A/D–DR纸面齐**。
+- **本页不开回测**；不拉真数；不做实盘；不催 8765。本草稿基 tip=`50946c09`（A/D–DQ纸面齐已合，全长 `50946c09b6160e4ade9bfed886e5dbb954f84358`）；三冻补丁基 tip=`640f34fc` / `640f34fc78f3bcd60bd14a4a56d2f89a0c43bc87`；分支起点 HEAD=`d3cbf036` / `d3cbf036ec9fbd5092f295284cf5cc463bdb172b`。**不改已冻 A–DQ / DA–DQ**。状态=**预检有条件通过·三条已冻·待复检**。**禁止标纸面齐**。**未标纸面齐**。**不写 A/D–DR纸面齐**。
 
 ---
 
 ## 8. 结论
 
-（空。草稿·待入库预检；三条尚未冻；禁止标纸面齐。）
+（空；**预检有条件通过·三条已冻·待复检**。**禁止标纸面齐**。**未标纸面齐**。**不写 A/D–DR纸面齐**。）
 
 ---
+
+## 风控预检补丁·冻结（三条已写死 · 2026-11-24）
+
+依据风控稿 `experiments/backtest/A_limit_up_fill/risk_notes/预检-假设DR-20261110.md`（原样落入，不改结论；SHA256=`a1539dbc7c47d14b0f4afaaceda5ccdca15ba9f8017d0d94ad073fab6e18337c`；预检 2026-11-10；**结论：有条件通过**；tip基=`640f34fc` / `640f34fc78f3bcd60bd14a4a56d2f89a0c43bc87`；本补丁分支起点 HEAD=`d3cbf036` / `d3cbf036ec9fbd5092f295284cf5cc463bdb172b`）。按该稿条件 1–3 升格，不标纸面齐。
+
+1. **`params.Y` / `params.G` / `params.N` / `params.Y2`**：**写死冻结** `0.02` / `0.01` / `0.05` / `0.015`。相对门槛用于通道误套截 ΔCbAftPricing、净差异、DR1−DR2 专项。**`params.Y` ≠ 实验字母 DR**；**`params.G` ≠ 实验字母 DR**；**`params.N` ≠ 实验字母 DR**；亦 ≠ 单字母假设-D / 假设-R。**勿把 `params.G` 读成实验字母 DR，亦勿把单字母假设-D / 假设-R 读成双字母 DR**。**尤重：`params.G` 的 `0.01` ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口**（**params.G 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口**）。三者量纲与语义都不同：`params.G=0.01` 是无量纲相对门槛，不是收盘价，不是匹配 VWAP，也不是 15:05 撮合窗口。**禁把占位读成收盘价/VWAP/15:05 窗口**。**params 相对门槛 ≠ 官方定价规则**。禁止互读、禁止把门槛改写成收盘价、匹配 VWAP 或 15:05 窗口。禁 null 开工；禁 holdout/OOS 标定或跑后因显著性改口；**勿改他字母已冻 Y/G/N/Y2**。
+
+2. **`params.dr0_primary_demo`**：**写死冻结** **`invent_stock_aft_as_cb_pricing`**（单一主报，单挂写死）。**禁止**与 **`invent_asof_leak_cb_aft_pricing`** 双挂争主表；**禁止**跑后因分桶显著性改口主报。DR1 仅核对日把「深市收盘价或匹配 VWAP、股票盘后只按收盘价、沪市缺规则则 skip」铺到全历史、铺到沪市缺规则的转债、或把股票盘后固定价格铺成转债唯一规则只作半泄露对照，**不得升格与 dr0 并列主报**，也不得把 `invent_asof_leak_cb_aft_pricing` 写进 `dr0`。`merge_stock_aft_with_cb_aft` / `drop_vwap_leg_on_szse_cb_aft` / `copy_sse_stock_aft_onto_cb` / `confuse_with_szse_block_aft_pricing` / `vs_M_stock_aft_channel` / `vs_CH_stock_aft_fill` / `vs_CL_cb_aft_fill` / `vs_Q_cb_continuous_rules` / `vs_O_block_channels` / `vs_R_etf_t0` / `vs_CR_put_call_exercise_fill` / `vs_DO_cb_put_handling` / `missing_venue_or_biz_type_not_skip` **只作诊断桶，不得升格主报**。DR1 / 诊断桶 **不升格**。**禁把 R假T+0 / Q连续竞价·规则混用 / M·CH股票盘后 / CL转债盘后可成交 / O大宗 / DO回售 / CR行权 合成/混读升格进 `dr0`**：这些只作对照/旁路，**不得升格进 `dr0`，不得另挂主报**。**不重开假设-T**；**不重开假设-R**；**不重开假设-Q**；**不重开假设-M**；**不重开假设-CH**；**不重开假设-CL**。**不抢实验 R**。
+
+3. **可转债盘后定价诚实锚六键升格写死（不可再写「建议」）**：`params.cb_aft_pricing_honest=pit_szse_cb_aft_close_or_vwap_not_stock_aft_close_only`；`params.cb_aft_pricing_scope=cb_aft_pricing_vs_stock_aft_fixed_listed_apart`；`params.cb_aft_pricing_over_policy=skip_if_venue_or_biz_type_or_official_rule_missing`；`params.asof_check_date=2026-10-16`；`params.fill_time=next_open`；`params.fail_policy=skip`。缺 venue/业务类型或官方规则 → skip；股票盘后固定价格=收盘价、时间优先；深市可转债盘后定价允许收盘价或匹配 VWAP，禁止与股票盘后固定价格合成一句；沪市可转债若缺官方盘后定价另档规则则 skip，禁止沪深合成。禁止把核对日收盘价、匹配 VWAP 或 15:05 窗口铺满全历史。禁止跑后改锚，或用股票盘后固定价格 / 核对日规则铺满 / 砍掉 VWAP / 抄沪市股票盘后 / 缺 venue/业务类型或官方规则仍硬填 / 把 R/Q/M/CH/CL/O/DO/CR 升格进 dr0 冒充诚实 PIT。**禁把占位读成收盘价/VWAP/15:05 窗口**。**禁把 params.G 的 0.01 读成收盘价、匹配 VWAP 或 15:05 窗口**。**不重开假设-T**；**不重开假设-R**；**不重开假设-Q**；**不重开假设-M**；**不重开假设-CH**；**不重开假设-CL**。**不抢实验 R**。
+
+**硬分列保住**：DR≠DQ≠DP≠DO≠DN≠DM≠DL≠DK≠DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠S≠AX≠T≠U≠V≠AC≠Q≠R≠O≠M≠CH≠CL≠CR≠BR≠A≠D；**双字母 DR ≠ 单字母假设-D / 假设-R**；**双字母 DR ≠ 单字母 D/R**；**params.Y / params.G / params.N ≠ 实验字母 DR ≠ 单字母 D/R**；**尤重 params.G 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口**；**禁把占位读成收盘价/VWAP/15:05 窗口**；**params 相对门槛 ≠ 官方定价规则**；**可转债盘后定价误套股票盘后固定价格 ≠ M股票盘后通道 ≠ CH股票盘后可成交性 ≠ CL可转债盘后定价可成交性 ≠ Q可转债连续竞价规则 ≠ O大宗三通道 ≠ R股票ETF假T+0**；不抢 A；不抢实验 R；不改已齐/已冻 DA～DQ 及 A–DQ 正文；**不重开假设-T**；**不重开假设-R**；**不重开假设-Q**；**不重开假设-M**；**不重开假设-CH**；**不重开假设-CL**；**不重开假设-O**；**不重开假设-DO**；**不重开假设-DQ**；**禁把 R假T+0 / Q连续竞价·规则混用 / M·CH股票盘后 / CL转债盘后可成交 / O大宗 / DO回售 / CR行权 合成/混读升格进 dr0**。handoff 保持：`stock_aft_channel_handoff=m_page`；`stock_aft_fill_handoff=ch_page`；`cb_aft_fill_handoff=cl_page`；`cb_continuous_rules_handoff=q_page`；`block_channel_handoff=o_page`；`etf_t0_handoff=r_page`；`cb_put_handling_handoff=do_page`；`merge_with_*=False`。
+
+**状态**：**预检有条件通过·三条已冻·待复检**；**禁止标纸面齐**；**未标纸面齐**；**不写 A/D–DR纸面齐**；本页不开回测/真数/实盘。
 
 ## 变更
 
 | 日期 | 变更 |
 |------|------|
+| 2026-11-24 | 风控预检补丁·冻结三条写死——依据 `预检-假设DR-20261110.md`（SHA256=`a1539dbc7c47d14b0f4afaaceda5ccdca15ba9f8017d0d94ad073fab6e18337c`；结论=有条件通过；tip基=`640f34fc` / `640f34fc78f3bcd60bd14a4a56d2f89a0c43bc87`；分支起点 HEAD=`d3cbf036` / `d3cbf036ec9fbd5092f295284cf5cc463bdb172b`）条件 1–3。① `params.Y/G/N/Y2=0.02/0.01/0.05/0.015`（相对门槛覆盖通道误套截 ΔCbAftPricing / 净差异 / DR1−DR2；**params.Y/G/N ≠ 实验字母 DR ≠ 单字母 D/R**；**勿把 params.G 读成实验字母 DR，亦勿把单字母假设-D / 假设-R 读成双字母 DR**；**尤重 params.G 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口（量纲与语义不同）**；**禁把占位读成收盘价/VWAP/15:05 窗口**；**params 相对门槛 ≠ 官方定价规则**；禁 null；禁 holdout/OOS 标定；禁止把这四个数读成收盘价、匹配 VWAP 或 15:05 窗口）；② `params.dr0_primary_demo=invent_stock_aft_as_cb_pricing`（写死冻结单一主报，单挂；禁与 `invent_asof_leak_cb_aft_pricing` 双挂；DR1 不升格；诊断桶 `merge_stock_aft_with_cb_aft` / `drop_vwap_leg_on_szse_cb_aft` / `copy_sse_stock_aft_onto_cb` / `confuse_with_szse_block_aft_pricing` / `vs_M_stock_aft_channel` / `vs_CH_stock_aft_fill` / `vs_CL_cb_aft_fill` / `vs_Q_cb_continuous_rules` / `vs_O_block_channels` / `vs_R_etf_t0` / `vs_CR_put_call_exercise_fill` / `vs_DO_cb_put_handling` / `missing_venue_or_biz_type_not_skip` 不升格；**禁把 R假T+0 / Q连续竞价·规则混用 / M·CH股票盘后 / CL转债盘后可成交 / O大宗 / DO回售 / CR行权 合成/混读升格进 dr0**，只作对照/旁路，不得升格进 dr0 或另挂主报；不重开假设-T；不重开假设-R；不重开假设-Q；不重开假设-M；不重开假设-CH；不重开假设-CL；不抢实验 R）；③ 锚六键写死 `cb_aft_pricing_honest=pit_szse_cb_aft_close_or_vwap_not_stock_aft_close_only` / `cb_aft_pricing_scope=cb_aft_pricing_vs_stock_aft_fixed_listed_apart` / `cb_aft_pricing_over_policy=skip_if_venue_or_biz_type_or_official_rule_missing` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`（缺 venue/业务类型或官方规则 → skip；股票盘后固定价格=收盘价、时间优先；深市可转债盘后定价允许收盘价或匹配 VWAP，禁止与股票盘后固定价格合成一句；沪市可转债若缺官方盘后定价另档规则则 skip，禁止沪深合成）。handoff 保持 `stock_aft_channel_handoff=m_page` / `stock_aft_fill_handoff=ch_page` / `cb_aft_fill_handoff=cl_page` / `cb_continuous_rules_handoff=q_page` / `block_channel_handoff=o_page` / `etf_t0_handoff=r_page` / `cb_put_handling_handoff=do_page`；`merge_with_*=False`。状态=预检有条件通过·三条已冻·待复检；**未标纸面齐**；**禁止标纸面齐**；**不写 A/D–DR纸面齐**；不改已齐/已冻 DA～DQ 及 A–DQ；不改假设-DA～假设-DQ；不重开假设-T；不重开假设-R；不重开假设-Q；不重开假设-M；不重开假设-CH；不重开假设-CL；不抢实验 R；不开回测/真数/实盘。基于 tip=`640f34fc`。 |
 | 2026-11-24 | 新建纸面草稿（首次入库）；状态=草稿·待入库预检；三条尚未冻；禁止标纸面齐。可转债盘后定价误套股票盘后固定价格（成交规则）；`dr0_primary_demo` 建议 `invent_stock_aft_as_cb_pricing`，单一主报，单挂，禁与 `invent_asof_leak_cb_aft_pricing` 双挂，DR1 不升格；诊断桶 `merge_stock_aft_with_cb_aft` / `drop_vwap_leg_on_szse_cb_aft` / `copy_sse_stock_aft_onto_cb` / `confuse_with_szse_block_aft_pricing` / `vs_M_stock_aft_channel` / `vs_CH_stock_aft_fill` / `vs_CL_cb_aft_fill` / `vs_Q_cb_continuous_rules` / `vs_O_block_channels` / `vs_R_etf_t0` / `vs_CR_put_call_exercise_fill` / `vs_DO_cb_put_handling` / `missing_venue_or_biz_type_not_skip` 不升格；**尤重实验 R（股票 ETF 假 T+0）不抢、不重开、不混读升格进 dr0**；**尤重 Q 可转债连续竞价规则 ≠ 本页盘后定价通道身份，禁止合成进 dr0**；**尤重 M/CH 股票盘后通道/可成交性 ≠ 本页转债盘后定价≠股票盘后固定价格，禁止合成进 dr0**；**尤重 CL 可转债盘后定价可成交性 ≠ 本页通道误套，禁止合成进 dr0**；**尤重 O 大宗三通道 ≠ 本页，禁止合成进 dr0**；**尤重 DO 可转债回售处理 ≠ 本页盘后定价误套，禁止合成进 dr0**；**尤重 CR 认沽/认购行权成交 ≠ 本页，禁止合成进 dr0**；**双字母 DR ≠ 单字母假设-D / 假设-R ≠ 假设-BR**；**禁与 R/Q/M/CH/CL/O 混读**；Y/G/N/Y2 占位 `0.02/0.01/0.05/0.015`，**尚未冻，不要写成已冻**，**params.Y/G/N ≠ 实验字母 DR ≠ 单字母 D/R**，且 **params.G 的 0.01 ≠ 收盘价 ≠ 匹配 VWAP ≠ 15:05 窗口**，**禁把占位读成收盘价/VWAP/15:05 窗口**，**params 相对门槛 ≠ 官方定价规则**；锚建议、未冻：`cb_aft_pricing_honest=pit_szse_cb_aft_close_or_vwap_not_stock_aft_close_only` / scope=`cb_aft_pricing_vs_stock_aft_fixed_listed_apart` / over_policy=`skip_if_venue_or_biz_type_or_official_rule_missing` / `asof_check_date=2026-10-16` / `fill_time=next_open` / `fail_policy=skip`；口径：缺 venue/业务类型或官方规则则 skip；股票盘后固定价格=收盘价、时间优先；深市可转债盘后定价允许收盘价或匹配 VWAP，禁止与股票盘后固定价格合成一句；沪市可转债若缺官方盘后定价另档规则则 skip，禁止沪深合成（**草稿方向，尚未冻，不要写成已冻**）；handoff：`stock_aft_channel_handoff=m_page`，`stock_aft_fill_handoff=ch_page`，`cb_aft_fill_handoff=cl_page`，`cb_continuous_rules_handoff=q_page`，`block_channel_handoff=o_page`，`etf_t0_handoff=r_page`，`cb_put_handling_handoff=do_page`；`merge_with_DQ/DP/DO/DN/DM/DL/DK/DJ/DI/DH/DG/DF/DE/DD/DC/DB/DA/S/AX/T/U/V/AC/Q/R/O/M/CH/CL/CR/BR/A/D=False`；**DR≠DQ≠DP≠DO≠DN≠DM≠DL≠DK≠DJ≠DI≠DH≠DG≠DF≠DE≠DD≠DC≠DB≠DA≠S≠AX≠T≠U≠V≠AC≠Q≠R≠O≠M≠CH≠CL≠CR≠BR≠A≠D**；**双字母 DR ≠ 单字母 D/R**；**未标纸面齐**；**不写 A/D–DR纸面齐**；**纸面齐惯例**：落复检稿标纸面齐时须同步升假设正文页头/结论/尾状态（对照 DK/DL/DM/DN/DO/DP/DQ；勿再只改清单）——当前草稿阶段禁止标纸面齐；结论栏空；不改已冻 A–DQ / DA–DQ；不改已齐假设-DA～假设-DQ；不重开假设-T；不重开假设-R；不重开假设-Q；不重开假设-M；不重开假设-O；不重开假设-DO；不重开假设-DQ；不写下一字母；不预留 #128；不开真数/回测/实盘。基 tip=`50946c09`（A/D–DQ纸面齐已合，全长 `50946c09b6160e4ade9bfed886e5dbb954f84358`；不改该 tip 上的 #110–#126，亦不改「可复现实验条目（2026-11-09 · DC / DF）」原文）。 |
