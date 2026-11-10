@@ -182,6 +182,11 @@ description: 阀门定位器 / FY301 / HART 研发约定与坑。重要任务默
 - **OUTPUT FIXED ≠ SATURATED ≠ 1/2 OUT OF LIMITS**：手操器这四条是 HART 每帧状态字，不是 FY301 在源出故障电流。FIXED 先看 Man / 固定位；SATURATED 先看行程有没有出校准带；1 是阀位/压电；2 是温度。不要把手册括号里的 3.9/21 mA 当成定位器输出。
 - **换板先问哪边记忆**：换能器侧有配置备份，上电自动往主板搬。Read from Sensor = 传感器→主板；Write on Sensor = 把现用 Kp/Tr 写入传感器（旧值丢掉）。这不是 Auto Setup。
 - 细则在 `智库/工业产品-定位器/`；命令表仍不进 Skill，不空建 `hart-fy301.md`
+## HART / 台架默认（2026-11-10）
+- **诊断 Dead zone ≠ TSO D**：Dead zone / Dead zone Reversal 是累计行程、换向前要超过的门槛（%）；TSO D 是关严带。不要和 60534-4 阀组件死区、增压器死区写成一个数。
+- **里程 ≠ 换向 ≠ 全行程次数 ≠ 改参数次数**：Odometer / Mileage 按 Travel Range 累计（默认长度 1）；超 Travel Limit / Reversal Limit 才报警。操作计数器只记改过哪些功能。磁棒看不见这些数。SmarValid 是 AMS 插件（FY301 ≥ 2.15），不是菜单本身。
+- **没组态器先按表 5.1**：没反应先查接线 / ≥3.8 mA / 漏气 / 气源 20–100 psi，再谈 Kp / TIME。不要把表 5.1 全文塞进本 Skill。
+- 细则在 `智库/工业产品-定位器/`；命令表仍不进 Skill，不空建 `hart-fy301.md`
 ## 选型分层（2026-10-10）
 
 - 调节阀阀座例行泄漏（GB/T 17213.4 / IEC 60534-4）≠ 切断阀压力试验（GB/T 13927-2022 / GB/T 26480-2011 / API 598）≠ 填料逸散（型式 40079 / 出厂 26481）≠ 防火型式试验（国标 26479-2011 仍采 ISO 10497:2010）
