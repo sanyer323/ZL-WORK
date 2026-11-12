@@ -86,7 +86,7 @@ def run_check(password: str) -> dict:
     if not out.get("ok") and out.get("error"):
         result["permission_window_hint"] = out["error"]
     elif out.get("ok") and inn.get("ok"):
-        result["permission_window_hint"] = "outside probe succeeded; window may have expanded vs 2025-07-26..2026-08-02"
+        result["permission_window_hint"] = "outside probe succeeded; window may have expanded vs 2025-08-04..2026-08-11"
     else:
         result["permission_window_hint"] = "see probe results"
 

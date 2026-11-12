@@ -3,7 +3,7 @@
 """Experiment A — A0/A1/A1k LIVE_EXPAND on daily_expand_window (permission window).
 
 Input: data/daily_expand_window.parquet (full bars, NOT seal_event_subset alone).
-Window: [2025-07-26, 2026-08-02]. NOT advice. No live trading.
+Window: [2025-08-04, 2026-08-11]. NOT advice. No live trading.
 Reuses execute_rebalance / FillStats from run_a0_a1_fill.py.
 Seal-aware dummy: day before close-seal events, force target so fill day hits blocked.
 """
@@ -23,7 +23,7 @@ SAMPLE_PATH = ROOT / "data" / "daily_expand_window.parquet"
 SEAL_SUBSET_PATH = ROOT / "data" / "seal_event_subset.parquet"
 EVIDENCE_PATH = ROOT / "data" / "expand_seal_evidence.txt"
 HYP_DOC = "智库/金融股票/假设-A-涨停可成交性.md"
-PERM_START, PERM_END = "2025-07-26", "2026-08-02"
+PERM_START, PERM_END = "2025-08-04", "2026-08-11"
 
 sys.path.insert(0, str(ROOT / "scripts"))
 from run_a0_a1_fill import (  # noqa: E402
