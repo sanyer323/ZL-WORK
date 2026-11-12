@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Experiment A — A0/A1/A1k LIVE_MIN prototype on daily_min_sample.
 
-Uses permission-window sample only [2025-07-26, 2026-08-02].
+Uses permission-window sample only [2025-08-04, 2026-08-11].
 NOT investment advice. No live trading. Reuses fill logic from run_a0_a1_fill.py.
 """
 from __future__ import annotations
@@ -23,7 +23,7 @@ OUT_DIR = ROOT / "results" / "live_sample"
 SAMPLE_PATH = ROOT / "data" / "daily_min_sample.parquet"
 HYP_DOC = "智库/金融股票/假设-A-涨停可成交性.md"
 TICK = Decimal("0.01")
-PERM_START, PERM_END = "2025-07-26", "2026-08-02"
+PERM_START, PERM_END = "2025-08-04", "2026-08-11"
 
 sys.path.insert(0, str(ROOT / "scripts"))
 from run_a0_a1_fill import (  # noqa: E402
