@@ -49,8 +49,8 @@ CODES = [
     "300782.XSHE",  # 卓胜微
     "301236.XSHE",  # 软通动力
 ]
-START = "2025-08-04"
-END = "2026-08-11"
+START = "2025-08-05"
+END = "2026-08-12"
 USER = "18930501903"
 HOST, PORT = "127.0.0.1", 8765
 TICK = Decimal("0.01")
@@ -59,7 +59,7 @@ HTML = """<!doctype html><meta charset=utf-8><title>实验A 窗内扩样找封�
 <body style="font-family:sans-serif;max-width:28rem;margin:3rem auto">
 <h1>实验 A · 权限窗内扩样找封板</h1>
 <p>仅本机 127.0.0.1。密码只在本机调用 jqdatasdk，不外传、不落盘。</p>
-<p>日期窗固定 2025-08-04～2026-08-11；约 25 只固定股票，非全市场。</p>
+<p>日期窗固定 2025-08-05～2026-08-12；约 25 只固定股票，非全市场。</p>
 <form method=post>
 <label>手机号（固定）<br><input value="18930501903" disabled style="width:100%"></label><br><br>
 <label>登录密码<br><input name=password type=password required style="width:100%"></label><br><br>
