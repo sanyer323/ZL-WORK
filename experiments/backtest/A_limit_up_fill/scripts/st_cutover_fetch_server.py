@@ -13,7 +13,7 @@ import json
 import sys
 import threading
 import traceback
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from decimal import Decimal, ROUND_HALF_UP
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
@@ -464,33 +464,109 @@ def _pick_col(df, options: tuple[str, ...]):
     return None
 
 
-def intervals_from_name_frame(df) -> list[dict]:
-    code_col = _pick_col(df, ("code", "sec_code", "security"))
-    name_col = _pick_col(df, ("name", "short_name", "display_name", "abbr"))
-    start_col = _pick_col(df, ("start_date", "begin_date", "change_date"))
-    end_col = _pick_col(df, ("end_date", "stop_date"))
-    if code_col is None or name_col is None or start_col is None:
-        seen = [str(column) for column in getattr(df, "columns", [])]
-        abort(f"name history columns not recognized: {seen}")
-    intervals = []
+def _text_cell(value) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, float):
+        try:
+            if value != value:
+                return ""
+        except Exception:
+            return ""
+    text = str(value).strip()
+    if text.lower() in {"", "nat", "none", "nan", "<na>"}:
+        return ""
+    return text
+
+
+def _prev_day(date_s: str) -> str:
+    day = datetime.strptime(date_s, "%Y-%m-%d")
+    return (day - timedelta(days=1)).strftime("%Y-%m-%d")
+
+
+def _rows_from_name_records(df, code_col, name_col, start_col, org_col) -> dict[str, list[dict]]:
+    pending: dict[str, list[dict]] = {}
     for rec in df.to_dict(orient="records"):
         start = norm_date(rec.get(start_col))
-        name = str(rec.get(name_col) or "").strip()
-        code = str(rec.get(code_col) or "").strip()
+        name = _text_cell(rec.get(name_col))
+        code = _text_cell(rec.get(code_col))
         if not code or not name or not start:
             pass
         else:
-            end_raw = rec.get(end_col) if end_col else None
-            end = norm_date(end_raw) if end_raw not in (None, "") else ""
+            org_name = _text_cell(rec.get(org_col)) if org_col else ""
+            pending.setdefault(code, []).append(
+                {"name": name, "start": start, "org_name": org_name}
+            )
+    return pending
+
+
+def _intervals_without_end_column(pending: dict[str, list[dict]]) -> list[dict]:
+    """无 end_date 列时，new_name 覆盖 [start_date, 下一行 start_date)。
+
+    org_name 只补该代码最早一行 start_date 之前。它不是 start_date 当日及以后的简称。
+    最后一行没有下一行，向后敞开；缺 org_name 的前缀保持未覆盖，不整段盖同一个简称。
+    """
+    intervals = []
+    for code, rows in pending.items():
+        rows.sort(key=lambda item: item["start"])
+        earliest = rows[0]
+        org_name = earliest.get("org_name") or ""
+        if org_name:
             intervals.append(
                 {
                     "code": code,
-                    "name": name,
-                    "start": start,
-                    "end": end or None,
+                    "name": org_name,
+                    "start": "0001-01-01",
+                    "end": _prev_day(earliest["start"]),
                 }
             )
+        for index, row in enumerate(rows):
+            nxt = rows[index + 1]["start"] if index + 1 < len(rows) else ""
+            end = _prev_day(nxt) if nxt else None
+            if end is None or end >= row["start"]:
+                intervals.append(
+                    {
+                        "code": code,
+                        "name": row["name"],
+                        "start": row["start"],
+                        "end": end,
+                    }
+                )
     return intervals
+
+
+def intervals_from_name_frame(df) -> list[dict]:
+    code_col = _pick_col(df, ("code", "sec_code", "security"))
+    # new_name 是聚宽变更后简称。org_name 不在候选里，避免被当成 start_date 起的当前简称。
+    name_col = _pick_col(df, ("name", "short_name", "display_name", "abbr", "new_name"))
+    start_col = _pick_col(df, ("start_date", "begin_date", "change_date"))
+    end_col = _pick_col(df, ("end_date", "stop_date"))
+    if code_col is None or name_col is None or start_col is None or str(name_col).lower() == "org_name":
+        seen = [str(column) for column in getattr(df, "columns", [])]
+        abort(f"name history columns not recognized: {seen}")
+    if end_col:
+        intervals = []
+        for rec in df.to_dict(orient="records"):
+            start = norm_date(rec.get(start_col))
+            name = _text_cell(rec.get(name_col))
+            code = _text_cell(rec.get(code_col))
+            if not code or not name or not start:
+                pass
+            else:
+                end_raw = rec.get(end_col)
+                end = norm_date(end_raw) if end_raw not in (None, "") else ""
+                intervals.append(
+                    {
+                        "code": code,
+                        "name": name,
+                        "start": start,
+                        "end": end or None,
+                    }
+                )
+        return intervals
+    org_col = _pick_col(df, ("org_name",))
+    pending = _rows_from_name_records(df, code_col, name_col, start_col, org_col)
+    return _intervals_without_end_column(pending)
 
 
 def join_price_and_status(price_rows: list[dict], intervals: list[dict], is_st_map: dict, probe: dict) -> list[dict]:
@@ -508,7 +584,9 @@ def join_price_and_status(price_rows: list[dict], intervals: list[dict], is_st_m
         klass = classify_security_name(name) if name else None
         if klass in {"*ST", "ST", "退市整理"}:
             flag = klass
-        elif is_st_val is False and klass is None:
+        elif name and is_st_val is False and klass is None:
+            # 简称已经覆盖、且对不上 ST/*ST/退市时，is_st=False 才是普通股。
+            # 没有覆盖的日期走 MISSING，不能因为 is_st=False 默当成普通股。
             flag = "否"
         elif is_st_val is True and klass is None:
             flag = "UNSPLIT"
@@ -933,6 +1011,180 @@ def _data_names() -> set[str]:
     return {path.name for path in DATA.iterdir()}
 
 
+def _jq_stk_name_history_columns() -> list[str]:
+    return [
+        "id",
+        "code",
+        "company_id",
+        "new_name",
+        "new_spelling",
+        "org_name",
+        "org_spelling",
+        "start_date",
+        "pub_date",
+        "reason",
+    ]
+
+
+def _jq_name_frame(pd, rows: list[dict]):
+    columns = _jq_stk_name_history_columns()
+    frame = pd.DataFrame(rows, columns=columns)
+    seen = [str(column) for column in frame.columns]
+    if seen != columns:
+        abort(f"jq name fixture columns drifted: {seen}")
+    return frame
+
+
+def _check_jq_stk_name_history(pd) -> None:
+    """聚宽 finance.STK_NAME_HISTORY 今晚这组列。new_name 才是变更后简称。"""
+    columns = _jq_stk_name_history_columns()
+    two_rows = [
+        {
+            "id": 1,
+            "code": "000793.XSHE",
+            "company_id": 1,
+            "new_name": "*ST华闻",
+            "new_spelling": "sthw",
+            "org_name": "华闻集团",
+            "org_spelling": "hwjt",
+            "start_date": "2026-03-02",
+            "pub_date": "2026-07-20",
+            "reason": "简称变更",
+        },
+        {
+            "id": 2,
+            "code": "000793.XSHE",
+            "company_id": 1,
+            "new_name": "ST华闻",
+            "new_spelling": "sthw",
+            "org_name": "*ST华闻",
+            "org_spelling": "sthw",
+            "start_date": "2026-07-31",
+            "pub_date": "2026-07-01",
+            "reason": "简称变更",
+        },
+    ]
+    parsed = intervals_from_name_frame(_jq_name_frame(pd, two_rows))
+    if name_on_date(parsed, "000793.XSHE", "2026-03-01") != "华闻集团":
+        abort(f"jq org_name prefix {parsed}")
+    if name_on_date(parsed, "000793.XSHE", "2026-03-02") != "*ST华闻":
+        abort("jq new_name must start on start_date")
+    if name_on_date(parsed, "000793.XSHE", "2026-07-30") != "*ST华闻":
+        abort("jq two-row 2026-07-30")
+    if classify_security_name(name_on_date(parsed, "000793.XSHE", "2026-07-30")) != "*ST":
+        abort("jq two-row 2026-07-30 class")
+    if name_on_date(parsed, "000793.XSHE", "2026-07-31") != "ST华闻":
+        abort("jq two-row 2026-07-31")
+    if classify_security_name(name_on_date(parsed, "000793.XSHE", "2026-07-31")) != "ST":
+        abort("jq two-row 2026-07-31 class")
+    star = [item for item in parsed if item["code"] == "000793.XSHE" and item["start"] == "2026-03-02"]
+    plain = [item for item in parsed if item["code"] == "000793.XSHE" and item["start"] == "2026-07-31"]
+    if len(star) != 1 or star[0]["name"] != "*ST华闻" or star[0]["end"] != "2026-07-30":
+        abort(f"jq two-row half-open {parsed}")
+    if len(plain) != 1 or plain[0]["name"] != "ST华闻" or plain[0]["end"] is not None:
+        abort(f"jq two-row open tail {parsed}")
+
+    one_row = {
+        "id": 3,
+        "code": "000793.XSHE",
+        "company_id": 1,
+        "new_name": "ST华闻",
+        "new_spelling": "sthw",
+        "org_name": "*ST华闻",
+        "org_spelling": "sthw",
+        "start_date": "2026-07-31",
+        "pub_date": "2026-07-01",
+        "reason": "简称变更",
+    }
+    parsed_one = intervals_from_name_frame(_jq_name_frame(pd, [one_row]))
+    if name_on_date(parsed_one, "000793.XSHE", "2026-06-01") != "*ST华闻":
+        abort("jq org_name prefix inside window")
+    if name_on_date(parsed_one, "000793.XSHE", "2026-07-30") != "*ST华闻":
+        abort("jq one-row 2026-07-30")
+    if classify_security_name(name_on_date(parsed_one, "000793.XSHE", "2026-07-30")) != "*ST":
+        abort("jq one-row 2026-07-30 class")
+    if name_on_date(parsed_one, "000793.XSHE", "2026-07-31") != "ST华闻":
+        abort("jq one-row used org_name on start_date")
+    if classify_security_name(name_on_date(parsed_one, "000793.XSHE", "2026-07-31")) != "ST":
+        abort("jq one-row 2026-07-31 class")
+    prior = [item for item in parsed_one if item["name"] == "*ST华闻"]
+    current = [item for item in parsed_one if item["name"] == "ST华闻"]
+    if len(prior) != 1 or prior[0]["end"] != "2026-07-30" or not prior[0]["start"] < "2026-07-31":
+        abort(f"jq org prefix interval {parsed_one}")
+    if len(current) != 1 or current[0]["start"] != "2026-07-31" or current[0]["end"] is not None:
+        abort(f"jq new_name interval {parsed_one}")
+
+    mixed_rows = list(two_rows)
+    mixed_rows.append(
+        {
+            "id": 4,
+            "code": "000911.XSHE",
+            "company_id": 2,
+            "new_name": "*ST广糖",
+            "new_spelling": "stgt",
+            "org_name": "广农糖业",
+            "org_spelling": "gnty",
+            "start_date": "2026-07-06",
+            "pub_date": "2026-06-15",
+            "reason": "简称变更",
+        }
+    )
+    parsed_mixed = intervals_from_name_frame(_jq_name_frame(pd, mixed_rows))
+    if name_on_date(parsed_mixed, "000793.XSHE", "2026-07-30") != "*ST华闻":
+        abort("jq other code cut 000793")
+    if name_on_date(parsed_mixed, "000793.XSHE", "2026-07-31") != "ST华闻":
+        abort("jq other code rewrote 000793")
+    if name_on_date(parsed_mixed, "000911.XSHE", "2026-07-05") != "广农糖业":
+        abort("jq per-code org prefix")
+    if name_on_date(parsed_mixed, "000911.XSHE", "2026-07-06") != "*ST广糖":
+        abort("jq per-code new_name")
+    closed = [
+        item for item in parsed_mixed if item["code"] == "000793.XSHE" and item["start"] == "2026-03-02"
+    ]
+    if len(closed) != 1 or closed[0]["end"] != "2026-07-30":
+        abort(f"jq cross-code end {parsed_mixed}")
+
+    gap_row = {
+        "id": 5,
+        "code": "000793.XSHE",
+        "company_id": 1,
+        "new_name": "ST华闻",
+        "new_spelling": "sthw",
+        "org_name": None,
+        "org_spelling": None,
+        "start_date": "2026-07-31",
+        "pub_date": "2026-07-31",
+        "reason": "简称变更",
+    }
+    parsed_gap = intervals_from_name_frame(_jq_name_frame(pd, [gap_row]))
+    if name_on_date(parsed_gap, "000793.XSHE", "2026-07-30") is not None:
+        abort("missing org_name stamped backward")
+    if name_on_date(parsed_gap, "000793.XSHE", "2026-07-31") != "ST华闻":
+        abort("gap row lost new_name")
+    probe = new_status_probe()
+    joined_gap = join_price_and_status(
+        [_raw("000793.XSHE", "2026-07-30", "", name="")],
+        parsed_gap,
+        {("2026-07-30", "000793.XSHE"): False},
+        probe,
+    )
+    if joined_gap[0]["st_flag"] == "否":
+        abort("uncovered name treated as ordinary")
+    if joined_gap[0]["st_flag"] != "MISSING":
+        abort(f"uncovered name flag {joined_gap[0]['st_flag']}")
+    if probe.get("static_name_stamp_used") is not False:
+        abort("static name stamp flag")
+    _expect_abort(lambda: enrich_rows(joined_gap), "flag=MISSING")
+
+    bare_columns = [column for column in columns if column != "new_name"]
+    bare = pd.DataFrame([{key: gap_row[key] for key in bare_columns}], columns=bare_columns)
+    _expect_abort(lambda: intervals_from_name_frame(bare), "columns not recognized")
+    print("SELF_CHECK jq_name_columns=" + ",".join(columns))
+    print("SELF_CHECK jq_new_name_two_rows=ok jq_new_name_org_prefix=ok")
+    print("SELF_CHECK jq_org_name_not_current=ok jq_uncovered_not_ordinary=ok")
+    print("SELF_CHECK jq_unknown_columns_abort=ok")
+
+
 def run_self_check() -> int:
     if SERVE_CALLED or FETCH_CALLED:
         abort("self-check must run before serve or fetch")
@@ -1100,9 +1352,12 @@ def run_self_check() -> int:
             ]
         )
         parsed = intervals_from_name_frame(frame)
+        if classify_security_name(name_on_date(parsed, "000793.XSHE", "2026-07-30")) != "*ST":
+            abort("name frame end_date")
         if classify_security_name(name_on_date(parsed, "000793.XSHE", "2026-07-31")) != "ST":
             abort("name frame parse")
         print("SELF_CHECK name_frame=ok")
+        _check_jq_stk_name_history(pd)
 
     before = _data_names()
     sample_rows = enrich_rows([_raw("000911.XSHE", "2026-07-03", "*ST", name="*ST广糖")])
