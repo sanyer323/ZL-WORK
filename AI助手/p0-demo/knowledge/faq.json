@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ph02-orifice",
+    "keywords": ["ph02", "孔径", "限流孔板", "濮阳", "鹤壁", "两级", "6.3", "8.2"],
+    "question": "PH02 两级限流孔板推荐孔径是多少？",
+    "answer": "按 PH02 核算（C=0.60）：第一级建议选用 φ6.3 mm，第二级 φ8.2 mm。介质为干天然气，流量 800 Nm³/h，压降 5.0→1.6 MPa(G) 两级分配。详见仓库 `画图/PH02_限流孔板核算结果.md`。",
+    "source": "画图/PH02_限流孔板核算结果.md",
+    "tags": ["项目", "限流孔板"]
+  },
+  {
+    "id": "3051cd-model",
+    "keywords": ["3051", "3051cd", "差压", "变送器", "wzdd", "长兴", "选型"],
+    "question": "西一线长兴站 3051CD 推荐型号？",
+    "answer": "订单 WZDD-26-Z117 推荐 Rosemount 3051CD4A22A1A E3 DF，量程 LRV=-0.1 MPa、URV=0.3 MPa。共 3 台，材质 316L，防爆 E3。详见 `变送器选型/WZDD-26-Z117_3051D选型.md`。",
+    "source": "变送器选型/WZDD-26-Z117_3051D选型.md",
+    "tags": ["选型", "变送器"]
+  },
+  {
+    "id": "fy301-voltage",
+    "keywords": ["fy301", "压电", "电压", "30", "70", "50", "fycal"],
+    "question": "FY301 压电正常工作电压范围？",
+    "answer": "运行监控约 30–70 Vdc，理想接近 50 Vdc。低于 20 V 或高于 80 V 需拆机 FYCAL 标定。稳态近似电容，回路可低至约 3.8 mA。详见 `AI研发产品/研发仿真视频/压电陶瓷研发笔记.md`。",
+    "source": "AI研发产品/研发仿真视频/压电陶瓷研发笔记.md",
+    "tags": ["培训", "FY301"]
+  },
+  {
+    "id": "flowsize-modules",
+    "keywords": ["flowsize", "流衡", "计算", "模块", "软件", "孔板", "调节阀"],
+    "question": "流衡 FlowSize 有哪些计算模块？",
+    "answer": "MVP 0.1 含 9 模块：调节阀（IEC 60534）、标准孔板、调整型孔板、文丘里管/喷嘴、楔形、V 锥、均速管、限流孔板（Beta）。Web 运行：`cd 计算软件 && npm run dev`。",
+    "source": "计算软件/README.md",
+    "tags": ["产品", "FlowSize"]
+  },
+  {
+    "id": "company-scope",
+    "keywords": ["公司", "业务", "做什么", "服务"],
+    "question": "公司是做什么的？",
+    "answer": "过程工业流量测量与过程控制：差压一次元件（PRESO 族等）选型核算出图、限流孔板、变送器集成、自研 FlowSize 工程计算、SMAR FY301 培训仿真。典型客户：油气管道、EPC、智能站场。",
+    "source": "docs/公司业务一页纸.md",
+    "tags": ["对外"]
+  },
+  {
+    "id": "preso-family",
+    "keywords": ["preso", "文丘里", "楔形", "v锥", "椭圆", "均速管"],
+    "question": "PRESO 产品族包括哪些？",
+    "answer": "文丘里 SSL/LPL/CV、喷嘴 SSM、楔形 COIN、V 锥 Cone、椭圆均速管 Ellipse 等，对应 ISO 5167 各分册。FlowSize 中均有对应计算模块。",
+    "source": "计算软件/src/calc/registry.ts",
+    "tags": ["产品", "PRESO"]
+  },
+  {
+    "id": "ph02-count",
+    "keywords": ["ph02", "多少台", "台件", "数量", "15"],
+    "question": "PH02 项目一共多少台限流孔板？",
+    "answer": "合计 15 台二级串联限流孔板，分布在濮阳、新习、浚县、鹤壁等分输站，通径 DN50–DN200，型号前缀 LG-XLKB-CL600-。",
+    "source": "画图/PH02_限流孔板核算结果.md",
+    "tags": ["项目"]
+  },
+  {
+    "id": "vent-orifice-standard",
+    "keywords": ["放空", "api", "sy/t", "campbell", "泄压"],
+    "question": "放空限流孔板用什么算法？",
+    "answer": "PH02 放空孔板对标采用 SY/T 10043（API 521）泄压目标 + Campbell Gas Conditioning 公式；结构图见 `画图/PH02_放空孔板出图/`。",
+    "source": "画图/PH02_放空孔板出图/说明_单级与两级.txt",
+    "tags": ["标准", "限流孔板"]
+  },
+  {
+    "id": "fy301-chain",
+    "keywords": ["fy301", "原理", "闭环", "先导", "压电", "链路"],
+    "question": "FY301 工作原理一句话？",
+    "answer": "V↑ → 压电盘弯曲 → 挡板靠近喷嘴 → 先导压↑ → 膜片放大 → 滑阀 → OUT1/OUT2 → Hall 反馈闭环。详见 FY301 研发仿真工作台 HTML。",
+    "source": "AI研发产品/研发仿真视频/README.md",
+    "tags": ["培训"]
+  },
+  {
+    "id": "open-flowsize",
+    "keywords": ["打开", "运行", "启动", "flowsize", "dev"],
+    "question": "怎么本地运行 FlowSize？",
+    "answer": "在仓库根目录执行：`cd 计算软件 && npm install && npm run dev`，浏览器打开 http://localhost:5173 。",
+    "source": "计算软件/README.md",
+    "tags": ["产品"]
+  }
+]

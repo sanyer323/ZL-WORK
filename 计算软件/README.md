@@ -25,8 +25,47 @@
 
 ```bash
 npm install
-npm run dev
+npm run dev        # http://localhost:5173
+npm run build      # 输出 dist/
+npm run preview    # 本地预览构建结果
+npm run lint       # oxlint
 ```
+
+## 部署与演示
+
+### 本地演示
+
+1. 进入本目录，执行 `npm install && npm run dev`
+2. 浏览器打开终端提示的地址（默认 `http://localhost:5173`）
+3. 首页为产品概览；侧边栏可进入各计算模块与「项目」归档页
+
+### 静态站点部署
+
+构建产物为纯静态文件，可部署到任意静态托管：
+
+```bash
+npm run build
+# dist/ 目录即为可发布内容
+```
+
+| 平台 | 说明 |
+|------|------|
+| **Nginx / 对象存储** | 将 `dist/` 上传到站点根目录；SPA 需配置 `try_files $uri /index.html` |
+| **GitHub Pages** | 构建后推送 `dist` 到 gh-pages 分支，或使用 Actions 自动部署 |
+| **Vercel / Netlify** | 根目录设为 `计算软件`，构建命令 `npm run build`，输出目录 `dist` |
+
+### 环境要求
+
+- Node.js 18+（推荐 20 LTS）
+- 无后端依赖；项目数据保存在浏览器 localStorage
+
+### 产品入口
+
+| 路由 | 说明 |
+|------|------|
+| `/` | 产品概览与模块卡片 |
+| `/calc/:moduleId` | 各计算模块（如 `/calc/orifice`、`/calc/control-valve`） |
+| `/projects` | 已保存的计算记录 |
 
 ## 工质库
 
