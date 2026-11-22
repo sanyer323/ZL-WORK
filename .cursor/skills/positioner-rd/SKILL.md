@@ -279,3 +279,6 @@ description: 阀门定位器 / FY301 / HART 研发约定与坑。重要任务默
 ## 仿真视频成片（2026-11-18）
 - **字幕认证 ≠ 视频语言**：同一 SHOW MORE 组里，认证是 FCC/CVAA「美电视转网上」声明，不是源语言、也不是上传 SRT。工业仿真选豁免；字幕仍自己传 UTF-8 SRT
 - **播客标记 ≠ 普通播放列表**：原理/排故继续用未列出普通列表，不要 Set as podcast。播客会进 YouTube Music、开纯听；平台可能自动标，Studio → Podcasts 里 Remove podcast features。细则在 `智库/视频制作/`
+## 仿真视频成片（2026-11-22）
+- **订阅通知 ≠ 可见性**：未列出不进订阅动态。License 栏「通知订阅者」是另一格，勾掉不会变成未列出。对内片发链接，不要等铃铛
+- **Featured places ≠ 手写章节**：地点卡从描述/字幕稿/画面抽目的地，跟 `00:00` 章节不是同一开关。工业讲解关掉 Allow automatic Featured places。细则在 `智库/视频制作/`
